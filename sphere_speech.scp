@@ -1,0 +1,92 @@
+// ----------------------------
+// SPEECH.SCP - OYUNCU SPEECH FONKSIYONLARI 
+// SON GUNCELLENME TARIHI: 1 Aralik 2001
+// ----------------------------
+VERSION=0.55
+
+[SPEECH spk_player]
+ON=home
+if ( <hits>= 0 ) && ( <src.taming> > 700 ) && ( <src.kills> > 6 )
+src.go delucia
+elseif ( <hits>= 0 ) && ( <src.taming> > 700 ) && ( <src.kills> < 6 )
+src.go britain
+else
+src.sysmessage @081f,,1 Bu komutu kullanabilmeniz icin Taming skiliniz 70.1 ve olu olmaniz gerekmekte.
+return 1
+endif
+
+ON=I must consider my sins
+
+ON=I exit to guild
+
+ON=I exit to city
+
+ON=Guard help *
+ON=Guards*
+ON=Help Guards*
+	// trying to call guards for help.
+
+
+[SPEECH spk_pet]
+ON=DROP // "GIVE" ?
+ON=DROP ALL
+ON=RELEASE
+ON=TRANSFER
+ON=DEFEND ME
+ON=GUARD ME
+ON=GUARD
+ON=DEFEND
+src.sysmessage @55 Bu Komut Kullanima Kapanmistir.
+return 1
+
+ON=ATTACK
+ON=COME
+ON=DISMISS
+ON=FETCH
+ON=FOLLOW
+ON=FOLLOW ME
+ON=FRIEND
+ON=GO
+ON=KILL
+ON=SPEAK
+ON=STAY
+ON=STAY HERE
+ON=STOP
+
+
+[SPEECH spk_hireling]
+// Pets that can talk.
+ON=ATTACK
+ON=BOUGHT
+ON=CASH
+ON=COME
+ON=DEFEND ME
+ON=DISMISS
+ON=DROP	// "GIVE" ?
+ON=DROP ALL
+ON=EQUIP
+ON=EQUIP ALL
+ON=FETCH
+ON=FOLLOW
+ON=FOLLOW ME
+ON=FRIEND
+ON=GET DRESSED
+ON=GO
+ON=GUARD
+ON=GUARD ME
+ON=INVENTORY
+ON=KILL
+ON=PRICE	// may have args ?
+ON=RECIEVED
+ON=RELEASE
+ON=SAMPLES
+ON=SPEAK
+ON=STATUS
+ON=STAY
+ON=STAY HERE
+ON=STOCK
+ON=STOP
+ON=SUIT UP
+ON=TRANSFER
+
+[EOF]

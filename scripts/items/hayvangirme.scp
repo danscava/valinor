@@ -1,0 +1,18 @@
+[ITEMDEF i_hayvangirme]
+id i_teleporter
+name hayvan giremez
+type t_script
+
+on@create
+attr=0b0
+
+On=@step
+if (<src.body> == c_horse_gray) || (<src.body> == c_horse_tan)  || (<src.body> == c_llama) 
+src.go 1473,1634,20
+endif
+return 1
+elseif 
+src.move 1
+endif
+return 1
+[EOF]

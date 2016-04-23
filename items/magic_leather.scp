@@ -1,0 +1,396 @@
+// ----------------------------
+// MAGIC_LEATHER.SCP - MAGICAL LEATHER ARMORLAR 
+// SON GUNCELLENME TARIHI: 1 Aralik 2001
+// ----------------------------
+VERSION=0.55
+
+[ITEMDEF 048eb]
+//Leather Arms of Invulnerability
+DEFNAME=i_leather_sleeves_invulnerability
+NAME=magical leather arms
+ID=i_leather_sleeves
+RESOURCES=i_leather_sleeves,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Leather
+DESCRIPTION=Leather Arms of Invulnerability
+
+ON=@Create
+	ATTR=attr_magic
+	MOREY=100.0
+	HITPOINTS={31 37}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]	
+ENDIF 
+RETURN 1
+
+[ITEMDEF 048ec]
+//Leather Gorget of Invulnerability
+DEFNAME=i_leather_gorget_invulnerability
+NAME=magical leather gorget
+ID=i_leather_gorget
+RESOURCES=i_leather_sleeves,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Leather
+DESCRIPTION=Leather Gorget of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={31 37}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE a <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 048ed]
+//Leather Leggings of Invulnerability
+DEFNAME=i_leather_leggings_invulnerability
+NAME=magical leather leggings
+ID=i_leather_leggings
+RESOURCES=i_leather_leggings,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Leather
+DESCRIPTION=Leather Leggings of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={31 37}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 048ee]
+//Leather Tunic of Invulnerability
+DEFNAME=i_leather_tunic_invulnerability
+NAME=magical leather tunic
+ID=i_leather_tunic
+RESOURCES=i_leather_tunic,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Leather
+DESCRIPTION=Leather Tunic of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={31 37}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE a <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 048ef]
+//Leather Gloves of Invulnerability
+DEFNAME=i_leather_gloves_invulnerability
+NAME=magical leather gloves
+ID=i_leather_gloves
+RESOURCES=i_leather_gloves,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Leather
+DESCRIPTION=Leather Gloves of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={31 37}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 048f0]
+//leather cap of Invulnerability
+DEFNAME=i_leather_cap_invulnerability
+NAME=magical leather cap
+ID=i_leather_cap
+RESOURCES=i_leather_cap,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Leather
+DESCRIPTION=Leather Cap of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={31 37}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE a <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 048fa]
+DEFNAME=i_leather_shorts_invulnerability
+NAME=leather shorts
+ID=i_armor_female_shorts
+RESOURCES=i_armor_female_shorts,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Leather
+DESCRIPTION=Leather Shorts of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={31 37}
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 048fb]
+//Female Leather Armor
+DEFNAME=i_leather_armor_invulnerability_female
+NAME=magical leather armor
+ID=i_armor_female_leather
+RESOURCES=i_armor_female_leather,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Leather
+DESCRIPTION=Leather Armor of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={31 37}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE a <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 048fc]
+DEFNAME=i_leather_skirt_invulnerability
+NAME=magical leather skirt
+ID=i_armor_female_skirt
+RESOURCES=i_armor_female_skirt,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Leather
+DESCRIPTION=Leather Skirt of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={31 37}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE a <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 048fd]
+DEFNAME=i_leather_bustier_invulnerability
+NAME=leather bustier
+ID=i_armor_female_bustier
+RESOURCES=i_armor_female_bustier,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Leather
+DESCRIPTION=Leather Bustier of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={31 37}
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 048fe]
+//Studded Sleeves of Invulnerability
+DEFNAME=i_studded_sleeves_invulnerability
+NAME=magical studded sleeves
+ID=i_studded_sleeves
+RESOURCES=i_studded_sleeves,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Studded
+DESCRIPTION=Studded Sleeves of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={36 44}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 048ff]
+//Studded Gloves of Invulnerability
+DEFNAME=i_studded_gloves_invulnerability
+NAME=magical studded gloves
+ID=i_studded_gloves
+RESOURCES=i_studded_gloves,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Studded
+DESCRIPTION=Studded Gloves of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={36 44}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04900]
+//Studded Gorget of Invulnerability
+DEFNAME=i_studded_gorget_invulnerability
+ID=i_studded_gorget
+NAME=magical studded gorget
+RESOURCES=i_studded_gorget,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Studded
+DESCRIPTION=Studded Gorget of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={36 44}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE a <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04901]
+//Studded Leggings of Invulnerability
+DEFNAME=i_studded_leggings_invulnerability
+NAME=magical studded leggings
+ID=i_studded_leggings
+RESOURCES=i_studded_leggings,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Studded
+DESCRIPTION=Studded Leggings of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={36 44}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04902]
+//Studded Tunic of Invulnerability
+DEFNAME=i_studded_tunic_invulnerability
+NAME=magical studded tunic
+ID=i_studded_tunic
+RESOURCES=i_studded_tunic,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Studded
+DESCRIPTION=Studded Tunic of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={36 44}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE a <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04903]
+DEFNAME=i_studded_armor_invulnerability
+NAME=magical studded armor
+ID=i_armor_female_studded
+RESOURCES=i_armor_female_studded,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Studded
+DESCRIPTION=Studded Armor of Invulnerability
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={36 44}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE a <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04904]
+DEFNAME=i_studded_bustier_invulnerability
+NAME=magical studded bustier
+ID=i_armor_female_bustier_studded
+RESOURCES=i_armor_female_bustier_studded,6 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Studded
+DESCRIPTION=Studded Bustier of Invulnerability
+
+ON=@Create
+	ATTR=attr_magic
+	MOREY=100.0
+	HITPOINTS={36 44}
+	COLOR=color_magic_invulnerability
+	
+ON=@CLICK
+MESSAGE a <NAME>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [invulnerability]
+ENDIF 
+RETURN 1
+
+[EOF]

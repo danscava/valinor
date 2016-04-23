@@ -1,0 +1,1594 @@
+// ----------------------------
+// STAFF.SCP - STAFF FONKSIYONLARI 
+// SON GUNCELLENME TARIHI: 31 Aralik 2001 - cQ
+// ----------------------------
+VERSION=0.55
+
+[function staffadmin]
+var.sa_count 0
+var.sa_uid1
+var.sa_uid2
+var.sa_uid3
+var.sa_uid4
+var.sa_uid5
+var.sa_uid6
+var.sa_uid7
+var.sa_uid8
+var.sa_uid9
+var.sa_uid10
+var.sa_uid11
+var.sa_uid12
+var.sa_slot1
+var.sa_slot2
+var.sa_slot3
+var.sa_slot4
+var.sa_slot5
+var.sa_slot6
+var.sa_slot7
+var.sa_slot8
+var.sa_slot9
+var.sa_slot10
+var.sa_slot11
+var.sa_slot12
+var.sa_ip1
+var.sa_ip2
+var.sa_ip3
+var.sa_ip4
+var.sa_ip5
+var.sa_ip6
+var.sa_ip7
+var.sa_ip8
+var.sa_ip9
+var.sa_ip10
+var.sa_ip11
+var.sa_ip12
+var.sa_name1
+var.sa_name2
+var.sa_name3
+var.sa_name4
+var.sa_name5
+var.sa_name6
+var.sa_name7
+var.sa_name8
+var.sa_name9
+var.sa_name10
+var.sa_name11
+var.sa_name12
+var.sa_mchk1
+var.sa_mchk2
+var.sa_mchk3
+var.sa_mchk4
+var.sa_mchk5
+var.sa_mchk6
+var.sa_mchk7
+var.sa_mchk8
+var.sa_mchk9
+var.sa_mchk10
+var.sa_mchk11
+var.sa_mchk12
+var.sa_font <basefont color=#202040
+var.sa_font1 <basefont color=#aaaacc
+var.sa_font2 <basefont color=#aabbaa
+
+serv.allclients sa_check
+dialog d_staffm
+
+[function sa_check]
+if (<account.plevel> > 1) && (<account.plevel> < 7)
+	src.try var.sa_count (<var.sa_count> + 1)
+	src.try var.sa_uid<eval <var.sa_count>> <uid>
+	src.try var.sa_slot<eval <var.sa_count>> <uid.<var.sa_uid<eval <var.sa_count>>>.account.name>, cnct: <uid.<var.sa_uid<eval <var.sa_count>>>.cnct>m
+	src.try var.sa_ip<eval <var.sa_count>> adr: <account.lastip>
+	src.try var.sa_p<eval <var.sa_count>> <p>
+	if (<account.plevel> == 2)
+		src.try var.sa_name<eval <var.sa_count>> trg: Counselor <name>
+	elseif (<account.plevel> == 3)
+		src.try var.sa_name<eval <var.sa_count>> trg: Seer <name>
+	elseif (<account.plevel> == 4)
+		src.try var.sa_name<eval <var.sa_count>> trg: Gm <name>
+	elseif (<account.plevel> == 5)
+		src.try var.sa_name<eval <var.sa_count>> trg: Senior Gm <name>
+	elseif (<account.plevel> > 5)
+		src.try var.sa_name<eval <var.sa_count>> trg: Admin <name>
+	endif
+	src.try var.sa_mchk<eval <var.sa_count>> 4880
+endif
+
+[dialog d_staffm]
+-50,80
+nomove
+
+page 0
+resizepic 60 0 5120 203 415
+
+//tilepic 140 391 5021
+//htmlgump 128 445 100 20 13 0 0
+
+resizepic 90 35 3000 148 28
+htmlgump 100 40 310 20 0 0 0
+
+htmlgump 100 80 160 20 1 0 0
+htmlgump 100 100 160 20 2 0 0
+htmlgump 100 120 160 20 3 0 0
+htmlgump 100 140 160 20 4 0 0
+htmlgump 100 160 160 20 5 0 0
+htmlgump 100 180 160 20 6 0 0
+htmlgump 100 200 160 20 7 0 0
+htmlgump 100 220 160 20 8 0 0
+htmlgump 100 240 160 20 9 0 0
+htmlgump 100 260 160 20 10 0 0
+htmlgump 100 280 160 20 38 0 0
+htmlgump 100 300 160 20 39 0 0
+
+button 75 83 2224 2224 0 2
+button 75 103 2224 2224 0 3
+button 75 123 2224 2224 0 4
+button 75 143 2224 2224 0 5
+button 75 163 2224 2224 0 6
+button 75 183 2224 2224 0 7
+button 75 203 2224 2224 0 8
+button 75 223 2224 2224 0 9
+button 75 243 2224 2224 0 10
+button 75 263 2224 2224 0 11
+button 75 283 2224 2224 0 12
+button 75 303 2224 2224 0 13
+
+resizepic 99 335 3000 130 48
+htmlgump 135 340 70 20 11 0 0
+htmlgump 128 360 80 20 12 0 0
+
+page 2
+resizepic 270 80 <eval (10000 - 0<var.sa_mchk1>)> 190 140
+htmlgump 300 110 160 20 14 0 0
+htmlgump 300 130 160 20 15 0 0
+button 352 160 <eval (11912 - (0<var.sa_mchk1> * 2))> 2154 1 0 1
+
+page 3
+resizepic 270 100 <eval (10000 - 0<var.sa_mchk2>)> 190 140
+htmlgump 300 130 160 20 16 0 0
+htmlgump 300 150 160 20 17 0 0
+button 352 180 <eval (11912 - (0<var.sa_mchk2> * 2))> 2154 1 0 2
+
+page 4
+resizepic 270 120 <eval (10000 - 0<var.sa_mchk3>)> 190 140
+htmlgump 300 150 160 20 18 0 0
+htmlgump 300 170 160 20 19 0 0
+button 352 200 <eval (11912 - (0<var.sa_mchk3> * 2))> 2154 1 0 3
+
+page 5
+resizepic 270 140 <eval (10000 - 0<var.sa_mchk4>)> 190 140
+htmlgump 300 170 160 20 20 0 0
+htmlgump 300 190 160 20 21 0 0
+button 352 220 <eval (11912 - (0<var.sa_mchk4> * 2))> 2154 1 0 4
+
+page 6
+resizepic 270 160 <eval (10000 - 0<var.sa_mchk5>)> 190 140
+htmlgump 300 190 160 20 22 0 0
+htmlgump 300 210 160 20 23 0 0
+button 352 240 <eval (11912 - (0<var.sa_mchk5> * 2))> 2154 1 0 5
+
+page 7
+resizepic 270 180 <eval (10000 - 0<var.sa_mchk6>)> 190 140
+htmlgump 300 210 160 20 24 0 0
+htmlgump 300 230 160 20 25 0 0
+button 352 260 <eval (11912 - (0<var.sa_mchk6> * 2))> 2154 1 0 6
+
+page 8
+resizepic 270 200 <eval (10000 - 0<var.sa_mchk7>)> 190 140
+htmlgump 300 230 160 20 26 0 0
+htmlgump 300 250 160 20 27 0 0
+button 352 280 <eval (11912 - (0<var.sa_mchk7> * 2))> 2154 1 0 7
+
+page 9
+resizepic 270 220 <eval (10000 - 0<var.sa_mchk8>)> 190 140
+htmlgump 300 250 160 20 28 0 0
+htmlgump 300 270 160 20 29 0 0
+button 352 300 <eval (11912 - (0<var.sa_mchk8> * 2))> 2154 1 0 8
+
+page 10
+resizepic 270 240 <eval (10000 - 0<var.sa_mchk9>)> 190 140
+htmlgump 300 270 160 20 30 0 0
+htmlgump 300 290 160 20 31 0 0
+button 352 320 <eval (11912 - (0<var.sa_mchk9> * 2))> 2154 1 0 9
+
+page 11
+resizepic 270 260 <eval (10000 - 0<var.sa_mchk10>)> 190 140
+htmlgump 300 290 160 20 32 0 0
+htmlgump 300 310 160 20 33 0 0
+button 352 340 <eval (11912 - (0<var.sa_mchk10> * 2))> 2154 1 0 10
+
+page 12
+resizepic 270 280 <eval (10000 - 0<var.sa_mchk11>)> 190 140
+htmlgump 300 310 160 20 34 0 0
+htmlgump 300 330 160 20 35 0 0
+button 352 360 <eval (11912 - (0<var.sa_mchk11> * 2))> 2154 1 0 11
+
+page 13
+resizepic 270 300 <eval (10000 - 0<var.sa_mchk12>)> 190 140
+htmlgump 300 330 160 20 36 0 0
+htmlgump 300 350 160 20 37 0 0
+button 352 380 <eval (11912 - (0<var.sa_mchk12> * 2))> 2154 1 0 12
+
+[dialog d_staffm text]
+<var.sa_font>><serv.servname>, cnct: <eval (<serv.timeup> / 3600)>h <eval ((<serv.timeup> / 60) - ((<serv.timeup> / 3600) * 60))>m
+<var.sa_font1>><var.sa_slot1>
+<var.sa_font1>><var.sa_slot2>
+<var.sa_font1>><var.sa_slot3>
+<var.sa_font1>><var.sa_slot4>
+<var.sa_font1>><var.sa_slot5>
+<var.sa_font1>><var.sa_slot6>
+<var.sa_font1>><var.sa_slot7>
+<var.sa_font1>><var.sa_slot8>
+<var.sa_font1>><var.sa_slot9>
+<var.sa_font1>><var.sa_slot10>
+<var.sa_font>>Pages: <uid.<var.pg_box>.rescount>
+<var.sa_font>>Clients: <serv.clients>
+<var.sa_font2>>Valinor UO
+<var.sa_font2>><var.sa_name1>
+<var.sa_font2>><var.sa_ip1>
+<var.sa_font2>><var.sa_name2>
+<var.sa_font2>><var.sa_ip2>
+<var.sa_font2>><var.sa_name3>
+<var.sa_font2>><var.sa_ip3>
+<var.sa_font2>><var.sa_name4>
+<var.sa_font2>><var.sa_ip4>
+<var.sa_font2>><var.sa_name5>
+<var.sa_font2>><var.sa_ip5>
+<var.sa_font2>><var.sa_name6>
+<var.sa_font2>><var.sa_ip6>
+<var.sa_font2>><var.sa_name7>
+<var.sa_font2>><var.sa_ip7>
+<var.sa_font2>><var.sa_name8>
+<var.sa_font2>><var.sa_ip8>
+<var.sa_font2>><var.sa_name9>
+<var.sa_font2>><var.sa_ip9>
+<var.sa_font2>><var.sa_name10>
+<var.sa_font2>><var.sa_ip10>
+<var.sa_font2>><var.sa_name11>
+<var.sa_font2>><var.sa_ip11>
+<var.sa_font2>><var.sa_name12>
+<var.sa_font2>><var.sa_ip12>
+<var.sa_font1>><var.sa_slot11>
+<var.sa_font1>><var.sa_slot12>
+
+[dialog d_staffm button]
+On=1
+gouid <var.sa_uid1>
+
+On=2
+gouid <var.sa_uid2>
+
+On=3
+gouid <var.sa_uid3>
+
+On=4
+gouid <var.sa_uid4>
+
+On=5
+gouid <var.sa_uid5>
+
+On=6
+gouid <var.sa_uid6>
+
+On=7
+gouid <var.sa_uid7>
+
+On=8
+gouid <var.sa_uid8>
+
+On=9
+gouid <var.sa_uid9>
+
+On=10
+gouid <var.sa_uid10>
+
+On=11
+gouid <var.sa_uid11>
+
+On=12
+gouid <var.sa_uid12>
+
+[plevel 2]
+yetkilikrali
+
+[function yetkilikurali]
+src.dialog d_staff
+
+[dialog d_staff]
+0,0
+resizepic 200 175 5120 400 260
+resizepic 210 185 3000 380 240
+
+htmlgump 220 195 360 170 0 1 1
+
+htmlgump 255 387 400 20 1 0 0
+button 220 385 4005 4007 1 0 0
+
+[dialog d_staff text]
+Hepimizin bildigi gibi cesitli sebeplerden dolayi Valinor UO Shard kapanmisti. Simdi tekrar dirilme zamani. Bu yaziyi okudugunuz andan itibaren Valinor Staff Kadrosu prensiplerine uymak zorundasiniz. Bu dakikadan sonra hic bir player'in A harfi B olmayaktir. Bir skill'i 0.1 arttirilmayi gecin indirilmeyecektir. Su andan itibaren daha Profesyonelve Usta'ca calismamiz gerekmektedir. Hepinize iyi calismalar diyor, bol sans diliyorum..                       (CEO AcriD)
+Cok dogru, katiliyorum, altina imzami atarim.
+
+[dialog d_staff button]
+
+[FUNCTION SIFAT]
+DORAND 6
+	var.SIFAT = Muhterem
+	var.SIFAT = Saygideger
+	var.SIFAT = Yuce
+	var.SIFAT = Sayin
+	var.SIFAT = <cont.sex Lordum/Ladyim>
+	var.SIFAT = Soylu
+ENDDO
+
+[ITEMDEF i_sgem]
+NAME=goto spawn gem
+ID=i_crystal_ball
+TYPE=t_script
+
+ON=@Create
+COLOR=0515
+ATTR=04
+
+ON=@DCLICK
+SRC.SYSMESSAGE lutfen bir NPC seciniz.
+TARGET
+RETURN 1
+
+ON=@TARGON_CHAR
+SRC.Go <SRC.Targ.MemoryFindType.Memory_ISPawned.Link.P>
+RETURN 1
+
+// Lock
+[FUNCTION lock]
+SRC.NEWITEM i_memory_target_lock
+SRC.ACT.EQUIP
+RETURN 1
+
+[ITEMDEF i_memory_target_lock]
+ID=i_memory
+TYPE=t_eq_script
+NAME=lock target
+
+ON=@Create
+	ATTR=attr_decay|attr_invis
+	TIMER=15
+
+ON=@Equip
+	TARGET hangi e$ya sabitlenecekti?
+	RETURN 1
+
+ON=@Targon_Item
+	IF ((<CONT.TARG.ATTR> & attr_move_never) || (<CONT.TARG.ATTR> & attr_static))
+		CONT.TARG.MESSAGE Sabitligi kaldirildi.
+		CONT.TARG.ATTR=<CONT.TARG.ATTR>&~attr_move_never
+		CONT.TARG.ATTR=<CONT.TARG.ATTR>&~attr_static
+		CONT.TARG.LINK=04fffffff
+	ELSE
+		CONT.TARG.MESSAGE Sabitlendi.
+		CONT.TARG.ATTR=<CONT.TARG.ATTR>|attr_move_never
+		CONT.TARG.LINK=<CONT.UID>
+	ENDIF
+
+	TRIGGER=@Timer
+	RETURN 1
+
+ON=@Targon_Char
+	CONT.SYSMESSAGE elemanlari sabitleyemessin, onlar sabit zaten bisi olmaz onlara korkma.
+	TRIGGER=@Timer
+	RETURN 1
+
+ON=@Timer
+	REMOVE
+	RETURN 1
+
+[FUNCTION ann]
+SERV.ALLCLIENTS SOUND 0fe
+SERV.ALLCLIENTS SYSMESSAGE GM <NAME>: <ARGS>
+RETURN 1
+
+[FUNCTION gate]
+IF (strmatch("<args>","britain"))
+	var.LOC=1495,1629,10
+ELSEIF (strmatch("<args>","star chamber"))
+	var.LOC=star chamber
+ELSEIF (strmatch("<args>","buccaneer's den"))
+	var.LOC=2706,2163
+ELSEIF (strmatch("<args>","cove"))
+	var.LOC=2275,1210,0
+ELSEIF (strmatch("<args>","jhelom"))
+	var.LOC=1383,3815,0
+ELSEIF (strmatch("<args>","minoc"))
+	var.LOC=2466,544
+ELSEIF (strmatch("<args>","moonglow"))
+	var.LOC=4442,1172
+ELSEIF (strmatch("<args>","nujel'm"))
+	var.LOC=3732,1279
+ELSEIF (strmatch("<args>","ocllo"))
+	var.LOC=3650,2519
+ELSEIF (strmatch("<args>","serpent's hold"))
+	var.LOC=3010,3371,15
+ELSEIF (strmatch("<args>","skara brae"))
+	var.LOC=632,2233
+ELSEIF (strmatch("<args>","trinsic"))
+	var.LOC=1867,2780
+ELSEIF (strmatch("<args>","vesper"))
+	var.LOC=2899,676,0
+ELSEIF (strmatch("<args>","wind"))
+	var.LOC=1465,989
+ELSEIF (strmatch("<args>","yew"))
+	var.LOC=546,992
+ELSEIF (strmatch("<args>","papua"))
+	var.LOC=5729,3209,-1
+ELSEIF (strmatch("<args>","calimport"))
+	var.LOC=5272,3995,37
+ELSEIF (<EVAL(<args>)> == 0)
+	SRC.SYSMESSAGE Komutu yanlis kullandiniz.
+	RETURN 1
+ELSE
+	var.LOC=<args>
+ENDIF
+
+SOUND 0217
+SRC.ANIM 17
+SRC.NEWITEM i_moongate_blue
+SRC.ACT.NAME=<ARGS>
+SRC.ACT.DISPID=i_moongate_black
+SRC.ACT.TYPE=t_script
+SRC.ACT.ATTR=attr_decay
+SRC.ACT.TIMER=40
+SRC.ACT.P=<SRC.P>
+SRC.ACT.MOREP=<var.LOC>
+
+var.LOC=0
+RETURN 1
+
+[FUNCTION cqgate]
+SOUND 0217
+SRC.ANIM 17
+SRC.NEWITEM i_moongate_blue
+SRC.ACT.NAME=<ARGS>
+SRC.ACT.DISPID=i_moongate_black
+SRC.ACT.TYPE=t_script
+SRC.ACT.ATTR=attr_decay
+SRC.ACT.TIMER=40
+SRC.ACT.P=<SRC.P>
+RETURN 1
+
+[ITEMDEF i_yeniisim]
+ID=i_memory
+NAME=yeniisim
+TYPE=T_EQ_SCRIPT
+WEIGHT=0
+LAYER=layer_special
+
+ON=@Create
+COLOR=0
+ATTR=attr_decay|attr_invis
+TIMER=10
+
+ON=@Equip
+SRC.SIFAT
+TARGET kimin ismi <var.YENIISIM> olacak, <var.SIFAT> <SRC.NAME>?
+RETURN 1
+
+ON=@TargOn_Item
+SRC.SYSMESSAGE esyalarin ismini degi$tiremezsin
+RETURN 1
+                      
+ON=@TargOn_Char
+SRC.TARG.NAME <var.YENIISIM>
+REMOVE
+RETURN 1
+ENDIF
+
+ON=@Timer
+REMOVE
+
+[FUNCTION YENIIBIRSIM]
+if <findid.i_yeniisim>
+	findid.i_yeniisim.remove
+endif
+var.yeniisim <args>
+newitem i_yeniisim
+act.equip
+
+[FUNCTION KAFESLE]
+xsummoncage
+sysmessage hangisini kafesleyelim aabi?
+
+[FUNCTION GETIR]
+xsummonto
+sysmessage hangisi gelsin abi?
+
+[FUNCTION SMSG]
+var.STAFFNAME = <SRC.NAME>
+var.STAFFMSG = <ARGS>
+SERV.ALLCLIENTS STAFFMSGTRIG
+
+[FUNCTION STAFFMSGTRIG]
+IF (<ACCOUNT.PLEVEL> >1)
+DIALOG d_staffmsg
+ENDIF
+
+[DIALOG D_staffmsg]
+150,300
+resizepic 0 0 3500 590 100
+
+text 185 25 0 0
+text 24 55 0 1 //0485
+text 186 23 249 2
+text 25 57 0485 3 //0485
+
+//tilepic 330 12 4825
+
+[DIALOG D_staffmsg text]
+Duyuruyu Yapan: <var.STAFFNAME> - Valinor Shard
+<var.STAFFMSG>
+Duyuruyu Yapan: <var.STAFFNAME> - Valinor Shard
+<var.STAFFMSG>
+
+[function s]
+if (strmatch("<args>",""))
+	var.smsgx 0481
+	smsgx .s den sonra bisiler yaz
+else
+	if (<account.plevel> > 6)
+		var.smsgx 0481
+		var.pln Owner
+	elseif (<account.plevel> > 5)
+		var.smsgx 0481
+		var.pln Admin
+	elseif (<account.plevel> > 4)
+		var.smsgx 0481
+		var.pln Helper
+	elseif (<account.plevel> > 3)
+		var.smsgx 0481
+		var.pln Gm
+	elseif (<account.plevel> > 2)
+		var.smsgx 0481
+		var.pln Seer
+	elseif (<account.plevel> = 2)
+		var.smsgx 0481
+		var.pln Counselor
+	else
+		var.smsgx 0481
+		var.pln ???
+	endif
+	tag.s <args>
+	serv.allclients stafftrig <args>
+endif
+
+[function stafftrig]
+if (<account.plevel> > 1)
+	smsgx -> [<src.name>]: <args>
+endif
+
+
+// hws ADMIN SYSTEM
+
+[function washwsadmin]
+src.tag.clientcount=0
+src.tag.maxclientcount=0
+var.count=200
+f_clearvars
+serv.allclients getclientuid
+
+src.tag.clientcount=1
+if !(strcmpi(<args>,))
+	dialog d_nbladmin
+else
+	tag.search=<args>
+	f_client_search
+endif
+
+[function getclientuid]
+src.tag.maxclientcount=<eval <src.tag.maxclientcount>+1>
+try var.clientnumber.<eval <src.tag.maxclientcount>>.uid=<uid>
+
+[function f_clearvars]
+if <var.count>>0
+	var.count=<eval <var.count>-1>
+	try var.clientnumber.<eval <var.count>>.uid=
+	f_clearvars_2
+endif
+
+[function f_clearvars_2]
+f_clearvars
+
+
+[dialog d_nbladmin]
+100,25
+resizepic 20 50 5054 660 580
+resizepic 30 60 3000 640 560
+text 70 70 0 0
+
+text 70 100 70 1
+text 220 100 70 2
+text 340 100 70 3
+text 480 100 70 4
+
+text 70 120 5 5
+text 220 120 5 6
+text 340 120 5 7
+text 480 120 5 8
+
+text 70 140 70 9
+text 220 140 70 10
+text 340 140 70 11
+text 480 140 70 12
+
+text 70 160 5 13
+text 220 160 5 14
+text 340 160 5 15
+text 480 160 5 16
+
+text 70 180 70 17
+text 220 180 70 18
+text 340 180 70 19
+text 480 180 70 20
+
+text 70 200 5 21
+text 220 200 5 22
+text 340 200 5 23
+text 480 200 5 24
+
+text 70 220 70 25
+text 220 220 70 26
+text 340 220 70 27
+text 480 220 70 28
+
+text 70 240 5 29
+text 220 240 5 30
+text 340 240 5 31
+text 480 240 5 32
+
+text 70 260 70 33
+text 220 260 70 34
+text 340 260 70 35
+text 480 260 70 36
+
+text 70 280 5 37
+text 220 280 5 38
+text 340 280 5 39
+text 480 280 5 40
+
+
+text 70 300 70 41
+text 220 300 70 42
+text 340 300 70 43
+text 480 300 70 44
+
+text 70 320 5 45
+text 220 320 5 46
+text 340 320 5 47
+text 480 320 5 48
+
+text 70 340 70 49
+text 220 340 70 50
+text 340 340 70 51
+text 480 340 70 52
+
+text 70 360 5 53
+text 220 360 5 54
+text 340 360 5 55
+text 480 360 5 56
+
+text 70 380 70 57
+text 220 380 70 58
+text 340 380 70 59
+text 480 380 70 60
+
+text 70 400 5 61
+text 220 400 5 62
+text 340 400 5 63
+text 480 400 5 64
+
+text 70 420 70 65
+text 220 420 70 66
+text 340 420 70 67
+text 480 420 70 68
+
+text 70 440 5 69
+text 220 440 5 70
+text 340 440 5 71
+text 480 440 5 72
+
+text 70 460 70 73
+text 220 460 70 74
+text 340 460 70 75
+text 480 460 70 76
+
+text 70 480 5 77
+text 220 480 5 78
+text 340 480 5 79
+text 480 480 5 80
+
+button 55 105 2361 2362 1 0 1
+button 55 125 2362 2361 1 0 2
+button 55 145 2361 2362 1 0 3
+button 55 165 2362 2361 1 0 4
+button 55 185 2361 2362 1 0 5
+button 55 205 2362 2361 1 0 6
+button 55 225 2361 2362 1 0 7
+button 55 245 2362 2361 1 0 8
+button 55 265 2361 2362 1 0 9
+button 55 285 2362 2361 1 0 10
+button 55 305 2361 2362 1 0 11
+button 55 325 2362 2361 1 0 12
+button 55 345 2361 2362 1 0 13
+button 55 365 2362 2361 1 0 14
+button 55 385 2361 2362 1 0 15
+button 55 405 2362 2361 1 0 16
+button 55 425 2361 2362 1 0 17
+button 55 445 2362 2361 1 0 18
+button 55 465 2361 2362 1 0 19
+button 55 485 2362 2361 1 0 20
+
+button 615 590 4006 4007 1 0 21
+button 55 590 4015 4014 1 0 22
+
+[DIALOG d_nbladmin TEXT]
+Player          Priv Account       Ip Address        Location
+<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+1>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+1>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+1>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+1>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+1>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+1>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+2>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+2>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+2>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+2>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+2>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+2>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+3>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+3>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+3>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+3>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+3>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+3>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+4>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+4>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+4>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+4>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+4>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+4>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+5>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+5>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+5>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+5>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+5>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+5>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+6>.uid>.name>
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+6>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+6>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+6>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+6>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+6>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+7>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+7>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+7>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+7>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+7>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+7>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+8>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+8>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+8>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+8>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+8>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+8>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+9>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+9>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+9>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+9>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+9>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+9>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+10>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+10>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+10>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+10>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+10>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+10>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+11>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+11>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+11>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+11>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+11>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+11>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+12>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+12>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+12>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+12>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+12>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+12>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+13>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+13>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+13>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+13>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+13>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+13>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+14>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+14>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+14>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+14>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+14>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+14>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+15>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+15>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+15>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+15>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+15>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+15>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+16>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+16>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+16>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+16>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+16>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+16>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+17>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+17>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+17>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+17>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+17>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+17>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+18>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+18>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+18>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+18>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+18>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+18>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+19>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+19>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.clientcount>+19>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+19>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.clientcount>+19>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>+19>.uid>.region.name>
+//
+
+[DIALOG d_nbladmin BUTTON]
+ONBUTTON=0 //cancel
+	f_clearadmintags
+ONBUTTON=1
+	tag.clientcount=<eval <src.tag.clientcount>>
+	f_playermenu
+ONBUTTON=2
+	tag.clientcount=<eval <src.tag.clientcount>+1>
+	f_playermenu
+ONBUTTON=3
+	tag.clientcount=<eval <src.tag.clientcount>+2>
+	f_playermenu
+ONBUTTON=4
+	tag.clientcount=<eval <src.tag.clientcount>+3>
+	f_playermenu
+ONBUTTON=5
+	tag.clientcount=<eval <src.tag.clientcount>+4>
+	f_playermenu
+ONBUTTON=6
+	tag.clientcount=<eval <src.tag.clientcount>+5>
+	f_playermenu
+ONBUTTON=7
+	tag.clientcount=<eval <src.tag.clientcount>+6>
+	f_playermenu
+ONBUTTON=8
+	tag.clientcount=<eval <src.tag.clientcount>+7>
+	f_playermenu
+ONBUTTON=9
+	tag.clientcount=<eval <src.tag.clientcount>+8>
+	f_playermenu
+ONBUTTON=10
+	tag.clientcount=<eval <src.tag.clientcount>+9>
+	f_playermenu
+ONBUTTON=11
+	tag.clientcount=<eval <src.tag.clientcount>+10>
+	f_playermenu
+ONBUTTON=12
+	tag.clientcount=<eval <src.tag.clientcount>+11>
+	f_playermenu
+ONBUTTON=13
+	tag.clientcount=<eval <src.tag.clientcount>+12>
+	f_playermenu
+ONBUTTON=14
+	tag.clientcount=<eval <src.tag.clientcount>+13>
+	f_playermenu
+ONBUTTON=15
+	tag.clientcount=<eval <src.tag.clientcount>+14>
+	f_playermenu
+ONBUTTON=16
+	tag.clientcount=<eval <src.tag.clientcount>+15>
+	f_playermenu
+ONBUTTON=17
+	tag.clientcount=<eval <src.tag.clientcount>+16>
+	f_playermenu
+ONBUTTON=18
+	tag.clientcount=<eval <src.tag.clientcount>+17>
+	f_playermenu
+ONBUTTON=19
+	tag.clientcount=<eval <src.tag.clientcount>+18>
+	f_playermenu
+ONBUTTON=20
+	tag.clientcount=<eval <src.tag.clientcount>+19>
+	f_playermenu
+ONBUTTON=21
+	tag.clientcount=<eval <src.tag.clientcount>+20>
+	dialog d_nbladmin
+ONBUTTON=22
+	tag.clientcount=<eval <src.tag.clientcount>-20>
+	if <tag.clientcount><1
+		tag.clientcount=1
+	endif
+	dialog d_nbladmin
+
+
+[function f_client_search]
+	src.tag.clientcount=1
+	f_clearsearchtags
+	tag.temp.count=1
+	f_client_search_2
+
+[function f_client_search_2]
+	if <eval <src.tag.clientcount>> <= <eval <src.tag.maxclientcount>>
+		if ( (!(strcmpi(felucia,<tag.search>))) && (!(strcmpi(<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.mapplane>,1))) )
+			f_search_save <src.tag.clientcount>
+			tag.temp.count=<Eval <tag.temp.count>+1>
+			if <eval <tag.temp.count>>>20
+				dialog d_admin_search
+				RETURN 1
+			endif
+			tryp 1 src.tag.clientcount=<eval <src.tag.clientcount>+1>
+			f_client_search_3
+		elseif ( (!(strcmpi(trammel,<tag.search>))) && (!(strcmpi(<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.mapplane>,0))) )
+			f_search_save <src.tag.clientcount>
+			tag.temp.count=<Eval <tag.temp.count>+1>
+			if <eval <tag.temp.count>>>20
+				dialog d_admin_search
+				RETURN 1
+			endif
+			tryp 1 src.tag.clientcount=<eval <src.tag.clientcount>+1>
+			f_client_search_3
+		//elseif ( (!(strcmpi(abyss,<tag.search>))) && (!(strcmpi(<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.mapplane>,5))) )
+		//	f_search_save <src.tag.clientcount>
+		//	tag.temp.count=<Eval <tag.temp.count>+1>
+		//	if <eval <tag.temp.count>>>20
+		//		dialog d_admin_search
+		//		RETURN 1
+		//	endif
+		//	tryp 1 src.tag.clientcount=<eval <src.tag.clientcount>+1>
+		//	f_client_search_3
+		elseif ( (!(strcmpi(local,<tag.search>))) && (!(strcmpi(<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.region.name>,<region.name>))) && (!(strcmpi(<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.mapplane>,<mapplane>))) )
+			f_search_save <src.tag.clientcount>
+			tag.temp.count=<Eval <tag.temp.count>+1>
+			if <eval <tag.temp.count>>>20
+				dialog d_admin_search
+				RETURN 1
+			endif
+			tryp 1 src.tag.clientcount=<eval <src.tag.clientcount>+1>
+			f_client_search_3
+		elseif ( (!(strcmpi(gm,<tag.search>))) && (<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.account.plevel>>3))
+			f_search_save <src.tag.clientcount>
+			tag.temp.count=<Eval <tag.temp.count>+1>
+			if <eval <tag.temp.count>>>20
+				dialog d_admin_search
+				RETURN 1
+			endif
+			tryp 1 src.tag.clientcount=<eval <src.tag.clientcount>+1>
+			f_client_search_3
+		elseif ( (!(strcmpi(<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.name>,<tag.search>))) || (!(strcmpi(<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.account.name>,<tag.search>))) || (!(strcmpi(<uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.region.name>,<tag.search>))) )
+			f_search_save <src.tag.clientcount>
+			tag.temp.count=<Eval <tag.temp.count>+1>
+			if <eval <tag.temp.count>>>20
+				dialog d_admin_search
+				RETURN 1
+			endif
+			tryp 1 src.tag.clientcount=<eval <src.tag.clientcount>+1>
+			f_client_search_3
+		else
+			tryp 1 src.tag.clientcount=<eval <src.tag.clientcount>+1>
+			f_client_search_3
+			return 1
+		endif
+	else
+		dialog d_admin_search
+		return 1
+	endif
+
+[Function f_client_search_3]
+f_client_search_2
+
+[function f_search_save]
+if !(strcmp(<tag.temp.0>,))
+	tag.temp.0=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.1>,))
+	tag.temp.1=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.2>,))
+	tag.temp.2=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.3>,))
+	tag.temp.3=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.4>,))
+	tag.temp.4=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.5>,))
+	tag.temp.5=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.6>,))
+	tag.temp.6=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.7>,))
+	tag.temp.7=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.8>,))
+	tag.temp.8=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.9>,))
+	tag.temp.9=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.10>,))
+	tag.temp.10=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.11>,))
+	tag.temp.11=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.12>,))
+	tag.temp.12=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.13>,))
+	tag.temp.13=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.14>,))
+	tag.temp.14=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.15>,))
+	tag.temp.15=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.16>,))
+	tag.temp.16=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.17>,))
+	tag.temp.17=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.18>,))
+	tag.temp.18=<argn>
+	return 1
+elseif !(strcmp(<tag.temp.19>,))
+	tag.temp.19=<argn>
+	return 1
+else
+	return 0
+endif
+
+[function f_clearsearchtags]
+tag.temp.0=
+tag.temp.1=
+tag.temp.2=
+tag.temp.3=
+tag.temp.4=
+tag.temp.5=
+tag.temp.6=
+tag.temp.7=
+tag.temp.8=
+tag.temp.9=
+tag.temp.10=
+tag.temp.11=
+tag.temp.12=
+tag.temp.13=
+tag.temp.14=
+tag.temp.15=
+tag.temp.16=
+tag.temp.17=
+tag.temp.18=
+tag.temp.19=
+
+[dialog d_admin_search]
+100,25
+resizepic 20 50 5054 660 580
+resizepic 30 60 3000 640 560
+text 70 70 0 0
+
+text 70 100 70 1
+text 220 100 70 2
+text 340 100 70 3
+text 480 100 70 4
+
+text 70 120 5 5
+text 220 120 5 6
+text 340 120 5 7
+text 480 120 5 8
+
+text 70 140 70 9
+text 220 140 70 10
+text 340 140 70 11
+text 480 140 70 12
+
+text 70 160 5 13
+text 220 160 5 14
+text 340 160 5 15
+text 480 160 5 16
+
+text 70 180 70 17
+text 220 180 70 18
+text 340 180 70 19
+text 480 180 70 20
+
+text 70 200 5 21
+text 220 200 5 22
+text 340 200 5 23
+text 480 200 5 24
+
+text 70 220 70 25
+text 220 220 70 26
+text 340 220 70 27
+text 480 220 70 28
+
+text 70 240 5 29
+text 220 240 5 30
+text 340 240 5 31
+text 480 240 5 32
+
+text 70 260 70 33
+text 220 260 70 34
+text 340 260 70 35
+text 480 260 70 36
+
+text 70 280 5 37
+text 220 280 5 38
+text 340 280 5 39
+text 480 280 5 40
+
+
+text 70 300 70 41
+text 220 300 70 42
+text 340 300 70 43
+text 480 300 70 44
+
+text 70 320 5 45
+text 220 320 5 46
+text 340 320 5 47
+text 480 320 5 48
+
+text 70 340 70 49
+text 220 340 70 50
+text 340 340 70 51
+text 480 340 70 52
+
+text 70 360 5 53
+text 220 360 5 54
+text 340 360 5 55
+text 480 360 5 56
+
+text 70 380 70 57
+text 220 380 70 58
+text 340 380 70 59
+text 480 380 70 60
+
+text 70 400 5 61
+text 220 400 5 62
+text 340 400 5 63
+text 480 400 5 64
+
+text 70 420 70 65
+text 220 420 70 66
+text 340 420 70 67
+text 480 420 70 68
+
+text 70 440 5 69
+text 220 440 5 70
+text 340 440 5 71
+text 480 440 5 72
+
+text 70 460 70 73
+text 220 460 70 74
+text 340 460 70 75
+text 480 460 70 76
+
+text 70 480 5 77
+text 220 480 5 78
+text 340 480 5 79
+text 480 480 5 80
+
+button 55 105 2361 2362 1 0 1
+button 55 125 2362 2361 1 0 2
+button 55 145 2361 2362 1 0 3
+button 55 165 2362 2361 1 0 4
+button 55 185 2361 2362 1 0 5
+button 55 205 2362 2361 1 0 6
+button 55 225 2361 2362 1 0 7
+button 55 245 2362 2361 1 0 8
+button 55 265 2361 2362 1 0 9
+button 55 285 2362 2361 1 0 10
+button 55 305 2361 2362 1 0 11
+button 55 325 2362 2361 1 0 12
+button 55 345 2361 2362 1 0 13
+button 55 365 2362 2361 1 0 14
+button 55 385 2361 2362 1 0 15
+button 55 405 2362 2361 1 0 16
+button 55 425 2361 2362 1 0 17
+button 55 445 2362 2361 1 0 18
+button 55 465 2361 2362 1 0 19
+button 55 485 2362 2361 1 0 20
+
+button 615 590 4006 4007 1 0 21
+
+[DIALOG d_admin_search TEXT]
+Player          Priv Account       Ip Address        Location
+<uid.<var.clientnumber.<eval <src.tag.temp.0>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.0>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.0>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.0>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.0>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.0>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.1>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.1>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.1>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.1>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.1>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.1>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.2>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.2>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.2>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.2>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.2>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.2>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.3>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.3>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.3>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.3>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.3>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.3>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.4>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.4>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.4>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.4>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.4>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.4>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.5>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.5>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.5>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.5>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.5>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.5>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.6>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.6>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.6>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.6>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.6>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.6>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.7>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.7>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.7>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.7>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.7>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.7>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.8>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.8>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.8>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.8>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.8>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.8>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.9>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.9>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.9>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.9>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.9>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.9>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.10>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.10>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.10>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.10>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.10>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.10>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.11>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.11>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.11>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.11>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.11>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.11>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.12>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.12>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.12>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.12>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.12>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.12>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.13>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.13>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.13>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.13>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.13>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.13>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.14>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.14>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.14>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.14>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.14>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.14>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.15>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.15>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.15>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.15>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.15>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.15>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.16>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.16>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.16>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.16>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.16>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.16>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.17>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.17>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.17>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.17>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.17>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.17>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.18>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.18>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.18>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.18>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.18>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.18>>.uid>.region.name>
+//
+<uid.<var.clientnumber.<eval <src.tag.temp.19>>.uid>.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.18>>.uid>.account.plevel> <uid.<var.clientnumber.<eval <src.tag.temp.19>>.uid>.account.name> 
+<uid.<var.clientnumber.<eval <src.tag.temp.19>>.uid>.account.lastip> 
+<uid.<var.clientnumber.<eval <src.tag.temp.19>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.temp.19>>.uid>.region.name>
+//
+
+[DIALOG d_admin_search BUTTON]
+ONBUTTON=0 //cancel
+	f_clearadmintags
+ONBUTTON=1
+	tag.clientcount=<eval <src.tag.temp.0>>
+	f_playermenu
+ONBUTTON=2
+	tag.clientcount=<eval <src.tag.temp.1>>
+	f_playermenu
+ONBUTTON=3
+	tag.clientcount=<eval <src.tag.temp.2>>
+	f_playermenu
+ONBUTTON=4
+	tag.clientcount=<eval <src.tag.temp.3>>
+	f_playermenu
+ONBUTTON=5
+	tag.clientcount=<eval <src.tag.temp.4>>
+	f_playermenu
+ONBUTTON=6
+	tag.clientcount=<eval <src.tag.temp.5>>
+	f_playermenu
+ONBUTTON=7
+	tag.clientcount=<eval <src.tag.temp.6>>
+	f_playermenu
+ONBUTTON=8
+	tag.clientcount=<eval <src.tag.temp.7>>
+	f_playermenu
+ONBUTTON=9
+	tag.clientcount=<eval <src.tag.temp.8>>
+	f_playermenu
+ONBUTTON=10
+	tag.clientcount=<eval <src.tag.temp.9>>
+	f_playermenu
+ONBUTTON=11
+	tag.clientcount=<eval <src.tag.temp.10>>
+	f_playermenu
+ONBUTTON=12
+	tag.clientcount=<eval <src.tag.temp.11>>
+	f_playermenu
+ONBUTTON=13
+	tag.clientcount=<eval <src.tag.temp.12>>
+	f_playermenu
+ONBUTTON=14
+	tag.clientcount=<eval <src.tag.temp.13>>
+	f_playermenu
+ONBUTTON=15
+	tag.clientcount=<eval <src.tag.temp.14>>
+	f_playermenu
+ONBUTTON=16
+	tag.clientcount=<eval <src.tag.temp.15>>
+	f_playermenu
+ONBUTTON=17
+	tag.clientcount=<eval <src.tag.temp.16>>
+	f_playermenu
+ONBUTTON=18
+	tag.clientcount=<eval <src.tag.temp.17>>
+	f_playermenu
+ONBUTTON=19
+	tag.clientcount=<eval <src.tag.temp.18>>
+	f_playermenu
+ONBUTTON=20
+	tag.clientcount=<eval <src.tag.temp.19>>
+	f_playermenu
+ONBUTTON=21
+	if <tag.temp.19>
+		tag.clientcount=<eval <tag.temp.19>+1>
+	else
+		tag.clientcount=1
+	endif
+	f_clearsearchtags
+	tag.temp.count=1
+	f_client_search_2
+	return 1
+
+
+[function f_playermenu]
+dialog d_admin_client
+
+[DIALOG d_admin_client]
+100,75
+resizepic 210 175 5054 420 480
+resizepic 220 185 3000 400 460
+
+text 245 190 033 0
+text 245 220 0 1
+text 245 240 0 2
+text 245 260 0 3
+text 245 280 0 4
+text 245 300 0 5
+text 245 320 0 6
+text 245 340 0 7
+text 245 400 5 8
+text 245 420 5 9
+text 245 440 5 10
+text 245 460 5 11
+text 245 480 5 12
+text 245 500 5 13
+text 245 520 5 14
+text 245 540 5 15
+text 245 560 5 16
+text 245 580 5 17
+text 245 600 5 18
+button 230 405 2362 2361 1 0 1 
+button 230 425 2362 2361 1 0 2
+button 230 445 2362 2361 1 0 3 
+button 230 465 2362 2361 1 0 4 
+button 230 485 2362 2361 1 0 5 
+button 230 505 2362 2361 1 0 6 
+button 230 525 2362 2361 1 0 7 
+button 230 545 2362 2361 1 0 8 
+button 230 565 2362 2361 1 0 9 
+button 230 585 2362 2361 1 0 10
+button 230 605 2362 2361 1 0 11
+
+[DIALOG d_admin_client TEXT]
+Player Info
+Name: <uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.name> 
+Account: <uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.account.name> 
+Plevel: <uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.account.plevel>
+LastIp: <uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.account.lastip> 
+UID: <var.clientnumber.<eval <src.tag.clientcount>>.uid>
+Location: <uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.p> <uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.region.name>
+Account Minutes: <uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.account.totalconnecttime>
+Kill
+Summon
+Summon Cage
+Jail
+Resurrect
+Follow
+Kick
+Disconnect
+Tell
+Forgive
+Go
+
+[DIALOG d_admin_client BUTTON]
+ONBUTTON=0 //cancel
+	f_clearadmintags
+ONBUTTON=1
+	tryp 1 uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.kill
+	f_clearadmintags
+ONBUTTON=2
+	tryp 1 uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.go <src.p>
+	f_clearadmintags
+ONBUTTON=3
+	tryp 1 uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.summoncage
+	f_clearadmintags
+ONBUTTON=4
+	tryp 1 uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.jail
+	f_clearadmintags
+ONBUTTON=5
+	tryp 1 uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.resurrect
+	f_clearadmintags
+ONBUTTON=6
+	tryp 1 uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.follow
+	f_clearadmintags
+ONBUTTON=7
+	tryp 1 uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.kick
+	f_clearadmintags
+ONBUTTON=8
+	tryp 1 uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.disconnect
+	f_clearadmintags
+ONBUTTON=9
+	tryp 1 uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.EVERBTARG HEAR
+	f_clearadmintags
+ONBUTTON=10
+	tryp 1 uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.forgive
+	f_clearadmintags
+ONBUTTON=11
+	tryp 1 go <uid.<var.clientnumber.<eval <src.tag.clientcount>>.uid>.p>
+	f_clearadmintags
+
+[function f_clearadmintags]
+f_clearsearchtags
+f_clearvars
+tag.maxclientcount=
+tag.clientcount=
+tag.search=
+tag.temp.count=
+
+
+[FUNCTION goplayer]
+if (<findid.i_goplayer>)
+	p <findid.i_goplayer.morep>
+	findid.i_goplayer.remove
+	update
+else
+	invis 1
+	newitem i_goplayer
+	act.cont <uid>
+	act.morep <p>
+	act.tag.name <args>
+endif
+
+
+[ITEMDEF i_goplayer]
+ID=i_memory
+TYPE=t_eq_script
+NAME=[goplayer]
+
+ON=@Create
+attr attr_decay
+timer 1
+
+ON=@Timer
+cont.goname <tag.name>
+
+if strmatch(<cont.act.topobj.name>,<tag.name>)
+	if ! strmatch(<cont.act.topobj.account>,)
+		cont.sysmessage <tag.name> karakteri <cont.region.name> bolgesinde bulunuyor.
+		remove
+	endif
+elseif (<cont.act.type> == t_eq_memory_obj)
+	if strmatch(<cont.act.link.name>,<tag.name>) && ! strmatch(<cont.act.link.account>,)
+		cont.p <cont.act.link.p>
+		cont.update
+		cont.sysmessage <tag.name> karakteri <cont.region.name> bolgesinde bulunuyor.
+		remove
+	endif
+endif
+
+
+if (<cont.act.uid> == 0<tag.first>)
+	cont.p <morep>
+	cont.update
+	cont.sysmessage <tag.name> adinda karakter bulunmuyor.
+	remove
+endif
+
+if !(0<tag.first>)
+	tag.first <cont.act.uid>
+endif
+
+timer 1
+return 1
+
+[FUNCTION summonplayer]
+if (<findid.i_summonplayer>)
+	p <findid.i_summonplayer.morep>
+	findid.i_summonplayer.remove
+	update
+else
+	invis 1
+	newitem i_summonplayer
+	act.cont <uid>
+	act.morep <p>
+	act.tag.name <args>
+endif
+
+
+[ITEMDEF i_summonplayer]
+ID=i_memory
+TYPE=t_eq_script
+NAME=[summonplayer]
+
+ON=@Create
+attr attr_decay
+timer 1
+
+ON=@Timer
+cont.goname <tag.name>
+
+if strmatch(<cont.act.topobj.name>,<tag.name>)
+	if ! strmatch(<cont.act.topobj.account>,)
+		cont.sysmessage <tag.name> karakteri <cont.region.name> bolgesinde bulunuyor.
+		cont.act.go = <cont.p>
+		remove
+	endif
+elseif (<cont.act.type> == t_eq_memory_obj)
+	if strmatch(<cont.act.link.name>,<tag.name>) && ! strmatch(<cont.act.link.account>,)
+		cont.act.go = <cont.p>
+		cont.update
+		cont.sysmessage <tag.name> karakteri <cont.region.name> bolgesinde bulunuyor.
+		remove
+	endif
+endif
+
+
+if (<cont.act.uid> == 0<tag.first>)
+	cont.p <morep>
+	cont.update
+	cont.sysmessage <tag.name> adinda karakter bulunmuyor.
+	remove
+endif
+
+if !(0<tag.first>)
+	tag.first <cont.act.uid>
+endif
+
+timer 1
+return 1
+
+[EOF]

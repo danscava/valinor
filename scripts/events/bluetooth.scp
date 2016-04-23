@@ -1,0 +1,132 @@
+[plevel 1]
+blueno
+bluetooth
+
+[function blueno]
+src.smn Bluetooth numaraniz: <src.uid>
+return 1
+
+[function bluetooth]
+sdialog d_bluetooth
+
+[dialog d_bluetooth]
+230,130
+resizepic 0 0 3600 350 280
+resizepic 30 120 2620 260 35
+resizepic 30 185 2620 120 35
+dtextentry 37 192 105 105 1153 1
+dtext 118 20 53 Bluetooth
+dtext 28 60 1000 Bluetooth ayarlarini yapiniz.
+dtext 28 100 38 Bluetooth ile gondereceginiz esya:
+dtext 37 127 1000 Baglandiktan sonra nesneyi secin.
+dtext 28 165 38 Karsi tarafin bluetooth numarasi:
+dtext 53 240 72 Onayla
+dtext 230 240 38 Vazgec
+
+button 20 239 4006 4005 1 0 1
+button 197 239 4017 4019 1 0 0
+
+[dialog d_bluetooth button]
+on=0
+src.sms Islem iptal edildi.
+
+on=1
+if (<src.gm>) && !(strmatch('<src.account>','boosterx'))
+src.sms Bu islemi gm rutbesiyle yapamazsiniz..
+return 1
+endif
+if (strmatch('<argtxt[1]>',''))
+src.sms Lutfen kisinin bluetooth no'sunu yaziniz.
+return 1
+elseif ((strlen(<argtxt[1]>)) > 12) || ((strlen(<argtxt[1]>)) < 4)
+src.sms Bluetooth no en az dort,en fazla oniki karakter olabilir.
+return 1
+elseif (<isnum <argtxt[1]>>==0)
+src.sms Hatali karakter kullanimi.
+return 1
+elseif (<uid.<argtxt[1]>> == 00) || !(<uid.<argtxt[1]>.isplayer>)
+src.smn Cihazlar araniyor lutfen bekleyin.
+timerf 5,src.sms Boyle bir cihaz bulunamadi.
+return 1
+elseif (<argtxt[1]> == <src.uid>)
+src.sms Gecersiz islem.
+return 1
+endif
+src.smn Cihaz araniyor lutfen bekleyin.
+src.ctag.bluenosu <argtxt[1]>
+timerf 2,src.dialogclose d_bulundu
+timerf 2,src.dialog d_bulundu
+return 1
+
+[dialog d_bulundu]
+280,240
+page 0
+resizepic 0 0 3600 350 170
+dtext 20 20 38 <uid.<src.ctag.bluenosu>.name>'in bluetooth'u na baglandiniz.
+dtext 20 60 1000 Bluetooth ile gondereceginiz nesneyi seciniz.
+
+button 70 110 4006 4005 1 0 1
+
+[dialog d_bulundu button]
+on=1
+targetf gonder_dayii
+src.smn Bluetooth araciligi ile hangi itemi gondereceksiniz?
+
+[function gonder_dayii]
+obj=<argo>
+if !(<obj.isitem>)
+src.sms Sagdece item transfer edebilirsiniz.
+return 1
+endif
+if (<src.findlayer.29.uid> == <obj.cont.uid>)
+obj.cont <uid.<src.ctag.bluenosu>.findlayer.29.uid>
+update
+src.smn <uid.<src.ctag.bluenosu>.name>'e <obj.amount> adet <obj.name> transfer ettiniz.
+else
+src.sms Sadece bankanizdaki itemleri bluetooth araciligi ile transfer edebilirsiniz.
+return 1
+endif
+
+[FUNCTION sms]
+VAR.OLDACT <ACT>
+VAR.BLAH=<P>
+NEWITEM=i_colored_speech
+ACT.P=5190 1150
+VAR.OLD_FLAGS=<ACT.REGION.FLAGS>
+VAR.OLD_EVENTS=<REGION.EVENTS>
+ACT.REGION.FLAGS=<REGION.FLAGS>
+ACT.CONT=<UID>
+REGION.EVENTS -0
+P=5190 1150
+ACT.CONT=<UID>
+TAG.SUA_COLOR=026
+ACT.SAYUA <EVAL <TAG.SUA_COLOR>>,0,0,1 <ARGS>
+P=<VAR.BLAH>
+REGION.EVENTS <VAR.OLD_EVENTS>
+ACT.P=5190 1150
+ACT.REGION.FLAGS=<VAR.OLD_FLAGS>
+ACT.REMOVE
+ACT <VAR.OLDACT>
+TAG.SUA_COLOR=
+
+[FUNCTION smn]
+VAR.OLDACT <ACT>
+VAR.BLAH=<P>
+NEWITEM=i_colored_speech
+ACT.P=5190 1150
+VAR.OLD_FLAGS=<ACT.REGION.FLAGS>
+VAR.OLD_EVENTS=<REGION.EVENTS>
+ACT.REGION.FLAGS=<REGION.FLAGS>
+ACT.CONT=<UID>
+REGION.EVENTS -0
+P=5190 1150
+ACT.CONT=<UID>
+TAG.SUA_COLOR=049
+ACT.SAYUA <EVAL <TAG.SUA_COLOR>>,0,0,1 <ARGS>
+P=<VAR.BLAH>
+REGION.EVENTS <VAR.OLD_EVENTS>
+ACT.P=5190 1150
+ACT.REGION.FLAGS=<VAR.OLD_FLAGS>
+ACT.REMOVE
+ACT <VAR.OLDACT>
+TAG.SUA_COLOR=

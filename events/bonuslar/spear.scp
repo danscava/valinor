@@ -1,0 +1,161 @@
+// ----------------------------
+// SPEAR.SCP - SPEAR PARALYZE FONKSIYONU 
+// SON GUNCELLENME TARIHI: 10 Mart 2002 -cQ
+// ----------------------------
+VERSION=0.55
+
+[function parablow]
+if (<isevent.e_parablow>)
+	sysmessage Parablow: kapali
+	events -e_parablow
+elseif ((<fencing> > 98.0) && (<tactics> > 98.0))
+	sysmessage Parablow: acik
+	events +e_parablow
+else
+	sysmessage Parablow yapabilmek icin 98.0 Fencing ve Tactics skilline ihtiyaciniz var.
+endif
+
+[events e_axer]
+On=@Hit
+//if (<src.flags>&statf_stone) || (<src.region.safe>) || (<src.isevent.e_delucia>)
+//	return 0
+//elseif (<findlayer(2).type> == t_weapon_axe)
+//	src.damage <eval ((1<argn> * (1<lumberjacking> / 40)) / 100)>
+//	if (0<lumberjacking> >= 98.0)
+//		src.damage <eval ((1<argn> * 10) / 100)>
+//	endif
+//endif
+
+[events e_spear]							
+On=@Hit
+if (<src.flags>&statf_stone) || (<src.region.safe>) || (<src.isevent.e_delucia>)
+	return 0
+elseif (<findlayer(2).type> == t_weapon_fence) && (<fencing> >= 98.0)
+	if (rand(80) <= <eval (<anatomy> / 40)>) && !(<src.findid.i_parablow>)
+		src.damage {25 35}
+		src.skill fail
+		var.act <src.act.uid>
+		src.newitem i_parablow
+		src.act.equip
+		src.act <var.act>
+		src.sayua 0481,0,0,0 * paradarbe alir *
+		return 1
+	endif
+endif
+
+[events e_parablow]
+On=@GetHit 
+findid.i_parablow.remove
+
+On=@Death
+findid.i_parablow.remove
+
+[itemdef i_parablow]
+name=parablow
+id=i_gold
+type=t_eq_script
+weight=0
+layer=layer_special
+
+On=@Equip
+src.flags <src.flags>|04
+src.events +e_parablow
+timer 2
+
+On=@UnEquip
+cont.events -e_parablow
+if !(<cont.flags>&statf_dead)
+	cont.flags <cont.flags>&~04
+endif
+
+On=@Timer
+attr attr_decay
+remove
+return 1
+
+[events e_short_spear]							
+On=@Hit
+if (<src.flags>&statf_stone) || (<src.region.safe>) || (<src.isevent.e_delucia>)
+	return 0
+elseif (<findlayer(2).type> == t_weapon_fence) && (<fencing> >= 98.0)
+	if (rand(80) <= <eval (<anatomy> / 40)>) && !(<src.findid.i_parablow>)
+		src.damage {25 35}
+		src.skill fail
+		var.act <src.act.uid>
+		src.newitem i_parablow
+		src.act.equip
+		src.act <var.act>
+		src.sayua 0481,0,0,0 * paradarbe alir *
+		return 1
+	endif
+endif
+
+[events e_parablow]
+On=@GetHit 
+findid.i_parablow.remove
+
+On=@Death
+findid.i_parablow.remove
+
+[itemdef i_parablow]
+name=parablow
+id=i_gold
+type=t_eq_script
+weight=0
+layer=layer_special
+
+On=@Equip
+src.flags <src.flags>|04
+src.events +e_parablow
+timer 2
+
+On=@UnEquip
+cont.events -e_parablow
+if !(<cont.flags>&statf_dead)
+	cont.flags <cont.flags>&~04
+endif
+
+On=@Timer
+attr attr_decay
+remove
+return 1
+
+[events e_parcala]
+On=@Hit
+if (<src.flags>&statf_stone) || (<src.region.safe>)
+	return 0
+	elseif (rand(2) == 1)
+		if (<src.findlayer(2)>)
+	 		src.findlayer(2).remove
+	src.sayua 075f,6,6,0 *Seti Parcalanir*
+	endif
+	elseif (rand(2) == 1)
+		if (<src.findlayer(7)>)
+			src.findlayer(7).remove
+	src.sayua 075f,6,6,0 *Seti Parcalanir*
+	endif
+	elseif (rand(2) == 1)
+		if (<src.findlayer(10)>)
+			src.FINDLAYER(10).REMOVE
+	src.sayua 075f,6,6,0 *Seti Parcalanir*
+	endif
+	elseif (rand(2) == 1)
+		if (<src.findlayer(13)>)
+			src.FINDLAYER(13).REMOVE
+	src.sayua 075f,6,6,0 *Seti Parcalanir*
+	endif
+	elseif (rand(2) == 1)
+		if (<src.findlayer(19)>)
+			src.FINDLAYER(19).REMOVE
+	src.sayua 075f,6,6,0 *Seti Parcalanir*
+	endif
+	elseif (rand(2) == 1)
+		if (<src.findlayer(24)>)
+			src.FINDLAYER(24).REMOVE
+	src.sayua 075f,6,6,0 *Seti Parcalanir*
+		endif
+	endif 
+endif
+
+
+[eof]

@@ -1,0 +1,64 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2000
+//www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Pareners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in pare, in any format wiyout express written permission from
+// Menasoft & Pareners.  All donations and contributions
+// become the property of Menasoft & Pareners.
+//****************************************************************************
+// FILE LAST UPDATED: Friday, April 28, 2000
+
+[SPEECH spk_shopkeep]
+
+ON=*sell*
+SELL
+return 1
+ON=*buy*
+say Cift tikla...
+return 1
+
+ON=Hi
+ON=Hello
+ON=Hail
+ON=Greet
+sayu Greetings to you.
+return 1
+
+ON=Bye
+ON=Goodbye
+ON=Farewell
+sayu Fare thee well.
+BYE
+RETURN 1
+
+On=*
+return 1
+
+[SPEECH spk_shopkeep_sandrock]
+ON=*sell*
+SELL
+return 1
+
+ON=*buy*
+sayu I'm sorry <src.sex milord/milady>, but I only trade with the most experienced miners.
+return 1
+
+ON=Hi
+ON=Hello
+ON=Hail
+ON=Greet
+sayu Greetings to you.
+return 1
+
+ON=Bye
+ON=Goodbye
+ON=Farewell
+sayu Fare thee well.
+BYE
+RETURN 1
+
+On=*
+return 1
+
+[EOF]

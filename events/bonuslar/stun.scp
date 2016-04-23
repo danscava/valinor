@@ -1,0 +1,47 @@
+[itemdef i_mem_frozen] 
+name=frozen memory 
+id=i_memory 
+type=t_eq_script 
+layer=layer_special 
+
+on=@create 
+attr=attr_decay | attr_newbie 
+
+on=@equip 
+timer=3
+SRC.FLAGS=<SRC.FLAGS>|04 
+
+on=@timer 
+cont.flags=<cont.FLAGS>&~04 
+remove 
+return 1 
+
+[function stun] 
+if (<isevent.e_stun>) 
+src.sysmessage Stun: Kapandi
+events -e_stun 
+elseif ((<wrestling> > 97.9) && !(<isevent.e_stun>)) 
+src.sysmessage Stun: Acildi
+events +e_stun 
+else 
+src.sysmessage Stun kullanabilmek icin 98.0 Wrestling skilline ihtiyaciniz var! 
+endif 
+
+[events e_stun] 
+ON=@HIT
+if !(<findlayer(1)> || <findlayer(2)>) ///Ahanda bug burdaydi ve sikildi :D
+IF (<wrestling>>=98.0) 
+if (rand(250) <= <eval (<anatomy> / 40)>) && !(<src.findid.i_mem_frozen>)  
+		src.damage {2 4}
+		src.skill fail
+		var.act <src.act.uid>
+		src.newitem i_parablow
+		src.act.equip
+		src.act <var.act>
+		src.sayua 079a,6,6,0 * sersemler *
+		return 1
+	endif
+endif
+
+[PLEVEL 1] 
+stun

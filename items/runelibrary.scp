@@ -1,0 +1,983 @@
+// ----------------------------
+// RUNELIBRARY.SCP - RUNE LIBRARY 
+// SON GUNCELLENME TARIHI: 23 Aralik 2001 -cQ
+// ----------------------------
+VERSION=0.55
+
+[ITEMDEF i_rlibrary]
+ID=i_spellbook_bad
+TYPE=t_script
+WEIGHT=10
+LAYER=1
+NAME=runebook
+
+ON=@DCLICK
+DIALOG d_runebook3
+RETURN 1
+
+ON=@TARGON_ITEM
+IF <MORE2>=1
+  IF ( <SRC.TARG.ID> = 01f4c )
+    MOREX=<MOREX> + <SRC.TARG.AMOUNT>
+    SRC.TARG.REMOVE
+    SRC.SYSMESSAGE Added <SRC.TARG.AMOUNT> charges to the book.
+  ELSE
+  SRC.SYSMESSAGE That's not a recall scroll.
+  ENDIF
+RETURN 1
+ELSEIF <MORE2>=2
+  IF ( <SRC.TARG.TYPE> = t_rune )
+    IF (<SRC.TARG.MOREX>==0)
+    SRC.SYSMESSAGE That's blank.
+    RETURN 1
+    ENDIF
+  ELSE
+  SRC.SYSMESSAGE That's not a recall rune.
+  RETURN 1
+  ENDIF
+TAG.HOLD_LOCAL=<SRC.TARG.NAME>
+TAG.HOLD_X=<SRC.TARG.MOREX>
+TAG.HOLD_Y=<SRC.TARG.MOREY>
+TAG.HOLD_Z=<SRC.TARG.MOREZ>
+TAG.HOLD_M=<SRC.TARG.MOREM>
+ENDIF
+
+IF (<TAG.POS1_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL1=<TAG.HOLD_LOCAL>
+        TAG.POS1_X=<TAG.HOLD_X>
+        TAG.POS1_Y=<TAG.HOLD_Y>
+        TAG.POS1_Z=<TAG.HOLD_Z>
+        TAG.POS1_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS2_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL2=<TAG.HOLD_LOCAL>
+        TAG.POS2_X=<TAG.HOLD_X>
+        TAG.POS2_Y=<TAG.HOLD_Y>
+        TAG.POS2_Z=<TAG.HOLD_Z>
+        TAG.POS2_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS3_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL3=<TAG.HOLD_LOCAL>
+        TAG.POS3_X=<TAG.HOLD_X>
+        TAG.POS3_Y=<TAG.HOLD_Y>
+        TAG.POS3_Z=<TAG.HOLD_Z>
+        TAG.POS3_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS4_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL4=<TAG.HOLD_LOCAL>
+        TAG.POS4_X=<TAG.HOLD_X>
+        TAG.POS4_Y=<TAG.HOLD_Y>
+        TAG.POS4_Z=<TAG.HOLD_Z>
+        TAG.POS4_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS5_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL5=<TAG.HOLD_LOCAL>
+        TAG.POS5_X=<TAG.HOLD_X>
+        TAG.POS5_Y=<TAG.HOLD_Y>
+        TAG.POS5_Z=<TAG.HOLD_Z>
+        TAG.POS5_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS6_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL6=<TAG.HOLD_LOCAL>
+        TAG.POS6_X=<TAG.HOLD_X>
+        TAG.POS6_Y=<TAG.HOLD_Y>
+        TAG.POS6_Z=<TAG.HOLD_Z>
+        TAG.POS6_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS7_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL7=<TAG.HOLD_LOCAL>
+        TAG.POS7_X=<TAG.HOLD_X>
+        TAG.POS7_Y=<TAG.HOLD_Y>
+        TAG.POS7_Z=<TAG.HOLD_Z>
+        TAG.POS7_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS8_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL8=<TAG.HOLD_LOCAL>
+        TAG.POS8_X=<TAG.HOLD_X>
+        TAG.POS8_Y=<TAG.HOLD_Y>
+        TAG.POS8_Z=<TAG.HOLD_Z>
+        TAG.POS8_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS9_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL9=<TAG.HOLD_LOCAL>
+        TAG.POS9_X=<TAG.HOLD_X>
+        TAG.POS9_Y=<TAG.HOLD_Y>
+        TAG.POS9_Z=<TAG.HOLD_Z>
+        TAG.POS9_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS10_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL10=<TAG.HOLD_LOCAL>
+        TAG.POS10_X=<TAG.HOLD_X>
+        TAG.POS10_Y=<TAG.HOLD_Y>
+        TAG.POS10_Z=<TAG.HOLD_Z>
+        TAG.POS10_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS11_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL11=<TAG.HOLD_LOCAL>
+        TAG.POS11_X=<TAG.HOLD_X>
+        TAG.POS11_Y=<TAG.HOLD_Y>
+        TAG.POS11_Z=<TAG.HOLD_Z>
+        TAG.POS11_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS12_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL12=<TAG.HOLD_LOCAL>
+        TAG.POS12_X=<TAG.HOLD_X>
+        TAG.POS12_Y=<TAG.HOLD_Y>
+        TAG.POS12_Z=<TAG.HOLD_Z>
+        TAG.POS12_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS13_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL13=<TAG.HOLD_LOCAL>
+        TAG.POS13_X=<TAG.HOLD_X>
+        TAG.POS13_Y=<TAG.HOLD_Y>
+        TAG.POS13_Z=<TAG.HOLD_Z>
+        TAG.POS13_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS14_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL14=<TAG.HOLD_LOCAL>
+        TAG.POS14_X=<TAG.HOLD_X>
+        TAG.POS14_Y=<TAG.HOLD_Y>
+        TAG.POS14_Z=<TAG.HOLD_Z>
+        TAG.POS14_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS15_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL15=<TAG.HOLD_LOCAL>
+        TAG.POS15_X=<TAG.HOLD_X>
+        TAG.POS15_Y=<TAG.HOLD_Y>
+        TAG.POS15_Z=<TAG.HOLD_Z>
+        TAG.POS15_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS16_X>=00)
+        SRC.SYSMESSAGE Rune is wroten to the book.
+        SRC.SOUND=79
+        TAG.LOCAL16=<TAG.HOLD_LOCAL>
+        TAG.POS16_X=<TAG.HOLD_X>
+        TAG.POS16_Y=<TAG.HOLD_Y>
+        TAG.POS16_Z=<TAG.HOLD_Z>
+        TAG.POS16_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+
+SRC.SYSMESSAGE You have no empty slots for that!
+RETURN 1
+ENDIF
+
+CATEGORY=Custom Items
+SUBSECTION=Runebook
+DESCRIPTION=Runebook
+
+ON=@CREATE
+COLOR=045e
+MOREX=0
+ATTR=0010
+TAG.POS1_X=0
+TAG.POS2_X=0
+TAG.POS3_X=0
+TAG.POS4_X=0
+TAG.POS5_X=0
+TAG.POS6_X=0
+TAG.POS7_X=0
+TAG.POS8_X=0
+TAG.POS9_X=0
+TAG.POS10_X=0
+TAG.POS11_X=0
+TAG.POS12_X=0
+TAG.POS13_X=0
+TAG.POS14_X=0
+TAG.POS15_X=0
+TAG.POS16_X=0
+
+[DIALOG d_runebook3]
+0, 0
+gumppic 100 10 2200
+gumppic 125 50 57
+gumppic 145 50 58
+gumppic 160 50 58
+gumppic 175 50 58
+gumppic 190 50 58
+gumppic 205 50 58
+gumppic 220 50 58
+gumppic 230 50 59
+
+gumppic 290 50 57
+gumppic 310 50 58
+gumppic 325 50 58
+gumppic 340 50 58
+gumppic 355 50 58
+gumppic 370 50 58
+gumppic 385 50 58
+gumppic 395 50 59
+
+page 0
+button 303 30 2103 2104 1 0 49//Button 49
+text 315 25 1300 17
+//Recall Button
+button 125 65 2103 2104 1 0 1//Button 1
+button 125 80 2103 2104 1 0 2//Button 2
+button 125 95 2103 2104 1 0 3//Button 3
+button 125 110 2103 2104 1 0 4//Button 4
+button 125 125 2103 2104 1 0 5//Button 5
+button 125 140 2103 2104 1 0 6//Button 6
+button 125 155 2103 2104 1 0 7//Button 7
+button 125 170 2103 2104 1 0 8//Button 8
+//opposite page
+//recall button
+button 285 65 2103 2104 1 0 9 //Button 9
+button 285 80 2103 2104 1 0 10 //Button 10
+button 285 95 2103 2104 1 0 11 //Button 11
+button 285 110 2103 2104 1 0 12//Button 12
+button 285 125 2103 2104 1 0 13//Button 13
+button 285 140 2103 2104 1 0 14//Button 14
+button 285 155 2103 2104 1 0 15//Button 15
+button 285 170 2103 2104 1 0 16//Button 16
+//Text
+croppedtext 145 60 110 17 0 0//Location 1
+croppedtext 145 75 110 17 0 1//Location 2
+croppedtext 145 90 110 17 0 2//Location 3
+croppedtext 145 105 110 17 0 3//Location 4
+croppedtext 145 120 110 17 0 4//Location 5
+croppedtext 145 135 110 17 0 5//Location 6
+croppedtext 145 150 110 17 0 6//Location 7
+croppedtext 145 165 110 17 0 7//Location 8
+//opposite page
+croppedtext 305 60 110 17 0 8//Location 9
+croppedtext 305 75 110 17 0 9//Location 10
+croppedtext 305 90 110 17 0 10//Location 11
+croppedtext 305 105 110 17 0 11//Location 12
+croppedtext 305 120 110 17 0 12//Location 13
+croppedtext 305 135 110 17 0 13//Location 14
+croppedtext 305 150 110 17 0 14//Location 15
+croppedtext 305 165 110 17 0 15//Location 16
+text 160 25 1300 18
+
+[DIALOG d_runebook3 TEXT]
+<TAG.local1>//Location 1
+<TAG.local2>//Location 2
+<TAG.local3>//Location 3
+<TAG.local4>//Location 4
+<TAG.local5>//Location 5
+<TAG.local6>//Location 6
+<TAG.local7>//Location 7
+<TAG.local8>//Location 8
+//page 2
+<TAG.local9>//Location 9
+<TAG.local10>//Location 10
+<TAG.local11>//Location 11
+<TAG.local12>//Location 12
+<TAG.local13>//Location 13
+<TAG.local14>//Location 14
+<TAG.local15>//Location 15
+<TAG.local16>//Location 16
+| |_Gate//text 16
+Rune ekle//text 17
+<NAME>//text 18
+Recharge//text 19
+|_Recall//text 20
+<MOREX> Charges//text 21
+
+[DIALOG d_runebook3 BUTTON]
+ONBUTTON=0
+RETURN 1
+
+ONBUTTON=1
+IF <TAG.POS1_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS1_X>> <EVAL <TAG.POS1_Y>> <EVAL <TAG.POS1_Z>> <EVAL <TAG.POS1_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=2
+IF <TAG.POS2_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS2_X>> <EVAL <TAG.POS2_Y>> <EVAL <TAG.POS2_Z>> <EVAL <TAG.POS2_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=3
+IF <TAG.POS3_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS3_X>> <EVAL <TAG.POS3_Y>> <EVAL <TAG.POS3_Z>> <EVAL <TAG.POS3_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=4
+IF <TAG.POS4_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS4_X>> <EVAL <TAG.POS4_Y>> <EVAL <TAG.POS4_Z>> <EVAL <TAG.POS4_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=5
+IF <TAG.POS5_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS5_X>> <EVAL <TAG.POS5_Y>> <EVAL <TAG.POS5_Z>> <EVAL <TAG.POS5_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=6
+IF <TAG.POS6_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS6_X>> <EVAL <TAG.POS6_Y>> <EVAL <TAG.POS6_Z>> <EVAL <TAG.POS6_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=7
+IF <TAG.POS7_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS7_X>> <EVAL <TAG.POS7_Y>> <EVAL <TAG.POS7_Z>> <EVAL <TAG.POS7_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=8
+IF <TAG.POS8_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS8_X>> <EVAL <TAG.POS8_Y>> <EVAL <TAG.POS8_Z>> <EVAL <TAG.POS8_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=9
+IF <TAG.POS9_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS9_X>> <EVAL <TAG.POS9_Y>> <EVAL <TAG.POS9_Z>> <EVAL <TAG.POS9_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=10
+IF <TAG.POS10_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS10_X>> <EVAL <TAG.POS10_Y>> <EVAL <TAG.POS10_Z>> <EVAL <TAG.POS10_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=11
+IF <TAG.POS11_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS11_X>> <EVAL <TAG.POS11_Y>> <EVAL <TAG.POS11_Z>> <EVAL <TAG.POS11_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=12
+IF <TAG.POS12_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS12_X>> <EVAL <TAG.POS12_Y>> <EVAL <TAG.POS12_Z>> <EVAL <TAG.POS12_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=13
+IF <TAG.POS13_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS13_X>> <EVAL <TAG.POS13_Y>> <EVAL <TAG.POS13_Z>> <EVAL <TAG.POS13_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=14
+IF <TAG.POS14_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS14_X>> <EVAL <TAG.POS14_Y>> <EVAL <TAG.POS14_Z>> <EVAL <TAG.POS14_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=15
+IF <TAG.POS15_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS15_X>> <EVAL <TAG.POS15_Y>> <EVAL <TAG.POS15_Z>> <EVAL <TAG.POS15_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=16
+IF <TAG.POS16_X>=00
+  SRC.SYSMESSAGE That slot is empty.
+  RETURN 1
+ENDIF
+	IF !(<SRC.ISGM>)
+  IF ( <SRC.MAGERY> < 500 )
+    SRC.SYSMESSAGE Low skill.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+IF (<SRC.RESTEST 1 i_reag_black_pearl>) | (<SRC.RESTEST 1 i_reag_mandrake_root>) | (<SRC.RESTEST 1 i_reag_blood_moss>)
+  SRC.SAY Kal Ort Por
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-15)
+  SRC.CONSUME=1 i_reag_black_pearl
+  SRC.CONSUME=1 i_reag_blood_moss
+  SRC.CONSUME=1 i_reag_mandrake_root
+ELSE
+SRC.SYSMESSAGE You lack required reagents.
+RETURN 1
+ENDIF
+	ENDIF
+SRC.NEWITEM i_rb_delay3
+SRC.ACT.MOREP=<EVAL <TAG.POS16_X>> <EVAL <TAG.POS16_Y>> <EVAL <TAG.POS16_Z>> <EVAL <TAG.POS16_M>>
+SRC.ACT.MORE1=1
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=49
+IF ( <SRC.ACCOUNT.PLEVEL> < 7 )
+SRC.SYSMESSAGE Rune eklemek icin lutfen giristeki kitabi kullaniniz.
+SRC.SYSMESSAGE Begenilen rune'lar library'te eklenmektedir.
+RETURN 1
+ENDIF
+MORE2=2
+SRC.SYSMESSAGE Eklenicek rune hangisi?
+TARGET
+
+[ITEMDEF i_rb_delay3]
+NAME=runebook delay
+ID=i_handr_1
+TYPE=T_EQ_SCRIPT
+WEIGHT=0
+LAYER=layer_special
+
+ON=@Create
+        ATTR=attr_invis|attr_decay
+
+ON=@Equip
+        TIMER=1
+        CONT.EVENTS=e_x_breakspell
+ON=@Timer
+	if ( <cont> )
+		if ( <more1> )
+			more1=<more1>-1
+			TIMER=1
+			return 1
+		else
+                        cont.go=<morep>
+		endif
+	endif
+CONT.EVENTS= -e_x_breakspell
+REMOVE
+RETURN 1
+
+[EVENTS e_x_breakspell]
+ON=@GetHit
+SYSMESSAGE You can't use the book in a combat.
+if <findlayer(30)>
+  findlayer(30).REMOVE
+ENDIF
+EVENTS= -e_x_breakspell
+NEWITEM i_fx_smoke
+ACT.ATTR=attr_decay|attr_move_never
+ACT.TIMER=01
+ACT.P=<p>
+RETURN 0
+
+[ITEMDEF i_addrune]
+ID=i_spellbook_bad
+TYPE=t_script
+WEIGHT=10
+LAYER=1
+NAME=add rune
+
+ON=@CREATE
+ATTR=0010
+COLOR=0480
+
+ON=@DCLICK
+TARGET Rune library'ye eklemek istediginiz rune'u seciniz.
+RETURN 1
+
+ON=@TARGON_CHAR
+RETURN 1
+
+ON=@TARGON_ITEM
+IF ! ( <SRC.TARG.TYPE> = t_rune )
+SRC.SYSMESSAGE Bu bir rune degil.
+RETURN 1
+ENDIF
+IF ( <TAG.SERIAL> = <SRC.TARG.SERIAL> )
+SRC.SYSMESSAGE Bu rune'u zaten eklediniz.
+RETURN 1
+ENDIF
+IF ( <SRC.TARG.MOREX> = 0 )
+SRC.SYSMESSAGE Bu rune bos.
+RETURN 1
+ENDIF
+TAG.SERIAL=<SRC.TARG.SERIAL>
+SRC.NEWITEM i_rune_marker
+SRC.ACT.P=5122,299,15
+SRC.ACT.MOREY=<SRC.TARG.MOREY>
+SRC.ACT.MOREX=<SRC.TARG.MOREX>
+SRC.ACT.MOREZ=<SRC.TARG.MOREZ>
+SRC.ACT.MOREP=<SRC.TARG.MOREP>
+SRC.ACT.NAME=<SRC.TARG.NAME>
+SRC.ACT.TIMER=-1
+SRC.ACT.ATTR=0010
+SRC.ACT.MORE=1
+SRC.ACT.P=5163,263,15
+SRC.SYSMESSAGE Tesekkur ederiz.
+RETURN 1
+
+[EOF]

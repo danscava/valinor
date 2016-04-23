@@ -1,0 +1,646 @@
+[ITEMDEF 014fb]
+//DEFNAME2=LOCKPICK
+DEFNAME=i_lockpick
+TYPE=T_LOCKPICK
+FLIP=1
+RESOURCES=2 i_ingot_iron
+VALUE=19
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Thief
+DESCRIPTION=Lockpick
+DUPELIST=014fc
+SKILLMAKE=TINKERING 42.1,i_tinker_tools
+
+ON=@dclick
+target @037 Acmak istediginiz kasayi seciniz ?
+return 1
+
+on=@targon_item
+if (<src.flags>&statf_hidden) || (<src.flags>&statf_invisible)
+src.sysmessage @38,,1 Hata: Gizlenmis durumdayken bunu kullanamazsiniz.
+src.action -1
+return 1
+endif
+if (<src.targ.type>=t_hazinekasa)  //calisma kasasi
+if (<src.targ.distance>>2) && ( <src.targ.TOPOBJ.UID> != <SRC.UID> ) //distance check
+SRC.sysmessage @38,,1 Hata: Kasaya cok uzaksiniz.
+return 1
+endif
+
+//Level ayarlari en büyük 5
+if (<src.targ.morex>=7)
+if (<src.lockpicking><100.0)
+SRC.sysmessage @38,,1 Hata: Bunu acmak icin 100.0 lockpicking skilline sahip olmalisin !
+return 1
+endif
+elseif (<src.targ.morex>=6)
+if (<src.lockpicking><10.0)
+SRC.sysmessage @38,,1 Hata: Bunu acmak icin 10.0 lockpicking skilline sahip olmalisin !
+return 1
+endif
+elseif (<src.targ.morex>=5)
+if (<src.lockpicking><98.0)
+SRC.sysmessage @38,,1 Hata: Bunu acacak kadar bilgiye sahip degilsiniz.[98.1 lockpicking]
+return 1
+endif
+elseif (<src.targ.morex>=4)
+if (<src.lockpicking><90.0)
+SRC.sysmessage @38,,1 Hata: Bunu acacak kadar bilgiye sahip degilsiniz. [90.1 lockpicking]
+return 1
+endif
+elseif (<src.targ.morex>=3)
+if (<src.lockpicking><80.0)
+SRC.sysmessage @38,,1 Hata: Bunu acacak kadar bilgiye sahip degilsiniz.
+return 1
+endif
+elseif (<src.targ.morex>=2)
+if (<src.lockpicking><70.0)
+SRC.sysmessage @38,,1 Hata: Bunu acacak kadar bilgiye sahip degilsiniz.
+return 1
+endif
+elseif (<src.targ.morex>=1)
+if (<src.lockpicking><60.0)
+SRC.sysmessage @38,,1 Hata: Bunu acacak kadar bilgiye sahip degilsiniz.
+return 1
+endif
+endif
+
+if (<src.lockpicking><30.0) //acilma randlari
+IF RAND(2)==1
+SRC.sysmessage @38,,1 Hata: Kilidi acmaya calisirken lockpickleriniz kirildi.
+SRC.CONSUME 1 i_lockpick
+src.sound 242
+return 1
+endif
+elseif (<src.lockpicking><40.0)
+IF RAND(4)==1
+SRC.sysmessage @38,,1 Hata: Kilidi acmaya calisirken lockpickleriniz kirildi.
+SRC.CONSUME 1 i_lockpick
+src.sound 242
+return 1
+endif
+
+elseif (<src.lockpicking><50.0)
+IF RAND(6)==1
+SRC.CONSUME 1 i_lockpick
+src.sound 242
+SRC.sysmessage @38,,1 Hata: Kilidi acmaya calisirken lockpickleriniz kirildi.
+return 1
+endif
+
+elseif (<src.lockpicking><60.0)
+IF RAND(8)==1
+SRC.CONSUME 1 i_lockpick
+src.sound 242
+SRC.sysmessage @38,,1 Hata: Kilidi acmaya calisirken lockpickleriniz kirildi.
+return 1
+endif
+
+elseif (<src.lockpicking><70.0)
+IF RAND(10)==1
+src.sound 242
+SRC.CONSUME 1 i_lockpick
+SRC.sysmessage @38,,1 Hata: Kilidi acmaya calisirken lockpickleriniz kirildi.
+return 1
+endif
+
+elseif (<src.lockpicking><80.0)
+IF RAND(12)==1
+src.sound 242
+SRC.CONSUME 1 i_lockpick
+SRC.sysmessage @38,,1 Hata: Kilidi acmaya calisirken lockpickleriniz kirildi.
+return 1
+endif
+
+elseif (<src.lockpicking><90.0)
+IF RAND(14)==1
+src.sound 242
+SRC.sysmessage @38,,1 Hata: Kilidi acmaya calisirken lockpickleriniz kirildi.
+SRC.CONSUME 1 i_lockpick
+return 1
+endif
+
+elseif (<src.lockpicking><98.0)
+IF RAND(16)==1
+SRC.sysmessage @38,,1 Hata: Kilidi acmaya calisirken lockpickleriniz kirildi.
+src.sound 242
+SRC.CONSUME 1 i_lockpick
+return 1
+endif
+endif
+
+//kasayi ac
+src.sayua 070d,6,6,0 * Kilidi Acar *
+src.sysmessage @037 Kasa kilidini kirmayi basardiniz.
+if (<src.targ.baseid>==i_hazine7_cont)
+try uid.<tag0.spawn>.timer=<eval 60*60*<uid.<tag0.spawn>.dmore2>>
+serv.newnpc c_rotting
+new.go <src.targ.p>
+serv.newnpc c_rotting
+new.go <src.targ.p>
+serv.newnpc c_m_liche_lord
+new.go <src.targ.p>
+serv.newnpc c_m_liche_lord
+new.go <src.targ.p>
+serv.newnpc c_skeleton
+new.go <src.targ.p>
+serv.newnpc c_m_tohum
+new.go <src.targ.p>
+src.targ.timer=600
+endif
+if (<src.targ.baseid>==i_hazine6_cont)
+try uid.<tag0.spawn>.timer=<eval 60*60*<uid.<tag0.spawn>.dmore2>>
+serv.newnpc c_rotting
+new.go <src.targ.p>
+serv.newnpc c_rotting
+new.go <src.targ.p>
+serv.newnpc c_m_liche_lord
+new.go <src.targ.p>
+serv.newnpc c_skeleton
+new.go <src.targ.p>
+serv.newnpc c_m_tohum
+new.go <src.targ.p>
+src.targ.timer=600
+endif
+if (<src.targ.baseid>==i_hazine5_cont)
+try uid.<tag0.spawn>.timer=<eval 60*60*<uid.<tag0.spawn>.dmore2>>
+serv.newnpc c_rotting
+new.go <src.targ.p>
+serv.newnpc c_m_liche_lord
+new.go <src.targ.p>
+serv.newnpc c_skeleton
+new.go <src.targ.p>
+serv.newnpc c_m_tohum
+new.go <src.targ.p>
+src.targ.timer=600
+endif
+if (<src.targ.baseid>==i_hazine4_cont)
+try uid.<tag0.spawn>.timer=<eval 60*60*<uid.<tag0.spawn>.dmore2>>
+serv.newnpc c_m_liche_lord
+new.go <src.targ.p>
+serv.newnpc c_liche
+new.go <src.targ.p>
+serv.newnpc c_skeleton
+new.go <src.targ.p>
+serv.newnpc c_m_tohum
+new.go <src.targ.p>
+src.targ.timer=600
+endif
+if (<src.targ.baseid>==i_hazine3_cont)
+try uid.<tag0.spawn>.timer=<eval 60*60*<uid.<tag0.spawn>.dmore2>>
+serv.newnpc c_orc
+new.go <src.targ.p>
+serv.newnpc c_m_orc_bomber
+new.go <src.targ.p>
+serv.newnpc c_liche
+new.go <src.targ.p>
+serv.newnpc c_liche
+new.go <src.targ.p>
+serv.newnpc c_skeleton
+new.go <src.targ.p>
+src.targ.timer=600
+endif
+if (<src.targ.baseid>==i_hazine2_cont)
+try uid.<tag0.spawn>.timer=<eval 60*60*<uid.<tag0.spawn>.dmore2>>
+serv.newnpc c_orc
+new.go <src.targ.p>
+serv.newnpc c_liche
+new.go <src.targ.p>
+serv.newnpc c_liche
+new.go <src.targ.p>
+serv.newnpc c_skeleton
+new.go <src.targ.p>
+src.targ.timer=600
+endif
+if (<src.targ.baseid>==i_hazine1_cont)
+try uid.<tag0.spawn>.timer=<eval 60*60*<uid.<tag0.spawn>.dmore2>>
+serv.newnpc c_liche
+new.go <src.targ.p>
+serv.newnpc c_orc
+new.go <src.targ.p>
+serv.newnpc c_skeleton
+new.go <src.targ.p>
+src.targ.timer=600
+endif
+src.gainpickingskill
+if (<src.targ.morex>=6)
+src.targ.timer 60*5
+endif
+
+src.targ.type t_container
+src.sound=511
+src.targ.color 00
+src.targ.morex 0
+
+else //kasacaliskilitli degilse
+SRC.sysmessage @38,,1 Hata: Lockpickleri bunun uzerinde kullanamazsiniz.
+endif
+return 1
+
+[function gainpickingskill]
+if ((<skilllock[24]> == 0) && (<skilltotal> < 800.0))
+if (<src.lockpicking> > 29.9) && (<src.lockpicking> < 40.0)
+if (rand(2) == 1)
+src.lockpicking=<src.lockpicking>+4
+endif
+elseif (<src.lockpicking> > 39.9) && (<src.lockpicking> < 50.0)
+if (rand(2) == 1)
+src.lockpicking=<src.lockpicking>+3
+endif
+elseif (<src.lockpicking> > 49.9) && (<src.lockpicking> < 60.0)
+if (rand(4) == 1)
+src.lockpicking=<src.lockpicking>+2
+endif
+elseif (<src.lockpicking> > 59.9) && (<src.lockpicking> < 70.0)
+if (rand(5) == 1)
+src.lockpicking=<src.lockpicking>+1
+endif
+elseif (<src.lockpicking> > 69.9) && (<src.lockpicking> < 80.0)
+if (rand(6) == 1)
+src.lockpicking=<src.lockpicking>+1
+endif
+elseif (<src.lockpicking> > 79.9) && (<src.lockpicking> < 90.0)
+if (rand(8) == 1)
+src.lockpicking=<src.lockpicking>+1
+endif
+elseif (<src.lockpicking> > 89.9) && (<src.lockpicking> < 100.0)
+if (rand(10) == 1)
+src.lockpicking=<src.lockpicking>+1
+endif
+elseif (<src.tag0.override.skillcap_24> > 100.0) && (<src.lockpicking> < <src.tag0.override.skillcap_24>)
+if (rand(11)==1)
+src.lockpicking=<src.lockpicking>+1
+endif
+endif
+endif
+
+
+[itemdef i_traningchest]
+id 0e40
+name metal chest
+type t_container
+DUPELIST=0e41
+
+on=@create
+type t_hazinekasa
+color 0482
+attr 010
+morex 6 //calisma kasalari hep 6 olacak
+
+on=@timer
+if (<type>=t_hazinekasa)
+else
+type t_hazinekasa
+color 0482
+endif
+timer 60*5
+return 1
+
+on=@click
+if (<type>=t_container)
+MESSAGE @049,,1 [Calisma kasasi]
+MESSAGE @07a1,,1 <timer> saniyesi var.
+else if
+MESSAGE @049,,1 [Calisma kasasi]
+MESSAGE @07a1,,1 Aktif
+endif
+return 1
+
+
+[typedef t_hazinekasa]
+ON=@dclick
+if (<type>=t_hazinekasa)
+src.sysmessage @38,,1 Hata: Bu kasa kilitli bunu sadece Locksmith'ler acabilir.
+return 1
+else
+return 0
+endif
+
+[itemdef i_hazine1_cont_Ayri]
+id i_chest_metal_brass
+name metal chest
+type t_container
+
+on=@create
+type t_hazinekasa
+color 0522
+timer 250
+morex 4
+
+on=@timer
+if (<type>=t_hazinekasa)
+else
+remove
+return 1
+
+
+
+
+[itemdef i_hazine1_cont]
+id i_crate_small
+name small crate
+type t_container
+
+on=@create
+attr=attr_decay|attr_move_never
+type t_hazinekasa
+color 0482
+morex 1
+
+on=@click
+message @0455,6,1,1 [Level 1]
+
+on=@timer
+if <color>==0
+spawnchest 12,3
+
+remove
+return 1
+else
+return 1
+endif
+
+[itemdef i_hazine2_cont]
+id i_crate_small
+name small crate
+type t_container
+
+on=@create
+attr=attr_decay|attr_move_never
+type t_hazinekasa
+color 0482
+morex 2
+
+on=@click
+message @0455,6,1,1 [Level 2]
+
+on=@timer
+if <color>==0
+spawnchest 2,4
+
+remove
+return 1
+else
+return 1
+endif
+
+[itemdef i_hazine3_cont]
+id i_crate_small
+name small crate
+type t_container
+
+on=@create
+attr=attr_decay|attr_move_never
+type t_hazinekasa
+color 0482
+morex 3
+
+on=@click
+message @0455,6,1,1 [Level 3]
+
+
+on=@timer
+if <color>==0
+spawnchest 3,6
+
+remove
+return 1
+else
+return 1
+endif
+
+[itemdef i_hazine4_cont]
+id i_crate_lg
+name crate
+type t_container
+
+on=@create
+attr=attr_decay|attr_move_never
+type t_hazinekasa
+color 7940000
+timer 650
+morex 4
+
+on=@timer
+if <color>==0
+spawnchest 4,10
+
+remove
+return 1
+else
+return 1
+endif
+
+on=@click
+message @0455,6,1,1 [Level 4]
+
+[itemdef i_hazine5_cont]
+id i_crate_lg
+name crate
+type t_container
+
+on=@create
+attr=attr_decay|attr_move_never
+type t_hazinekasa
+color 7940000
+timer 650
+morex 5
+
+on=@timer
+if <color>==0
+spawnchest 5,18
+remove
+return 1
+else
+return 1
+endif
+on=@click
+message @0455,6,1,1 [Level 5]
+
+[itemdef i_hazine6_cont]
+id i_crate_lg
+name crate
+type t_container
+
+on=@create
+attr=attr_decay|attr_move_never
+type t_hazinekasa
+color 07ab
+timer 650
+morex 6
+
+on=@timer
+if <color>==0
+spawnchest 6,20
+remove
+return 1
+else
+return 1
+endif
+on=@click
+message @0455,6,1,1 [Level 6]
+
+[itemdef i_hazine7_cont]
+id i_crate_lg
+name crate
+type t_container
+
+on=@create
+attr=attr_decay|attr_move_never
+type t_hazinekasa
+color 7940106
+timer 650
+morex 7
+
+on=@timer
+if <color>==0
+spawnchest 7,25
+remove
+return 1
+else
+return 1
+endif
+on=@click
+message @0455,6,1,1 [Level 7]
+
+
+[TEMPLATE i_hazine1]
+CONTAINER=i_hazine1_cont_Ayri
+item=goldekle
+item=i_egg_ostard,R5
+//item=i_tohum_rarekoy,{1 5}
+item=i_bottle_define,R15
+item={random_weapon_power 1},R20
+item=random_weapon_force
+//item=i_mage_robe,R8
+
+[TEMPLATE i_hazine12]
+CONTAINER=i_hazine1_cont
+ITEM=i_gold,{1000 3000}
+item=tm_pot
+item=i_tc_bs3,R5
+item=random_weapon_ruin,R2
+item=random_weapon
+
+[TEMPLATE i_hazine2]
+CONTAINER=i_hazine2_cont
+ITEM=i_gold,{3000 5000}
+item={random_Weapon_ruin 1 random_weapon_might 1}
+item=i_tc_bs6,R4
+item=tm_pot
+
+[TEMPLATE i_hazine3]
+CONTAINER=i_hazine3_cont
+ITEM=i_gold,7500
+//item=i_tohum_rarekoy,3
+item=i_heart_balron,R3
+item=i_Tc_bs9,R8
+item=i_bottle_define,R5
+item=random_weapon_force,R5
+
+
+[TEMPLATE i_hazine4]
+CONTAINER=i_hazine4_cont
+ITEM=i_gold,{5000 15000}
+item={random_weapon_ruin 1 random_weapon_might 1 random_weapon_force 1 random_weapon_power 1},R6
+//item=i_tohum_rarekoy,2
+item=i_heart_balron,R9
+//item=i_evil_goldspawn,R100
+item=i_bottle_define,R4
+item=i_tc_bs12,R5
+item=tm_pot
+
+
+[TEMPLATE i_hazine5]
+CONTAINER=i_hazine5_cont
+ITEM=i_gold,{15000 20000}
+item={random_weapon_ruin 1 random_weapon_might 1 random_weapon_force 1 random_weapon_power 1},R5
+//item=i_tohum_rarekoy,3
+item=i_heart_balron,R5
+//item=i_evil_goldspawn,R10
+item=i_bottle_define,R4
+item={i_tc_bs12 1 i_Tc_bs15 1},R5
+item=tm_pot
+item={i_studded_leggings_invulnerability 1 i_studded_tunic_invulnerability 1 i_studded_gorget_invulnerability 1 i_studded_sleeves_invulnerability 1 i_studded_gloves_invulnerability 1},R8
+
+[TEMPLATE i_hazine6]
+CONTAINER=i_hazine6_cont
+ITEM=i_gold,{15000 20000}
+item=random_weapon_power,R5
+//item=i_tohum_rarekoy,3
+item=i_heart_balron,R5
+item=i_evil_goldspawn,R25
+item=i_bottle_define,R4
+item={i_tc_bs12 1 i_Tc_bs9 1},R5
+item=tm_pot
+item={i_studded_leggings_invulnerability 1 i_studded_tunic_invulnerability 1 i_studded_gorget_invulnerability 1 i_studded_sleeves_invulnerability 1 i_studded_gloves_invulnerability 1},R4
+
+[TEMPLATE i_hazine7]
+CONTAINER=i_hazine7_cont
+ITEM=i_gold,{15000 20000}
+item=random_weapon_power,R3
+//item=i_tohum_rarekoy,3
+item=i_heart_balron,R3
+item=i_evil_goldspawn,R15
+item=i_bottle_define,R3
+item={i_tc_bs12 1 i_Tc_bs15 1},R5
+item=tm_pot
+item={i_studded_leggings_invulnerability 1 i_studded_tunic_invulnerability 1 i_studded_gorget_invulnerability 1 i_studded_sleeves_invulnerability 1 i_studded_gloves_invulnerability 1},R3
+
+
+
+[ITEMDEF 014fc]
+//lockpick
+DUPEITEM=014fb
+
+[ITEMDEF 014fd]
+DEFNAME=i_lockpick_set
+//DEFNAME2=LOCKPICKS
+TYPE=T_LOCKPICK
+FLIP=1
+RESOURCES=3 i_LOCKPICK
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Thief
+DESCRIPTION=Lockpicks (Set)
+DUPELIST=014fe
+
+[ITEMDEF 014fe]
+//lockpicks
+DUPEITEM=014fd
+
+
+[TEMPLATE goldekle]
+CONTAINER=i_bag
+ITEM=i_gold,{5000 45000}
+
+[itemdef i_cont_spawner]
+id 7885
+name Chest spawncisi ellesmeyin :D
+type t_eq_script
+
+on=@create
+color 00
+attr attr_invis|attr_static
+
+
+on=@timer
+serv.newitem i_hazine<dmore1>
+new.p <p>
+new.update
+remove
+return 1
+
+[function spawnchest]
+serv.newitem i_cont_spawner
+new.moveto <p>
+if <argv[0]>==12
+new.more1=12
+else
+new.more1=<argv[0]>
+endif
+new.timer=60*60*<argv[1]>
+
+
+[EOF]

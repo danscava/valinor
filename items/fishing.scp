@@ -1,0 +1,203 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Aðlar ve Itemler	--
+// -- Son Düzenleme Tarihi : 18.08.2004		--
+// -----------------------------------------------
+
+[ITEMDEF i_fishing_net_green]
+ID=i_fishing_net_3
+VALUE=500
+WEIGHT=2
+NAME=special fishing net
+RESOURCES=10 I_ROPE, 10 I_THREAD, 4 I_SHELL
+CATEGORY=Items by Professions
+SUBSECTION=Fisherman
+DESCRIPTION=Fishing Net
+
+On=@Create
+attr attr_decay
+COLOR=color_o_verite
+MORE1=1000
+
+on=@DClick
+IF ! (<MORE1> == 1000 )
+MESSAGE [ag kurulu]
+RETURN 1
+
+ELSEIF (<SRC.FISHING> < 90.0)
+	SRC.MESSAGE=Bunu kullanmak icin 90 fishing skilline sahip olmalisiniz!
+	RETURN 1
+ELSEIF !(<SRC.REGION.FLAGS>&region_flag_ship)
+	SRC.MESSAGE=Bunu sadece gemilerde kullanabilirsiniz!
+	RETURN 1
+ELSEIF !(<REGION.FLAGS>&region_flag_ship)
+	SRC.MESSAGE=Bunu sadece gemilerde kullanabilirsiniz!
+	RETURN 1
+ELSEIF (<src.uid> == <cont.cont.uid>) 
+	DROP
+	SRC.SAYU Hoyde rassgele! 
+	MORE1=100
+	SRC.NEWITEM i_fishnet_spawner2
+	SRC.ACT.EQUIP
+	SRC.ACT.MORE1={6 8}
+	SRC.ACT.TIMER={3 5}
+	SRC.ACT.MOREP=<SRC.P>
+	ATTR=0010
+	TIMER=(<SRC.FINDID.i_fishnet_spawner2.MORE1> * <SRC.FINDID.i_fishnet_spawner2.TIMER>)
+	RETURN 1
+ENDIF
+
+RETURN 1
+
+ON=@Timer
+attr attr_decay
+REMOVE
+
+[ITEMDEF i_fishnet_spawner2]
+NAME=fishnet spawner
+ID=i_gold
+TYPE=T_EQ_SCRIPT
+WEIGHT=0
+LAYER=layer_special
+
+ON=@Create
+ATTR=attr_invis|attr_decay
+
+ON=@Equip
+TIMER=1	
+
+ON=@Timer
+if (<cont>)
+	if !(<more1> = 0)
+		more1 = <more1> - (1)
+		cont.newitem { i_fish_big_1 1 i_fish_big_2 1 i_fish_big_3 1 i_fish_big_4 1 }
+		cont.act.p = <morep>
+		cont.act.amount = {10 12}
+		cont.act.update
+		timer = 1
+		return 1
+	elseif (<more1> = 0)
+		if (rand(10) == 1)
+			if (rand(5) == 1)
+				cont.newnpc c_dolphin
+			else
+				cont.newnpc c_sea_serpent
+			endif
+			cont.act.p <morep>
+			cont.act.move 12
+			cont.tag.fact <cont.act.uid>
+			cont.newitem i_sedo_remove
+			cont.act.cont <cont.tag.fact>
+			cont.act.timer 300
+			cont.tag.fact
+			cont.sysmessage Aginiza buyuk birseyler takilir...
+		endif
+		remove
+		return 1
+	endif
+endif
+remove
+return 1
+
+[itemdef i_sedo_remove]
+ID=i_memory
+TYPE=t_eq_script
+NAME=serpent&dolphin remover!
+
+On=@Create
+attr attr_decay
+
+On=@Timer
+if !(<more2>)
+	cont.flags <cont.flags>|04
+	cont.anim 4
+	cont.sayu * dibe dogru dalar... *
+	more2 1
+	timer 4
+	return 1
+else
+	cont.remove 1
+	remove
+	return 1
+endif
+
+[ITEMDEF i_fish_prize]
+NAME=prize fish
+ID=i_fish_small
+TYPE=t_fish
+VALUE=7
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Fisherman
+DESCRIPTION=Prize Fish (magic)
+
+on=@create
+COLOR=colors_brown
+
+on=@dclick
+SOUND=snd_spell_cunning
+SRC.SPELLEFFECT=10,100
+REMOVE
+RETURN 1
+
+[ITEMDEF i_fish_wondrous]
+NAME=wondrous fish
+ID=i_fish_small
+TYPE=t_fish
+VALUE=7
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Fisherman
+DESCRIPTION=Wondrous Fish (magic)
+
+on=@Create
+COLOR=colors_blue
+
+on=@DClick
+SOUND=snd_spell_agility
+SRC.SPELLEFFECT=9,100
+REMOVE
+RETURN 1
+
+[ITEMDEF i_fish_rare]
+NAME=truly rare fish
+ID=i_fish_small
+TYPE=t_fish
+VALUE=7
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Fisherman
+DESCRIPTION=Truly Rare Fish (magic)
+
+on=@Create
+COLOR=colors_orange
+
+on=@DClick
+SOUND=snd_spell_strength
+SRC.SPELLEFFECT=16,100
+REMOVE
+RETURN 1
+
+[ITEMDEF i_fish_peculiar]
+NAME=highly peculiar fish
+ID=i_fish_small
+TYPE=t_fish
+VALUE=7
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Fisherman
+DESCRIPTION=Highly Peculiar Fish (magic)
+
+on=@Create
+COLOR=colors_green
+
+on=@DClick
+SOUND=snd_spell_agility
+src.stamina = <src.stamina>+10
+
+IF <src.stamina> > <src.dex>
+	src.stamina = <src.dex>
+ENDIF
+REMOVE
+RETURN 1
+
+[EOF]

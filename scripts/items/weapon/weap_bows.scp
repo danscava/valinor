@@ -1,0 +1,787 @@
+[itemdef i_bow_carnesir]
+defname i_bow_carnesir
+value 1500
+id i_bow
+name magical bow
+weight 1
+tdata3 0
+
+On=@Create
+color 0803
+morey 40.0
+attr attr_magic
+hitpoints 25
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [frost of carnesir]
+endif 
+return 1
+
+On=@Equip
+if !(strmatch('<src.account.name>','Bronx')) && !(strmatch('<src.account.name>','nbl_zenobia'))
+	src.sysmessage Bunu kullanamazsiniz.
+	remove
+	return 1
+elseif (<src.archery> < 20.0) || (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanabilecek beceriye sahip degilsiniz.
+	unequip
+	return 1
+endif
+src.events +e_bow_carnesir
+
+On=@UnEquip
+src.events -e_bow_carnesir
+
+[itemdef 013b1]
+defname i_bow
+type T_WEAPON_BOW
+flip 1
+skillmake 17.8 BOWCRAFT
+resources 7 I_LOG
+weight 12.5
+dam 9,26
+skill Archery
+reqstr 20
+value 30
+twohands Y
+category Provisions - Weapons
+subsection Bows
+description Bow
+dupelist 013b2
+
+tdata3 i_arrow
+tdata4 i_arrow_x
+
+On=@Create
+hitpoints 25
+
+[itemdef 013b2] // bow
+dupeitem 013b1
+
+[itemdef 05003] // exceptional bow
+defname I_BOW_EXCEP
+id i_bow
+name exceptional bow
+resources 9 i_log
+skillmake 75.5 BOWCRAFT
+dam 9,26
+skill Archery
+reqstr 30
+twohands Y
+weight 10.5
+speed 60
+
+category Provisions - Weapons
+subsection Bows - Exceptional
+description Exceptional Bow
+
+On=@Create
+hitpoints 25
+
+[itemdef 05000] // superior bow
+defname I_BOW_SUP
+id i_bow
+name superior bow
+skillmake 45.0 BOWCRAFT
+resources 8 i_log
+dam 9,26
+skill Archery
+reqstr 30
+twohands Y
+weight 8.5
+
+category Provisions - Weapons
+subsection Bows - Exceptional
+description Superior Bow
+
+On=@Create
+hitpoints 25
+
+[itemdef 0f4f]
+defname i_crossbow
+type T_WEAPON_XBOW
+flip 1
+value 120
+resources 7 i_LOG
+skillmake 37.8 BOWCRAFT
+dam 8,26
+skill Archery
+reqstr 30
+twohands Y
+weight 13
+category Provisions - Weapons
+subsection Bows
+description Crossbow
+dupelist 0f50
+
+tdata3 i_xbolt
+tdata4 i_xbolt_x
+
+On=@Create
+hitpoints 25
+
+[itemdef 0f50] // crossbow
+dupeitem 0f4f
+
+[itemdef 05004] // exceptional crossbow
+defname I_XBOW_EXCEP
+id i_crossbow
+name exceptional crossbow
+resources 10 i_log
+skillmake 85.5 BOWCRAFT
+dam 8,26
+skill Archery
+reqstr 30
+twohands Y
+weight 11
+
+category Provisions - Weapons
+subsection Bows - Exceptional
+description Exceptional Crossbow
+
+On=@Create
+hitpoints 25
+
+[itemdef 05001] // superior crossbow
+defname I_XBOW_SUP
+name superior crossbow
+id i_crossbow
+resources 8 i_log
+skillmake 55.0 BOWCRAFT
+dam 8,26
+skill Archery
+reqstr 30
+twohands Y
+value 100
+weight 9
+
+category Provisions - Weapons
+subsection Bows - Exceptional
+description Superior Crossbow
+
+On=@Create
+hitpoints 25
+
+[itemdef 013fc]
+defname i_crossbow_heavy
+type T_WEAPON_XBOW
+flip 1
+value 150
+skillmake 57.8 BOWCRAFT
+resources 10 i_log
+weight 15
+dam 11,26
+skill archery
+reqstr 40
+twohands Y
+category Provisions - Weapons
+subsection Bows
+description Heavy Crossbow
+dupelist 013fd
+
+tdata3 i_xbolt
+tdata4 i_xbolt_x
+
+On=@Create
+hitpoints 25
+
+[itemdef 013fd] // heavy crossbow
+dupeitem 013fc
+
+[itemdef 05005] // exceptional heavy crossbow
+defname I_HXBOW_EXCEP
+id i_crossbow_heavy
+name exceptional heavy crossbow
+dam 11,26
+skill Archery
+reqstr 30
+twohands Y
+weight 13
+skillmake 95.5 BOWCRAFT
+resources 13 i_log
+
+category Provisions - Weapons
+subsection Bows - Exceptional
+description Exceptional Heavy Crossbow
+
+On=@Create
+hitpoints 25
+
+[itemdef 05002] // superior heavy crossbow
+defname I_HXBOW_SUP
+id i_crossbow_heavy
+name superior heavy crossbow
+skillmake 65.0 BOWCRAFT
+resources 11 i_log
+dam 11,26
+skill Archery
+reqstr 30
+twohands Y
+weight 11
+
+category Provisions - Weapons
+subsection Bows - Exceptional
+description Superior Heavy Crossbow
+
+On=@Create
+hitpoints 25
+
+[itemdef 05006] // elven bow
+defname i_bow_Elven
+name elven bow
+id i_bow
+dam 15,25
+speed 60
+skill Archery
+reqstr 100
+twohands Y
+weight 3
+
+
+resources 20 i_log
+skillmake 99.5 BOWCRAFT, 60.0 MAGERY
+
+category Provisions - Weapons
+subsection Bows - Exceptional
+description Elven Bow
+
+On=@Create
+hitpoints 25
+color 237
+
+On=@Equip
+if (<src.archery> < 100.0)
+	unequip
+	src.sysmessage @0481 Bunu kullanabilmek icin 100 archer skilliniz olmali.
+	return 1
+endif
+
+if (<src.tactics> < 100.0)
+	unequip
+	src.sysmessage @0481 Bunu kullanabilmek icin 100 tactics skilliniz olmali.
+	return 1
+endif
+[itemdef 0412f]
+defname i_BOW_RUIN
+value 1500	
+id i_bow
+name magical bow
+resources i_bow,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic bows
+description bow of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 04130]
+defname i_BOW_MIGHT
+value 3700
+id i_bow
+name magical bow
+resources i_bow,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic bows
+description bow of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04131]
+defname i_BOW_FORCE
+value 5000
+id i_bow
+name magical bow
+resources i_bow,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic bows
+description bow of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 04132]
+defname i_BOW_POWER
+value 7500
+id i_bow
+name magical bow
+resources i_bow,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic bows
+description bow of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04133]
+defname i_BOW_vanq
+value 10000
+id i_bow
+name magical bow
+resources i_bow,5 i_enchant_weapon
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 100.0
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+
+On=@Equip
+if (<src.archery> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 0410d]
+defname i_CROSSBOW_RUIN
+value 1500
+id i_crossbow
+name magical crossbow
+resources i_crossbow,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic crossbows
+description crossbow of ruin
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 20.0
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 0410e]
+defname i_CROSSBOW_MIGHT
+value 3700
+id i_crossbow
+name magical crossbow
+resources i_crossbow,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic crossbows
+description crossbow of might
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 40.0
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04109]
+defname i_CROSSBOW_FORCE
+value 5000
+id i_crossbow
+name magical crossbow
+resources i_crossbow,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic crossbows
+description crossbow of force
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 60.0
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 0410f]
+defname i_CROSSBOW_POWER
+value 7500
+id i_crossbow
+name magical crossbow
+resources i_crossbow,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic crossbows
+description crossbow of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04110]
+defname i_CROSSBOW_vanq
+value 10000
+id i_crossbow
+name magical crossbow
+resources i_crossbow,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic crossbows
+description crossbow of vanquishing
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 100.0
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 04124]
+defname i_crossbow_heavy_RUIN
+value 1500
+id i_crossbow_heavy
+name magical heavy crossbow
+resources i_crossbow_heavy,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic heavy crossbows
+description heavy crossbow of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 04125]
+defname i_crossbow_heavy_MIGHT
+value 3700
+id i_crossbow_heavy
+name magical heavy crossbow
+resources i_crossbow_heavy,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic heavy crossbows
+description heavy crossbow of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04126]
+defname i_crossbow_heavy_FORCE
+value 5000
+id i_crossbow_heavy
+name magical heavy crossbow
+resources i_crossbow_heavy,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic heavy crossbows
+description heavy crossbow of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 04127]
+defname i_crossbow_heavy_POWER
+value 7500
+id i_crossbow_heavy
+name magical heavy crossbow
+resources i_crossbow_heavy,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic heavy crossbows
+description heavy crossbow of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04128]
+defname i_crossbow_heavy_vanq
+value 10000
+id i_crossbow_heavy
+name magical heavy crossbow
+resources i_crossbow_heavy,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic heavy crossbows
+description heavy crossbow of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.archery> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[EOF]

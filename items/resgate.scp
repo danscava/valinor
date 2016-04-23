@@ -1,0 +1,33 @@
+[ITEMDEF i_gateres]
+ID=i_moongate_blue
+TYPE=t_telepad
+NAME=Res Gate
+
+On=@Create
+color 080a
+attr 010
+
+on=@click
+message @1100,,1 [<serv.servname>]
+message @049,,1 [Resurrection]
+return 1
+
+on=@dclick
+if (<src.hits>==0)
+src.resurrect
+SRC.SAYUA 04ca,0,0,0, * Hayata gozunu acar *
+return 1
+else
+src.sysmessage @1100,,1 Geberde oyle gel..
+return 1
+
+on=@step
+if (<src.hits>==0)
+src.resurrect
+SRC.SAYUA 04ca,0,0,0, * Hayata gozunu acar *
+return 1
+else
+src.sysmessage @1100,,1 Geberde oyle gel..
+return 0
+
+[EOF]

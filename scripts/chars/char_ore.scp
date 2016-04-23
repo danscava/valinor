@@ -1,0 +1,464 @@
+// ----------------------------
+// OREELEM.SCP - ELEMENTALLER
+// SON GUNCELLENME TARIHI: 1 Aralik 2001
+// ----------------------------
+VERSION=0.55
+
+//dull
+[CHARDEF c_m_elem_dullcopper]
+NAME=Dull Copper Elemental
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=5,25
+ARMOR=30
+CAN=MT_WALK
+RESOURCES=8 i_ingot_dull_copper
+//SHELTER=r_caves,r_mountains
+DESIRES=r_caves
+BLOODCOLOR=color_o_dullcopper
+
+ON=@Create
+COLOR=color_o_dullcopper
+STR={150 175}
+DEX={75 85}
+INT={100 150}
+
+PARRYING={50.0 60.0}
+MAGICRESISTANCE={50.0 75.0}
+TACTICS={70.0 85.0}
+WRESTLING={60.0 80.0}
+
+NPC=brain_monster
+
+FAME={500 1000}
+KARMA={-2000 -2999}
+
+ITEM=loot_DULLCOPPER_ELE
+
+CATEGORY=Monsters
+SUBSECTION=Ore Elementals
+DESCRIPTION=Dull Copper Elemental
+
+//copper
+[CHARDEF c_m_elem_copper]
+NAME=Copper Elemental
+ID=c_elem_earth
+DAM=5,25
+ARMOR=30
+CAN=MT_WALK
+RESOURCES=8 i_ingot_copper
+//SHELTER=r_caves,r_mountains
+DESIRES=r_caves
+BLOODCOLOR=color_o_copper
+
+ON=@Create
+COLOR=color_o_copper
+STR={150 200}
+DEX={75 100}
+INT={100 150}
+
+PARRYING={50.0 65.0}
+MAGICRESISTANCE={50.0 80.0}
+TACTICS={70.0 85.0}
+WRESTLING={60.0 80.0}
+
+NPC=brain_monster
+
+FAME={500 1000}
+KARMA={-2000 -2999}
+
+ITEM=loot_COPPER_ELE
+
+CATEGORY=Monsters
+SUBSECTION=Ore Elementals
+DESCRIPTION=Copper Elemental
+
+//shadow
+[CHARDEF c_m_elem_shadow]
+NAME=Shadow Elemental
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=5,25
+ARMOR=35
+CAN=MT_WALK
+RESOURCES=8 i_ingot_shadow
+//SHELTER=r_caves,r_mountains
+DESIRES=r_caves
+BLOODCOLOR=color_o_shadow
+
+ON=@Create
+COLOR=color_o_shadow
+STR={175 225}
+DEX={90 125}
+INT={125 175}
+
+PARRYING={55.0 65.0}
+MAGICRESISTANCE={55.0 80.0}
+TACTICS={75.0 85.0}
+WRESTLING={65.0 80.0}
+
+NPC=brain_monster
+
+FAME={750 1000}
+KARMA={-2500 -3499}
+
+ITEM=loot_SHADOW_ELE
+
+CATEGORY=Monsters
+SUBSECTION=Ore Elementals
+DESCRIPTION=Shadow Elemental
+
+//bronz
+[CHARDEF c_m_elem_bronze]
+NAME=Bronze Elemental
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=5,25
+ARMOR=35
+CAN=MT_WALK
+RESOURCES=8 i_ingot_shadow
+//SHELTER=r_caves,r_mountains
+DESIRES=r_caves
+BLOODCOLOR=color_o_bronze
+
+ON=@Create
+COLOR=color_o_bronze
+STR={200 250}
+DEX={100 150}
+INT={150 200}
+
+PARRYING={55.0 70.0}
+MAGICRESISTANCE={60.0 80.0}
+TACTICS={75.0 90.0}
+WRESTLING={65.0 85.0}
+
+NPC=brain_monster
+
+FAME={1000 1250}
+KARMA={-2000 -2999}
+
+ITEM=loot_BRONZE_ELE
+
+CATEGORY=Monsters
+SUBSECTION=Ore Elementals
+DESCRIPTION=Bronze Elemental
+
+//silver
+[CHARDEF c_m_elem_silver]
+NAME=Silver Elemental
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=5,25
+ARMOR=40
+CAN=MT_WALK
+RESOURCES=8 i_ingot_silver
+//SHELTER=r_caves,r_mountains
+DESIRES=r_caves
+BLOODCOLOR=color_o_silver
+
+ON=@Create
+COLOR=color_o_silver
+STR={225 275}
+DEX={125 150}
+INT={175 225}
+
+PARRYING={60.0 70.0}
+MAGICRESISTANCE={65.0 80.0}
+TACTICS={75.0 90.0}
+WRESTLING={70.0 85.0}
+
+NPC=brain_monster
+
+FAME={1000 1500}
+KARMA={-3000 -3999}
+
+ITEM=loot_SILVER_ELE
+
+CATEGORY=Monsters
+SUBSECTION=Ore Elementals
+DESCRIPTION=Silver Elemental
+
+//gold
+[CHARDEF c_m_elem_gold]
+NAME=Golden Elemental
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=5,25
+ARMOR=40
+CAN=MT_WALK
+RESOURCES=8 i_ingot_gold
+//SHELTER=r_caves,r_mountains
+DESIRES=r_caves
+BLOODCOLOR=color_o_gold
+
+ON=@Create
+COLOR=color_o_gold
+STR={250 300}
+DEX={125 175}
+INT={200 250}
+
+PARRYING={60.0 75.0}
+MAGICRESISTANCE={70.0 80.0}
+TACTICS={80.0 90.0}
+WRESTLING={70.0 90.0}
+MAGERY={40.0 60.0}
+NPC=brain_monster
+
+FAME={1000 1750}
+KARMA={-3000 -3999}
+
+ITEM=loot_GOLDEN_ELE
+
+CATEGORY=Monsters
+SUBSECTION=Ore Elementals
+DESCRIPTION=Golden Elemental
+
+//agapit
+[CHARDEF c_m_elem_agapite]
+NAME=Agapite Elemental
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=5,25
+ARMOR=45
+CAN=MT_WALK
+RESOURCES=8 i_ingot_agapite
+//SHELTER=r_caves,r_mountains
+DESIRES=r_caves
+BLOODCOLOR=color_o_agapite
+
+ON=@Create
+COLOR=color_o_agapite
+STR={275 325}
+DEX={150 200}
+INT={200 250}
+
+PARRYING={65.0 80.0}
+MAGICRESISTANCE={75.0 85.0}
+TACTICS={80.0 95.0}
+WRESTLING={75.0 90.0}
+MAGERY={50.0 70.0}
+NPC=brain_monster
+
+FAME={1250 2000}
+KARMA={-3000 -3999}
+
+ITEM=loot_AGAPITE_ELE
+
+CATEGORY=Monsters
+SUBSECTION=Ore Elementals
+DESCRIPTION=Agapite Elemental
+
+//miteril
+[CHARDEF c_m_elem_mytheril]
+NAME=Mytheril Elemental
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=5,25
+ARMOR=45
+CAN=MT_WALK
+RESOURCES=8 i_ingot_mytheril
+//SHELTER=r_caves,r_mountains
+DESIRES=r_caves
+BLOODCOLOR=color_o_mytheril
+
+ON=@Create
+COLOR=color_o_mytheril
+STR={275 350}
+DEX={175 225}
+INT={200 250}
+
+PARRYING={70.0 85.0}
+MAGICRESISTANCE={80.0 90.0}
+TACTICS={80.0 95.0}
+WRESTLING={80.0 90.0}
+MAGERY={60.0 70.0}
+NPC=brain_monster
+
+FAME={1500 2500}
+KARMA={-3000 -3999}
+
+ITEM=loot_MYTHERIL_ELE
+
+CATEGORY=Monsters
+SUBSECTION=Ore Elementals
+DESCRIPTION=Mytheril Elemental
+
+//verite
+[CHARDEF c_m_elem_verite]
+NAME=Verite Elemental
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=5,25
+ARMOR=50
+CAN=MT_WALK
+RESOURCES=8 i_ingot_verite
+//SHELTER=r_caves,r_mountains
+DESIRES=r_caves
+BLOODCOLOR=color_o_verite
+
+ON=@Create
+COLOR=color_o_verite
+STR={325 400}
+DEX={200 250}
+INT={250 300}
+
+PARRYING={80.0 90.0}
+MAGICRESISTANCE={85.0 95.0}
+TACTICS={85.0 100.0}
+WRESTLING={85.0 95.0}
+MAGERY={70.0 80.0}
+
+NPC=brain_monster
+
+FAME={2000 2750}
+KARMA={-4000 -4999}
+
+ITEM=loot_VERITE_ELE
+
+CATEGORY=Monsters
+SUBSECTION=Ore Elementals
+DESCRIPTION=Verite Elemental
+
+//valorit
+[CHARDEF c_m_elem_valorite]
+NAME=Valorite Elemental
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=5,25
+ARMOR=60
+CAN=MT_WALK
+RESOURCES=8 i_ingot_valorite
+//SHELTER=r_caves,r_mountains
+DESIRES=r_caves
+BLOODCOLOR=color_o_valorite
+
+ON=@Create
+COLOR=color_o_valorite
+STR={400 500}
+DEX={250 300}
+INT={300 350}
+
+PARRYING={85.0 95.0}
+MAGICRESISTANCE={90.0 100.0}
+TACTICS={90.0 100.0}
+WRESTLING={90.0 100.0}
+MAGERY={80.0 90.0}
+
+NPC=brain_monster
+
+FAME={2000 3000}
+KARMA={-5000 -5999}
+
+ITEM=loot_VALORITE_ELE
+
+CATEGORY=Monsters
+SUBSECTION=Ore Elementals
+DESCRIPTION=Valorite Elemental
+
+//dull loot
+[TEMPLATE loot_DULLCOPPER_ELE]
+CATEGORY=Item Templates
+SUBSECTION=Monster Loot Templates
+DESCRIPTION=Dull Copper Elemental
+ITEM=i_ore_dull_copper,{5 10}
+ITEM=i_gold,{100 175}
+
+//copper loot
+[TEMPLATE loot_COPPER_ELE]
+CATEGORY=Item Templates
+SUBSECTION=Monster Loot Templates
+DESCRIPTION=Copper Elemental
+ITEM=i_ore_copper,{5 10}
+ITEM=i_gold,{100 200}
+
+//shadow loot
+[TEMPLATE loot_SHADOW_ELE]
+CATEGORY=Item Templates
+SUBSECTION=Monster Loot Templates
+DESCRIPTION=Shadow Elemental
+ITEM=i_ore_shadow,{5 10}
+ITEM=i_gold,{150 200}
+
+//bronz loot
+[TEMPLATE loot_BRONZE_ELE]
+CATEGORY=Item Templates
+SUBSECTION=Monster Loot Templates
+DESCRIPTION=Bronze Elemental
+ITEM=i_ore_bronze,{5 10}
+ITEM=i_gold,{175 250}
+
+//silver loot
+[TEMPLATE loot_SILVER_ELE]
+CATEGORY=Item Templates
+SUBSECTION=Monster Loot Templates
+DESCRIPTION=Silver Elemental
+ITEM=i_ore_silver,{5 10}
+ITEM=i_gold,{200 300}
+
+//gold loot
+[TEMPLATE loot_GOLDEN_ELE]
+CATEGORY=Item Templates
+SUBSECTION=Monster Loot Templates
+DESCRIPTION=Golden Elemental
+ITEM=i_ore_gold,{5 10}
+ITEM=i_gold,{250 350}
+
+//agapite loot
+[TEMPLATE loot_AGAPITE_ELE]
+DEFNAME=loot_AGAPITE_ELE
+CATEGORY=Item Templates
+SUBSECTION=Monster Loot Templates
+DESCRIPTION=Agapite Elemental
+ITEM=i_ore_agapite,{5 10}
+ITEM=i_gold,{300 400}
+
+
+//miteril loot
+[TEMPLATE loot_MYTHERIL_ELE]
+CATEGORY=Item Templates
+SUBSECTION=Monster Loot Templates
+DESCRIPTION=Mytheril Elemental
+ITEM=i_ore_mytheril,{5 10}
+ITEM=i_gold,{325 425}
+
+
+
+//verite loot
+[TEMPLATE loot_VERITE_ELE]
+DEFNAME=loot_VERITE_ELE
+CATEGORY=Item Templates
+SUBSECTION=Monster Loot Templates
+DESCRIPTION=Verite Elemental
+ITEM=i_ore_verite,{5 10}
+ITEM=i_gold,{500 650}
+
+
+//bloodrock loot
+[TEMPLATE loot_BLOODROCK_ELE]
+DEFNAME=loot_BLOODROCK_ELE
+CATEGORY=Item Templates
+SUBSECTION=Monster Loot Templates
+DESCRIPTION=Bloodrock Elemental
+ITEM=i_ore_bloodrock,{5 10}
+ITEM=i_gold,{750 1000}
+
+
+//valorite loot
+[TEMPLATE loot_VALORITE_ELE]
+DEFNAME=loot_VALORITE_ELE
+CATEGORY=Item Templates
+SUBSECTION=Monster Loot Templates
+DESCRIPTION=Valorite Elemental
+ITEM=i_ore_valorite,{5 10}
+ITEM=i_gold,{1000 1250}
+
+[EOF]

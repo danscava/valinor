@@ -1,0 +1,943 @@
+// ----------------------------
+// SPAWNER.SCP - SPAWN SCRIPTI
+// TARIHI: 18 Haziran 2003 - robert
+// ----------------------------
+[itemdef i_spawnci]
+name=Spawner
+weight=0
+id=i_deed
+TYPE=t_script
+On=@create
+attr=04
+tag.morex=1 //amount
+tag.morey=30 //enazzaman
+tag.morez=45 //encokzaman
+tag.more1=3 //uzaklik
+On=@dclick
+if (<src.account.plevel> > 1)
+src.dialog d_spawnlar
+return 1
+else
+remove
+return 1
+endif
+[dialog d_spawnlar]
+20,50
+nomove
+resizepic 0 0 3500 450 300
+resizepic 10 10 3000 430 280
+text 170 15 1152 39
+//yantablo
+resizepic 450 100 3500 200 130
+resizepic 460 110 3000 180 110
+
+text 470 120 1152 31
+resizepic 570 120 3000 50 22
+textentry 575 120 253 25 0 1 35
+
+text 470 140 1152 32
+resizepic 570 140 3000 50 22
+textentry 575 140 253 25 0 2 36
+
+text 470 160 1152 33
+resizepic 570 160 3000 50 22
+textentry 575 160 253 25 0 3 37
+
+text 470 180 1152 34
+resizepic 570 180 3000 50 22
+textentry 575 180 253 25 0 4 38
+//bitti
+
+//yazilar buttonlar
+text 50 40 1152 0
+button 20 40 4005 4006 1 0 1
+
+text 50 60 1152 1
+button 20 60 4005 4006 1 0 2
+
+text 50 80 1152 2
+button 20 80 4005 4006 1 0 3
+
+text 50 100 1152 3
+button 20 100 4005 4006 1 0 4
+
+text 50 120 1152 4
+button 20 120 4005 4006 1 0 5
+
+text 50 140 1152 5
+button 20 140 4005 4006 1 0 6
+
+text 50 160 1152 6
+button 20 160 4005 4006 1 0 7
+
+text 50 180 1152 7
+button 20 180 4005 4006 1 0 8
+
+text 50 200 1152 8
+button 20 200 4005 4006 1 0 9
+
+text 50 220 1152 9
+button 20 220 4005 4006 1 0 10
+
+text 50 240 1152 10
+button 20 240 4005 4006 1 0 11 //2. satira gec
+
+text 190 40 1152 11
+button 160 40 4005 4006 1 0 12
+
+text 190 60 1152 12
+button 160 60 4005 4006 1 0 13
+
+text 190 80 1152 13
+button 160 80 4005 4006 1 0 14
+
+text 190 100 1152 14
+button 160 100 4005 4006 1 0 15
+
+text 190 120 1152 15
+button 160 120 4005 4006 1 0 16
+
+text 190 140 1152 16
+button 160 140 4005 4006 1 0 17
+
+text 190 160 1152 17
+button 160 160 4005 4006 1 0 18
+
+text 190 180 1152 18
+button 160 180 4005 4006 1 0 19
+
+text 190 200 1152 19
+button 160 200 4005 4006 1 0 20
+
+text 190 220 1152 20 
+button 160 220 4005 4006 1 0 21
+
+text 190 240 1152 21 
+button 160 240 4005 4006 1 0 22 //3.satir
+
+text 330 40 1152 22
+button 300 40 4005 4006 1 0 23
+
+text 330 60 1152 23
+button 300 60 4005 4006 1 0 24
+
+text 330 80 1152 24
+button 300 80 4005 4006 1 0 25
+
+text 330 100 1152 25
+button 300 100 4005 4006 1 0 26
+
+text 330 120 1152 26
+button 300 120 4005 4006 1 0 27
+
+text 330 140 1152 27
+button 300 140 4005 4006 1 0 28
+
+text 330 160 1152 28
+button 300 160 4005 4006 1 0 29
+
+text 330 180 1152 29
+button 300 180 4005 4006 1 0 30
+
+text 330 200 1152 30
+button 300 200 4005 4006 1 0 31
+
+text 330 220 1152 44
+button 300 220 4005 4006 1 0 32
+
+text 350 260 1152 45
+button 320 260 4005 4006 1 0 980
+
+
+[dialog d_spawnlar text]
+Alchemist
+Animal Tra.
+Architect
+Armourer
+Baker
+Banker //5
+Beekeeper
+Blacksmith
+Bowyer
+Butcher
+Carpenter //10
+Cartographer
+Cobbler
+Cooks
+Fishermen
+Healer //15
+Herbalist
+Innkeeper
+Jeweler
+Mage
+Provisioner //20
+Shipwright
+Tailor
+Tanner
+Tavernfolk
+Tavernkeeper //25
+Tinker
+Vegetable S.
+Veterinarians
+Waitstaff
+Weaponsmith //30
+Amount
+Min. Time
+Max. Time
+Max. Dist
+<eval <src.findid(i_spawnci).tag.morex>> //35
+<eval <src.findid(i_spawnci).tag.morey>>
+<eval <src.findid(i_spawnci).tag.morez>>
+<eval <src.findid(i_spawnci).tag.more1>>
+Vendor Spawnlari
+<ARGTXT[1]> //amount //40
+<ARGTXT[2]> //zaman az
+<ARGTXT[3]> //zamancok
+<ARGTXT[4]> //uzaklik
+Highmage //44
+Ileri
+
+
+
+
+
+
+[dialog d_spawnlar button]
+on=980
+src.dialog d_spawnlar2
+On=1
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08019
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Alchemist spawni eklendi.
+On=2
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0801f
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Animal Trainer spawni eklendi.
+On=3
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08027
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Architect spawni eklendi.
+On=4
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08022
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Armourer spawni eklendi.
+On=5
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0803a
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Baker spawni eklendi.
+On=6
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08020
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Banker spawni eklendi.
+On=7
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08021
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Beekeeper spawni eklendi.
+On=8
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0801c
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Blacksmith spawni eklendi.
+On=9
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08025
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Bowyer spawni eklendi.
+On=10
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08023
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Butcher spawni eklendi.
+On=11
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0801d
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Carpenter spawni eklendi.
+On=12
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08031
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Cartographer spawni eklendi.
+On=13
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08028
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Coobler spawni eklendi.
+On=14
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0802c
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Cook spawni eklendi.
+On=15
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08048
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Fishermen spawni eklendi.
+On=16
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more c_H_healer
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Healer spawni eklendi.
+On=17
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0804b
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Herbalist spawni eklendi.
+On=18
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0802f
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Innkeeper spawni eklendi.
+On=19
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08037
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Jeweler spawni eklendi.
+On=20
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08024
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Mage spawni eklendi.
+On=21
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08026
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Provisioner spawni eklendi.
+On=22
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08030
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Shipwright spawni eklendi.
+On=23
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0801b
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Tailor spawni eklendi.
+On=24
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0803b
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Tanner spawni eklendi.
+On=25
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0802b
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Tavernfolk spawni eklendi.
+On=26
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08029
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Tavernkeeper spawni eklendi.
+On=27
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 08038
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Tinker spawni eklendi.
+On=28
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0801e
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Vegetable Seller spawni eklendi.
+On=29
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0804c
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Veterinarian spawni eklendi.
+On=30
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0802a
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Waitstaff spawni eklendi.
+On=31
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0801a
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Weaponsmith spawni eklendi.
+On=32
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 09014
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Highmage spawni eklendi.
+
+
+
+
+
+
+
+
+[dialog d_spawnlar2]
+20,50
+nomove
+resizepic 0 0 3500 450 300
+resizepic 10 10 3000 430 280
+text 170 15 1152 20
+//yantablo
+resizepic 450 100 3500 200 130
+resizepic 460 110 3000 180 110
+
+text 470 120 1152 12
+resizepic 570 120 3000 50 22
+textentry 575 120 253 25 0 1 16
+
+text 470 140 1152 13
+resizepic 570 140 3000 50 22
+textentry 575 140 253 25 0 2 17
+
+text 470 160 1152 14
+resizepic 570 160 3000 50 22
+textentry 575 160 253 25 0 3 18
+
+text 470 180 1152 15
+resizepic 570 180 3000 50 22
+textentry 575 180 253 25 0 4 19
+//bitti
+
+//yazilar buttonlar
+text 50 40 1152 0
+button 20 40 4005 4006 1 0 1
+
+text 50 60 1152 1
+button 20 60 4005 4006 1 0 2
+
+text 50 80 1152 2
+button 20 80 4005 4006 1 0 3
+
+text 50 100 1152 3
+button 20 100 4005 4006 1 0 4
+
+text 50 120 1152 4
+button 20 120 4005 4006 1 0 5
+
+text 50 140 1152 5
+button 20 140 4005 4006 1 0 6
+
+text 50 160 1152 6
+button 20 160 4005 4006 1 0 7
+
+text 50 180 1152 7
+button 20 180 4005 4006 1 0 8
+
+text 50 200 1152 8
+button 20 200 4005 4006 1 0 9
+
+text 50 220 1152 9
+button 20 220 4005 4006 1 0 10
+
+text 50 240 1152 10
+button 20 240 4005 4006 1 0 11 //2. satira gec
+
+text 190 40 1152 11
+button 160 40 4005 4006 1 0 12
+
+text 350 260 1152 25
+button 320 260 4005 4006 1 0 980
+[dialog d_spawnlar2 text]
+Scribe
+Shipherd
+Sandrockseller
+Farmer
+Miner
+Rancher
+Furtrader
+Glassblower
+Weaver
+Waiter
+Mapmaker
+Barber
+Amount
+Min. Time
+Max. Time
+Max. Dist
+<eval <src.findid(i_spawnci).tag.morex>>
+<eval <src.findid(i_spawnci).tag.morey>>
+<eval <src.findid(i_spawnci).tag.morez>>
+<eval <src.findid(i_spawnci).tag.more1>>
+Olympus Spawnlari
+<ARGTXT[1]> //amount
+<ARGTXT[2]> //zaman az
+<ARGTXT[3]> //zamancok
+<ARGTXT[4]> //uzaklik
+Ileri //25
+
+[dialog d_spawnlar2 button]
+on=980
+src.dialog d_spawnlar
+On=1
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0476
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Scribe spawni eklendi.
+On=2
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0480
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Shepherd spawni eklendi.
+On=3
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more C_H_SANDROCKSELLER
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Sandrockseller spawni eklendi.
+
+On=4
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0430
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Farmer spawni eklendi.
+On=5
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0550
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Miner spawni eklendi.
+
+On=6
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0474
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Rancher spawni eklendi.
+On=7
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0432
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Furtrader spawni eklendi.
+On=8
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0436
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Glassblower spawni eklendi.
+On=9
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0502
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Weaver spawni eklendi.
+On=10
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0488
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Waiter spawni eklendi.
+On=11
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0524
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Mapmaker spawni eklendi.
+On=12
+src.findid(i_spawnci).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnci).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnci).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnci).tag.more1=<ARGTXT[4]>
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <ARGTXT[1]>
+src.act.more 0402
+src.act.morep=<ARGTXT[2]> <ARGTXT[3]> <ARGTXT[4]>
+src.act.attr 00b0
+src.act.timer 1
+src.sysmessage Berber spawni eklendi.
+
+[function yurut]
+if !(<src.findid(i_gmfonks)>)
+src.newitem i_gmfonks
+src.act.more1 4
+src.act.equip
+else
+src.findid(i_gmfonks).more1 4
+src.findid(i_gmfonks).target
+endif
+sysmessage Kimi yurutmek istiyorsunuz.
+
+[eof]

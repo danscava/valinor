@@ -1,0 +1,50 @@
+// ----------------------------
+// SKILL_MISC.SCP - SKILL MENULERI
+// SON GUNCELLENME TARIHI: 1 Haziran 2002 - cQ
+// ----------------------------
+VERSION=0.55
+
+[MENU d_misc_ban_wd]
+<src.targ.name> ne kadar sure yasakli kalacak
+on=0 3 Gun
+src.targ.newitem i_memory_timer_ban_wd
+src.targ.act.timer 60*60*24*3
+src.targ.act.equip
+src.targ.sysmessage Wind Dale'a girisiniz 3 gun boyunca yasaklanmistir.
+src.targ.go 2568,128
+
+on=0 7 Gun
+src.targ.newitem i_memory_timer_ban_wd
+src.targ.act.timer 60*60*24*7
+src.targ.act.equip
+src.targ.sysmessage Wind Dale'a girisiniz 7 gun boyunca yasaklanmistir.
+src.targ.go 2568,128
+
+on=0 Sinirsiz
+src.targ.newitem i_memory_timer_ban_wd
+src.targ.act.timer -1
+src.targ.act.equip
+src.targ.sysmessage Wind Dale'a girisiniz yasaklanmistir.
+src.targ.go 2568,128
+
+[DIALOG d_skill_stealth_warning]
+50, 50
+PAGE 0
+resizepic 53 51 3500 287 133
+text 71 69 1152 0
+text 71 84 1152 1
+text 71 111 1153 2
+text 71 125 1153 3
+text 71 140 1153 4
+button 247 150 2117 2118 1 0 0
+text 264 147 1250 5
+
+[DIALOG d_skill_stealth_warning TEXT]
+Stealth skillini kullanabilmeniz icin
+en az 80 hiding skilliniz olmali.
+Yeterli hiding skilline sahip
+olmadiginizdan dolayi, stealth
+skilliniz sifirlanmistir.
+tamam
+
+[EOF]

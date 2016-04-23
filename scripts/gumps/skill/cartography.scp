@@ -1,0 +1,104 @@
+[dialog d_skill_cartography]
+0, 0
+page 0
+
+resizepic 110 0 5120 405 250 
+resizepic 120 5 3000 390 235
+resizepic 130 10 3000 370 165
+
+button 265 212 4006 4007 1 0 0 // iptal
+button 130 212 4006 4007 1 0 <eval <tag.cartography>> // tekrar yap
+
+htmlgump 300 215 100 20 1 0 0 // iptal
+htmlgump 165 215 100 20 0 0 0 // tekrar yap
+
+resizepic 130 180 3000 370 30 // not
+htmlgump 135 185 410 30 6 0 0 // not 
+
+page 1
+htmlgump 160 15 100 20 2 0 0 // detayli
+htmlgump 275 15 100 20 3 0 0 // bolgesel
+htmlgump 405 15 100 20 4 0 0 // deniz
+htmlgump 160 85 100 20 5 0 0 // dunya
+
+button 140 15 2714 2715 1 0 1
+button 255 15 2714 2715 1 0 2
+button 385 15 2714 2715 1 0 3
+button 140 85 2714 2715 1 0 4
+
+tilepic 170 35 5355
+tilepic 285 35 5355
+tilepic 415 35 5355
+tilepic 170 105 5355
+
+[dialog d_skill_cartography text]
+tekrar yap
+iptal
+detayli harita
+bolgesel harita
+deniz bolgesi
+dunya haritasi
+<var.notice>
+
+[dialog d_skill_cartography button]
+on 1
+if (<cartography> < 5.0)
+var.notice gerekli skill: %5.0 cartography
+
+elseif !(<restest 1 i_map_blank>)
+var.notice gerekli malzeme: 1 blank map
+
+else
+var.notice e$yayi hazirliyorsunuz.
+drawmap 200
+tag.cartography 1
+endif
+
+dialog d_skill_cartography
+
+on 2
+if (<cartography> < 30.0)
+var.notice gerekli skill: %30.0 cartography
+
+elseif !(<restest 1 i_map_blank>)
+var.notice gerekli malzeme: 1 blank map
+
+else
+var.notice e$yayi hazirliyorsunuz.
+drawmap 400
+tag.cartography 2
+endif
+
+dialog d_skill_cartography
+
+on 3
+if (<cartography> < 45.0)
+var.notice gerekli skill: %45.0 cartography
+
+elseif !(<restest 1 i_map_blank>)
+var.notice gerekli malzeme: 1 blank map
+
+else
+var.notice e$yayi hazirliyorsunuz.
+drawmap 800
+tag.cartography 3
+endif
+
+dialog d_skill_cartography
+
+on 4
+if (<cartography> < 5.0)
+var.notice gerekli skill: %5.0 cartography
+
+elseif !(<restest 1 i_map_blank>)
+var.notice gerekli malzeme: 1 blank map
+
+else
+var.notice e$yayi hazirliyorsunuz.
+drawmap 2048
+tag.cartography 4
+endif
+
+dialog d_skill_cartography
+
+[eof]

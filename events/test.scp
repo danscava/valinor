@@ -1,0 +1,520 @@
+// ----------------------------
+// TEST.SCP - TEST EVENTLARI  
+// SON GUNCELLENME TARIHI: 23 Aralik 2001 -cQ
+// ----------------------------
+VERSION=0.55
+
+[function st] 
+var.act <act>
+var.p <p>
+newitem i_memory
+act.p 6000 2000
+var.regfla <act.region.flags>
+act.region.flags <region.flags>
+p 6000 2000
+act.sayua <args>,0,0,1 Bu bir renkli systemmessage renk deneme fasilitesidir. (<args>)
+p <var.p>
+act.region.flags <var.regfla>
+act.remove
+act <var.act>
+
+[events mage]
+On=@SpellEffect
+if (<argn> == 15)
+	sound snd_spell_protection
+	newitem i_rune_protection
+	act.type t_spell
+	act.layer 35
+	act.morex 15
+	act.attr 026
+	act.more2 01
+	act.morey <eval ((<src.magery> - {0 300}) + ((<src.inscription> + <src.meditation> + <src.evaluatingintel>) / 4))>
+	act.link <src.uid>
+	act.timer {250 300}
+	act.cont <uid>
+	return 1
+endif
+
+[function not]
+if (strmatch('<args>',''))
+	findid.i_notter.remove
+	newitem i_notter
+	act.morex 2
+	act.equip
+else
+	findid.i_notter.remove
+	newitem i_notter
+	act.tag.not <args>
+	act.morex 1
+	act.equip
+endif
+
+[itemdef i_notter]
+name not ekleyici
+id i_gold
+weight 0
+layer layer_special
+type t_eq_script
+
+On=@Equip
+timer 15
+if (<morex> == 1)
+	target Not kime eklenecek?
+elseif (<morex> == 2)
+	target Kimin notunu sileceksiniz?
+endif
+return 1
+
+On=@TargOn_Char
+elseif (0<src.targ.account.plevel> > 1)
+	src.sysmessage Staff uyelerinde bu komutu kullanamazsiniz.
+elseif (<src.targ.npc>)
+	src.sysmessage NPC'lere not ekleyemezsiniz.
+elseif (<morex> == 2)
+	src.sysmessage <src.targ.name>: not silindi.
+	src.targ.tag.not
+	src.targ.tag.notter
+	src.targ.events -e_notted
+elseif (<morex> == 1)
+	src.sysmessage <src.targ.name>: not eklendi.
+	src.targ.tag.not <tag.not>
+	src.targ.tag.notter <src.account.name>
+	src.targ.events +e_notted
+endif
+remove
+return 1
+
+On=@TargOn_Item
+remove
+return 1
+
+On=@TargOn_Ground
+remove
+return 1
+
+On=@Timer
+remove
+return 1
+
+[events e_notted]
+On=@Click
+message Not: <tag.not> /<tag.notter>
+message <name>
+return 1
+
+[itemdef i_lg_chk]
+name logouter unit
+id 0186f
+type t_eq_script
+weight 0
+layer layer_special
+
+On=@Create
+attr attr_invis|attr_move_never
+
+On=@Timer
+//link.p <p>
+//link.update
+remove
+return 1
+
+[events e_speed]
+On=@SpellEffect
+newitem i_speedhack
+act.timer 1
+act.link <uid>
+
+[function spit]
+newitem i_speedhack
+act.link <uid>
+act.p <p>
+//act.timer 1
+
+[itemdef i_speedhack]
+id i_gold
+type t_eq_script
+layer layer_special
+name speed check
+
+On=@Create
+attr attr_invis
+
+On=@Timer
+link.sayu hede
+link.dclick <link.act.uid>
+return 1
+
+On=@DClick
+src.sayu <src.distance>
+return 1
+
+On=@Equip
+src.sysmessage <name>: <src.act.distance>
+if (<src.flags>&statf_onhorse) 
+	if ((<src.act.distance> > 11) && (<src.act.distance> < 50))
+		src.sysmessage Speedhack!
+	endif
+else
+	if ((<src.act.distance> > 7) && (<src.act.distance> < 50))
+		src.sysmessage Speedhack!
+	endif
+endif
+remove
+return 1
+
+[dialog d_af]
+-100,-100
+nomove
+noclose
+
+resizepic 190 165 5120 275 175
+resizepic 200 175 3000 255 155
+text 220 185 2100 0
+htmlgump 215 208 223 60 1 1 1
+
+htmlgump 258 277 140 20 2 0 0
+htmlgump 258 297 150 20 3 0 0
+button 225 275 4006 4007 1 0 1
+button 225 295 4018 4019 1 0 0
+
+[dialog d_af text]
+Lord British'ten Mesaj;
+Sen ve tum yanlis yoldaki arkadaslarini, Britannia'nin bu kaos icerisindeki durumunda dogru yola cagiriyorum, Ey <name>! Magincia buyuculeri, Modrei ve Ghasemero, Britannia iktidari icin, koca bir kralligi kaos'a suruklemekte kararlilar. Emektar buyucum Nystul'un yuce buyusuyle tekrar bir masum, bir mavi olmaya hazir misin? (bu dialogu iptal ederseniz veya kapatirsaniz dahi iki kere daha gozukecektir)
+Hazirim! Mavi olmaliyim!
+Canin cehenneme British.
+
+[dialog d_af button]
+On=0
+if !(0<tag.affet>)
+	tag.affet 1
+else
+	tag.affet <eval (<tag.affet> + 1)>
+endif
+
+On=1
+if !(<findid.i_af_phase2>)
+	tag.affet 3
+	newitem i_af_phase2
+	act.equip
+endif
+
+[function f_afcikti]
+if !(0<tag.affet> == 3) && (<kills> > 0)
+	if !(<findid.i_af_phase2>)
+		findid.i_af_phase1.remove
+		newitem i_af_phase1
+		act.equip
+	endif
+endif
+
+[itemdef i_af_phase1]
+name affet beni baba
+id i_memory
+type t_eq_script
+weight 0
+layer layer_special
+
+On=@Create
+attr attr_invis|attr_decay|attr_newbie
+
+On=@Equip
+timer 10
+
+On=@UnEquip
+src.dialog d_af
+return 1
+
+On=@Timer
+remove
+return 1
+
+[itemdef i_af_phase2]
+name affederim cok pis
+id i_memory
+type t_eq_script
+weight 0
+layer layer_special
+
+On=@Create
+attr attr_invis|attr_decay|attr_newbie
+
+On=@Equip
+timer 1
+
+On=@Timer
+if !(<morex>)
+	cont.sysmessage <cont.kills> cinayetiniz var, Nystul'un buyusuyle gunahlarinizdan arinmaya basliyorsunuz.
+	morex 1
+	timer 1
+elseif (<cont.kills> > 1)
+	cont.sysmessage <cont.kills>
+	cont.kills (<cont.kills> - 1)
+	timer 1
+	return 1
+elseif (<cont.kills>)
+	if (<cont.karma> < 1)
+		cont.karma 1
+	endif
+	cont.sysmessage 1
+	cont.kills 0
+	timer 2
+	return 1
+else
+	cont.sysmessage Gunahlarinizdan arinmaniz tamamlandi.
+	cont.sysmessage Yolunuz daima isik olsun...
+	cont.effect 3,0376a,1,30,1
+	cont.sfx 0202
+	cont.go Britain
+	remove
+	return 1
+endif
+
+[events ayi]
+On=@GetHit
+if !(<criminal>)
+	if ((<karma> > -2000) && (<kills> < 6))
+		if (<src.memoryfindtype.memory_ipet>)
+			if (<src.memoryfindtype.memory_ipet.link.memoryfindtype.memory_sawcrime>)
+				if !(<src.memoryfindtype.memory_ipet.link.memoryfindtype.memory_sawcrime.link> == <uid>)
+					memorydel <src.memoryfindtype.memory_ipet.link>
+					newitem i_memory
+					act.color 031
+					act.link <src.memoryfindtype.memory_ipet.link>
+					act.timer 500
+					act.cont <uid>
+				endif
+			else
+				memorydel <src.memoryfindtype.memory_ipet.link>
+				newitem i_memory
+				act.color 031
+				act.link <src.memoryfindtype.memory_ipet.link>
+				act.timer 500
+				act.cont <uid>
+			endif
+		endif
+	endif
+endif	
+
+[events dmgtest]
+On=@DClick
+return 1
+
+On=@SpellEffect
+if !(<src.uid> == <uid>)
+return 1
+endif
+
+On=@GetHit
+if <src.findlayer(1)>
+	if ((<src.findlayer(1).type> == t_weapon_fence) || (<src.findlayer(1).type> == t_weapon_sword) || (<src.findlayer(1).type> == t_weapon_mace_pick) || (<src.findlayer(1).type> == t_weapon_mace_smith) || (<src.findlayer(1).type> == t_weapon_mace_sharp) || (<src.findlayer(1).type> == t_weapon_mace_staff) || (<src.findlayer(1).type> == t_weapon_bow) || (<src.findlayer(1).type> == t_weapon_axe))
+		sayu silah: <src.findlayer(1).name>.
+		sayu saf damage: <argn>.
+	else
+		sayu elinizdeki silah degil..
+	endif
+elseif <src.findlayer(2)>
+	if ((<src.findlayer(2).type> == t_weapon_fence) || (<src.findlayer(2).type> == t_weapon_sword) || (<src.findlayer(2).type> == t_weapon_mace_pick) || (<src.findlayer(2).type> == t_weapon_mace_smith) || (<src.findlayer(2).type> == t_weapon_mace_sharp) || (<src.findlayer(2).type> == t_weapon_mace_staff) || (<src.findlayer(2).type> == t_weapon_bow) || (<src.findlayer(2).type> == t_weapon_axe))
+		sayu silah: <src.findlayer(2).name>.
+		sayu saf damage: <argn>.
+	else
+		sayu elinizdeki silah degil.
+	endif
+else
+	sayu ciplak el.
+	sayu saf damage: <argn>.
+endif
+spelleffect 29 4000
+hits 100
+return 1
+
+On=@Death
+hits 100
+return 1
+
+[ITEMDEF i_heykel_british]
+ID=012ca
+Name=British Heykeli
+
+On=@Create
+COLOR=0481
+
+On=@DClick
+src.face
+
+if (<distance> > 5)
+	src.message Yakinlasiniz!
+	return 1
+elseif (<src.flags>&statf_onhorse)
+	src.message Attan ininiz!
+	return 1
+endif
+
+if !(<src.findid.i_worshipper>)
+	more (<more> + 1)
+	src.newitem i_worshipper
+	src.act.link <uid>
+	src.act.equip
+	src.events +e_worship
+	src.sysmessage Aramiza hosgeldin yavrum.
+	src.sysmessage British Seni Dinliyor...
+	return 1
+endif
+
+if (<src.findid.i_worshipper.timer> > -1)
+	src.sysmessage Zaten tapiniyosun!
+	src.sysmessage Taparken, tapamazsin.
+	return 1
+else
+	src.sysmessage British'a Mana kazandiriyorsun. Yucelik sende olsun
+	src.findid.i_worshipper.timer 1
+	src.events +e_broworship
+	src.sayu Su ana kadar British'a <eval <src.findid.i_worshipper.more2>> mana kazandirdim. Helal bana.
+	return 1
+endif
+
+on=@click
+sayu Sehls put'u.
+sayu [Mana: <eval <more2>>]
+sayu [<eval <more>> muridi var]
+return 1
+
+[itemdef i_worshipper]
+ID=i_scroll_blank
+NAME=Suhls'a tapiyor
+TYPE=t_eq_script
+LAYER=layer_special
+
+On=@Create
+timer 1
+
+On=@Timer
+
+if (rand(5) == 1)
+	cont.anim 34
+	
+	cont.sayu yuce British, gunahlarimizi bagisla
+	
+	sfx 10
+else
+	cont.anim 32
+	
+	dorand 13
+		cont.sayu Bizi Modrei ve Ghasemero'nun serrinden koru ey British
+		cont.sayu Sana inandik, sana guvendik ya British
+		cont.sayu Sana siginiyorum, ya British
+		cont.sayu eseduellaaa
+		cont.sayu Bundan sonra tovbe, ya British
+		cont.sayu tekbiiiir
+		cont.sayu Imana geldik ya British, affet bizi
+		cont.sayu Bizi gavur koma ey British
+		cont.sayu Sen bize dogru yolu goster, afeyle British
+		cont.sayu Affet bizi British
+		cont.sayuYyuce kisiligine siginiyoruz
+		cont.sayu Karizman altinda eziliyorum British
+		cont.sayu Buyuklugun karsisinda caresiz kaliyoruz British, affet bizi
+	enddo
+	
+	dorand 2
+		sfx 5
+		sfx 3
+	enddo
+endif
+
+timer 3
+link.more2 (<link.more2> + 1)
+more2 (<more2> + 1)
+
+return 1
+
+[plevel 1]
+duakes
+
+[function duakes]
+if (<findid.i_worshipper>)
+	findid.i_worshipper.timer -1
+	sayu amen.
+	sysmessage Dua etmeyi kestiniz.
+endif
+
+[events e_worship]
+On=@EnvironChange
+message Olmaz oyle uzaktan dua.
+duakes
+events -e_worship
+return 1
+
+On=@SkillStart
+message Olmaz oyle dua, tovbe.
+duakes
+events -e_worship
+return 1
+
+[typedef t_lock]
+On=@DClick
+src.sysmessage Bu kilitli.
+return 1
+
+[itemdef i_magic_missilerr]
+id=i_crystal_ball
+name=magic missle ball
+
+on=@Create
+attr=attr_newbie
+
+on=@Targon_Item
+TARGET
+RETURN 1
+
+on=@Targon_Ground
+TARGET
+RETURN 1
+
+on=@DClick
+target
+RETURN 1
+
+on=@TargOn_Char
+if (<src.targ.account.plevel>>1)
+	src.targ.events -gmfix
+	src.targ.invul 0
+
+	if (<src.targ.hits>>500)
+		src.targ.hits 200
+	endif
+endif
+
+src.targ.face
+src.face
+src.anim=16
+src.targ.effect=0,i_fx_energy_ray,7
+sound=0209
+src.targ.newitem=i_fx_smoke2
+src.targ.act.p=<src.targ.p>
+sound=020a
+src.targ.move 1
+src.targ.damage 30
+src.targ.newitem=i_fx_smoke2
+src.targ.act.p=<src.targ.p>
+src.targ.move 1
+src.targ.damage 30
+src.targ.newitem=i_fx_smoke2
+src.targ.act.p=<src.targ.p>
+sound=0209
+
+src.targ.face
+src.face
+src.targ.effect=0,i_fx_energy_ray,7
+src.targ.newitem=i_fx_smoke2
+src.targ.act.p=<src.targ.p>
+src.targ.damage 30
+src.targ.newitem=i_fx_smoke2
+src.targ.act.p=<src.targ.p>
+src.targ.move 1
+src.targ.damage 30
+src.targ.newitem=i_fx_smoke2
+src.targ.act.p=<src.targ.p>
+sound=0209
+target
+return 1
+
+[eof]

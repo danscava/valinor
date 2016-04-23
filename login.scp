@@ -1,0 +1,79 @@
+[function playerlogin]
+detail 0
+src.ilkgirisimbubenim
+src.events -e_medi
+src.events -e_diemaster
+
+[function stafflogin]
+invis 1
+events +gmfix
+staffstatvsherseyiver
+
+
+
+[function isimduzenle]
+if !(<tag0.soyadi>)
+name <strarg <name>>
+endif
+
+[plevel 2]
+eventleriver
+[function eventleriver]
+if (strmatch('<account>','v_acrid'))
+events esyacikarmabe
+return 1
+else
+events esyacikarmabe
+events e_staff_spawnbit
+
+[plevel 2]
+staffstatvsherseyiver
+[function staffstatvsherseyiver]
+src.str 100
+src.dex 100
+src.int 100
+src.hits 100
+src.mana 100
+src.stam 100
+src.fame=0
+src.karma=0
+src.kills=0
+src.gm=1
+src.allshow=0
+
+
+[function ilkgirisimbubenim]
+if (<src.tag0.girdim> == 1) // Eger oyuncu giris yaptiysa oyle gider..
+return 1
+else
+src.newitem=i_boots_calf
+src.act.color=colors_neutral
+src.act.bounce
+src.act.equip
+src.act.attr 04
+
+src.newitem=i_dagger
+src.act.bounce
+src.act.attr 04
+
+src.newitem=i_gold,6000
+src.act.bounce
+src.act.attr 04
+
+src.newitem=i_young_ticket
+src.act.bounce
+src.act.attr 04
+
+src.newitem=i_hat_floppy
+src.act.color=colors_neutral
+src.act.bounce
+src.act.equip
+src.act.attr 04
+
+src.isimduzenle
+
+src.tag0.girdim 1
+return 1
+endif
+src.nightsight 1 // Ekrani aydinlatir
+return 1

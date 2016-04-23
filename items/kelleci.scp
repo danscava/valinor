@@ -1,0 +1,66 @@
+[ITEMDEF i_kelleci]
+ID=i_gold
+NAME=kafa avcisi
+
+On=@Create
+ATTR=8010
+
+[ITEMDEF i_kellecim]
+Name kafa avcisi
+ID 01640
+
+On=@Create
+Attr 08000
+
+On=@Click
+src.sysmessage @07A1,,1 Kafayi sallandirmak icin cift tiklayin.
+
+On=@Dclick
+If (<distance> < 3)
+Target @049,,1 Sallandirmak istediginiz kafayi secin.
+return 1
+else
+src.sysmessage @1100,,1 Yeterince yakin degilsiniz.
+return 1
+endif
+
+On=@Targon_Item
+if (<src.targ.baseid> == i_flesh_head) || (<src.targ.baseid> == i_flesh_head_2) && !(<src.targ.link> == 04fffffff)
+If (<src.targ.link.fame> == 0)
+src.sysmessage @1100,,1 Bu kafa degersiz.
+return 1
+endif
+if (<src.targ.link.fame> > 7000)
+var.famegold <src.targ.link.fame>
+src.sysmessage @07A1,,1 Cantaniza <src.targ.link.name> sayesinde 1000gp eklenmistir.
+serv.allclients sysmessage @07A1,,1 <src.targ.link.name> 'in kafasi , <src.name> tarafindan <src.region.name> civarlarinda sallandirilmistir.
+src.targ.link.sysmessage @1100,,1 Kafaniz <src.name> tarafindan sallandirilmistir.
+src.targ.link.fame 0
+src.targ.remove
+src.newitem i_gold
+src.act.amount 1000
+src.act.bounce
+return 1
+else
+var.famegold <src.targ.link.fame>
+src.sysmessage @07A1,,1 Cantaniza <src.targ.link.name> sayesinde 1000gp eklenmistir.
+src.targ.link.sysmessage @1100,,1 Kafaniz <src.name> tarafindan sallandirilmistir.
+src.targ.link.fame 0
+src.targ.remove
+src.newitem i_gold
+src.act.amount 1000
+src.act.bounce
+return 1
+endif
+else
+src.sysmessage @1100,,1 Bu bir kafa degil.
+return 1
+endif
+
+On=@Targon_Char
+return 1
+
+On=@Targon_Ground
+return 1
+
+[EOF]

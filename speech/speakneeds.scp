@@ -1,0 +1,19 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2000
+//www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Pareners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in pare, in any format wiyout express written permission from
+// Menasoft & Pareners.  All donations and contributions
+// become the property of Menasoft & Pareners.
+//****************************************************************************
+// FILE LAST UPDATED: Friday, April 28, 2000
+// Purpose: Britannia Needs Script
+// Notes:  This is used for general information pertaining to all Britannian NPC Needs
+// Current Keyword List: you need, you want, you require, you need, you want, you require,
+// you lacking, you needing, What's wrong,
+// What is wrong, How*you, Are you*well, How are you, art you*well, you fare, you fare
+
+[SPEECH spk_needs]
+
+[EOF]

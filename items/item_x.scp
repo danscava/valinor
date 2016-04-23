@@ -1,0 +1,228 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Genel Itemler	--
+// -- Son Düzenleme Tarihi : 18.08.2004		--
+// -----------------------------------------------
+
+[ITEMDEF 04100]
+//Comm. Crystal (500) RED
+DEFNAME=i_crystal_of_com_t1
+NAME=communications crystal
+ID=I_CRYSTAL_RED
+TYPE=T_COMM_CRYSTAL
+VALUE=81
+WEIGHT=1
+
+[ITEMDEF 0204F]
+// GM Robe
+DEFNAME=i_robe_gm
+TYPE=T_CLOTHING
+NAME=gm robe
+ARMOR=500
+DYE=1
+DESCRIPTION=GM Robes
+SUBSECTION=GM Robes
+CATEGORY=Provisions - GM Items
+
+
+CATEGORY=Provisions - Miscellaneous
+SUBSECTION=Communication Crystals
+DESCRIPTION=Communication Crystal (red)
+
+ON=@Create
+MORE=500
+
+[ITEMDEF 04101]
+// Comm. Crystal (1000) GREEN
+DEFNAME=i_CRYSTAL_OF_COM_T2
+ID=I_CRYSTAL_GREEN
+NAME=communications crystal
+TYPE=T_COMM_CRYSTAL
+VALUE=158
+WEIGHT=1
+CATEGORY=Provisions - Miscellaneous
+SUBSECTION=Communication Crystals
+DESCRIPTION=Communication Crystal (green)
+
+ON=@Create
+MORE=1000
+
+[ITEMDEF 04102]
+// Comm. Crystal (2000) GREEN
+DEFNAME=i_CRYSTAL_OF_COM_T3
+ID=I_CRYSTAL_GREEN
+TYPE=T_COMM_CRYSTAL
+NAME=communications crystal
+VALUE=310
+WEIGHT=1
+
+CATEGORY=Provisions - Miscellaneous
+SUBSECTION=Communication Crystals
+DESCRIPTION=Communication Crystal (green)
+
+ON=@Create
+MORE=2000
+
+[ITEMDEF 04103]
+DEFNAME=i_beard_NONE
+ID=I_EQ_MARKER
+NAME=no beard
+TYPE=T_BEARD
+LAYER=layer_beard
+VALUE=10
+
+ON=@Create
+ATTR=attr_newbie
+TIMER=-1
+
+[ITEMDEF 04104]
+DEFNAME=i_hair_NONE
+ID=I_EQ_MARKER
+NAME=no hair
+TYPE=T_HAIR
+LAYER=layer_hair
+VALUE=10
+
+ON=@Create
+ATTR=attr_newbie
+TIMER=-1
+
+[ITEMDEF 04501]
+NAME=gm robe
+ID=i_robe_gm
+ARMOR=600
+
+CATEGORY=Provisions - GM Items
+SUBSECTION=GM Robes
+DESCRIPTION=GM Robe
+
+ON=@Create
+COLOR=021
+
+[ITEMDEF 04502]
+NAME=seer robe
+ID=i_robe_gm
+ARMOR=500
+
+CATEGORY=Provisions - GM Items
+SUBSECTION=GM Robes
+DESCRIPTION=Seer Robe
+
+ON=@Create
+COLOR=01D3
+
+[ITEMDEF 04503]
+NAME=counselor robe
+ID=i_robe_gm
+ARMOR=500
+
+CATEGORY=Provisions - GM Items
+SUBSECTION=GM Robes
+DESCRIPTION=Counselor Robe
+
+ON=@Create
+COLOR=003
+
+[ITEMDEF 04506]
+DEFNAME=i_CHECKERBOARD
+//DEFNAME=CHECKERBOARD
+ID=i_game_board
+NAME=checkerboard
+TYPE=T_GAME_BOARD
+SKILLMAKE=tinkering 40.0, carpentry 40.0
+RESOURCES=3 i_board, 3 i_log
+
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Checkerboard
+
+ON=@Create
+MORE=1	// make this checkers.
+
+[ITEMDEF 04507]
+DEFNAME=i_CHESSBOARD
+ID=i_game_board
+NAME=chessboard
+TYPE=T_GAME_BOARD
+SKILLMAKE=tinkering 60.0, carpentry 60.0
+RESOURCES=3 i_board, 4 i_log
+
+CATEGORY=Items by Professions
+SUBSECTION=BarKeep
+DESCRIPTION=Chessboard
+
+[ITEMDEF 04520]
+// Guild Stone
+DEFNAME=i_guild_stone_xxx
+ID=i_guildstone
+NAME=guildstone
+TYPE=T_STONE_GUILD
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Guild and Town Stones
+DESCRIPTION=Guild Stone
+
+On=@Create
+type t_normal
+color 066d
+name sil beni sekerim, hataliyim ben. dogru id 'i_guildstone' olacakti.
+attr 010
+
+On=@Click
+message a guildstone
+message <name>
+return 1
+
+[ITEMDEF 04521]
+// Town Stone
+DEFNAME=i_town_stone
+ID=i_guildstone
+NAME=townstone
+TYPE=T_STONE_TOWN
+dispid i_grave_stone
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Guild and Town Stones
+DESCRIPTION=Town Stone
+
+[ITEMDEF i_npc_bow]
+NAME=bow
+ID=i_bow
+DAM=15,20
+TDATA1=0
+TDATA3=0
+SKILL=Archery
+REQSTR=30
+TWOHANDS=Y
+WEIGHT=1
+
+ON=@CREATE
+	HITPOINTS={411 1000}
+
+[ITEMDEF i_bow_bro]
+DEFNAME=i_bow_bro
+ID=i_bow
+TYPE=T_WEAPON_BOW
+FLIP=1
+WEIGHT=2
+DAM=100,200
+//SPEED=20
+SKILL=Archery
+REQSTR=20
+VALUE=30
+TWOHANDS=N
+
+TDATA1=0
+TDATA3=0
+TDATA4=i_fx_energy_ray
+
+ON=@Create
+HITPOINTS={5000 6000}
+
+ON=@EQUIP
+IF !<SRC.ISEVENT.e_moprofile>
+	REMOVE
+	RETURN 1
+ENDIF
+
+
+[EOF]

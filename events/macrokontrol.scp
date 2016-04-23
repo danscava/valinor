@@ -1,0 +1,359 @@
+// ----------------------------
+// LBUSTER.SCP - LAME BUSTER MODULU 
+// SON GUNCELLENME TARIHI: 4 AGUSTOS 2002 - Bronx
+// ----------------------------
+version=0.55
+
+[itemdef i_brnx_acctagger]
+name Acctag: Veteran
+id i_grave_stone
+type t_script
+weight 2000
+
+On=@Create
+attr attr_move_never
+
+On=@DClick
+return 1
+
+On=@Click
+sayua 020,0,0,0 <serv.servname> <name>
+sayua 0482,0,0,0 [<eval <more2>> hesap]
+return 1
+
+On=@PickUp_Ground
+return 1
+
+On=@Timer
+return 1
+
+[itemdef i_macro_control]
+name Mts
+id i_basket_square
+dispid i_grave_stone
+type t_container
+weight 2000
+tdata2 03f
+
+On=@Create
+attr attr_move_never
+
+On=@Click
+sayua <color>,0,0,0 <serv.servname> <name>
+sayua 0482,0,0,0 [<eval <rescount>> tespit]
+return 1
+
+On=@PickUp_Ground
+return 1
+
+On=@DClick
+if (0<src.account.plevel> > 2)
+	if (<findid.i_macro_detect>)
+		var.macrono 0
+		var.mname1
+		var.mloc1
+		var.mtime1
+		var.mname2
+		var.mloc2
+		var.mtime2
+		var.mname3
+		var.mloc3
+		var.mtime3
+		var.mname4
+		var.mloc4
+		var.mtime4
+		var.mname5
+		var.mloc5
+		var.mtime5
+		var.mname6
+		var.mloc6
+		var.mtime6
+		var.mname7
+		var.mloc7
+		var.mtime7
+		var.mname8
+		var.mloc8
+		var.mtime8
+		var.mname9
+		var.mloc9
+		var.mtime9
+		var.mname10
+		var.mloc10
+		var.mtime10
+		var.mname11
+		var.mloc11
+		var.mtime11
+		var.mname12
+		var.mloc12
+		var.mtime12
+		var.mname13
+		var.mloc13
+		var.mtime13
+		var.mname14
+		var.mloc14
+		var.mtime14
+		var.mname15
+		var.mloc15
+		var.mtime15
+		var.mname16
+		var.mloc16
+		var.mtime16
+		var.mname17
+		var.mloc17
+		var.mtime17
+		var.mname18
+		var.mloc18
+		var.mtime18
+		var.mname19
+		var.mloc19
+		var.mtime19
+		var.mname20
+		var.mloc20
+		var.mtime20
+		findcont.0.checkmdetect
+		findcont.1.checkmdetect
+		findcont.2.checkmdetect
+		findcont.3.checkmdetect
+		findcont.4.checkmdetect
+		findcont.5.checkmdetect
+		findcont.6.checkmdetect
+		findcont.7.checkmdetect
+		findcont.8.checkmdetect
+		findcont.9.checkmdetect
+		findcont.10.checkmdetect
+		findcont.11.checkmdetect
+		findcont.12.checkmdetect
+		findcont.13.checkmdetect
+		findcont.14.checkmdetect
+		findcont.15.checkmdetect
+		findcont.16.checkmdetect
+		findcont.17.checkmdetect
+		findcont.18.checkmdetect
+		findcont.19.checkmdetect
+		menu m_macro
+	else
+		src.sysmessage Algilanmis macrocu yok. :))
+	endif
+else
+	src.sysmessage Bunu kullanabilecek yetkiye sahip degilsiniz.
+endif
+return 1
+
+[itemdef i_macro_detect]
+name macro detector
+id 0186f
+type t_eq_script
+weight 0
+layer layer_special
+
+On=@Create
+attr attr_static|attr_move_never
+
+[function macroadmin]
+var.macrono 0
+var.mname1
+var.mloc1
+var.mtime1
+var.mname2
+var.mloc2
+var.mtime2
+var.mname3
+var.mloc3
+var.mtime3
+var.mname4
+var.mloc4
+var.mtime4
+var.mname5
+var.mloc5
+var.mtime5
+var.mname6
+var.mloc6
+var.mtime6
+var.mname7
+var.mloc7
+var.mtime7
+var.mname8
+var.mloc8
+var.mtime8
+var.mname9
+var.mloc9
+var.mtime9
+var.mname10
+var.mloc10
+var.mtime10
+var.mname11
+var.mloc11
+var.mtime11
+var.mname12
+var.mloc12
+var.mtime12
+var.mname13
+var.mloc13
+var.mtime13
+var.mname14
+var.mloc14
+var.mtime14
+var.mname15
+var.mloc15
+var.mtime15
+var.mname16
+var.mloc16
+var.mtime16
+var.mname17
+var.mloc17
+var.mtime17
+var.mname18
+var.mloc18
+var.mtime18
+var.mname19
+var.mloc19
+var.mtime19
+var.mname20
+var.mloc20
+var.mtime20
+if (strmatch("Valinor"))
+	try var.mts <uid.04018c20d.findcont.0>
+	if !(0<var.mts>)
+		sysmessage Algilanmis macrocu yok. :))
+		return 1
+	endif
+	uid.04018c20d.findcont.0.checkmdetect
+	uid.04018c20d.findcont.1.checkmdetect
+	uid.04018c20d.findcont.2.checkmdetect
+	uid.04018c20d.findcont.3.checkmdetect
+	uid.04018c20d.findcont.4.checkmdetect
+	uid.04018c20d.findcont.5.checkmdetect
+	uid.04018c20d.findcont.6.checkmdetect
+	uid.04018c20d.findcont.7.checkmdetect
+	uid.04018c20d.findcont.8.checkmdetect
+	uid.04018c20d.findcont.9.checkmdetect
+	uid.04018c20d.findcont.10.checkmdetect
+	uid.04018c20d.findcont.11.checkmdetect
+	uid.04018c20d.findcont.12.checkmdetect
+	uid.04018c20d.findcont.13.checkmdetect
+	uid.04018c20d.findcont.14.checkmdetect
+	uid.04018c20d.findcont.15.checkmdetect
+	uid.04018c20d.findcont.16.checkmdetect
+	uid.04018c20d.findcont.17.checkmdetect
+	uid.04018c20d.findcont.18.checkmdetect
+	uid.04018c20d.findcont.19.checkmdetect
+endif
+menu m_macro
+
+[function macrodetect]
+if (0<account.plevel> > 1)
+	smsgx * Mts <args>
+endif
+
+[function checkmdetect]
+var.macrono <eval (<var.macrono> + 1)>
+try var.mname<eval <var.macrono>> <link.name>
+try var.mche<eval <var.macrono>> <uid>
+try var.muid<eval <var.macrono>> <link.uid>
+try var.mloc<eval <var.macrono>> ((<link.region.name>)
+try var.mtime<eval <var.macrono>> [ <eval (((<serv.time> - <more1>)) / 10) / 60)> dk.
+
+[menu m_macro]
+<serv.servname> Mts
+
+On=0 <var.mname1> <var.mloc1> <var.mtime1>
+src.gouid <var.muid1>
+try uid.<var.mche1>.remove
+try uid.<var.muid1>.tag.mt
+
+On=0 <var.mname2> <var.mloc2> <var.mtime2>
+src.gouid <var.muid2>
+try uid.<var.mche2>.remove
+try uid.<var.muid2>.tag.mt
+
+On=0 <var.mname3> <var.mloc3> <var.mtime3>
+src.gouid <var.muid3>
+try uid.<var.mche3>.remove
+try uid.<var.muid3>.tag.mt
+
+On=0 <var.mname4> <var.mloc4> <var.mtime4>
+src.gouid <var.muid4>
+try uid.<var.mche4>.remove
+try uid.<var.muid4>.tag.mt
+
+On=0 <var.mname5> <var.mloc5> <var.mtime5>
+src.gouid <var.muid5>
+try uid.<var.mche5>.remove
+try uid.<var.muid5>.tag.mt
+
+On=0 <var.mname6> <var.mloc6> <var.mtime6>
+src.gouid <var.muid6>
+try uid.<var.mche6>.remove
+try uid.<var.muid6>.tag.mt
+
+On=0 <var.mname7> <var.mloc7> <var.mtime7>
+src.gouid <var.muid7>
+try uid.<var.mche7>.remove
+try uid.<var.muid7>.tag.mt
+
+On=0 <var.mname8> <var.mloc8> <var.mtime8>
+src.gouid <var.muid8>
+try uid.<var.mche8>.remove
+try uid.<var.muid8>.tag.mt
+
+On=0 <var.mname9> <var.mloc9> <var.mtime9>
+src.gouid <var.muid9>
+try uid.<var.mche9>.remove
+try uid.<var.muid9>.tag.mt
+
+On=0 <var.mname10> <var.mloc10> <var.mtime10>
+src.gouid <var.muid10>
+try uid.<var.mche10>.remove
+try uid.<var.muid10>.tag.mt
+
+On=0 <var.mname11> <var.mloc11> <var.mtime11>
+src.gouid <var.muid11>
+try uid.<var.mche11>.remove
+try uid.<var.muid11>.tag.mt
+
+On=0 <var.mname12> <var.mloc12> <var.mtime12>
+src.gouid <var.muid12>
+try uid.<var.mche12>.remove
+try uid.<var.muid12>.tag.mt
+
+On=0 <var.mname13> <var.mloc13> <var.mtime13>
+src.gouid <var.muid13>
+try uid.<var.mche13>.remove
+try uid.<var.muid13>.tag.mt
+
+On=0 <var.mname14> <var.mloc14> <var.mtime14>
+src.gouid <var.muid14>
+try uid.<var.mche14>.remove
+try uid.<var.muid14>.tag.mt
+
+On=0 <var.mname15> <var.mloc15> <var.mtime15>
+src.gouid <var.muid15>
+try uid.<var.mche15>.remove
+try uid.<var.muid15>.tag.mt
+
+On=0 <var.mname16> <var.mloc16> <var.mtime16>
+src.gouid <var.muid16>
+try uid.<var.mche16>.remove
+try uid.<var.muid16>.tag.mt
+
+On=0 <var.mname17> <var.mloc17> <var.mtime17>
+src.gouid <var.muid17>
+try uid.<var.mche17>.remove
+try uid.<var.muid17>.tag.mt
+
+On=0 <var.mname18> <var.mloc18> <var.mtime18>
+src.gouid <var.muid18>
+try uid.<var.mche18>.remove
+try uid.<var.muid18>.tag.mt
+
+On=0 <var.mname19> <var.mloc19> <var.mtime19>
+src.gouid <var.muid19>
+try uid.<var.mche19>.remove
+try uid.<var.muid19>.tag.mt
+
+On=0 <var.mname20> <var.mloc20> <var.mtime20>
+src.gouid <var.muid20>
+try uid.<var.mche20>.remove
+try uid.<var.muid20>.tag.mt
+
+[eof]

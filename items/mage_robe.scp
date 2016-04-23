@@ -1,0 +1,389 @@
+////////////////////////////////////////////ITEMLER
+[ITEMDEF i_mageitem1]
+id=i_crystal_green_big
+name=Crystal Of Triton
+weight=3
+value 150
+
+ON=@CREATE
+Color=080a
+attr 00
+
+ON=@DCLICK
+src.sysmessage @49,,1 Bu esya triton robe yapiminda kullanilir.
+return 1
+
+ON=@CLICK
+message @049 [Pure Mage]
+message Crystal Of Triton
+Return 1
+
+/////////////////////////////////////
+
+[ITEMDEF i_mageitem2]
+id=i_blanket
+Name=Cloth Of Triton
+weight=3
+value 150
+
+ON=@CREATE
+Color=080a
+attr 0
+
+ON=@DCLICK
+src.sysmessage @49,,1 Bu esya triton robe yapiminda kullanilir.
+return 1
+
+ON=@CLICK
+message @049 [Pure Mage]
+message Cloth Of Triton
+Return 1
+
+/////////////////////////////////////WARLOCK
+
+[ITEMDEF i_warlockitem1]
+id=i_crystal_green_big
+name=Crystal Of Kentauros
+weight=3
+value 150
+
+ON=@CREATE
+Color=0794
+attr 00
+
+ON=@DCLICK
+src.sysmessage @49,,1 Bu esya kentauros robe yapiminda kullanilir.
+return 1
+
+ON=@CLICK
+message @049 [Warlock]
+message Crystal Of Kentauros
+Return 1
+
+/////////////////////////////////////
+
+[ITEMDEF i_warlockitem2]
+id=i_blanket
+Name=Cloth Of Kentauros
+weight=3
+value 150
+
+ON=@CREATE
+Color=0794
+attr 0
+
+ON=@DCLICK
+src.sysmessage @49,,1 Bu esya kentauros robe yapiminda kullanilir.
+return 1
+
+ON=@CLICK
+message @049 [Warlock]
+message Cloth Of Kentauros
+Return 1
+
+/////////////////////////////////////WARRIOR
+
+[ITEMDEF i_warrioritem1]
+id=i_crystal_green_big
+name=Crystal Of Khimaira
+weight=3
+value 150
+
+ON=@CREATE
+Color=0809
+attr 00
+
+ON=@DCLICK
+src.sysmessage @49,,1 Bu esya khimaira robe yapiminda kullanilir.
+return 1
+
+ON=@CLICK
+message @049 [Warrior]
+message Crystal Of Khimaira
+Return 1
+
+/////////////////////////////////////
+
+[ITEMDEF i_warrioritem2]
+id=i_blanket
+Name=Cloth Of Khimaira
+weight=3
+value 150
+
+ON=@CREATE
+Color=0809
+attr 0
+
+ON=@DCLICK
+src.sysmessage @49,,1 Bu esya khimaira robe yapiminda kullanilir.
+return 1
+
+ON=@CLICK
+message @049 [Warrior]
+message Cloth Of Khimaira
+Return 1
+
+////////////////////////////////////////// ROBELER
+
+[ITEMDEF i_robe_mage]
+ID=8270
+TYPE=t_clothing
+NAME=Triton Robe
+ARMOR=60
+WEIGHT=3
+REQSTR=35
+RESOURCES=40 i_cloth , 1 i_mageitem1, 1 i_mageitem2
+SKILLMAKE=TAILORING 98.0, MAGERY 98.0
+
+ON=@CLICK
+message @049 [Pure Mage]
+message @350 Robe of Triton
+return 1
+
+ON=@Create
+HITPOINTS={100 500}
+COLOR=080a
+
+ON=@DCLICK
+
+
+ON=@Equip
+SRC.EFFECT 3,i_fx_sparkle,1,16,0
+SRC.EVENTS +e_magerobe
+	if (<src.magery> < 98.0)
+	src.sysmessage @1100,,1 Bunu giymek 98.0 Magery skilli gereklidir
+	unequip	
+	return 1
+	endif
+	if (<src.anatomy> < 98.0)
+	src.sysmessage @1100,,1 Bunu giymek 98.0 Anatomy skilli gereklidir
+	unequip	
+	return 1
+	endif
+	if (<src.healing> < 80.0)
+	src.sysmessage @1100,,1 Bunu giymek 80.0 Healing skilli gereklidir
+	unequip	
+	return 1
+	endif
+	if (<src.EvaluatingIntel> < 98.0)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin 98.0 Evaluating Intelligence skilli gereklidir.	
+	unequip	
+	return 1
+	endif
+	if (<src.meditation> < 75.0)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin 75.0 Meditation skilli gereklidir.	
+	unequip	
+	return 1
+	endif
+	if (<src.poisoning> < 98.0)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin 98.0 Poisoning skilli gereklidir.	
+	unequip	
+	return 1
+	endif
+	if (<src.tactics> > 0.1)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin savasci skill'iniz olmamalidir..	
+	unequip	
+	return 1
+	endif
+	if (<src.wrestling> > 0.1)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin savasci skill'iniz olmamalidir..	
+	unequip	
+	return 1
+	endif
+
+ON=@UnEquip
+src.events -e_magerobe
+	
+[events e_magerobe] 
+On=@SPELLEFFECT
+IF (<ARGN>=51) // (Koþan) KalVaZ
+sayua 0835,6,0,enu * Etkilenmez *
+SPELLEFFECT s_cure,1000
+RETURN 1
+ENDIF
+on=@spellcast 
+if (<argn> == 5)
+if (<src.evaluatingintel> > 98.0) 
+if (rand(2)) 
+act.damage {-5 -3}
+src.sysmessage @049 Mage robeniz size magic arrow buyusunde guc verdi.. 
+endif 
+endif 
+endif 
+
+[ITEMDEF i_robe_warlock]
+ID=8270
+TYPE=t_clothing
+NAME=Kentauros Robe
+ARMOR=60
+WEIGHT=3
+REQSTR=35
+RESOURCES=40 i_cloth , 1 i_warlockitem1, 1 i_warlockitem2
+SKILLMAKE=TAILORING 98.0, MAGERY 98.0
+
+ON=@CLICK
+message @049 [Warlock]
+message @350 Robe of Kentauros
+return 1
+
+ON=@Create
+HITPOINTS={100 500}
+COLOR=0794
+
+ON=@DCLICK
+
+
+ON=@Equip
+SRC.EFFECT 3,i_fx_sparkle,1,16,0
+src.events +e_warlockrobe
+	if (<src.magery> < 98.0)
+	src.sysmessage @1100,,1 Bunu giymek 98.0 Magery skilli gereklidir
+	unequip	
+	return 1
+	endif
+	if (<src.healing> < 80.0)
+	src.sysmessage @1100,,1 Bunu giymek 80.0 Healing skilli gereklidir
+	unequip	
+	return 1
+	endif
+	if (<src.anatomy> < 98.0)
+	src.sysmessage @1100,,1 Bunu giymek 98.0 Anatomy skilli gereklidir
+	unequip	
+	return 1
+	endif
+	if (<src.EvaluatingIntel> < 75.0)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin 75.0 Evaluating Intelligence skilli gereklidir.	
+	unequip	
+	return 1
+	endif
+	if (<src.poisoning> < 98.0)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin 98.0 Poisoning skilli gereklidir.	
+	unequip	
+	return 1
+	endif
+	if (<src.tactics> < 98.0)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin 98.0 Tactics skilli gereklidir.	
+	unequip	
+	return 1
+	endif
+	if (<src.meditation> > 40.1)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin meditation 40'tan dusuk olmalidir.
+	unequip	
+	return 1
+	endif
+
+ON=@UnEquip
+src.events -e_warlockrobe
+	
+[events e_warlockrobe] 
+On=@SPELLEFFECT
+IF (<ARGN>=49) // Vas Ort Grav Comboooo
+sayua 0835,6,0,enu * Etkilenmez *
+SPELLEFFECT s_cure,1000
+RETURN 1
+ENDIF
+IF (<ARGN>=47) // In EZ Grav
+sayua 0835,6,0,enu * Etkilenmez *
+SPELLEFFECT s_cure,1000
+RETURN 1
+ENDIF
+
+[ITEMDEF i_robe_warrior]
+ID=i_robe
+TYPE=t_clothing
+NAME=Khimaira Robe
+ARMOR=60
+WEIGHT=3
+REQSTR=35
+RESOURCES=40 i_cloth , 1 i_warrioritem1, 1 i_warrioritem2
+SKILLMAKE=TAILORING 98.0, MAGERY 98.0
+
+ON=@CLICK
+message @049 [Warrior]
+message @350 Robe of Khimaira
+return 1
+
+ON=@Create
+HITPOINTS={100 500}
+COLOR=0455
+
+ON=@DCLICK
+
+
+ON=@Equip
+SRC.EFFECT 3,i_fx_sparkle,1,16,0
+src.events +e_warriorrobe
+	if (<src.anatomy> < 99.0)
+	src.sysmessage @1100,,1 Bunu giymek 99.0 Anatomy skilli gereklidir
+	unequip	
+	return 1
+	endif
+	if (<src.healing> < 99.0)
+	src.sysmessage @1100,,1 Bunu giymek 99.0 Healing skilli gereklidir
+	unequip	
+	return 1
+	endif
+	if (<src.poisoning> < 98.0)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin 98.0 Poisoning skilli gereklidir.	
+	unequip	
+	return 1
+	endif
+	if (<src.tactics> < 98.0)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin 98.0 Tactics skilli gereklidir.	
+	unequip	
+	return 1
+	endif
+	if (<src.meditation> > 0.1)
+	src.sysmessage @1100,,1 Bunu giyebilmek icin meditation skili olmamalidir.
+	unequip	
+	return 1
+	endif
+
+ON=@UnEquip
+src.events -e_warriorrobe
+	
+[events e_warriorrobe]
+On=@SPELLEFFECT
+IF (<ARGN>=1) // (use jox :D)
+sayua 0835,6,0,enu * Etkilenmez *
+SPELLEFFECT s_cure,1000
+RETURN 1
+ENDIF
+on=@gethit 
+if (<flags> &statf_poisoned) 
+sayua 0835,6,0,enu * zehiri iyilestirir *
+sound snd_spell_cure 
+findid.i_rune_poison.remove
+endif
+
+[ITEMDEF i_robe_shroud]
+ID=8270
+TYPE=t_clothing
+NAME=Shroud Robe
+ARMOR=20
+WEIGHT=3
+REQSTR=35
+RESOURCES=40 i_cloth ,
+SKILLMAKE=TAILORING 98.0, MAGERY 98.0
+
+ON=@CLICK
+message @049 [Random]
+message @350 Robe of Shroud
+return 1
+
+ON=@Create
+HITPOINTS={100 500}
+COLOR=0
+
+ON=@DCLICK
+
+
+ON=@Equip
+if ((<src.skilltotal> < 600.0)
+src.sysmessage @1100,,1 Bunu giyebilmek icin 600 skillcup gereklidir.	
+unequip	
+return 1
+endif
+
+
+[EOF]

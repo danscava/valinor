@@ -1,0 +1,252 @@
+////////////////////////////////////////
+// Son Güncelleyen   : Scripter Acrid //
+// Güncelleme Tarihi : 03 Nisan 2006  //
+////////////////////////////////////////
+[function regs]
+dialog d_reg_noxier
+
+
+[function ores]
+dialog d_ores_noxier
+return 1
+
+[function ingots]
+dialog d_ingots_noxier
+
+[PLEVEL 1]
+regs
+ores
+ingots
+
+
+[Dialog d_reg_noxier]
+0,60
+resizepic 0 35 83 175 220
+resizepic 7 44 3000 163 202
+tilepic 0 85 3981 //spiders silk resmi
+tilepic 0 102 3963 //blooddmoss resmi
+tilepic 0 120 3973 //ginseng resmi
+tilepic 2 138 3972 //garlic resmi
+tilepic 0 154 3974 //mandrake root resmi
+tilepic 0 172 3976 //nightshade Ash root
+tilepic 0 189 3980 //sulphurous ash resmi 
+tilepic 0 208 3962 //black pearls resmi 
+htmlgump 17 48 160 20 0 0 0
+htmlgump 40 82 120 20 1 0 0
+htmlgump 40 100 120 20 2 0 0
+htmlgump 40 118 120 20 3 0 0
+htmlgump 40 136 120 20 4 0 0
+htmlgump 40 154 120 20 5 0 0
+htmlgump 40 172 120 20 6 0 0
+htmlgump 40 189 120 20 7 0 0
+htmlgump 40 206 120 20 8 0 0
+htmlgump 140 82 120 20 9 0 0
+htmlgump 140 100 120 20 10 0 0
+htmlgump 140 118 120 20 11 0 0
+htmlgump 140 136 120 20 12 0 0
+htmlgump 140 154 120 20 13 0 0
+htmlgump 140 172 120 20 14 0 0
+htmlgump 140 189 120 20 15 0 0
+htmlgump 140 206 120 20 16 0 0
+
+button 15 228 1209 1210 1 0 1
+htmlgump 40 228 35 20 17 0 0
+
+button 140 228 1209 1210 1 0 2
+htmlgump 100 228 30 20 18 0 0
+
+[Dialog d_reg_noxier TEXT]
+<serv.servname> Reg Menusu
+Spider Silk
+Blood Moss
+Ginseng
+Garlic
+Mandrake Root
+Nightshade
+Sulphurous Ash
+Black Pearl
+<src.rescount(3981).amount>
+<src.rescount(3963).amount>
+<src.rescount(3973).amount>
+<src.rescount(3972).amount>
+<src.rescount(3974).amount>
+<src.rescount(3976).amount>
+<src.rescount(3980).amount>
+<src.rescount(3962).amount>
+Ingots
+Ores
+
+[Dialog d_reg_noxier button]
+on=1
+src.dialog d_ingots_noxier
+on=2
+src.dialog d_ores_noxier
+
+
+//////ingots//////
+[DIALOG d_ingots_noxier]
+0, 10
+page 0
+resizepic 0 30 83 175 340
+resizepic 7 39 3000 163 322
+
+htmlgump 17 40 160 20 0 0 0
+htmlgump 20 70 120 20 1 0 0
+htmlgump 20 90 120 20 2 0 0
+htmlgump 20 110 120 20 3 0 0
+htmlgump 20 130 120 20 4 0 0
+htmlgump 20 150 120 20 5 0 0
+htmlgump 20 170 120 20 6 0 0
+htmlgump 20 190 120 20 7 0 0
+htmlgump 20 210 120 20 8 0 0
+htmlgump 20 230 120 20 9 0 0
+htmlgump 20 250 120 20 10 0 0
+htmlgump 20 270 120 20 11 0 0
+htmlgump 20 290 120 20 12 0 0
+htmlgump 20 310 120 20 13 0 0
+
+htmlgump 120 70 120 20 14 0 0
+htmlgump 120 90 120 20 15 0 0
+htmlgump 120 110 120 20 16 0 0
+htmlgump 120 130 120 20 17 0 0
+htmlgump 120 150 120 20 18 0 0
+htmlgump 120 170 120 20 19 0 0
+htmlgump 120 190 120 20 20 0 0
+htmlgump 120 210 120 20 21 0 0
+htmlgump 120 230 120 20 22 0 0
+htmlgump 120 250 120 20 23 0 0
+htmlgump 120 270 120 20 24 0 0
+htmlgump 120 290 120 20 25 0 0
+htmlgump 120 310 120 20 26 0 0
+
+button 20 340 1209 1210 1 0 1
+htmlgump 45 340 35 20 27 0 0
+
+button 140 340 1209 1210 1 0 2
+htmlgump 105 340 30 20 28 0 0
+
+[DIALOG d_ingots_noxier TEXT]
+<serv.servname> Ingot Menu
+Iron
+Dull Copper
+Copper
+Bronze
+Silver
+Golden
+Shadow
+Agapite
+Verite
+Mytheril
+Valorite
+Bloodrock
+Blackrock
+
+<SRC.FINDLAYER{21}.FINDID{i_ingot_iron}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ingot_dull_copper}.AMOUNT> 
+<SRC.FINDLAYER{21}.FINDID{i_ingot_copper}.AMOUNT> 
+<SRC.FINDLAYER{21}.FINDID{i_ingot_bronze}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ingot_silver}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ingot_gold}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ingot_shadow}.AMOUNT> 
+<SRC.FINDLAYER{21}.FINDID{i_ingot_agapite}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ingot_verite}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ingot_mytheril}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ingot_valorite}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ingot_bloodrock}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ingot_blackrock}.AMOUNT>
+
+Regs
+Ores
+
+
+
+[DIALOG d_ingots_noxier BUTTON]
+on=1
+src.dialog d_reg_noxier
+on=2
+src.dialog d_ores_noxier
+
+/////ORES///
+[dialog d_ores_noxier]
+0, 10
+page 0
+resizepic 0 30 83 175 340
+resizepic 7 39 3000 163 322
+
+htmlgump 17 40 160 20 0 0 0
+htmlgump 20 70 120 20 1 0 0
+htmlgump 20 90 120 20 2 0 0
+htmlgump 20 110 120 20 3 0 0
+htmlgump 20 130 120 20 4 0 0
+htmlgump 20 150 120 20 5 0 0
+htmlgump 20 170 120 20 6 0 0
+htmlgump 20 190 120 20 7 0 0
+htmlgump 20 210 120 20 8 0 0
+htmlgump 20 230 120 20 9 0 0
+htmlgump 20 250 120 20 10 0 0
+htmlgump 20 270 120 20 11 0 0
+htmlgump 20 290 120 20 12 0 0
+htmlgump 20 310 120 20 13 0 0
+
+htmlgump 120 70 120 20 14 0 0
+htmlgump 120 90 120 20 15 0 0
+htmlgump 120 110 120 20 16 0 0
+htmlgump 120 130 120 20 17 0 0
+htmlgump 120 150 120 20 18 0 0
+htmlgump 120 170 120 20 19 0 0
+htmlgump 120 190 120 20 20 0 0
+htmlgump 120 210 120 20 21 0 0
+htmlgump 120 230 120 20 22 0 0
+htmlgump 120 250 120 20 23 0 0
+htmlgump 120 270 120 20 24 0 0
+htmlgump 120 290 120 20 25 0 0
+htmlgump 120 310 120 20 26 0 0
+
+button 20 340 1209 1210 1 0 1
+htmlgump 45 340 35 20 27 0 0
+
+button 140 340 1209 1210 1 0 2
+htmlgump 100 340 35 20 28 0 0
+
+
+
+[dialog d_ores_noxier text]
+<serv.servname> Ore Menu
+Iron
+Dull Copper
+Copper
+Bronze
+Silver
+Golden
+Shadow
+Agapite
+Verite
+Mytheril
+Valorite
+Bloodrock
+Blackrock
+
+<SRC.FINDLAYER{21}.FINDID{i_ore_iron}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ore_dull_copper}.AMOUNT> 
+<SRC.FINDLAYER{21}.FINDID{i_ore_copper}.AMOUNT> 
+<SRC.FINDLAYER{21}.FINDID{i_ore_bronze}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ore_silver}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ore_gold}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ore_shadow}.AMOUNT> 
+<SRC.FINDLAYER{21}.FINDID{i_ore_agapite}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ore_verite}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ore_mytheril}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ore_valorite}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ore_bloodrock}.AMOUNT>
+<SRC.FINDLAYER{21}.FINDID{i_ore_blackrock}.AMOUNT>
+
+Regs
+Ingots
+
+[dialog d_ores_noxier button]
+on=1
+src.dialog d_reg_noxier
+on=2
+src.dialog d_ingots_noxier
+
+[EOF]

@@ -1,0 +1,1307 @@
+// ----------------------------
+// LIGHTNING.SCP - LIGHTNING STORM SISTEMI 
+// SON GUNCELLENME TARIHI: 1 Aralik 2001
+// ----------------------------
+VERSION=0.55
+
+[FUNCTION iontime]
+SRC.SYSMESSAGE IonTime = <ARGN>
+SRC.TAG.IONTIME=<ARGN>
+
+[FUNCTION ionstormworld]
+Serv.allclients SYSMESSAGE Lightning Storm approaching! Evacuate immediately!
+SERV.ALLCLIENTS LIGHTNINGSTORM1
+
+[FUNCTION ionstorm]
+IF STRMATCH(<ARGS>,Britain) || STRMATCH(<ARGS>,Buccaneer's Den) || STRMATCH(<ARGS>,Cove) || STRMATCH(<ARGS>,Calimport) || STRMATCH(<ARGS>,Jhelom) || STRMATCH(<ARGS>,Magincia) || STRMATCH(<ARGS>,Minoc) || STRMATCH(<ARGS>,Moonglow) || STRMATCH(<ARGS>,Nujel'm) || STRMATCH(<ARGS>,Ocllo) || STRMATCH(<ARGS>,Papua) || STRMATCH(<ARGS>,Serpent's Hold) || STRMATCH(<ARGS>,Skara Brae) || STRMATCH(<ARGS>,Trinsic) || STRMATCH(<ARGS>,Vesper) || STRMATCH(<ARGS>,Wind) || STRMATCH(<ARGS>,Yew)
+	SRC.NEWITEM=i_count_down
+	IF STRMATCH(<ARGS>,Britain)
+		SRC.ACT.TAG.IONP1=1398,1791
+		SRC.ACT.TAG.IONP2=1697,1499
+	ENDIF
+	IF STRMATCH(<ARGS>,Buccaneer's Den)
+		SRC.ACT.TAG.IONP1=2786,2066
+		SRC.ACT.TAG.IONP2=2620,2267
+	ENDIF
+	IF STRMATCH(<ARGS>,Cove)
+		SRC.ACT.TAG.IONP1=2204,1243
+		SRC.ACT.TAG.IONP2=2297,1107
+	ENDIF
+	IF STRMATCH(<ARGS>,Calimport)
+		SRC.ACT.TAG.IONP1=5314,4081
+		SRC.ACT.TAG.IONP2=5127,3926
+	ENDIF
+	IF STRMATCH(<ARGS>,Jhelom)
+		SRC.ACT.TAG.IONP1=1516,3663
+		SRC.ACT.TAG.IONP2=1300,3918
+	ENDIF
+	IF STRMATCH(<ARGS>,Magincia)
+		SRC.ACT.TAG.IONP1=3652,2298
+		SRC.ACT.TAG.IONP2=3813,2025
+	ENDIF
+	IF STRMATCH(<ARGS>,Minoc)
+		SRC.ACT.TAG.IONP1=2413,367
+		SRC.ACT.TAG.IONP2=2627,646
+	ENDIF
+	IF STRMATCH(<ARGS>,Moonglow)
+		SRC.ACT.TAG.IONP1=4496,1182
+		SRC.ACT.TAG.IONP2=2379,1021
+	ENDIF
+	IF STRMATCH(<ARGS>,Nujel'm)
+		SRC.ACT.TAG.IONP1=3536,1080
+		SRC.ACT.TAG.IONP2=3820,1420
+	ENDIF
+	IF STRMATCH(<ARGS>,Ocllo)
+		SRC.ACT.TAG.IONP1=3589,2461
+		SRC.ACT.TAG.IONP2=3757,2701
+	ENDIF
+	IF STRMATCH(<ARGS>,Papua)
+		SRC.ACT.TAG.IONP1=5646,3116
+		SRC.ACT.TAG.IONP2=5820,3312
+	ENDIF
+	IF STRMATCH(<ARGS>,Serpent's Hold)
+		SRC.ACT.TAG.IONP1=2867,3329
+		SRC.ACT.TAG.IONP2=3332,3540
+	ENDIF
+	IF STRMATCH(<ARGS>,Skara Brae)
+		SRC.ACT.TAG.IONP1=541,2108
+		SRC.ACT.TAG.IONP2=684,2297
+	ENDIF
+	IF STRMATCH(<ARGS>,Trinsic)
+		SRC.ACT.TAG.IONP1=1794,2634
+		SRC.ACT.TAG.IONP2=2072,2926
+	ENDIF
+	IF STRMATCH(<ARGS>,Vesper)
+		SRC.ACT.TAG.IONP1=2731,609
+		SRC.ACT.TAG.IONP2=3054,1007
+	ENDIF
+	IF STRMATCH(<ARGS>,Wind)
+		SRC.ACT.TAG.IONP1=5121,4
+		SRC.ACT.TAG.IONP2=5373,255
+	ENDIF
+	IF STRMATCH(<ARGS>,Yew)
+		SRC.ACT.TAG.IONP1=251,755
+		SRC.ACT.TAG.IONP2=752,1260
+	ENDIF
+	SRC.ACT.TAG.CITYNAME=<ARGS>
+	SRC.ACT.LINK=<SRC.UID>
+	SRC.ACT.MORE1=<EVAL(0<SRC.TAG.IONTIME>+1)>
+	SRC.TAG.IONTIME=
+	SRC.ACT.P=<SRC.P>
+	SRC.ACT.TIMER=1
+	SERV.ALLCLIENTS SYSMESSAGE Ion storm approaching <ARGS>! Evacuate immediately!
+ELSE
+	SRC.SYSMESSAGE Invalid City Name
+	SRC.SYSMESSAGE Valid City Names are:
+	SRC.SYSMESSAGE Britain, Buccaneer's Den, Cove, Calimport, Jhelom, Magincia, Minoc, Moonglow, Nujel'm, Ocllo, Papua, Serpent's Hold, Skara Brae, Trinsic, Vesper, Wind, and Yew.
+ENDIF
+
+[ITEMDEF i_count_down]
+ID=i_memory
+TYPE=t_eq_script
+NAME=count down
+
+ON=@Timer
+	//MORE1=<EVAL(<MORE1>-1)>
+	SERV.ALLCLIENTS SYSMESSAGE Ion Storm - <TAG.CITYNAME> - <EVAL(<MORE1>)>
+	//IF (<MORE1> <= 0)
+		SERV.ALLCLIENTS SYSMESSAGE Ion storm has touched down in <REGION.NAME>!
+		LINK.NEWITEM=i_gold
+		LINK.ACT.ATTR=attr_static|attr_decay
+		LINK.ACT.P=<TAG.IONP1>
+		LINK.NUKE IONSTORM1
+		LINK.LAST
+		LINK.ACT.P=<TAG.IONP2>
+		LINK.ACT.TIMER=5
+		LINK.LAST
+		REMOVE
+	//ENDIF
+	TIMER=1
+	RETURN 1
+
+[FUNCTION ionstorm1]
+IF (<TYPE>==t_sign_gump) || (<BASEID>==i_sign_brass) || (<BASEID>==0bcf) || (<BASEID>==i_sign_blank) || (<BASEID>==0bd9) || (<BASEID>==0bd9) || (<BASEID>==0c03) || (<BASEID>==0c01) || (<BASEID>==0bfb) || (<BASEID>==0be9) || (<BASEID>==0bf7) || (<BASEID>==0bf1) || (<BASEID>==0bf5) || (<BASEID>==0bfd) || (<BASEID>==0bdf) || (<BASEID>==0bed) || (<BASEID>==0c09) || (<BASEID>==0be7) || (<BASEID>==0beb) || (<BASEID>==0be5) || (<BASEID>==0bf3) || (<BASEID>==0c07) || (<BASEID>==0be3) || (<BASEID>==0c05) || (<BASEID>==0bd7) || (<BASEID>==0bdd) || (<BASEID>==0bdb) || (<BASEID>==0bff) || (<BASEID>==0bd5) || (<BASEID>==0bd3) || (<BASEID>==0bef)  || (<BASEID>==i_sign_225) || (<BASEID>==i_sign_180) || (<BASEID>==i_sign_090) || (<BASEID>==i_sign_135) || (<BASEID>==i_sign_270) || (<BASEID>==i_sign_000) || (<BASEID>==i_sign_315) || (<BASEID>==i_sign_45)  || (<BASEID>==0c0d) || (<BASEID>==0c0b) || (<BASEID>==0bcd) || (<BASEID>==0bcb) || (<BASEID>==0bc9) || (<BASEID>==0bc7) || (<BASEID>==0bc5) || (<BASEID>==0bc3) || (<BASEID>==0bc1) || (<BASEID>==0bbf) || (<BASEID>==0bbd) || (<BASEID>==0bbb) || (<BASEID>==0bb9) || (<BASEID>==0bb7) || (<BASEID>==0bb5) || (<BASEID>==0bb3) || (<BASEID>==0bb1) || (<BASEID>==0baf) || (<BASEID>==0bad) || (<BASEID>==0bab) || (<BASEID>==0ba9) || (<BASEID>==i_sign_tinker) || (<BASEID>==i_sign_tailor) || (<BASEID>==i_sign_bakery)
+	IF !(RAND(3))
+		LIGHTNINGSTORM
+	ENDIF
+ENDIF
+
+
+[FUNCTION lightningstormsay]
+SRC.SAY Kal Vas Ort Grav
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+
+[FUNCTION yagdirmevlamsuu]
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+
+[FUNCTION lightningstorm]
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+LIGHTNINGSTORM1
+
+
+
+[FUNCTION lightningstorm1]
+SRC.NEWNPC=c_lightning_man
+VAR.UID=<SRC.ACT.UID>
+SRC.ACT.EVENTS=+e_lightningstorm
+SRC.ACT.P=<P>
+SRC.ACT.FIX
+SRC.ACT.MOVE <EVAL(RAND(21)-10)> <EVAL(RAND(21)-10)>
+
+SRC.NEWITEM=m_lightning
+SRC.ACT.LINK=<UID>
+SRC.ACT.CONT=<VAR.UID>
+SRC.ACT.TIMER=0
+
+[CHARDEF c_lightning_man]
+ID=c_man_invisible
+NAME=ô
+
+ON=@Create
+	DEX=0
+	FLAGS=000040001
+
+ON=@Click
+	RETURN 1
+
+[ITEMDEF m_lightning]
+ID=i_memory
+TYPE=t_eq_script
+NAME=lightning mem
+
+ON=@Create
+	ATTR=attr_decay
+	MORE1={10 25}
+
+ON=@Timer
+	MORE1=<EVAL(<MORE1>+-1)>
+
+	IF !(<LINK>)
+		CONT.REMOVE
+		RETURN 1
+	ENDIF
+
+	IF (0<LINK.BODY> != 0)
+		IF (<LINK.BODY>==c_ghost_man) || (<LINK.BODY>==c_ghost_woman)
+			CONT.REMOVE
+			RETURN 1
+		ENDIF
+	ENDIF
+	IF (<MORE1> <= 0)
+		CONT.REMOVE
+		RETURN 1
+	ENDIF
+
+	CONT.NEWITEM=i_lightning
+	CONT.ACT.LINK=<CONT.UID>
+	CONT.ACT.P=<CONT.P>
+	CONT.ACT.Z=<LINK.Z>
+
+	IF (<EVAL(<CONT.Z>-20)>==<LINK.Z>)
+		CONT.ACT.MOVE nw 3
+	ELSE
+		CONT.ACT.MOVE nw
+	ENDIF
+
+	SFX snd_spell_lightning
+
+	VAR.RAND=<EVAL(RAND(4))>
+	IF (<VAR.RAND>==0)
+		CONT.EFFECT 1,0,0,0
+	ELIF (<VAR.RAND>==1)
+		CONT.EFFECT 1,0,0,0
+		CONT.EFFECT 1,0,0,0
+	ELIF (<VAR.RAND>==2)
+		CONT.EFFECT 1,0,0,0
+		CONT.EFFECT 1,0,0,0
+		CONT.EFFECT 1,0,0,0
+	ELIF (<VAR.RAND>==3)
+		CONT.EFFECT 1,0,0,0
+		CONT.EFFECT 1,0,0,0
+		CONT.EFFECT 1,0,0,0
+		CONT.EFFECT 1,0,0,0
+	ENDIF
+
+	CONT.P=<LINK.P>
+	CONT.FIX
+	CONT.MOVE <EVAL(RAND(21)-10)> <EVAL(RAND(21)-10)>
+	CONT.UPDATE
+
+	CONT.TAG.WORK=1
+	CONT.TAG.SEENEW=1
+	TIMER={1 5}
+	RETURN 1
+
+[ITEMDEF i_lightning]
+ID=i_memory
+TYPE=t_script
+NAME=lightning
+
+ON=@Create
+	ATTR=attr_decay|attr_static|attr_invis
+	TIMER=1
+
+ON=@Step
+	IF (<SRC.UID>!=<LINK.UID>)
+		SRC.DAMAGE={55 70}
+		REMOVE
+	ENDIF
+
+[EVENTS e_lightningstorm]
+ON=@NPCSeeNewPlayer
+	IF (0<TAG.SEENEW>==1)
+		NUDGEUP 20
+		TAG.SEENEW=0
+	ENDIF
+	RETURN 1
+
+ON=@ItemStep
+	IF (<ACT.BASEID>!=i_lightning) && (<ACT.BASEID>!=i_lightning_fire) && (<ACT.BASEID>!=i_fire) && (0<SRC.TAG.WORK>==1)
+		VAR.P=<ACT.P>
+		SRC.NEWNPC=c_fire_column
+		VAR.UID=<SRC.ACT.UID>
+		SRC.ACT.P=<VAR.P>
+		SRC.ACT.NUDGEUP 2
+		SRC.NEWITEM=m_fire_column
+		SRC.ACT.LINK=<VAR.UID>
+		SRC.ACT.CONT=<VAR.UID>
+		SRC.ACT.TIMER=<SRC.FINDID.m_lightning.TIMER>
+		SRC.NEWITEM=i_lightning_fire
+		SRC.ACT.TIMER=<EVAL(<SRC.FINDID.m_lightning.TIMER>+1)>
+		SRC.ACT.P=<VAR.P>
+		SRC.ACT.NUDGEUP 2
+		SRC.TAG.WORK=0
+	ENDIF
+
+ON=@PersonalSpace
+	SRC.DAMAGE {55 73}
+
+[ITEMDEF m_fire_column]
+ID=i_memory
+TYPE=t_eq_script
+
+ON=@Create
+	ATTR=attr_static|attr_invis|attr_decay
+
+ON=@Timer
+	IF (0<TAG.DECAY>==1)
+		CONT.REMOVE
+	ELSE
+		CONT.EFFECT 2,i_fire_column,6,30,0
+		TAG.DECAY=1
+		TIMER=2
+		UPDATE
+	ENDIF
+	RETURN 1
+
+[CHARDEF c_fire_column]
+ID=c_man_invisible
+NAME=¿
+
+ON=@Create
+	FLAGS=statf_invul
+	DEX=0
+
+[ITEMDEF i_lightning_fire]
+ID=i_memory
+TYPE=t_script
+
+ON=@Create
+	ATTR=attr_static|attr_invis|attr_decay
+
+ON=@Timer
+	IF (0<TAG.DECAY>==1)
+		REMOVE
+	ELSE
+		ID=i_fire
+		ATTR=<ATTR>&~attr_invis
+		TAG.DECAY=1
+		TAG.STEP=1
+		TIMER=60*5
+		UPDATE
+	ENDIF
+	RETURN 1
+
+ON=@Step
+	IF (0<TAG.STEP>==1)
+		SRC.DAMAGE {60 100}
+	ENDIF
+
+
+//armageddon
+
+[FUNCTION armageddon]
+SRC.SAY In Vas Corp Jux
+ARMAGEDDON1
+ARMAGEDDON1
+ARMAGEDDON1
+ARMAGEDDON1
+ARMAGEDDON1
+
+[FUNCTION ARMAGEDDON1]
+SRC.NEWNPC=c_armageddon_man
+VAR.UID=<SRC.ACT.UID>
+SRC.ACT.EVENTS=+e_armageddon
+SRC.ACT.P=<P>
+SRC.ACT.FIX
+SRC.ACT.MOVE <EVAL(RAND(21)-10)> <EVAL(RAND(21)-10)>
+
+SRC.NEWITEM=m_armageddon
+SRC.ACT.LINK=<UID>
+SRC.ACT.CONT=<VAR.UID>
+SRC.ACT.TIMER=0
+
+[CHARDEF c_armageddon_man]
+ID=c_man_invisible
+NAME=ô
+
+ON=@Create
+	DEX=0
+	FLAGS=000040001
+
+ON=@Click
+	RETURN 1
+
+[ITEMDEF m_armageddon]
+ID=i_memory
+TYPE=t_eq_script
+NAME=armageddon mem
+
+ON=@Create
+	ATTR=attr_decay
+	MORE1={10 25}
+
+ON=@Timer
+	MORE1=<EVAL(<MORE1>+-1)>
+
+	IF !(<LINK>)
+		CONT.REMOVE
+		RETURN 1
+	ENDIF
+
+	IF (0<LINK.BODY> != 0)
+		IF (<LINK.BODY>==c_ghost_man) || (<LINK.BODY>==c_ghost_woman)
+			CONT.REMOVE
+			RETURN 1
+		ENDIF
+	ENDIF
+	IF (<MORE1> <= 0)
+		CONT.REMOVE
+		RETURN 1
+	ENDIF
+
+	CONT.NEWITEM=i_armageddon
+	CONT.ACT.LINK=<CONT.UID>
+	CONT.ACT.P=<CONT.P>
+	CONT.ACT.Z=<LINK.Z>
+
+	IF (<EVAL(<CONT.Z>-20)>==<LINK.Z>)
+		CONT.ACT.MOVE nw 3
+	ELSE
+		CONT.ACT.MOVE nw
+	ENDIF
+
+	SFX snd_spell_flamestrike
+
+	VAR.RAND=<EVAL(RAND(4))>
+	IF (<VAR.RAND>==0)
+		CONT.EFFECT 2,i_fire_column,6,30,0
+	ELIF (<VAR.RAND>==1)
+		CONT.EFFECT 2,i_fire_column,6,30,0
+		CONT.EFFECT 2,i_fire_column,6,30,0
+	ELIF (<VAR.RAND>==2)
+		CONT.EFFECT 2,i_fire_column,6,30,0
+		CONT.EFFECT 2,i_fire_column,6,30,0
+		CONT.EFFECT 2,i_fire_column,6,30,0
+	ELIF (<VAR.RAND>==3)
+		CONT.EFFECT 2,i_fire_column,6,30,0
+		CONT.EFFECT 2,i_fire_column,6,30,0
+		CONT.EFFECT 2,i_fire_column,6,30,0
+		CONT.EFFECT 2,i_fire_column,6,30,0
+	ENDIF
+
+	CONT.P=<LINK.P>
+	CONT.FIX
+	CONT.MOVE <EVAL(RAND(21)-10)> <EVAL(RAND(21)-10)>
+	CONT.UPDATE
+
+	CONT.TAG.WORK=1
+	CONT.TAG.SEENEW=1
+	TIMER={1 5}
+	RETURN 1
+
+[ITEMDEF i_armageddon]
+ID=i_memory
+TYPE=t_script
+NAME=armageddon
+
+ON=@Create
+	ATTR=attr_decay|attr_static|attr_invis
+	TIMER=1
+
+ON=@Step
+	IF (<SRC.UID>!=<LINK.UID>)
+		SRC.DAMAGE={70 85}
+		REMOVE
+	ENDIF
+
+[EVENTS e_armageddon]
+ON=@NPCSeeNewPlayer
+	IF (0<TAG.SEENEW>==1)
+		NUDGEUP 20
+		TAG.SEENEW=0
+	ENDIF
+	RETURN 1
+
+ON=@ItemStep
+	IF (<ACT.BASEID>!=i_armageddon) && (<ACT.BASEID>!=i_armageddon_fire) && (<ACT.BASEID>!=i_fire) && (0<SRC.TAG.WORK>==1)
+		VAR.P=<ACT.P>
+		SRC.NEWNPC=c_fire_column
+		VAR.UID=<SRC.ACT.UID>
+		SRC.ACT.P=<VAR.P>
+		SRC.ACT.NUDGEUP 2
+		SRC.NEWITEM=m_fire_column
+		SRC.ACT.LINK=<VAR.UID>
+		SRC.ACT.CONT=<VAR.UID>
+		SRC.ACT.TIMER=<SRC.FINDID.m_armageddon.TIMER>
+		SRC.NEWITEM=i_armageddon_fire
+		SRC.ACT.TIMER=<EVAL(<SRC.FINDID.m_armageddon.TIMER>+1)>
+		SRC.ACT.P=<VAR.P>
+		SRC.ACT.NUDGEUP 2
+		SRC.TAG.WORK=0
+	ENDIF
+
+ON=@PersonalSpace
+	SRC.DAMAGE {70 85}
+
+[ITEMDEF m_fire_column]
+ID=i_memory
+TYPE=t_eq_script
+
+ON=@Create
+	ATTR=attr_static|attr_invis|attr_decay
+
+ON=@Timer
+	IF (0<TAG.DECAY>==1)
+		CONT.REMOVE
+	ELSE
+		CONT.EFFECT 2,i_fire_column,6,30,0
+		TAG.DECAY=1
+		TIMER=2
+		UPDATE
+	ENDIF
+	RETURN 1
+
+[CHARDEF c_armageddon_column]
+ID=c_man_invisible
+NAME=¿
+
+ON=@Create
+	FLAGS=statf_invul
+	DEX=0
+
+[ITEMDEF i_armageddon_fire]
+ID=i_memory
+TYPE=t_script
+
+ON=@Create
+	ATTR=attr_static|attr_invis|attr_decay
+
+ON=@Timer
+	IF (0<TAG.DECAY>==1)
+		REMOVE
+	ELSE
+		ID=i_fire
+		ATTR=<ATTR>&~attr_invis
+		TAG.DECAY=1
+		TAG.STEP=1
+		TIMER=60*5
+		UPDATE
+	ENDIF
+	RETURN 1
+
+ON=@Step
+	IF (0<TAG.STEP>==1)
+		SRC.DAMAGE {80 100}
+	ENDIF
+
+//CANNON
+
+[ITEMDEF m_cannon]
+NAME=cannon
+ID=i_memory
+TYPE=t_eq_script
+
+[ITEMDEF i_deed_cannon]
+NAME=deed to a cannon
+ID=i_deed
+TYPE=t_script
+VALUE=1500000
+
+ON=@DClick
+	IF (<SRC.FINDID.m_cannon>)
+		SRC.SYSMESSAGE You already own a cannon.  Redeed it with .redeed.
+		RETURN 1
+	ELIF !(<TOPOBJ.UID>==<SRC.UID>)
+		SRC.SYSMESSAGE This must be in your pack.
+		RETURN 1
+	ENDIF
+
+	SRC.NEWITEM=m_cannon
+	SRC.ACT.CONT=<SRC.UID>
+
+	IF   (<SRC.DIR>==1) || (<SRC.DIR>==2)
+		SRC.NEWITEM=i_cannon_e
+	ELIF (<SRC.DIR>==3) || (<SRC.DIR>==4)
+		SRC.NEWITEM=i_cannon_s
+	ELIF (<SRC.DIR>==5) || (<SRC.DIR>==6)
+		SRC.NEWITEM=i_cannon_w
+	ELIF (<SRC.DIR>==7) || (<SRC.DIR>==0)
+		SRC.NEWITEM=i_cannon_n
+	ELSE
+		SRC.SYSMESSAGE SRC.DIR Not 0-7 - Page GM
+		RETURN 1
+	ENDIF
+
+	SRC.ACT.LINK=<SRC.FINDID.m_cannon.UID>
+	SRC.TAG.TEMPUID=<SRC.ACT.UID>
+	SRC.ACT.ATTR=attr_static
+	SRC.ACT.P=<SRC.P>
+
+	IF   (<SRC.DIR>==1) || (<SRC.DIR>==2)
+		SRC.NEWITEM=0e95
+		SRC.ACT.P=<SRC.P>
+		SRC.ACT.MOVE w
+	ELIF (<SRC.DIR>==3) || (<SRC.DIR>==4)
+		SRC.NEWITEM=0e92
+		SRC.ACT.P=<SRC.P>
+		SRC.ACT.MOVE n
+	ELIF (<SRC.DIR>==5) || (<SRC.DIR>==6)
+		SRC.NEWITEM=0e8f
+		SRC.ACT.P=<SRC.P>
+		SRC.ACT.MOVE e
+	ELIF (<SRC.DIR>==7) || (<SRC.DIR>==0)
+		SRC.NEWITEM=0e8c
+		SRC.ACT.P=<SRC.P>
+		SRC.ACT.MOVE s
+	ELSE
+		SRC.SYSMESSAGE SRC.DIR Not 0-7 - Page GM
+		RETURN 1
+	ENDIF
+
+	SRC.ACT.LINK=<SRC.TAG.TEMPUID>
+	SRC.TAG.TEMPUID=<SRC.ACT.UID>
+	SRC.ACT.ATTR=attr_static
+	SRC.ACT.TYPE=t_cannon
+
+	IF   (<SRC.DIR>==1) || (<SRC.DIR>==2)
+		SRC.NEWITEM=0e94
+		SRC.ACT.P=<SRC.P>
+		SRC.ACT.MOVE w 2
+	ELIF (<SRC.DIR>==3) || (<SRC.DIR>==4)
+		SRC.NEWITEM=0e93
+		SRC.ACT.P=<SRC.P>
+		SRC.ACT.MOVE n 2
+	ELIF (<SRC.DIR>==5) || (<SRC.DIR>==6)
+		SRC.NEWITEM=0e90
+		SRC.ACT.P=<SRC.P>
+		SRC.ACT.MOVE e 2
+	ELIF (<SRC.DIR>==7) || (<SRC.DIR>==0)
+		SRC.NEWITEM=0e8b
+		SRC.ACT.P=<SRC.P>
+		SRC.ACT.MOVE s 2
+	ELSE
+		SRC.SYSMESSAGE SRC.DIR Not 0-7 - Page GM
+		RETURN 1
+	ENDIF
+
+	SRC.ACT.LINK=<SRC.TAG.TEMPUID>
+	SRC.TAG.TEMPUID=<SRC.ACT.UID>
+	SRC.ACT.ATTR=attr_static
+	SRC.ACT.TYPE=t_cannon
+	SRC.FINDID.m_cannon.LINK=<SRC.ACT.UID>
+	SRC.ACT.LINK.MORE1=<SRC.TAG.TEMPUID>
+
+	SRC.TAG.TEMPUID=
+
+	IF !(<SRC.FINDID.m_cannon_loot>)
+		SRC.NEWITEM=m_cannon_loot
+		SRC.ACT.ATTR=attr_decay
+		SRC.ACT.TIMER=60*5
+		SRC.ACT.CONT=<SRC.UID>
+	ENDIF
+
+	REMOVE
+
+	RETURN 1
+
+
+//***********************************************************************************
+//***********************************************************************************
+//					MUZZLES
+//***********************************************************************************
+//***********************************************************************************
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//			NORTH
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+[ITEMDEF i_cannon_n]
+NAME=cannon muzzle
+ID=0e8d
+TYPE=t_cannon_muzzle
+
+ON=@DClick
+	IF (<SRC.ISGM>)
+		SRC.SYSMESSAGE Since you're a GM you bypass all the checks & ammo.
+		MORE2=3
+		RETURN 0
+	ENDIF
+
+	IF (<SRC.REGION.FLAGS>&6840)
+		SRC.SYSMESSAGE You may not use that in this region.
+		RETURN 1
+	ELIF (<DISTANCE>>2)
+		SRC.SYSMESSAGE You can't reach that.
+		RETURN 1
+	ELIF !(<LINK.UID>==<SRC.FINDID.m_cannon.UID>)
+		SRC.SYSMESSAGE You do not own that.
+		RETURN 1
+	ELIF (<SRC.TAG.TOW>==<UID>)
+		SRC.SYSMESSAGE You cannot use this while you're towing it.
+		SRC.SYSMESSAGE Use .deploy to set up the cannon.
+		RETURN 1
+	ENDIF
+
+	RETURN 0
+
+ON=@TargOn_Char
+	IF (<MORE2>==3)
+		MOREP=<P>
+		VAR.MYY=<MOREY>
+		MOREP=<SRC.TARG.P>
+		VAR.ITSY=<MOREY>
+
+		IF !(<SRC.TARG.CANSEELOS>==1)
+			SRC.SYSMESSAGE That is not in your line of sight.
+			RETURN 1
+		ELIF (<VAR.ITSY>><VAR.MYY>)
+			SRC.SYSMESSAGE The cannon can not shoot backwards.
+			RETURN 1
+		ENDIF
+
+		IF (RAND(<SRC.TARG.DISTANCE>+-4))
+			SRC.MESSAGE You missed!
+			MORE2=0
+			RETURN 1
+		ELSE
+			SRC.MESSAGE Direct hit!
+			RETURN 0
+		ENDIF
+	RETURN 1
+	ENDIF
+
+ON=@TargOn_Item
+	IF (<MORE2>==3)
+		MOREP=<P>
+		VAR.MYY=<MOREY>
+		MOREP=<SRC.TARG.P>
+		VAR.ITSY=<MOREY>
+
+		IF !(<SRC.TARG.CANSEELOS>==1)
+			SRC.SYSMESSAGE That is not in your line of sight.
+			RETURN 1
+		ELIF (<VAR.ITSY>><VAR.MYY>)
+			SRC.SYSMESSAGE The cannon can not shoot backwards.
+			RETURN 1
+		ENDIF
+
+		IF (RAND(<SRC.TARG.DISTANCE>+-4))
+			SRC.MESSAGE You missed!
+			MORE2=0
+			RETURN 1
+		ELSE
+			SRC.MESSAGE Direct hit!
+			RETURN 0
+		ENDIF
+	RETURN 1
+	ENDIF
+
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//			EAST
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+[ITEMDEF i_cannon_e]
+NAME=cannon muzzle
+ID=0e96
+TYPE=t_cannon_muzzle
+
+ON=@DClick
+	IF (<SRC.ISGM>)
+		SRC.SYSMESSAGE Since you're a GM you bypass all the checks & ammo.
+		MORE2=3
+		RETURN 0
+	ENDIF
+
+	IF (<SRC.REGION.FLAGS>&6840)
+		SRC.SYSMESSAGE You may not use that in this region.
+		RETURN 1
+	ELIF (<DISTANCE>>2)
+		SRC.SYSMESSAGE You can't reach that.
+		RETURN 1
+	ELIF !(<LINK.UID>==<SRC.FINDID.m_cannon.UID>)
+		SRC.SYSMESSAGE You do not own that.
+		RETURN 1
+	ELIF (<SRC.TAG.TOW>==<UID>)
+		SRC.SYSMESSAGE You cannot use this while you're towing it.
+		SRC.SYSMESSAGE Use .deploy to set up the cannon.
+		RETURN 1
+	ENDIF
+
+	RETURN 0
+
+ON=@TargOn_Char
+	IF (<MORE2>==3)
+		MOREP=<P>
+		VAR.MYX=<MOREX>
+		MOREP=<SRC.TARG.P>
+		VAR.ITSX=<MOREX>
+
+		IF !(<SRC.TARG.CANSEELOS>==1)
+			SRC.SYSMESSAGE That is not in your line of sight.
+			RETURN 1
+		ELIF (<VAR.ITSX><<VAR.MYX>)
+			SRC.SYSMESSAGE The cannon can not shoot backwards.
+			RETURN 1
+		ENDIF
+
+		IF (RAND(<SRC.TARG.DISTANCE>+-4))
+			SRC.MESSAGE You missed!
+			MORE2=0
+			RETURN 1
+		ELSE
+			SRC.MESSAGE Direct hit!
+			RETURN 0
+		ENDIF
+	RETURN 1
+	ENDIF
+
+ON=@TargOn_Item
+	IF (<MORE2>==3)
+		MOREP=<P>
+		VAR.MYX=<MOREX>
+		MOREP=<SRC.TARG.P>
+		VAR.ITSX=<MOREX>
+
+		IF !(<SRC.TARG.CANSEELOS>==1)
+			SRC.SYSMESSAGE That is not in your line of sight.
+			RETURN 1
+		ELIF (<VAR.ITSX><<VAR.MYX>)
+			SRC.SYSMESSAGE The cannon can't shoot backwards.
+			RETURN 1
+		ENDIF
+
+		IF (RAND(<SRC.TARG.DISTANCE>+-4))
+			SRC.MESSAGE You missed!
+			MORE2=0
+			RETURN 1
+		ELSE
+			SRC.MESSAGE Direct hit!
+			RETURN 0
+		ENDIF
+	RETURN 1
+	ENDIF
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//			SOUTH
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+[ITEMDEF i_cannon_s]
+NAME=cannon muzzle
+ID=0e91
+TYPE=t_cannon_muzzle
+
+ON=@DClick
+	IF (<SRC.ISGM>)
+		SRC.SYSMESSAGE Since you're a GM you bypass all the checks & ammo.
+		MORE2=3
+		RETURN 0
+	ENDIF
+
+	IF (<SRC.REGION.FLAGS>&6840)
+		SRC.SYSMESSAGE You may not use that in this region.
+		RETURN 1
+	ELIF (<DISTANCE>>2)
+		SRC.SYSMESSAGE You can't reach that.
+		RETURN 1
+	ELIF !(<LINK.UID>==<SRC.FINDID.m_cannon.UID>)
+		SRC.SYSMESSAGE You do not own that.
+		RETURN 1
+	ELIF (<SRC.TAG.TOW>==<UID>)
+		SRC.SYSMESSAGE You cannot use this while you're towing it.
+		SRC.SYSMESSAGE Use .deploy to set up the cannon.
+		RETURN 1
+	ENDIF
+
+	RETURN 0
+
+ON=@TargOn_Char
+	IF (<MORE2>==3)
+		MOREP=<P>
+		VAR.MYY=<MOREY>
+		MOREP=<SRC.TARG.P>
+		VAR.ITSY=<MOREY>
+
+		IF !(<SRC.TARG.CANSEELOS>==1)
+			SRC.SYSMESSAGE That is not in your line of sight.
+			RETURN 1
+		ELIF (<VAR.ITSY><<VAR.MYY>)
+			SRC.SYSMESSAGE The cannon can not shoot backwards.
+			RETURN 1
+
+		IF (RAND(<SRC.TARG.DISTANCE>+-4))
+			SRC.MESSAGE You missed!
+			MORE2=0
+			RETURN 1
+		ELSE
+			SRC.MESSAGE Direct hit!
+			RETURN 0
+		ENDIF
+	RETURN 1
+	ENDIF
+
+ON=@TargOn_Item
+	IF (<MORE2>==3)
+		MOREP=<P>
+		VAR.MYY=<MOREY>
+		MOREP=<SRC.TARG.P>
+		VAR.ITSY=<MOREY>
+
+		IF !(<SRC.TARG.CANSEELOS>==1)
+			SRC.SYSMESSAGE That is not in your line of sight.
+			RETURN 1
+		ELIF (<VAR.ITSY><<VAR.MYY>)
+			SRC.SYSMESSAGE The cannon can not shoot backwards.
+			RETURN 1
+		ENDIF
+
+		IF (RAND(<SRC.TARG.DISTANCE>+-4))
+			SRC.MESSAGE You missed!
+			MORE2=0
+			RETURN 1
+		ELSE
+			SRC.MESSAGE Direct hit!
+			RETURN 0
+		ENDIF
+	RETURN 1
+	ENDIF
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//			WEST
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+[ITEMDEF i_cannon_w]
+NAME=cannon muzzle
+ID=0e8e
+TYPE=t_cannon_muzzle
+
+ON=@DClick
+	IF (<SRC.ISGM>)
+		SRC.SYSMESSAGE Since you're a GM you bypass all the checks & ammo.
+		MORE2=3
+		RETURN 0
+	ENDIF
+
+	IF (<SRC.REGION.FLAGS>&6840)
+		SRC.SYSMESSAGE You may not use that in this region.
+		RETURN 1
+	ELIF (<DISTANCE>>2)
+		SRC.SYSMESSAGE You can't reach that.
+		RETURN 1
+	ELIF !(<LINK.UID>==<SRC.FINDID.m_cannon.UID>)
+		SRC.SYSMESSAGE You do not own that.
+		RETURN 1
+	ELIF (<SRC.TAG.TOW>==<UID>)
+		SRC.SYSMESSAGE You cannot use this while you're towing it.
+		SRC.SYSMESSAGE Use .deploy to set up the cannon.
+		RETURN 1
+	ENDIF
+
+	RETURN 0
+
+ON=@TargOn_Char
+	IF (<MORE2>==3)
+		MOREP=<P>
+		VAR.MYX=<MOREX>
+		MOREP=<SRC.TARG.P>
+		VAR.ITSX=<MOREX>
+
+		IF !(<SRC.TARG.CANSEELOS>==1)
+			SRC.SYSMESSAGE That is not in your line of sight.
+			RETURN 1
+		ELIF (<VAR.ITSX>><VAR.MYX>)
+			SRC.SYSMESSAGE The cannon can not shoot backwards.
+			RETURN 1
+		ENDIF
+
+		IF (RAND(<SRC.TARG.DISTANCE>+-4))
+			SRC.MESSAGE You missed!
+			MORE2=0
+			RETURN 1
+		ELSE
+			SRC.MESSAGE Direct hit!
+			RETURN 0
+		ENDIF
+	RETURN 1
+	ENDIF
+
+ON=@TargOn_Item
+	IF (<MORE2>==3)
+		MOREP=<P>
+		VAR.MYX=<MOREX>
+		MOREP=<SRC.TARG.P>
+		VAR.ITSX=<MOREX>
+
+		IF !(<SRC.TARG.CANSEELOS>==1)
+			SRC.SYSMESSAGE That is not in your line of sight.
+			RETURN 1
+		ELIF (<VAR.ITSX>><VAR.MYX>)
+			SRC.SYSMESSAGE The cannon can not shoot backwards.
+			RETURN 1
+		ENDIF
+
+		IF (RAND(<SRC.TARG.DISTANCE>+-4))
+			SRC.MESSAGE You missed!
+			MORE2=0
+			RETURN 1
+		ELSE
+			SRC.MESSAGE Direct hit!
+			RETURN 0
+		ENDIF
+	RETURN 1
+	ENDIF
+
+
+//***********************************************************************************
+//***********************************************************************************
+//				FUNCTIONS & EVENTS
+//***********************************************************************************
+//***********************************************************************************
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//			TOWING
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+[FUNCTION TOW]
+SRC.NEWITEM=m_f_tow
+SRC.ACT.ATTR=attr_decay
+SRC.ACT.TIMER=5
+SRC.ACT.CONT=<UID>
+SRC.ACT.TARGET Target the back of the cannon you wish to tow.
+
+[ITEMDEF m_f_tow]
+NAME=tow function
+ID=i_memory
+TYPE=t_eq_script
+
+ON=@TargOn_Item
+	IF (<CONT.TARG.DISTANCE>>1)
+		CONT.SYSMESSAGE You can't reach that.
+		REMOVE
+		RETURN 1
+	ELIF !(<CONT.TARG.LINK.LINK.LINK.UID>==<CONT.FINDID.m_cannon.UID>) && !(<CONT.TARG.LINK.LINK.UID>==<CONT.FINDID.m_cannon.UID>)
+		CONT.SYSMESSAGE This does not belong to you.
+		REMOVE
+		RETURN 1
+	ELSE
+		IF (<CONT.TARG.DISPID>==i_cannon_full) || (<CONT.TARG.DISPID>==0e93) || (<CONT.TARG.DISPID>==0e94) || (<CONT.TARG.DISPID>==0e90)	
+			CONT.TAG.TOW=<CONT.TARG.LINK.LINK.UID>
+			CONT.EVENTS=+e_cannon_events
+			CONT.EVENTS=+e_cannon_loot
+
+			CONT.FINDID.m_cannon_loot.REMOVE
+
+			CONT.NEWITEM=m_cannon_tow
+			CONT.ACT.LINK=<CONT.TARG.UID>
+			CONT.ACT.CONT=<CONT.UID>
+			CONT.ACT.TIMER=1
+		ELIF (<CONT.TARG.DISPID>==0e95) || (<CONT.TARG.DISPID>==0e92)
+			CONT.TAG.TOW=<CONT.TARG.LINK.UID>
+			CONT.EVENTS=+e_cannon_events
+			CONT.EVENTS=+e_cannon_loot
+
+			CONT.FINDID.m_cannon_loot.REMOVE
+
+			CONT.NEWITEM=m_cannon_tow
+			CONT.ACT.LINK=<CONT.TARG.MORE1>
+			CONT.ACT.CONT=<CONT.UID>
+			CONT.ACT.TIMER=1
+		ELSE
+			CONT.SYSMESSAGE That is not the back of a cannon.
+			REMOVE
+			RETURN 1
+		ENDIF
+	ENDIF
+
+	RETURN 1
+
+[ITEMDEF m_cannon_tow]
+NAME=actual towing
+ID=i_memory
+TYPE=t_eq_script
+
+ON=@Timer
+	IF !(<LINK>)
+		REMOVE
+		RETURN 1
+	ENDIF
+
+	IF   (<CONT.DIR>==0)
+		LINK.ID=0e93
+		LINK.P=<CONT.P>
+		LINK.MOVE s
+		LINK.LINK.ID=0e92
+		LINK.LINK.P=<CONT.P>
+		LINK.LINK.MOVE s 2
+		LINK.LINK.LINK.ID=i_cannon_s
+		LINK.LINK.LINK.P=<CONT.P>
+		LINK.LINK.LINK.MOVE s 3
+	ELIF (<CONT.DIR>==1)
+		LINK.ID=0e93
+		LINK.P=<CONT.P>
+		LINK.MOVE sw
+		LINK.LINK.ID=0e92
+		LINK.LINK.P=<CONT.P>
+		LINK.LINK.MOVE sw
+		LINK.LINK.MOVE s
+		LINK.LINK.LINK.ID=i_cannon_s
+		LINK.LINK.LINK.P=<CONT.P>
+		LINK.LINK.LINK.MOVE sw
+		LINK.LINK.LINK.MOVE s 2
+	ELIF (<CONT.DIR>==2)
+		LINK.ID=0e90
+		LINK.P=<CONT.P>
+		LINK.MOVE w
+		LINK.LINK.ID=0e8f
+		LINK.LINK.P=<CONT.P>
+		LINK.LINK.MOVE w 2
+		LINK.LINK.LINK.ID=i_cannon_w
+		LINK.LINK.LINK.P=<CONT.P>
+		LINK.LINK.LINK.MOVE w 3
+	ELIF (<CONT.DIR>==3)
+		LINK.ID=0e90
+		LINK.P=<CONT.P>
+		LINK.MOVE nw
+		LINK.LINK.ID=0e8f
+		LINK.LINK.P=<CONT.P>
+		LINK.LINK.MOVE nw
+		LINK.LINK.MOVE w
+		LINK.LINK.LINK.ID=i_cannon_w
+		LINK.LINK.LINK.P=<CONT.P>
+		LINK.LINK.LINK.MOVE nw
+		LINK.LINK.LINK.MOVE w 2
+	ELIF (<CONT.DIR>==4)
+		LINK.ID=i_cannon_full
+		LINK.P=<CONT.P>
+		LINK.MOVE n
+		LINK.LINK.ID=0e8c
+		LINK.LINK.P=<CONT.P>
+		LINK.LINK.MOVE n 2
+		LINK.LINK.LINK.ID=i_cannon_n
+		LINK.LINK.LINK.P=<CONT.P>
+		LINK.LINK.LINK.MOVE n 3
+	ELIF (<CONT.DIR>==5)
+		LINK.ID=i_cannon_full
+		LINK.P=<CONT.P>
+		LINK.MOVE ne
+		LINK.LINK.ID=0e8c
+		LINK.LINK.P=<CONT.P>
+		LINK.LINK.MOVE ne
+		LINK.LINK.MOVE n
+		LINK.LINK.LINK.ID=i_cannon_n
+		LINK.LINK.LINK.P=<CONT.P>
+		LINK.LINK.LINK.MOVE ne
+		LINK.LINK.LINK.MOVE n 2
+	ELIF (<CONT.DIR>==6)
+		LINK.ID=0e94
+		LINK.P=<CONT.P>
+		LINK.MOVE e
+		LINK.LINK.ID=0e95
+		LINK.LINK.P=<CONT.P>
+		LINK.LINK.MOVE e 2
+		LINK.LINK.LINK.ID=i_cannon_e
+		LINK.LINK.LINK.P=<CONT.P>
+		LINK.LINK.LINK.MOVE e 3
+	ELIF (<CONT.DIR>==7)
+		LINK.ID=0e94
+		LINK.P=<CONT.P>
+		LINK.MOVE se
+		LINK.LINK.ID=0e95
+		LINK.LINK.P=<CONT.P>
+		LINK.LINK.MOVE se
+		LINK.LINK.MOVE e
+		LINK.LINK.LINK.ID=i_cannon_e
+		LINK.LINK.LINK.P=<CONT.P>
+		LINK.LINK.LINK.MOVE se
+		LINK.LINK.LINK.MOVE e 2
+	ELSE
+		CONT.SYSMESSAGE CONT.DIR Not 0-7 - Page GM
+	ENDIF
+
+	TIMER=1
+	RETURN 1
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//			DEPLOYING
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+[FUNCTION DEPLOY]
+IF (<FINDID.m_cannon_tow>)
+	EVENTS=-e_cannon_events
+	EVENTS=+e_cannon_loot
+	TAG.TOW=
+	FINDID.m_cannon_tow.REMOVE
+
+	IF !(<FINDID.m_cannon_loot>)
+		NEWITEM=m_cannon_loot
+		ACT.ATTR=attr_decay
+		ACT.TIMER=60*5
+		ACT.CONT=<UID>
+	ENDIF
+ENDIF
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//			REDEEDING
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+[FUNCTION C_REDEED]
+IF !(<SRC.FINDID.m_cannon>)
+	SRC.SYSMESSAGE You do not own a cannon.
+	RETURN 1
+ELIF (<SRC.FINDID.m_cannon_tow>)
+	SRC.SYSMESSAGE You may not redeed your cannon while you are towing it.
+	RETURN 1
+ELIF (<SRC.FINDID.m_cannon_loot>) && !(<SRC.ISGM>)
+	SRC.SYSMESSAGE You have <SRC.FINDID.m_cannon_loot.TIMER> seconds until you may redeed your cannon.
+	RETURN 1
+ELSE
+	SRC.EVENTS=-e_cannon_loot
+	SRC.EVENTS=-e_cannon_events
+	SRC.TAG.TOW=
+	SRC.NEWITEM=i_deed_cannon
+	SRC.ACT.BOUNCE
+	SRC.FINDID.m_cannon.LINK.LINK.LINK.REMOVE
+	SRC.FINDID.m_cannon.LINK.LINK.REMOVE
+	SRC.FINDID.m_cannon.LINK.REMOVE
+	SRC.FINDID.m_cannon.REMOVE
+	SRC.FINDID.m_cannon_tow.REMOVE
+ENDIF
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//			LOOTING
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+[EVENTS e_cannon_loot]
+ON=@Death
+	IF (<SRC.FINDID.m_cannon_loot>)
+		SRC.FINDID.m_cannon_loot.REMOVE
+	ENDIF
+
+	SRC.NEWITEM=i_deed_cannon
+	SRC.ACT.CONT=<SRC.FINDLAYER(layer_pack).UID>
+
+	SRC.TAG.TOW=
+	SRC.FINDID.m_cannon.LINK.LINK.LINK.REMOVE
+	SRC.FINDID.m_cannon.LINK.LINK.REMOVE
+	SRC.FINDID.m_cannon.LINK.REMOVE
+	SRC.FINDID.m_cannon.REMOVE
+	SRC.FINDID.m_cannon_tow.REMOVE
+
+	SRC.EVENTS=-e_cannon_loot
+	SRC.EVENTS=-e_cannon_events
+
+	RETURN 0
+
+[ITEMDEF m_cannon_loot]
+NAME=cannon loot event Delay
+ID=i_memory
+TYPE=t_eq_script
+
+ON=@Timer
+	CONT.EVENTS=-e_cannon_loot
+	RETURN 0
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//			EVENTS
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+[EVENTS e_cannon_events]
+ON=@SpellCast
+	IF (<ARGN>==32) && (<SRC.FINDID.m_cannon_tow>)
+		SRC.SYSMESSAGE You have abandoned your cannon!
+		SRC.SYSMESSAGE It has turned into a deed free for the taking.
+
+		SRC.EVENTS=-e_cannon_loot
+		SRC.EVENTS=-e_cannon_events
+
+		SRC.NEWITEM=i_deed_cannon
+		SRC.ACT.P=<SRC.FINDID.m_cannon_tow.LINK.LINK.P>
+		SRC.TAG.TOW=
+		SRC.FINDID.m_cannon.LINK.LINK.LINK.REMOVE
+		SRC.FINDID.m_cannon.LINK.LINK.REMOVE
+		SRC.FINDID.m_cannon.LINK.REMOVE
+		SRC.FINDID.m_cannon.REMOVE
+		SRC.FINDID.m_cannon_tow.REMOVE
+	ENDIF
+
+ON=@LogOut
+	SRC.DEPLOY
+	
+[EOF]

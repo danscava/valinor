@@ -1,0 +1,110 @@
+[function bleeding_say]
+sayua 021,6,6,eng <args>
+
+[events e_bleeding]
+
+On=@Hit
+if (<src.flags>&statf_stone) || (<src.region.safe>) || (<src.isevent.e_delucia>)
+	return 0
+elseif (<findlayer(1).type> == t_weapon_sword) && (<swordsmanship> >= 98.0)
+	if (rand(150) <= <eval (<tactics> / 25)>) && !(<src.findid.i_bleeding>)&& !(<src.findid.i_bleeding2>)
+		src.damage {3 5}
+		src.hits (<src.hits> - 5)
+		src.skill fail
+		var.act <src.act.uid>
+		src.newitem i_bleeding
+		src.act.equip
+		src.newitem i_bleeding2
+		src.act.equip
+		src.act <var.act>
+                src.bleeding_say * yaralanir *
+		return 1
+	endif
+endif
+
+[events e_bleed]
+On=@Death
+findid.i_bleeding.remove
+
+[itemdef i_bleeding]
+name=bleed
+id=i_gold
+type=t_eq_script
+weight=0
+layer=layer_special
+
+On=@Equip
+src.events +e_bleed
+timer 5
+
+On=@UnEquip
+cont.events -e_bleed
+if !(<cont.flags>&statf_dead)
+endif
+
+On=@Timer
+timer 7
+cont.bleeding_say * kan kaybeder *
+cont.sysmessage @33 Yaraniz kaniyor..
+cont.damage {2 4}
+cont.hits (<cont.hits> - 8)
+attr attr_decay
+return 1
+
+[itemdef i_bleeding2]
+name=bleed2
+id=i_gold
+type=t_eq_script
+weight=0
+layer=layer_special
+
+On=@Equip
+src.events +e_bleed
+timer 30
+
+On=@UnEquip
+cont.events -e_bleed
+if !(<cont.flags>&statf_dead)
+endif
+
+On=@Timer
+cont.findid.i_bleeding.remove
+cont.sysmessage @67 Yaraniz kapandi.
+attr attr_decay
+remove
+return 1
+
+endif
+
+
+[ITEMDEF i_potion_bleed]///////////Bleed Potion
+ID=i_bottle_ORANGE
+TYPE=T_POTION
+NAME=bleeding potion
+TDATA1=i_bottle_empty
+
+RESOURCES=8 i_reag_garlic, i_bottle_EMPTY
+SKILLMAKE=ALCHEMY 85.1
+
+ON=@Create
+COLOR=0846
+MORE1=s_Cure
+MORE2=40.1
+
+ON=@DClick
+if !(rand(5) == 1)
+if (<src.findid.i_bleeding>)
+		src.findid.i_bleeding.remove
+		src.effect snd_spell_poison
+		src.effect 3,0376a,2,10,1
+		src.sayua 048,6,6,0 * potion sayesinde yarasini tedavi eder *
+		remove
+		src.act i_bottle_empty
+	else
+		src.sysmessage @020,,1 Potion heba oldu.
+		remove	
+		src.act i_bottle_empty
+	endif
+endif
+	
+[eof]

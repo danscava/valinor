@@ -1,0 +1,102 @@
+[FUNCTION speed]
+IF (<ARGN>>4800000) && !(<eval STRCMP(<ARGS>,)>)
+VAR.TIME=60
+ELSE
+VAR.TIME=<ARGN>
+ENDIF
+SRC.FINDID.i_m_speedsensor.REMOVE
+SRC.NEWITEM i_m_speedsensor
+SRC.ACT.MORE=<VAR.TIME>
+SRC.ACT.EQUIP 
+RETURN 1
+
+
+[ITEMDEF i_m_speedsensor]
+NAME=Takipci
+ID=i_memory
+TYPE=T_EQ_SCRIPT
+ON=@CREATE
+ATTR=attr_invis|attr_decay
+ON=@EQUIP
+TARGET Kimi takip edelim ?
+RETURN 1
+
+ON=@TARGON_CHAR
+SRC.TARG.NEWITEM i_speedsensor
+SRC.TARG.ACT.P=<SRC.TARG.P>
+SRC.TARG.ACT.MOREP=<SRC.TARG.P>
+SRC.TARG.ACT.MORE=<MORE>
+SRC.TARG.ACT.LINK=<SRC.TARG.UID>
+SRC.TARG.ACT.TIMER=1
+REMOVE
+RETURN 1
+
+ON=@TARGON_ITEM
+REMOVE
+RETURN 1
+
+ON=@TARGON_GROUND
+REMOVE
+RETURN 1
+
+//----------------------------------------------------------------------------
+
+[ITEMDEF i_speedsensor]
+ID=i_worldgem_bit
+TYPE=t_normal
+NAME=Speed Bulucu
+ON=@CREATE
+ATTR=attr_invis
+COLOR=022
+
+ON=@TIMER
+
+MOREX=<LINK.P.X>+-<MOREX>
+MOREY=<LINK.P.Y>+-<MOREY> //calculate distance.
+IF (<MOREX> < 0)
+MOREX=<MOREX>*-1
+ENDIF
+IF (<MOREY> < 0)
+MOREY=<MOREY>*-1
+ENDIF
+
+IF (<LINK.FLAGS>&statf_onhorse) //set speed limits.
+MOREZ=16
+ELSE
+MOREZ=10
+ENDIF
+
+IF (<MOREX> > <MOREZ>) && (<MOREX> < 25) //< 20 due to recalls.
+LINK.go 5136,1767
+LINK.NAME <link.NAME> / SPEEDCI
+LINK.TITLE Speed Yapiyor ! Ban Gerekli !
+LINK.STONE
+REMOVE
+RETURN 1
+ELSE
+ENDIF
+
+IF (<MOREY> > <MOREZ>) && (<MOREY> < 25)
+LINK.go 5136,1767
+LINK.NAME <link.NAME> / SPEEDCI
+LINK.TITLE Speed Yapiyor ! Ban Gerekli !
+LINK.STONE
+REMOVE
+RETURN 1
+ELSE
+ENDIF
+
+IF (<MORE>) 
+TIMER=1
+MORE=<MORE>+-1
+MOREX=<LINK.P.X>
+MOREY=<LINK.P.Y>
+P=<LINK.P>
+RETURN 1
+ELSE
+ENDIF
+
+REMOVE
+RETURN 1
+
+[EOF]

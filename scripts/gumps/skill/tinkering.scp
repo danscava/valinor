@@ -1,0 +1,1020 @@
+[function f_skill_tinkering]
+src.tag.makelast <src.tag.bs> 
+var.notice yaninizdaki 'iron ingot' adedi: <rescount i_ingot_iron>, tinkering bilginiz: %<tinkering>
+src.dialogclose d_skill_tinkering
+dialog d_skill_tinkering
+
+
+[dialog d_skill_tinkering]
+0,40
+
+page 0
+resizepic 50 40 5120 595 410 // dis lacivert bg
+resizepic 60 50 3000 575 390 // ust beyaz bg
+resizepic 190 55 3000 440 320 // itemlarin cercevesi
+
+resizepic 190 377 3000 440 30 // notices kismi
+htmlgump 195 382 410 40 1 0 0 // notices tekst
+
+htmlgump 225 410 100 20 2 0 0 // tekrar yap
+htmlgump 385 410 25 20 9 0 0 // cikis
+
+button 190 410 4006 4007 1 0 999 // tekrar yap buttonu
+button 350 410 4006 4007 1 0 0 // cikis butonu
+
+button 65 55 4006 4007 0 1 1 // parts
+button 65 75 4006 4007 0 3 1 // tools 1
+button 65 95 4006 4007 0 5 1 // utensils
+button 65 115 4006 4007 0 6 1 // misc
+
+htmlgump 100 55 100 20 4 0 0 // parts
+htmlgump 100 75 100 20 5 0 0 // tools 1
+htmlgump 100 95 100 20 7 0 0 // utensils
+htmlgump 100 115 100 20 8 0 0 // misc
+
+page 1
+htmlgump 225 55 80 20 14 0 0
+htmlgump 325 55 80 20 15 0 0
+htmlgump 425 55 80 20 18 0 0
+htmlgump 525 55 100 20 22 0 0
+htmlgump 225 135 80 20 19 0 0
+htmlgump 325 135 80 20 20 0 0
+htmlgump 425 135 80 20 21 0 0
+
+tilepic 230 80 4181 // hinge
+tilepic 330 80 4189 // springs
+tilepic 435 80 4176 // clock parts
+tilepic 535 70 4185 // sextant parts
+tilepic 245 155 4178 // axle & gears
+tilepic 315 155 4188 // axle
+tilepic 425 155 4179 // gears
+
+button 210 60 2103 2104 1 0 201
+button 310 60 2103 2104 1 0 202
+button 410 60 2103 2104 1 0 203
+button 510 60 2103 2104 1 0 207
+button 210 140 2103 2104 1 0 204
+button 310 140 2103 2104 1 0 205
+button 410 140 2103 2104 1 0 206
+
+page 3
+htmlgump 225 55 80 20 23 0 0
+htmlgump 325 55 80 20 24 0 0
+htmlgump 425 55 80 20 27 0 0
+htmlgump 525 55 80 20 25 0 0
+htmlgump 225 135 80 20 26 0 0
+htmlgump 325 135 80 20 31 0 0
+htmlgump 425 135 80 20 32 0 0
+htmlgump 525 135 80 20 30 0 0
+
+tilepic 215 80 4149 // saw
+tilepic 320 80 3907 // hatchet
+tilepic 440 80 3739 // mortar & pestle
+tilepic 540 80 3997 // sewing kit
+tilepic 215 155 3999 // scissors
+tilepic 315 155 3897 // shovel
+tilepic 435 155 5092 // smith's hammer
+tilepic 540 155 3718 // pickaxe
+
+button 210 60 2103 2104 1 0 301
+button 310 60 2103 2104 1 0 302
+button 410 60 2103 2104 1 0 305
+button 510 60 2103 2104 1 0 303
+button 210 140 2103 2104 1 0 304
+button 310 140 2103 2104 1 0 404
+button 410 140 2103 2104 1 0 405
+button 510 140 2103 2104 1 0 403
+
+htmlgump 225 210 80 20 28 0 0
+htmlgump 325 210 80 20 29 0 0
+
+tilepic 225 235 5374 // lockpick
+tilepic 340 235 7868 // tinker's tools
+
+button 210 215 2103 2104 1 0 401
+button 310 215 2103 2104 1 0 402
+
+page 5
+htmlgump 225 55 80 20 33 0 0
+htmlgump 325 55 80 20 34 0 0
+htmlgump 425 55 80 20 35 0 0
+htmlgump 525 55 80 20 36 0 0
+htmlgump 225 135 80 20 37 0 0
+htmlgump 325 135 80 20 38 0 0
+htmlgump 425 135 80 20 39 0 0
+htmlgump 525 135 100 20 40 0 0
+
+tilepic 220 80 2458 // goblet
+tilepic 320 80 3780 // skinning knife
+tilepic 420 80 2519 // plate
+tilepic 525 80 3779 // cleaver
+tilepic 225 155 4096 // pewter mug
+tilepic 315 155 2553 // spoon
+tilepic 415 155 2549 // fork
+tilepic 515 155 2551 // knife
+
+button 210 60 2103 2104 1 0 501
+button 310 60 2103 2104 1 0 502
+button 410 60 2103 2104 1 0 503
+button 510 60 2103 2104 1 0 504
+button 210 140 2103 2104 1 0 505
+button 310 140 2103 2104 1 0 506
+button 410 140 2103 2104 1 0 507
+button 510 140 2103 2104 1 0 508
+
+htmlgump 225 210 80 20 46 0 0
+htmlgump 325 210 80 20 47 0 0
+htmlgump 425 210 80 20 48 0 0
+htmlgump 525 210 80 20 17 0 0
+htmlgump 225 290 80 20 49 0 0
+htmlgump 325 290 80 20 50 0 0
+htmlgump 425 290 80 20 51 0 0
+htmlgump 525 290 100 20 52 0 0
+
+tilepic 230 235 2845 // candlabra
+tilepic 330 235 6217 // heating stand
+tilepic 425 235 2597 // lantern
+tilepic 530 235 4171 // clock
+tilepic 225 315 4167 // globe
+tilepic 325 315 5365 // spyglass
+tilepic 425 315 3708 // metal box
+tilepic 520 315 6225 // scales
+
+button 210 215 2103 2104 1 0 701
+button 310 215 2103 2104 1 0 702
+button 410 215 2103 2104 1 0 703
+button 510 215 2103 2104 1 0 704
+button 210 295 2103 2104 1 0 705
+button 310 295 2103 2104 1 0 706
+button 410 295 2103 2104 1 0 707
+button 510 295 2103 2104 1 0 708
+
+page 6
+htmlgump 225 55 80 20 41 0 0
+htmlgump 325 55 80 20 42 0 0
+htmlgump 425 55 80 20 16 0 0
+htmlgump 525 55 80 20 45 0 0
+htmlgump 225 135 80 20 43 0 0
+htmlgump 325 135 80 20 44 0 0
+
+tilepic 225 80 4113 // keyring
+tilepic 340 80 4112 // iron key
+tilepic 425 80 4183 // sextant
+tilepic 535 80 6871 // potion keg
+tilepic 240 155 8407 // iron golem
+tilepic 315 155 14030 // trapped pouch
+tilepic 325 155 3705
+tilepic 425 155 4233 // necklace
+tilepic 525 155 4230 // bracelet
+
+button 210 60 2103 2104 1 0 601
+button 310 60 2103 2104 1 0 602
+button 410 60 2103 2104 1 0 603
+button 510 60 2103 2104 1 0 606
+button 210 140 2103 2104 1 0 604
+button 310 140 2103 2104 1 0 605
+button 410 140 2103 2104 1 0 104
+button 510 140 2103 2104 1 0 105
+
+htmlgump 225 210 80 20 10 0 0
+htmlgump 325 210 80 20 11 0 0
+htmlgump 425 210 80 20 12 0 0
+htmlgump 525 210 80 20 11 0 0
+htmlgump 425 135 80 20 11 0 0
+htmlgump 525 135 80 20 13 0 0
+
+tilepic 210 235 4234 // ring
+tilepic 325 235 4229 // necklace
+tilepic 425 235 4231 // earrings
+tilepic 525 235 4232 // necklace
+
+button 210 215 2103 2104 1 0 101
+button 310 215 2103 2104 1 0 102
+button 410 215 2103 2104 1 0 103
+button 510 215 2103 2104 1 0 106
+
+button 210 300 2103 2104 1 0 709
+htmlgump 225 295 80 20 54 0 0 // tava
+tilepic 210 320 2530
+
+[dialog d_skill_tinkering text]
+VALINOR TINKERING MENU
+<var.notice>
+tekrar yap
+jewelry
+parcalar
+araclar
+other tools
+ev e$yalari
+diger
+iptal
+ring			// 10
+necklace
+earrings
+bracelet
+hinge
+springs
+sextant
+clock
+clock parts
+axle&grs.
+axle			// 20
+gears
+sextant parts
+saw
+hatchet
+sewing kit
+scissors
+mortar & pestle
+lockpick
+tinker's tools
+pickaxe			// 30
+shovel
+smith's hmr.
+goblet
+skin. knife
+plate
+cleaver
+p. mug
+spoon
+fork
+knife			// 40
+keyring
+iron key
+golem
+trapped pouch
+potion keg
+candlabra
+heating stand
+lantern
+globe
+spyglass		// 50
+metal box
+scales
+decoration
+balik tavasi
+
+[dialog d_skill_tinkering button]
+
+on=101 // ok!
+if (<tinkering> < 63.0)
+var.notice ring icin gerekli skill: %63.0 tinkering.
+
+elseif !(<restest 1 i_ingot_gold>)
+var.notice ring icin gerekli malzeme: 1 gold ingot.
+
+else
+var.notice ring: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 101
+src.tag.makelast i_ring_gold
+makeitem i_ring_gold
+endif
+
+dialog d_skill_tinkering
+
+on=102 // ok!
+if (<tinkering> < 42.0)
+var.notice necklace icin gerekli skill: %42.0 tinkering.
+
+elseif !(<restest 1 i_ingot_iron>)
+var.notice necklace icin gerekli malzeme: 1 iron ingot.
+
+else
+var.notice necklace: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 102
+src.tag.makelast i_necklace_metal_beads
+makeitem i_necklace_metal_beads
+endif
+
+dialog d_skill_tinkering
+
+on=103 // ok!
+if (<tinkering> < 42.0)
+var.notice earrings icin gerekli skill: %42.0 tinkering.
+
+elseif !(<restest 1 i_ingot_gold>)
+var.notice earrings icin gerekli malzeme: 1 gold ingot.
+
+else
+var.notice earrings: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 103
+src.tag.makelast i_earrings_gold
+makeitem i_earrings_gold
+endif
+
+dialog d_skill_tinkering
+
+on=104 // ok!
+if (<tinkering> < 42.0)
+var.notice necklace icin gerekli skill: %42.0 tinkering.
+
+elseif !(<restest 1 i_ingot_gold>)
+var.notice necklace icin gerekli malzeme: 1 gold ingot.
+
+else
+var.notice necklace: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 104
+src.tag.makelast i_necklace_gold_beads
+makeitem i_necklace_gold_beads
+endif
+
+dialog d_skill_tinkering
+
+on=105 // ok!
+if (<tinkering> < 44.5)
+var.notice bracelet icin gerekli skill: %44.5 tinkering.
+
+elseif !(<restest 2 i_ingot_gold>)
+var.notice bracelet icin gerekli malzeme: 2 gold ingot.
+
+else
+var.notice bracelet: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 105
+src.tag.makelast i_bracelet_gold
+makeitem i_bracelet_gold
+endif
+
+dialog d_skill_tinkering
+
+on=106 // ok!
+if (<tinkering> < 42.0)
+var.notice necklace icin gerekli skill: %42.0 tinkering.
+
+elseif !(<restest 1 i_ingot_gold>)
+var.notice necklace icin gerekli malzeme: 1 gold ingot.
+
+else
+var.notice necklace: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 106
+src.tag.makelast i_necklace_gold
+makeitem i_necklace_gold
+endif
+
+dialog d_skill_tinkering
+
+on=201 // ok!
+if (<tinkering> < 14.8)
+var.notice hinge icin gerekli skill: %14.8 tinkering.
+
+elseif !(<restest 2 i_ingot_iron>)
+var.notice hinge icin gerekli malzeme: 2 iron ingot.
+
+else
+var.notice hinge: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 201
+src.tag.makelast i_hinge
+makeitem i_hinge
+endif
+
+dialog d_skill_tinkering
+
+on=202 // ok!
+if (<tinkering> < 13.7)
+var.notice springs icin gerekli skill: %13.7 tinkering.
+
+elseif !(<restest 2 i_ingot_iron>)
+var.notice springs icin gerekli malzeme: 2 iron ingot.
+
+else
+var.notice springs: e$yayi yapmaya ba$ladiniz..
+tag.tinkering 202
+src.tag.makelast i_springs
+makeitem i_springs
+endif
+
+dialog d_skill_tinkering
+
+on=203 // ok!
+if (<tinkering> < 30.5)
+var.notice clock parts icin gerekli skill: %30.5 tinkering.
+
+elseif !(<restest 1 i_axel_and_gears>) || !(<restest 1 i_springs>)
+var.notice clock parts icin gerekli malzeme: 1 springs, 1 axle with gears.
+
+else
+var.notice clock parts: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 203
+src.tag.makelast i_clock_parts
+makeitem i_clock_parts
+endif
+
+dialog d_skill_tinkering
+
+on=204 // ok!
+if (<tinkering> < 30.7)
+var.notice axle with gears icin gerekli skill: %30.7 tinkering.
+
+elseif !(<restest 1 i_axel>) || !(<restest 1 i_gears>)
+var.notice axle with gears icin gerekli malzeme: 1 axle, 1 gears.
+
+else
+var.notice axle with gears: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 204
+src.tag.makelast i_axel_and_gears
+makeitem i_axel_and_gears
+endif
+
+dialog d_skill_tinkering
+
+on=205 // ok!
+if (<tinkering> < 30.4)
+var.notice axle icin gerekli skill: %30.4 tinkering.
+
+elseif !(<restest 2 i_log>)
+var.notice axle icin gerekli malzeme: 2 log.
+
+else
+var.notice axle: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 205
+src.tag.makelast i_axel
+makeitem i_axel
+endif
+
+dialog d_skill_tinkering
+
+on=206 // ok!
+if (<tinkering> < 14.7)
+var.notice gears icin gerekli skill: %14.7 tinkering.
+
+elseif !(<restest 2 i_ingot_iron>)
+var.notice gears icin gerekli malzeme: 2 iron ingot.
+
+else
+var.notice gears: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 206
+src.tag.makelast i_gears
+makeitem i_gears
+endif
+
+dialog d_skill_tinkering
+
+on=207 // ok!
+if (<tinkering> < 32.0)
+var.notice sextant parts icin gerekli skill: %32.0 tinkering.
+
+elseif !(<restest 1 i_axel_and_gears>) || !(<restest 1 i_hinge>)
+var.notice sextant parts icin gerekli malzeme: 1 axle with gears, 1 hinge.
+
+else
+var.notice sextant parts: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 207
+src.tag.makelast i_sextant_parts
+makeitem i_sextant_parts
+endif
+
+dialog d_skill_tinkering
+
+on=301 // ok!
+if (<tinkering> < 31.3)
+var.notice saw icin gerekli skill: %31.3 tinkering.
+
+elseif !(<restest 4 i_ingot_iron>)
+var.notice saw icin gerekli malzeme: 4 iron ingot.
+
+else
+var.notice saw: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 301
+src.tag.makelast i_saw
+makeitem i_saw
+endif
+
+dialog d_skill_tinkering
+
+on=302 // ok!
+if (<tinkering> < 33.9)
+var.notice hatchet icin gerekli skill: %33.9 tinkering.
+
+elseif !(<restest 4 i_ingot_iron>)
+var.notice hatchet icin gerekli malzeme: 4 iron ingot.
+
+else
+var.notice hatchet: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 302
+tag.makelast i_hatchet
+makeitem i_hatchet
+endif
+
+dialog d_skill_tinkering
+
+on=303 // ok
+if (<tinkering> < 18.8)
+var.notice sewing kit icin gerekli skill: %18.8 tinkering.
+
+elseif !(<restest 2 i_ingot_iron>)
+var.notice sewing kit icin gerekli malzeme: 2 iron ingot.
+
+else
+var.notice sewing kit: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 303
+tag.makelast i_sewing_kit
+makeitem i_sewing_kit
+endif
+
+dialog d_skill_tinkering
+
+on=304 // ok!
+if (<tinkering> < 14.5)
+var.notice scissors icin gerekli skill: %14.5 tinkering.
+
+elseif !(<restest 4 i_ingot_iron>)
+var.notice scissors icin gerekli malzeme: 4 iron ingot.
+
+else
+var.notice scissors: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 304
+tag.makelast i_scissors
+makeitem i_scissors
+endif
+
+dialog d_skill_tinkering
+
+on=305 // ok!
+if (<tinkering> < 23.3)
+var.notice mortar and pestle icin gerekli skill: %23.3 tinkering.
+
+elseif !(<restest 3 i_ingot_iron>)
+var.notice mortar and pestle icin gerekli malzeme: 3 iron ingot.
+
+else
+var.notice mortar and pestle: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 305
+tag.makelast i_mortar_pestle
+makeitem i_mortar_pestle
+endif
+
+dialog d_skill_tinkering
+
+on=401 // ok!
+if (<tinkering> < 48.5)
+var.notice lockpick icin gerekli skill: %48.5 tinkering.
+
+elseif !(<restest 2 i_ingot_iron>)
+var.notice lockpick icin gerekli malzeme: 2 iron ingot.
+
+else
+var.notice lockpick: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 401
+tag.makelast i_lockpick
+makeitem i_lockpick
+endif
+
+dialog d_skill_tinkering
+
+on=402 // ok!
+if (<tinkering> < 35.0)
+var.notice tinker's tools icin gerekli skill: %35.0 tinkering.
+
+elseif !(<restest 4 i_ingot_iron>)
+var.notice tinker's tools icin gerekli skill: 4 iron ingot.
+
+else
+var.notice tinker's tools: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 402
+tag.makelast i_tinker_tools
+makeitem i_tinker_tools
+endif
+
+dialog d_skill_tinkering
+
+on=403 // ok!
+if (<tinkering> < 42.1)
+var.notice pickaxe icin gerekli skill: %42.1 tinkering.
+
+elseif !(<restest 4 i_ingot_iron>)
+var.notice pickaxe icin gerekli malzeme: 4 iron ingot.
+
+else
+var.notice pickaxe: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 403
+tag.makelast i_pickaxe
+makeitem i_pickaxe
+endif
+
+dialog d_skill_tinkering
+
+on=404 // ok!
+if (<tinkering> < 20.0)
+var.notice shovel icin gerekli skill: %20.0 tinkering.
+
+elseif !(<restest 4 i_ingot_iron>) || !(<restest 1 i_log>)
+var.notice shovel icin gerekli malzeme: 4 iron ingot, 1 log.
+
+else
+var.notice shovel: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 404
+tag.makelast i_shovel
+makeitem i_shovel
+endif
+
+dialog d_skill_tinkering
+
+on=405 // ok!
+if (<tinkering> < 34.2)
+var.notice smith's hammer icin gerekli skill: %34.2 tinkering.
+
+elseif !(<restest 4 i_ingot_iron>)
+var.notice smith's hammer icin gerekli malzeme: 4 iron ingot.
+
+else
+var.notice smith's hammer: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 405
+tag.makelast i_hammer_smith
+makeitem i_hammer_smith
+endif
+
+dialog d_skill_tinkering
+
+on=501 // ok!
+if (<tinkering> < 21.7)
+var.notice goblet icin gerekli skill: %21.7 tinkering.
+
+elseif !(<restest 3 i_ingot_iron>)
+var.notice goblet icin gerekli malzeme: 3 iron ingot.
+
+else
+var.notice goblet: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 501
+tag.makelast i_goblet
+makeitem i_goblet
+endif
+
+dialog d_skill_tinkering
+
+on=502 // ok!
+if (<tinkering> < 23.3)
+var.notice skinning knife icin gerekli skill: %23.3 tinkering.
+
+elseif !(<restest 2 i_ingot_iron>)
+var.notice skinning knife icin gerekli malzeme: 2 iron ingot.
+
+else
+var.notice skinning knife: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 502
+tag.makelast i_knife_skinning
+makeitem i_knife_skinning
+endif
+
+dialog d_skill_tinkering
+
+on=503 // ok!
+if (<tinkering> < 20.6)
+var.notice plate icin gerekli skill: %20.6 tinkering.
+
+elseif !(<restest 2 i_ingot_iron>)
+var.notice plate icin gerekli malzeme: 2 iron ingot.
+
+else
+var.notice plate: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 503
+tag.makelast i_plate
+makeitem i_plate
+endif
+
+dialog d_skill_tinkering
+
+on=504 // ok!
+if (<tinkering> < 23.4)
+var.notice cleaver icin gerekli skill: %23.4 tinkering.
+
+elseif !(<restest 3 i_ingot_iron>)
+var.notice cleaver icin gerekli malzeme: 3 iron ingot.
+
+else
+var.notice cleaver : e$yayi yapmaya ba$ladiniz.
+tag.tinkering 504
+tag.makelast i_cleaver_meat
+makeitem i_cleaver_meat
+endif
+
+dialog d_skill_tinkering
+
+on=505 // ok!
+if (<tinkering> < 22.5)
+var.notice pewter mug icin gerekli skill: %22.5 tinkering.
+
+elseif !(<restest 2 i_ingot_iron>)
+var.notice pewter mug icin gerekli malzeme: 2 iron ingot.
+
+else
+var.notice pewter mug: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 505
+tag.makelast i_mug_pewter
+makeitem i_mug_pewter
+endif
+
+dialog d_skill_tinkering
+
+on=506 // ok!
+if (<tinkering> < 16.6)
+var.notice spoon icin gerekli skill: %16.6 tinkering.
+
+elseif !(<restest 1 i_ingot_iron>)
+var.notice spoon icin gerekli malzeme: 1 iron ingot.
+
+else
+var.notice spoon: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 506
+tag.makelast i_spoon
+makeitem i_spoon
+endif
+
+dialog d_skill_tinkering
+
+on=507 // ok!
+if (<tinkering> < 17.2)
+var.notice fork icin gerekli skill: %17.2 tinkering.
+
+elseif !(<restest 1 i_ingot_iron>)
+var.notice fork icin gerekli malzeme: 1 iron ingot.
+
+else
+var.notice fork: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 507
+tag.makelast i_fork
+makeitem i_fork
+endif
+
+dialog d_skill_tinkering
+
+on=508 // ok!
+if (<tinkering> < 17.8)
+var.notice knife icin gerekli skill: %17.8 tinkering.
+
+elseif !(<restest 1 i_ingot_iron>)
+var.notice knife icin gerekli malzeme: 1 iron ingot.
+
+else
+var.notice knife: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 508
+tag.makelast i_knife
+makeitem i_knife
+endif
+
+dialog d_skill_tinkering
+
+on=601 // ok!
+if (<tinkering> < 21.8)
+var.notice key ring icin gerekli skill: %21.8 tinkering.
+
+elseif !(<restest 2 i_ingot_iron>)
+var.notice key ring icin gerekli malzeme: 2 iron ingot.
+
+else
+var.notice key ring: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 601
+tag.makelast i_key_ring
+makeitem i_key_ring
+endif
+
+dialog d_skill_tinkering
+
+on=602 // ok!
+if (<tinkering> < 23.2)
+var.notice iron key icin gerekli skill: %23.2 tinkering.
+
+elseif !(<restest 3 i_ingot_iron>)
+var.notice iron key icin gerekli malzeme: 3 iron ingot.
+
+else
+var.notice iron key: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 602
+tag.makelast i_key_iron
+makeitem i_key_iron
+endif
+
+dialog d_skill_tinkering
+
+on=603 // ok!
+if (<tinkering> < 30.7)
+var.notice sextant icin gerekli skill: %30.7 tinkering.
+
+elseif !(<restest 1 i_sextant_parts>)
+var.notice sextant icin gerekli malzeme: 1 sextant parts.
+
+else
+var.notice sextant: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 603
+tag.makelast i_sextant
+makeitem i_sextant
+endif
+
+dialog d_skill_tinkering
+
+on=604
+if (<tinkering> < 90.0)
+var.notice golem icin gerekli skill: %90.0 tinkering gerekli
+src.dialog d_skill_tinkering
+return 1
+else
+src.dialog d_golem
+return 1
+endif
+
+
+//if !(<restest 50 i_ingot_iron>) || !(<restest 50 i_ingot_shadow>) || !(<restest 5 i_axel_and_gears>) || !(<restest 1 i_golem_crystal>) || !(<restest 1 i_golem_egg>) || !(<restest 1 i_golem_blood>)
+//var.notice golem icin gerekli malzemelere sahip degilsiniz.
+
+//else
+//var.notice golem: e$yayi yapmaya ba$ladiniz.
+//tag.tinkering 604
+//newitem i_golem_Oxygen
+//act.bounce
+//consume 50 i_ingot_iron
+//consume 50 i_ingot_shadow
+//consume 5 i_axel_and_gears
+//consume 1 i_golem_crystal
+//consume 1 i_golem_egg
+//consume 1 i_golem_blood
+//endif
+
+//dialog d_skill_tinkering
+
+on=605 // ok!
+if (<tinkering> < 65.0)
+var.notice trapped pouch icin gerekli skill: %65.0 tinkering.
+
+elseif !(<restest 1 i_ingot_iron>) || !(<restest 2 i_log>) || !(<restest 1 i_potion_explosiongreat>)
+var.notice trapped pouch icin malzeme: 1 gre. explosion, 10 iron ingot, 20 log
+
+elseif (rand(10) == 1)
+var.notice trapped pouch: hazirlarken patladi.
+effect 3,i_fx_explode,3,25,1
+sound snd_spell_explosion
+damage 10
+
+else
+var.notice trapped pouch: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 605
+tag.makelast i_trappedpouch
+makeitem i_trappedpouch
+endif
+
+dialog d_skill_tinkering
+
+on=606 // ok!
+if (<tinkering> < 80.0)
+var.notice potion keg icin gerekli skill: %80.0 tinkering.
+
+elseif !(<restest 10 i_ingot_iron>) || !(<restest 1 i_barrel_open>) || !(<restest 1 i_barrel_lid>)
+var.notice potion keg icin gerekli malzeme: 10 iron ingot, 1 barrel, 1 barrel lid.
+
+else
+var.notice potion keg: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 606
+tag.makelast i_keg_potion
+makeitem i_keg_potion
+endif
+
+dialog d_skill_tinkering
+
+on=701 // ok!
+if (<tinkering> < 57.1)
+var.notice candlabra icin gerekli skill: %57.1 tinkering.
+
+elseif !(<restest 4 i_ingot_iron>)
+var.notice candlabra icin gerekli malzeme: 4 iron ingot.
+
+else
+var.notice candlabra: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 701
+tag.makelast i_candleabra
+makeitem i_candleabra
+endif
+
+dialog d_skill_tinkering
+
+on=702 // ok!
+if (<tinkering> < 64.3)
+var.notice heating stand icin gerekli skill: %64.3 tinkering.
+
+elseif !(<restest 4 i_ingot_iron>)
+var.notice heating stand icin gerekli malzeme: 4 iron ingot.
+
+else
+var.notice heating stand: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 702
+tag.makelast i_heating_stand
+makeitem i_heating_stand
+endif
+
+dialog d_skill_tinkering
+
+on=703 // ok!
+if (<tinkering> < 33.2)
+var.notice lantern icin gerekli skill: %33.2 tinkering.
+
+elseif !(<restest 2 i_log>)
+var.notice lantern icin gerekli skill: 2 log
+
+else
+var.notice lantern: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 703
+tag.makelast i_lantern
+makeitem i_lantern
+endif
+
+dialog d_skill_tinkering
+
+on=704 // ok!
+if (<tinkering> < 60.7)
+var.notice clock icin gerekli skill: %60.7 tinkering.
+
+elseif !(<restest 1 i_clock_frame>) || !(<restest 1 i_clock_parts>)
+var.notice clock icin gerekli malzeme: 1 clock frame, 1 clock parts.
+
+else
+var.notice clock: e$yayi yapmaya ba$ladiniz..
+tag.tinkering 704
+tag.makelast i_clock
+makeitem i_clock
+endif
+
+dialog d_skill_tinkering
+
+on=705 // ok!
+if (<tinkering> < 53.7)
+var.notice globe icin gerekli skill: %53.7 tinkering.
+
+elseif !(<restest 4 i_ingot_iron>)
+var.notice globe icin gerekli malzeme: 4 iron ingot.
+
+else
+var.notice globe: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 705
+tag.makelast i_globe
+makeitem i_globe
+endif
+
+dialog d_skill_tinkering
+
+on=706 // ok!
+if (<tinkering> < 63.8)
+var.notice spyglass icin gerekli skill: %63.8 tinkering.
+
+elseif !(<restest 4 i_ingot_iron>)
+var.notice spyglass icin gerekli malzeme: 4 iron ingot.
+
+else
+var.notice spyglass: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 706
+tag.makelast i_spyglass
+makeitem i_spyglass
+endif
+
+dialog d_skill_tinkering
+
+on=707 // ok!
+if (<tinkering> < 75.0)
+var.notice metal box icin gerekli skill: %75.0 tinkering.
+
+elseif !(<restest 20 i_ingot_iron>) || !(<restest 2 i_log>)
+var.notice metal box icin gerekli malzeme: 20 iron ingot, 2 log.
+
+else
+var.notice metal box: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 707
+tag.makelast i_chest_metal
+makeitem i_chest_metal
+endif
+
+dialog d_skill_tinkering
+
+on 708 // ok!
+if (<tinkering> < 63.8)
+var.notice scales icin gerekli skill: %63.8 tinkering.
+
+elseif !(<restest 5 i_ingot_iron>)
+var.notice scales icin gerekli malzeme: 5 iron ingot.
+
+else
+var.notice scales: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 708
+tag.makelast i_scales
+makeitem i_scales
+endif
+
+dialog d_skill_tinkering
+
+on 709 // ok!
+if (<tinkering> < 74.9)
+var.notice balik tavasi icin gerekli skill: %74.9 tinkering.
+
+elseif !(<restest 250 i_ingot_iron>)
+var.notice balik tavasi icin gerekli malzeme: 250 iron ingot.
+
+else
+var.notice balik tavasi: e$yayi yapmaya ba$ladiniz.
+tag.tinkering 709
+tag.makelast  i_tava_balik
+makeitem i_tava_balik
+endif
+
+dialog d_skill_tinkering
+
+on 999
+	src.makeitem=<src.tag.makelast>
+	var.notice tekrar yapmaya basladiniz..
+	dialog d_skill_tinkering
+return 1
+
+[EOF]

@@ -1,0 +1,82 @@
+[function hataliev] 
+newitem i_hataliev 
+new.equip 
+
+[ITEMDEF i_hataliev] 
+ID=i_fence_iron 
+NAME=hatali ev targ 
+TYPE=t_eq_script 
+WEIGHT=0 
+LAYER=layer_special 
+
+On=@Create 
+attr 096 
+timer 10 
+
+On=@Equip 
+target Hatali yapinin tabelasini secin. 
+
+On=@Targon_Item 
+if (<src.targ.link.baseid>) 
+src.targ.link.timer 259200 
+src.targ.color 0480 
+src.newitem i_deed_hataliev 
+src.new.p <src.targ.p> 
+src.new.link <src.targ.link.uid> 
+src.new.update 
+src.sysmessage @660 Ev 3 gün icinde silinecek sekilde ayarlandi. 
+src.fix 
+return 1 
+endif 
+
+On=@Targon_Char 
+return 1 
+
+[itemdef i_deed_hataliev] 
+id i_deed 
+name hatali ev: 3 gun icinde kaldirilmali. 
+type=t_deed 
+
+on=@create 
+timer 259200 
+color 0480 
+attr attr_decay|attr_move_never 
+
+on=@click 
+if (<eval (<timer>/60)> = 0) 
+message 690 Ev hatali, kaldirilmadigi takdirde <eval <timer>> saniye içinde silinecek. 
+return 1 
+elseif (<eval ((<timer>/60)/60)> = 0) 
+message @690 Ev hatali, kaldirilmadigi takdirde <eval (<timer>/60)> dakika içinde silinecek. 
+return 1 
+else 
+message @690 Ev hatali, kaldirilmadigi takdirde <eval ((<timer>/60)/60)> saat içinde silinecek. 
+return 1 
+endif 
+
+on=@dclick 
+if (<eval (<timer>/60)> = 0) 
+src.message @690 Ev hatali, kaldirilmadigi takdirde <eval <timer>> saniye içinde silinecek. 
+return 1 
+elseif (<eval ((<timer>/60)/60)> = 0) 
+src.message @690 Ev hatali, kaldirilmadigi takdirde <eval (<timer>/60)> dakika içinde silinecek. 
+return 1 
+else 
+src.message @690 Ev hatali, kaldirilmadigi takdirde <eval ((<timer>/60)/60)> saat içinde silinecek. 
+return 1 
+endif 
+
+On=@timer 
+   attr attr_decay 
+//vendorlari sil 
+if (strmatch('<uid.<link.tag.vendor1>.id>','c_pv')) 
+   try uid.<link.tag.vendor1>.remove 
+endif 
+if (strmatch('<uid.<link.tag.vendor2>.id>','c_pv')) 
+   try uid.<link.tag.vendor2>.remove 
+endif 
+if (strmatch('<uid.<link.tag.vendor3>.id>','c_pv')) 
+   try uid.<link.tag.vendor3>.remove 
+endif 
+   link.remove 
+return 1

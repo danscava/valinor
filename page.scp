@@ -1,0 +1,1735 @@
+// ----------------------------
+// PAGE.SCP - PAGING SYS 0.2x
+// SON GUNCELLEYEN: Bronx
+// ----------------------------
+version 0.55
+
+[function pg_smsgx]
+var.act <act>
+var.p <p>
+newitem i_memory
+act.p 6000 2000
+var.regfla <act.region.flags>
+act.region.flags <region.flags>
+p 6000 2000
+act.sayua 01eb 0 0 1 <args>
+p <var.p>
+act.region.flags <var.regfla>
+act.remove
+act <var.act>
+
+[function pg_call]
+var.pg_box 040037489
+if !(strmatch('<tag0.pg_call>',''))
+	if (<uid.<tag0.pg_call>.baseid> == i_page) && (<uid.<tag0.pg_call>.link> == <uid>)
+		try uid.<tag0.pg_call>.more1 <serv.time>
+		try uid.<tag0.pg_call>.morep <p>
+		try uid.<tag0.pg_call>.tag0.reason <args>
+		serv.allclients pg_announce guncelleme. <name> [<uid>]: <args>
+		sysmessage @189,,1 Mesajini yeniledin.
+		return 2
+	endif
+endif
+
+if (<uid.<var.pg_box>.rescount> > 100)
+	sysmessage @33,,1 Su an <uid.<var.pg_box>.rescount> cevapsiz cagri bulunmakta, cagriniz iletilemedi, lutfen daha sonra tekrar deneyiniz.
+	return 0
+endif
+
+newitem i_page
+tag0.pg_call <act.uid>
+act.more1 <serv.time>
+act.link <uid>
+act.name page: <name>
+act.morep <p>
+act.tag0.reason <args>
+act.cont <var.pg_box>
+act.cont.morex <eval (<act.cont.morex> + 1)>
+serv.allclients pg_announce yeni. <name> [<uid>]: <args>
+try sysmessage @07a1,,1 Mesajiniz iletildi, <uid.<tag0.pg_call>.cont.rescount>. siradasiniz.
+var.wtpage <eval <uid.<tag0.pg_call>.cont.rescount>>
+src.newitem i_pageyasak1
+src.act.attr attr_decay
+src.act.timer 60*60
+src.act.new.equip
+if (<var.wtpage> == 00)
+var.wtpage Yok
+endif
+return 1
+
+[function pg_announce]
+if (0<account.plevel> > 1)
+	pg_smsgx * Page: <args>
+endif
+
+[function pg_wipe]
+if !(<var.pg_wipe>)
+	if (<var.pg_nowipe>)
+		pg_smsgx * Su an bakilmakta olan <eval <var.pg_nowipe>> tanesi disinda tum page'ler silindi.
+	else
+		pg_smsgx * Tum page'ler silindi.
+	endif
+else
+	var.pg_wipe <eval (<var.pg_wipe> - 1)>
+	if !(<uid.<uid.<var.pg_box>.findcont.<eval <var.pg_wipe>>.more2>.region>) || (<uid.<uid.<var.pg_box>.findcont.<eval <var.pg_wipe>>.more2>.findtype.t_eq_client_linger>)
+		try uid.<var.pg_box>.findcont.<eval <var.pg_wipe>>.link.tag0.pg_call
+		try uid.<var.pg_box>.findcont.<eval <var.pg_wipe>>.remove
+	else
+		if (strmatch('<var.pg_nowipe>',''))
+			var.pg_nowipe 1
+		else
+			var.pg_nowipe <eval (<var.pg_nowipe> + 1)>
+		endif
+	endif
+	pg_wipe <var.pg_wipe>
+endif
+
+[function pg]
+var.pg_box 040037489
+if (strmatch('<args>','h')) || (strmatch('<args>','help'))
+	pg_smsgx * Pg list: page'leri listeler.
+	pg_smsgx * Pg go: page sahibine gider.
+	pg_smsgx * Pg summon: page sahibini getirir.
+	pg_smsgx * Pg origin: page'in atildigi yere gider.
+	pg_smsgx * Pg message: page sahibine mesaj atar.
+	pg_smsgx * Pg delete: page'i siler.
+	pg_smsgx * Pg jail: page sahibini jailler.
+	pg_smsgx * Pg queue: page'i listeye geri koyar.
+	pg_smsgx * Pg wipe: tum page'leri siler ve duyurur.
+	return 1
+elseif !(<uid.<var.pg_box>.rescount>)
+	sysmessage @185 Aktif page yok. 
+elseif (strmatch('<args>','w')) || (strmatch('<args>','wipe'))
+	if !(<src.isgm>)
+		pg_smsgx * Bu komutu sadece GM veya daha ust rutbedekiler kullanabilir.
+	else
+		var.pg_nowipe 0
+		var.pg_wipe <uid.<var.pg_box>.rescount>
+		pg_wipe
+	endif
+elseif (strmatch('<uid.<tag0.pg_answer>.cont.uid>','<var.pg_box>'))
+	try act <tag0.pg_answer>
+	if (strmatch('<args>','g')) || (strmatch('<args>','go'))
+		gouid <act.link.uid>
+	elseif (strmatch('<args>','s')) || (strmatch('<args>','summon'))
+		if (0<account.plevel> < 4)
+			if !(<act.link.region>) || (<act.link.findtype.t_eq_client_linger>)
+				pg_smsgx * Bagli olmayan bir kullaniciyi sadece GM veya daha ust rutbedekiler summon edebilir.
+			endif
+		else
+			act.link.summonto
+		endif
+	elseif (strmatch('<args>','m')) || (strmatch('<args>','message'))
+		if !(<act.link.region>) || (<act.link.findtype.t_eq_client_linger>)
+			pg_smsgx * <act.link.name> su an bagli olmadigi icin ona mesaj atamazsiniz.
+			act.more2 0
+			act 0
+			tag0.pg_answer
+			pg list
+		else
+			dialog d_pg_message
+		endif
+	elseif (strmatch('<args>','o')) || (strmatch('<args>','origin'))
+		go <act.morep>
+	elseif (strmatch('<args>','j')) || (strmatch('<args>','jail'))
+		if !(<act.link.region>) || (<act.link.findtype.t_eq_client_linger>)
+			pg_smsgx * <act.link.name> su an bagli olmadigi icin onu jail'leyemezsiniz.
+			act.more2 0
+			act 0
+			tag0.pg_answer
+			pg list
+		elseif (0<act.link.account.plevel> > 1)
+			pg_smsgx * Hata: staff uyeleri Yasaklanamaz
+		else
+			act.link.newitem i_pageyasak1
+                        act.link.equip
+			act.link.sysmessage 1 Saat Page Atamama Yasagi Aldiniz..!
+			try act <tag0.pg_answer>
+			pg_smsgx * <act.link.name> 1 saat page atamayacaktir, elinize saglik.
+			pg delete
+		endif
+	elseif (strmatch('<args>','q')) || (strmatch('<args>','queue'))
+		act.more2 0
+		act 0
+		tag0.pg_answer
+		pg_smsgx * Page bakilmamis olarak isaretlendi.
+		pg list
+	elseif (strmatch('<args>','d')) || (strmatch('<args>','delete'))
+		act.link.tag0.pg_call
+		act.remove
+		tag0.pg_answer
+		pg_smsgx * Page silindi.
+		var.wtpage <eval <uid.<tag0.pg_call>.cont.rescount>>
+		if (<var.wtpage> == 00)
+		var.wtpage Yok
+		endif
+		if (<uid.<var.pg_box>.rescount>)
+			pg list
+		endif
+	else
+		pg_smsgx * Page aktif, [<act.link.account>] <act.link.name> [<act.link.uid>]: <act.tag0.reason>
+		if !(<act.link.region>) || (<act.link.findtype.t_eq_client_linger>)
+			pg_smsgx * Bu kullanici su an <serv.servname>'a bagli degil.
+		endif
+	endif
+else
+	var.pg_font <basefont color=#203040
+	var.pg_font1 <basefont color=#aaaaaa
+	var.pg_font2 <basefont color=#90aa40
+	if (<uid.<var.pg_box>.rescount> == 1)
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(0).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		dialog d_pg_list1
+	elseif (<uid.<var.pg_box>.rescount> == 2)
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(1).uid>
+		try tag0.pg_2 <uid.<var.pg_box>.findcont(0).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		if (<uid.<tag0.pg_2>.link.region>) && !(<uid.<tag0.pg_2>.link.findtype.t_eq_client_linger>)
+			var.pg_2 [+]
+		else
+			var.pg_2 [-]
+		endif
+		dialog d_pg_list2
+	elseif (<uid.<var.pg_box>.rescount> == 3)
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(2).uid>
+		try tag0.pg_2 <uid.<var.pg_box>.findcont(1).uid>
+		try tag0.pg_3 <uid.<var.pg_box>.findcont(0).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		if (<uid.<tag0.pg_2>.link.region>) && !(<uid.<tag0.pg_2>.link.findtype.t_eq_client_linger>)
+			var.pg_2 [+]
+		else
+			var.pg_2 [-]
+		endif
+		if (<uid.<tag0.pg_3>.link.region>) && !(<uid.<tag0.pg_3>.link.findtype.t_eq_client_linger>)
+			var.pg_3 [+]
+		else
+			var.pg_3 [-]
+		endif
+		dialog d_pg_list3
+	elseif (<uid.<var.pg_box>.rescount> == 4)
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(3).uid>
+		try tag0.pg_2 <uid.<var.pg_box>.findcont(2).uid>
+		try tag0.pg_3 <uid.<var.pg_box>.findcont(1).uid>
+		try tag0.pg_4 <uid.<var.pg_box>.findcont(0).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		if (<uid.<tag0.pg_2>.link.region>) && !(<uid.<tag0.pg_2>.link.findtype.t_eq_client_linger>)
+			var.pg_2 [+]
+		else
+			var.pg_2 [-]
+		endif
+		if (<uid.<tag0.pg_3>.link.region>) && !(<uid.<tag0.pg_3>.link.findtype.t_eq_client_linger>)
+			var.pg_3 [+]
+		else
+			var.pg_3 [-]
+		endif
+		if (<uid.<tag0.pg_4>.link.region>) && !(<uid.<tag0.pg_4>.link.findtype.t_eq_client_linger>)
+			var.pg_4 [+]
+		else
+			var.pg_4 [-]
+		endif
+		dialog d_pg_list4
+	elseif (<uid.<var.pg_box>.rescount> == 5)
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(4).uid>
+		try tag0.pg_2 <uid.<var.pg_box>.findcont(3).uid>
+		try tag0.pg_3 <uid.<var.pg_box>.findcont(2).uid>
+		try tag0.pg_4 <uid.<var.pg_box>.findcont(1).uid>
+		try tag0.pg_5 <uid.<var.pg_box>.findcont(0).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		if (<uid.<tag0.pg_2>.link.region>) && !(<uid.<tag0.pg_2>.link.findtype.t_eq_client_linger>)
+			var.pg_2 [+]
+		else
+			var.pg_2 [-]
+		endif
+		if (<uid.<tag0.pg_3>.link.region>) && !(<uid.<tag0.pg_3>.link.findtype.t_eq_client_linger>)
+			var.pg_3 [+]
+		else
+			var.pg_3 [-]
+		endif
+		if (<uid.<tag0.pg_4>.link.region>) && !(<uid.<tag0.pg_4>.link.findtype.t_eq_client_linger>)
+			var.pg_4 [+]
+		else
+			var.pg_4 [-]
+		endif
+		if (<uid.<tag0.pg_5>.link.region>) && !(<uid.<tag0.pg_5>.link.findtype.t_eq_client_linger>)
+			var.pg_5 [+]
+		else
+			var.pg_5 [-]
+		endif
+		dialog d_pg_list5
+	elseif (<uid.<var.pg_box>.rescount> > 5)
+		try tag0.pg_x 0 // page multiplier
+		try tag0.pg_pc
+		try tag0.pg_pt
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (1 + <tag0.pg_x>))>).uid>
+		try tag0.pg_2 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (2 + <tag0.pg_x>))>).uid>
+		try tag0.pg_3 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (3 + <tag0.pg_x>))>).uid>
+		try tag0.pg_4 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (4 + <tag0.pg_x>))>).uid>
+		try tag0.pg_5 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (5 + <tag0.pg_x>))>).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		if (<uid.<tag0.pg_2>.link.region>) && !(<uid.<tag0.pg_2>.link.findtype.t_eq_client_linger>)
+			var.pg_2 [+]
+		else
+			var.pg_2 [-]
+		endif
+		if (<uid.<tag0.pg_3>.link.region>) && !(<uid.<tag0.pg_3>.link.findtype.t_eq_client_linger>)
+			var.pg_3 [+]
+		else
+			var.pg_3 [-]
+		endif
+		if (<uid.<tag0.pg_4>.link.region>) && !(<uid.<tag0.pg_4>.link.findtype.t_eq_client_linger>)
+			var.pg_4 [+]
+		else
+			var.pg_4 [-]
+		endif
+		if (<uid.<tag0.pg_5>.link.region>) && !(<uid.<tag0.pg_5>.link.findtype.t_eq_client_linger>)
+			var.pg_5 [+]
+		else
+			var.pg_5 [-]
+		endif
+		dialog d_pg_listx
+	endif
+endif
+
+[dialog d_pg_list1]
+170,200
+nomove
+
+page 0
+resizepic 60 10 5120 370 184
+
+htmlgump 85 27 120 20 0 0 0
+resizepic 75 20 3000 342 30
+button 215 24 4006 4007 1 0 1 // take
+button 254 24 4015 4016 1 0 2 // summon
+button 295 24 4030 4031 1 0 3 // message
+button 335 24 4018 4019 1 0 4 // delete
+button 375 24 4003 4004 1 0 5 // jail
+
+radio 80 72 5605 2092 0 1
+htmlgump 101 70 310 20 2 0 0
+htmlgump 83 90 330 46 3 0 0
+
+resizepic 75 150 3000 342 30
+htmlgump 88 156 320 20 1 0 0
+
+[dialog d_pg_list1 text]
+<var.pg_font>><uid.<var.pg_box>.rescount> page listeleniyor.
+<var.pg_font>>Staff islevselligi: <eval ((<uid.<var.pg_box>.more1> * 100) / <uid.<var.pg_box>.morex>)>%
+<var.pg_font1>><uid.<tag0.pg_1>.link.account>: <uid.<tag0.pg_1>.link.name> <var.pg_1> [<uid.<tag0.pg_1>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_1>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_1>.tag0.reason>
+
+[dialog d_pg_list1 button]
+On=1
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg go
+endif
+
+On=2
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg summon
+endif
+
+On=3
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg message
+endif
+
+On=4
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg delete
+endif
+
+On=5
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg jail
+endif
+
+[dialog d_pg_list2]
+170,177
+nomove
+
+page 0
+resizepic 60 10 5120 370 250
+
+htmlgump 85 27 120 20 0 0 0
+resizepic 75 20 3000 342 30
+button 215 24 4006 4007 1 0 1 // take
+button 254 24 4015 4016 1 0 2 // summon
+button 295 24 4030 4031 1 0 3 // message
+button 335 24 4018 4019 1 0 4 // delete
+button 375 24 4003 4004 1 0 5 // jail
+
+radio 80 72 5605 2092 0 1
+htmlgump 101 70 310 20 2 0 0
+htmlgump 83 90 330 46 3 0 0
+
+radio 80 138 5605 2092 0 2
+htmlgump 101 136 310 20 4 0 0
+htmlgump 83 156 330 46 5 0 0
+
+resizepic 75 216 3000 342 30
+htmlgump 88 222 320 20 1 0 0
+
+[dialog d_pg_list2 text]
+<var.pg_font>><uid.<var.pg_box>.rescount> page listeleniyor.
+<var.pg_font>>Staff islevselligi: <eval ((<uid.<var.pg_box>.more1> * 100) / <uid.<var.pg_box>.morex>)>% 
+<var.pg_font1>><uid.<tag0.pg_1>.link.account>: <uid.<tag0.pg_1>.link.name> <var.pg_1> [<uid.<tag0.pg_1>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_1>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_1>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_2>.link.account>: <uid.<tag0.pg_2>.link.name> <var.pg_2> [<uid.<tag0.pg_2>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_2>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_2>.tag0.reason>
+
+[dialog d_pg_list2 button]
+On=1
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg go
+endif
+
+On=2
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg summon
+endif
+
+On=3
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg message
+endif
+
+On=4
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg delete
+endif
+
+On=5
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg jail
+endif
+
+[dialog d_pg_list3]
+170,144
+nomove
+
+page 0
+resizepic 60 10 5120 370 316
+
+htmlgump 85 27 120 20 0 0 0
+resizepic 75 20 3000 342 30
+button 215 24 4006 4007 1 0 1 // take
+button 254 24 4015 4016 1 0 2 // summon
+button 295 24 4030 4031 1 0 3 // message
+button 335 24 4018 4019 1 0 4 // delete
+button 375 24 4003 4004 1 0 5 // jail
+
+radio 80 72 5605 2092 0 1
+htmlgump 101 70 310 20 2 0 0
+htmlgump 83 90 330 46 3 0 0
+
+radio 80 138 5605 2092 0 2
+htmlgump 101 136 310 20 4 0 0
+htmlgump 83 156 330 46 5 0 0
+
+radio 80 204 5605 2092 0 3
+htmlgump 101 202 310 20 6 0 0
+htmlgump 83 222 330 46 7 0 0
+
+resizepic 75 282 3000 342 30
+htmlgump 88 288 320 20 1 0 0
+
+[dialog d_pg_list3 text]
+<var.pg_font>><uid.<var.pg_box>.rescount> page listeleniyor.
+<var.pg_font>>Staff islevselligi: <eval ((<uid.<var.pg_box>.more1> * 100) / <uid.<var.pg_box>.morex>)>%
+<var.pg_font1>><uid.<tag0.pg_1>.link.account>: <uid.<tag0.pg_1>.link.name> <var.pg_1> [<uid.<tag0.pg_1>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_1>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_1>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_2>.link.account>: <uid.<tag0.pg_2>.link.name> <var.pg_2> [<uid.<tag0.pg_2>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_2>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_2>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_3>.link.account>: <uid.<tag0.pg_3>.link.name> <var.pg_3> [<uid.<tag0.pg_3>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_3>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_3>.tag0.reason>
+
+[dialog d_pg_list3 button]
+On=1
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg go
+endif
+
+On=2
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg summon
+endif
+
+On=3
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg message
+endif
+
+On=4
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg delete
+endif
+
+On=5
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg jail
+endif
+
+[dialog d_pg_list4]
+170,111
+nomove
+
+page 0
+resizepic 60 10 5120 370 382
+
+htmlgump 85 27 120 20 0 0 0
+resizepic 75 20 3000 342 30
+button 215 24 4006 4007 1 0 1 // take
+button 254 24 4015 4016 1 0 2 // summon
+button 295 24 4030 4031 1 0 3 // message
+button 335 24 4018 4019 1 0 4 // delete
+button 375 24 4003 4004 1 0 5 // jail
+
+radio 80 72 5605 2092 0 1
+htmlgump 101 70 310 20 2 0 0
+htmlgump 83 90 330 46 3 0 0
+
+radio 80 138 5605 2092 0 2
+htmlgump 101 136 310 20 4 0 0
+htmlgump 83 156 330 46 5 0 0
+
+radio 80 204 5605 2092 0 3
+htmlgump 101 202 310 20 6 0 0
+htmlgump 83 222 330 46 7 0 0
+
+radio 80 270 5605 2092 0 4
+htmlgump 101 268 310 20 8 0 0
+htmlgump 83 288 330 46 9 0 0
+
+resizepic 75 348 3000 342 30
+htmlgump 88 354 320 20 1 0 0
+
+[dialog d_pg_list4 text]
+<var.pg_font>><uid.<var.pg_box>.rescount> page listeleniyor.
+<var.pg_font>>Staff islevselligi: <eval ((<uid.<var.pg_box>.more1> * 100) / <uid.<var.pg_box>.morex>)>%
+<var.pg_font1>><uid.<tag0.pg_1>.link.account>: <uid.<tag0.pg_1>.link.name> <var.pg_1> [<uid.<tag0.pg_1>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_1>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_1>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_2>.link.account>: <uid.<tag0.pg_2>.link.name> <var.pg_2> [<uid.<tag0.pg_2>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_2>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_2>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_3>.link.account>: <uid.<tag0.pg_3>.link.name> <var.pg_3> [<uid.<tag0.pg_3>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_3>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_3>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_4>.link.account>: <uid.<tag0.pg_4>.link.name> <var.pg_4> [<uid.<tag0.pg_4>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_4>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_4>.tag0.reason>
+
+[dialog d_pg_list4 button]
+On=1
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg go
+endif
+
+On=2
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg summon
+endif
+
+On=3
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg message
+endif
+
+On=4
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg delete
+endif
+
+On=5
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg jail
+endif
+
+[dialog d_pg_list5]
+170,68
+nomove
+
+page 0
+resizepic 60 10 5120 370 448
+
+htmlgump 85 27 120 20 0 0 0
+resizepic 75 20 3000 342 30
+button 215 24 4006 4007 1 0 1 // take
+button 254 24 4015 4016 1 0 2 // summon
+button 295 24 4030 4031 1 0 3 // message
+button 335 24 4018 4019 1 0 4 // delete
+button 375 24 4003 4004 1 0 5 // jail
+
+radio 80 72 5605 2092 0 1
+htmlgump 101 70 310 20 2 0 0
+htmlgump 83 90 330 46 3 0 0
+
+radio 80 138 5605 2092 0 2
+htmlgump 101 136 310 20 4 0 0
+htmlgump 83 156 330 46 5 0 0
+
+radio 80 204 5605 2092 0 3
+htmlgump 101 202 310 20 6 0 0
+htmlgump 83 222 330 46 7 0 0
+
+radio 80 270 5605 2092 0 4
+htmlgump 101 268 310 20 8 0 0
+htmlgump 83 288 330 46 9 0 0
+
+radio 80 333 5605 2092 0 5
+htmlgump 101 331 310 20 10 0 0
+htmlgump 83 351 330 46 11 0 0
+
+resizepic 75 414 3000 342 30
+htmlgump 88 420 320 20 1 0 0
+
+[dialog d_pg_list5 text]
+<var.pg_font>><uid.<var.pg_box>.rescount> page listeleniyor.
+<var.pg_font>>Staff islevselligi: <eval ((<uid.<var.pg_box>.more1> * 100) / <uid.<var.pg_box>.morex>)>% 
+<var.pg_font1>><uid.<tag0.pg_1>.link.account>: <uid.<tag0.pg_1>.link.name> <var.pg_1> [<uid.<tag0.pg_1>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_1>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_1>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_2>.link.account>: <uid.<tag0.pg_2>.link.name> <var.pg_2> [<uid.<tag0.pg_2>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_2>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_2>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_3>.link.account>: <uid.<tag0.pg_3>.link.name> <var.pg_3> [<uid.<tag0.pg_3>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_3>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_3>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_4>.link.account>: <uid.<tag0.pg_4>.link.name> <var.pg_4> [<uid.<tag0.pg_4>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_4>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_4>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_5>.link.account>: <uid.<tag0.pg_5>.link.name> <var.pg_5> [<uid.<tag0.pg_5>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_5>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_5>.tag0.reason>
+
+[dialog d_pg_list5 button]
+On=1
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+elseif (<argchk[5]>)
+	act <uid.<tag0.pg_5>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg go
+endif
+
+On=2
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+elseif (<argchk[5]>)
+	act <uid.<tag0.pg_5>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg summon
+endif
+
+On=3
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+elseif (<argchk[5]>)
+	act <uid.<tag0.pg_5>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg message
+endif
+
+On=4
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+elseif (<argchk[5]>)
+	act <uid.<tag0.pg_5>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg delete
+endif
+
+On=5
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+elseif (<argchk[5]>)
+	act <uid.<tag0.pg_5>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg jail
+endif
+
+[dialog d_pg_listx]
+170,68
+nomove
+
+page 0
+resizepic 60 10 5120 370 468
+
+htmlgump 85 27 120 20 0 0 0
+resizepic 75 20 3000 342 30
+button 215 24 4006 4007 1 0 1 // take
+button 254 24 4015 4016 1 0 2 // summon
+button 295 24 4030 4031 1 0 3 // message
+button 335 24 4018 4019 1 0 4 // delete
+button 375 24 4003 4004 1 0 5 // jail
+
+radio 80 72 5605 2092 0 1
+htmlgump 101 70 310 20 2 0 0
+htmlgump 83 90 330 46 3 0 0
+
+radio 80 138 5605 2092 0 2
+htmlgump 101 136 310 20 4 0 0
+htmlgump 83 156 330 46 5 0 0
+
+radio 80 204 5605 2092 0 3
+htmlgump 101 202 310 20 6 0 0
+htmlgump 83 222 330 46 7 0 0
+
+radio 80 270 5605 2092 0 4
+htmlgump 101 268 310 20 8 0 0
+htmlgump 83 288 330 46 9 0 0
+
+radio 80 333 5605 2092 0 5
+htmlgump 101 331 310 20 10 0 0
+htmlgump 83 351 330 46 11 0 0
+
+resizepic 335 408 3000 82 24
+htmlgump 348 411 40 20 12 0 0
+button 392 413 2224 2104 1 0 99
+
+resizepic 75 434 3000 342 30
+htmlgump 88 440 320 20 1 0 0
+
+[dialog d_pg_listx text]
+<var.pg_font>><uid.<var.pg_box>.rescount> page listeleniyor.
+<var.pg_font>>Staff islevselligi: <eval ((<uid.<var.pg_box>.more1> * 100) / <uid.<var.pg_box>.morex>)>%
+<var.pg_font1>><uid.<tag0.pg_1>.link.account>: <uid.<tag0.pg_1>.link.name> <var.pg_1> [<uid.<tag0.pg_1>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_1>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_1>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_2>.link.account>: <uid.<tag0.pg_2>.link.name> <var.pg_2> [<uid.<tag0.pg_2>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_2>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_2>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_3>.link.account>: <uid.<tag0.pg_3>.link.name> <var.pg_3> [<uid.<tag0.pg_3>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_3>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_3>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_4>.link.account>: <uid.<tag0.pg_4>.link.name> <var.pg_4> [<uid.<tag0.pg_4>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_4>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_4>.tag0.reason>
+<var.pg_font1>><uid.<tag0.pg_5>.link.account>: <uid.<tag0.pg_5>.link.name> <var.pg_5> [<uid.<tag0.pg_5>.link.uid>] <eval ((<serv.time> - <uid.<tag0.pg_5>.more1>) / 600)>m
+<var.pg_font2>><uid.<tag0.pg_5>.tag0.reason>
+<var.pg_font>><eval (<tag0.pg_x> + 1)>..<eval (<tag0.pg_x> + 5)>
+
+[dialog d_pg_listx button]
+On=99
+if !(<uid.<var.pg_box>.rescount> > 5)
+	pg list
+else
+	if (<uid.<var.pg_box>.rescount> > <eval (<tag0.pg_x> + 10)>)
+		try tag0.pg_x <eval (<tag0.pg_x> + 5)>
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (1 + <tag0.pg_x>))>).uid>
+		try tag0.pg_2 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (2 + <tag0.pg_x>))>).uid>
+		try tag0.pg_3 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (3 + <tag0.pg_x>))>).uid>
+		try tag0.pg_4 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (4 + <tag0.pg_x>))>).uid>
+		try tag0.pg_5 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (5 + <tag0.pg_x>))>).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		if (<uid.<tag0.pg_2>.link.region>) && !(<uid.<tag0.pg_2>.link.findtype.t_eq_client_linger>)
+			var.pg_2 [+]
+		else
+			var.pg_2 [-]
+		endif
+		if (<uid.<tag0.pg_3>.link.region>) && !(<uid.<tag0.pg_3>.link.findtype.t_eq_client_linger>)
+			var.pg_3 [+]
+		else
+			var.pg_3 [-]
+		endif
+		if (<uid.<tag0.pg_4>.link.region>) && !(<uid.<tag0.pg_4>.link.findtype.t_eq_client_linger>)
+			var.pg_4 [+]
+		else
+			var.pg_4 [-]
+		endif
+		if (<uid.<tag0.pg_5>.link.region>) && !(<uid.<tag0.pg_5>.link.findtype.t_eq_client_linger>)
+			var.pg_5 [+]
+		else
+			var.pg_5 [-]
+		endif
+		dialog d_pg_listx
+	elseif (<uid.<var.pg_box>.rescount> == <eval (<tag0.pg_x> + 10)>)
+		try tag0.pg_x <eval (<tag0.pg_x> + 5)>
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (1 + <tag0.pg_x>))>).uid>
+		try tag0.pg_2 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (2 + <tag0.pg_x>))>).uid>
+		try tag0.pg_3 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (3 + <tag0.pg_x>))>).uid>
+		try tag0.pg_4 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (4 + <tag0.pg_x>))>).uid>
+		try tag0.pg_5 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (5 + <tag0.pg_x>))>).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		if (<uid.<tag0.pg_2>.link.region>) && !(<uid.<tag0.pg_2>.link.findtype.t_eq_client_linger>)
+			var.pg_2 [+]
+		else
+			var.pg_2 [-]
+		endif
+		if (<uid.<tag0.pg_3>.link.region>) && !(<uid.<tag0.pg_3>.link.findtype.t_eq_client_linger>)
+			var.pg_3 [+]
+		else
+			var.pg_3 [-]
+		endif
+		if (<uid.<tag0.pg_4>.link.region>) && !(<uid.<tag0.pg_4>.link.findtype.t_eq_client_linger>)
+			var.pg_4 [+]
+		else
+			var.pg_4 [-]
+		endif
+		if (<uid.<tag0.pg_5>.link.region>) && !(<uid.<tag0.pg_5>.link.findtype.t_eq_client_linger>)
+			var.pg_5 [+]
+		else
+			var.pg_5 [-]
+		endif
+		dialog d_pg_list5
+	elseif (<uid.<var.pg_box>.rescount> == <eval (<tag0.pg_x> + 9)>)
+		try tag0.pg_x <eval (<tag0.pg_x> + 5)>
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (1 + <tag0.pg_x>))>).uid>
+		try tag0.pg_2 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (2 + <tag0.pg_x>))>).uid>
+		try tag0.pg_3 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (3 + <tag0.pg_x>))>).uid>
+		try tag0.pg_4 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (4 + <tag0.pg_x>))>).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		if (<uid.<tag0.pg_2>.link.region>) && !(<uid.<tag0.pg_2>.link.findtype.t_eq_client_linger>)
+			var.pg_2 [+]
+		else
+			var.pg_2 [-]
+		endif
+		if (<uid.<tag0.pg_3>.link.region>) && !(<uid.<tag0.pg_3>.link.findtype.t_eq_client_linger>)
+			var.pg_3 [+]
+		else
+			var.pg_3 [-]
+		endif
+		if (<uid.<tag0.pg_4>.link.region>) && !(<uid.<tag0.pg_4>.link.findtype.t_eq_client_linger>)
+			var.pg_4 [+]
+		else
+			var.pg_4 [-]
+		endif
+		dialog d_pg_list4
+	elseif (<uid.<var.pg_box>.rescount> == <eval (<tag0.pg_x> + 8)>)
+		try tag0.pg_x <eval (<tag0.pg_x> + 5)>
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (1 + <tag0.pg_x>))>).uid>
+		try tag0.pg_2 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (2 + <tag0.pg_x>))>).uid>
+		try tag0.pg_3 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (3 + <tag0.pg_x>))>).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		if (<uid.<tag0.pg_2>.link.region>) && !(<uid.<tag0.pg_2>.link.findtype.t_eq_client_linger>)
+			var.pg_2 [+]
+		else
+			var.pg_2 [-]
+		endif
+		if (<uid.<tag0.pg_3>.link.region>) && !(<uid.<tag0.pg_3>.link.findtype.t_eq_client_linger>)
+			var.pg_3 [+]
+		else
+			var.pg_3 [-]
+		endif
+		dialog d_pg_list3
+	elseif (<uid.<var.pg_box>.rescount> == <eval (<tag0.pg_x> + 7)>)
+		try tag0.pg_x <eval (<tag0.pg_x> + 5)>
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (1 + <tag0.pg_x>))>).uid>
+		try tag0.pg_2 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (2 + <tag0.pg_x>))>).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		if (<uid.<tag0.pg_2>.link.region>) && !(<uid.<tag0.pg_2>.link.findtype.t_eq_client_linger>)
+			var.pg_2 [+]
+		else
+			var.pg_2 [-]
+		endif
+		dialog d_pg_list2
+	elseif (<uid.<var.pg_box>.rescount> == <eval (<tag0.pg_x> + 6)>)
+		try tag0.pg_x <eval (<tag0.pg_x> + 5)>
+		try tag0.pg_1 <uid.<var.pg_box>.findcont(<eval (<uid.<var.pg_box>.rescount> - (1 + <tag0.pg_x>))>).uid>
+		if (<uid.<tag0.pg_1>.link.region>) && !(<uid.<tag0.pg_1>.link.findtype.t_eq_client_linger>)
+			var.pg_1 [+]
+		else
+			var.pg_1 [-]
+		endif
+		dialog d_pg_list1
+	endif
+endif
+
+On=1
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+elseif (<argchk[5]>)
+	act <uid.<tag0.pg_5>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg go
+endif
+
+On=2
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+elseif (<argchk[5]>)
+	act <uid.<tag0.pg_5>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+		try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+		try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+	endif
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg
+	pg summon
+endif
+
+On=3
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+elseif (<argchk[5]>)
+	act <uid.<tag0.pg_5>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	act.more2 <uid>
+	tag0.pg_answer <act.uid>
+	pg message
+endif
+
+On=4
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+elseif (<argchk[5]>)
+	act <uid.<tag0.pg_5>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg delete
+endif
+
+On=5
+if (<argchk[1]>)
+	act <uid.<tag0.pg_1>.uid>
+elseif (<argchk[2]>)
+	act <uid.<tag0.pg_2>.uid>
+elseif (<argchk[3]>)
+	act <uid.<tag0.pg_3>.uid>
+elseif (<argchk[4]>)
+	act <uid.<tag0.pg_4>.uid>
+elseif (<argchk[5]>)
+	act <uid.<tag0.pg_5>.uid>
+endif
+if (<act.baseid> != i_page)
+	pg_smsgx * Bu islem icin bir page secmelisiniz.
+	return 1
+endif
+
+if (<uid.<act.more2>.ischar>) && (<uid.<act.more2>.region>) && !(<uid.<act.more2>.findtype.t_eq_client_linger>) && (<act.more2> != <uid>)
+	try pg_smsgx * Bu page ile <uid.<act.more2>.name> zaten ilgilenmekte.
+	act 0
+	pg list
+else
+	if !(<act.color>)
+		act.color 1 // bu page istatistiklere girdi
+		try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	endif
+	tag0.pg_answer <act.uid>
+	pg jail
+endif
+
+[dialog d_pg_message]
+170,160
+nomove
+
+page 0
+resizepic 60 0 5120 370 304
+
+htmlgump 83 20 300 20 0 0 0
+htmlgump 83 40 330 65 1 0 0
+htmlgump 83 105 330 20 3 0 0
+
+resizepic 74 125 3000 345 160
+textentry 83 130 330 35 1152 1 2
+textentry 83 150 330 35 1152 2 2
+textentry 83 170 330 35 1152 3 2
+textentry 83 190 330 35 1152 4 2
+textentry 83 210 330 35 1152 5 2
+textentry 83 230 330 35 1152 6 2
+
+button 340 255 4021 4022 1 0 0
+button 380 255 4030 4031 1 0 1
+
+[dialog d_pg_message text]
+<var.pg_font1>><act.link.account>: <act.link.name> [<act.link.uid>] <eval ((<serv.time> - <act.more1>) / 600)>m
+<var.pg_font2>><act.tag0.reason>
+<tag0.pg_m>
+<var.pg_font1>>Gonderilecek mesaj:
+
+[dialog d_pg_message button]
+On=0
+pg undo
+
+On=1
+try act <uid.<tag0.pg_answer>.link.uid>
+if !(<act.region>) || (<act.findtype.t_eq_client_linger>)
+	pg_smsgx * <act.link.name> su an offline oldugu icin ona mesaj atamazsiniz.
+	pg undo
+	return 1
+endif
+act.findid.i_page_messager.remove
+newitem i_page_messager
+if (0<account.plevel> == 2)
+	act.tag0.plvl Counselor
+elseif (0<account.plevel> == 3)
+	act.tag0.plvl Seer
+elseif (0<account.plevel> == 4)
+	act.tag0.plvl Gm
+elseif (0<account.plevel> == 5)
+	act.tag0.plvl Senior Gm
+elseif (0<account.plevel> > 5)
+	act.tag0.plvl Admin
+endif
+act.tag0.time <serv.rtime>
+act.tag0.from <name>
+act.tag0.message1 <argtxt[1]>
+act.tag0.message2 <argtxt[2]>
+act.tag0.message3 <argtxt[3]>
+act.tag0.message4 <argtxt[4]>
+act.tag0.message5 <argtxt[5]>
+act.tag0.message6 <argtxt[6]>
+act.tag0.page <uid.<tag0.pg_answer>.tag0.reason>
+act.cont <uid.<tag0.pg_answer>.link.uid>
+act.timer 1
+pg_smsgx * Mesajiniz gonderildi.
+act <tag0.pg_answer>
+if !(<act.color>)
+	act.color 1 // bu page istatistiklere girdi
+	try act.cont.more1 <eval (<act.cont.more1> + 1)> // yanitlandi
+	try act.cont.morey <eval (<act.cont.morey> + 1)> // ortalamaya katildi
+	try act.cont.more2 <eval (<act.cont.more2> + ((<serv.time> - <act.more1>) / 600)> // sure eklendi
+endif
+pg delete
+
+[dialog d_pg_message_user]
+0,0
+nomove
+noclose
+nodispose
+
+page 1
+button 15 15 30 30 0 2 1
+
+page 2
+resizepic 50 50 5120 337 335
+button 362 62 3 4 1 0 0
+
+htmlgump 63 60 250 20 0 0 0
+htmlgump 63 80 250 20 1 0 0
+htmlgump 63 100 250 20 2 0 0
+
+resizepic 60 125 3000 320 130
+htmlgump 65 130 310 20 3 0 0
+htmlgump 65 150 310 20 4 0 0
+htmlgump 65 170 310 20 5 0 0
+htmlgump 65 190 310 20 6 0 0
+htmlgump 65 210 310 20 7 0 0
+htmlgump 65 230 310 20 8 0 0
+
+htmlgump 65 270 310 20 9 0 0
+
+resizepic 60 295 3000 320 70
+htmlgump 65 300 310 60 10 0 0
+
+[dialog d_pg_message_user text]
+<var.pg_font2>>Mesajiniz Var!
+<var.pg_font1>>Gonderen: <findid.i_page_messager.tag0.plvl> <findid.i_page_messager.tag0.from>
+<var.pg_font1>>Tarih: <findid.i_page_messager.tag0.time>
+<findid.i_page_messager.tag0.message1>
+<findid.i_page_messager.tag0.message2>
+<findid.i_page_messager.tag0.message3>
+<findid.i_page_messager.tag0.message4>
+<findid.i_page_messager.tag0.message5>
+<findid.i_page_messager.tag0.message6>
+<var.pg_font2>>Atmis oldugunuz page;
+<findid.i_page_messager.tag0.page>
+
+[dialog d_pg_message_user button]
+
+[itemdef i_page_messager]
+name Page Messager
+id i_book_open
+type t_eq_script
+weight 0
+
+On=@Create
+attr attr_invis|attr_move_never|attr_newbie
+
+On=@UnEquip
+src.dialog d_pg_message_user
+
+On=@Timer
+remove
+return 1
+
+[itemdef i_page]
+name Page
+id i_book_open
+type t_script
+weight 0
+
+On=@Create
+attr attr_invis|attr_move_never
+
+[itemdef i_page_box]
+name Page Box
+id i_basket_square
+type t_container
+weight 2000
+tdata2 03f
+
+On=@Create
+attr attr_move_never
+dispid i_grave_stone
+
+On=@Click
+sayua 0482,0,0,0 <serv.servname> <name>
+sayua 0482,0,0,0 [<rescount> cagri]
+sayua 0482,0,0,0
+//sayua 0482,0,0,0 [t: <morex> si: <eval ((<more1> * 100) / <morex>)>% ac: <eval (<more2> / <morey>)>,<eval (<more2> / (<morey> / 10)) - ((<more2> / <morey>) * 10))>m]
+return 1
+
+On=@PickUp_Ground
+return 1
+
+
+[itemdef i_pageyasak1]
+name page yasagi
+type t_eq_script
+layer layer_special
+
+on=@equip
+//src.sysmessage @350 Lutfen sakin bir yerde yetkiliyi bekleyiniz..
+//src.sysmessage @07a1,,1 1 dakika boyunca page atamazsiniz!
+timer 60*1
+attr attr_decay
+
+on=@timer
+cont.sysmessage @021 Page atma yasaginiz kalkmistir. Iyi oyunlar...
+remove
+
+[eof]

@@ -1,0 +1,1770 @@
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+The Owner Prodigy Tarafindan Fixlenmistir ! ....
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+Date =  23 / 07 / 2004 ---- Tum Haklarý Saklýdýr !
+VERSION=0.55i
+
+[itemdef i_silver_kryss]
+name silver kryss
+id i_kryss
+type 14
+dam 3,28
+skill Fencing
+reqstr 10
+twohands N
+weight 6
+resources 8 i_ingot_silver
+skillmake BLACKSMITHING 80.0
+
+on=@equip
+src.events +e_bleeding
+
+on=@unequip
+src.events -e_bleeding
+
+On=@Create
+color 03e9
+hitpoints 25
+
+On=@Damage
+if (<src.npc> == brain_undead)
+	src.damage {18 50}
+	src.effect 3,i_fx_sparkle,6,15,1
+	src.spelleffect s_poison 50.0
+endif
+
+[itemdef i_silver_sword_viking]
+name silver viking sword
+id i_sword_viking
+type 13
+dam 6,34
+skill Swordsmanship
+reqstr 40
+twohands N
+weight 10
+resources 14 i_ingot_silver
+skillmake BLACKSMITHING 80.0
+
+on=@equip
+src.events=+e_bleeding
+
+on=@unequip
+src.events=-e_bleeding
+On=@Create
+hitpoints 25
+color 03e9
+
+On=@Damage
+if (<src.npc> == brain_undead)
+	src.damage {18 50}
+	src.effect 3,i_fx_sparkle,6,15,1
+	src.spelleffect s_poison 50.0
+endif
+
+[itemdef i_silver_sword_katana]
+name silver katana
+id i_katana
+type 13
+dam 5,26
+skill Swordsmanship
+reqstr 10
+twohands N
+weight 7
+resources 8 i_ingot_silver
+skillmake BLACKSMITHING 80.0
+
+on=@equip
+src.events +e_bleeding
+
+on=@unequip
+src.events -e_bleeding
+
+On=@Create
+color 03e9
+hitpoints 25
+
+On=@Damage
+if (<src.npc> == brain_undead)
+	src.damage {18 50}
+	src.effect 3,i_fx_sparkle,6,15,1
+	src.spelleffect s_poison 50.0
+endif
+
+[itemdef 0f5e]
+defname i_sword_broad
+resources 10 i_ingot_iron
+type T_WEAPON_SWORD
+flip 1
+dam 5,29
+skill Swordsmanship
+reqstr 25
+twohands N
+weight 6.2
+category Provisions - Weapons
+subsection Swords
+description Broadsword
+skillmake blacksmithing 60.8
+dupelist 0f5f
+
+on=@equip
+src.events +e_bleeding
+on=@unequip
+src.events -e_bleeding
+
+On=@Create
+hitpoints 25
+
+[itemdef 0f5f] // broad sword
+dupeitem 0f5e
+
+[itemdef 01440]
+defname i_cutlass
+resources 8 i_ingot_iron
+weight 6.2
+type T_WEAPON_SWORD
+flip 1
+dam 6,28
+skill Swordsmanship
+reqstr 10
+twohands N
+category Provisions - Weapons
+subsection Swords
+description Cutlass
+dupelist 01441
+skillmake blacksmithing 50.2
+//RESOURCES2=10 i_ingot_iron
+
+on=@equip
+src.events +e_bleeding
+
+on=@unequip
+src.events -e_bleeding
+On=@Create
+hitpoints 25
+
+[itemdef 01441] // cutlass
+dupeitem 01440
+
+[itemdef 013fe]
+defname i_katana
+resources 8 i_ingot_iron
+weight 4
+type T_WEAPON_SWORD
+flip 1
+dam 9,26
+skill Swordsmanship
+reqstr 10
+twohands N
+category Provisions - Weapons
+subsection Swords
+description Katana
+dupelist 013ff
+skillmake blacksmithing 69.1
+//RESOURCES2=10 i_ingot_iron
+
+
+on=@equip
+src.events +e_bleeding
+
+on=@unequip
+src.events -e_bleeding
+
+On=@Create
+hitpoints 25
+
+[itemdef 013ff] // katana
+dupeitem 013fe
+
+[itemdef 01400]
+defname i_kryss
+resources 8 i_ingot_iron
+weight 4.2
+type T_WEAPON_FENCE
+flip 1
+dam 3,28
+skill Fencing
+reqstr 10
+twohands N
+category Provisions - Weapons
+subsection Knives & Daggers
+description Kryss
+dupelist 01401
+skillmake blacksmithing 62.0
+//RESOURCES2=10 i_ingot_iron
+
+on=@equip
+src.events +e_bleeding
+
+on=@unequip
+src.events -e_bleeding
+
+On=@Create
+hitpoints 25
+
+[itemdef 01401] // kryss
+dupeitem 01400
+
+[itemdef 0f60]
+defname i_sword_long
+resources 12 i_ingot_iron
+type T_WEAPON_SWORD
+flip 1
+dam 5,33
+skill Swordsmanship
+twohands N
+weight 8.7
+category Provisions - Weapons
+subsection Swords
+description Longsword
+skillmake blacksmithing 53.8
+dupelist 0f61
+
+on=@equip
+src.events +e_bleeding
+
+on=@unequip
+src.events -e_bleeding
+
+On=@Create
+hitpoints 25
+
+[itemdef 0f61] // longsword
+dupeitem 0f60
+
+[itemdef 013b7]
+defname i_sword_long_b
+resources 10 i_ingot_iron
+weight 8.7
+type T_WEAPON_SWORD
+flip 1
+dam 5,33
+skill Swordsmanship
+twohands N
+category Provisions - Weapons
+subsection Swords
+description Long Sword B
+skillmake blacksmithing 50.2
+dupelist 013b8
+
+[itemdef 013b8] //long sword (thin)
+dupeitem 013b7
+
+[itemdef 013b5]
+defname i_scimitar
+resources 10 i_ingot_iron
+weight 6.7
+type T_WEAPON_SWORD
+flip 1
+dam 4,30
+skill Swordsmanship
+reqstr 10
+twohands N
+category Provisions - Weapons
+subsection Swords
+description Scimitar
+dupelist 013b6
+skillmake blacksmithing 57.3
+
+on=@equip
+src.events=+e_bleeding
+
+on=@unequip
+src.events=-e_bleeding
+On=@Create
+hitpoints 25
+
+[itemdef 013b6] // scimitar
+dupeitem 013b5
+
+[itemdef 013b9]
+defname i_sword_viking
+resources 14 i_ingot_iron
+weight 10
+type T_WEAPON_SWORD
+flip 1
+dam 6,34
+skill Swordsmanship
+reqstr 40
+twohands N
+category Provisions - Weapons
+subsection Swords
+description Viking Sword
+dupelist 013ba
+skillmake blacksmithing 50.2
+//RESOURCES2=10 i_ingot_iron
+
+on=@equip
+src.events=+e_bleeding
+
+on=@unequip
+src.events=-e_bleeding
+On=@Create
+hitpoints 25
+
+[itemdef 013ba] // viking sword
+dupeitem 013b9
+
+[itemdef i_sword_bane]
+defname i_sword_bane
+value 10000
+id i_sword_broad
+name magical broad sword
+resources i_sword_viking,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic viking swords
+description viking sword of vanquishing
+
+on=@equip
+src.events=+e_bleeding
+
+on=@unequip
+src.events=-e_bleeding
+
+On=@Create
+morey 50.0
+attr attr_magic
+hitpoints 25
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [spider's bane]
+endif 
+return 1
+
+//magical silahlar
+
+[itemdef 0413a]
+defname i_BROADSWORD_RUIN
+value 1500
+id i_sword_broad
+name magical broadsword
+resources i_sword_broad,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic broadswords
+description broadsword of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0413b]
+defname i_BROADSWORD_MIGHT
+value 3700
+id i_sword_broad
+name magical broadsword
+resources i_sword_broad,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic broadswords
+description broadsword of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0373
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0413c]
+defname i_BROADSWORD_FORCE
+value 5000
+id i_sword_broad
+name magical broadsword
+resources i_sword_broad,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic broadswords
+description broadsword of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 070d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0413d]
+defname i_BROADSWORD_POWER
+value 7500
+id i_sword_broad
+name magical broadsword
+resources i_sword_broad,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic broadswords
+description broadsword of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 075d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0413e]
+defname i_BROADSWORD_vanq
+value 10000
+id i_sword_broad
+name magical broadsword
+resources i_sword_broad,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic broadswords
+description broadsword of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0454
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0411a]
+defname i_CUTLASS_RUIN
+value 1500
+id i_cutlass
+name magical cutlass
+resources i_cutlass,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic cutlasses
+description cutlass of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0411b]
+defname i_CUTLASS_MIGHT
+value 3700
+id i_cutlass
+name magical cutlass
+resources i_cutlass,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic cutlasses
+description cutlass of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0373
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0411c]
+defname i_CUTLASS_FORCE
+value 5000
+id i_cutlass
+name magical cutlass
+resources i_cutlass,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic cutlasses
+description cutlass of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 070d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0411d]
+defname i_CUTLASS_POWER
+value 7500
+id i_cutlass
+name magical cutlass
+resources i_cutlass,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic cutlasses
+description cutlass of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 075d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0411e]
+defname i_CUTLASS_vanq
+value 10000
+id i_cutlass
+name magical cutlass
+resources i_cutlass,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic cutlasses
+description cutlass of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0454
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0412a]
+defname i_KATANA_RUIN
+value 1500
+id i_katana
+name magical katana
+resources i_katana,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic katanas
+description katana of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+src.events=+e_bleeding
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0412b]
+defname i_KATANA_MIGHT
+value 3700
+id i_katana
+name magical katana
+resources i_katana,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic katanas
+description katana of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0373
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0412c]
+defname i_KATANA_FORCE
+value 5000
+id i_katana
+name magical katana
+resources i_katana,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic katanas
+description katana of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1 
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 070d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0412d]
+defname i_KATANA_POWER
+value 7500
+id i_katana
+name magical katana
+resources i_katana,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic katanas
+description katana of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 075d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0412e]
+defname i_KATANA_vanq
+value 10000
+id i_katana
+name magical katana
+resources i_katana,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic katanas
+description katana of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0454
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0413f]
+defname i_KRYSS_RUIN
+value 1500
+id i_kryss
+name magical kryss
+resources i_kryss,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic krysses
+description kryss of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 02bc
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 04140]
+defname i_KRYSS_MIGHT
+value 3700
+id i_kryss
+name magical kryss
+resources i_kryss,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic krysses
+description kryss of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0373
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 04141]
+defname i_KRYSS_FORCE
+value 5000
+id i_kryss
+name magical kryss
+resources i_kryss,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic krysses
+description kryss of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1 
+
+On=@Equip
+if (<src.fencing> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 070d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 04142]
+defname i_KRYSS_POWER
+value 7500
+id i_kryss
+name magical kryss
+resources i_kryss,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic krysses
+description kryss of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 075d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 04143]
+defname i_KRYSS_vanq
+value 10000
+id i_kryss
+name magical kryss
+resources i_kryss,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic krysses
+description kryss of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0454
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0414a]
+defname i_sword_long_RUIN
+value 1500
+id i_sword_long
+name magical longsword
+resources i_sword_long,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic longswords
+description longsword of ruin
+
+On=@Create
+attr attr_magic
+morey 20.0
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 02bc
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0414b]
+defname i_sword_long_MIGHT
+value 3700
+id i_sword_long
+name magical longsword
+resources i_sword_long,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic longswords
+description longsword of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0373
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0414c]
+defname i_sword_long_FORCE
+value 5000
+id i_sword_long
+name magical longsword
+resources i_sword_long,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic longswords
+description longsword of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 070d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0414d]
+defname i_sword_long_POWER
+value 7500
+id i_sword_long
+name magical longsword
+resources i_sword_long,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic longswords
+description longsword of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 075d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0414e]
+defname i_sword_long_vanq
+value 10000
+id i_sword_long
+name magical longsword
+resources i_sword_long,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic longswords
+description longsword of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0454
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0410a]
+defname i_SCIMITAR_RUIN
+value 1500
+id i_scimitar
+name magical scimitar
+resources i_scimitar,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic scimitars
+description scimitar
+
+On=@Create
+hitpoints 25
+morey 20.0
+attr attr_magic
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 02bc
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0410b]
+defname i_SCIMITAR_MIGHT
+value 3700
+id i_scimitar
+name magical scimitar
+resources i_scimitar,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic scimitars
+description scimitar of might
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 40.0
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0373
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 04105]
+defname i_SCIMITAR_FORCE
+value 5000
+id i_scimitar
+name magical scimitar
+resources i_scimitar,3 i_enchant_weapon
+
+description scimitar of force
+subsection Magic scimitars
+category Provisions - Weapons - Magic
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 60.0
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 070d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0410c]
+defname i_SCIMITAR_POWER
+value 7500
+id i_scimitar
+name magical scimitar
+resources i_scimitar,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic scimitars
+description scimitar of power
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 80.0
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 075d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 04106]
+defname i_SCIMITAR_vanq
+value 10000
+id i_scimitar
+name magical scimitar
+resources i_scimitar,5 i_enchant_weapon
+
+description scimitar of vanquishing
+subsection Magic scimitars
+category Provisions - Weapons - Magic
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 100.0
+color 0454
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0454
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 0411f]
+defname i_sword_viking_RUIN
+value 1500
+id i_sword_viking
+name magical viking sword
+resources i_sword_viking,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic viking swords
+description viking sword of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 02bc
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 04120]
+defname i_sword_viking_MIGHT
+value 3700
+id i_sword_viking
+name magical viking sword
+resources i_sword_viking,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic viking swords
+description viking sword of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0373
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 04121]
+defname i_sword_viking_FORCE
+value 5000
+id i_sword_viking
+name magical viking sword
+resources i_sword_viking,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic viking swords
+description viking sword of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1 
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 04122]
+defname i_sword_viking_POWER
+value 7500
+id i_sword_viking
+name magical viking sword
+resources i_sword_viking,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic viking swords
+description viking sword of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 075d
+
+on=@unequip
+src.events=-e_bleeding
+
+[itemdef 04123]
+defname i_sword_viking_vanq
+value 10000
+id i_sword_viking
+name magical viking sword
+resources i_sword_viking,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic viking swords
+description viking sword of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+src.events=+e_bleeding
+color 0454
+
+on=@unequip
+src.events=-e_bleeding
+
+[eof]

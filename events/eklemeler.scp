@@ -1,0 +1,289 @@
+// Archer'a bonus ekledim yeni itemler falan koydum i$te cincon.
+// Mayk
+
+[itemdef i_allahtaseder]
+name=ta$ ederim cok pis
+id=i_memory
+type=t_eq_script
+weight=0
+layer=layer_special
+
+on=@equip
+if !(<cont.isgm>)
+timer 3
+cont.flags <cont.flags>|01
+cont.sayua 070d,0,0,0 * 1 dakika tas kalacak *
+else
+morex 1
+timer 1
+endif
+
+on=@unequip
+cont.stone 0
+	
+on=@timer
+if !(<morex>)
+morex 1
+cont.flags <cont.flags>&~01
+cont.stone 1
+timer 60
+else
+remove
+endif
+return 1
+
+[events e_pain]
+On=@Timer
+attr attr_decay
+remove
+return 1
+
+[events e_painbow2]
+On=@Death
+findid.i_painbow.remove
+
+[itemdef i_painbow]
+name=painbow
+id=i_gold
+type=t_eq_script
+weight=0
+layer=layer_special
+
+On=@Equip
+src.flags <src.flags>|04
+src.events +e_painbow
+timer 3
+
+On=@UnEquip
+cont.events -e_painbow
+if !(<cont.flags>&statf_dead)
+	cont.flags <cont.flags>&~04
+endif
+
+On=@Timer
+attr attr_decay
+remove
+return 1
+
+[events e_painbow]						
+On=@Hit
+if (<findlayer(2).type> == t_weapon_bow) && (<archery> >= 95.0)
+	if (rand(140) <= <eval (<anatomy> / 40)>) && !(<src.findid.i_painbow>)
+		src.damage {25 35}
+		src.skill fail
+		var.act <src.act.uid>
+		src.newitem i_painbow
+		src.act.equip
+		src.act <var.act>
+		src.sayu *Pain Bow *
+		return 1
+endif
+
+
+[function saya]
+sayua 0825,6,0,eng <args>
+
+[function sysmesua]
+sysmessageua 0835,6,0,eng <args>
+
+[function syshata]
+sysmessageua 37,6,0,eng <args>
+
+[function sysmesaj]
+sysmessageua 0834,6,0,eng <args>
+
+[function mtele]
+src.newitem=i_mtele
+src.act.equip
+src.act.timer=30
+return 1
+
+[itemdef i_mtele]
+ID=i_gold
+TYPE=t_eq_script
+
+ON=@EQUIP
+targetg
+
+ON=@TARGON_GROUND
+src.go=<src.targp>
+mtele
+remove
+return 1
+
+ON=@TARGON_ITEM
+src.go=<src.targp>
+mtele
+remove
+return 1
+
+ON=@TARGON_CHAR
+src.go=<src.targp>
+mtele
+remove
+return 1
+
+ON=@TIMER
+remove
+return 1
+
+[PLEVEL 2]
+mtele
+
+[itemdef i_announcer]
+type=t_script
+id=i_grave_stone
+name=Haber Tasi
+
+on=@create
+color=0813
+timer=1800
+
+on=@dclick
+if (0<src.account.plevel> >5)
+dialog d_announce
+else
+src.sysmessage Bunu kullanabilecek yetkiniz yok.
+endif
+return 1
+
+on=@pickup_ground
+src.sysmessage @56,,1 Bu tasi silmeniz veyahutta kimildatmaniz, Tasi bozacaktir. Lutfen Dokunmayiniz.
+return 1
+
+on=@timer
+if (<cont.timer> < 1)
+serv.allclients smsj *<serv.servname> Duyuru*:
+serv.allclients smsj <tag.announce>
+timer 600
+return 0
+ENDIF
+
+
+[Dialog d_announce]
+0,250
+htmlgump 45 5 500 30 0 0 0
+resizepic 0 0 5120 650 90
+resizepic 20 25 3000 620 30
+
+//-- Textentry posx posy x y 0 <argtext[num]> <line>
+Textentry 30 30 650 30 0 1 1
+
+Button 600 60 4006 4005 1 0 1
+htmlgump 535 60 60 30 2 0 0
+
+[Dialog d_announce TEXT]
+<var.font2>> Duyurulmasini istediginiz Mesaji yaziniz.
+<tag.announce>
+<var.font2>>Duyur.
+
+[Dialog d_announce BUTTON]
+ON=1
+If (strmatch(<argtxt[1]>,))
+	src.sysmessage Duyuruyu yazmadiniz.
+	tag.announce <argtxt[1]>
+	return 1
+endif
+
+IF (strlen(<argtxt[1]>)>200)
+	src.sysmessage lutfen 200 karekteri gecmemeye ozen gosterin.
+	tag.announce <argtxt[1]>
+	return 1
+endif
+f_announce <argtxt[1]>
+tag.announce <argtxt[1]>
+timer 1
+
+[Function f_announce]
+//src.newitem i_announcer
+//src.act.tag.announce <args>
+//src.act.bounce
+//src.act.drop
+tag.announce <argn>
+
+
+
+[DEFNAME htmlgump_vars]
+BFONT_SIZE1 <basefont SIZE="1">
+BFONT_SIZE4 <basefont SIZE="4">
+BFONT_SIZE7 <basefont SIZE="7">
+BFONT_white <basefont color="#ffffff">
+BFONT_LGRAY <basefont color="#aaaaaa">
+BFONT_GRAY <basefont color="#888888">
+BFONT_DGRAY <basefont color="#444444">
+BFONT_BLACK <basefont color="#000011">
+BFONT_LRED <basefont color="#ff0000">
+BFONT_RED <basefont color="#880000">
+Bfont_DRED <basefont color="#440000">
+BFONT_LGREEN <basefont color="#00ff00">
+BFONT_GREEN <basefont color="#008800">
+BFONT_DGREEN <basefont color="#004400">
+BFONT_LBLUE <basefont color="#0000ff">
+BFONT_BLUE <basefont color="#000088">
+BFONT_DBLUE <basefont color="#000044">
+BFONT_LYELLOW <basefont color="#ffff88">
+BFONT_YELLOW <basefont color="#ffff00">
+BFONT_DYELLOW <basefont color="#888800">
+BFONT_LPURPLE <basefont color="#ff88ff">
+BFONT_PURPLE <basefont color="#ff00ff">
+BFONT_DPURPLE <basefont color="#880088">
+BFONT_LCYAN <basefont color="#88ffff">
+BFONT_CYAN <basefont color="#00ffff">
+BFONT_DCYAN <basefont color="#008888">
+BFONT <BASEFONT
+BFONTE </BASEFONT>
+
+DIV_RIGHT <div align="right">
+DIV_LEFT <div align="left">
+DIV_END </DIV> 
+CENTER <CENTER>
+CENTERE </CENTER>
+BR <BR>
+
+L1 <
+R1 >
+
+B <B>
+BE </B>
+BIG <BIG>
+BIGE </BIG>
+SMALL <SMALL>
+SMALLE </SMALL>
+EM <EM>
+EME </EM>
+U <U>
+UE </U>
+H1 <H1>
+H1E </H1>
+H2 <H2>
+H2E </H2>
+H3 <H3>
+H3E </H3>
+H4 <H4>
+H4E </H4>
+H5 <H5>
+H5E </H5>
+H6 <H6>
+H6E </H6>
+A <a
+AE </a>
+
+[ITEMDEF i_wall_fixer] 
+ID=i_rune_alchem_6 
+DispID=i_teleporter 
+baseid=i_wall_fixer
+name=field olmaz usta 
+
+on=@create 
+attr=080 
+
+On=@SpellEffect 
+if ((<argn> == 50) || (<argn> == 24) || (<argn> == 28) || (<argn> == 39) || (<argn> == 47) ) 
+foritems 1 
+if (<baseid>==i_wall_stone_8) || (<baseid>==i_fx_field_fire_ns) || (<baseid>==i_fx_field_paralyze) || (<baseid>==i_fx_energy_field) || (<baseid>==i_fx_field_fire) || (<baseid>==i_fx_poison_field) 
+remove 
+endif 
+endfor 
+return 1
+
+[EOF]

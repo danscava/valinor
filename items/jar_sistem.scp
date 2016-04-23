@@ -1,0 +1,798 @@
+[ITEMDEF 01005]
+name kan sisesi
+DEFNAME=i_jar_empty
+RESOURCES=2 i_SAND
+WEIGHT=1
+//TYPE=T_POTION
+CATEGORY=Items by Professions
+SUBSECTION=Alchemist
+DESCRIPTION=Empty Jar
+VALUE=3215
+
+on=@click
+message @0482 [Bos]
+message @0481 kan sisesi
+return 1
+
+on=@dclick
+if !(<cont> == <src.findlayer.21.uid>)
+src.sysmessage @027 Bu esyayi kullanabilmeniz icin cantanizda olmali.
+return 1
+endif
+
+target
+src.sysmessage @0810 Doldurmak istediginiz kani seciniz..
+return 1
+
+on=@targon_item
+
+if (<src.targ.type> == t_blood)
+remove	
+src.newitem i_jar_half_full
+src.act.color <src.targ.color>
+src.act.bounce
+src.sysmessage @0810 Kani sise'ye Doldurdunuz.
+src.targ.remove
+return 1
+else
+src.sysmessage @027 Bunun icin kullanamazsiniz..
+return 1	
+endif
+endif
+
+[ITEMDEF 01007]
+name Kan Sisesi
+DEFNAME=i_jar_half_full
+RESOURCES=2 i_SAND
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Alchemist
+DESCRIPTION=Half Empty Jar
+
+on=@click
+message *islenmemis*
+
+on=@dclick
+if !(<cont> == <src.findlayer.21.uid>)
+src.sysmessage @027 Cantanizda Olmali.
+return 1
+endif
+if (<src.alchemy> > 90.0)
+target
+src.sysmessage @0810 Kullanacaginiz Ate$'i Secin (heating stand) ..
+return 1
+else
+src.sysmessage @027 Bunun nasil kullanilacagini bilmiyorsunuz.. (90.0 alchemy)
+return 1
+endif
+
+on=@targon_item
+if !(<src.targ.type> == t_light_lit)
+src.sysmessage @027 Bu kani Heating Standta isitirak islemeniz gerekiyor.
+return 1
+else
+remove
+src.newitem i_jar_full
+src.act.color <color>
+src.act.bounce
+src.sysmessage @0810 Kan'i islediniz..
+return 1
+endif
+
+[ITEMDEF 01006]
+DEFNAME=i_jar_full
+RESOURCES=2 i_SAND
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Alchemist
+DESCRIPTION=Full Jar
+
+on=@click
+message *islenmis*
+
+on=@dclick
+if !(<cont> == <src.findlayer.21.uid>)
+src.sysmessage @027 Cantanizda Olmali.
+return 1
+endif
+target
+src.sysmessage @0810 Boya'yi aktaracaginiz kabi seciniz.. (dye tub)
+return 1
+
+on=@targon_item
+IF !(<SRC.RESTEST 1 <SRC.TARG.BASEID>>)
+src.sysmessage @027 Kullanacaginiz esya cantanizda olmali (dye tub)..
+return 1
+else
+
+if (<src.targ.baseid> == i_sarjli_rare)
+remove
+src.targ.remove
+src.newitem i_sarjli_rare
+src.act.color <color>
+src.act.bounce
+return 1
+else
+
+if (<src.targ.baseid> == i_dye_leat)
+remove
+src.targ.remove
+src.newitem i_dye_leat
+src.act.color <color>
+src.act.bounce
+return 1
+
+
+if (<src.targ.baseid> == i_dye_tub_furny)
+remove
+src.targ.remove
+src.newitem i_dye_tub_furny
+src.act.color <color>
+src.act.bounce
+return 1
+
+
+else
+src.sysmessage @027 Bunun icin kullanamazsiniz..
+return 1
+endif
+endif
+endif
+
+
+//////////////////////////////////////////////////////////////////////////
+
+[chardef c_pert]
+NAME Vain Dragon
+ID c_dragon_green
+CAN mt_walk|mt_run|mt_usehands|mt_equip|MT_FLY
+DAM=30,40
+ARMOR=90
+bloodcolor 00793
+RESOURCES= {2 4} i_pert_hide
+
+Category Civilized
+Subsection Soldier
+Description Vain Dragon
+
+On=@CREATE
+color 00793
+npc=brain_human
+STR {300 500}
+DEX {250 400}
+INT {350 500}
+KARMA -6000
+FAME {500 1000}
+
+
+PARRYING={90.0 100.0}
+MAGERY={200.0 300.0}
+MAGICRESISTANCE={1210.0 1900.0}
+TACTICS={90.0 100.0}
+WRESTLING={90.0 100.0}
+EVALUATINGINTEL 100.0
+
+on=@gethit 
+if (rand(10) == 1)
+if (<hits> < 50) 
+sayua 0481,2,0,eng,* Kendini iyilestirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+hits=(<hits> + 50) 
+endif 
+if (<act.baseid>=c_vortex) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif
+if (<act.baseid>=c_blade_spirit) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_water) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_air) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_fire) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_earth) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_daemon) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_bear_polar) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<flags> &statf_poisoned) 
+sayua 0481,2,0,eng,* Zehiri iyilestirir *
+sound snd_spell_cure 
+findid.i_rune_poison.remove
+endif
+
+ON=@HIT
+if (rand(5) == 1)
+if (<src.findlayer(1)> || <src.findlayer(2)>)
+src.findlayer(1).unequip
+if (<src.findlayer(2)>)
+src.findlayer(2).unequip
+endif
+src.sayu  * Silahsizlandirilir *
+endif
+endif 
+endif
+
+ON=@DEATH
+SRC.EFFECT=1,03715,4,15,1
+if (<findlayer(25)>)
+	findlayer(25).remove
+
+endif
+
+on=@Spelleffect
+if <ARGN>==38
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==47
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==28
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==39
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+
+///
+
+[chardef c_dark]
+NAME Vain Dragon
+ID c_dragon_green
+CAN mt_walk|mt_run|mt_usehands|mt_equip|MT_FLY
+DAM=30,40
+ARMOR=90
+bloodcolor 0455
+RESOURCES= {2 4} i_dark_hide
+
+Category Civilized
+Subsection Soldier
+Description Vain Dragon
+
+On=@CREATE
+color 0455
+npc=brain_human
+STR {300 500}
+DEX {250 400}
+INT {350 500}
+KARMA -6000
+FAME {500 1000}
+
+
+PARRYING={90.0 100.0}
+MAGERY={200.0 300.0}
+MAGICRESISTANCE={1210.0 1900.0}
+TACTICS={90.0 100.0}
+WRESTLING={90.0 100.0}
+EVALUATINGINTEL 100.0
+
+on=@gethit 
+if (rand(10) == 1)
+if (<hits> < 50) 
+sayua 0481,2,0,eng,* Kendini iyilestirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+hits=(<hits> + 50) 
+endif 
+if (<act.baseid>=c_vortex) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif
+if (<act.baseid>=c_blade_spirit) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_water) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_air) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_fire) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_earth) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_daemon) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_bear_polar) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<flags> &statf_poisoned) 
+sayua 0481,2,0,eng,* Zehiri iyilestirir *
+sound snd_spell_cure 
+findid.i_rune_poison.remove
+endif
+
+ON=@HIT
+if (rand(5) == 1)
+if (<src.findlayer(1)> || <src.findlayer(2)>)
+src.findlayer(1).unequip
+if (<src.findlayer(2)>)
+src.findlayer(2).unequip
+endif
+src.sayu  * Silahsizlandirilir *
+endif
+endif 
+endif
+
+ON=@DEATH
+SRC.EFFECT=1,03715,4,15,1
+if (<findlayer(25)>)
+	findlayer(25).remove
+
+endif
+
+on=@Spelleffect
+if <ARGN>==38
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==47
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==28
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==39
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+
+///
+
+[chardef c_bright]
+NAME Vain Dragon
+ID c_dragon_green
+CAN mt_walk|mt_run|mt_usehands|mt_equip|MT_FLY
+DAM=30,40
+ARMOR=90
+bloodcolor 07a0
+RESOURCES= {2 4} i_bright_hide
+
+Category Civilized
+Subsection Soldier
+Description Vain Dragon
+
+On=@CREATE
+color 07a0
+npc=brain_human
+STR {300 500}
+DEX {250 400}
+INT {350 500}
+KARMA -6000
+FAME {500 1000}
+
+
+PARRYING={90.0 100.0}
+MAGERY={200.0 300.0}
+MAGICRESISTANCE={1210.0 1900.0}
+TACTICS={90.0 100.0}
+WRESTLING={90.0 100.0}
+EVALUATINGINTEL 100.0
+
+on=@gethit 
+if (rand(10) == 1)
+if (<hits> < 50) 
+sayua 0481,2,0,eng,* Kendini iyilestirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+hits=(<hits> + 50) 
+endif 
+if (<act.baseid>=c_vortex) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif
+if (<act.baseid>=c_blade_spirit) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_water) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_air) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_fire) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_earth) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_daemon) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_bear_polar) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<flags> &statf_poisoned) 
+sayua 0481,2,0,eng,* Zehiri iyilestirir *
+sound snd_spell_cure 
+findid.i_rune_poison.remove
+endif
+
+ON=@HIT
+if (rand(5) == 1)
+if (<src.findlayer(1)> || <src.findlayer(2)>)
+src.findlayer(1).unequip
+if (<src.findlayer(2)>)
+src.findlayer(2).unequip
+endif
+src.sayu  * Silahsizlandirilir *
+endif
+endif 
+endif
+
+ON=@DEATH
+SRC.EFFECT=1,03715,4,15,1
+if (<findlayer(25)>)
+	findlayer(25).remove
+
+endif
+
+on=@Spelleffect
+if <ARGN>==38
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==47
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==28
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==39
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+
+///
+
+[chardef c_stiff]
+NAME Vain Dragon
+ID c_dragon_green
+CAN mt_walk|mt_run|mt_usehands|mt_equip|MT_FLY
+DAM=30,40
+ARMOR=90
+bloodcolor 0794
+RESOURCES= {2 4} i_stiff_hide
+
+Category Civilized
+Subsection Soldier
+Description Vain Dragon
+
+On=@CREATE
+color 0794
+npc=brain_human
+STR {300 500}
+DEX {250 400}
+INT {350 500}
+KARMA -6000
+FAME {500 1000}
+
+
+PARRYING={90.0 100.0}
+MAGERY={200.0 300.0}
+MAGICRESISTANCE={1210.0 1900.0}
+TACTICS={90.0 100.0}
+WRESTLING={90.0 100.0}
+EVALUATINGINTEL 100.0
+
+on=@gethit 
+if (rand(10) == 1)
+if (<hits> < 50) 
+sayua 0481,2,0,eng,* Kendini iyilestirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+hits=(<hits> + 50) 
+endif 
+if (<act.baseid>=c_vortex) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif
+if (<act.baseid>=c_blade_spirit) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_water) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_air) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_fire) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_earth) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_daemon) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_bear_polar) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<flags> &statf_poisoned) 
+sayua 0481,2,0,eng,* Zehiri iyilestirir *
+sound snd_spell_cure 
+findid.i_rune_poison.remove
+endif
+
+ON=@HIT
+if (rand(5) == 1)
+if (<src.findlayer(1)> || <src.findlayer(2)>)
+src.findlayer(1).unequip
+if (<src.findlayer(2)>)
+src.findlayer(2).unequip
+endif
+src.sayu  * Silahsizlandirilir *
+endif
+endif 
+endif
+
+ON=@DEATH
+SRC.EFFECT=1,03715,4,15,1
+if (<findlayer(25)>)
+	findlayer(25).remove
+
+endif
+
+on=@Spelleffect
+if <ARGN>==38
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==47
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==28
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==39
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+
+///
+
+[chardef c_aqua]
+NAME Vain Dragon
+ID c_dragon_green
+CAN mt_walk|mt_run|mt_usehands|mt_equip|MT_FLY
+DAM=30,40
+ARMOR=90
+bloodcolor 0800
+RESOURCES= {2 4} i_aqua_hide
+
+Category Civilized
+Subsection Soldier
+Description Vain Dragon
+
+On=@CREATE
+color 0800
+npc=brain_human
+STR {300 500}
+DEX {250 400}
+INT {350 500}
+KARMA -6000
+FAME {500 1000}
+
+
+PARRYING={90.0 100.0}
+MAGERY={200.0 300.0}
+MAGICRESISTANCE={1210.0 1900.0}
+TACTICS={90.0 100.0}
+WRESTLING={90.0 100.0}
+EVALUATINGINTEL 100.0
+
+on=@gethit 
+if (rand(10) == 1)
+if (<hits> < 50) 
+sayua 0481,2,0,eng,* Kendini iyilestirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+hits=(<hits> + 50) 
+endif 
+if (<act.baseid>=c_vortex) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif
+if (<act.baseid>=c_blade_spirit) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_water) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_air) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_fire) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_elem_earth) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_daemon) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<act.baseid>=c_bear_polar) 
+sayua 0481,2,0,eng,* Buyu etkisini kaldirir *
+effect=3,i_fx_heal_effect,6,35,1 
+sound snd_spell_greater_heal 
+src.remove 
+endif 
+if (<flags> &statf_poisoned) 
+sayua 0481,2,0,eng,* Zehiri iyilestirir *
+sound snd_spell_cure 
+findid.i_rune_poison.remove
+endif
+
+ON=@HIT
+if (rand(5) == 1)
+if (<src.findlayer(1)> || <src.findlayer(2)>)
+src.findlayer(1).unequip
+if (<src.findlayer(2)>)
+src.findlayer(2).unequip
+endif
+src.sayu  * Silahsizlandirilir *
+endif
+endif 
+endif
+
+ON=@DEATH
+SRC.EFFECT=1,03715,4,15,1
+if (<findlayer(25)>)
+	findlayer(25).remove
+
+endif
+
+on=@Spelleffect
+if <ARGN>==38
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==47
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==28
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+if <ARGN>==39
+sayua 048,6,6,0 * Etkilenmez *
+return 1
+endif
+
+[eof]

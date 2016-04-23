@@ -1,0 +1,255 @@
+[itemdef i_sand_glass]
+name sandy
+id 011ea // straw pillow
+weight 0.1
+type t_normal
+value 9
+
+On=@Create
+name sand
+
+On=@DClick
+return 1
+
+[itemdef i_blowpipe]
+name blow pipe
+id 0e8a // quarter staff
+weight 2
+type t_normal
+layer 0
+value 340
+
+On=@Create
+color 0961
+
+On=@DClick
+if !(<src.isevent.e_glassblower>)
+	src.sysmessage Bunu nasil kullanacaginiz hakkinda bir fikriniz yok.
+else
+	var.notice yaninizdaki 'sand' adedi: <src.rescount i_sand_glass>, alchemy bilginiz: %<src.alchemy>
+	if (strmatch('<src.tag.glassblowing>',''))
+		src.tag.glassblowing 1
+	endif
+	src.dialog d_skill_glassblowing
+endif
+return 1
+
+// CRAFTABLES
+
+[itemdef 01810]
+defname i_hourglass
+name hourglass
+weight 2
+flip 0
+type t_normal
+dupelist 01811,01812,01813,01814,01815,01816,01817,01818,01819,0181a,0181b,0181c
+resources 10 i_sand_glass
+skillmake alchemy 75.0
+
+On=@DropOn_Ground
+dispid 01811
+update
+
+On=@DClick
+if !((<attr>&attr_move_never) && (<cont>))
+	if (<dispid> == 01811)
+		dispid i_hourglass
+	else
+		dispid 01811
+	endif
+	update
+endif
+return 1
+
+[itemdef 01811]
+dupeitem 01810
+
+[itemdef 01812]
+dupeitem 01810
+
+[itemdef 01813]
+dupeitem 01810
+
+[itemdef 01814]
+dupeitem 01810
+
+[itemdef 01815]
+dupeitem 01810
+
+[itemdef 01816]
+dupeitem 01810
+
+[itemdef 01817]
+dupeitem 01810
+
+[itemdef 01818]
+dupeitem 01810
+
+[itemdef 01819]
+dupeitem 01810
+
+[itemdef 0181a]
+dupeitem 01810
+
+[itemdef 0181b]
+dupeitem 01810
+
+[itemdef 0181c]
+dupeitem 01810
+
+[itemdef 0182e] // small flask
+defname i_flask_smaller
+name small flask
+weight 1
+type t_normal
+dupelist 0182f,01830,01831
+resources 2 i_sand_glass
+skillmake alchemy 52.5
+
+[itemdef 0182f]
+dupeitem 0182e
+
+[itemdef 01830]
+dupeitem 0182e
+
+[itemdef 01831]
+dupeitem 0182e
+
+[itemdef 01832] // curved flask
+defname i_flask_curved
+name curved flask
+weight 1
+type t_normal
+dupelist 01833,01834,01835,01836,01837
+resources 2 i_sand_glass
+skillmake alchemy 55.0
+
+[itemdef 01833]
+dupeitem 01832
+
+[itemdef 01834]
+dupeitem 01832
+
+[itemdef 01835]
+dupeitem 01832
+
+[itemdef 01836]
+dupeitem 01832
+
+[itemdef 01837]
+dupeitem 01832
+
+[itemdef 0182a] // medium flask
+defname i_flask_medium
+name medium flask
+weight 1
+type t_normal
+dupelist 0182b,0182c,0182d
+resources 3 i_sand_glass
+skillmake alchemy 52.5
+
+[itemdef 0182b]
+dupeitem 0182a
+
+[itemdef 0182c]
+dupeitem 0182a
+
+[itemdef 0182d]
+dupeitem 0182a
+
+[itemdef 01844] // medium flask anim
+defname i_flask_medium_anim
+name bubbling medium flask
+type t_normal
+weight 1
+dupelist 01845,01846
+resources 5 i_sand_glass
+skillmake alchemy 60.0
+
+[itemdef 01845]
+dupeitem 01844
+
+[itemdef 01846]
+dupeitem 01844
+
+[itemdef 0183b] // large flask
+defname i_flask_large
+name large flask
+weight 1
+type t_normal
+dupelist 0183c,0183d
+resources 4 i_sand_glass
+skillmake alchemy 57.5
+
+[itemdef 0183c]
+dupeitem 0183b
+
+[itemdef 0183d]
+dupeitem 0183b
+
+[itemdef 01841] // large flask anim
+defname i_flask_large_anim
+name bubbling large flask
+type t_normal
+weight 1
+dupelist 01842,01843
+resources 5 i_sand_glass
+skillmake alchemy 60.0
+
+[itemdef 01842]
+dupeitem 01841
+
+[itemdef 01843]
+dupeitem 01841
+
+[itemdef 01838] // long flask
+defname i_flask_long
+name long flask
+weight 1
+type t_normal
+dupelist 01839,0183a
+resources 5 i_sand_glass
+skillmake alchemy 60.0
+
+[itemdef 01839]
+dupeitem 01838
+
+[itemdef 0183a]
+dupeitem 01838
+
+[itemdef 0183e] // long flask anim
+defname i_flask_long_anim
+name bubbling long flask
+type t_normal
+weight 1
+dupelist 0183f,01840
+resources 7 i_sand_glass
+skillmake alchemy 60.0
+
+[itemdef 0183f]
+dupeitem 0183e
+
+[itemdef 01840]
+dupeitem 0183e
+
+[itemdef 0185b]
+defname i_testtube_rack
+type t_normal
+weight 4
+dupelist 0185c
+resources 8 i_sand_glass
+skillmake alchemy 65.0
+
+[itemdef 0185c]
+dupeitem 0185b
+
+[itemdef 0185d]
+defname i_testtube_rack_full
+type t_normal
+weight 4
+dupelist 0185e
+resources 9 i_sand_glass
+skillmake alchemy 65.0
+
+[itemdef 0185e]
+dupeitem 0185d

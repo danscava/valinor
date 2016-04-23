@@ -1,0 +1,822 @@
+[itemdef i_Bugboard]
+id=i_grave_stone
+type=t_script
+
+on=@click
+message @049,,1 [<serv.name> UO]
+message @07a1,,1 Bug board
+return 1
+
+on=@create
+color=0542
+attr=010
+tag.mesaj1=
+tag.mesaj2=
+tag.mesaj3=
+tag.mesaj4=
+tag.mesaj5=
+tag.mesaj6=
+tag.mesaj7=
+tag.mesaj8=
+tag.mesaj9=
+tag.mesaj10=
+tag.mesaj11=
+tag.mesaj12=
+tag.mesaj13=
+tag.mesaj14=
+tag.mesaj15=
+tag.mesaj16=
+tag.mesaj17=
+tag.mesaj18=
+tag.mesaj19=
+tag.mesaj20=
+tag.kimyazmis1=
+tag.kimyazmis2=
+tag.kimyazmis3=
+tag.kimyazmis4=
+tag.kimyazmis5=
+tag.kimyazmis6=
+tag.kimyazmis7=
+tag.kimyazmis8=
+tag.kimyazmis9=
+tag.kimyazmis10=
+tag.kimyazmis11=
+tag.kimyazmis12=
+tag.kimyazmis13=
+tag.kimyazmis14=
+tag.kimyazmis15=
+tag.kimyazmis16=
+tag.kimyazmis17=
+tag.kimyazmis18=
+tag.kimyazmis19=
+tag.kimyazmis20=
+
+on=@dclick
+if (<src.account.plevel> >=2)
+dialog d_Bugboard
+return 1
+else
+src.sysmessage Bunu kullanamazsiniz.
+return 1
+
+[dialog d_Bugboard]
+0,0
+nomove
+page 0
+resizepic 50 60 5100 800 440
+resizepic 60 70 3000 785 420
+button 65 425 4009 4008 1 1 21
+button 65 525 4009 4008 1 1 22
+
+htmlgump 410 110 150 20 20 0 0 // Bugboard
+htmlgump 100 426 150 20 21 0 0 // hepsini sil
+htmlgump 380 90 150 20 22 0 0 // mesajlar
+
+page 1
+htmlgump 100 150 750 20 0 0 0
+htmlgump 100 175 750 20 1 0 0
+htmlgump 100 200 750 20 2 0 0
+htmlgump 100 225 750 20 3 0 0
+htmlgump 100 250 750 20 4 0 0
+htmlgump 100 275 750 20 5 0 0
+htmlgump 100 300 750 20 6 0 0
+htmlgump 100 325 750 20 7 0 0
+htmlgump 100 350 750 20 8 0 0
+htmlgump 100 375 750 20 9 0 0
+htmlgump 100 457 750 20 23 0 0
+
+button 65 150 4030 4029 1 1 1
+button 65 175 4030 4029 1 1 2
+button 65 200 4030 4029 1 1 3
+button 65 225 4030 4029 1 1 4
+button 65 250 4030 4029 1 1 5
+button 65 275 4030 4029 1 1 6
+button 65 300 4030 4029 1 1 7
+button 65 325 4030 4029 1 1 8
+button 65 350 4030 4029 1 1 9
+button 65 375 4030 4029 1 1 10
+button 65 455 4006 4007 0 2
+
+page 2
+htmlgump 100 150 750 20 10 0 0
+htmlgump 100 175 750 20 11 0 0
+htmlgump 100 200 750 20 12 0 0
+htmlgump 100 225 750 20 13 0 0
+htmlgump 100 250 750 20 14 0 0
+htmlgump 100 275 750 20 15 0 0
+htmlgump 100 300 750 20 16 0 0
+htmlgump 100 325 750 20 17 0 0
+htmlgump 100 350 750 20 18 0 0
+htmlgump 100 375 750 20 19 0 0
+htmlgump 100 457 750 20 24 0 0
+
+button 65 150 4030 4029 1 1 11
+button 65 175 4030 4029 1 1 12
+button 65 200 4030 4029 1 1 13
+button 65 225 4030 4029 1 1 14
+button 65 250 4030 4029 1 1 15
+button 65 275 4030 4029 1 1 16
+button 65 300 4030 4029 1 1 17
+button 65 325 4030 4029 1 1 18
+button 65 350 4030 4029 1 1 19
+button 65 375 4030 4029 1 1 20
+button 65 455 4015 4016 0 1
+
+[dialog d_Bugboard text]
+<tag.mesaj1>
+<tag.mesaj2>
+<tag.mesaj3>
+<tag.mesaj4>
+<tag.mesaj5>
+<tag.mesaj6>
+<tag.mesaj7>
+<tag.mesaj8>
+<tag.mesaj9>
+<tag.mesaj10>
+<tag.mesaj11>
+<tag.mesaj12>
+<tag.mesaj13>
+<tag.mesaj14>
+<tag.mesaj15>
+<tag.mesaj16>
+<tag.mesaj17>
+<tag.mesaj18>
+<tag.mesaj19>
+<tag.mesaj20>
+Mesajlar
+Hepsini sil
+<serv.servname> Duyuru Panosu
+Ileri
+Geri
+
+[dialog d_Bugboard button]
+
+onbutton=1
+dialog d_mesaj1
+
+onbutton=2
+dialog d_mesaj2
+
+onbutton=3
+dialog d_mesaj3
+
+onbutton=4
+dialog d_mesaj4
+
+onbutton=5
+dialog d_mesaj5
+
+onbutton=6
+dialog d_mesaj6
+
+onbutton=7
+dialog d_mesaj7
+
+onbutton=8
+dialog d_mesaj8
+
+onbutton=9
+dialog d_mesaj9
+
+onbutton=10
+dialog d_mesaj10
+
+onbutton=11
+dialog d_mesaj11
+
+onbutton=12
+dialog d_mesaj12
+
+onbutton=13
+dialog d_mesaj13
+
+onbutton=14
+dialog d_mesaj14
+
+onbutton=15
+dialog d_mesaj15
+
+onbutton=16
+dialog d_mesaj16
+
+onbutton=17
+dialog d_mesaj17
+
+onbutton=18
+dialog d_mesaj18
+
+onbutton=19
+dialog d_mesaj19
+
+onbutton=20 
+dialog d_mesaj20
+
+onbutton=21
+if (<src.account.plevel> >=5)
+tag.mesaj1=
+tag.mesaj2=
+tag.mesaj3=
+tag.mesaj4=
+tag.mesaj5=
+tag.mesaj6=
+tag.mesaj7=
+tag.mesaj8=
+tag.mesaj9=
+tag.mesaj10=
+tag.mesaj11=
+tag.mesaj12=
+tag.mesaj13=
+tag.mesaj14=
+tag.mesaj15=
+tag.mesaj16=
+tag.mesaj17=
+tag.mesaj18=
+tag.mesaj19=
+tag.mesaj20=
+src.smsgx ** Sysreport: Bugboard temizlendi.
+else
+src.smsgx ** Sysreport: Plevel'in kac ki temizliyon?
+
+onbutton=22
+if (<src.account.plevel> >=5)
+dialog d_kimyazmis
+return 1
+else
+src.smsgx ** Sysreport: Plevel'in kac ki bakiyon?
+return 1
+
+[dialog d_mesaj1] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj1 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj1>
+
+[dialog d_mesaj1 button]
+onbutton=1
+src.targ.tag.mesaj1 <argtxt[0]>
+src.targ.tag.kimyazmis1 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj2] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3 
+
+[dialog d_mesaj2 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj2>
+
+[dialog d_mesaj2 button]
+onbutton=1
+src.targ.tag.mesaj2 <argtxt[0]>
+src.targ.tag.kimyazmis2 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj3] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj3 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj3>
+
+[dialog d_mesaj3 button]
+onbutton=1
+src.targ.tag.mesaj3 <argtxt[0]>
+src.targ.tag.kimyazmis3 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj4] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj4 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj4>
+
+[dialog d_mesaj4 button]
+onbutton=1
+src.targ.tag.mesaj4 <argtxt[0]>
+src.targ.tag.kimyazmis4 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj5] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj5 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj5>
+
+[dialog d_mesaj5 button]
+onbutton=1
+src.targ.tag.mesaj5 <argtxt[0]>
+src.targ.tag.kimyazmis5 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj6] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj6 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj6>
+
+[dialog d_mesaj6 button]
+onbutton=1
+src.targ.tag.mesaj6 <argtxt[0]>
+src.targ.tag.kimyazmis6 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj7] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj7 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj7>
+
+[dialog d_mesaj7 button]
+onbutton=1
+src.targ.tag.mesaj7 <argtxt[0]>
+src.targ.tag.kimyazmis7 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj8] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj8 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj8>
+
+[dialog d_mesaj8 button]
+onbutton=1
+src.targ.tag.mesaj8 <argtxt[0]>
+src.targ.tag.kimyazmis8 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj9] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj9 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj9>
+
+[dialog d_mesaj9 button]
+onbutton=1
+src.targ.tag.mesaj9 <argtxt[0]>
+src.targ.tag.kimyazmis9 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj10] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj10 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj10>
+
+[dialog d_mesaj10 button]
+onbutton=1
+src.targ.tag.mesaj10 <argtxt[0]>
+src.targ.tag.kimyazmis10 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj11] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj11 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj11>
+
+[dialog d_mesaj11 button]
+onbutton=1
+src.targ.tag.mesaj11 <argtxt[0]>
+src.targ.tag.kimyazmis11 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj12] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj12 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj12>
+
+[dialog d_mesaj12 button]
+onbutton=1
+src.targ.tag.mesaj12 <argtxt[0]>
+src.targ.tag.kimyazmis12 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj13] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj13 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj13>
+
+[dialog d_mesaj13 button]
+onbutton=1
+src.targ.tag.mesaj13 <argtxt[0]>
+src.targ.tag.kimyazmis13 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj14] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj14 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj14>
+
+[dialog d_mesaj14 button]
+onbutton=1
+src.targ.tag.mesaj14 <argtxt[0]>
+src.targ.tag.kimyazmis14 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj15] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj15 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj15>
+
+[dialog d_mesaj15 button]
+onbutton=1
+src.targ.tag.mesaj15 <argtxt[0]>
+src.targ.tag.kimyazmis15 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj16] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj16 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj16>
+
+[dialog d_mesaj16 button]
+onbutton=1
+src.targ.tag.mesaj16 <argtxt[0]>
+src.targ.tag.kimyazmis16 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj17] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj17 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj17>
+
+[dialog d_mesaj17 button]
+onbutton=1
+src.targ.tag.mesaj17 <argtxt[0]>
+src.targ.tag.kimyazmis17 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj18] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj18 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj18>
+
+[dialog d_mesaj18 button]
+onbutton=1
+src.targ.tag.mesaj18 <argtxt[0]>
+src.targ.tag.kimyazmis18 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj19] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj19 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj19>
+
+[dialog d_mesaj19 button]
+onbutton=1
+src.targ.tag.mesaj19 <argtxt[0]>
+src.targ.tag.kimyazmis19 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_mesaj20] 
+50,50
+resizepic 50 175 5120 895 150
+resizepic 60 185 3000 875 130
+resizepic 70 235 3000 840 22
+htmlgump 70 200 200 20 0 0 0
+htmlgump 105 275 100 20 1 0 0
+button 70 275 4006 4007 1 0 1
+htmlgump 235 275 100 20 2 0 0
+button 200 275 4006 4007 1 0 0
+textentry 72 237 830 35 0 0 3
+
+[dialog d_mesaj20 text]
+Mesaja ne yazayim?
+Tamam
+Iptal
+<tag.mesaj20>
+
+[dialog d_mesaj20 button]
+onbutton=1
+src.targ.tag.mesaj20 <argtxt[0]>
+src.targ.tag.kimyazmis20 <src.name>
+
+onbutton=2
+return 1
+
+[dialog d_kimyazmis]
+0,0
+nomove
+page 0
+resizepic 50 60 5120 380 380
+resizepic 60 70 3000 360 360
+
+htmlgump 100 150 750 20 0 0 0
+htmlgump 100 175 750 20 1 0 0
+htmlgump 100 200 750 20 2 0 0
+htmlgump 100 225 750 20 3 0 0
+htmlgump 100 250 750 20 4 0 0
+htmlgump 100 275 750 20 5 0 0
+htmlgump 100 300 750 20 6 0 0
+htmlgump 100 325 750 20 7 0 0
+htmlgump 100 350 750 20 8 0 0
+htmlgump 100 375 750 20 9 0 0
+htmlgump 300 150 750 20 10 0 0
+htmlgump 300 175 750 20 11 0 0
+htmlgump 300 200 750 20 12 0 0
+htmlgump 300 225 750 20 13 0 0
+htmlgump 300 250 750 20 14 0 0
+htmlgump 300 275 750 20 15 0 0
+htmlgump 300 300 750 20 16 0 0
+htmlgump 300 325 750 20 17 0 0
+htmlgump 300 350 750 20 18 0 0
+htmlgump 300 375 750 20 19 0 0
+
+[dialog d_kimyazmis text]
+1- <tag.kimyazmis1>
+2- <tag.kimyazmis2>
+3- <tag.kimyazmis3>
+4- <tag.kimyazmis4>
+5- <tag.kimyazmis5>
+6- <tag.kimyazmis6>
+7- <tag.kimyazmis7>
+8- <tag.kimyazmis8>
+9- <tag.kimyazmis9>
+10- <tag.kimyazmis10>
+11- <tag.kimyazmis11>
+12- <tag.kimyazmis12>
+13- <tag.kimyazmis13>
+14- <tag.kimyazmis14>
+15- <tag.kimyazmis15>
+16- <tag.kimyazmis16>
+17- <tag.kimyazmis17>
+18- <tag.kimyazmis18>
+19- <tag.kimyazmis19>
+20- <tag.kimyazmis20>
+
+
+[dialog d_kimyazmis button]
+
+
+[EOF]

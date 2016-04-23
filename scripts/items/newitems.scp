@@ -1,0 +1,1193 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Yeni Itemler	--
+// -- Son Düzenleme Tarihi : 18.08.2004		--
+// -----------------------------------------------
+
+[itemdef i_mavires]
+defname i_mavires
+name Resurrect Gate
+weight 0
+type t_script
+layer layer_special
+id i_moongate_red
+
+On=@Create
+attr 010
+color 0255
+
+on=@click
+message @100 [Sadece Mavi]
+message @38 <name>
+return 1
+
+on=@step
+if !(<src.kills> < 8)
+	src.sysmessage @38 Katil oldugunuz icin gate size yardimci olmuyor.
+return 1
+elseif (<src.flags>&statf_criminal)
+	src.sysmessage @38 Suclu oldugunuz icin gate size yardimci olmuyor.
+return 1
+elseif (<src.hits> > 1)
+	src.sysmessage @38 Zaten canlisiniz.
+	src.move 6
+return 1
+else
+	src.resurrect
+return 1
+endif
+
+on=@dclick
+if !(<src.kills> < 7)
+	src.sysmessage @38 Katil oldugunuz icin gate size yardimci olmuyor.
+return 1
+elseif (<src.flags>&statf_criminal)
+	src.sysmessage @38 Suclu oldugunuz icin gate size yardimci olmuyor.
+return 1
+elseif (<src.hits> > 1)
+	src.sysmessage @38 Zaten canlisiniz.
+	src.move 6
+return 1
+else
+	src.resurrect
+return 1
+endif
+
+[itemdef i_v1_ticket]
+defname i_v1_ticket
+name 1st veteran award ticket
+weight 0
+type t_script
+layer layer_special
+id i_deed
+
+On=@Create
+attr 04
+color 066d
+
+On=@Click
+message 1st veteran award ticket
+message [<src.uid.<more2>.name>]
+return 1
+
+On=@DClick
+if !(<src.uid> == <topobj.uid>)
+	src.sysmessage Bunu kullanabilmeniz icin uzerinizde olmali.
+else
+	dialog d_veteran
+endif
+return 1
+
+[dialog d_veteran]
+0,40
+nodispose
+
+resizepic 50 10 5120 495 360
+resizepic 60 20 3000 475 340
+resizepic 80 55 3000 435 290
+htmlgump 82 30 200 20 0 0 0
+button 485 27 4018 4019 1 0 0
+
+htmlgump 90 60 420 180 1 0 0
+
+text 90 180 560 2
+htmlgump 90 200 420 60 3 0 0
+
+htmlgump 133 270 200 20 4 0 0
+htmlgump 133 290 200 20 5 0 0
+htmlgump 133 310 200 20 6 0 0
+
+button 110 270 2714 2715 1 0 1
+button 110 290 2714 2715 1 0 2
+button 110 310 2714 2715 1 0 3
+
+[dialog d_veteran text]
+Excalibur VETERAN ODULLERI
+Tebrikler! <eval (<src.account.totalconnecttime> / 60)> saat baglanma suresiyle, bir Excalibur veteran'i olarak odul almaya hak kazanmissiniz. Asagidan odulunuzu secebilirsiniz. Fakat unutmayin ki, hesap basina bir odul alabilirsiniz. Bu karakterinizle odulunuzu aldiktan sonra baska karakterinizde bu menu cikmayacaktir, eger odulunuzu bu hesaptaki baska bir karakterinizle almak istiyorsaniz, bu menuyu simdi kapatip o karakterinizle giris yapiniz.
+Ethereal Binek
+Cantanizda [newbified] olarak duran calinmasi veya loot'lanmasi imkansiz bir binek. Cantanizdaki simgesine cift tikladiginizda altinizde transparan olarak belirecektir, indiginizde ise tekrar cantaniza duser.
+Ethereal Horse
+Ethereal Llama
+Ethereal Ostard
+
+[dialog d_veteran button]
+On=1
+src.newitem i_ethereal_horse
+src.act.bounce
+src.sayua 045f,0,0,0 * veteran odulu kazanir *
+remove
+
+On=2
+src.newitem i_ethereal_llama
+src.act.bounce
+src.sayua 045f,0,0,0 * veteran odulu kazanir *
+remove
+
+On=3
+src.newitem i_ethereal_ostard
+src.act.bounce
+src.sayua 045f,0,0,0 * veteran odulu kazanir *
+remove
+
+[itemdef i_ethereal_ostard]
+name ethereal ostard
+id i_pet_ostard_forest
+type t_normal
+weight 0
+
+On=@Create
+attr attr_newbie
+color 045f
+
+On=@DClick
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu binegi kullanabilmeniz icin cantanizda olmali.
+elseif !(<src.body> == c_man) && !(<src.body> == c_woman)
+	src.sysmessage Bu binege sadece insan seklindeyken binebilirsiniz.
+else
+	if (<src.findlayer(25)>)
+		src.dclick
+	endif
+	src.newitem i_et_ostard_eq
+	src.act.more1 c_ethereal_mount
+	src.act.more2 <src.uid>
+	src.act.link <src.uid>
+	src.act.cont <src.uid>
+	src.act.color 07fff
+	src.update
+	remove
+endif
+return 1
+
+[itemdef i_ethereal_llama]
+name ethereal llama
+id i_pet_llama
+type t_normal
+weight 0
+
+On=@Create
+attr attr_newbie
+color 045f
+
+On=@DClick
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu binegi kullanabilmeniz icin cantanizda olmali.
+elseif !(<src.body> == c_man) && !(<src.body> == c_woman)
+	src.sysmessage Bu binege sadece insan seklindeyken binebilirsiniz.
+else
+	if (<src.findlayer(25)>)
+		src.dclick
+	endif
+	src.newitem i_et_llama_eq
+	src.act.more1 c_ethereal_mount
+	src.act.more2 <src.uid>
+	src.act.link <src.uid>
+	src.act.cont <src.uid>
+	src.act.color 07fff
+	src.update
+	remove
+endif
+return 1
+
+[itemdef i_ethereal_horse]
+name ethereal horse
+id i_pet_horse_brown_lt
+type t_normal
+weight 0
+
+On=@Create
+attr attr_newbie
+color 045f
+
+On=@DClick
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu binegi kullanabilmeniz icin cantanizda olmali.
+elseif !(<src.body> == c_man_brnx) && !(<src.body> == c_man) && !(<src.body> == c_woman)
+	src.sysmessage Bu binege sadece insan seklindeyken binebilirsiniz.
+else
+	if (<src.findlayer(25)>)
+		src.dclick
+	endif
+	src.newitem i_et_horse_eq
+	src.act.more1 c_ethereal_mount
+	src.act.more2 <src.uid>
+	src.act.link <src.uid>
+	src.act.cont <src.uid>
+	src.act.color 07fff
+	src.update
+	remove
+endif
+return 1
+
+[itemdef i_et_ostard_eq]
+name ethereal ostard
+id i_mt_ostard_desert
+type t_eq_horse
+layer 25
+tdata3 c_ethereal_mount
+
+On=@UnEquip
+cont.newitem i_ethereal_ostard
+if !(<cont.findlayer(21).rescount> > 250) || !(<cont.weight> > <cont.weightmax>)
+	cont.act.bounce
+else
+	cont.act.cont <cont.findlayer(29).uid>
+	cont.act.update
+	cont.sysmessage Cantanizda asiri esya bulundugu icin ethereal bineginiz bankaniza yerlestirildi.
+endif
+return 1
+
+[itemdef i_et_llama_eq]
+name ethereal llama
+id i_mt_llama
+type t_eq_horse
+layer 25
+tdata3 c_ethereal_mount
+
+On=@UnEquip
+cont.newitem i_ethereal_llama
+if !(<cont.findlayer(21).rescount> > 250) || !(<cont.weight> > <cont.weightmax>)
+	cont.act.bounce
+else
+	cont.act.cont <cont.findlayer(29).uid>
+	cont.act.update
+	cont.sysmessage Cantanizda asiri esya bulundugu icin ethereal bineginiz bankaniza yerlestirildi.
+endif
+return 1
+
+[itemdef i_et_horse_eq]
+name ethereal horse
+id i_mt_horse_brown_lt
+type t_eq_horse
+layer 25
+tdata3 c_ethereal_mount
+
+On=@UnEquip
+cont.newitem i_ethereal_horse
+if !(<cont.findlayer(21).rescount> > 250) || !(<cont.weight> > <cont.weightmax>)
+	cont.act.bounce
+else
+	cont.act.cont <cont.findlayer(29).uid>
+	cont.act.update
+	cont.sysmessage Cantanizda asiri esya bulundugu icin ethereal bineginiz bankaniza yerlestirildi.
+endif
+return 1
+
+[chardef c_ethereal_mount]
+defname c_ethereal_mount
+name ethereal mount
+
+On=@Create
+color 07fff
+flags statf_hidden
+
+On=@SkillStart
+remove
+return 1
+
+On=@EnvirOnChange
+remove
+return 1
+
+[MENU check_banka]
+Banka ceki
+on=0 50.000 gp
+if (<src.gp> >= 50000)
+	src.gpconsume 50000
+	src.newitem i_check_brnx
+	src.act.more1 50000
+	src.act.more2 <uid>
+	src.act.bounce
+else
+	src.sysmessage Bankanizin en ust kisminda 50k altininiz bulunmuyor.
+endif
+on=0 100.000 gp
+if (<src.gp> >= 100000)
+	src.gpconsume 100000
+	src.newitem i_check_brnx
+	src.act.more1 100000
+	src.act.more2 <uid>
+	src.act.bounce
+else
+	src.sysmessage Bankanizin en ust kisminda 100k altininiz bulunmuyor.
+endif
+on=0 250.000 gp
+if (<src.gp> >= 250000)
+	src.gpconsume 250000
+	src.newitem i_check_brnx
+	src.act.more1 250000
+	src.act.more2 <uid>
+	src.act.bounce
+else
+	src.sysmessage Bankanizin en ust kisminda 250k altininiz bulunmuyor.
+endif
+
+On=0 500.000 gp
+if (<src.gp> >= 500000)
+	src.gpconsume 500000
+	src.newitem i_check_brnx
+	src.act.more1 500000
+	src.act.more2 <uid>
+	src.act.bounce
+else
+	src.sysmessage Bankanizin en ust kisminda 500k altininiz bulunmuyor.
+endif
+
+On=0 1.000.000 gp
+if (<src.gp> >= 1000000)
+	src.gpconsume 1000000
+	src.newitem i_check_brnx
+	src.act.more1 1000000
+	src.act.more2 <uid>
+	src.act.bounce
+else
+	src.sysmessage Bankanizin en ust kisminda 1m altininiz bulunmuyor.
+endif
+
+[itemdef i_check_brnx]
+id i_deed
+type t_script
+weight 0.1
+name check
+
+On=@Create
+color 096d
+attr 04
+
+On=@Click
+message cek karsiligi: <eval <more1>>
+return 1
+
+On=@DClick
+src.sysmessage @38 Check islemlerinizi gerceklestirmek icin provisionerlardan para kutusu almaniz gerekiyor.
+return 1
+target Islem yapacaginiz bankeri seciniz.
+return 1
+
+On=@TargOn_Char
+if (<src.targ.npc> == 5)
+	src.check_deposit <more1>
+	src.sfx 50
+	src.sysmessage <eval <more1>> altin bankaniza aktarildi.
+	remove
+endif
+return 1
+
+On=@TargOn_Item
+return 1
+
+[function check_deposit]
+var.check <eval (<argn> - 50000)>
+newitem i_gold
+act.amount 50000
+act.cont <findlayer(29).uid>
+if (<eval <var.check>> >= 50000)
+	check_deposit <eval <var.check>>
+elseif (<eval <var.check>> > 0)
+	newitem i_gold
+	act.amount <eval <var.check>>
+	act.cont <findlayer(29).uid>
+	var.check
+else
+	var.check
+endif
+
+
+[function dropstam]
+if (<stamina> > 10)
+	stamina (<stamina> - {6 10})
+elseif (<stamina> > 0)
+	stamina 0
+endif
+
+[DIALOG D_HAIRSTYLE]
+50,50
+nomove
+
+page 1
+resizepic 60 40 5054 225 295
+text 80 60 100 0
+
+button 74 90 4007 4006 1 0 1
+text 105 91 800 1
+button 74 110 4007 4006 1 0 2
+text 105 111 800 2
+button 74 130 4007 4006 1 0 3
+text 105 131 800 3
+button 74 150 4007 4006 1 0 4
+text 105 151 800 4
+button 74 170 4007 4006 1 0 5
+text 105 171 800 5
+button 74 190 4007 4006 1 0 6
+text 105 191 800 6
+button 74 210 4007 4006 1 0 7
+text 105 211 800 7
+button 74 230 4007 4006 1 0 8
+text 105 231 800 8
+button 74 250 4007 4006 1 0 9
+text 105 251 800 9
+button 74 270 4007 4006 1 0 10
+text 105 271 800 10
+button 74 290 4007 4006 1 0 11
+text 105 291 800 11
+
+[DIALOG D_HAIRSTYLE TEXT]
+Yeni sac seklinizi seciniz.
+kisa
+uzun
+at kuyrugu
+mohawk
+pageboy
+buns
+afro
+seyrek
+cift orgu
+krisna
+sac olmasin
+
+[DIALOG D_HAIRSTYLE BUTTON]
+On=0
+return 1
+On=1
+src.newitem i_hair_short
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=2
+src.newitem i_hair_long
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=3
+src.newitem i_hair_ponytail
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=4
+src.newitem i_hair_mohawk
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=5
+src.newitem i_hair_pageboy
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=6
+src.newitem i_hair_buns
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=7
+src.newitem i_hair_afro
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=8
+src.newitem i_hair_receding
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=9
+src.newitem i_hair_2_pigtails
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=10
+src.newitem i_hair_krisna
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=11
+src.findlayer(11).REMOVE
+remove
+return 1
+
+[DIALOG D_BEARDSTYLE]
+50,50
+nomove
+
+page 1
+resizepic 60 40 5054 240 245
+text 80 60 100 0
+
+button 74 90 4007 4006 1 0 1
+text 105 91 800 1
+button 74 110 4007 4006 1 0 2
+text 105 111 800 2
+button 74 130 4007 4006 1 0 3
+text 105 131 800 3
+button 74 150 4007 4006 1 0 4
+text 105 151 800 4
+button 74 170 4007 4006 1 0 5
+text 105 171 800 5
+button 74 190 4007 4006 1 0 6
+text 105 191 800 6
+button 74 210 4007 4006 1 0 7
+text 105 211 800 7
+button 74 230 4007 4006 1 0 8
+text 105 231 800 8
+
+[DIALOG D_BEARDSTYLE TEXT]
+Yeni sakal seklinizi seciniz.
+kisa + biyik
+uzun + biyik
+kisa
+uzun
+sadece biyik
+vandyke
+top sakal
+sakal olmasin
+
+[DIALOG D_BEARDSTYLE BUTTON]
+On=0
+On=1
+src.newitem i_beard_short_med
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=2
+src.newitem i_beard_long_med
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=3
+src.newitem i_beard_short
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=4
+src.newitem i_beard_long
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=5
+src.newitem i_beard_mustache
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=6
+src.newitem i_beard_vandyke
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=7
+src.newitem i_beard_goatee
+src.act.timer -1
+src.act.attr 014
+src.act.equip
+remove
+return 1
+On=8
+src.findlayer(16).REMOVE
+remove
+return 1
+
+[ITEMDEF i_deed_hair]
+NAME=hair re-styling deed
+ID=i_deed
+WEIGHT=1
+VALUE=4200
+TYPE=t_script
+
+On=@Create
+COLOR=0901
+
+On=@DClick
+DIALOG d_hairstyle
+return 1
+
+[ITEMDEF i_deed_beard]
+NAME=beard re-styling deed
+ID=i_deed
+WEIGHT=1
+VALUE=2200
+TYPE=t_script
+
+On=@Create
+COLOR=0901
+
+On=@DClick
+IF !(<SRC.BODY> == c_man)
+SRC.SYSMESSAGE Bunu kullanamazsiniz.
+RETURN 1
+ENDIF
+DIALOG d_beardstyle
+return 1
+
+[ITEMDEF i_golem_repair]
+NAME=golem repairing tool
+ID=i_tinker_tools
+WEIGHT=1
+
+On=@Create
+COLOR=0515
+
+On=@Dclick
+if (<src.stamina> < 10)
+src.sysmessage Golem tamir edemeyecek kadar yorgunsunuz.
+return 1
+endif
+if (<src.tinkering> < 70.0)
+src.sysmessage Golem tamir edebilmek icin tinkering skill'inizin 70.0 veya ustu olmasi gerekiyor.
+return 1
+endif
+IF !(<src.restest 10 i_ingot_iron>) || !(<src.restest 10 i_ingot_bronze>)
+SRC.SYSMESSAGE Golem tamir edebilmek icin icin 10 bronze ingot, 10 iron ingot'a ihtiyaciniz var.
+RETURN 1
+ENDIF
+TARGET Tamir edeceginiz golem'i seciniz.
+RETURN 1
+
+On=@TargOn_Item
+RETURN 1
+
+On=@TargOn_Char
+IF (<src.targ.distance> > 3)
+	src.sysmessage Golem'e cok uzaksiniz
+elseif (<src.targ.id> == c_m_golem_tinker1)
+	if (<src.targ.hits> == <src.targ.str>)
+		src.sysmessage Golem'in tamire ihtiyaci yok.
+	elseif (<src.targ.hits> > 350)
+		src.targ.hits 450
+		src.sysmessage Golem yepyeni oldu.
+		src.consume 10 i_ingot_iron
+		src.consume 10 i_ingot_bronze
+		src.stamina (<src.stamina> - 10)
+
+	elseif (<src.targ.hits> < 350)
+		src.targ.hits (<src.targ.hits> + 80)
+		src.sysmessage Golemi tamir ettiniz.
+		src.consume 10 i_ingot_iron
+		src.consume 10 i_ingot_bronze
+		src.stamina (<src.stamina> - 10)
+	endif
+elseif (<src.targ.id> == c_m_golem_tinker2)
+	if (<src.targ.hits> == <src.targ.str>)
+		src.sysmessage Golem'in tamire ihtiyaci yok.
+	elseif (<src.targ.hits> > 450)
+		src.targ.hits 550
+		src.sysmessage Golem yepyeni oldu.
+		src.consume 10 i_ingot_iron
+		src.consume 10 i_ingot_bronze
+		src.stamina (<src.stamina> - 10)
+
+	elseif (<src.targ.hits> < 450)
+		src.targ.hits (<src.targ.hits> + 80)
+		src.sysmessage Golemi tamir ettiniz.
+		src.consume 10 i_ingot_iron
+		src.consume 10 i_ingot_bronze
+		src.stamina (<src.stamina> - 10)
+	endif
+endif
+return 1
+
+[ITEMDEF i_power_crystal]
+NAME=power crystal
+ID=01f1c
+WEIGHT=3
+
+On=@Create
+COLOR=0515
+
+On=@DClick
+return 1
+
+[ITEMDEF i_clockwork_assembly]
+NAME=clockwork assembly
+ID=01ea9
+WEIGHT=15
+
+On=@Create
+COLOR=0515
+
+[DIALOG d_golem]
+150,75
+nomove
+noclose
+resizepic 0 0  5120 265 150
+resizepic 10 10  3000 245 130
+tilepic 110 55 8407
+text 81 21 9 0
+text 80 20 449 0
+button 50 100 1153 1155 1 0 1
+button 185 100 1150 1152 1 0 0
+text 48 78 450 1
+text 180 78 450 2
+
+[DIALOG d_golem Text]
+Golem yapimi
+Evet
+Hayir
+
+[DIALOG d_golem Button]
+On=1
+if (<tinkering> < 90.0)
+	sysmessage Golem yapabilmek icin tinkering skill'inizin 90.0 veya ustu olmasi gerekiyor.
+elseif !(<restest 50 i_ingot_iron>) || !(<restest 50 i_ingot_bronze>) || !(<restest 1 i_clockwork_assembly>) || !(<restest 5 i_axel_and_gears>) || !(<restest 1 i_power_crystal>)
+	sysmessage Golem yapabilmek icin 50 bronze ingot, 50 iron ingot, 1 clockwork assembly, 5 axle and gears ve 1 power crystal'e ihtiyaciniz var.
+else
+	consume 50 i_ingot_iron
+	consume 50 i_ingot_bronze
+	consume 5 i_axel_and_gears
+	consume 1 i_power_crystal
+	consume 1 i_clockwork_assembly
+	itemmake
+	if (<tinkering> < 98.0)
+		newitem i_pet_golem1
+		act.bounce
+	else
+		newitem i_pet_golem2
+		act.bounce
+	endif
+endif
+	
+[ITEMDEF i_pet_golem1]
+ID=i_pet_elem_earth
+TYPE=t_figurine
+NAME=Golem
+WEIGHT=20.0
+
+SKILLMAKE=TINKERING 90.0,t_tinker_tools
+RESOURCES=1 i_power_crystal,1 i_clockwork_assembly,5 i_axel_and_gears,50 i_ingot_iron,50 i_ingot_bronze
+
+On=@Create
+COLOR=0837
+MORE=c_m_golem_tinker1
+
+On=@DClick
+if (strmatch('<src.region.events>','r_house_public')) || (strmatch('<src.region.events>','r_house_private'))
+//if (<src.isevent.e_house>)
+	src.sysmessage Golemi ev icinde buyutemezsiniz.
+	return 1
+endif
+
+[ITEMDEF i_pet_golem2]
+ID=i_pet_elem_earth
+TYPE=t_figurine
+NAME=Golem
+WEIGHT=20.0
+
+SKILLMAKE=TINKERING 98.0,t_tinker_tools
+RESOURCES=1 i_power_crystal,1 i_clockwork_assembly,5 i_axel_and_gears,50 i_ingot_iron,50 i_ingot_bronze
+
+On=@Create
+COLOR=0839
+MORE=c_m_golem_tinker2
+
+On=@DClick
+if (strmatch('<src.region.events>','r_house_public')) || (strmatch('<src.region.events>','r_house_private'))
+//if (<src.isevent.e_house>)
+	src.sysmessage Golemi ev icinde buyutemezsiniz.
+	return 1
+endif
+
+[CHARDEF c_m_golem_tinker1]
+DEFNAME=c_m_golem_tinker1
+NAME=Golem
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=15,40
+ARMOR=10
+TEVENTS=e_intel_golem_tinker
+CAN=MT_WALK|MT_USEHANDS
+//SHELTER=r_dungeon
+DESIRES=c_m_golem_tinker1,c_m_golem_tinker2
+AVERSIONS=r_water,t_eerie_stuff
+BLOODCOLOR=0515
+
+ON=@Create
+COLOR=0837
+STR=450
+DEX=250
+INT=300
+
+PARRYING={90.0 100.0}
+MAGERY=0
+MAGICRESISTANCE={290.0 900.0}
+TACTICS={90.0 100.0}
+WRESTLING={90.0 100.0}
+
+NPC=brain_monster
+
+FAME=1000
+KARMA=1200
+
+CATEGORY=Monsters
+SUBSECTION=Golems
+DESCRIPTION=Tinker Low
+
+[CHARDEF c_m_golem_tinker2]
+DEFNAME=c_m_golem_tinker2
+NAME=Golem
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=25,50
+ARMOR=20
+TEVENTS=e_intel_golem_tinker
+CAN=MT_WALK|MT_USEHANDS
+//SHELTER=r_dungeon
+DESIRES=c_m_golem_tinker1,c_m_golem_tinker2
+AVERSIONS=r_water,t_eerie_stuff
+BLOODCOLOR=0525
+
+ON=@Create
+COLOR=0839
+STR=550
+DEX=350
+INT=400
+
+PARRYING={90.0 100.0}
+MAGERY=0
+MAGICRESISTANCE={290.0 900.0}
+TACTICS={90.0 100.0}
+WRESTLING={90.0 100.0}
+
+NPC=brain_monster
+
+FAME=1000
+KARMA=1200
+
+CATEGORY=Monsters
+SUBSECTION=Golems
+DESCRIPTION=Tinker High
+
+[CHARDEF c_m_golem]
+DEFNAME=c_m_golem
+NAME=Golem
+ID=c_elem_earth
+SOUND=snd_ELEMENTL_ERTHEL1
+ICON=i_pet_elem_earth
+DAM=35,60
+ARMOR=30
+TEVENTS=e_intelligent
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_FIRE_IMMUNE
+//SHELTER=r_dungeon
+DESIRES=c_m_golem
+AVERSIONS=r_water
+BLOODCOLOR=0515
+
+ON=@Create
+COLOR=0839
+STR=650
+DEX=450
+INT=500
+
+FAME={7000 9000}
+KARMA={-6000 -6999}
+
+PARRYING={90.0 100.0}
+MAGERY={900.0 1100.0}
+MAGICRESISTANCE={1290.0 1900.0}
+TACTICS={90.0 100.0}
+WRESTLING={90.0 100.0}
+
+npc=brain_monster
+
+ITEMNEWBIE=i_spellbook
+ADDSPELL=s_energy_bolt
+
+ITEM=loot_GOLEM
+
+CATEGORY=Monsters
+SUBSECTION=Golems
+DESCRIPTION=Spawned
+on=@spellcast
+if (<act.findid.i_rune_magic_reflection>)
+act.findid.i_rune_magic_reflection.remove
+endif
+
+[FUNCTION f_unequip_all]
+SRC.FINDLAYER(1).bounce
+SRC.FINDLAYER(2).bounce
+SRC.FINDLAYER(3).bounce
+SRC.FINDLAYER(4).bounce
+SRC.FINDLAYER(5).bounce
+SRC.FINDLAYER(6).bounce
+SRC.FINDLAYER(7).bounce
+SRC.FINDLAYER(10).bounce
+SRC.FINDLAYER(12).bounce
+SRC.FINDLAYER(13).bounce
+SRC.FINDLAYER(14).bounce
+SRC.FINDLAYER(17).bounce
+SRC.FINDLAYER(19).bounce
+SRC.FINDLAYER(20).bounce
+SRC.FINDLAYER(22).bounce
+SRC.FINDLAYER(23).bounce
+SRC.FINDLAYER(24).bounce
+
+[ITEMDEF i_ball_reputation]
+ID=0e2e
+NAME=reputation crystal
+VALUE=300
+
+ON=@CREATE
+	COLOR 0254
+
+ON=@DCLICK
+	if (<topobj.uid> != <src.uid>)
+		src.sysmessage Bunu kullanabilmeniz icin cantanizda olmali.
+		return 1
+	endif
+	SRC.EFFECT 3,I_FX_SPARKLE,2,25,1
+	SOUND 0F7
+        IF <src.kills> == 0
+	SRC.SYSMESSAGE Thou have not murdered an innocent.
+	ELSE
+	SRC.SYSMESSAGE Thou have slayed <src.kills> innocent.
+	ENDIF
+	SRC.SYSMESSAGE Thy fame, karma point: <src.fame> and <src.karma>.
+	REMOVE
+	RETURN 1
+
+
+[ITEMDEF i_pouch_trapped]
+ID=i_pouch
+NAME=belt pouch
+WEIGHT=5
+SKILLMAKE=TINKERING 65.0, t_tinker_tools
+RESOURCES=1 i_ingot_iron, 1 i_log
+TYPE=t_script
+
+on=@create
+ID=i_pouch
+color 50
+
+On=@PickUp_Pack
+ID=i_pouch
+name
+
+On=@Click
+	message @50 [trapped]
+	message <name>
+return 1
+
+ON=@DClick
+if (<attr>&attr_move_never)
+	return 1
+endif
+src.effect 3,i_fx_smoke,3,25,1
+//SRC.ANIM 20
+src.sound snd_spell_explosion
+src.damage 20
+src.f_fizzle
+src.skill fail
+remove
+return 1
+
+[ITEMDEF i_oil_cloth]
+DEFNAME=i_oil_cloth
+ID=0e21
+NAME=oil cloth
+RESOURCES=i_cloth
+WEIGHT=.1
+DYE=0
+VALUE=15
+SKILLMAKE=TAILORING 74.6, t_sewing_kit
+CATEGORY=Items by Professions
+SUBSECTION=Tailor
+DESCRIPTION=Oil Cloth
+TYPE=t_normal
+
+ON=@DClick
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bunu ancak cantanizda iken kullanabilirsiniz.
+	return 1
+endif
+	TARGET Lutfen zehrini gecirmeye calisacaginiz silahi secin.
+RETURN 1
+
+ON=@TargOn_Char
+	SRC.SYSMESSAGE Bu bir silah degil.
+RETURN 1
+
+ON=@TargOn_Item
+IF (<SRC.TARG.UID>==<UID>)
+	SRC.SYSMESSAGE Bu bir silah degil
+ELSEIF (<SRC.TARG.morez> > 0)
+	SRC.SysMessage Silahin zehrini gecirdiniz
+	SRC.TARG.morez 0
+	REMOVE
+ELSE
+	SRC.SYSMESSAGE Bu zehirli degil.
+ENDIF
+RETURN 1
+
+[ITEMDEF i_magic_reg30]
+ID=i_crystal_green_big 
+Value=1500
+WEIGHT=1
+NAME=reg crystal (30)
+
+ON=@Create
+attr=04
+
+ON=@Click
+message a lesser reagent crystal (30)
+return 1
+
+ON=@DClick
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bunu ancak cantanizda iken kullanabilirsiniz.
+	return 1
+endif
+src.emote use lesser reagent crystal
+src.newitem t_reg_30
+src.act.bounce
+
+remove
+return 1
+
+[TEMPLATE t_reg_30]
+container=i_bag
+item=i_reag_black_pearl,30
+item=i_reag_blood_moss,30
+item=i_reag_garlic,30
+item=i_reag_ginseng,30
+item=i_reag_mandrake_root,30
+item=i_reag_nightshade,30
+item=i_reag_sulfur_ash,30
+item=i_reag_spider_silk,30
+
+[ITEMDEF i_magic_reg60]
+ID=i_crystal_green_big 
+Value=2500
+WEIGHT=2
+NAME=reg crystal (60)
+
+ON=@Create
+attr=04
+
+ON=@Click
+message a reagent crystal (60)
+return 1
+
+ON=@DClick
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bunu ancak cantanizda iken kullanabilirsiniz.
+	return 1
+endif
+src.emote use lesser reagent crystal
+src.newitem t_reg_60
+src.act.bounce
+
+remove
+return 1
+
+[TEMPLATE t_reg_60]
+container=i_bag
+item=i_reag_black_pearl,60
+item=i_reag_blood_moss,60
+item=i_reag_garlic,60
+item=i_reag_ginseng,60
+item=i_reag_mandrake_root,60
+item=i_reag_nightshade,60
+item=i_reag_sulfur_ash,60
+item=i_reag_spider_silk,60
+
+[ITEMDEF i_magic_reg90]
+ID=i_crystal_green_big 
+Value=4000
+WEIGHT=3
+NAME=reg crystal (90)
+
+ON=@Create
+attr=04
+
+ON=@Click
+message a greater reagent crystal (90)
+return 1
+
+ON=@DClick
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bunu ancak cantanizda iken kullanabilirsiniz.
+	return 1
+endif
+src.emote use lesser reagent crystal
+src.newitem t_reg_90
+src.act.bounce
+
+remove
+return 1
+
+[TEMPLATE t_reg_90]
+container=i_bag
+item=i_reag_black_pearl,90
+item=i_reag_blood_moss,90
+item=i_reag_garlic,90
+item=i_reag_ginseng,90
+item=i_reag_mandrake_root,90
+item=i_reag_nightshade,90
+item=i_reag_sulfur_ash,90
+item=i_reag_spider_silk,90
+
+[ITEMDEF i_magic_reg120]
+ID=i_crystal_green_big 
+Value=4000
+WEIGHT=3
+NAME=reg crystal (120)
+
+ON=@Create
+attr=04
+
+ON=@Click
+message a ultra reagent crystal (120)
+return 1
+
+ON=@DClick
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bunu ancak cantanizda iken kullanabilirsiniz.
+	return 1
+endif
+src.emote use lesser reagent crystal
+src.newitem t_reg_120
+src.act.bounce
+
+remove
+return 1
+
+[TEMPLATE t_reg_120]
+container=i_bag
+item=i_reag_black_pearl,120
+item=i_reag_blood_moss,120
+item=i_reag_garlic,120
+item=i_reag_ginseng,120
+item=i_reag_mandrake_root,120
+item=i_reag_nightshade,120
+item=i_reag_sulfur_ash,120
+item=i_reag_spider_silk,120
+
+[EOF]

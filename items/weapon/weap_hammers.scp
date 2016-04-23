@@ -1,0 +1,1384 @@
+[itemdef i_silver_wmace]
+name silver war mace
+id i_mace_war
+type 11
+dam 10,30
+skill Mace Fighting
+reqstr 30
+twohands N
+weight 10
+resources 9 i_ingot_silver
+skillmake BLACKSMITHING 80.0
+
+On=@Create
+color 03e9
+hitpoints 25
+
+On=@Damage
+if (<src.npc> == brain_undead)
+	src.damage {18 50}
+	src.effect 3,i_fx_sparkle,6,15,1
+	src.spelleffect s_poison 50.0
+endif
+
+[itemdef 013b3]
+defname i_club
+resources 4 i_log
+weight 7.5
+type T_WEAPON_MACE_SMITH
+flip 1
+dam 8,24
+skill Mace Fighting
+twohands N
+category Provisions - Weapons
+subsection Maces & Hammers
+description Club
+dupelist 013b4
+skillmake CARPENTRY 30.0, t_carpentry
+//RESOURCES2=1 i_log
+
+On=@Create
+hitpoints 25
+
+On=@Damage
+src.dropstam
+
+On=@TargOn_Item
+return 1
+
+[itemdef 013b4] // club
+dupeitem 013b3
+
+[itemdef 0143c]
+defname i_hammer_pick
+weight 10
+type T_WEAPON_MACE_SMITH
+flip 1
+dam 6,33
+skill Mace Fighting
+reqstr 35
+twohands Y
+category Provisions - Weapons
+subsection Maces & Hammers
+description Hammer Pick
+dupelist 0143d
+
+skillmake blacksmithing 51.4
+resources 8 i_ingot_iron,1 i_log
+
+On=@Create
+hitpoints 25
+
+On=@Damage
+src.dropstam
+
+On=@TargOn_Item
+return 1
+
+[itemdef 0143d] // hammer pick
+dupeitem 0143c
+
+[itemdef 0f5c]
+defname i_mace
+resources 6 i_ingot_iron
+type T_WEAPON_MACE_SMITH
+flip 1
+dam 8,32
+skill MaceFighting
+twohands N
+weight 10
+category Provisions - Weapons
+subsection Maces & Hammers
+description Mace
+skillmake blacksmithing 40.8
+dupelist 0f5d
+
+On=@Damage
+src.dropstam
+
+On=@Create
+hitpoints 25
+
+On=@TargOn_Item
+return 1
+
+[itemdef 0f5d] // mace
+dupeitem 0f5c
+
+[itemdef 0143a]
+defname i_maul
+resources 10 i_ingot_iron
+weight 10
+type T_WEAPON_MACE_SMITH
+flip 1
+dam 10,30
+skill Mace Fighting
+reqstr 20
+twohands N
+category Provisions - Weapons
+subsection Maces & Hammers
+description Maul
+dupelist 0143b
+skillmake blacksmithing 45.5
+//RESOURCES2=17 i_ingot_iron
+
+On=@Create
+hitpoints 25
+
+On=@Damage
+src.dropstam
+
+On=@TargOn_Item
+return 1
+
+[itemdef 0143b] // maul
+dupeitem 0143a
+
+[itemdef 013e3]
+defname i_hammer_smith
+weight 10
+type T_WEAPON_MACE_SMITH
+flip 1
+resources 6 i_ingot_iron
+//RESOURCES2=3 i_ingot_iron,1 i_log
+skillmake blacksmithing 10.0
+dam 6,18
+skill Mace Fighting
+twohands N
+category Provisions - Weapons
+subsection Maces & Hammers
+description Smith's Hammer
+dupelist 013e4
+
+On=@Create
+hitpoints 25
+
+On=@TargOn_Item
+return 1
+
+On=@Damage
+src.dropstam
+
+[itemdef 013e4] // smith's hammer
+dupeitem 013e3
+
+[itemdef 01438]
+defname i_hammer_war
+resources 16 i_ingot_iron
+weight 9.7
+type T_WEAPON_MACE_SMITH
+flip 1
+dam 8,36
+skill Mace Fighting
+reqstr 40
+twohands Y
+category Provisions - Weapons
+subsection Maces & Hammers
+description War Hammer
+dupelist 01439
+skillmake blacksmithing 59.7
+//RESOURCES2=4 i_ingot_iron,1 i_board
+
+On=@Create
+hitpoints 25
+
+On=@Damage
+src.dropstam
+
+On=@TargOn_Item
+return 1
+
+[itemdef 01439] // war hammer
+dupeitem 01438
+
+[itemdef 01406]
+defname i_mace_war
+resources 14 i_ingot_iron
+weight 9.5
+type T_WEAPON_MACE_SMITH
+flip 1
+dam 10,30
+skill Mace Fighting
+twohands N
+category Provisions - Weapons
+subsection Maces & Hammers
+description War Mace
+dupelist 01407
+skillmake blacksmithing 53.8
+//RESOURCES2=9 i_ingot_iron
+
+On=@Create
+hitpoints 25
+
+On=@Damage
+src.dropstam
+
+On=@TargOn_Item
+return 1
+
+[itemdef 01407] // war mace
+dupeitem 01406
+
+[itemdef 04160]
+defname i_CLUB_RUIN
+value 1500
+id i_club
+name magical club
+resources i_club,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic clubs
+description club of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 04161]
+defname i_CLUB_MIGHT
+value 3700
+id i_club
+name magical club
+resources i_club,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic clubs
+description club of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04162]
+defname i_CLUB_FORCE
+value 5000
+id i_club
+name magical club
+resources i_club,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic clubs
+description club of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1 
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 04163]
+defname i_CLUB_POWER
+value 7500
+id i_club
+name magical club
+resources i_club,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic clubs
+description club of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04164]
+defname i_CLUB_vanq
+value 10000
+id i_club
+name magical club
+resources i_club,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic clubs
+description club of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 04175]
+defname i_HAMMER_PICK_RUIN
+value 1500
+id i_hammer_pick
+name magical hammer pick
+resources i_hammer_pick,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic hammer picks
+description hammer pick of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 04176]
+defname i_HAMMER_PICK_MIGHT
+value 3700
+id i_hammer_pick
+name magical hammer pick
+resources i_hammer_pick,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic hammer picks
+description hammer pick of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04177]
+defname i_HAMMER_PICK_FORCE
+value 5000
+id i_hammer_pick
+name magical hammer pick
+resources i_hammer_pick,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic hammer picks
+description hammer pick of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1 
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 04178]
+defname i_HAMMER_PICK_POWER
+value 7500
+id i_hammer_pick
+name magical hammer pick
+resources i_hammer_pick,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic hammer picks
+description hammer pick of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04179]
+defname i_HAMMER_PICK_vanq
+value 10000
+id i_hammer_pick
+name magical hammer pick
+resources i_hammer_pick,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic hammer picks
+description hammer pick of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 04165]
+defname i_MACE_RUIN
+value 1500
+id i_mace
+name magical mace
+resources i_mace,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic maces
+description mace of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 04166]
+defname i_MACE_MIGHT
+value 3700
+id i_mace
+name magical mace
+resources i_mace,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic maces
+description mace of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04167]
+defname i_MACE_FORCE
+value 5000
+id i_mace
+name magical mace
+resources i_mace,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic maces
+description mace of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1 
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 04168]
+defname i_MACE_POWER
+value 7500
+id i_mace
+name magical mace
+resources i_mace,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic maces
+description mace of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04169]
+defname i_MACE_vanq
+value 10000
+id i_mace
+name magical mace
+resources i_mace,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic maces
+description mace of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.macefighting> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 0416a]
+defname i_MAUL_RUIN
+value 1500
+id i_maul
+name magical maul
+resources i_maul,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic mauls
+description maul of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 0416b]
+defname i_MAUL_MIGHT
+value 3700
+id i_maul
+name magical maul
+resources i_maul,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic mauls
+description maul of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 0416c]
+defname i_MAUL_FORCE
+value 5000
+id i_maul
+name magical maul
+resources i_maul,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic mauls
+description maul of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1 
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 0416d]
+defname i_MAUL_POWER
+value 7500
+id i_maul
+name magical maul
+resources i_maul,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic mauls
+description maul of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 0416e]
+defname i_MAUL_vanq
+value 10000
+id i_maul
+name magical maul
+resources i_maul,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic mauls
+description maul of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 0417a]
+defname i_hammer_war_RUIN
+id 01438
+name magical war hammer
+resources i_hammer_war,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic War Hammers
+description War Hammer of Ruin
+
+On=@Create
+hitpoints 25
+morey 20.0
+attr attr_magic
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 0417b]
+defname i_hammer_war_MIGHT
+id 01438
+name magical war hammer
+resources i_hammer_war,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic War Hammers
+description War Hammer of Might
+
+On=@Create
+hitpoints 25
+morey 40.0
+attr attr_magic
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 0417c]
+defname i_hammer_war_FORCE
+id 01438
+name magical war hammer
+resources i_hammer_war,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic War Hammers
+description War Hammer of Force
+
+On=@Create
+hitpoints 25
+morey 60.0
+attr attr_magic
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 0417d]
+defname i_hammer_war_POWER
+id 01438
+name magical war hammer
+resources i_hammer_war,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic War Hammers
+description War Hammer of Power
+
+On=@Create
+hitpoints 25
+morey 80.0
+attr attr_magic
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 0417e]
+defname i_hammer_war_vanq
+id 01438
+name magical war hammer
+resources i_hammer_war,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic War Hammers
+description War Hammer of Vanquishing
+
+On=@Create
+hitpoints 25
+morey 100.0
+attr attr_magic
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 04170]
+defname i_mace_war_RUIN
+value 1500
+id i_mace_war
+name magical war mace
+resources i_mace_war,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war maces
+description war mace of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 04171]
+defname i_mace_war_MIGHT
+value 3700
+id i_mace_war
+name magical war mace
+resources i_mace_war,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war maces
+description war mace of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04172]
+defname i_mace_war_FORCE
+value 5000
+id i_mace_war
+name magical war mace
+resources i_mace_war,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war maces
+description war mace of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1 
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 04173]
+defname i_mace_war_POWER
+value 7500
+id i_mace_war
+name magical war mace
+resources i_mace_war,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war maces
+description war mace of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04174]
+defname i_mace_war_vanq
+value 10000
+id i_mace_war
+name magical war mace
+resources i_mace_war,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war maces
+description war mace of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@Equip
+if (<src.macefighting> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[EOF]

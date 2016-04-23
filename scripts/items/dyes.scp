@@ -1,0 +1,327 @@
+[ITEMDEF i_hides_cut_lizardman] 
+defname i_hides_cut_lizardman
+id i_hides_cut
+name lizardman hide
+weight 1
+
+on=@create
+color 05a5
+
+on=@dclick
+return 1
+
+[ITEMDEF i_ash_efreet]
+defname i_ash_efreet
+id i_reag_volcanic_ash
+name efreet ash
+weight 1
+
+on=@create
+color 089e
+
+on=@dclick
+return 1
+
+[ITEMDEF i_beholders_blood] 
+defname i_beholders_blood
+id i_reag_blood_vial
+name beholders blood
+weight 1
+
+on=@create
+color 0255
+
+on=@dclick
+return 1
+
+[ITEMDEF i_thralls_color]
+defname i_thralls_color
+id i_bottle_white
+name scorpion thralls color
+weight 1
+
+on=@create
+color 03b2
+
+on=@dclick
+return 1
+
+[itemdef i_rare_dye]
+defname i_rare_dye
+name rare dye tub
+id i_dye_tub
+SKILLMAKE=CARPENTRY 98.0, TAILORING 98.0
+resources 50 i_log,
+//dye 1
+
+on=@create
+more2 10
+DORAND 39
+	COLOR=0845
+	COLOR=059e
+	COLOR=066d
+	COLOR=096c
+	COLOR=05a5
+	COLOR=0543
+	COLOR=045e
+	COLOR=07d1
+	COLOR=0455
+	COLOR=084b
+	COLOR=059e
+	COLOR=0672
+	COLOR=04c3
+	COLOR=01f94
+	COLOR=0840
+	COLOR=052d
+	COLOR=084b
+	COLOR=066d
+	COLOR=0845
+	COLOR=0672
+	COLOR=0455
+	COLOR=07d1
+	COLOR=0543
+	COLOR=066d
+	COLOR=0799
+	COLOR=052d
+	COLOR=045e 
+	COLOR=0812
+	COLOR=070d
+	COLOR=0672
+	COLOR=0845
+	COLOR=04dc
+	COLOR=059e
+	COLOR=0796
+	COLOR=045e
+	COLOR=0543
+	COLOR=0455
+	COLOR=07d1
+	COLOR=052d
+
+ENDDO
+
+on=@dclick
+if (<src.tailoring> <98.0)
+src.sysmessage @0 Rare dye'i kullanabilmek icin 98.0 Tailoring gereklidir.
+return 1
+
+elseif (<src.targ.topobj.distance> >= 3) || (<src.targ.canseelos>!=1)
+src.sysmessage @0 E$yadan uzaktasiniz.
+return 1
+
+else
+target @0 Boyamak istediginiz kiyafeti secin.
+return 1
+endif
+
+on=@targon_char
+if (<src.targ.distance> >= 5) || (<src.targ.canseelos>!=1)
+src.sysmessage @0 Bu pek mumkun gozukmuyor.
+return 1
+
+else
+return 1
+endif
+
+on=@targon_item
+if (<src.targ.topobj.body>) && (<src.targ.topobj.uid>!=<src.uid>)
+return 1
+
+elseif (<src.targ.canseelos>!=1) || (<src.targ.topobj.distance>>=4)
+src.sysmessage @0 Bu pek mumkun gozukmuyor.
+return 1
+
+elseif (<src.targ.attr>&attr_move_never) && (<src.targ.region.flags>==01092) || (<src.targ.region.flags>==01192)
+src.sysmessage @0 Kilitlenmi$ e$yalari boyayamazsiniz.
+return 1
+
+elseif !(<src.targ.cont.uid>==<src.uid>)
+src.sysmessage @0 Uzerinizde olmayan kiyafetleri boyayamazsiniz.
+return 1
+
+elseif !(<src.targ.type> = t_clothing)
+	src.sysmessage @0 Bunu boyayamazsiniz.
+return 1
+
+elseif (<src.targ.id>==01549) || (<src.targ.id>==0170d) || (<src.targ.id>==0141b) || (<src.targ.id>==01545) || (<src.targ.id>==01547) || (<src.targ.type>==t_container)
+return 1
+
+elseif (<src.targ.dye> == 1)
+src.targ.color <color>
+src.targ.update
+sound 023e
+more2 <more2>-1
+if !(<more2>)
+remove
+endif
+
+else
+src.sysmessage @0 Sadece elbiseleri boyayabilirsiniz.
+return 1
+endif
+
+on=@click
+message @68 [<eval <more2>>]
+
+// ----------
+// Black Dye
+// ----------
+
+[itemdef i_black_dye_tub]
+defname i_black_dye_tub
+name black dye tub
+id i_dye_tub
+SKILLMAKE=CARPENTRY 90.0, TAILORING 85.0
+resources 50 i_log, 
+//dye 1
+
+on=@create
+more2 20
+color 1
+
+on=@dclick
+if (<src.tailoring> <85.0)
+src.sysmessage @0 Black dye'i kullanabilmek icin 85.0 Tailoring gereklidir.
+return 1
+
+elseif (<src.targ.topobj.distance> >= 3) || (<src.targ.canseelos>!=1)
+src.sysmessage @0 E$yadan uzaktasiniz.
+return 1
+
+else
+target @0 Boyamak istediginiz kiyafeti secin.
+return 1
+endif
+
+on=@targon_char
+if (<src.targ.distance> >= 5) || (<src.targ.canseelos>!=1)
+src.sysmessage @0 Bu pek mumkun gozukmuyor.
+return 1
+
+else
+return 1
+endif
+
+on=@targon_item
+if (<src.targ.topobj.body>) && (<src.targ.topobj.uid>!=<src.uid>)
+return 1
+
+elseif (<src.targ.canseelos>!=1) || (<src.targ.topobj.distance>>=4)
+src.sysmessage @0 Bu pek mumkun gozukmuyor.
+return 1
+
+elseif (<src.targ.attr>&attr_move_never) && (<src.targ.region.flags>==01092) || (<src.targ.region.flags>==01192)
+src.sysmessage @0 Kilitlenmi$ e$yalari boyayamazsiniz.
+return 1
+
+elseif !(<src.targ.cont.uid>==<src.uid>)
+src.sysmessage @0 Uzerinizde olmayan kiyafetleri boyayamazsiniz.
+return 1
+
+elseif !((<src.targ.type> = t_clothing))
+	src.sysmessage @0 Bunu boyayamazsiniz.
+return 1
+
+elseif (<src.targ.baseid>==i_robe_mage) || (<src.targ.baseid>==i_robe_warlock) || (<src.targ.baseid>==i_robe_warrior)
+	src.sysmessage @0 Siyah boya ile mage robe boyayamazsiniz.
+	return 1
+
+elseif (<src.targ.id>==01549) || (<src.targ.id>==0170d) || (<src.targ.id>==0141b) || (<src.targ.id>==01545) || (<src.targ.id>==01547) || (<src.targ.type>==t_container)
+return 1
+
+elseif (<src.targ.dye> == 1)
+src.targ.color <color>
+src.targ.update
+sound 023e
+more2 <more2>-1
+if !(<more2>)
+remove
+return 1
+
+else
+src.sysmessage @0 Sadece elbiseleri boyuyabilirsiniz.
+return 1
+endif
+endif
+
+on=@click
+message @68 [<eval <more2>>]
+
+// -----------------
+// Rare leather dye
+// -----------------
+
+[itemdef i_rare_leather_dye]
+defname i_rare_leather_dye
+name rare leather dye tub
+id i_dye_tub
+SKILLMAKE=CARPENTRY 98.0, TAILORING 95.0
+resources 75 i_log,
+
+on=@create
+more2 20
+DORAND 15
+	COLOR=096c
+	COLOR=084b
+	COLOR=059e
+	COLOR=0672
+	COLOR=04c3
+	COLOR=0840
+	COLOR=0543
+	COLOR=066d
+	COLOR=052d
+	COLOR=045e
+	COLOR=070d
+	COLOR=0845
+	COLOR=04dc
+	COLOR=0455
+	COLOR=07d1
+ENDDO
+
+on=@dclick
+if !(<more2>)
+src.sysmessage @68,1,1 Bu boya bitmi$.
+remove
+return 1
+endif
+
+if (<src.targ.topobj.distance> >= 3) || (<src.targ.canseelos> != 1)
+src.dx Boyaya ula$amiyorsunuz.
+return 1
+elseif (<src.tailoring> <98.0)
+src.sysmessage @0 Leather Dye'i kullanabilmek icin 95.0 Tailoring gereklidir.
+return 1
+else
+target Boyamak istediginiz deriyi secin.
+return 1
+endif
+
+on=@targon_char
+src.sysmessage Bunu boyayamazsiniz.
+return 1
+
+on=@targon_item
+if (<src.targ.cont.cont.uid> != <src.uid>)
+src.sysmessage Boyamak istediginiz deri cantanizda olmali.
+return 1
+
+elseif ((<src.targ.id> == 01549) || (<src.targ.id> == 0170d) || (<src.targ.id> == 0141b) || (<src.targ.id> == 01545) || (<src.targ.id> == 01547) || (<src.targ.type> == t_container))
+return 1
+
+elseif ((<src.targ.id> == 013d4) || (<src.targ.id> == 013d5) || (<src.targ.id> == 013d6) || (<src.targ.id> == 013d8) || (<src.targ.id> == 013d7) || (<src.targ.id> == 013d9) || (<src.targ.id> == 013da) || (<src.targ.id> == 013db) || (<src.targ.id> == 013dc) || (<src.targ.id> == 013dd) || (<src.targ.id> == 013de) || (<src.targ.id> == 013df) || (<src.targ.id> == 013e0) || (<src.targ.id> == 013e1) || (<src.targ.id> == 013e2) || (<src.targ.id> == 013c5) || (<src.targ.id> == 013c6) || (<src.targ.id> == 013c7) || (<src.targ.id> == 013c8) || (<src.targ.id> == 013c9) || (<src.targ.id> == 013ca) || (<src.targ.id> == 013cb) || (<src.targ.id> == 013cc) || (<src.targ.id> == 013cd) || (<src.targ.id> == 013ce) || (<src.targ.id> == 013cf) || (<src.targ.id> == 013d0) || (<src.targ.id> == 013d1) || (<src.targ.id> == 013d2) || (<src.targ.id> == 013d3) || (<src.targ.id> == 01db9) || (<src.targ.id> == 0dba) || (<src.targ.id> == 01c00) || (<src.targ.id> == 01c01) || (<src.targ.id> == 01c02)  || (<src.targ.id> == 01c03)  || (<src.targ.id> == 01c06)  || (<src.targ.id> == 01c07) || (<src.targ.id> == 01c08)  || (<src.targ.id> == 01c09)    || (<src.targ.id> == 01c0a)  || (<src.targ.id> == 01c0b)  || (<src.targ.id> == 01c0c)  || (<src.targ.id> == 01c0d))
+src.targ.color <color>
+src.targ.update
+sound 023e
+more2 <more2>-1
+
+else
+src.sysmessage @0 Sadece deri vari setleri boyuyabilirsiniz.
+return 1
+endif
+
+on=@click
+message @68 [<eval <more2>>]
+
+[function dx]
+src.src.sysmessage  @1100,,1 <args>
+
+[EOF]

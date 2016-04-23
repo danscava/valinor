@@ -1,0 +1,662 @@
+// ----------------------------
+// SPAWNERYARATIK.SCP - HAYVAN SPAWNLARI SCRIPTI
+// TARIHI: 11 Haziran 2004 - bestturk
+// ----------------------------
+[itemdef i_spawnciani]
+name=Animal Spawn
+weight=0
+id=i_deed
+TYPE=t_script
+On=@create
+attr=04
+tag.morex=1 //amount
+tag.morey=30 //enazzaman
+tag.morez=45 //encokzaman
+tag.more1=3 //uzaklik
+On=@dclick
+if (<src.account.plevel> > 1)
+src.dialog d_spawnlarani
+return 1
+else
+remove
+return 1
+endif
+
+[dialog d_spawnlarani]
+20,50
+nomove
+PAGE 0
+resizepic 0 0 3500 450 300
+resizepic 10 10 3000 430 280
+text 140 15 1152 8
+
+resizepic 450 100 3500 200 130
+resizepic 460 110 3000 180 110
+
+text 470 120 1152 0
+resizepic 570 120 3000 50 22
+textentry 575 120 253 25 0 1 4
+
+text 470 140 1152 1
+resizepic 570 140 3000 50 22
+textentry 575 140 253 25 0 2 5
+
+text 470 160 1152 2
+resizepic 570 160 3000 50 22
+textentry 575 160 253 25 0 3 6
+
+text 470 180 1152 3
+resizepic 570 180 3000 50 22
+textentry 575 180 253 25 0 4 7
+
+text 150 40 1152 9
+button 120 40 4005 4006 0 1 0
+
+text 150 60 1152 10
+button 120 60 4005 4006 0 2 0
+
+text 290 40 1152 11
+button 260 40 4005 4006 0 3 0
+
+text 290 60 1152 12
+button 260 60 4005 4006 0 4 0
+
+PAGE 1
+text 50 100 1152 19
+button 20 100 4005 4006 1 0 1
+
+text 50 120 1152 20
+button 20 120 4005 4006 1 0 2
+
+text 50 140 1152 21
+button 20 140 4005 4006 1 0 3
+
+text 50 160 1152 22
+button 20 160 4005 4006 1 0 4
+
+text 50 180 1152 23
+button 20 180 4005 4006 1 0 5
+
+text 50 200 1152 24
+button 20 200 4005 4006 1 0 6
+
+text 50 220 1152 25
+button 20 220 4005 4006 1 0 7
+
+text 50 240 1152 26
+button 20 240 4005 4006 1 0 8
+
+PAGE 2
+text 50 100 1152 27
+button 20 100 4005 4006 1 0 9
+
+text 50 120 1152 28
+button 20 120 4005 4006 1 0 10
+
+text 50 140 1152 29
+button 20 140 4005 4006 1 0 11
+
+text 50 160 1152 30
+button 20 160 4005 4006 1 0 12
+
+text 50 180 1152 31
+button 20 180 4005 4006 1 0 13
+
+text 50 200 1152 32
+button 20 200 4005 4006 1 0 14
+
+text 50 220 1152 33
+button 20 220 4005 4006 1 0 15
+
+text 50 240 1152 34
+button 20 240 4005 4006 1 0 16
+
+text 210 100 1152 35
+button 180 100 4005 4006 1 0 17
+
+text 210 120 1152 36
+button 180 120 4005 4006 1 0 18
+
+text 210 140 1152 37
+button 180 140 4005 4006 1 0 19
+
+text 210 160 1152 38
+button 180 160 4005 4006 1 0 20
+
+PAGE 3
+text 50 100 1152 39
+button 20 100 4005 4006 1 0 21
+
+text 50 120 1152 40
+button 20 120 4005 4006 1 0 22
+
+text 50 140 1152 41
+button 20 140 4005 4006 1 0 23
+
+text 50 160 1152 42
+button 20 160 4005 4006 1 0 24
+
+text 50 180 1152 43
+button 20 180 4005 4006 1 0 25
+
+text 50 200 1152 44
+button 20 200 4005 4006 1 0 26
+
+text 50 220 1152 45
+button 20 220 4005 4006 1 0 27
+
+text 50 240 1152 46
+button 20 240 4005 4006 1 0 28
+
+text 210 100 1152 47
+button 180 100 4005 4006 1 0 29
+
+text 210 120 1152 48
+button 180 120 4005 4006 1 0 30
+
+text 210 140 1152 49
+button 180 140 4005 4006 1 0 31
+
+PAGE 4
+text 50 100 1152 50
+button 20 100 4005 4006 1 0 32
+
+text 50 120 1152 51
+button 20 120 4005 4006 1 0 33
+
+text 50 140 1152 52
+button 20 140 4005 4006 1 0 34
+
+text 50 160 1152 53
+button 20 160 4005 4006 1 0 35
+
+text 50 180 1152 54
+button 20 180 4005 4006 1 0 36
+
+text 50 200 1152 55
+button 20 200 4005 4006 1 0 37
+
+text 50 220 1152 56
+button 20 220 4005 4006 1 0 38
+
+text 50 240 1152 57
+button 20 240 4005 4006 1 0 39
+
+text 210 100 1152 58
+button 180 100 4005 4006 1 0 40
+
+text 210 120 1152 59
+button 180 120 4005 4006 1 0 41
+
+text 210 140 1152 60
+button 180 140 4005 4006 1 0 42
+
+text 210 160 1152 61
+button 180 160 4005 4006 1 0 43
+
+text 210 180 1152 62
+button 180 180 4005 4006 1 0 44
+
+text 210 200 1152 63
+button 180 200 4005 4006 1 0 45
+
+text 210 220 1152 64
+button 180 220 4005 4006 1 0 46
+
+text 210 240 1152 65
+button 180 240 4005 4006 1 0 47
+
+text 340 100 1152 66
+button 310 100 4005 4006 1 0 48
+
+text 340 120 1152 67
+button 310 120 4005 4006 1 0 49
+
+text 340 140 1152 68
+button 310 140 4005 4006 1 0 50
+
+
+[dialog d_spawnlarani text]
+Amount
+Min. Time
+Max. Time
+Max. Dist
+<eval <src.findid(i_spawnciani).tag.morex>>
+<eval <src.findid(i_spawnciani).tag.morey>>
+<eval <src.findid(i_spawnciani).tag.morez>>
+<eval <src.findid(i_spawnciani).tag.more1>>
+Hayvan Spawnlari
+Air //9
+Land Domestic
+Land Wild
+Land Wild 2
+Giant I.
+Misc. //14
+Orcs
+Ore Elem.
+T2A Monsters
+Undeads //18
+Chicken // DEAMONLAR BASLAR 19
+Bird
+Crow
+Eagle
+Magpie
+Raven
+Tropical bird
+Tropical bird 2 //DEAMONLAR BITER 26
+Bull //DRAGONLAR BASLAR 27
+Cat
+Cow
+Dog
+Horse(bej)
+Horse(kahve)
+Horse(tan)
+Horse(gri)
+Lamb
+Pig
+Sheep
+Pack Horse// DRAGONLAR BITER 38
+Alligator //ElementalLER BASLAR 39
+Black bear
+Boar
+Brown bear
+Bull frog
+Cougar
+Dire wolf
+Giant rat
+Goat
+Gorilla
+Gray wolf //ELEMENTALLELR BITER 40
+Grizzy bear //ETTINS BASLAR 41
+Hart
+Hind
+Ice snake
+Jack rabbit
+Lava snake
+Lion
+Mountain goat
+Panther
+Polar bear
+Rabbit
+Rat
+Sewer rat
+Snake
+Snow leopard
+Timber wolf
+Walrus
+White wolf
+Wild bear //ETTINS BITER 59
+
+[dialog d_spawnlarani button]
+On=1
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 c_chicken
+f_spawnciani
+On=2
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 06
+f_spawnciani
+On=3
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 01026
+f_spawnciani
+On=4
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 05
+f_spawnciani
+On=5
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 01027
+f_spawnciani
+On=6
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 01061
+f_spawnciani
+On=7
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 c_bird_jungle
+f_spawnciani
+On=8
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 01060
+f_spawnciani
+On=9
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0e8
+f_spawnciani
+On=10
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0c9
+f_spawnciani
+On=11
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0d8
+f_spawnciani
+On=12
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0d9
+f_spawnciani
+On=13
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0C8
+f_spawnciani
+On=14
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0CC
+f_spawnciani
+On=15
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0E4
+f_spawnciani
+On=16
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0e2
+f_spawnciani
+On=17
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0df
+f_spawnciani
+On=18
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0cb
+f_spawnciani
+On=19
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0cf
+f_spawnciani
+On=20
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0123
+f_spawnciani
+On=21
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0ca
+f_spawnciani
+On=22
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 01056
+f_spawnciani
+On=23
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0122
+f_spawnciani
+On=24
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0D3
+f_spawnciani
+On=25
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 051
+f_spawnciani
+On=26
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0600
+
+On=27
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 01015
+f_spawnciani
+On=28
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0d7
+f_spawnciani
+On=29
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 0d1
+f_spawnciani
+On=30
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2 01d
+f_spawnciani
+On=31
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=01031
+f_spawnciani
+
+On=32
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=0d4
+f_spawnciani
+On=33
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=0eb
+f_spawnciani
+
+On=34
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=0ed
+f_spawnciani
+
+On=35
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=01013
+f_spawnciani
+
+On=36
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=01029
+f_spawnciani
+
+On=37
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=01014
+f_spawnciani
+
+On=38
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=c_a_lion
+f_spawnciani
+
+On=39
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=01010
+f_spawnciani
+
+On=40
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=0d6
+f_spawnciani
+
+On=41
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=0d5
+f_spawnciani
+
+On=42
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=0cd
+f_spawnciani
+
+On=43
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=0ee
+f_spawnciani
+
+On=44
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=01030
+f_spawnciani
+
+On=45
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=034
+f_spawnciani
+
+On=46
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=01059
+f_spawnciani
+
+On=47
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=01e
+f_spawnciani
+
+On=48
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=0dd
+f_spawnciani
+
+On=49
+src.findid(i_spawnciani).tag.morex=<ARGTXT[1]>
+src.findid(i_spawnciani).tag.morey=<ARGTXT[2]>
+src.findid(i_spawnciani).tag.morez=<ARGTXT[3]>
+src.findid(i_spawnciani).tag.more1=<ARGTXT[4]>
+src.findid(i_spawnciani).tag.more2=01032
+f_spawnciani
+
+[function f_spawnciani]
+src.newitem 01ea7
+src.act.p=<src.p>
+src.act.type=34
+src.act.amount <eval <src.findid(i_spawnciani).tag.morex>>
+src.act.more <eval <src.findid(i_spawnciani).tag.more2>>
+src.act.morex <eval <src.findid(i_spawnciani).tag.morey>>
+src.act.morey <eval <src.findid(i_spawnciani).tag.morez>>
+src.act.morez <eval <src.findid(i_spawnciani).tag.more1>>
+src.act.attr 00b0s
+src.act.timer 1

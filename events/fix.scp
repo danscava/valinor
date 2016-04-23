@@ -1,0 +1,1082 @@
+// ----------------------------
+// FIX.SCP - GENEL BUG FIXLERI  
+// SON GUNCELLENME TARIHI: 03 MAYIS 2006 - RoyaL
+// ----------------------------
+version=0.55
+
+[function spell_say]
+sayua 0481,6,0,enu <args>
+
+[events e_death_announce]
+On=@Death
+if !(<isevent.e_qchar>)
+	if (<fame> > 9900) && (<memoryfindtype.memory_harmedby>) && (<act.ischar>) && (<act.uid> != <uid>) && (0<act.npc> == 0)
+		SERV.ALLCLIENTS.SYSMESSAGE <sex Lord/Lady> <name>, <act.name> tarafindan katledildi.
+	endif
+endif
+
+[events fix]
+
+On=@Attack
+if (<memoryfindtype.memory_guild.link.more1> == 1) && (<src.memoryfindtype.memory_guild.link.more1> == 1) // !(<src.isevent.e_dm>)
+sysmessage @54,,1 Yandaslariniza zarar veremezsiniz.
+return 1
+elseif (<memoryfindtype.memory_guild.link.more1> == 2) && (<src.memoryfindtype.memory_guild.link.more1> == 2) // asfasf && !(<src.isevent.e_dm>)
+sysmessage @54,,1 Yandaslariniza zarar veremezsiniz.
+return 1
+endif
+If (<src.id> == c_pv)
+sysmessage @350 Player vendorlarina zarar veremezsiniz.
+return 1
+endif
+
+On=@HitTry
+if (<memoryfindtype.memory_guild.link.more1> == 1) && (<act.memoryfindtype.memory_guild.link.more1> == 1)
+Src.Action = -1
+Src.Flags = <SRC.FLAGS> & ~statf_war
+Return 1
+elseif (<memoryfindtype.memory_guild.link.more1> == 2) && (<act.memoryfindtype.memory_guild.link.more1> == 2)
+Src.Action = -1
+Src.Flags = <SRC.FLAGS> & ~statf_war
+Return 1
+endif
+If (<src.npc> == brain_vendor) || (<src.npc> == brain_guard) || (<src.npc> == brain_banker) || (<src.npc> == brain_animal_trainer) || (<src.npc> == brain_healer)
+Src.Action = -1
+Src.Flags = <SRC.FLAGS> & ~statf_war
+Return 1
+Elseif (<Src.Uid> == <Uid>)
+Src.Action = -1
+Src.Flags = <SRC.FLAGS> & ~statf_war
+Return 1
+Elseif (<Src.Flags>&(statf_stone|statf_invul|statf_hidden|statf_invisible))
+Src.Action = -1
+Src.Flags = <SRC.FLAGS> & ~statf_war
+Return 1
+Endif
+
+On=@Profile
+if (<src.uid> == <uid>) || (0<src.account.plevel> > 2)
+	src.sysmessage Hesap: <account.name>, <eval (<account.totalconnecttime> / 60)>s
+	src.sysmessage Kayit: <account.firstconnectdate>
+	if (strmatch('<src.uid.04009a3fa.tag.<account.name>_vet>','01'))
+		src.sysmessage Veteran: odul verilmis.
+	endif
+	src.sysmessage Karakter: <eval (<age> / 86400)> gun once dogmus.
+endif
+
+On=@Death
+if (<kills> > 5)
+	f_statloss
+	findid.i_mem_healing.remove
+	f_fizzle
+endif 
+if (<src.findid.i_alt_not>)
+src.findid.i_alt_not.remove
+f_fizzle
+endif (<isevent.e_qchar>)
+	if (<fame> > 9900) && (<memoryfindtype.memory_harmedby>) && (<act.ischar>) && (<act.uid> != <uid>) && (0<act.npc> == 0)
+		SERV.ALLCLIENTS SYSMESSAGE @0481 <sex Lord/Lady> <name>, <act.name> tarafindan katledildi. Huzur icinde yatsin...
+	endif
+endif
+
+On=@GetHit
+if (<findtype.t_eq_trade_window>)
+	findtype.t_eq_trade_window.remove
+endif
+
+On=@EnvironChange
+if !(<memoryfindtype.memory_guild.link.align>) || (<kills> > 5)
+	if (<findlayer(2).baseid> == i_shield_chaos) || (<findlayer(2).baseid> == i_shield_order)
+		findlayer(2).unequip
+	endif
+endif
+
+if ((<body> == c_man) || (<body> == c_woman)) // yimmeeah
+	if !((<findid.i_jailcik>) || (<flags>&statf_stone))
+		if (<food> == 2)
+			sayua 045f,0,0,0 * acliktan basi doner *
+		elseif (<food> == 1)
+			sayua 045f,0,0,0 * acliktan olmek uzeredir *
+		elseif (<food> == 0)
+			sayua 045f,0,0,0 * acliktan olur *
+			newitem i_starver
+			act.equip
+		endif
+	endif
+endif
+
+if !((<findlayer(32)> || <findlayer(44)> || <findlayer(47)>)) // active stat-effecting spell?
+	stchk
+	if ((<findlayer(10).baseid> == i_platemail_gorget) && (<findlayer(6).baseid> == i_platemail_helm) && (<findlayer(7).baseid> == i_platemail_gloves) && (<findlayer(13).baseid> == i_platemail_chest) && (<findlayer(19).baseid> == i_platemail_arms) && (<findlayer(24).baseid> == i_platemail_leggings))
+		if (<dex> > 80)
+			dex 80
+		endif
+	elseif ((<findlayer(6).baseid> == i_bone_helmet) && (<findlayer(13).baseid> == i_bone_chest) && (<findlayer(19).baseid> == i_bone_arms) && (<findlayer(7).baseid> == i_bone_gloves) && (<findlayer(4).baseid> == i_bone_leggings))
+		if (<dex> > 85)
+			dex 85
+		endif
+	endif
+	if !((<isevent.e_str>) || (<isevent.e_dex>) || (<isevent.e_int>) || (<isevent.e_spr>))
+		var.stats <eval (<str> + <int> + <dex>)> // stat cap fix
+		if (<eval <var.stats>> > 225)
+			statcapdex
+		endif
+	endif
+endif
+
+On=@SpellCast
+if (<argn> == 7)
+if (<act.uid> == <uid>)
+else
+sysmessage @38,,1 Sadece kendinize atabilirsiniz.
+return 1
+endif
+endif
+//If (<memoryfindtype.memory_guild.link.more1> == 1) && (<act.memoryfindtype.memory_guild.link.more1> == 1) && !(<act.uid> == <uid>)
+//   If (<argn> == 1) || (<argn> == 3) || (<argn> == 5) || (<argn> == 8) || (<argn> == 12) || (<argn> == 18) || (<argn> == 20) || (<argn> == 27) || (<argn> == 30) || (<argn> == 31) || (<argn> == 37) || (<argn> == 38) || (<argn> == 42) || (<argn> == 43) || (<argn> == 51) || (<argn> == 53) || (<argn> == 55)
+//   src.sysmessage @350 Yandaslariniza zarar veremezsiniz.
+//   action -1
+//   return 1
+//   endif
+//endif
+//if (<memoryfindtype.memory_guild.link.more1> == 2) && (<act.memoryfindtype.memory_guild.link.more1> == 2) && !(<act.uid> == <uid>)
+//    If (<argn> == 1) || (<argn> == 3) || (<argn> == 5) || (<argn> == 8) || (<argn> == 12) || (<argn> == 18) || (<argn> == 20) || (<argn> == 27) || (<argn> == 30) || (<argn> == 31) || (<argn> == 37) || (<argn> == 38) || (<argn> == 42) || (<argn> == 43) || (<argn> == 51) || (<argn> == 53) || (<argn> == 55)
+//    sysmessage @350 Yandaslariniza zarar veremezsiniz.
+//    action -1
+//    return 1
+//    endif
+//endif
+if (<findlayer(1).type> == t_spellbook)
+	findlayer(2).unequip
+elseif !(<findlayer(2).type> == t_weapon_mace_staff)
+	findlayer(1).unequip
+	findlayer(2).unequip
+endif
+
+if ((<flags>&statf_freeze) || (<flags>&statf_stone) || (<findtype.t_armor.cont.uid> == <uid>)) // dur bakim nolyo
+	f_fizzle
+	return 1
+endif
+
+if (<kills> < 6) && (strmatch('<targ.region.name>','Calimport'))
+	sysmessage Calimport'un guclu buyu duvarlari sebebiyle buyunuz engellendi.
+	go 5249 3918 28
+	f_fizzle
+	return 1
+endif
+
+if (<act.ischar>)
+	if !(<act.flags>&statf_insubstantial) && (0<act.account.plevel> > 0<account.plevel>)
+		f_fizzle
+		return 1
+	elseif ((<argn> == 7) || (<argn> == 15)) // no prot. & reac. arm. over armor
+		if (<act.findtype.t_armor.cont.uid> == <act.uid>)
+			f_fizzle
+			return 1
+		endif
+	elseif (<argn> == 59) && !(<act.flags>&statf_dead)
+		f_fizzle
+		return 1
+	endif
+endif
+
+if (<act.id> == c_pv)
+	if !((<argn> == 25) || (<argn> == 26) || (<argn> == 46) || (<argn> == 48) || (<argn> == 49) || (<argn> == 54) || (<argn> == 55) || (<argn> == 57))
+		f_fizzle
+		return 1
+	endif
+endif
+
+if (<findid.i_mem_healing>)
+	f_fizzle
+	src.sysmessage @1100,,1 Bandaj kullanirken buyu yapamazsiniz..
+return 1
+endif
+
+// spell freeze time
+if (<argn> == 1)	// Clumsy
+	spell_say Uus Jux
+	mg1
+elseif (<argn> == 2)	// Create food
+mg1
+spell_say In Mani Ylem
+newitem i_ham
+act.bounce
+consume 1 i_reag_garlic
+consume 1 i_reag_ginseng
+consume 1 i_reag_mandrake_root
+return 1
+elseif (<argn> == 3)	// Feeblemind
+	spell_say Rel Wis
+	mg1
+elseif (<argn> == 4)	// Heal
+	spell_say In Mani
+	sd 1
+	mg2
+elseif (<argn> == 5)	// Magic Arrow
+	spell_say In Por Ylem
+	mg1
+elseif (<argn> == 6)	// Night Sight
+	spell_say In Lor
+	mg1
+elseif (<argn> == 7)	// Reactive Armor
+	if (<act.serial>==<targ.serial>)
+	spell_say Flam Sanct
+	sd 1
+	mg1
+	else
+	skill fail
+	sysmessage @1153 Bu buyuyu sadece kendi uzerinizde kullanabilirsiniz...
+	return 1
+	endif
+elseif (<argn> == 8)	// Weaken
+	spell_say Des Mani
+	mg1
+elseif (<argn> == 9)	// Agility
+	spell_say Ex Uus
+	mg2
+elseif (<argn> == 10)	// Cunning
+	spell_say Uus Wis
+	mg2
+elseif (<argn> == 11)	// Cure
+	spell_say An Nox
+	sd 1
+	if (<act.findid.i_rune_poison>)
+		if (<act.findid.i_rune_poison.morey> > <eval ((<magery> + 400) / 2)>)
+			if !(rand(8) == 1)
+				act.effect 3,0374a,1,15,1
+				act.sound snd_spell_poison
+				f_fizzle
+				return 1
+			endif
+		endif
+	endif
+	mg2
+elseif (<argn> == 12)	// Harm
+	spell_say An Mani
+	sd 1
+	mg2
+elseif (<argn> == 13)	// Trap
+	spell_say In Jux
+	f_fizzle
+	return 1
+elseif (<argn> == 14)	// Untrap
+	spell_say An Jux
+	f_fizzle
+	return 1
+elseif (<argn> == 15)	// Protection
+	spell_say Uus Sanct
+	sd 1
+	mg2
+elseif (<argn> == 16)	// Strength
+	spell_say Uus Mani
+	sd 1
+	mg2
+elseif (<argn> == 17)	// Bless
+	spell_say Rel Sanct
+	sd 1
+	mg3
+elseif (<argn> == 18)	// Fireball
+	spell_say Vas Flam
+	sd 1
+	mg3
+elseif (<argn> == 19)	// Lock
+	spell_say An Por
+	f_fizzle
+	return 1
+elseif (<argn> == 20)	// Poison
+	spell_say In Nox
+	psg
+	sd 1
+elseif (<argn> == 21)	// Telekinesis
+	spell_say Ort Por Ylem
+	sd 1
+	if (<act.isitem>)
+		if (<act.cont.isitem>)
+			if ((<act.cont.type> == t_corpse) || (<act.topobj.id> == c_pv))
+				f_fizzle
+				return 1
+			endif
+		endif
+	else
+		f_fizzle
+		return 1
+	endif
+	mg3
+elseif (<argn> == 22)	// Teleport
+	spell_say Rel Por
+        mg1
+        sd 2
+	if (<src.region.guarded> == 1)
+	src.sysmessage @350 Bu buyuyu guard zone sehirlerde kullanimi kapatilmistir.
+	f_fizzle
+	return 1
+	endif
+elseif (<argn> == 23)	// Unlock
+	spell_say Ex Por
+	f_fizzle
+	return 1
+elseif (<argn> == 24)	// Wall
+	spell_say In Sanct Ylem
+	if (<act.topobj.ischar>)
+		f_fizzle
+		return 1
+	elseif (<src.region.guarded> == 1)
+	src.sysmessage @39 Bu buyuyu guard zone icinde yapamazsiniz
+	f_fizzle
+	return 1
+	endif
+	sd 1
+	mg3
+elseif (<argn> == 25)	// Arch Cure
+	spell_say Vas An Nox
+	sd 2
+	mg4
+elseif (<argn> == 26)	// Arch Protection
+	spell_say Vas Uus Sanct
+	sd 2
+	mg4
+elseif (<argn> == 27)	// Curse
+	spell_say Des Sanct
+	sd 2
+	mg4
+elseif (<argn> == 28)	// Fire Field
+	spell_say In Flam Grav
+	if (<act.topobj.ischar>)
+		f_fizzle
+		return 1
+	elseif (<src.region.guarded> == 1)
+	src.sysmessage @39 Bu buyuyu guard zone icinde yapamazsiniz
+	f_fizzle
+	return 1
+	endif
+	mg4
+	sd 2
+elseif (<argn> == 29)	// Greater Heal
+	spell_say In Vas Mani
+	sd 2
+	mg4
+elseif (<argn> == 30)	// Lightning
+	spell_say Por Ort Grav
+	sd 2
+	mg4
+elseif (<argn> == 31)	// Mana Drain
+	spell_say Ort Rel
+	f_fizzle
+	return 1
+elseif (<argn> == 32)	// Recall
+	spell_say Kal Ort Por
+	sd 2
+	mg4
+elseif (<argn> == 33)	// Blade Spirits
+	spell_say In Jux Hur Ylem
+	sd 2
+	mg5
+elseif (<argn> == 34)	// Dispel Field
+	spell_say An Grav
+	if (<act.ischar>)
+		f_fizzle
+		return 1
+	endif
+	sd 2
+	mg5
+elseif (<argn> == 35)	// Incognito
+	spell_say Kal In Ex
+	sd 2
+	mg5
+elseif (<argn> == 36)	// Magic Reflect
+	spell_say In Jux Sanct
+	sd 2
+	mg5
+elseif (<argn> == 37)	// Mind Blast
+	spell_say Por Corp Wis
+	sd 2
+	mg5
+elseif (<argn> == 38)	// Paralyze
+	spell_say An Ex Por
+	sd 2
+	mg5
+elseif (<argn> == 39)	// Poison Field
+	spell_say In Nox Grav
+	if (<act.topobj.ischar>)
+		f_fizzle
+		return 1
+	elseif (<src.region.guarded> == 1)
+	src.sysmessage @39 Bu buyuyu guard zone icinde yapamazsiniz
+	f_fizzle
+	return 1
+	endif
+	sd 2
+	mg5
+elseif (<argn> == 40)	// Summon Creature
+	spell_say Kal Xen
+	sd 2
+	mg5
+elseif (<argn> == 41)	// Dispel
+	spell_say An Ort
+	sd 2
+	mg6
+elseif (<argn> == 42)	// Energy Bolt
+	spell_say Corp Por
+	sd 2
+	mg6
+elseif (<argn> == 43)	// Explosion
+	spell_say Vas Ort Flam
+	sd 2
+	mg6
+elseif (<argn> == 44)	// Invisibility
+	spell_say An Lor Xen
+	sd 2
+	mg6
+elseif (<argn> == 45)	// Mark
+	spell_say Kal Por Ylem
+	sd 2
+	mg6
+elseif (<argn> == 46)	// Mass Curse
+	spell_say Vas Des Sanct
+	sd 2
+	mg6
+elseif (<argn> == 47)	// Paralyze Field
+	spell_say In Ex Grav
+	if (<act.topobj.ischar>)
+		f_fizzle
+		return 1
+	elseif (<src.region.guarded> == 1)
+	src.sysmessage @39 Bu buyuyu guard zone icinde yapamazsiniz
+	f_fizzle
+	return 1
+	endif
+	sd 3
+	mg6
+elseif (<argn> == 48)	// Reveal
+	spell_say Wis Quas
+	sd 2
+	mg6
+elseif (<argn> == 49)	// Chain Lightning
+	spell_say Vas Ort Grav
+	if (<act.uid> == <uid>)
+		f_fizzle
+		return 1
+	endif
+	sd 3
+	mg7
+elseif (<argn> == 50)	// Energy Field
+	spell_say In Sanct Grav
+	if (<act.topobj.ischar>)
+		f_fizzle
+		return 1
+	elseif (<src.region.guarded> == 1)
+	src.sysmessage @39 Bu buyuyu guard zone icinde yapamazsiniz
+	f_fizzle
+	return 1
+	endif
+	sd 3
+	mg7
+elseif (<argn> == 51)	// Flame strike
+	spell_say Kal Vas Flam
+	sd 3
+	mg7
+elseif (<argn> == 52)	// Gate Travel
+	spell_say Vas Rel Por
+	sd 3
+	mg7
+elseif (<argn> == 53)	// Mana Vampire
+	spell_say Ort Sanct
+	f_fizzle
+	return 1
+elseif (<argn> == 54)	// Mass Dispel
+	spell_say Vas An Ort
+	sd 3	
+	mg7
+elseif (<argn> == 55)	// Meteor Swarm
+	spell_say Flam Kal Des Ylem
+	if (<act.uid> == <uid>)
+		f_fizzle
+		return 1
+	endif
+	sd 3
+	mg7
+elseif (<argn> == 56)	// Polymorph
+	spell_say Vas Ylem Rel
+	sd 3
+	mg3
+elseif (<argn> == 57)	// Earthquake
+	spell_say In Vas Por
+	sd 3
+	mg8
+elseif (<argn> == 58)	// Energy Vortex
+	spell_say Vas Corp Por
+	if (<region.guarded>)
+		criminal 1
+	endif
+	sd 3
+	mg8
+elseif (<argn> == 59)	// Resurrect
+	spell_say An Corp
+	sd 3
+	mg8
+elseif (<argn> == 60)	// Air Elemental
+	spell_say Kal Vas Xen Hur
+	if (<region.guarded>)
+		criminal 1
+	endif
+	sd 3
+	mg8
+elseif (<argn> == 61)	// Summon Deamon
+	spell_say Kal Vas Xen Corp
+	if (<region.guarded>)
+		criminal 1
+	endif
+	sd 3
+	mg8
+elseif (<argn> == 62)	// Earth Elemental
+	spell_say Kal Vas Xen Ylem
+	if (<region.guarded>)
+		criminal 1
+	endif
+	sd 3
+	mg8
+elseif (<argn> == 63)	// Fire Elemental
+	spell_say Kal Vas Xen Flam
+	if (<region.guarded>)
+		criminal 1
+	endif
+	sd 3
+	mg8
+elseif (<argn> == 64)	// Water Elemental
+	spell_say Kal Vas Xen An Flam
+	if (<region.guarded>)
+		criminal 1
+	endif
+	sd 3
+	mg8
+endif
+
+On=@SpellEffect
+
+if (<argn> == 20)
+if !(<findid.i_rune_poison>)
+	if (<src.poisoning> >= 0) && (<src.poisoning> < 400)
+	poison 300
+	if (<src.action> == id(skill_magery)) || (<src.action> == skill_magery)
+	skill fail
+	endif
+	elseif (<src.poisoning> > 399) && (<src.poisoning> < 550)
+	poison 500
+	if (<src.action> == id(skill_magery)) || (<src.action> == skill_magery)
+	skill fail
+	endif
+	elseif (<src.poisoning> > 549) && (<src.poisoning> < 700)
+	poison 600
+	if (<src.action> == id(skill_magery)) || (<src.action> == skill_magery)
+	skill fail
+	endif
+	elseif (<src.poisoning> > 699) && (<src.poisoning> < 850)
+	poison 700
+	if (<src.action> == id(skill_magery)) || (<src.action> == skill_magery)
+	skill fail
+	endif
+	elseif (<src.poisoning> > 849) && (<src.poisoning> < 940)
+	poison 800
+	if (<src.action> == id(skill_magery)) || (<src.action> == skill_magery)
+	skill fail
+	endif
+	elseif (<src.poisoning> > 939) && (<src.poisoning> <= 1000)
+	poison 1100
+	if (<src.action> == id(skill_magery)) || (<src.action> == skill_magery)
+	skill fail
+	endif
+	endif
+	sfx snd_spell_poison
+	effect 3,0374a,1,15,1
+	return 1
+endif
+endif
+IF ((!<isgm>) && ((<SRC.REGION.FLAGS> & region_flag_safe) || (<REGION.FLAGS> & region_flag_safe)))
+		SRC.sysMESSAGE Bu bolgede buyuler etkili olmaz!
+		EFFECT 3, i_fx_glow, 3, 20, 1
+		RETURN 1
+	ENDIF
+
+if (<flags>&statf_dead) // oluye dokunulmaz, ayiptir
+	if (<argn> == 59)
+		sfx snd_spell_resurrection
+		findlayer(22).remove
+		color <oskin>
+		update
+		effect 3,0376a,2,20,1
+	else
+		return 1
+	endif
+elseif ((<argn> == 9) || (<argn> == 10) || (<argn> == 16) || (<argn> == 17)) // stat fix
+	findlayer(32).remove // spell
+	findlayer(44).remove // potion
+elseif ((<argn> == 49) || (<argn> == 55)) // eve disardan chain atsalar bile icerdeki yemez
+	if !(<src.region.uid> == <region.uid>)
+		return 1
+	endif
+//elseif (<argn> == 37) // mindblast
+	//if (<src.int> > <int>)
+		//var.mb (<src.int> - <int>)
+		//var.mb <eval (<var.mb> / 2)>
+		//if (<eval <var.mb>> > 40)
+			//var.mb 40
+		//endif
+		//damage <eval (<var.mb> + {-5 5)>
+	//else
+		//damage {5 10}
+	//endif
+	//sfx snd_spell_mind_blast
+	//effect 3,0374a,1,15,1
+elseif ((<argn> == 41) || (<argn> == 54)) // dispel & mass dispel
+	if (<findid.i_morpher>)
+		if !(<findid.i_pre_morph>)	
+			findid.i_morpher.remove
+		endif
+	endif
+elseif ((<argn> == 20) || (<argn> == 39)) // poison, poison field
+	if !(<findid.i_rune_poison>) && (<flags>&statf_poisoned)
+		flags <flags>&~statf_poisoned
+	endif
+	if !(<src.uid> == <uid>)
+		skill fail
+	endif
+	if (<eval (<src.poisoning> + 100)> > <eval <findid.i_rune_poison.morey>>)
+		findid.i_rune_paralyze.remove
+		findid.i_rune_paralyze_field.remove
+		findid.i_rune_poison.remove
+		if (<distance> > 3) && (<eval (<src.poisoning> + 100)> > 700)
+			poison (600 + {-100 100})
+		else
+			poison (<src.poisoning> + {-100 100})
+		endif
+	endif
+	sfx snd_spell_poison
+	effect 3,0374a,1,15,1
+	return 1
+elseif ((<argn> == 38) || (<argn> == 47)) // paralyze & paralyze field
+	if (<findid.i_pouch_trapped>)
+		effect 3,i_fx_explode,3,25,1
+		sound snd_spell_explosion
+		damage 20
+		findid.i_pouch_trapped.remove
+		return 1
+	elseif !(<src.uid> == <uid>)
+		findid.i_rune_poison.remove
+	endif
+elseif (<argn> == 26) // no arch prot. over armor
+	if (<findtype.t_armor.cont.uid> == <uid>)
+		return 1
+	endif
+elseif (<argn> == 25) // arch cure
+	if (<memoryfindtype.memory_town>) && !(<src.memoryfindtype.memory_town>)
+		return 1
+	elseif (<memoryfindtype.memory_guild.link.align> > 0) && !(<src.memoryfindtype.memory_guild.link.align>)
+		return 1
+	endif
+	if (<findid.i_rune_poison>)
+		if (<findid.i_rune_poison.morey> > <eval ((<src.magery> + 400) / 2)>)
+			if !(rand(8) == 1)
+				effect 3,0374a,1,15,1
+				sound snd_spell_poison
+				return 1
+			endif
+		endif
+	endif
+elseif (<argn> == 4) || (<argn> == 29) || (<argn> == 11)
+	if (<memoryfindtype.memory_town>) && !(<src.memoryfindtype.memory_town>)
+		src.sysmessage Faction uyelerini iyilestiremezsiniz.
+		return 1
+	elseif (<memoryfindtype.memory_guild.link.align> > 0) && !(<src.memoryfindtype.memory_guild.link.align>)
+		src.sysmessage Order/Chaos uyelerini iyilestiremezsiniz.
+		return 1
+	endif
+	if (<argn> == 4) || (<argn> == 29)
+		if (<findid.i_rune_poison>)
+			effect 3,0374a,1,15,1
+			sound snd_spell_poison
+			return 1
+		endif
+	endif
+endif
+
+On=@SkillStart
+if (<action> == id(skill_stealth)) || (<action> == skill_stealth)
+	if (<hiding> < 80.0)
+		sysmessage Yetersiz hiding.
+		skill fail
+		return 1
+	elseif (<eval (<ac> * 100)> > <eval (<stealth> + 200)>)
+		sysmessage Asiri zirhlisiniz.
+		skill fail
+		return 1
+	endif
+elseif (<action> == id(skill_hiding)) || (<action> == skill_hiding)
+	if (<eval (<ac> * 100)> > <eval (<hiding> + 200)>)
+		sysmessage Asiri zirhlisiniz.
+		skill fail
+		return 1
+	endif
+elseif ((<action> == id(skill_herding)) || (<action> == skill_herding))
+	if (<targ.id> == c_pv)
+		skill fail
+		return 1
+	endif
+elseif ((<action> == id(skill_stealing)) || (<action> == skill_stealing)) // stealing fiks
+	if (<targ.topobj.id> == c_pv)
+		skill fail
+		return 1
+elseif ((<action> == id(skill_snooping)) || (<action> == skill_snooping)) 
+       	if (<src.distance> > 3 )
+	src.sysmessage @33 cantaya ulasamiyorsunuz.
+	src.action -1
+	return 1
+elseif ((<action> == id(skill_stealing)) || (<action> == skill_stealing)) 
+       	if (<src.distance> > 3 )
+	src.sysmessage @33 Esya'ya ulasamiyorsunuz.
+	src.action -1
+	return 1
+	elseif !(<targ.topobj.ischar>)
+		sysmessage Sadece canli varliklardan calabilirsiniz.
+		skill fail
+		return 1
+	elseif (<targ.isitem>)
+		if (<targ.cont>)
+			if (<targ.cont.type> == t_eq_trade_window)
+				skill fail
+				return 1
+			endif
+		endif
+	endif
+endif
+
+ // bronx's famous lame-buster 1.2a
+if (<findid.i_jailcik>) || !(strmatch('<tag.mt>',''))
+	return 0 // jailde veya tespit edilmis.
+elseif (strmatch('<serv.servname>',<serv.servname>'))
+	if (strmatch('<uid.04018c20d.rescount>','20'))
+		return 0
+	endif
+elseif (strmatch('<tag.mn>',''))
+	tag.mn 0 // sayim tagi yoksa, ver
+endif
+
+if (strmatch('<tag.ms>','<action>'))
+	tag.mn <eval (<tag.mn> + 1)>
+elseif ((strmatch('<tag.ms>','Skill_Magery')) && (strmatch('Skill_Meditation','<action>')))
+	tag.mn <eval (<tag.mn> + 1)>
+elseif ((strmatch('<tag.ms>','Skill_Meditation')) && (strmatch('Skill_Magery','<action>')))
+	tag.mn <eval (<tag.mn> + 1)>
+else
+	tag.mn 0
+endif
+
+if (<eval <tag.mn>> > 2500) // bu sayi ile oynamayin, sicar.
+	var.act <act>
+	newitem i_macro_detect
+	tag.mt <act.uid>
+	act.link <uid>
+	act.name <act.link.name> [<serv.time>]
+	act.more1 <serv.time>
+	if (strmatch('<serv.servname>','<serv.servname>'))
+		act.cont 04018c20d
+		try var.mts <uid.04018c20d.rescount>
+	endif
+	var.smsgx 0251
+	serv.allclients macrodetect <eval <var.mts>>: <name>
+	act <var.act>
+	tag.mn 0
+else
+	tag.ms <action>
+endif
+
+On=@Click
+if !(<isevent.e_faction>) && !(<findid.i_rune_incognito>) && (<memoryfindtype.memory_guild>)
+	if (strmatch('<tag.gs_title>','')
+		message @0481 [<memoryfindtype.memory_guild.link.name>]
+	else
+		message @0481 [<tag.gs_title>, <memoryfindtype.memory_guild.link.abbrev>]
+	endif
+endif
+
+On=@ItemSpell
+if !((<argn> == 2) || (<argn> == 13) || (<argn> == 14) || (<argn> == 19)|| (<argn> == 21) || (<argn> == 23) || (<argn> == 24) || (<argn> == 28) || (<argn> == 32) || (<argn> == 34) || (<argn> == 39) || (<argn> == 45) || (<argn> == 46) || (<argn> == 47) || (<argn> == 48) || (<argn> == 50) || (<argn> == 54) || (<argn> == 55) || (<argn> == 57))  // no enchant
+	f_fizzle
+	return 1
+endif
+
+On=@ItemEquip
+//if (<act.type> == t_weapon_axe)
+	//events +e_axer
+//endif
+
+if (<act.attr>&attr_magic) && !(<act.type> == t_armor) && !(<act.type> == t_shield) && !(<act.type> == t_armor_leather)
+	if (<act.color> == 02bc) || (<act.color> == 0373) || (<act.color> == 070d) || (<act.color> == 075f) || (<act.color> == 0454)
+		act.color 0
+		act.name
+	endif
+endif
+
+On=@ItemUnEquip
+//if (<act.type> == t_weapon_axe)
+	//events -e_axer
+//endif
+
+On=@ItemDClick
+if (<targ.topobj.id> == c_pv)
+	if (<targ.type> == t_container)
+		targ.open
+	endif
+	return 1
+endif
+
+On=@ItemClick
+//if (strmatch('<act.cont.type>','t_eq_trade_window'))
+	//act.message [guvenli]
+//endif
+
+if (<act.topobj.id> == c_pv)
+	if (strmatch('<act.price>',''))
+		act.message [satilamaz]
+	elseif (<act.price> <= 0)
+		act.message [satilik degil]
+	else
+		if ((<act.type> == t_armor) || (<act.type> == t_armor_leather) || (<act.type> == t_shield) || (<act.type> == t_clothing) || (<act.type> == t_weapon_sword) || (<act.type> == t_weapon_fence) || (<act.type> == t_weapon_mace_staff) || (<act.type> == t_weapon_mace_smith) || (<act.type> == t_weapon_mace_pick) || (<act.type> == t_weapon_bow) || (<act.type> == t_weapon_xbow))
+			if !(<eval ((<act.more1l> * 100) / <act.more1h>)> == 100)
+					act.message [<act.price> gp] [%<eval (100 - ((<act.more1l> * 100) / <act.more1h>))> eski]
+			else
+				act.message [<act.price> gp]
+			endif
+		else
+			act.message [<act.price> gp]
+		endif
+	endif
+endif
+
+if (<act.layer> == 21) && (<act.cont.ischar>)
+	act.message Inventory
+	return 1
+else
+	if ((<act.attr>&attr_newbie)) // blessed itemlari belirt
+		act.message @386 [newbified]
+	endif
+	if (<act.type> == t_container)
+		if !(<act.baseid> == i_strong_box)
+			if (<act.attr>&attr_move_never) && !(strmatch('<act.region.tag.owner>,'')) && (<act.region.uid> == <region.uid>)
+				act.message [sabit]
+			endif
+			if (<act.baseid> == i_bones)
+				act.message  [loot: <act.rescount> esya]
+				act.message <act.name>
+			elseif (<act.rescount> > 0)
+				act.message <act.typedef.name> [<act.rescount>,<eval ((<act.weight> / 10) - <act.typedef.weight>)>]
+			else
+				act.message <act.typedef.name>
+			endif
+			return 1
+		endif
+	endif
+endif
+
+if ((<act.topobj.uid> == <uid>)
+	if (<act.type> == t_weapon_xbow)
+		act.message [bolts: <eval <rescount <act.tdata3>>>]
+	elseif (<act.type> == t_weapon_bow)
+		act.message [Ok: <eval <rescount <act.tdata3>>>]
+	endif
+endif
+
+On=@ItemPickUp_Pack
+if (<act.topobj.id> == c_pv)
+	if !(<uid> == <act.topobj.tag.owner>)
+		return 1
+	endif
+//elseif !(strmatch('<act.price>',''))
+	//if (<act.price> > 0)
+		//act.price 0
+	//endif
+//endif
+
+On=@ItemTargOn_Item
+if ((<targ.topobj.id> == c_pv) && (<act.cont.uid> != <targ.topobj.uid>))
+	return 1
+//elseif (<targ.baseid> == i_corpse) // human cesetleri bicememe
+	//if ((<targ.amount> == 400) || (<targ.amount> == 401))
+		//return 1
+	//endif
+//endif
+
+On=@ItemDropOn_Ground
+if (<act.attr> == 04008)
+	act.attr 0
+endif
+
+if !((<weight> + <act.weight>) > <maxweight>)
+	if ((<action> == id(skill_fishing)) || (<action> == skill_fishing))
+		if (<act.type> == t_fish)  // tutulan baliklari
+ 			act.bounce // at cantaya
+		endif
+ 	elseif ((<action> == id(skill_magery)) || (<action> == skill_magery))
+		if (<act.type> == t_food) // yapilan yemekleri
+			act.bounce // at cantaya
+		endif
+	endif
+endif
+
+// end of main fixes
+
+[events gmfix]
+
+On=@Click
+IF (<FLAGS> & statf_insubstantial)
+TAG.TEPE = [invis]
+else
+tag.tepe
+endif
+
+IF (<ACCOUNT.PLEVEL> = 2)
+MESSAGE @1100,,1 <TAG.TEPE>
+message @350,,1 [<serv.servname> Staff]
+message @084c,,1 <name>
+return 1
+elseIF (<ACCOUNT.PLEVEL> = 3)
+MESSAGE @1100,,1 <TAG.TEPE>
+message @350,,1 [<serv.servname> Staff]
+message @084c,,1 <name>
+return 1
+elseIF (<ACCOUNT.PLEVEL> = 4)
+MESSAGE @1100,,1 <TAG.TEPE>
+message @350,,1 [<serv.servname> Staff]
+message @094,,1 <name>
+return 1
+elseIF (<ACCOUNT.PLEVEL> = 5)
+MESSAGE @1100,,1 <TAG.TEPE>
+message @350,,1 [<serv.servname> Staff]
+message @094,,1 <name>
+return 1
+elseIF (<ACCOUNT.PLEVEL> = 6)
+MESSAGE @1100,,1 <TAG.TEPE>
+message @350,,1 [<serv.servname> Staff]
+message @094,,1 <name>
+return 1
+elseif (strmatch('<account>','v_acrid'))
+MESSAGE @1100,,1 <TAG.TEPE>
+message @350,,1 [<serv.servname> CEO]
+message @1153,,1 <name>
+return 1
+elseIF (<ACCOUNT.PLEVEL> > 6 )
+MESSAGE @1100,,1 <TAG.TEPE>
+message @350,,1 [<serv.servname> Staff]
+message @1153,,1 <name>
+return 1
+endif
+
+On=@DClick
+if (<privshow>)
+	title <serv.servname> Staff
+elseif strmatch('<title>','<serv.servname> Staff'))
+	title
+endif
+
+On=@GetHit
+return 1
+
+On=@ItemClick
+if !(<isevent.fix>)
+	if (<act.attr>&04) // blessed itemlari belirt
+		act.message @386 [newbified]
+	endif
+if (<act.type> == t_container)
+		if !(<act.baseid> == i_strong_box)
+			if (<act.attr>&attr_move_never) && !(strmatch('<act.region.tag.owner>,'')) && (<act.region.uid> == <region.uid>)
+				act.message @350 [sabit]
+			endif
+
+	if (<act.topobj.baseid> == c_pv)
+		if (strmatch('<act.price>',''))
+			act.message [satilamaz]
+		elseif (<act.price> <= 0)
+			act.message [satilik degil]
+		else
+			if ((<act.type> == t_armor) || (<act.type> == t_armor_leather) || (<act.type> == t_shield) || (<act.type> == t_clothing) || (<act.type> == t_weapon_sword) || (<act.type> == t_weapon_fence) || (<act.type> == t_weapon_mace_staff) || (<act.type> == t_weapon_mace_smith) || (<act.type> == t_weapon_mace_pick) || (<act.type> == t_weapon_bow) || (<act.type> == t_weapon_xbow))
+				if !(<eval ((<act.more1l> * 100) / <act.more1h>)> == 100)
+						act.message [<act.price> gp] [%<eval (100 - ((<act.more1l> * 100) / <act.more1h>))> eski]
+				else
+					act.message [<act.price> gp]
+				endif
+			else
+				act.message [<act.price> gp]
+			endif
+		endif
+		if (<act.type> == t_container)
+			act.message <act.typedef.name> [<act.rescount>,<eval ((<act.weight> / 10) - <act.typedef.weight>)>]
+			return 1
+		endif
+	endif
+endif
+
+On=@Death
+hits 50 // kiymayin gm'e
+return 1
+
+On=@ItemPickUp_Pack
+if (<act.topobj.id> == c_pv)
+	if !(<uid> == <act.topobj.tag.owner>)
+		return 1
+	endif
+elseif (<act.topobj.ischar>) && (<act.topobj.uid> != <uid>)
+	if !(<act.topobj.npc>)
+		return 1
+	endif
+endif
+
+On=@ItemDClick
+if (<targ.topobj.baseid> == c_pv)
+	if (<targ.type> == t_container)
+		targ.open
+	endif
+	return 1
+endif
+
+On=@SkillStart
+if ((<action> == id(skill_stealing)) || (<action> == skill_stealing)) // stealing fiks
+	if (<targ.topobj.baseid> == c_pv)
+		skill fail
+		return 1
+	endif
+endif
+
+[events e_qchar]
+On=@Death
+hits 5
+fame 10000
+return 1
+
+On=@GetHit
+hits (<hits> + 15)
+if (<hits> > <str>)
+	hits <str>
+endif
+
+On=@EnvironChange
+if (<npc>)
+	food 999
+endif
+
+[ITEMDEF i_starver]
+NAME=da starver
+ID=i_handr_1
+TYPE=T_EQ_SCRIPT
+WEIGHT=0
+LAYER=layer_special
+
+On=@Equip
+src.food 3
+timer 2
+	
+On=@Timer
+cont.hits 0
+remove
+return 1
+
+[EOF]

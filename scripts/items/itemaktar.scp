@@ -1,0 +1,49 @@
+[plevel 1]
+itemaktar
+
+[function itemaktar]
+dialogclose d_char_list
+dialog d_char_list
+
+[dialog d_char_list]
+230,130
+PAGE 0
+resizepic 0 0 5120 310 280
+resizepic 12 10 3000 290 260
+dtext 20 20 1153 <serv.name> item transfer menusu
+dtext 20 50 1153 Hangi karaktere item aktarilacak?
+for 0 <eval <account.chars>-1>
+dtext 65 <eval (<dlocal._for>*30)+90> 025 <account.char.<dlocal._for>.name>
+endfor
+for 1 <account.chars>
+button 30 <eval (<dlocal._for>*30)+60> 4020 4022 1 0 <dlocal._for>
+endfor
+
+[dialog d_char_list button]
+on=0
+sysmessage @1153 Item aktarmaktan vazgectiniz..
+
+on=1 5
+if (<src.account.char.<eval <argn>-1>.uid> == <src.uid>)
+src.sysmessage @1153 Bagli oldugunuz karakterinize item yollayamazsiniz...
+return 1
+endif
+try ctag.<src.account.name><eval <argn>-1> <src.account.char.<eval <argn>-1>.uid>
+targetf item_at <eval <argn>-1>
+src.sysmessage @1153 hangi itemi aktaricaksiniz?
+
+
+[function item_at]
+obj=<argo>
+if !(<obj.isitem>)
+src.sysmessage @1153 Sadece item yollayabilirsiniz...
+return 1
+endif
+if (<src.findlayer.29.uid> == <obj.cont.uid>)
+obj.cont <uid.<ctag.<account.name><argn>>.findlayer.29.uid>
+update
+src.sysmessage @1153 Tebrikler, <account.char.<argn>.name>'e <obj.amount> adet <obj.name> yolladiniz...
+else
+src.sysmessage @1153 Sadece bankanizdaki itemleri yollayabilirsiniz..
+return 1
+endif

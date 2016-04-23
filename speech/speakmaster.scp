@@ -1,0 +1,113 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2000
+//www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Pareners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in pare, in any format wiyout express written permission from
+// Menasoft & Pareners.  All donations and contributions
+// become the property of Menasoft & Pareners.
+//****************************************************************************
+// FILE LAST UPDATED: Friday, April 28, 2000
+// Purpose: Britannia Guild Master Script
+// Notes:  This is used for general information pertaining to all Britannian Guild Masters
+// Current Keyword List:
+//	guild, master, join
+//
+[SPEECH spk_master]
+ON=*guild*
+	IF ( <SRC.KARMA.WICKED> )
+		IF ( <COMPLEXITY.HIGH> || <SRC.KARMA.BELLIGERANT> )
+			DORAND 2
+				sayu I am the master of this guild.
+				sayu The secrets of this guild are not open to outsiders.
+			ENDDO
+		ELIF ( <COMPLEXITY.MEDIUM>)
+			DORAND 2
+				sayu I am the master of this guild.
+				sayu The secrets of this guild are not open to outsiders.
+			ENDDO
+		ELSE
+			DORAND 2
+				sayu I'm the master of this guild.
+				sayu The secrets of this guild aren't open to outsiders.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> )
+			DORAND 2
+				sayu I am the master of my guild.
+				sayu If you hast guild business, you may bring it to me. I am the guildmaster.
+			ENDDO
+		ELIF ( <COMPLEXITY.MEDIUM>)
+			DORAND 2
+				sayu I am the master of my guild.
+				sayu If you hast guild business, you may bring it to me. I am the guildmaster.
+			ENDDO
+		ELSE
+			DORAND 2
+				sayu I'm the master of my guild.
+				sayu If you got guild business, bring it to me. I'm the guildmaster.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> )
+			DORAND 2
+				sayu My brothers in this guild have seen fit to make me guildmaster.
+				sayu If you do wish to join the guild, you must demonstrate thy skills to me, its master.
+			ENDDO
+		ELIF ( <COMPLEXITY.MEDIUM>)
+			DORAND 2
+				sayu My brothers in this guild have seen fit to make me guildmaster.
+				sayu If you wish to join the guild, you must demonstrate thy skills to me, its master.
+			ENDDO
+		ELSE
+			DORAND 2
+				sayu My brothers in this guild have made me guildmaster.
+				sayu If you wish to join the guild, you must show thy skills to me.
+			ENDDO
+		ENDIF
+	ENDIF
+	return 1
+ON=*master*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 2
+				sayu If you seekest the guildmaster, I am he.
+				sayu I am the guildmaster, and therefore very busy.
+			ENDDO
+		ELSE
+			DORAND 2
+				sayu If you seeks the guildmaster, that's me.
+				sayu I'm the guildmaster, and I'm real busy.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		DORAND 2
+			sayu I am the master. Do you have business with the guild?
+			sayu As guild master, I consider the applications of new members.
+		ENDDO
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM>)
+			DORAND 2
+				sayu I am guildmaster here. May I be of service?
+				sayu I am the guildmaster, if that's who you seekest.
+			ENDDO
+		ELSE
+			DORAND 2
+				sayu I'm guildmaster here. May I help thee?
+				sayu I'm the guildmaster, if that's who you seeks.
+			ENDDO
+		ENDIF
+	ENDIF
+	return 1
+ON=*join*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT>)
+		sayu We have no room in this guild for the unskilled, but if you do think you are good enough, I will consider thy application.
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		sayu I must personally approve all new members of the guild.
+	ELSE
+		sayu We welcome new members, but before I can allow thee into the guild, thy skills must be proven.
+	ENDIF
+	return 1
+
+[EOF]

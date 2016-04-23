@@ -1,0 +1,135 @@
+// ----------------------------
+// YOUNGTICKET.SCP - NEWBIE BILETI 
+// SON GUNCELLENME TARIHI: 1 Aralik 2001
+// ----------------------------
+VERSION=0.55
+
+[ITEMDEF i_young_ticket]
+NAME=Hediye Bileti (size aitdir baskasi kullanamaz)
+ID=i_deed
+DEFNAME=i_young_ticket
+TYPE=t_script
+
+ON=@CREATE
+COLOR=0796
+ATTR=04
+
+ON=@DClick
+DIALOG d_young_ticket
+RETURN 1
+
+[DIALOG d_young_ticket]
+50, 100
+PAGE 0
+resizepic 0 0 2520 250 270
+text 64 61 1152 0
+text 64 84 1152 1
+text 64 109 1152 2
+text 64 130 1152 3
+text 64 153 1152 4
+text 64 175 1152 5
+text 64 200 1152 6
+text 77 33 1250 7
+button 40 65 2117 2118 1 0 1
+button 40 88 2117 2118 1 0 2
+button 40 111 2117 2118 1 0 3
+button 40 133 2117 2118 1 0 4
+button 40 156 2117 2118 1 0 5
+button 40 202 2117 2118 1 0 0
+button 40 179 2117 2118 1 0 6
+
+[DIALOG d_young_ticket TEXT]
+Pusula
+Rare robe
+8/3 spellbook
+Havaifisek
+Kar topu
+Boya kupu ve boya
+Vazgec
+Hediye bileti
+
+[DIALOG d_young_ticket BUTTON]
+on=1
+SRC.NEWITEM i_sextant
+SRC.ACT.BOUNCE
+REMOVE
+RETURN 1
+on=2
+SRC.NEWITEM i_robe
+SRC.ACT.BOUNCE
+SRC.ACT.COLOR 0455
+REMOVE
+RETURN 1
+on=3
+SRC.NEWITEM i_spellbook
+SRC.ACT.MORE 0ffffff
+SRC.ACT.BOUNCE
+REMOVE
+RETURN 1
+on=4
+SRC.NEWITEM i_fireworks_wand
+SRC.ACT.BOUNCE
+REMOVE
+RETURN 1
+on=5
+SRC.NEWITEM i_kartopu
+SRC.ACT.BOUNCE
+REMOVE
+RETURN 1
+on=6
+SRC.NEWITEM i_dye_tub
+SRC.ACT.BOUNCE
+SRC.NEWITEM i_dyes
+SRC.ACT.BOUNCE
+REMOVE
+RETURN 1
+
+[ITEMDEF i_kartopu]
+ID=0913
+NAME=kar parcasi
+TYPE=t_script
+
+ON=@Create
+Color 0481
+Attr=attr_newbie|attr_move_always
+TIMER=3
+
+ON=@DClick
+IF (<TIMER> >= 1)
+	SRC.SysMessage Kartopu henuz hazir degil!
+	RETURN 1
+ELSE
+	TARGET Kime atmak istiyorsun?
+	RETURN 1
+	ENDIF
+
+ON=@TargOn_Char
+IF (<SRC.TARG.SERIAL> != <SRC.SERIAL>)
+	SRC.ANIM 11
+	SRC.TARG.EFFECT=0,0f27,10
+	SRC.TARG.ANIM 20
+	DORAND 6
+		SRC.TARG.SAYU *Atma Lan*
+		SRC.TARG.SAYU *Aahhh*
+		SRC.TARG.SAYU *Ahhh Cok Acidi!!!*
+		SRC.TARG.SAYU *Ulan Atma!!!*
+		SRC.TARG.SAYU *Ahh Kafam Yarildi*
+		SRC.TARG.SAYU *Allah Deprem Oluyo*
+	ENDDO
+	SOUND 0145
+	src.targ.newitem=i_fx_SMOKE3
+	src.targ.act.p=<src.targ.p>
+	SRC.TARG.SysMessage <SRC.NAME> sana kartopu atti!
+	REMOVE
+	RETURN 1
+ELSE
+	SRC.SysMessage Kendine kartopu atamazsin..
+	TIMER=(3)
+	RETURN 1
+ENDIF
+
+ON=@TargOn_Item
+SRC.SysMessage Buraya kartopu atamazsin..
+RETURN 1
+
+[EOF]

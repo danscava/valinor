@@ -1,0 +1,545 @@
+// ----------------------------
+// TSTAFF.SCP - TAMING STAFF 
+// 10 Mart 2004 - cQ
+// ----------------------------
+[itemdef i_tamediyor]
+id=i_memory
+weight=0
+layer=layer_special
+type t_eq_script
+name tameediyor
+
+On=@Equip
+timer 10
+
+On=@UnEquip 
+
+On=@Timer
+remove
+return 1
+
+
+[ITEMDEF i_deed_animal]
+DEFNAME=i_deed_animal
+NAME=pet trading contract
+ID=i_deed
+WEIGHT=20.0
+TYPE=t_script
+VALUE=50
+
+CATEGORY=Custom Items
+SUBSECTION=Deeds
+DESCRIPTION=Animal Trading Contract
+
+On=@Create
+color 08ac
+
+On=@Click
+if (<more2>)
+	message [<tag.trade>]
+endif
+message <name>
+return 1
+
+
+On=@DClick
+if (<src.account.plevel>>1
+if (<src.account.plevel> < 7)
+	src.sysmessage @39 bunu staff uyeleri kullanamaz.
+	return 1
+endif
+endif
+if (<src.findtype.t_eq_trade_window>)
+	src.sysmessage  Trade sirasinda buyutemezsiniz.
+	src.findtype.t_eq_trade_window.remove
+	return 1
+endif
+if (<topobj.uid> != <src.uid>)
+	src.sysmessage @50 Bunu kullanabilmeniz icin cantanizda olmali.
+elseif (<more2>)
+	if (<src.flags>&statf_hidden) || (<src.flags>&statf_invisible)
+		src.sysmessage  Gizlenmis durumdayken kullanamazsiniz.
+		return 1
+	endif
+if (<tag.trade_id>==c_horse_tan) || (<tag.trade_id>==c_horse_brown_dk) ||(<tag.trade_id>==c_horse_brown_lt) ||(<tag.trade_id>==c_horse_gray)
+	if (<tag.trade_str>>120)
+	remove
+	return 1
+	endif
+	endif
+	try src.newnpc <tag.trade_id>
+	link <src.act.uid>
+	link.tag.owner <src.uid>
+	link.tag.tamer <tag.tamer>
+	link.tag.tamer2 <tag.tamer2>
+	link.name <tag.trade_name>
+	link.karma <tag.trade_karma>
+	link.fame <tag.trade_fame>
+	link.str <tag.trade_str>
+	link.hits <tag.trade_str>
+	link.dex <tag.trade_dex>
+	link.int <tag.trade_int>
+	link.food <tag.trade_food>
+	link.color <color>
+	if (<link.color> == 0835)
+		link.color 0481
+	endif
+	link.oskin <link.color>
+	link.memorydel <src.uid>
+	link.newitem i_memory
+	link.act.attr 04
+	link.act.more1 04
+	link.act.more2 <serv.time>
+	link.act.morep <link.p>
+	link.act.color memory_ipet
+	link.act.timer -1
+	link.act.link <src.uid>
+	link.act.cont <link.uid>
+	link.flags <link.flags>&statf_pet
+	link.update
+	link.anim 5
+	link.bark 3
+	remove
+else
+	target Kucultulecek hayvani secin.
+endif
+return 1
+
+On=@TargOn_Item
+src.sysmessage  Esyalari kucultemezsiniz.
+src.target Kucultulecek hayvani secin.
+return 1
+
+On=@TargOn_Char
+if !(<src.targ.npc>)
+	src.sysmessage @50 Oyunculari kucultemezsiniz!
+elseif !(<src.targ.ismypet>)
+	src.sysmessage @50 Bu hayvan size ait degil.
+elseif (<src.targ.flags>&statf_stone) || (<src.targ.flags>&statf_freeze)
+	src.sysmessage @50 Hayvani su anki durumunda kucultemezsiniz.
+elseif (<src.action>==skill_magery)
+	src.sysmessage @50 Buyu yaparken yapamazsiniz.
+elseif ((<src.targ.body> == c_man) || (<src.targ.body> == c_woman))
+	src.sysmessage @50 Sadece hayvanlari kucultebilirsiniz.
+elseif (<src.targ.flags>&statf_invul) || (<src.targ.color> == 07fff)
+	src.sysmessage @50 Bu hayvani kucultemezsiniz.
+elseif (<src.targ.memoryfindtype.memory_war_targ>)
+	src.sysmessage @50 Hayvan su anda cok kizgin.
+elseif (<src.targ.findid.i_rune_summon_creature>)
+	src.sysmessage @50 Buyu ile yaratilmis hayvanlari kucultemezsiniz.
+elseif ((<src.targ.id> == c_llama_pack) || (<src.targ.id> == c_horse_pack))
+	src.sysmessage @50 Pack hayvanlari kucultemezsiniz.
+elseif (<src.targ.food> < 6)
+	src.sysmessage @50 Hayvan acikmis.
+elseif (<src.targ.hits> < <src.targ.str>)
+	src.sysmessage @50 Bu hayvan yaralanmis.
+elseif (<src.targ.findid.i_rune_bless>)
+       src.sysmessage @50 Bu hayvana bless buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_strength>)
+       src.sysmessage @50 Bu hayvana strength buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_agility>)
+       src.sysmessage @50 Bu hayvana agility buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_cunning>)
+       src.sysmessage @50 Bu hayvana cunning buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_clumsy>)
+       src.sysmessage @50 Bu hayvana clumsy buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_weaken>)
+       src.sysmessage @50 Bu hayvana weaken buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_feeblemind>)
+       src.sysmessage @50 Bu hayvana feeblemind buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_curse>)
+       src.sysmessage @50 Bu hayvana curse buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_poison>)
+	src.sysmessage @50 Bu hayvan zehirlenmis.
+elseif !(<src.targ.canseelos>)
+	src.sysmessage @50 Hayvana ulasamiyorsunuz.
+elseif (<src.targ.distance> > 3)
+	src.sysmessage @50 Hayvana yeterince yakin degilsiniz.
+elseif (<src.targ.id> == c_m_golem_tinker1)
+	src.newitem i_pet_golem1
+	src.act.name <src.targ.name>
+	src.act.bounce
+	src.targ.remove
+	remove
+elseif (<src.targ.id> == c_m_golem_tinker2)
+	src.newitem i_pet_golem2
+	src.act.name <src.targ.name>
+	src.act.bounce
+	src.targ.remove
+	remove
+else
+	name filled pet trading contract
+	attr 00
+	more2 1
+	color <src.targ.color>
+	if (<color> == 0481)
+		color 0835
+	endif
+	tag.trade <src.targ.job>
+	tag.trade_id <src.targ.id>
+	tag.trade_name <src.targ.name>
+	tag.trade_str <src.targ.str>
+	tag.trade_dex <src.targ.dex>
+	tag.trade_int <src.targ.int>
+	tag.trade_karma <src.targ.karma>
+	tag.trade_fame <src.targ.fame>
+	tag.trade_food <src.targ.food>
+	tag.tamer <src.targ.tag.tamer>
+	tag.tamer2 <src.targ.tag.tamer2>
+	src.targ.bark 2
+	src.targ.remove
+	src.sysmessage @90 <tag.trade>: kucultuldu.
+endif
+return 1
+
+on=@timer
+if <cont>
+	timer=-1
+return 1
+endif
+
+[ITEMDEF i_staff_taming]
+ID=i_staff_gnarled
+NAME=taming staff
+TYPE=t_weapon_mace_staff
+VALUE=254
+TWOHANDS=Y
+LAYER=2
+WEIGHT=10
+DAM=5,10
+
+On=@Create
+attr 05
+color 2001
+more2 0
+timer -1
+hitpoints 5
+
+On=@DClick
+if (strmatch('<src.region.events>','r_jaildeyim'))
+	src.sysmessage jailde kullanamazsiniz
+	return 1
+endif
+if (<src.account.plevel>>1
+if (<src.account.plevel> < 7)
+	src.sysmessage @39 bunu staff uyeleri kullanamaz.
+	return 1
+endif
+endif
+if (<src.region.flags> == 010d2)
+	src.sysmessage @39 bunu gemide iken kullanamazsiniz.
+	return 1
+endif
+	
+if (<topobj.uid> != <src.uid>)
+	src.sysmessage @38 Bunu kullanabilmeniz icin uzerinizde olmali.
+elseif (<src.flags>&statf_hidden) || (<src.flags>&statf_invisible)
+	src.sysmessage @38 Gizlenmis durumdayken bunu kullanamazsiniz.
+elseif (<src.findid.i_morpher>)
+	src.sysmessage @38 Bunu kullanabilmek icin Polymorph buyusunden cikin..
+elseif (<src.findid.i_tamediyor>)
+src.sysmessage @38 Bunu kullanabilmek icin tame islemi bitmesi gerekiyor.
+return 1
+
+elseif (<timer> == -1)
+	src.findid.i_staff_taming.equip
+	target Hangi hayvani tamelemek istiyorsunuz?
+endif
+return 1
+
+On=@UnEquip
+more2 0
+timer -1
+link -1
+
+On=@Timer
+if (<more2> < 6)
+	if (<eval(<link.p.y>-<cont.p.y>)> >4) || (<eval(<cont.p.y>-<link.p.y>)> >4) || (<eval(<link.p.x>-<cont.p.x>)> >4) || (<eval(<cont.p.x>-<link.p.x>)> >4)// hayvandan uzak olma check i, dist kullanýlamýyor çünkü dist source ile aradaki mesafeye bakar. Ama burada player source deðil cont.
+		timer -1
+		more2 0
+		cont.sysmessage @38 Hayvandan uzaklastiniz.
+		cont.skill fail
+		return 1
+	elseif (<eval(<link.p.z>-<cont.p.z>)> >8) || (<eval(<cont.p.z>-<link.p.z>)> >8)
+		timer -1
+		more2 0
+		cont.sysmessage @38 Hayvandan uzaklastiniz.
+		cont.skillfail
+		return 1
+	elseif (<link.memoryfindtype.0200>) && (<link.memoryfindtype.0200.link.morez> < 20) && (<link.memoryfindtype.0200.link.morez> > 0)
+		if (<eval(<link.p.y>-<link.memoryfindtype.0200.link.p.y>)> > <link.memoryfindtype.0200.link.morez>) || (<eval(<link.memoryfindtype.0200.link.p.y> - <link.p.y>)> > <link.memoryfindtype.0200.link.morez>) || (<eval(<link.p.x>-<link.memoryfindtype.0200.link.p.x>)> > <link.memoryfindtype.0200.link.morez>) || (<eval(<link.memoryfindtype.0200.link.p.x> - <link.p.x>)> > <link.memoryfindtype.0200.link.morez>)
+			timer -1
+			more2 0
+			cont.sysmessage @38 Hayvan yuvasindan cok uzak. Sizi umursamiyor. 
+			return 1
+		endif
+	endif
+	
+	dorand 10
+		cont.message @90 Gel <link.name>, gel..
+		cont.message @90 Sana zarar vermeyecegim <link.name>..
+		cont.message @90 Sakin ol, <link.name>.
+		cont.message @90 Her zaman senin gibi bir <link.name> sahibi olmak istemistim..
+		cont.message @90 Cok tatlisin, <link.name>.
+		cont.message @90 Gel bir tanem, gel canim..
+		cont.message @90 Seni incitmeyecegim, <link.name>.
+		cont.message @90 Arkadasin olmak istiyorum.
+		cont.message @90 Gel <cont.sex babana/annene>, <link.name>.
+		cont.message @90 Gel <link.name>, gel <cont.sex babana/annene>.
+	enddo
+	dorand 2
+		cont.anim 17
+		cont.anim 19
+		cont.newitem i_tamediyor
+		cont.act.equip 
+	enddo
+	timer 3
+	more2 (<more2> + 1)
+	//cont.systemlogreporter Taming: Player uid:<cont.uid> name: <cont.name> Target:<Link.name>
+	return 1
+endif
+more2 0
+
+if !(<link.npc> == 1)
+	cont.sysmessage @38 Bunu ehlilestiremezsiniz.
+	return 1
+endif
+if (<link.findid.i_tame_suresi>)
+return 1
+endif
+if (rand(100) < 75)
+	link.memoryfindtype.0200.link.timer <eval (<link.memoryfindtype.0200.link.morey> * 60)>
+	if (<link.memoryfindtype.memory_ispawned>)
+		link.memoryfindtype.memory_ispawned.remove
+	endif
+	link.karma -50
+	link.memorydel <cont.uid>
+	link.newitem i_memory
+	link.act.attr 04
+	link.act.more1 04
+	link.act.more2 <serv.time>
+	link.act.morep <link.p>
+	link.act.color memory_ipet
+	link.act.timer -1
+	link.act.link <cont.uid>
+	link.act.cont <link.uid>
+	link.flags <link.flags>&statf_pet
+	link.newitem i_tame_hatirlatici
+	link.act.link <cont.uid>
+	link.equip <link.act>
+	cont.sysmessage @90 <link.name> ehlilestirmeyi basardiniz.
+//	serv.b @077a,,1 <cont.name> <link.name>'i <cont.region.name> civarlarinda tamelemistir.
+	if (<link.body> == c_cow_bw) || (<link.body> == c_cow_brown) || (<link.body> == c_pig) || (<link.baseid>=c_dog) || (<link.baseid>=c_bull_brown_lt) || (<link.baseid>=c_goat) || (<link.baseid>=c_bear_brown)
+	link.remove
+	cont.sysmessage @63,1,1 <link.name> silinmistir skill kasmaya devam edebilirsiniz
+
+	link.newitem i_tame_suresi
+	link.act.link <cont.uid>
+	link.equip <link.act>
+	if ((<cont.skilllock[35]> == 0) && (<cont.skilltotal> < 700.0))
+		if (<cont.taming> < 30.0)
+			if (rand(2) == 1)
+				cont.taming (<cont.taming> + 1)
+			endif
+		elseif (<cont.taming> < 50.0)
+			if (rand(2) == 1)
+				cont.taming (<cont.taming> + 1)
+			endif
+		elseif (<cont.taming> < 75.0)
+			if (rand(2) == 1)
+				cont.taming (<cont.taming> + 1)
+			endif
+		elseif (<cont.taming> < 100.0)
+			if (rand(5) == 1)
+				cont.taming (<cont.taming> + 1)
+			endif
+		endif
+	endif
+
+	if ((<cont.skilllock[2]> == 0) && (<cont.skilltotal> < 700.0))
+		if (<cont.animallore> < 30.0)
+			if (rand(1) == 1)
+				cont.animallore (<cont.animallore> + 1)
+			endif
+		elseif (<cont.animallore> < 50.0)
+			if (rand(1) == 1)
+				cont.animallore (<cont.animallore> + 1)
+			endif
+		elseif (<cont.animallore> < 75.0)
+			if (rand(1) == 1)
+				cont.animallore (<cont.animallore> + 1)
+			endif
+		elseif (<cont.animallore> < 100.0)
+			if (rand(1) == 1)
+				cont.animallore (<cont.animallore> + 1)
+			endif
+		endif
+	endif
+if (<link.tag.tamer> <cont.uid>)
+	link.tag.tamer2 <cont.uid>
+else
+	link.tag.tamer <cont.uid>
+endif
+	link -1
+else
+	cont.sysmessage @48 Hayvani ehlillestirmeyi basaramadiniz.
+	link -1
+endif
+return 1
+
+On=@TargOn_Char
+if (<src.flags>&statf_hidden) || (<src.flags>&statf_invisible)
+	src.sysmessage @38 Gizlenmis durumdayken bunu kullanamazsiniz.
+	return 1
+endif
+if !(<src.targ.region.defname> == a_townZoo)
+if ((<src.targ.npc> == 1)
+if (<src.targ.findid.i_tame_suresi>)
+if !(<src.targ.memoryfindtype.(memory_ipet|memory_guard).link> == <src.targ.findid.i_tame_suresi.link>)
+	src.targ.findid.i_tame_suresi.remove
+	src.sysmessage @50 <src.targ.name>'i ikna ettiniz.
+	return 1
+endif
+endif
+if (<src.targ.region.flags> == 010d2)
+	src.sysmessage @39 Gemi burasi?
+	return 1
+endif
+if (<link.memoryfindtype.0200>) && (<link.memoryfindtype.0200.link.morez> < 20) && (<link.memoryfindtype.0200.link.morez> > 0)
+		if (<eval(<link.p.y>-<link.memoryfindtype.0200.link.p.y>)> > <link.memoryfindtype.0200.link.morez>) || (<eval(<link.memoryfindtype.0200.link.p.y> - <link.p.y>)> > <link.memoryfindtype.0200.link.morez>) || (<eval(<link.p.x>-<link.memoryfindtype.0200.link.p.x>)> > <link.memoryfindtype.0200.link.morez>) || (<eval(<link.memoryfindtype.0200.link.p.x> - <link.p.x>)> > <link.memoryfindtype.0200.link.morez>)
+			timer -1
+			cont.sysmessage @38 Hayvan yuvasindan cok uzak. Sizi umursamiyor. 
+			return 1
+		endif
+endif
+		if !(<src.targ.canseelos>)
+			src.sysmessage @38 Hayvana ulasamiyorsunuz.
+		elseif (<src.targ.distance> > 3)
+			src.sysmessage @38 Hayvana yeterince yakin degilsiniz.
+		elseif (<src.targ.findid.i_rune_summon_creature>)
+			src.sysmessage @38 Buyu ile yaratilmis hayvanlari ehlilestiremezsiniz.
+		elseif (<src.targ.memoryfindtype.memory_fight>)
+			src.sysmessage @38 Hayvan sizi umursamiyor.
+		//elseif (strmatch('<src.region.events>','r_house_private'))
+		//	src.sysmessage @48 Evinizdeyken tame edemezsiniz.
+		//elseif (strmatch('<src.region.events>','r_house_public'))
+		//	src.sysmessage @48 Evinizdeyken tame edemezsiniz.
+		elseif (<src.targ.memoryfindtype.memory_war_targ.link> == <src.uid>)
+			src.sysmessage @48 Hayvan su an cok kizgin.
+		elseif (0<src.targ.tag.tamer>==0<src.uid>)
+			src.sysmessage @48 Hayvan artik sizi umursamiyor.
+		elseif (0<src.targ.tag.tamer2>==0<src.uid>)
+			src.sysmessage @48 Hayvan artik sizi umursamiyor.
+		elseif (<src.taming> < <src.targ.taming>)
+			src.anim 19
+			src.sysmessage @50 <src.targ.name> icin taming skilliniz yeterli degil. (gerekli skill: <src.targ.taming>)
+		elseif (<src.animallore> < <src.targ.animallore>)
+			src.anim 19
+			src.sysmessage @50 <src.targ.name> icin animal lore skilliniz yeterli degil. (gerekli skill: <src.targ.animallore>)
+		elseif (<src.herding> < <src.targ.herding>)
+			src.anim 19
+			src.sysmessage @50 <src.targ.name> icin herding skilliniz yeterli degil. (gerekli skill: <src.targ.herding>)
+		elseif (<src.targ.flags>&statf_dead)
+			src.sysmessage @38 Olmus hayvandan daha ne istiyorsun?
+			src.targ.remove
+		elseif (<src.targ.findid.i_tame_hatirlatici.link> == <src.uid>)
+			src.sysmessage @50 Bu hayvani daha once ehlilestirmissiniz.
+			src.targ.findid.i_tame_hatirlatici.timer 3600
+			return 1
+elseif (<src.targ.hits> < <src.targ.str>)
+	src.sysmessage @50 Bu hayvan yaralanmis.
+elseif (<src.targ.findid.i_rune_bless>)
+       src.sysmessage @50 Bu hayvana bless buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_strength>)
+       src.sysmessage @50 Bu hayvana strength buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_agility>)
+       src.sysmessage @50 Bu hayvana agility buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_cunning>)
+       src.sysmessage @50 Bu hayvana cunning buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_clumsy>)
+       src.sysmessage @50 Bu hayvana clumsy buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_weaken>)
+       src.sysmessage @50 Bu hayvana weaken buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_feeblemind>)
+       src.sysmessage @50 Bu hayvana feeblemind buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_curse>)
+       src.sysmessage @50 Bu hayvana curse buyusu yapilmis.
+elseif (<src.targ.findid.i_rune_paralyze>)
+       src.sysmessage @50 Bu hayvana paralyze buyusu yapilmis.
+		elseif (<src.targ.memoryfindtype.memory_ipet>)
+			if (<src.targ.memoryfindtype.(memory_ipet|memory_guard).link> == <src.uid>)
+				src.sysmessage @50 <src.targ.name> zaten size ait.
+				src.targ.flags <src.targ.flags>&statf_pet
+			else
+				src.sysmessage @50 <src.targ.name> bir baskasina ait.
+			endif
+		else 
+			if ( <src.targ.id> != c_m_nightmare )
+				if (<src.targ.flags>&statf_stone) || (<src.targ.flags>&statf_freeze)
+						src.sysmessage @50 Hayvani su anki durumunda ehlilestiremezsiniz.
+				elseif (<src.targ.memoryfindtype.memory_war_targ>)
+					src.sysmessage @50 Hayvan su an kizgin.
+				elseif (<src.targ.food> < 6)
+					src.sysmessage @50 Hayvan acikmis.
+				else
+					link <src.targ.uid>
+					src.anim 19
+					timer 2	
+				endif
+			else
+				link <src.targ.uid>
+				src.anim 19
+				timer 2
+			endif
+		endif
+	else
+		src.sysmessage @38 Bunu ehlillestiremezsiniz.
+	endif
+else
+	src.sysmessage @38 Bu bolgede taming yasaktir.
+endif
+return 1
+
+On=@TargOn_Item
+return 1
+
+
+[itemdef i_tame_hatirlatici]
+name=Tame Edenleri Hatirlar
+id=i_gold
+type=t_eq_script
+weight=0
+layer=layer_special
+
+On=@Create
+attr=attr_decay|attr_newbie|attr_invis
+
+On=@Timer 
+remove
+return 1
+
+[function memorydel] // memory silen loop
+if (0<args>)
+	if (<findid.i_memory.link> == <args>)
+		findid.i_memory.remove
+		memorydel <args>
+	endif
+endif
+
+[itemdef i_tame_suresi]
+name=ustuste tami onler
+id=i_gold
+type=t_eq_script
+weight=0
+layer=layer_special
+
+On=@Create
+attr=attr_decay|attr_invis
+timer 15
+
+On=@Timer 
+remove
+return 1
+
+
+[EOF]

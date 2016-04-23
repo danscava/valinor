@@ -1,0 +1,4665 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Runebook		--
+// -- Son Düzenleme Tarihi : 02.10.2004		--
+// -----------------------------------------------
+
+VERSION=0.55
+
+[itemdef i_runebookacik]
+id=i_memory
+type=t_eq_script
+name=runebookacil
+
+[ITEMDEF i_runebook]
+ID=i_spellbook
+TYPE=t_script
+WEIGHT=0.1
+NAME=runebook
+RESOURCES=32 i_scroll_blank, 8 i_scroll_recall,1 i_scroll_gate_travel
+SKILLMAKE=INSCRIPTION 70.0, MAGERY 60.0
+
+ON=@Create
+COLOR=045e
+MOREX=4 // charge
+ATTR=04
+TAG.NAME=isimsiz // default isim
+TAG.EATRUNE=01
+TAG.POS1_X=0
+TAG.POS2_X=0
+TAG.POS3_X=0
+TAG.POS4_X=0
+TAG.POS5_X=0
+TAG.POS6_X=0
+TAG.POS7_X=0
+TAG.POS8_X=0
+TAG.POS9_X=0
+TAG.POS10_X=0
+TAG.POS11_X=0
+TAG.POS12_X=0
+TAG.POS13_X=0
+TAG.POS14_X=0
+TAG.POS15_X=0
+TAG.POS16_X=0
+
+ON=@Timer
+timer -1
+return 1
+
+ON=@Click
+if !(strmatch('<tag.name>','isimsiz')
+	message a <name> [<tag.name>] // degi$tirilebilen isim
+else
+	message a <name>
+endif
+return 1
+
+ON=@DClick
+attr=024
+if (strmatch('<src.region.name>','dungeon')
+	if (<src.account.plevel><2)
+return 1
+endif
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+return 1
+endif
+
+if (<src.findid.i_runebookacik>)
+src.sysmessage @1100,,1 Diger runebook'u kapatmadan acamazsiniz.
+return 1
+endif
+
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+
+SRC.SOUND=85
+if (<src.isevent.e_x_breakspell>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+ENDIF
+var.rb_font1 <basefont color=#202060
+DIALOG d_runebook
+src.newitem i_runebookacik
+src.act.equip
+
+RETURN 1
+
+ON=@TargOn_Char
+RETURN 1
+
+ON=@TargOn_Item
+IF <SRC.TARG.TOPOBJ.UID> != <SRC.UID> 
+	SRC.SYSMESSAGE @1100,,1 Ekleyeceginiz sey cantanizda olmali.
+	RETURN 1
+ENDIF 
+IF <MORE2>=1
+  IF ( <SRC.TARG.ID> = 01f4c )
+    MOREX=<MOREX> + <SRC.TARG.AMOUNT>
+    SRC.TARG.REMOVE
+    SRC.SYSMESSAGE @049,,1 Kitaba <SRC.TARG.AMOUNT> sarj eklendi.
+  ELSE
+  SRC.SYSMESSAGE @1100,,1 Bu bir recall scrollu degil. Sadece recall scrollarini kullanabilirsiniz.
+  ENDIF
+RETURN 1
+ELSEIF <MORE2>=2
+  IF (( <SRC.TARG.TYPE> = t_rune ) || ( <SRC.TARG.TYPE> = 014 ))
+    IF (<SRC.TARG.MOREX>==0)
+    SRC.SYSMESSAGE @1100,,1 Bu rune bos, bunu kullanamazsiniz.
+    RETURN 1
+    ENDIF
+  ELSE
+  SRC.SYSMESSAGE @1100,,1 Bu bir rune degil.
+  RETURN 1
+  ENDIF
+TAG.HOLD_LOCAL=<SRC.TARG.NAME>
+TAG.HOLD_X=<SRC.TARG.MOREX>
+TAG.HOLD_Y=<SRC.TARG.MOREY>
+TAG.HOLD_Z=<SRC.TARG.MOREZ>
+TAG.HOLD_M=<SRC.TARG.MOREM>
+ENDIF
+
+IF (<TAG.POS1_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL1=<TAG.HOLD_LOCAL>
+        TAG.POS1_X=<TAG.HOLD_X>
+        TAG.POS1_Y=<TAG.HOLD_Y>
+        TAG.POS1_Z=<TAG.HOLD_Z>
+        TAG.POS1_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS2_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL2=<TAG.HOLD_LOCAL>
+        TAG.POS2_X=<TAG.HOLD_X>
+        TAG.POS2_Y=<TAG.HOLD_Y>
+        TAG.POS2_Z=<TAG.HOLD_Z>
+        TAG.POS2_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS3_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL3=<TAG.HOLD_LOCAL>
+        TAG.POS3_X=<TAG.HOLD_X>
+        TAG.POS3_Y=<TAG.HOLD_Y>
+        TAG.POS3_Z=<TAG.HOLD_Z>
+        TAG.POS3_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS4_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL4=<TAG.HOLD_LOCAL>
+        TAG.POS4_X=<TAG.HOLD_X>
+        TAG.POS4_Y=<TAG.HOLD_Y>
+        TAG.POS4_Z=<TAG.HOLD_Z>
+        TAG.POS4_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS5_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL5=<TAG.HOLD_LOCAL>
+        TAG.POS5_X=<TAG.HOLD_X>
+        TAG.POS5_Y=<TAG.HOLD_Y>
+        TAG.POS5_Z=<TAG.HOLD_Z>
+        TAG.POS5_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS6_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL6=<TAG.HOLD_LOCAL>
+        TAG.POS6_X=<TAG.HOLD_X>
+        TAG.POS6_Y=<TAG.HOLD_Y>
+        TAG.POS6_Z=<TAG.HOLD_Z>
+        TAG.POS6_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS7_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL7=<TAG.HOLD_LOCAL>
+        TAG.POS7_X=<TAG.HOLD_X>
+        TAG.POS7_Y=<TAG.HOLD_Y>
+        TAG.POS7_Z=<TAG.HOLD_Z>
+        TAG.POS7_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS8_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL8=<TAG.HOLD_LOCAL>
+        TAG.POS8_X=<TAG.HOLD_X>
+        TAG.POS8_Y=<TAG.HOLD_Y>
+        TAG.POS8_Z=<TAG.HOLD_Z>
+        TAG.POS8_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS9_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL9=<TAG.HOLD_LOCAL>
+        TAG.POS9_X=<TAG.HOLD_X>
+        TAG.POS9_Y=<TAG.HOLD_Y>
+        TAG.POS9_Z=<TAG.HOLD_Z>
+        TAG.POS9_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS10_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL10=<TAG.HOLD_LOCAL>
+        TAG.POS10_X=<TAG.HOLD_X>
+        TAG.POS10_Y=<TAG.HOLD_Y>
+        TAG.POS10_Z=<TAG.HOLD_Z>
+        TAG.POS10_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS11_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL11=<TAG.HOLD_LOCAL>
+        TAG.POS11_X=<TAG.HOLD_X>
+        TAG.POS11_Y=<TAG.HOLD_Y>
+        TAG.POS11_Z=<TAG.HOLD_Z>
+        TAG.POS11_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS12_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL12=<TAG.HOLD_LOCAL>
+        TAG.POS12_X=<TAG.HOLD_X>
+        TAG.POS12_Y=<TAG.HOLD_Y>
+        TAG.POS12_Z=<TAG.HOLD_Z>
+        TAG.POS12_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS13_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL13=<TAG.HOLD_LOCAL>
+        TAG.POS13_X=<TAG.HOLD_X>
+        TAG.POS13_Y=<TAG.HOLD_Y>
+        TAG.POS13_Z=<TAG.HOLD_Z>
+        TAG.POS13_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS14_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL14=<TAG.HOLD_LOCAL>
+        TAG.POS14_X=<TAG.HOLD_X>
+        TAG.POS14_Y=<TAG.HOLD_Y>
+        TAG.POS14_Z=<TAG.HOLD_Z>
+        TAG.POS14_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS15_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL15=<TAG.HOLD_LOCAL>
+        TAG.POS15_X=<TAG.HOLD_X>
+        TAG.POS15_Y=<TAG.HOLD_Y>
+        TAG.POS15_Z=<TAG.HOLD_Z>
+        TAG.POS15_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+IF (<TAG.POS16_X>=0)
+        SRC.SYSMESSAGE @049,,1 Rune'u kitaba eklediniz.
+        SRC.SOUND=79
+        TAG.LOCAL16=<TAG.HOLD_LOCAL>
+        TAG.POS16_X=<TAG.HOLD_X>
+        TAG.POS16_Y=<TAG.HOLD_Y>
+        TAG.POS16_Z=<TAG.HOLD_Z>
+        TAG.POS16_M=<TAG.HOLD_M>
+	  SRC.TARG.REMOVE
+        RETURN 1
+ENDIF
+
+SRC.SYSMESSAGE @1100,,1 Kitapta bunun icin bos yer kalmamis.
+RETURN 1
+ENDIF
+
+CATEGORY=Custom Items
+SUBSECTION=Runebook
+DESCRIPTION=Runebook
+
+[ITEMDEF i_rb_gate]
+ID=i_moongate_blue
+RESOURCES=i_scroll_gate_travel
+TYPE=t_telepad
+NAME=Gate
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Moongates
+DESCRIPTION=RB Gate
+
+On=@Create
+color 022
+more1 5
+attr 010
+
+On=@DClick
+if <timer><0
+remove
+return 1
+endif
+if !(<src.flags>&statf_stone)
+	if (<distance> > 3)
+		src.sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	else
+		if (<src.findid.i_gater>)
+			src.findid.i_gater.remove
+		endif
+		src.newitem i_gater
+		src.act.link <uid>
+		src.act.morep <morep>
+		src.act.equip
+	endif
+endif
+return 1
+
+ON=@Step
+if <timer><0
+remove
+return 1
+endif
+if !((<src.findid.i_gater>) || (<src.flags>&statf_stone))
+	src.newitem i_gater
+	src.act.link <uid>
+	src.act.morep <morep>
+	src.act.equip
+endif
+return 1
+
+On=@Click
+if <timer><0
+remove
+return 1
+endif
+link.sextant
+if (<src.region.uid> == <region.uid>)
+	sayu
+	sayua 0905,0,0,0 <link.region.name>
+	sayua 0900,0,0,0 [<var.coordinate>]
+else
+	message <link.region.name>
+	message [<var.coordinate>]
+	message
+endif
+var.coordinate
+return 1
+On=@Timer
+if (<more1>)
+	more1 <more1> - 1
+	timer 1
+else
+	sfx 528
+	remove
+endif
+return 1
+
+[DIALOG d_runebook]
+0,100
+gumppic 100 10 2201
+gumppic 125 50 57
+gumppic 145 50 58
+gumppic 160 50 58
+gumppic 175 50 58
+gumppic 190 50 58
+gumppic 205 50 58
+gumppic 220 50 58
+gumppic 230 50 59
+
+gumppic 290 50 57
+gumppic 310 50 58
+gumppic 325 50 58
+gumppic 340 50 58
+gumppic 355 50 58
+gumppic 370 50 58
+gumppic 385 50 58
+gumppic 395 50 59
+
+page 0
+//Recall Button
+button 125 65 2103 2104 1 0 1//Button 1
+button 125 80 2103 2104 1 0 2//Button 2
+button 125 95 2103 2104 1 0 3//Button 3
+button 125 110 2103 2104 1 0 4//Button 4
+button 125 125 2103 2104 1 0 5//Button 5
+button 125 140 2103 2104 1 0 6//Button 6
+button 125 155 2103 2104 1 0 7//Button 7
+button 125 170 2103 2104 1 0 8//Button 8
+//Gate Button
+button 135 65 2103 2104 1 0 17//Button 17
+button 135 80 2103 2104 1 0 18//Button 18
+button 135 95 2103 2104 1 0 19//Button 19
+button 135 110 2103 2104 1 0 20//Button 20
+button 135 125 2103 2104 1 0 21//Button 21
+button 135 140 2103 2104 1 0 22//Button 22
+button 135 155 2103 2104 1 0 23//Button 23
+button 135 170 2103 2104 1 0 24//Button 24
+//Erase Button
+//button 250 65 2103 2104 1 0 25//Button 25
+//button 250 80 2103 2104 1 0 26//Button 26
+//button 250 95 2103 2104 1 0 27//Button 27
+//button 250 110 2103 2104 1 0 28//Button 28
+//button 250 125 2103 2104 1 0 29//Button 29
+//button 250 140 2103 2104 1 0 30//Button 30
+//button 250 155 2103 2104 1 0 31//Button 31
+//button 250 170 2103 2104 1 0 32//Button 32
+//Erase Button //17.01.02
+button 260 65 2103 2104 1 0 25//Button 25
+button 260 80 2103 2104 1 0 26//Button 26
+button 260 95 2103 2104 1 0 27//Button 27
+button 260 110 2103 2104 1 0 28//Button 28
+button 260 125 2103 2104 1 0 29//Button 29
+button 260 140 2103 2104 1 0 30//Button 30
+button 260 155 2103 2104 1 0 31//Button 31
+button 260 170 2103 2104 1 0 32//Button 32
+//rename butonlar //17.01.02
+button 250 65 2103 2104 1 0 51//Button 51
+button 250 80 2103 2104 1 0 52//Button 52
+button 250 95 2103 2104 1 0 53//Button 53
+button 250 110 2103 2104 1 0 54//Button 54
+button 250 125 2103 2104 1 0 55//Button 55
+button 250 140 2103 2104 1 0 56//Button 56
+button 250 155 2103 2104 1 0 57//Button 57
+button 250 170 2103 2104 1 0 58//Button 58
+////opposite page
+//recall button
+button 285 65 2103 2104 1 0 9 //Button 9
+button 285 80 2103 2104 1 0 10 //Button 10
+button 285 95 2103 2104 1 0 11 //Button 11
+button 285 110 2103 2104 1 0 12//Button 12
+button 285 125 2103 2104 1 0 13//Button 13
+button 285 140 2103 2104 1 0 14//Button 14
+button 285 155 2103 2104 1 0 15//Button 15
+button 285 170 2103 2104 1 0 16//Button 16
+//Gate Button
+button 295 65 2103 2104 1 0 33//Button 33
+button 295 80 2103 2104 1 0 34//Button 34
+button 295 95 2103 2104 1 0 35//Button 35
+button 295 110 2103 2104 1 0 36//Button 36
+button 295 125 2103 2104 1 0 37//Button 37
+button 295 140 2103 2104 1 0 38//Button 38
+button 295 155 2103 2104 1 0 39//Button 39
+button 295 170 2103 2104 1 0 40//Button 40
+////Erase Button //17.01.02
+//button 410 65 2103 2104 1 0 41//Button 41 //Yenileri eklendi
+//button 410 80 2103 2104 1 0 42//Button 42
+//button 410 95 2103 2104 1 0 43//Button 43
+//button 410 110 2103 2104 1 0 44//Button 44
+//button 410 125 2103 2104 1 0 45//Button 45
+//button 410 140 2103 2104 1 0 46//Button 46
+//button 410 155 2103 2104 1 0 47//Button 47
+//button 410 170 2103 2104 1 0 48//Button 48
+//Erase Button //17.01.02
+button 420 65 2103 2104 1 0 41//Button 41
+button 420 80 2103 2104 1 0 42//Button 42
+button 420 95 2103 2104 1 0 43//Button 43
+button 420 110 2103 2104 1 0 44//Button 44
+button 420 125 2103 2104 1 0 45//Button 45
+button 420 140 2103 2104 1 0 46//Button 46
+button 420 155 2103 2104 1 0 47//Button 47
+button 420 170 2103 2104 1 0 48//Button 48
+//rename Butonlar //17.01.02
+button 410 65 2103 2104 1 0 61//Button 61
+button 410 80 2103 2104 1 0 62//Button 62
+button 410 95 2103 2104 1 0 63//Button 63
+button 410 110 2103 2104 1 0 64//Button 64
+button 410 125 2103 2104 1 0 65//Button 65
+button 410 140 2103 2104 1 0 66//Button 66
+button 410 155 2103 2104 1 0 67//Button 67
+button 410 170 2103 2104 1 0 68//Button 68
+//Rune Ekle $arj Et
+button 303 22 2103 2104 1 0 49//Button 49
+button 303 37 2103 2104 1 0 50//Button 50
+htmlgump 318 18 100 20 17 0 0
+htmlgump 318 33 100 20 19 0 0
+
+htmlgump 148 61 100 17 0 // marked positions text
+htmlgump 148 76 100 17 1
+htmlgump 148 91 100 17 2
+htmlgump 148 106 100 17 3
+htmlgump 148 121 100 17 4
+htmlgump 148 136 100 17 5
+htmlgump 148 151 100 17 6
+htmlgump 148 166 100 17 7
+htmlgump 307 61 100 17 8
+htmlgump 307 76 100 17 9
+htmlgump 307 91 100 17 10
+htmlgump 307 106 100 17 11
+htmlgump 307 121 100 17 12
+htmlgump 307 136 100 17 13
+htmlgump 307 151 100 17 14
+htmlgump 307 166 100 17 15
+
+htmlgump 155 18 86 17 18
+htmlgump 155 33 90 17 21
+
+htmlgump 129 180 100 20 16 0 0
+htmlgump 129 192 100 20 20 0 0
+htmlgump 247 180 100 20 22 0 0
+htmlgump 241 192 100 20 24 0 0
+
+htmlgump 150 184 100 20 25 0 0
+htmlgump 156 196 100 20 26 0 0
+htmlgump 225 184 100 20 27 0 0
+htmlgump 207 196 100 20 28 0 0
+
+button 140 22 2103 2104 1 0 59 //Button 59, Rename Book //17.01.02
+//button 140 22 2103 2104 1 0 67 //Button 67, Rename Book
+
+[DIALOG d_runebook TEXT]
+<var.rb_font1>><TAG.LOCAL1>	//Location 1
+<var.rb_font1>><TAG.LOCAL2>	//Location 2
+<var.rb_font1>><TAG.LOCAL3>	//Location 3
+<var.rb_font1>><TAG.LOCAL4>	//Location 4
+<var.rb_font1>><TAG.LOCAL5>	//Location 5
+<var.rb_font1>><TAG.LOCAL6>	//Location 6
+<var.rb_font1>><TAG.LOCAL7>	//Location 7
+<var.rb_font1>><TAG.LOCAL8>	//Location 8
+//page 2 //Kar$i Sayfa
+<var.rb_font1>><TAG.LOCAL9>	//Location 9
+<var.rb_font1>><TAG.LOCAL10>	//Location 10
+<var.rb_font1>><TAG.LOCAL11>	//Location 11
+<var.rb_font1>><TAG.LOCAL12>	//Location 12
+<var.rb_font1>><TAG.LOCAL13>	//Location 13
+<var.rb_font1>><TAG.LOCAL14>	//Location 14
+<var.rb_font1>><TAG.LOCAL15>	//Location 15
+<var.rb_font1>><TAG.LOCAL16>	//Location 16
+| |_	//text 16
+Rune Ekle	//text 17
+<TAG.NAME>	//text 18
+Sarj Et	//text 19
+|___	//text 20
+Sarj: <MOREX>.	//text 21
+//| //17.01.02
+_| | //ren //17.01.02
+_|
+___| // sil
+gate
+recall
+isim
+cikart
+
+
+[DIALOG d_runebook BUTTON]
+ONBUTTON=0
+src.findid.i_runebookacik.remove
+RETURN 1
+
+ONBUTTON=1
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS1_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS1_X>> <EVAL <TAG.POS1_Y>> <EVAL <TAG.POS1_Z>> <EVAL <TAG.POS1_M>>
+if (strmatch('<src.act.region.name>','pazar alani')) || (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083)
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+	tag.regionname=<SRC.ACT.REGION.name>
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) || (strmatch('<src.act.region.name>','pazar alani'))
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS1_X>> <EVAL <TAG.POS1_Y>> <EVAL <TAG.POS1_Z>> <EVAL <TAG.POS1_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+
+ONBUTTON=2
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS2_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS2_X>> <EVAL <TAG.POS2_Y>> <EVAL <TAG.POS2_Z>> <EVAL <TAG.POS2_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS2_X>> <EVAL <TAG.POS2_Y>> <EVAL <TAG.POS2_Z>> <EVAL <TAG.POS2_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=3
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS3_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS3_X>> <EVAL <TAG.POS3_Y>> <EVAL <TAG.POS3_Z>> <EVAL <TAG.POS3_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083)  || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS3_X>> <EVAL <TAG.POS3_Y>> <EVAL <TAG.POS3_Z>> <EVAL <TAG.POS3_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=4
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS4_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS4_X>> <EVAL <TAG.POS4_Y>> <EVAL <TAG.POS4_Z>> <EVAL <TAG.POS4_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS4_X>> <EVAL <TAG.POS4_Y>> <EVAL <TAG.POS4_Z>> <EVAL <TAG.POS4_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=5
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS5_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS5_X>> <EVAL <TAG.POS5_Y>> <EVAL <TAG.POS5_Z>> <EVAL <TAG.POS5_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS5_X>> <EVAL <TAG.POS5_Y>> <EVAL <TAG.POS5_Z>> <EVAL <TAG.POS5_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=6
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS6_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS6_X>> <EVAL <TAG.POS6_Y>> <EVAL <TAG.POS6_Z>> <EVAL <TAG.POS6_M>>
+
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS6_X>> <EVAL <TAG.POS6_Y>> <EVAL <TAG.POS6_Z>> <EVAL <TAG.POS6_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=7
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS7_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS7_X>> <EVAL <TAG.POS7_Y>> <EVAL <TAG.POS7_Z>> <EVAL <TAG.POS7_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS7_X>> <EVAL <TAG.POS7_Y>> <EVAL <TAG.POS7_Z>> <EVAL <TAG.POS7_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=8
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS8_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS8_X>> <EVAL <TAG.POS8_Y>> <EVAL <TAG.POS8_Z>> <EVAL <TAG.POS8_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS8_X>> <EVAL <TAG.POS8_Y>> <EVAL <TAG.POS8_Z>> <EVAL <TAG.POS8_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=9
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS9_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS9_X>> <EVAL <TAG.POS9_Y>> <EVAL <TAG.POS9_Z>> <EVAL <TAG.POS9_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS9_X>> <EVAL <TAG.POS9_Y>> <EVAL <TAG.POS9_Z>> <EVAL <TAG.POS9_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=10
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS10_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS10_X>> <EVAL <TAG.POS10_Y>> <EVAL <TAG.POS10_Z>> <EVAL <TAG.POS10_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS10_X>> <EVAL <TAG.POS10_Y>> <EVAL <TAG.POS10_Z>> <EVAL <TAG.POS10_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=11
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS11_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS11_X>> <EVAL <TAG.POS11_Y>> <EVAL <TAG.POS11_Z>> <EVAL <TAG.POS11_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS11_X>> <EVAL <TAG.POS11_Y>> <EVAL <TAG.POS11_Z>> <EVAL <TAG.POS11_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=12
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS12_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS12_X>> <EVAL <TAG.POS12_Y>> <EVAL <TAG.POS12_Z>> <EVAL <TAG.POS12_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endifif (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS12_X>> <EVAL <TAG.POS12_Y>> <EVAL <TAG.POS12_Z>> <EVAL <TAG.POS12_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=13
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS13_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS13_X>> <EVAL <TAG.POS13_Y>> <EVAL <TAG.POS13_Z>> <EVAL <TAG.POS13_M>>
+
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>)
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS13_X>> <EVAL <TAG.POS13_Y>> <EVAL <TAG.POS13_Z>> <EVAL <TAG.POS13_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=14
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS14_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS14_X>> <EVAL <TAG.POS14_Y>> <EVAL <TAG.POS14_Z>> <EVAL <TAG.POS14_M>>
+
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS14_X>> <EVAL <TAG.POS14_Y>> <EVAL <TAG.POS14_Z>> <EVAL <TAG.POS14_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=15
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS15_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS15_X>> <EVAL <TAG.POS15_Y>> <EVAL <TAG.POS15_Z>> <EVAL <TAG.POS15_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS15_X>> <EVAL <TAG.POS15_Y>> <EVAL <TAG.POS15_Z>> <EVAL <TAG.POS15_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=16
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS16_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house>
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS16_X>> <EVAL <TAG.POS16_Y>> <EVAL <TAG.POS16_Z>> <EVAL <TAG.POS16_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (25 Magery Gerekli)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+  IF (<MOREX> > 0)
+    MOREX=<MOREX>-1
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>
+	  IF ( <SRC.MAGERY> < 400 )
+	    SRC.SYSMESSAGE @38 Yeterli yetenege sahip degilsiniz. (40 Magery Gerekli)
+	    SRC.SOUND=92
+	    RETURN 0
+	  ENDIF
+    SRC.spell_say Kal Ort Por
+    src.sd 2
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    ELSE
+    SRC.SYSMESSAGE @50 Kitapta sarj kalmamis ve uzerinizde buyuyu yapacak malzeme yok.
+    SRC.SOUND 92
+    RETURN 1
+  ENDIF
+ENDIF
+SRC.NEWITEM i_rb_delay
+SRC.ACT.MOREP=<EVAL <TAG.POS16_X>> <EVAL <TAG.POS16_Y>> <EVAL <TAG.POS16_Z>> <EVAL <TAG.POS16_M>>
+SRC.ACT.MORE1=4
+SRC.ACT.EQUIP
+RETURN 1
+
+//Gateler
+ONBUTTON=17
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS1_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS1_X>> <EVAL <TAG.POS1_Y>> <EVAL <TAG.POS1_Z>> <EVAL <TAG.POS1_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS1_X>> <EVAL <TAG.POS1_Y>> <EVAL <TAG.POS1_Z>> <EVAL <TAG.POS1_M>>
+SRC.ACT.MORE1=6
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=18
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS2_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS2_X>> <EVAL <TAG.POS2_Y>> <EVAL <TAG.POS2_Z>> <EVAL <TAG.POS2_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS2_X>> <EVAL <TAG.POS2_Y>> <EVAL <TAG.POS2_Z>> <EVAL <TAG.POS2_M>>
+SRC.ACT.MORE1=6
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=19
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS3_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS3_X>> <EVAL <TAG.POS3_Y>> <EVAL <TAG.POS3_Z>> <EVAL <TAG.POS3_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS3_X>> <EVAL <TAG.POS3_Y>> <EVAL <TAG.POS3_Z>> <EVAL <TAG.POS3_M>>
+SRC.ACT.MORE1=6
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=20
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS4_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS4_X>> <EVAL <TAG.POS4_Y>> <EVAL <TAG.POS4_Z>> <EVAL <TAG.POS4_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS4_X>> <EVAL <TAG.POS4_Y>> <EVAL <TAG.POS4_Z>> <EVAL <TAG.POS4_M>>
+SRC.ACT.MORE1=6
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=21
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS5_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS5_X>> <EVAL <TAG.POS5_Y>> <EVAL <TAG.POS5_Z>> <EVAL <TAG.POS5_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS5_X>> <EVAL <TAG.POS5_Y>> <EVAL <TAG.POS5_Z>> <EVAL <TAG.POS5_M>>
+SRC.ACT.MORE1=6
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=22
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS6_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS6_X>> <EVAL <TAG.POS6_Y>> <EVAL <TAG.POS6_Z>> <EVAL <TAG.POS6_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS6_X>> <EVAL <TAG.POS6_Y>> <EVAL <TAG.POS6_Z>> <EVAL <TAG.POS6_M>>
+//SRC.ACT.MORE1=1 //18 Ocak - Genie
+SRC.ACT.MORE1=6 //18 Ocak - Genie
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=23
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS7_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS7_X>> <EVAL <TAG.POS7_Y>> <EVAL <TAG.POS7_Z>> <EVAL <TAG.POS7_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS7_X>> <EVAL <TAG.POS7_Y>> <EVAL <TAG.POS7_Z>> <EVAL <TAG.POS7_M>>
+//SRC.ACT.MORE1=1 //18 Ocak - Genie
+SRC.ACT.MORE1=6 //18 Ocak - Genie
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=24
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS8_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS8_X>> <EVAL <TAG.POS8_Y>> <EVAL <TAG.POS8_Z>> <EVAL <TAG.POS8_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS8_X>> <EVAL <TAG.POS8_Y>> <EVAL <TAG.POS8_Z>> <EVAL <TAG.POS8_M>>
+//SRC.ACT.MORE1=1 //18 Ocak - Genie
+SRC.ACT.MORE1=6 //18 Ocak - Genie
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=33
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS9_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS9_X>> <EVAL <TAG.POS9_Y>> <EVAL <TAG.POS9_Z>> <EVAL <TAG.POS9_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS9_X>> <EVAL <TAG.POS9_Y>> <EVAL <TAG.POS9_Z>> <EVAL <TAG.POS9_M>>
+//SRC.ACT.MORE1=1 //18 Ocak - Genie
+SRC.ACT.MORE1=6 //18 Ocak - Genie
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=34
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS10_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS10_X>> <EVAL <TAG.POS10_Y>> <EVAL <TAG.POS10_Z>> <EVAL <TAG.POS10_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS10_X>> <EVAL <TAG.POS10_Y>> <EVAL <TAG.POS10_Z>> <EVAL <TAG.POS10_M>>
+//SRC.ACT.MORE1=1 //18 Ocak - Genie
+SRC.ACT.MORE1=6 //18 Ocak - Genie
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=35
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS11_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS11_X>> <EVAL <TAG.POS11_Y>> <EVAL <TAG.POS11_Z>> <EVAL <TAG.POS11_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIFif (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS11_X>> <EVAL <TAG.POS11_Y>> <EVAL <TAG.POS11_Z>> <EVAL <TAG.POS11_M>>
+//SRC.ACT.MORE1=1 //18 Ocak - Genie
+SRC.ACT.MORE1=6 //18 Ocak - Genie
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=36
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS12_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS12_X>> <EVAL <TAG.POS12_Y>> <EVAL <TAG.POS12_Z>> <EVAL <TAG.POS12_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS12_X>> <EVAL <TAG.POS12_Y>> <EVAL <TAG.POS12_Z>> <EVAL <TAG.POS12_M>>
+//SRC.ACT.MORE1=1 //18 Ocak - Genie
+SRC.ACT.MORE1=6 //18 Ocak - Genie
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=37
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS13_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS13_X>> <EVAL <TAG.POS13_Y>> <EVAL <TAG.POS13_Z>> <EVAL <TAG.POS13_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS13_X>> <EVAL <TAG.POS13_Y>> <EVAL <TAG.POS13_Z>> <EVAL <TAG.POS13_M>>
+//SRC.ACT.MORE1=1 //18 Ocak - Genie
+SRC.ACT.MORE1=6 //18 Ocak - Genie
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=38
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS14_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS14_X>> <EVAL <TAG.POS14_Y>> <EVAL <TAG.POS14_Z>> <EVAL <TAG.POS14_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS14_X>> <EVAL <TAG.POS14_Y>> <EVAL <TAG.POS14_Z>> <EVAL <TAG.POS14_M>>
+//SRC.ACT.MORE1=1 //18 Ocak - Genie
+SRC.ACT.MORE1=6 //18 Ocak - Genie
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=39
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS15_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+  	IF <SRC.REGION.FLAGS>&0e
+  	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+  	   RETURN 1
+  	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS15_X>> <EVAL <TAG.POS15_Y>> <EVAL <TAG.POS15_Z>> <EVAL <TAG.POS15_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS15_X>> <EVAL <TAG.POS15_Y>> <EVAL <TAG.POS15_Z>> <EVAL <TAG.POS15_M>>
+//SRC.ACT.MORE1=1 //18 Ocak - Genie
+SRC.ACT.MORE1=6 //18 Ocak - Genie
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=40
+if (<src.flags>&statf_freeze)
+src.sysmessage @38 Hareket edemiyecek durumdasiniz.
+src.findid.i_runebookacik.remove
+return 1
+endif
+if (strmatch('<src.region.name>','jail1') || (strmatch('<src.region.name>','jail2') || (strmatch('<src.region.name>','jail3') || (strmatch('<src.region.name>','jail4') || (strmatch('<src.region.name>','jail5') || (strmatch('<src.region.name>','jail6') || (strmatch('<src.region.name>','jail7') || (strmatch('<src.region.name>','jail8') || (strmatch('<src.region.name>','jail9') || (strmatch('<src.region.name>','jail 10') || (strmatch('<src.region.name>','pazar alani')
+src.sysmessage @38 Jailde bu islemi yapamazsiniz!
+src.findid.i_runebookacik.remove
+return 1
+endif
+src.findid.i_runebookacik.remove
+IF <TAG.POS16_X>=00
+  SRC.SYSMESSAGE @38 Bu alan bos.
+  RETURN 1
+ENDIF
+IF !<SRC.ISGM>
+ 	IF <SRC.ISEVENT.e_house> || (<src.region.flags> == 010d2) || (<src.region.flags> == 0892)
+   	IF <SRC.REGION.FLAGS>&0e
+   	   SRC.SYSMESSAGE @38 Bu bolgede recall kullanamazsiniz.
+   	   RETURN 1
+   	ENDIF
+  	ENDIF
+  SRC.NEWITEM i_rb_research
+  SRC.ACT.P=<EVAL <TAG.POS16_X>> <EVAL <TAG.POS16_Y>> <EVAL <TAG.POS16_Z>> <EVAL <TAG.POS16_M>>
+if (<src.act.region.flags>==0892) || (<src.act.region.flags>==06981) || (<src.act.region.flags>==02083) || (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+endif
+if (strmatch('<src.act.region.name>','wastelands')) && (<src.act.z><0)
+SRC.SYSMESSAGE Gitmek istediginiz yer deniz seviyesinin altinda oldugu icin gidemiyorsunuz.
+      RETURN 1
+endif 
+if (strmatch('<src.act.region.name>','star'))
+src.go jail1
+src.tag.jail 3
+src.tag.jaillenmis=1
+src.events +e_jaevent
+src.newitem i_jailcik
+src.act.timer=86400
+src.act.equip
+SRC.SYSMESSAGE Stara nasil gidiyon?
+return 1
+endif
+if (strmatch('<src.act.region.name>','pazar alani'))
+SRC.SYSMESSAGE @38 Pazar Alanina Moongate ile gidin!
+      RETURN 1
+endif
+  TAG.RESEARCH=<SRC.ACT.REGION.FLAGS>
+  IF (<TAG.RESEARCH>==01092) || (strmatch('<TAG.regionname>','trinsic passage')) 
+      SRC.SYSMESSAGE Bu bolgedeki kuvvetli buyu cemberi girisinizi engelliyor.
+      RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 750 )
+    SRC.SYSMESSAGE @38 Yeterli beceriye sahip degilsiniz.
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+if (<src.findid.i_rb_delay>) || (<src.findid.i_rb_delay2>)
+	src.FINDID.i_rb_delay.REMOVE
+	src.FINDID.i_rb_delay2.REMOVE
+	src.EVENTS -e_x_breakspell
+	src.f_fizzle
+	return 1
+endif
+  IF (<SRC.MANA><40)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE @50 Yeterli mananiz yok.
+    RETURN 1
+  ENDIF
+   IF ! (<SRC.RESTEST 1 i_reag_mandrake_root>) |! (<SRC.RESTEST 1 i_reag_sulfur_ash>) |! (<SRC.RESTEST 1 i_reag_black_pearl>)
+      SRC.SYSMESSAGE Yeterli malzemeye sahip degilsiniz.
+      SRC.SOUND=92
+      RETURN 1
+   ENDIF
+  SRC.spell_say Vas Rel Por
+  src.sd 3
+  SRC.ANIM=17
+  SRC.MANA=(<SRC.MANA>+-40)
+   SRC.CONSUME=1 i_reag_black_pearl
+   SRC.CONSUME=1 i_reag_mandrake_root
+   SRC.CONSUME=1 i_reag_sulfur_ash
+ENDIF
+SRC.NEWITEM i_rb_delay2
+SRC.ACT.MOREP=<EVAL <TAG.POS16_X>> <EVAL <TAG.POS16_Y>> <EVAL <TAG.POS16_Z>> <EVAL <TAG.POS16_M>>
+//SRC.ACT.MORE1=1 //18 Ocak - Genie
+SRC.ACT.MORE1=6 //18 Ocak - Genie
+SRC.ACT.EQUIP
+RETURN 1
+
+ONBUTTON=50
+src.findid.i_runebookacik.remove
+MORE2=1
+TARGET Lutfen sarj etmek uzere kullanacaginiz bir recall scroll secin.
+RETURN 1
+
+ONBUTTON=25
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS1_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS1_X>
+SRC.ACT.MOREY=<TAG.POS1_Y>
+SRC.ACT.MOREZ=<TAG.POS1_Z>
+SRC.ACT.MOREM=<TAG.POS1_M>
+SRC.ACT.NAME=<TAG.LOCAL1>
+SRC.ACT.BOUNCE
+TAG.POS1_X=0
+TAG.LOCAL1=
+DIALOG d_runebook
+
+ONBUTTON=26
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS2_X> == 0 )
+	SRC.SYSMESSAGE @38 Bu alan bos.
+	RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS2_X>
+SRC.ACT.MOREY=<TAG.POS2_Y>
+SRC.ACT.MOREZ=<TAG.POS2_Z>
+SRC.ACT.MOREM=<TAG.POS2_M>
+SRC.ACT.NAME=<TAG.LOCAL2>
+SRC.ACT.BOUNCE
+TAG.POS2_X=0
+TAG.LOCAL2=
+DIALOG d_runebook
+
+ONBUTTON=27
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS3_X> == 0 )
+	SRC.SYSMESSAGE @38 Bu alan bos.
+	RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS3_X>
+SRC.ACT.MOREY=<TAG.POS3_Y>
+SRC.ACT.MOREZ=<TAG.POS3_Z>
+SRC.ACT.MOREM=<TAG.POS3_M>
+SRC.ACT.NAME=<TAG.LOCAL3>
+SRC.ACT.BOUNCE
+TAG.POS3_X=0
+TAG.LOCAL3=
+DIALOG d_runebook
+
+ONBUTTON=28
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS4_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS4_X>
+SRC.ACT.MOREY=<TAG.POS4_Y>
+SRC.ACT.MOREZ=<TAG.POS4_Z>
+SRC.ACT.MOREM=<TAG.POS4_M>
+SRC.ACT.NAME=<TAG.LOCAL4>
+SRC.ACT.BOUNCE
+TAG.POS4_X=0
+TAG.LOCAL4=
+DIALOG d_runebook
+
+ONBUTTON=29
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS5_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS5_X>
+SRC.ACT.MOREY=<TAG.POS5_Y>
+SRC.ACT.MOREZ=<TAG.POS5_Z>
+SRC.ACT.MOREM=<TAG.POS5_M>
+SRC.ACT.NAME=<TAG.LOCAL5>
+SRC.ACT.BOUNCE
+TAG.POS5_X=0
+TAG.LOCAL5=
+DIALOG d_runebook
+
+ONBUTTON=30
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS6_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS6_X>
+SRC.ACT.MOREY=<TAG.POS6_Y>
+SRC.ACT.MOREZ=<TAG.POS6_Z>
+SRC.ACT.MOREM=<TAG.POS6_M>
+SRC.ACT.NAME=<TAG.LOCAL6>
+SRC.ACT.BOUNCE
+TAG.POS6_X=0
+TAG.LOCAL6=
+DIALOG d_runebook
+
+ONBUTTON=31
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS7_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS7_X>
+SRC.ACT.MOREY=<TAG.POS7_Y>
+SRC.ACT.MOREZ=<TAG.POS7_Z>
+SRC.ACT.MOREM=<TAG.POS7_M>
+SRC.ACT.NAME=<TAG.LOCAL7>
+SRC.ACT.BOUNCE
+TAG.POS7_X=0
+TAG.LOCAL7=
+DIALOG d_runebook
+
+ONBUTTON=32
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS8_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS8_X>
+SRC.ACT.MOREY=<TAG.POS8_Y>
+SRC.ACT.MOREZ=<TAG.POS8_Z>
+SRC.ACT.MOREM=<TAG.POS8_M>
+SRC.ACT.NAME=<TAG.LOCAL8>
+SRC.ACT.BOUNCE
+TAG.POS8_X=0
+TAG.LOCAL8=
+DIALOG d_runebook
+
+ONBUTTON=41
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS9_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS9_X>
+SRC.ACT.MOREY=<TAG.POS9_Y>
+SRC.ACT.MOREZ=<TAG.POS9_Z>
+SRC.ACT.MOREM=<TAG.POS9_M>
+SRC.ACT.NAME=<TAG.LOCAL9>
+SRC.ACT.BOUNCE
+TAG.POS9_X=0
+TAG.LOCAL9=
+DIALOG d_runebook
+
+ONBUTTON=42
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS10_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS10_X>
+SRC.ACT.MOREY=<TAG.POS10_Y>
+SRC.ACT.MOREZ=<TAG.POS10_Z>
+SRC.ACT.MOREM=<TAG.POS10_M>
+SRC.ACT.NAME=<TAG.LOCAL10>
+SRC.ACT.BOUNCE
+TAG.POS10_X=0
+TAG.LOCAL10=
+DIALOG d_runebook
+
+ONBUTTON=43
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS11_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS11_X>
+SRC.ACT.MOREY=<TAG.POS11_Y>
+SRC.ACT.MOREZ=<TAG.POS11_Z>
+SRC.ACT.MOREM=<TAG.POS11_M>
+SRC.ACT.NAME=<TAG.LOCAL11>
+SRC.ACT.BOUNCE
+TAG.POS11_X=0
+TAG.LOCAL11=
+DIALOG d_runebook
+
+ONBUTTON=44
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS12_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS12_X>
+SRC.ACT.MOREY=<TAG.POS12_Y>
+SRC.ACT.MOREZ=<TAG.POS12_Z>
+SRC.ACT.MOREM=<TAG.POS12_M>
+SRC.ACT.NAME=<TAG.LOCAL12>
+SRC.ACT.BOUNCE
+TAG.POS12_X=0
+TAG.LOCAL12=
+DIALOG d_runebook
+
+ONBUTTON=45
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS13_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS13_X>
+SRC.ACT.MOREY=<TAG.POS13_Y>
+SRC.ACT.MOREZ=<TAG.POS13_Z>
+SRC.ACT.MOREM=<TAG.POS13_M>
+SRC.ACT.NAME=<TAG.LOCAL13>
+SRC.ACT.BOUNCE
+TAG.POS13_X=0
+TAG.LOCAL13=
+DIALOG d_runebook
+
+ONBUTTON=46
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS14_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS14_X>
+SRC.ACT.MOREY=<TAG.POS14_Y>
+SRC.ACT.MOREZ=<TAG.POS14_Z>
+SRC.ACT.MOREM=<TAG.POS14_M>
+SRC.ACT.NAME=<TAG.LOCAL14>
+SRC.ACT.BOUNCE
+TAG.POS14_X=0
+TAG.LOCAL14=
+DIALOG d_runebook
+
+ONBUTTON=47
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS15_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS15_X>
+SRC.ACT.MOREY=<TAG.POS15_Y>
+SRC.ACT.MOREZ=<TAG.POS15_Z>
+SRC.ACT.MOREM=<TAG.POS15_M>
+SRC.ACT.NAME=<TAG.LOCAL15>
+SRC.ACT.BOUNCE
+TAG.POS15_X=0
+TAG.LOCAL15=
+DIALOG d_runebook
+
+ONBUTTON=48
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF ( <TAG.POS16_X> == 0 )
+SRC.SYSMESSAGE @38 Bu alan bos.
+RETURN 1
+ENDIF
+SRC.NEWITEM=i_rune_marker
+SRC.ACT.MOREX=<TAG.POS16_X>
+SRC.ACT.MOREY=<TAG.POS16_Y>
+SRC.ACT.MOREZ=<TAG.POS16_Z>
+SRC.ACT.MOREM=<TAG.POS16_M>
+SRC.ACT.NAME=<TAG.LOCAL16>
+SRC.ACT.BOUNCE
+TAG.POS16_X=0
+TAG.LOCAL16=
+DIALOG d_runebook
+
+ONBUTTON=49
+src.findid.i_runebookacik.remove
+MORE2=2
+SRC.SYSMESSAGE Eklemek istediginiz rune'u secin.
+TARGET
+
+ONBUTTON=51
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS1_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+TAG.runename <TAG.LOCAL1>
+TAG.LOCALMOREP=<EVAL <TAG.POS1_X>> <EVAL <TAG.POS1_Y>> <EVAL <TAG.POS1_Z>> <EVAL <TAG.POS1_M>> //18 Ocak - Genie
+f_rename 1
+RETURN 1
+ENDIF
+
+ONBUTTON=52
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS2_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi
+TAG.runename <TAG.LOCAL2> //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS2_X>> <EVAL <TAG.POS2_Y>> <EVAL <TAG.POS2_Z>> <EVAL <TAG.POS2_M>> //18 Ocak - Genie
+f_rename 2
+RETURN 1
+ENDIF
+
+ONBUTTON=53
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS3_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS3_X>> <EVAL <TAG.POS3_Y>> <EVAL <TAG.POS3_Z>> <EVAL <TAG.POS3_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL3>
+f_rename 3
+RETURN 1
+ENDIF
+
+ONBUTTON=54
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS4_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS4_X>> <EVAL <TAG.POS4_Y>> <EVAL <TAG.POS4_Z>> <EVAL <TAG.POS4_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL4>
+f_rename 4
+RETURN 1
+ENDIF
+
+ONBUTTON=55
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS5_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS5_X>> <EVAL <TAG.POS5_Y>> <EVAL <TAG.POS5_Z>> <EVAL <TAG.POS5_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL5>
+f_rename 5
+RETURN 1
+ENDIF
+
+ONBUTTON=56
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS6_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS6_X>> <EVAL <TAG.POS6_Y>> <EVAL <TAG.POS6_Z>> <EVAL <TAG.POS6_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL6>
+f_rename 6
+RETURN 1
+ENDIF
+
+ONBUTTON=57
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS7_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS7_X>> <EVAL <TAG.POS7_Y>> <EVAL <TAG.POS7_Z>> <EVAL <TAG.POS7_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL7>
+f_rename 7
+RETURN 1
+ENDIF
+
+ONBUTTON=58
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS8_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS8_X>> <EVAL <TAG.POS8_Y>> <EVAL <TAG.POS8_Z>> <EVAL <TAG.POS8_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL8>
+f_rename 8
+RETURN 1
+ENDIF
+
+ONBUTTON=61
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS9_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS9_X>> <EVAL <TAG.POS9_Y>> <EVAL <TAG.POS9_Z>> <EVAL <TAG.POS9_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL9>
+f_rename 9
+RETURN 1
+ENDIF
+
+ONBUTTON=62
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS10_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS10_X>> <EVAL <TAG.POS10_Y>> <EVAL <TAG.POS10_Z>> <EVAL <TAG.POS10_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL10>
+f_rename 10
+RETURN 1
+ENDIF
+
+ONBUTTON=63
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS11_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS11_X>> <EVAL <TAG.POS11_Y>> <EVAL <TAG.POS11_Z>> <EVAL <TAG.POS11_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL11>
+f_rename 11
+RETURN 1
+ENDIF
+
+ONBUTTON=64
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS12_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS12_X>> <EVAL <TAG.POS12_Y>> <EVAL <TAG.POS12_Z>> <EVAL <TAG.POS12_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL12>
+f_rename 12
+RETURN 1
+ENDIF
+
+ONBUTTON=65
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS13_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS13_X>> <EVAL <TAG.POS13_Y>> <EVAL <TAG.POS13_Z>> <EVAL <TAG.POS13_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL13>
+f_rename 13
+RETURN 1
+ENDIF
+
+ONBUTTON=66
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS14_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS14_X>> <EVAL <TAG.POS14_Y>> <EVAL <TAG.POS14_Z>> <EVAL <TAG.POS14_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL14>
+f_rename 14
+RETURN 1
+ENDIF
+
+ONBUTTON=67
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS15_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS15_X>> <EVAL <TAG.POS15_Y>> <EVAL <TAG.POS15_Z>> <EVAL <TAG.POS15_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL15>
+f_rename 15
+RETURN 1
+ENDIF
+
+ONBUTTON=68
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+IF (<TAG.POS16_X>=0)
+SRC.SYSMESSAGE Bu alan bos oldugundan ismini degistiremezsiniz.
+RETURN 1
+ELSE
+//INPDLG=TAG.LOCAL... kaldirildi yeni rename fonktionu eklendi //17.01.02 (Genie)
+TAG.LOCALMOREP=<EVAL <TAG.POS16_X>> <EVAL <TAG.POS16_Y>> <EVAL <TAG.POS16_Z>> <EVAL <TAG.POS16_M>> //18 Ocak - Genie
+TAG.runename <TAG.LOCAL16>
+f_rename 16
+RETURN 1
+ENDIF
+
+//ONBUTTON=67
+ONBUTTON=59 //17.01.02 (Genie)
+src.findid.i_runebookacik.remove
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage Bu islem icin runebook'un cantanizda olmasi gerekiyor.
+	return 1
+endif
+DIALOG d_runebook_rename 
+
+//INPDLG=TAG.NAME 8
+//INPTRYP=TAG.NAME 8
+RETURN 1
+
+//17.01.02 (Genie)
+//********************************************************
+//******************* Yeni Rune Rename *******************
+//17.01.02 (Genie)
+[FUNCTION f_rename]
+TAG.LOCALNO <ARGS>
+dialog d_runebook_localname
+src.newitem i_runebookacik
+src.act.equip
+
+RETURN 1
+
+[DIALOG d_runebook_localname]               
+100,50                                
+resizepic 190 175 5054 335 150
+resizepic 200 185 3000 315 130
+resizepic 220 235 3000 270 22
+text 215 200 995 0                    
+text 255 275 0000 1                   
+button 220 275 4005 4007 1 0 1        
+text 355 275 0000 2   
+button 320 275 4005 4007 1 0 2  
+text 435 275 0000 4                   
+button 400 275 4005 4007 1 0 3        
+textentry 225 237 253 25 0 0 3        
+
+[DIALOG d_runebook_localname TEXT]
+Yeni isim ne olsun?
+Tamam
+Iptal
+<TAG.runename>
+Reset
+
+[DIALOG d_runebook_localname BUTTON]
+
+ONBUTTON=0
+src.findid.i_runebookacik.remove
+RETURN 1
+
+ONBUTTON=1
+src.findid.i_runebookacik.remove
+if (<eval <tag.localno>> == 1)
+	tag.local1 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 2)
+	tag.local2 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 3)
+	tag.local3 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 4)
+	tag.local4 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 5)
+	tag.local5 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 6) 
+	tag.local6 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 7) 
+	tag.local7 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 8)
+	tag.local8 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 9)
+	tag.local9 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 10)
+	tag.local10 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 11)
+	tag.local11 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 12)
+	tag.local12 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 13)
+	tag.local13 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 14)
+	tag.local14 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 15)
+	tag.local15 rn: <argtxt[0]>
+elseif (<eval <tag.localno>> == 16)
+	tag.local16 rn: <argtxt[0]>
+endif
+
+tag.localno=
+
+dialog d_runebook
+return 1
+
+ONBUTTON=2
+src.findid.i_runebookacik.remove
+DIALOG d_runebook
+RETURN 1
+
+ONBUTTON=3
+src.findid.i_runebookacik.remove
+IF <EVAL(<TAG.LOCALNO>)>==1 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL1 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==2
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL2 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==3 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL3 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==4
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL4 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==5 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL5 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==6 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL6 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==7 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL7 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==8 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL8 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==9 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL9 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==10 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL10 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==11 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL11 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==12 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL12 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==13 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL13 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==14 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL14 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==15 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL15 <SRC.ACT.region.name>
+ELSEIF <EVAL(<TAG.LOCALNO>)>==16 
+	SRC.NEWITEM i_rb_research
+	SRC.ACT.P <TAG.LOCALMOREP>
+	TAG.LOCAL16 <SRC.ACT.region.name>
+ENDIF
+DIALOG d_runebook
+RETURN 1
+	
+[ITEMDEF i_rb_delay]
+NAME=runebook delay
+ID=i_handr_1
+TYPE=T_EQ_SCRIPT
+WEIGHT=0
+LAYER=layer_special
+
+ON=@Create
+        ATTR=attr_invis|attr_decay
+
+ON=@Equip
+	CONT.skill fail
+	CONT.ACTION=-1
+	CONT.FLAGS=(<CONT.FLAGS>&~00020)
+        TIMER=0
+        CONT.EVENTS=e_x_breakspell
+
+ON=@UNEQUIP
+	CONT.EVENTS= -e_x_breakspell
+
+ON=@Timer
+	IF ( <cont> )
+		IF ( <MORE1> ) && !( <CONT.isgm> )
+			MORE1=<MORE1>-1
+			TIMER=1
+			RETURN 1
+		elseif (strmatch('<cont.region.events>','r_house_public')) || (strmatch('<cont.region.events>','r_house_private'))
+				cont.sysmessage @39 Bu bolgede recall ve gate kullanamazsiniz.
+				cont.f_fizzle
+				remove
+				return 1
+		ELSE
+			if (strmatch('<cont.tag.gemi>','goo'))
+			cont.gouid <morep>
+			cont.nudgeup 1
+			cont.update
+			cont.tag.gemi
+			else //if <morep>
+                        cont.go <morep>
+			endif
+		ENDIF
+	ENDIF
+CONT.EVENTS= -e_x_breakspell
+REMOVE
+RETURN 1
+
+[EVENTS e_x_breakspell]
+ON=@SpellCast
+IF !(<isgm>)
+	SYSMESSAGE Konsantrasyonunuzu kaybettiniz.
+	FINDID.i_rb_delay.REMOVE
+	FINDID.i_rb_delay2.REMOVE
+	EVENTS= -e_x_breakspell
+	f_fizzle
+ENDIF
+if (strmatch('<tag.gemi>','goo'))
+tag.gemi
+endif
+
+ON=@GetHit
+IF !(<isgm>)
+	SYSMESSAGE Konsantrasyonunuzu kaybettiniz, buyuyu yapmaya devam edemiyorsunuz.
+	FINDID.i_rb_delay.REMOVE
+	FINDID.i_rb_delay2.REMOVE
+	EVENTS= -e_x_breakspell
+	f_fizzle
+ENDIF
+if (strmatch('<tag.gemi>','goo'))
+tag.gemi
+endif
+
+ON=@Hit
+IF !(<isgm>)
+	SYSMESSAGE Konsantrasyonunuzu kaybettiniz, buyuyu yapmaya devam edemiyorsunuz.
+	FINDID.i_rb_delay.REMOVE
+	FINDID.i_rb_delay2.REMOVE
+	EVENTS= -e_x_breakspell
+	f_fizzle
+ENDIF
+if (strmatch('<tag.gemi>','goo'))
+tag.gemi
+endif
+
+ON=@Death 
+FINDID.i_rb_delay.REMOVE
+FINDID.i_rb_delay2.REMOVE
+EVENTS= -e_x_breakspell
+if (strmatch('<tag.gemi>','goo'))
+tag.gemi
+endif
+
+ON=@SkillStart
+IF !(<isgm>)
+	SYSMESSAGE Konsantrasyonunuzu kaybettiniz.
+	FINDID.i_rb_delay.REMOVE
+	FINDID.i_rb_delay2.REMOVE
+	EVENTS= -e_x_breakspell
+	f_fizzle
+ENDIF
+if (strmatch('<tag.gemi>','goo'))
+tag.gemi
+endif
+
+[ITEMDEF i_rb_research]
+ID=i_gold
+NAME=research coin
+type t_normal
+VALUE=1
+CATEGORY=Rune Book
+SUBSECTION=area
+DESCRIPTION=Research Coin
+
+On=@Timer
+remove
+
+ON=@Create
+name Research Coin
+attr attr_invis|attr_decay
+timer 5
+color 0480
+
+[ITEMDEF i_rb_delay2]
+NAME=runebook gate delay
+ID=i_handr_1
+TYPE=T_EQ_SCRIPT
+WEIGHT=0
+LAYER=layer_special
+
+ON=@Create
+        ATTR=attr_invis|attr_decay
+
+ON=@Equip
+	CONT.skill fail
+	CONT.ACTION=-1
+	CONT.FLAGS=(<CONT.FLAGS>&~00020)
+        TIMER=0
+        CONT.EVENTS=e_x_breakspell
+
+
+ON=@UNEQUIP
+	CONT.EVENTS= -e_x_breakspell
+
+ON=@Timer
+	IF ( <cont> )
+//		IF ( <MORE1> ) //17.01.02 (Genie)
+		IF ( <MORE1> ) && !( <CONT.isgm> ) //Acelem var bekletme diye sarki bile solerim bole giderse .
+			IF (<MORE1> == 5)
+				cont.newitem i_moongate_blue_fx
+				cont.act.name summoning gate
+				cont.act.p <morep>
+				cont.act.morez 1
+				cont.act.color 022
+				cont.act.attr 012
+				cont.act.timer 5
+				cont.act.sfx 526
+			ENDIF
+			MORE1=<MORE1>-1
+			TIMER=1
+			RETURN 1
+		elseif (strmatch('<cont.region.events>','r_house_public')) || (strmatch('<cont.region.events>','r_house_private'))
+				cont.sysmessage @39 Bu bolgede recall ve gate kullanamazsiniz.
+				cont.f_fizzle
+				remove
+				return 1
+		ELSE
+                        cont.newitem i_rb_gate
+                        cont.act.p <morep>
+                        cont.act.morep <cont.p>
+                        cont.act.timer 30
+                        cont.act.sfx 535 // or 526 or 524
+                        var.gateuid <cont.act.uid>
+
+                        cont.newitem i_rb_gate
+                        cont.act.link <var.gateuid>
+                        cont.act.link.link <cont.act.uid>
+                        cont.act.p <cont.p>
+                        cont.act.morep <morep>
+                        cont.act.timer 30
+                        cont.act.sfx 535 // or 526 or 524
+                        var.gateuid
+		ENDIF
+	ENDIF
+//CONT.EVENTS= -e_x_breakspell //18 Ocak - Genie //UNEQUIPE KONULDU
+REMOVE
+RETURN 1
+
+
+// 16 Ocak - Runebook Rename Denemesi (Genie)
+//******************************************
+//17.01.02 (Genie)
+//Guncellendi
+[DIALOG d_runebook_rename] 
+100,50 //17.01.02 (Genie) //unutuldum unutuldum
+resizepic 190 175 5054 335 150        
+resizepic 200 185 3000 315 130        
+resizepic 220 235 3000 270 22         
+text 215 200 995 0                    
+text 255 275 0000 1                   
+button 220 275 4005 4007 1 0 1        
+text 355 275 0000 2   
+button 320 275 4005 4007 1 0 2  
+text 435 275 0000 4                   
+button 400 275 4005 4007 1 0 3        
+textentry 225 237 253 25 0 0 3        
+
+[DIALOG d_runebook_rename TEXT]
+Runebookun yeni ismi ne olsun?
+Tamam
+Iptal
+<TAG.NAME>
+Reset
+
+[DIALOG d_runebook_rename BUTTON]
+ONBUTTON=0
+src.findid.i_runebookacik.remove
+RETURN 1
+ONBUTTON=1
+src.findid.i_runebookacik.remove
+//IF !(0<ARGTXT[0]>==0) 
+TAG.name=<ARGTXT[0]>
+//ELSE
+//TAG.name=runebook
+//ENDIF
+DIALOG d_runebook
+RETURN 1
+ONBUTTON=2
+src.findid.i_runebookacik.remove
+DIALOG d_runebook
+RETURN 1
+ONBUTTON=3
+src.findid.i_runebookacik.remove
+TAG.name=isimsiz
+DIALOG d_runebook
+RETURN 1
+//17.01.02 (Genie)
+//*********************************************
+
+//IF <strlen(<ARGTXT[0]>)> > 7
+//SRC.SYSMESSAGE Runebookun ismi en fazla 8 karakter olabilir.
+//	DIALOG d_runebook_rename
+//ELSE
+//<strmid(<ARGTXT[0]>,1,10)>
+//TAG.NAME=<strmid(<ARGTXT[0]>,1,10)>
+//ENDIF
+
+[EOF]

@@ -1,0 +1,900 @@
+[DIALOG d_charprop1]
+0,0
+resizepic 10 10 3000 460 380 //  background
+resizepic 20 20 3000 440 360 //  background
+resizepic 30 40 3000 240 40 // ara cizgi
+page 0
+//text 125 17 1153 0 // Title
+//button 53 74 2117 2118 1 0 27
+tilepic 400 50 <DISPIDDEC>
+text 35 40 0 1
+text 110 40 400 2
+//button 25 55 2224 2117 1 0 30
+text 44 60 0 3
+text 110 60 400 4
+page 1
+//button 25 74 5031 5031 1 0 50 // General Information
+//text 32 73 33 5
+//button 150 74 5031 5031 1 0 51 // Skills
+//text 180 73 33 6
+//button 275 74 5031 5031 1 0 52
+//text 290 73 33 7 // Misc Information
+button 25 104 2224 2117 1 0 2 // Change Name
+text 50 100 0 8 // Name
+text 110 100 400 16 // Actual Name
+button 25 124 2224 2117 1 0 3 // Change Title
+text 50 120 0 9 // Title
+text 110 120 400 17 // Actual Title
+button 25 144 2224 2117 1 0 4 // Change Color
+text 50 140 0 10 // Color
+text 110 140 400 18 // Actual Color
+button 25 164 2224 2117 1 0 26 // Change Oskin
+text 110 160 400 19 // Actual Oskin
+text 50 160 0 11 // Oskin
+button 25 184 2224 2117 1 0 5 // Change ID
+text 50 180 0 12 // ID
+text 110 180 400 20 // Actual ID
+button 25 204 2224 2117 1 0 6 // Change Body
+text 110 200 400 21 // Actual Body
+text 50 200 0 13 // Body
+button 25 224 2224 2117 1 0 7 // Change OBody
+text 50 220 0 14 // OBody
+text 110 220 400 22 // Actual OBody
+button 25 244 2224 2117 1 0 8 // Change Timer
+text 50 240 0 15 // Timer
+text 110 240 400 23 // Actual Timer
+button 25 264 2224 2117 1 0 9 // Change P
+text 50 260 0 24 // P
+text 110 260 400 25 // Actual P
+button 25 284 2224 2117 1 0 10 // Change Home
+text 50 280 0 26 // Home
+text 110 280 400 27 // Actual Home
+button 25 304 2224 2117 1 0 11 // Change Action
+text 50 300 0 28 // Action
+text 110 300 400 29 // Actual Action
+button 25 324 2224 2117 1 0 12 // Change Food
+text 50 320 0 30 // Food
+text 110 320 400 31 // Actual Food
+button 275 104 2224 2117 1 0 13 // Change NPC
+text 300 100 0 32 // NPC
+text 360 100 400 33 // Actual NPC
+button 275 124 2224 2117 1 0 14 // Change SPEECH
+text 300 120 0 34 // SPEECH
+text 360 120 400 35 // Actual SPEECH
+button 275 144 2224 2117 1 0 15 // Change KARMA
+text 300 140 0 36 // KARMA
+text 360 140 400 37 // Actual KARMA
+button 275 164 2224 2117 1 0 16 // Change KARMA
+text 300 160 0 38 // KARMA
+text 360 160 400 39 // Actual KARMA
+button 275 184 2224 2117 1 0 17 // Change SKILL TOTAL
+text 300 180 0 40 // SKILL TOTAL
+text 400 180 400 41 // Actual SKILL TOTAL
+button 275 204 2224 2117 1 0 18 // Change BANK BALANCE
+text 300 200 0 42 // BANK BALANCE
+text 400 200 400 43 // Actual BANK BALANCE
+button 150 364 2224 2117 1 0 19 // Goto Guild
+text 175 360 0 44 // Guild Name
+text 235 360 400 45 // Actual Guild Name
+text 60 360 0 46 // Goto Guild Button Tag
+button 275 224 2224 2117 1 0 20 // Change STR
+text 300 220 0 47 // STR
+text 360 220 400 48 // Actual STR
+button 275 244 2224 2117 1 0 21 // Change DEX
+text 300 240 0 49 // DEX
+text 360 240 400 50 // Actual DEX
+button 275 264 2224 2117 1 0 22 // Change INT
+text 300 260 0 51 // INT
+text 360 260 400 52 // Actual INT
+button 275 284 2224 2117 1 0 23 // Change HITS
+text 300 280 0 53 // HITS
+text 360 280 400 54 // Actual HITS
+button 275 304 2224 2117 1 0 24 // Change STAM
+text 300 300 0 55 // STAM
+text 360 300 400 56 // Actual STAM
+button 275 324 2224 2117 1 0 25 // Change MANA
+text 300 320 0 57 // MANA
+text 360 320 400 58 // Actual MANA
+button 275 344 2224 2117 1 0 53 // Change Kills
+text 300 340 0 59 // Kills
+text 360 340 400 60 // Actual Kills
+
+[DIALOG d_charprop1 TEXT]
+Valinor Info Menu
+Account:
+<ACCOUNT>
+Serial:
+<UID>
+General Info
+Skills
+Misc Info
+Name:
+Title:
+Color:
+Oskin:
+ID:
+Body:
+OBody:
+Timer:
+<NAME>
+<TITLE>
+<COLOR>
+<OSKIN>
+<ID>
+<BODY>
+<OBODY>
+<TIMER>
+P:
+<P>
+Home:
+<HOME>
+Action:
+<ACTION>
+Food:
+<FOOD>
+NPC:
+<NPC>
+Jailed:
+<TAG.JAILOR>
+Karma:
+<KARMA>
+Fame:
+<FAME>
+Skill Total:
+<SKILLTOTAL>
+Bank Balance:
+<BANKBALANCE>
+Guild:
+<src.targ.memoryfindtype.memory_guild.link.name>
+Goto Guild
+STR:
+<STR>
+DEX:
+<DEX>
+INT:
+<INT>
+Hits:
+<HITS>
+Stam:
+<STAM>
+Mana:
+<MANA>
+Kills:
+<KILLS>
+
+[DIALOG d_charprop1 BUTTON]
+ONBUTTON=2
+TRYP 4 INPDLG=NAME 30
+ONBUTTON=3
+TRYP 4 INPDLG=TITLE 30
+ONBUTTON=4
+TRYP 4 INPDLG=COLOR 5
+ONBUTTON=5
+TRYP 4 INPDLG=ID 15
+ONBUTTON=6
+TRYP 4 INPDLG=BODY 15
+ONBUTTON=7
+TRYP 4 INPDLG=OBODY 15
+ONBUTTON=8
+TRYP 4 INPDLG=TIMER 15
+ONBUTTON=9
+TRYP 4 INPDLG=P 16
+ONBUTTON=10
+TRYP 4 INPDLG=HOME 16
+ONBUTTON=11
+TRYP 4 INPDLG=ACTION 8
+ONBUTTON=12
+TRYP 4 INPDLG=FOOD 3
+ONBUTTON=13
+TRYP 4 INPDLG=NPC 10
+ONBUTTON=14
+TRYP 4 INPDLG=SPEECH 10
+ONBUTTON=15
+TRYP 4 INPDLG=KARMA 10
+ONBUTTON=16
+TRYP 4 INPDLG=FAME 10
+ONBUTTON=17
+SRC.SYSMESSAGE Skill total cannot be changed!
+ONBUTTON=18
+SRC.SYSMESSAGE Bank Balance cannot be changed!
+ONBUTTON=19
+SRC.GOUID <src.targ.memoryfindtype.memory_guild.link.UID>
+ONBUTTON=20
+TRYP 4 INPDLG=STR 3
+ONBUTTON=21
+TRYP 4 INPDLG=DEX 3
+ONBUTTON=22
+TRYP 4 INPDLG=INT 3
+ONBUTTON=23
+TRYP 4 INPDLG=HITS 4
+ONBUTTON=24
+TRYP 4 INPDLG=STAM 4
+ONBUTTON=25
+TRYP 4 INPDLG=MANA 3
+ONBUTTON=26
+TRYP 4 INPDLG=OCOLOR 5
+ONBUTTON=30
+IF ( <SRC.ACCOUNT.PLEVEL> > 6 )
+SRC.SYSMESSAGE Account Password: <ACCOUNT.PASSWORD>
+//SRC.SYSMESSAGE LastIP: <ACCOUNT.LASTIP>
+RETURN 1
+ENDIF
+ONBUTTON=50
+dialog d_charprop1
+ONBUTTON=51
+dialog d_inf_tweak_1
+ONBUTTON=52
+dialog d_inf_tweak_2
+ONBUTTON=53
+TRYP 4 INPDLG=KILLS 3
+
+[DIALOG d_inf_tweak_1]
+0,0
+resizepic 0 0 2600 500 400 // Curved Grey background
+page 0
+text 125 17 1153 0 // Title
+//button 53 74 2117 2118 1 0 27
+tilepic 400 50 <DISPIDDEC>
+text 25 50 80 1
+text 100 50 400 2
+text 250 50 80 3
+text 315 50 400 4
+
+page 1
+button 25 74 5031 5031 1 0 50 // General Information
+text 32 73 33 5
+button 150 74 5031 5031 1 0 51 // Skills
+text 180 73 33 6
+button 275 74 5031 5031 1 0 52
+text 290 73 33 7 // Misc Information
+button 25 104 2224 2117 1 0 2 // Change Alchemy 0
+text 50 100 0 8 // Alchemy 0
+text 175 100 400 16 // Actual Alchemy 0
+button 25 124 2224 2117 1 0 3 // Change Anatomy 1
+text 50 120 0 9 // Anatomy 1
+text 175 120 400 17 // Actual Anatomy 1
+button 25 144 2224 2117 1 0 4 // Change Animal Lore 2
+text 50 140 0 10 // Animal Lore 2
+text 175 140 400 18 // Actual Animal Lore 2
+button 25 164 2224 2117 1 0 26 // Change Animal Taming
+text 175 160 400 19 // Actual Animal Taming
+text 50 160 0 11 // Animal Taming
+button 25 184 2224 2117 1 0 5 // Change Archery
+text 50 180 0 12 // Archery
+text 175 180 400 20 // Actual Archery
+button 25 204 2224 2117 1 0 6 // Change Arms Lore
+text 175 200 400 21 // Actual Arms Lore
+text 50 200 0 13 // Arms Lore
+button 25 224 2224 2117 1 0 7 // Change Begging
+text 50 220 0 14 // Begging
+text 175 220 400 22 // Actual Begging
+button 25 244 2224 2117 1 0 8 // Change Blacksmithing
+text 50 240 0 15 // Blacksmithing
+text 175 240 400 23 // Actual Blacksmithing
+button 25 264 2224 2117 1 0 9 // Change Bowcraft
+text 50 260 0 24 // Bowcraft
+text 175 260 400 25 // Actual bowcraft
+button 25 284 2224 2117 1 0 10 // Change camping
+text 50 280 0 26 // Item camping
+text 175 280 400 27 // Actual camping
+button 25 304 2224 2117 1 0 11 // Change carpentry
+text 50 300 0 28 // carpentry
+text 175 300 400 29 // Actual carpentry
+button 25 324 2224 2117 1 0 12 // Change cartography
+text 50 320 0 30 // cartography
+text 175 320 400 31 // Actual cartography
+button 275 104 2224 2117 1 0 13 // Change cooking
+text 300 100 0 32 // cooking
+text 425 100 400 33 // Actual cooking
+button 275 124 2224 2117 1 0 14 // Change Detecting Hidden
+text 300 120 0 34 // Detecting Hidden
+text 425 120 400 35 // Actual Detecting Hidden
+button 275 144 2224 2117 1 0 15 // Change Enticement
+text 300 140 0 36 // Enticement
+text 425 140 400 37 // Actual Enticement
+button 275 164 2224 2117 1 0 16 // Change Evaluating Intelligence
+text 300 160 0 38 // Evaluating Intelligence
+text 425 160 400 39 // Actual Evaluating Intelligence
+button 275 184 2224 2117 1 0 17 // Change Fencing
+text 300 180 0 40 // SKILL Fencing
+text 425 180 400 41 // Actual Fencing
+button 275 204 2224 2117 1 0 18 // Change Fishing
+text 300 200 0 42 // Fishing
+text 425 200 400 43 // Actual Fishing
+button 150 364 2224 2117 1 0 19 // Goto 
+text 175 360 0 44 // Guild 
+text 235 360 400 45 // Actual
+text 60 360 0 46 // Goto Guild Button Tag
+button 275 224 2224 2117 1 0 20 // Change Forensics Evaluation
+text 300 220 0 47 // Forensics Eveluation
+text 425 220 400 48 // Actual Forensics Eveluation
+button 275 244 2224 2117 1 0 21 // Change Healing
+text 300 240 0 49 // Healing
+text 425 240 400 50 // Actual Healing
+button 275 264 2224 2117 1 0 22 // Change Herding
+text 300 260 0 51 // Herding
+text 425 260 400 52 // Actual Herding
+button 275 284 2224 2117 1 0 23 // Change Hiding
+text 300 280 0 53 // Hiding
+text 425 280 400 54 // Actual Hiding
+button 275 304 2224 2117 1 0 24 // Change Inscription
+text 300 300 0 55 // Inscription
+text 425 300 400 56 // Actual Inscription
+button 275 324 2224 2117 1 0 25 // Change Item ID
+text 300 320 0 57 // Item ID
+text 425 320 400 58 // Actual Item ID
+button 275 344 2224 2117 1 0 27 // Change Lock Picking
+text 300 340 0 59 // Item Lock Picking
+text 425 340 400 60 // Actual Lock Picking
+
+[DIALOG d_inf_tweak_1 TEXT]
+-- Player Tweak Menu -- //0
+Account: //1
+<ACCOUNT> //2
+Serial: //3
+<UID> //4
+General Info //5
+Skills //6
+Misc Info //7
+Alchemy //8
+Anatomy //9
+Animal Lore //10
+Animal Taming //11
+Archery //12
+Arms Lore //13
+Begging //14
+Black Smithing //15
+<ALCHEMY> //16
+<ANATOMY> //17
+<ANIMALLORE> //18
+<TAMING> //19
+<ARCHERY> //20
+<ARMSLORE> //21
+<BEGGING> //22
+<BLACKSMITHING> //23
+Bowcraft //24
+<BOWCRAFT> //25
+Camping //26
+<Camping> //27 
+Carpentry //28
+<Carpentry> //29
+Cartography //30
+<CARTOGRAPHY> //31
+Cooking //32
+<COOKING> //33 
+Detect Hidden //34
+<DETECTINGHIDDEN> //35
+Enticement //36
+<ENTICEMENT> //37
+Eval Intelligence //38
+<EVALUATINGINTEL> //39
+Fencing //40
+<FENCING> //41
+Fishing //42
+<FISHING> //43
+Goto //44
+Page 2 //45
+More Skills //46
+Forensics //47
+<FORENSICS> //48
+Healing //49
+<HEALING> //50
+Herding //51
+<HERDING> //52
+Hiding //53
+<HIDING> //54
+Inscription //55
+<INSCRIPTION> //56
+Item ID //57
+<ITEMID> //58
+Lock Picking
+<LOCKPICKING>
+
+[DIALOG d_inf_tweak_1 BUTTON]
+ONBUTTON=2
+TRYP 4 INPDLG=ALCHEMY 4
+ONBUTTON=3
+TRYP 4 INPDLG=ANATOMY 4
+ONBUTTON=4
+TRYP 4 INPDLG=ANIMALLORE 4
+ONBUTTON=5
+TRYP 4 INPDLG=ARCHERY 4
+ONBUTTON=6
+TRYP 4 INPDLG=ARMSLORE 4
+ONBUTTON=7
+TRYP 4 INPDLG=BEGGING 4
+ONBUTTON=8
+TRYP 4 INPDLG=BLACKSMITHING 4
+ONBUTTON=9
+TRYP 4 INPDLG=BOWCRAFT 4
+ONBUTTON=10
+TRYP 4 INPDLG=CAMPING 4
+ONBUTTON=11
+TRYP 4 INPDLG=CARPENTRY 4
+ONBUTTON=12
+TRYP 4 INPDLG=CARTOGRAPHY 4
+ONBUTTON=13
+TRYP 4 INPDLG=COOKING 4
+ONBUTTON=14
+TRYP 4 INPDLG=DETECTINGHIDDEN 4
+ONBUTTON=15
+TRYP 4 INPDLG=ENTICEMENT 4
+ONBUTTON=16
+TRYP 4 INPDLG=EVALUATINGINTEL 4
+ONBUTTON=17
+TRYP 4 INPDLG=FENCING 4
+ONBUTTON=18
+TRYP 4 INPDLG=FISHING 4
+ONBUTTON=19
+dialog d_inf_tweak_3
+ONBUTTON=20
+TRYP 4 INPDLG=FORENSICS 4
+ONBUTTON=21
+TRYP 4 INPDLG=HEALING 4
+ONBUTTON=22
+TRYP 4 INPDLG=HERDING 4
+ONBUTTON=23
+TRYP 4 INPDLG=HIDING 4
+ONBUTTON=24
+TRYP 4 INPDLG=INSCRIPTION 4
+ONBUTTON=25
+TRYP 4 INPDLG=ITEMID 4
+ONBUTTON=26
+TRYP 4 INPDLG=TAMING 4
+ONBUTTON=27
+TRYP 4 INPDLG=LOCKPICKING 4
+ONBUTTON=50
+dialog d_charprop1
+ONBUTTON=51
+dialog d_inf_tweak_1
+ONBUTTON=52
+dialog d_inf_tweak_2
+
+[DIALOG d_inf_tweak_3]
+0,0
+resizepic 0 0 2600 500 400 // Curved Grey background
+page 0
+text 125 17 1153 0 // Title
+//button 53 74 2117 2118 1 0 27
+tilepic 400 50 <DISPIDDEC>
+text 25 50 80 1
+text 100 50 400 2
+text 250 50 80 3
+text 315 50 400 4
+
+page 1
+button 25 74 5031 5031 1 0 50 // General Information
+text 32 73 33 5
+button 150 74 5031 5031 1 0 51 // Skills
+text 180 73 33 6
+button 275 74 5031 5031 1 0 52
+text 290 73 33 7 // Misc Information
+button 25 104 2224 2117 1 0 2 // Change Lumberjacking
+text 50 100 0 8 // Lumberjacking
+text 175 100 400 16 // Actual Lumberjacking
+button 25 124 2224 2117 1 0 3 // Change Mace Fighting
+text 50 120 0 9 // Mace Fighting
+text 175 120 400 17 // Actual Mace Fighting
+button 25 144 2224 2117 1 0 4 // Change Magery
+text 50 140 0 10 // Magery
+text 175 140 400 18 // Actual Magery
+button 25 164 2224 2117 1 0 26 // Change Meditation
+text 175 160 400 19 // Actual Meditation
+text 50 160 0 11 // Meditation
+button 25 184 2224 2117 1 0 5 // Change Mining
+text 50 180 0 12 // Mining
+text 175 180 400 20 // Actual Mining
+button 25 204 2224 2117 1 0 6 // Change Musicianship
+text 175 200 400 21 // Actual Musicianship
+text 50 200 0 13 // Musicianship
+button 25 224 2224 2117 1 0 7 // Change Parrying
+text 50 220 0 14 // Parrying
+text 175 220 400 22 // Actual Parrying
+button 25 244 2224 2117 1 0 8 // Change Peacemaking
+text 50 240 0 15 // Peacemaking
+text 175 240 400 23 // Actual Peacemaking
+button 25 264 2224 2117 1 0 9 // Change Poisoning
+text 50 260 0 24 // Poisoning
+text 175 260 400 25 // Actual Poisoning
+button 25 284 2224 2117 1 0 10 // Change Provocation
+text 50 280 0 26 // Provocation
+text 175 280 400 27 // Actual Provocation
+button 25 304 2224 2117 1 0 11 // Change Resist Magic
+text 50 300 0 28 // Resist Magic
+text 175 300 400 29 // Actual Resist Magic
+button 25 324 2224 2117 1 0 12 // Change Remove Trap
+text 50 320 0 30 // Remove Trap
+text 175 320 400 31 // Actual Remove Trap
+button 275 104 2224 2117 1 0 13 // Change Snooping
+text 300 100 0 32 // Snooping
+text 425 100 400 33 // Actual Snooping
+button 275 124 2224 2117 1 0 14 // Change Spirit Speak
+text 300 120 0 34 // Spirit Speak
+text 425 120 400 35 // Actual Spirit Speak
+button 275 144 2224 2117 1 0 15 // Change Stealing
+text 300 140 0 36 // Stealing
+text 425 140 400 37 // Actual Stealing
+button 275 164 2224 2117 1 0 16 // Change Stealth
+text 300 160 0 38 // Stealth
+text 425 160 400 39 // Actual Stealth
+button 275 184 2224 2117 1 0 17 // Change Swordsmanship
+text 300 180 0 40 // Swordsmanship
+text 425 180 400 41 // Actual Swordsmanship
+button 275 204 2224 2117 1 0 18 // Change Tactics
+text 300 200 0 42 // Tactics
+text 425 200 400 43 // Actual Tactics
+button 150 364 2224 2117 1 0 19 // Goto 
+text 175 360 0 44 // Guild 
+text 235 360 400 45 // Actual
+text 60 360 0 46 // Goto Guild Button Tag
+button 275 224 2224 2117 1 0 20 // Change Tailoring
+text 300 220 0 47 // Tailoring
+text 425 220 400 48 // Actual Tailoring
+button 275 244 2224 2117 1 0 21 // Change Taste ID
+text 300 240 0 49 // Taste ID
+text 425 240 400 50 // Taste ID
+button 275 264 2224 2117 1 0 22 // Change Tinkering
+text 300 260 0 51 // Tinkering
+text 425 260 400 52 // Actual Tinkering
+button 275 284 2224 2117 1 0 23 // Change Tracking
+text 300 280 0 53 // Tracking
+text 425 280 400 54 // Actual Tracking
+button 275 304 2224 2117 1 0 24 // Change Vetrinary
+text 300 300 0 55 // Vetrinary
+text 425 300 400 56 // Actual Vetrinary
+button 275 324 2224 2117 1 0 25 // Change Wrestling
+text 300 320 0 57 // Wrestling
+text 425 320 400 58 // Actual Wrestling
+
+[DIALOG d_inf_tweak_3 TEXT]
+-- Player Tweak Menu -- //0
+Account: //1
+<ACCOUNT> //2
+Serial: //3
+<UID> //4
+General Info //5
+Skills //6
+Misc Info //7
+Lumberjacking //8
+Mace Fighting //9
+Magery //10
+Meditation //11
+Mining //12
+Musicianship //13
+Parrying //14
+Peacemaking //15
+<LUMBERJACKING> //16
+<MACEFIGHTING> //17
+<MAGERY> //18
+<MEDITATION> //19
+<MINING> //20
+<MUSICIANSHIP> //21
+<PARRYING> //22
+<PEACEMAKING> //23
+Poisoning //24
+<POISONING> //25
+Provocation //26
+<PROVOCATION> //27 
+Magic Resist //28
+<MAGICRESISTANCE> //29
+Remove Trap //30
+<REMOVETRAP> //31
+Snooping //32
+<SNOOPING> //33 
+Spirit Speak //34
+<SPIRITSPEAK> //35
+Stealing //36
+<STEALING> //37
+Stealth //38
+<STEALTH> //39
+Swordsmanship //40
+<SWORDSMANSHIP> //41
+Tactics //42
+<TACTICS> //43
+Goto //44
+Page 1 //45
+More Skills //46
+Tailoring //47
+<TAILORING> //48
+Taste ID //49
+<TASTEID> //50
+Tinkering //51
+<TINKERING> //52
+Tracking //53
+<TRACKING> //54
+Veterinary //55
+<VETERINARY> //56
+Wrestling //57
+<WRESTLING> //58
+
+[DIALOG d_inf_tweak_3 BUTTON]
+ONBUTTON=2
+TRYP 4 INPDLG=LUMBERJACKING 4
+ONBUTTON=3
+TRYP 4 INPDLG=MACEFIGHTING 4
+ONBUTTON=4
+TRYP 4 INPDLG=MAGERY 4
+ONBUTTON=5
+TRYP 4 INPDLG=MINING 4
+ONBUTTON=6
+TRYP 4 INPDLG=MUSICIANSHIP 4
+ONBUTTON=7
+TRYP 4 INPDLG=PARRYING 4
+ONBUTTON=8
+TRYP 4 INPDLG=PEACEMAKING 4
+ONBUTTON=9
+TRYP 4 INPDLG=POISONING 4
+ONBUTTON=10
+TRYP 4 INPDLG=PROVOCATION 4
+ONBUTTON=11
+TRYP 4 INPDLG=MAGICRESISTANCE 4
+ONBUTTON=12
+TRYP 4 INPDLG=REMOVETRAP 4
+ONBUTTON=13
+TRYP 4 INPDLG=SNOOPING 4
+ONBUTTON=14
+TRYP 4 INPDLG=SPIRITSPEAK 4
+ONBUTTON=15
+TRYP 4 INPDLG=STEALING 4
+ONBUTTON=16
+TRYP 4 INPDLG=STEALTH 4
+ONBUTTON=17
+TRYP 4 INPDLG=SWORDSMANSHIP 4
+ONBUTTON=18
+TRYP 4 INPDLG=TACTICS 4
+ONBUTTON=19
+dialog d_inf_tweak_1
+ONBUTTON=20
+TRYP 4 INPDLG=TAILORING 4
+ONBUTTON=21
+TRYP 4 INPDLG=TASTEID 4
+ONBUTTON=22
+TRYP 4 INPDLG=TINKERING 4
+ONBUTTON=23
+TRYP 4 INPDLG=TRACKING 4
+ONBUTTON=24
+TRYP 4 INPDLG=VETERINARY 4
+ONBUTTON=25
+TRYP 4 INPDLG=WRESTLING 4
+ONBUTTON=26
+TRYP 4 INPDLG=MEDITATION 4
+ONBUTTON=27
+TRYP 4 INPDLG=LOCKPICKING 4
+ONBUTTON=50
+dialog d_charprop1
+ONBUTTON=51
+dialog d_inf_tweak_1
+ONBUTTON=52
+dialog d_inf_tweak_2
+
+[DIALOG d_inf_tweak_2]
+0,0
+resizepic 0 0 2600 500 400 // Curved Grey background
+page 0
+text 125 17 1153 0 // Title
+//button 53 74 2117 2118 1 0 27
+tilepic 400 50 <DISPIDDEC>
+text 25 50 80 1
+text 100 50 400 2
+text 250 50 80 3
+text 315 50 400 4
+
+page 1
+button 25 74 5031 5031 1 0 50 // General Information
+text 32 73 33 5
+button 150 74 5031 5031 1 0 51 // Skills
+text 180 73 33 6
+button 275 74 5031 5031 1 0 52
+text 290 73 33 7 // Misc Information
+button 25 104 2224 2117 1 0 2 // Change Comment 1
+text 50 100 0 8 // Comment 1
+text 128 100 400 9 // Actual Comment 1
+button 25 124 2224 2117 1 0 3 // Change Comment 2
+text 50 120 0 10 // Comment 2
+text 128 120 400 11 // Actual Comment 2
+button 25 144 2224 2117 1 0 4 // Change Comment 3
+text 50 140 0 12 // Comment 3
+text 128 140 400 13 // Actual Comment 3
+button 25 164 2224 2117 1 0 5 // Change Comment 4
+text 50 160 0 14 // Actual Comment 4
+text 128 160 400 15 // Comment 4
+button 25 184 2224 2117 1 0 6 // Change Comment 5
+text 50 180 0 16 // Comment 5
+text 128 180 400 17 // Actual Comment 5
+button 25 204 2224 2117 1 0 7 // Change Comment 5
+text 50 200 0 18 // Comment 5
+text 128 200 400 19 // Actual Comment 5
+
+[DIALOG d_inf_tweak_2 TEXT]
+-- Player Tweak Menu --
+Account:
+<ACCOUNT>
+Serial:
+<UID>
+General Info
+Skills
+Misc Info
+Comment:
+<TAG.COMMENT1>
+Comment:
+<TAG.COMMENT2>
+Comment:
+<TAG.COMMENT3>
+Comment:
+<TAG.COMMENT4>
+Comment:
+<TAG.COMMENT5>
+Comment:
+//<TAG.COMMENT6>
+<SRC.TAG.JTIME>
+
+[DIALOG d_inf_tweak_2 BUTTON]
+ONBUTTON=2
+TRYP 4 INPDLG=TAG.COMMENT1 40
+ONBUTTON=3
+TRYP 4 INPDLG=TAG.COMMENT2 40
+ONBUTTON=4
+TRYP 4 INPDLG=TAG.COMMENT3 40
+ONBUTTON=5
+TRYP 4 INPDLG=TAG.COMMENT4 40
+ONBUTTON=6
+TRYP 4 INPDLG=TAG.COMMENT5 40
+ONBUTTON=7
+TRYP 4 INPDLG=TAG.COMMENT6 40 
+ONBUTTON=50
+dialog d_charprop1
+ONBUTTON=51
+dialog d_inf_tweak_1
+ONBUTTON=52
+dialog d_inf_tweak_2
+
+[DIALOG d_ITEMPROP1]
+0,0
+resizepic 0 0 3600 475 325
+page 0 
+text 50 30 47 1
+text 110 30 50 2
+text 50 50 47 3
+text 110 50 50 4
+text 50 70 47 5
+text 110 70 50 6
+text 50 90 47 7
+text 110 90 50 8
+text 50 110 47 9
+text 110 110 50 10
+text 50 130 47 11
+text 110 130 50 12
+text 50 150 47 13
+text 110 150 50 14
+text 50 170 47 15
+text 110 170 50 16
+text 50 190 47 17
+text 110 190 50 18
+text 50 210 47 19
+text 110 210 50 20
+text 275 50 47 21
+text 335 50 50 22
+text 275 70 47 23
+text 335 70 50 24
+text 275 90 47 25
+text 335 90 50 26
+text 275 110 47 27
+text 335 110 50 28
+text 275 130 47 29
+text 335 130 50 30
+text 275 150 47 31
+text 335 150 50 32
+text 275 170 47 33
+text 335 170 50 34
+text 275 190 47 35
+text 335 190 50 36
+text 275 210 47 37
+text 335 210 50 38
+text 50 240 55 39
+text 50 260 55 40
+text 50 280 55 41
+button 25 54 2224 2117 1 0 1//name
+button 25 74 2224 2117 1 0 2//baseid
+button 25 94 2224 2117 1 0 3//color
+button 25 114 2224 2117 1 0 4//timer
+button 25 134 2224 2117 1 0 5//pos
+button 25 154 2224 2117 1 0 6//amount
+button 25 174 2224 2117 1 0 7//type
+button 25 194 2224 2117 1 0 8//more
+button 25 214 2224 2117 1 0 9//more2
+button 25 244 2224 2117 1 0 10//cont
+button 25 264 2224 2117 1 0 11//remove
+button 25 284 2224 2117 1 0 12//bounce
+button 250 54 2224 2117 1 0 13//morep
+button 250 74 2224 2117 1 0 14//morex
+button 250 94 2224 2117 1 0 15//morey
+button 250 114 2224 2117 1 0 16//morez
+button 250 134 2224 2117 1 0 17//attr
+button 250 154 2224 2117 1 0 18//link
+button 250 174 2224 2117 1 0 19//dispid
+
+[DIALOG d_ITEMPROP1 TEXT]
+-- Hedere --
+Serial:
+<SERIAL> (<eval <uid>>)
+Name:
+<NAME>
+BaseID:
+<BASEID>
+Color:
+<COLOR>
+Timer:
+<TIMER>
+Position: 
+<P>
+Amount: 
+<AMOUNT> 
+Type: 
+<TYPE> 
+More: 
+<MORE1>
+More2: 
+<MORE2>
+MoreP: 
+<MOREP>
+MoreX: 
+<MOREX>
+MoreY: 
+<MOREY>
+MoreZ: 
+<MOREZ>
+Attr:
+<ATTR>
+Link:
+<LINK>
+DispID:
+<DISPID>
+Value:
+<VALUE>
+Layer:
+<LAYER>
+Close
+Remove
+Bounce
+
+[DIALOG d_ITEMPROP1 BUTTON]
+ONBUTTON=0
+ONBUTTON=1
+TRYP 4 INPDLG=NAME 32
+ONBUTTON=2
+TRYP 4 INPDLG=ID 32
+ONBUTTON=3
+TRYP 4 INPDLG=COLOR 8
+ONBUTTON=4
+TRYP 4 INPDLG=TIMER 16
+ONBUTTON=5
+TRYP 4 INPDLG=P 5
+ONBUTTON=6
+TRYP 4 INPDLG=AMOUNT 32
+ONBUTTON=7
+TRYP 4 INPDLG=TYPE 32
+ONBUTTON=8
+TRYP 4 INPDLG=MORE 32
+ONBUTTON=9
+TRYP 4 INPDLG=MORE2 16
+ONBUTTON=10
+ONBUTTON=11
+TRY REMOVE
+ONBUTTON=12
+TRY BOUNCE
+ONBUTTON=13
+TRYP 4 INPDLG=MOREP 16
+ONBUTTON=14
+TRYP 4 INPDLG=MOREX 16
+ONBUTTON=15
+TRYP 4 INPDLG=MOREY 16
+ONBUTTON=16
+TRYP 4 INPDLG=MOREZ 16
+ONBUTTON=17
+TRYP 4 INPDLG=ATTR 16
+ONBUTTON=18
+TRYP 4 INPDLG=LINK 16
+ONBUTTON=19
+TRYP 4 INPDLG=DISPID 16
+
+[EOF]

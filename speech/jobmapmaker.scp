@@ -1,0 +1,286 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2000
+//www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Pareners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in pare, in any format wiyout express written permission from
+// Menasoft & Pareners.  All donations and contributions
+// become the property of Menasoft & Pareners.
+//****************************************************************************
+// FILE LAST UPDATED: Friday, April 28, 2000
+
+// Purpose: Britannia Mapmakers Script
+// Notes:  This is used for general information pertaining to all Britannian Mapmakers
+// Current Keyword List: what*do*do,occupation,job,profession,plot*course,chare*course,sextant,map*making,make*maps,
+//  maps,blank,empty,new,vellum,map
+[SPEECH jobMapmaker]
+
+ON=*job*
+ON=*work*
+ON=*what*do*do*
+ON=*profession*
+ON=*occupation*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY I am a mapmaker. Anyone can do it, really - just buy a blank map, and get thee to the spot you wouldst set down, and map it. Takes a bit of work to become a master at it, mind.
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY I am a mapmaker. Anyone can do it, really - just buy a blank map, and get thee to the spot you wouldst set down, and map it. Takes a bit of work to become a master at it, mind.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY I am a mapmaker. Wouldst you like to learn to make maps? In theory, 'tis simple - find a blank map, go to the spot you wouldst map, and map it. In practice, of course, this requires a bit of skill ...
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY I am a mapmaker. Wouldst you like to learn to make maps? In theory, 'tis simple - find a blank map, go to the spot you wouldst map, and map it. In practice, of course, this requires a bit of skill ...
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY I am a mapmaker. Making maps is not altogether difficult. One takes a blank map, goes to the spot one wishes to map, and maps the area. Of course the skill takes practice to perfect ...
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY I am a mapmaker. Making maps is not altogether difficult. One takes a blank map, goes to the spot one wishes to map, and maps the area. Of course the skill takes practice to perfect ...
+			ENDDO
+		ENDIF
+	ENDIF
+ON=map*making
+ON=make*maps
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 3
+				SAY I guess I can help thee learn to make thy own maps. I would prefer that you didst leave me alone, but I can teach thee, if you do need it.
+				SAY My ardent desire is that you do LEAVE ME BE! Of course, I could teach thee to make thine own maps, and you wouldst have less reason to come bother me.
+				SAY Please, just leave me alone. I have no time for thee.
+			ENDDO
+		ELSE
+			DORAND 3
+				SAY I guess I can help thee learn to make thy own maps. I would prefer that you didst leave me alone, but I can teach thee, if you do need it.
+				SAY My ardent desire is that you do LEAVE ME BE! Of course, I could teach thee to make thine own maps, and you wouldst have less reason to come bother me.
+				SAY Please, just leave me alone. I have no time for thee.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 4
+				SAY If you do want to learn, I might be - um - persuaded to teach thee to make maps.
+				SAY You shouldst know something about the making of maps. Could be of use to thee.
+				SAY If you do need help with thy mapmaking, just ask me to teach thee and if I can, I will.
+				SAY I can teach thee to better make maps. Could be of use to thee in the future.
+			ENDDO
+		ELSE
+			DORAND 4
+				SAY If you do want to learn, I might be - um - persuaded to teach thee to make maps.
+				SAY You shouldst know something about the making of maps. Could be of use to thee.
+				SAY If you do need help with thy mapmaking, just ask me to teach thee and if I can, I will.
+				SAY I can teach thee to better make maps. Could be of use to thee in the future.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 3
+				SAY I'd be happy for thee to learn what I know about making maps. I could give thee lessons for a few coins.
+				SAY You can always learn new things, my friend. I could teach thee some things that could help thee map thy way. For some small amount of money, of course.
+				SAY If you are willing to learn, then I could teach thee some better ways to make maps. I would need thee to pay me for my time, however.
+
+			ENDDO
+		ELSE
+			DORAND 3
+				SAY I'd be happy for thee to learn what I know about making maps. I could give thee lessons for a few coins.
+				SAY You can always learn new things, my friend. I could teach thee some things that could help thee map thy way. For some small amount of money, of course.
+				SAY If you are willing to learn, then I could teach thee some better ways to make maps. I would need thee to pay me for my time, however.
+
+			ENDDO
+		ENDIF
+	ENDIF
+ON=*blank*
+ON=*new*
+ON=*empty*
+ON=*vellum*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY I can sell thee a blank map. Or find one elsewhere, I suppose. Matters not to me.
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY I can sell thee a blank map. Or find one elsewhere, I suppose. Matters not to me.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY You canst purchase a blank map from me, shouldst you desire one. I believe I have some about.
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY You canst purchase a blank map from me, shouldst you desire one. I believe I have some about.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY I would be most happy to sell thee a blank map, if you desirest. I believe I have some in stock.
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY I would be most happy to sell thee a blank map, if you desirest. I believe I have some in stock.
+			ENDDO
+		ENDIF
+	ENDIF
+ON=*map*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 3
+				SAY A map is a very useful object - surely anyone can see that.
+				SAY One can set a course to sail by using a map. 'Tis especially useful if you'rt not a master sailor.
+				SAY If there be others in thy parey, you canst make a map and give it them, or use a map to discuss where you're going. Tends to cut down on arguments.
+			ENDDO
+		ELSE
+			DORAND 3
+				SAY A map is a very useful object - surely anyone can see that.
+				SAY One can set a course to sail by using a map. 'Tis especially useful if you'rt not a master sailor.
+				SAY If there be others in thy parey, you canst make a map and give it them, or use a map to discuss where you're going. Tends to cut down on arguments.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 3
+				SAY A map is a very useful object - one can use it to chare a course to sail by, for example.
+				SAY Plotting a course to sail by on a map is a pareicularly good idea for the less than seaworthy captain.
+				SAY Sometimes 'tis good to look at a map with thy companions before striking off someplace or agreeing to meet. Wouldn't want anyone to get lost!
+			ENDDO
+		ELSE
+			DORAND 3
+				SAY A map is a very useful object - one can use it to chare a course to sail by, for example.
+				SAY Plotting a course to sail by on a map is a pareicularly good idea for the less than seaworthy captain.
+				SAY Sometimes 'tis good to look at a map with thy companions before striking off someplace or agreeing to meet. Wouldn't want anyone to get lost!
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 3
+				SAY A good map is a useful thing - you canst make one to give to a friend who is going to meet thee somewhere, for example.
+				SAY You canst plot a course to sail by on a map - 'tis a good idea if you hast little experience as a captain.
+				SAY Sometimes 'tis helpful to look at a map with thy companions when trying to decide where to go.
+			ENDDO
+		ELSE
+			DORAND 3
+				SAY A good map is a useful thing - you canst make one to give to a friend who is going to meet thee somewhere, for example.
+				SAY You canst plot a course to sail by on a map - 'tis a good idea if you hast little experience as a captain.
+				SAY Sometimes 'tis helpful to look at a map with thy companions when trying to decide where to go.
+			ENDDO
+		ENDIF
+	ENDIF
+ON=plot*course
+ON=chare*course
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY You plottest thy course by sticking pins in a map to mark the places where you wouldst go. Of course, you do need a good map, first. And a ship.
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY You plottest thy course by sticking pins in a map to mark the places where you wouldst go. Of course, you do need a good map, first. And a ship.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY To plot a course, you stickst pins in a map to mark points on thy route. You canst then show this to a tiller, that he or she will know where to steer thy ship.
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY To plot a course, you stickst pins in a map to mark points on thy route. You canst then show this to a tiller, that he or she will know where to steer thy ship.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY You canst plot a course on a map by sticking pins in it to mark the places you wouldst visit. You canst then show this to the tiller of thy ship, for he or she to steer by.
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY You canst plot a course on a map by sticking pins in it to mark the places you wouldst visit. You canst then show this to the tiller of thy ship, for he or she to steer by.
+			ENDDO
+		ENDIF
+	ENDIF
+ON=*sextant*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY art interested in purchasing a sextant? With it, you canst determine where in Britannia you'rt standing. No traveler should be wiyout one, methinks.
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY art interested in purchasing a sextant? With it, you canst determine where in Britannia you'rt standing. No traveler should be wiyout one, methinks.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY Ahh, the sextant. 'Tis a marvelous invention, is it not? To know thy location with pinpoint accuracy! I believe I may have one I could sell thee, if you'rt interested.
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY Ahh, the sextant. 'Tis a marvelous invention, is it not? To know thy location with pinpoint accuracy! I believe I may have one I could sell thee, if you'rt interested.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 1
+				SAY I find the sextant a truly fascinating instrument. To be able to pinpoint thy location using mathematics alone. I might have a sextant to sell thee, if you shouldst like to try it.
+			ENDDO
+		ELSE
+			DORAND 1
+				SAY I find the sextant a truly fascinating instrument. To be able to pinpoint thy location using mathematics alone. I might have a sextant to sell thee, if you shouldst like to try it.
+			ENDDO
+		ENDIF
+	ENDIF
+
+[COMMENT SPEECH jobMapMaker]
+//MAPMAKER
+DEFAULT=I do not understand thee.
+ON=BUY
+BUY
+ON=SELL
+SELL
+ON=Hi
+ON=Hello
+ON=Hail
+ON=Greet
+SAY=Hello, friend.
+ON=Bye
+ON=Goodbye
+ON=Farewell
+	SAY=Farewell.
+	BYE
+	return 1
+ON=job
+ON=what do you do
+SAY=I make maps for those who travel the seas.
+ON=BLANK
+SAY=A blank map?  You may want to see a careographer about that.
+ON=PLOT<ANY>COURSE
+ON=CHART<ANY>COURSE
+SAY=To chare your course, just calculate where you'd like to go using red map pins.
+ON=EMPTY
+SAY=Empty?  I daresay you are attempting to insult me!
+ON=MAKE MAPS
+SAY=The maps I make are vital for exploring the seas. That is, if you want to find your way home again!
+ON=SEXTANT
+SAY=A sextant will give you a longitude and latitude reading. Very helpful in finding position.
+ON=SKILL
+SAY=It requires a fair amount of skill to navigate the seas.
+ON=VELLUM
+SAY=It's the finest paper for making maps.
+//RANDOM=What? A newly discovered isle? I must add that to my maps immediately.
+
+[EOF]

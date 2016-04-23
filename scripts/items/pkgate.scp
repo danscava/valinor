@@ -1,0 +1,85 @@
+[itemdef i_gate_pk]
+defname i_gate_pk
+name Pk Gate
+id i_moongate_blue
+type t_wall
+
+on=@create
+color 0810
+
+on=@click
+message @0785 <serv.name> UO
+message @0810 PK Gate
+return 1
+
+on=@step
+if ( <src.kills> < 6 )
+src.sysmessage @56,,1 Sadece PKlar gecebilir....(6 Kill Gerektir)
+src.move 1
+return 1
+elseif (<src.hits> < 80)
+src.sysmessage @38,1,1 80 HP Altindayken gecemezsiniz.
+src.move 1
+return 1
+else
+src.sysmessage @0823 Sehrine hos geldin !
+src.events +e_pksehri
+src.findid.i_rb_delay.remove
+src.findid.i_rb_delay2.remove
+src.dialogclose d_runebook
+src.f_fizzle
+src.invul 1
+src.go 1147,1792
+return 1
+
+on=@dclick
+src.sysmessage @56,,1 Uzerinden geciniz.
+return 1
+
+[itemdef i_gate_pk_cikis]
+defname i_gate_pk_cikis
+name Pk Gate
+id i_moongate_blue
+
+on=@create
+color 0810
+
+on=@click
+message @0785 <serv.name> UO
+message @0810 PK Gate
+return 1
+
+on=@step
+src.go <morep>
+src.sysmessage @0823 Sehrinden Ayrildin.
+src.events -e_pksehri
+src.invul 0
+src.findid.i_rb_delay.remove
+src.findid.i_rb_delay2.remove
+src.f_fizzle
+return 1
+
+on=@dclick
+src.sysmessage @56,,1 Uzerinden geciniz.
+return 1
+
+[events e_pksehri]
+on=@spellcast
+f_fizzle
+src.sysmessage @0810 Burda buyu atamazsiniz...
+return 1
+
+on=@attack
+src.sysmessage @0810 Burda saldiri yapamazsiniz...
+return 1
+
+on=@click
+message @0785 Pk Sehri
+
+
+on=@skillstart
+src.sysmessage @07a1 Bu alanda skill gelistiremezsiniz...
+skill fail
+return 1
+
+[eof]

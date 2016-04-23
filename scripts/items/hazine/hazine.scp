@@ -1,0 +1,1388 @@
+-------------------------------------------------------------------
+Sistem 06.12.2004 15:00 Tarihinde Tarafimdan Türkçelestirilmistir.
+CYCLONE 17:37 11.12.2004
+-------------------------------------------------------------------
+
+/////////////////////////KASALAR
+
+[itemdef i_cont_define]
+NAME=Treasure Container
+ID=i_box_brass
+TYPE=t_normal
+weight 0.1
+
+ON=@CREATE
+COLOR 070d
+
+ON=@CLICK
+MESSAGE @58 Belirsiz sandik
+return 1
+
+ON=@DCLICK
+if (<topobj.uid> != <src.uid>)
+	src.sysmessage @037 Bunu kullanabilmeniz icin cantanizda olmali.
+	return 1
+endif
+SRC.SAYUA 920,6,6,0 * Sandigi kirar *
+src.newitem i_define_haritasi
+src.act.equip
+src.sysmessage @0482 Bilinmeyen bir kagit parcasi cikti
+remove
+return 1
+
+[itemdef i_bottle_define]
+NAME=SOS Bottle
+ID=i_bottle_ale
+TYPE=t_normal
+weight 0.1
+value 9
+
+ON=@CREATE
+COLOR 070d
+
+ON=@CLICK
+MESSAGE @58 SOS Bottle
+return 1
+
+ON=@DCLICK
+if (<topobj.uid> != <src.uid>)
+	src.sysmessage @37 Bunu kullanabilmeniz icin cantanizda olmali.
+	return 1
+endif
+SRC.SAYUA 920,6,6,0 * Siseyi Kirar *
+src.newitem i_define_haritasi
+src.act.equip
+src.sysmessage @0482 Bilinmeyen bir kagit parcasi cikti
+remove
+return 1
+
+[itemdef i_define_haritasi]
+NAME=Treasure Map
+ID=i_map_rolled
+TYPE=t_normal
+SKILLMAKE=SKILL_CARTOGRAPHY 95.0, Skill_Magery 70.0
+RESOURCES=20 i_scroll_blank, 1000 i_gold
+
+ON=@Create
+tag.status="Cozulmemis"
+tag.tachado=0
+tag.decifrado=0
+color=07a1
+f_selecionar_local_tesouro
+
+on=@click
+message @68 <name>
+message @48 (<tag.status>)
+return 1
+
+on=@dclick
+if (<src.distance> > 5)
+src.sysmessage @0482 Defineye Cok uzaktasin nasil kazmayi planliyosun ?
+return 1
+elseif !(<cont>)
+src.sysmessage @0482 Bu haritayi herkesin icinde okumayi dusunmuyosun heralde...
+return 1
+elseif (<tag.asilsiz>==1)
+src.sysmessage @0482 Harita asilsiz cikti biri senle dalga gecmis olmali..
+return 1
+elseif (<tag.tachado>==1)
+src.sysmessage @0482 Bu harita biri tarafindan cozulmus coktan defineyi almistir.
+return 1
+elseif (<tag.decifrado>==1) && (<src.isnextp <eval <tag.tpx>> <eval <tag.tpy>> 10>) && !(<src.findid.i_shovel>)
+src.sysmessage @0482 Kazi yapabilmek icin Shovel (Kurek) a ihtiyaciniz var
+return 1
+elseif (<tag.decifrado>==1) && (<src.isnextp <eval <tag.tpx>> <eval <tag.tpy>> 10>) && (<src.findid.i_shovel>)
+IF (<src.str> > 99) && (<src.dex> > 99) && (<src.int> > 99) && (<src.skilltotal> > 1000)
+serv.newnpc=c_rotting
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+new.fix
+new.home=<new.p>
+new.homedist 10
+local.npc1=<new.uid>
+serv.newitem=i_tesouro_monstro
+new.cont=<local.npc1>
+new.timer=2800
+serv.newnpc=c_rotting
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+new.fix
+new.home=<new.p>
+new.homedist 10
+local.npc1=<new.uid>
+serv.newitem=i_tesouro_monstro
+new.cont=<local.npc1>
+new.timer=2800
+serv.newnpc=c_rotting
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+new.fix
+new.home=<new.p>
+new.homedist 10
+local.npc1=<new.uid>
+serv.newitem=i_tesouro_monstro
+new.cont=<local.npc1>
+new.timer=2800
+//serv.newnpc=c_m_dragon_hazine
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+new.fix
+//new.home=<new.p>
+//new.homedist 10
+local.npc1=<new.uid>
+serv.newitem=i_tesouro_monstro
+//new.cont=<local.npc1>
+//new.timer=2800
+//serv.newnpc=c_m_dragon_hazine
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+new.fix
+//new.home=<new.p>
+//new.homedist 10
+local.npc1=<new.uid>
+serv.newitem=i_tesouro_monstro
+//new.cont=<local.npc1>
+//new.timer=2800
+serv.newnpc=c_m_dragon_hazine
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+new.fix
+new.home=<new.p>
+new.homedist 10
+new.events +e_tesouro_chefe
+local.npc1=<new.uid>
+new.say @07a1,,1 Kim Benim Hazinemi Almaya Kalkisti ?
+new.tag.tpx=<tag.tpx>
+new.tag.tpy=<tag.tpy>
+new.tag.prizemoney=<eval <src.cartography>*10>
+new.tag.prizeitem=<hval <def.random_treasure_prize>>
+new.effect 1,i_gold,20,20
+local.container=<new.uid>
+serv.newitem=i_tesouro_monstro
+new.cont=<local.npc1>
+new.timer=3000
+ELSE
+serv.newnpc=c_rotting
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+new.fix
+new.home=<new.p>
+new.homedist 10
+local.npc1=<new.uid>
+serv.newitem=i_tesouro_monstro
+new.timer=2800
+serv.newnpc=c_rotting
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+new.fix
+new.home=<new.p>
+new.homedist 10
+local.npc1=<new.uid>
+serv.newitem=i_tesouro_monstro
+new.timer=2800
+serv.newnpc=c_rotting
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+new.fix
+new.home=<new.p>
+new.homedist 10
+//local.npc1=<new.uid>
+//serv.newitem=i_tesouro_monstro
+//new.timer=2800
+//serv.newnpc=c_m_dragon_hazine
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+new.fix
+new.home=<new.p>
+new.homedist 10
+new.events +e_tesouro_chefe
+local.npc1=<new.uid>
+new.say @07a1,,1 Kim Benim Hazinemi Almaya Kalkisti ?
+new.tag.tpx=<tag.tpx>
+new.tag.tpy=<tag.tpy>
+new.tag.prizemoney=<eval <src.cartography>*10>
+new.tag.prizeitem=<hval <def.random_treasure_prize>>
+new.effect 1,i_gold,20,20
+local.container=<new.uid>
+serv.newitem=i_tesouro_monstro
+new.timer=3000
+ENDIF
+tag.status="Hazine Bulundu"
+src.sysmessage @0482 Hazineye el koyabilmek icin yaratiklari oldurmen gerekiyor.
+tag.tachado=1
+return 1
+elseif (<tag.decifrado>==0) && (<tag.asilsiz>==0) && (<eval RAND(6)>==1) && (<src.cartography> > 99.9)
+tag.decifrado=1
+src.message @0482 Haritayi cozmeyi basardiniz.
+tag.status="<src.name> Tarafindan Cozulmus"
+dispid=i_map
+update
+return 1
+
+elseif !(<tag.decifrado>==1) && (<tag.asilsiz>==0) && (<eval RAND(8)>==1) && (<src.cartography> > 99.9)
+tag.asilsiz=1
+src.sysmessage @0482 Haritadaki bilgiler asilsiz cikti haritada belirtildigi gibi bir yer yok.
+tag.status="Asilsiz cikmis"
+dispid=i_map
+update
+return 1
+
+elseif !(<src.cartography> > 99.9)
+src.sysmessage @037 Haritadaki bilgileri anlicak kadar yetenekli degilsiniz.
+return 1
+
+elseif (<tag.decifrado>==0) && (<cont>==<src.findlayer.21.uid>)
+src.sysmessage @0482 Harita hakkinda bilgi edinemediniz!
+update
+return 1
+elseif (<src.var.okcikartti> == 2)
+src.sysmessage @0482 Defineyi aramaktan vaz gectiniz
+src.var.okcikartti 0
+src.arrowquest
+return 1
+elseif (<cont>==<src.findlayer.21.uid>) && (<src.var.okcikartti> == 0)
+src.arrowquest <eval <tag.tpx>>,<eval <tag.tpy>>
+src.sysmessage @88 Haritaya gore hazine <tag.lugar> civarlarinda ,cikan ok u takip et...
+src.var.okcikartti 2
+return 1
+elseif (<cont>==0)
+return 1
+endif
+
+///////////////////
+
+[function isnextp]
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <argn1>>,<eval <argn2>>
+IF (<new.distance> < <argn3>) || (<new.distance>==<argn3>)
+new.remove
+return 1
+else
+new.remove
+return 0
+ENDIF
+
+/////////////////
+
+[DEFNAME premios_tesouro]
+random_treasure_prize { RANDOM_WEAPON_power 1 RANDOM_PLATEMAIL_INVULNERABILITY 1 RANDOM_PLATEMAIL_DEFENSE 1 RANDOM_PLATEMAIL_FORTIFICATION 1 RANDOM_PLATEMAIL_GUARDING 1 RANDOM_PLATEMAIL_HARDENING 1 RANDOM_WEAPON_FORCE 1 RANDOM_WEAPON_MIGHT 1 RANDOM_WEAPON_POWER 1 RANDOM_WEAPON_RUIN 1 RANDOM_SHIELD_INVULNERABILITY 1 RANDOM_SHIELD_DEFENSE 1 RANDOM_SHIELD_FORTIFICATION 1 RANDOM_SHIELD_GUARDING 1 RANDOM_SHIELD_HARDENING 1 }
+
+/////////////////
+
+[ITEMDEF i_tesouro_monstro]
+NAME=Monstros Tesouro Mem
+ID=i_memory
+TYPE=t_eq_script
+LAYER=30
+
+ON=@Timer
+cont.remove
+
+//////////////////
+
+[events e_tesouro_chefe]
+ON=@DEATHCORPSE
+serv.newitem=i_hazine1
+new.color=07ad
+new.attr=attr_decay|attr_move_never
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>,<eval <p.z>>
+new.timer=360
+try uid.<uid.<argo.uid>.more2>.sysmessage @0482 Hazine Gardiyanlarini Oldurdun, Kasayi Alabilirsin.
+try uid.<uid.<argo.uid>.more2>.arrowquest
+src.var.okcikartti 0
+
+
+
+///////////////////
+
+[function f_selecionar_local_tesouro]
+DORAND 28
+BEGIN
+tag.tpx=1250
+tag.tpy=2581
+tag.lugar="West from Trinsic"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=1899
+tag.tpy=2375
+tag.lugar="Northwest from Trinsic"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=<eval {792 1336}>
+tag.tpy=<eval {640 2432}>
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+tag.lugar="at <new.region.name>"
+END
+BEGIN
+tag.tpx=1479
+tag.tpy=1881
+tag.lugar="Southeast of Britain, where ocean meets land"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=1177
+tag.tpy=2156
+tag.lugar="South from Britain, where travellers get lost"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=1856
+tag.tpy=861
+tag.lugar="at sands of Compassion"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=<eval {792 1336}>
+tag.tpy=<eval {640 2432}>
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+tag.lugar="at <new.region.name>"
+END
+BEGIN
+tag.tpx=2636
+tag.tpy=889
+tag.lugar="next to Vesper, next to the mountains"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=5139
+tag.tpy=970
+tag.lugar="in Destard at the third lava pool"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=627
+tag.tpy=1487
+tag.lugar="next to Yew, where Orcs are born"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=<eval {792 1336}>
+tag.tpy=<eval {640 2432}>
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+tag.lugar="at <new.region.name>"
+END
+BEGIN
+tag.tpx=1652
+tag.tpy=2894
+tag.lugar="next to Trinsic at the Hidden Vale"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=4585
+tag.tpy=3613
+tag.lugar="at the first lava pool, on the left of the Avatar Isle"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=2447
+tag.tpy=3612
+tag.lugar="at the left shore of a marble island"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=<eval {792 1336}>
+tag.tpy=<eval {640 2432}>
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+tag.lugar="at <new.region.name>"
+END
+BEGIN
+tag.tpx=1323
+tag.tpy=544
+tag.lugar="at the Waterfall of Justice"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=<eval {792 1336}>
+tag.tpy=<eval {640 2432}>
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+tag.lugar="at <new.region.name>"
+END
+BEGIN
+tag.tpx=5519
+tag.tpy=673
+tag.lugar="at the last steps of the downest stair of Despise"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=2190
+tag.tpy=1409
+tag.lugar="at the first bone pile of the dock of the home of the orcs at Cove"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=5703
+tag.tpy=639
+tag.lugar="at the center of a room, in the most wrong dungeon"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=<eval {792 1336}>
+tag.tpy=<eval {640 2432}>
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+tag.lugar="at <new.region.name>"
+END
+BEGIN
+tag.tpx=6119
+tag.tpy=219
+tag.lugar="at the biggest of all dungeons, inside a room full of blood."
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=2006
+tag.tpy=2933
+tag.lugar="next to the left entrance of Trinsic"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=1606
+tag.tpy=3531
+tag.lugar="at the beach next to the Hidden Vale"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=5758
+tag.tpy=2908
+tag.lugar="at the entrance of the hottest dungeon, almost like hell"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=5209
+tag.tpy=2322
+tag.lugar="at the most hidden entrance of the coldest dungeon"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=733
+tag.tpy=1152
+tag.lugar="next to Yew cemitery"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+BEGIN
+tag.tpx=<eval {792 1336}>
+tag.tpy=<eval {640 2432}>
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+tag.lugar="at <new.region.name>"
+END
+BEGIN
+tag.tpx=5199
+tag.tpy=616
+tag.lugar="in Deceit, where Orcs have lunch"
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <tag.tpx>>,<eval <tag.tpy>>
+END
+ENDDO
+new.fix
+new.timer=1
+IF (<new.region.flags>==<new.region.flags>|region_flag_guarded) || (<new.region.flags>==<new.region.flags>|region_flag_safe) || (0<uid.<new.region.uid>.type>==t_multi) || (<new.isneartype t_rock>) || (<new.isneartype t_tree>) || (<new.isneartype t_door>) || (<new.isneartype t_wall>) || (<new.isneartype t_water>)
+f_selecionar_local_tesouro
+ENDIF
+
+/////By Cloud//////////
+///Doubts = ICQ: 133411911////
+////please, leave my credit :)////
+
+[DEFNAME map_defs]
+gold_multiplier 10
+
+[itemdef i_mapa_tesouro]
+NAME=Hazine Haritasi
+ID=i_map_rolled
+TYPE=t_normal
+SKILLMAKE=SKILL_CARTOGRAPHY 95.0, Skill_Magery 70.0
+RESOURCES=20 i_scroll_blank, 1000 i_gold
+
+ON=@Create
+tag.status="Tanimsiz"
+tag.tachado=0
+tag.decifrado=0
+color=07a1
+if (<eval RAND(22)>==0)
+tag.tpx=1172
+tag.tpy=2592
+tag.lugar="west from Trinsic"
+else
+if (<eval RAND(22)>==1)
+tag.tpx=1899
+tag.tpy=2375
+tag.lugar="northwest from Trinsic, inside a swamp"
+else
+if (<eval RAND(22)>==2)
+tag.tpx=1479
+tag.tpy=1881
+tag.lugar="southeast from Britain, where sea meets sand"
+else
+if (<eval RAND(22)>==3)
+tag.tpx=1177
+tag.tpy=2156
+tag.lugar="south from Britain, where travellers get lost"
+else
+if (<eval RAND(22)>==4)
+tag.tpx=1856
+tag.tpy=861
+tag.lugar="in the sands of Compassion"
+else
+if (<eval RAND(22)>==5)
+tag.tpx=2636
+tag.tpy=889
+tag.lugar="at the mountains next to Vesper"
+else
+if (<eval RAND(22)>==6)
+tag.tpx=5139
+tag.tpy=970
+tag.lugar="inside Destard, at the third lava pool"
+else
+if (<eval RAND(22)>==7)
+tag.tpx=627
+tag.tpy=1487
+tag.lugar="next to Yew, where Orcs are born"
+else
+if (<eval RAND(22)>==8)
+tag.tpx=1652
+tag.tpy=2894
+tag.lugar="next to Trinsic, after the mountains"
+else
+if (<eval RAND(22)>==9)
+tag.tpx=4585
+tag.tpy=3613
+tag.lugar="at the first lava pool, on the left, at the Avatar Island"
+else
+if (<eval RAND(22)>==10)
+tag.tpx=2447
+tag.tpy=3612
+tag.lugar="on the left coast of an island with a big temple of sandstone"
+else
+if (<eval RAND(22)>==11)
+tag.tpx=1323
+tag.tpy=542
+tag.lugar="at the Justice Waterfall"
+else
+if (<eval RAND(22)>==12)
+tag.tpx=5519
+tag.tpy=673
+tag.lugar="at the last steps of the first stair in Deceit"
+else
+if (<eval RAND(22)>==13)
+tag.tpx=2189
+tag.tpy=1425
+tag.lugar="at the last skull in Cove Orc Camp"
+else
+if (<eval RAND(22)>==14)
+tag.tpx=5703
+tag.tpy=639
+tag.lugar="in the center of the last room of the most wrong dungeon"
+else
+if (<eval RAND(22)>==15)
+tag.tpx=6119
+tag.tpy=219
+tag.lugar="in a room full of blood, with a pentagram at the center, in the biggest dungeon"
+else
+if (<eval RAND(22)>==16)
+tag.tpx=2008
+tag.tpy=2931
+tag.lugar="next to the forgotten entrance of Trinsic, at it's south side"
+else
+if (<eval RAND(22)>==17)
+tag.tpx=1606
+tag.tpy=3531
+tag.lugar="in front of the pole at the most distant house inside the Hidden Vale"
+else
+if (<eval RAND(22)>==18)
+tag.tpx=5758
+tag.tpy=2908
+tag.lugar="at the entrance of the hottest dungeon"
+else
+if (<eval RAND(22)>==19)
+tag.tpx=5209
+tag.tpy=2322
+tag.lugar="at the most hidden entrance of the coldest dungeon"
+else
+if (<eval RAND(22)>==20)
+tag.tpx=733
+tag.tpy=1152
+tag.lugar="over a mushroom next to Yew Cemetary"
+else
+if (<eval RAND(22)>==21)
+tag.tpx=5199
+tag.tpy=616
+tag.lugar="in Deceit, at the room Orcs eat"
+else
+tag.tpx=<eval {792 1336}>
+tag.tpy=<eval {640 2432}>
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p="<tag.tpx>,<tag.tpy>"
+IF (<new.region.flags>==<new.region.flags>|region_flag_guarded) || (<new.region.flags>==<new.region.flags>|region_flag_safe) || (<uid.<new.region.uid>.type>==t_multi)
+tag.tpx=733
+tag.tpy=1152
+tag.lugar="encima de um cogumelo, proximo ao cemiterio de Yew"
+else
+tag.lugar="<new.region.name>"
+new.timer=5
+new.remove
+endif
+endif
+
+on=@click
+message @07a1 <name>
+message @07ad (<tag.status>)
+return 1
+
+on=@dclick
+if (<src.distance> > 5)
+src.sysmessage @07a1 Haritaya ulasamiyorsunuz.
+return 1
+else
+if !(<cont>)
+src.message @07a3 Bu haritayi sadece cantanizda acabilirsiniz.
+return 1
+else
+if (<tag.tachado>==1)
+src.sysmessage @07a0 Hazine daha once bulunmus.
+return 1
+else
+if (<tag.decifrado>==1) && (<src.isnextp <eval <tag.tpx>> <eval <tag.tpy>> 10>) && !(<src.findid.i_shovel> )
+src.sysmessage @07a3 Hazineyi kazmak icin bir kazmaya ihtiyaziniz var.
+return 1
+else
+if (<tag.decifrado>==1) && (<src.isnextp <eval <tag.tpx>> <eval <tag.tpy>> 10>) && (<src.findid.i_shovel> )
+src.newitem=i_gold
+src.new.amount=<eval <src.cartography>*<def.gold_multiplier>>
+src.new.bounce
+src.newitem=random_poor_magic_loot
+src.new.color=07a3
+src.new.bounce
+tag.status="Hazine Bulunmus"
+src.sysmessage @07a1 Tebrikler! Hazineyi buldunuz.
+tag.tachado=1
+return 1
+else
+if (<tag.decifrado>==0) && (<src.cartography> > 19.9) && (<eval RAND(5)>==1) && (<src.cartography> > 99.9)
+tag.decifrado=1
+src.message @0ad Hazineyi cozdunuz.
+tag.status="Decifred by <src.name>"
+dispid=i_map
+update
+return 1
+else
+if (<tag.decifrado>==0) && (<src.cartography> > 19.9) && (<eval RAND(5)>==1) && (<src.cartography> < 100.0)
+tag.decifrado=1
+src.message @0ad Hazineyi cozdunuz.
+tag.status="Decifred by <src.name>"
+src.cartography=<eval <src.cartography>+{1 5}>
+dispid=i_map
+update
+return 1
+else
+if (<tag.decifrado>==0) && (<src.cartography> > 19.9) && (<cont>==<src.findlayer.21.uid>)
+src.message @0ad Hazineyi cozemediniz.
+update
+return 1
+else
+if (<src.cartography> < 20.0)
+src.message @07a1 Cartography yeteneginiz yeterli degil.
+return 1
+else
+if (<cont>==<src.findlayer.21.uid>)
+src.sysmessage @88 Hazine <tag.lugar>, <eval <tag.tpx>>,<eval <tag.tpy>> kordinatlarinda.
+sdialog TrsDlg
+return 1
+else
+if (<cont>==0)
+return 1
+endif
+
+//////////////
+
+[DIALOG TrsDlg] 
+200,90 
+resizepic 0 0 5120 403 494 
+gumppic 10 10 5528 
+gumppic <EVAL (10+((<tag.tpx>*100)/1337))> <EVAL (10+((<tag.tpy>*100)/1067))> 0938
+htmlgump 20 400 240 85 1 200 1
+tilepic 280 400 7575
+tilepic 302 400 7576
+
+[DIALOG TrsDlg TEXT] 
+<var.blankline>
+Hazine <tag.lugar>, <eval <tag.tpx>>,<eval <tag.tpy>> kordinatlarinda.
+
+[DIALOG TrsDlg BUTTON]
+
+///////////////////
+
+[function isnextp]
+serv.newitem=i_gold
+new.attr=attr_invis|attr_decay
+new.p=<eval <argn1>>,<eval <argn2>>
+IF (<new.distance> < <argn3>) || (<new.distance>==<argn3>)
+new.remove
+return 1
+else
+new.remove
+return 0
+ENDIF
+
+[FUNCTION sextant2] 
+  	VAR.LAT       = <eval (((<P.Y> - 1624) * 360 * 60) / 4096)> 
+  	VAR.LNG       = <eval (((<P.X> - 1323) * 360 * 60) / 5120)> 
+
+  	VAR.LATd      = <eval (<VAR.LAT>/60)> 
+  	VAR.LATm      = <eval (<VAR.LAT> - (<VAR.LATd>*60))> 
+
+  	VAR.LNGd      = <eval (<VAR.LNG>/60)> 
+  	VAR.LNGm      = <eval (<VAR.LNG> - (<VAR.LNGd>*60))> 
+
+  	ABSVAL VAR.LATd 
+  	ABSVAL VAR.LATm 
+  	ABSVAL VAR.LNGd 
+  	ABSVAL VAR.LNGm 
+
+  	VAR.LATc      = "N" 
+if ( <VAR.LAT> > 0 ) 
+	VAR.LATc   = "S" 
+endif 
+
+	VAR.LNGc      = "W" 
+if ( <VAR.LNG> > 0 ) 
+	VAR.LNGc   = "E" 
+endif
+
+//LINK.TAG.COORDS <eval <VAR.LATd>>o<eval <VAR.LATm>>'<VAR.LATc>, <eval <VAR.LNGd>>o<eval <VAR.LNGm>>'<VAR.LNGc>
+var.kord <eval <VAR.LATd>>o<eval <VAR.LATm>>'<VAR.LATc>, <eval <VAR.LNGd>>o<eval <VAR.LNGm>>'<VAR.LNGc>
+
+if (<ischar>)
+	message @2050 Pusula kordinatlari: <var.kord>
+endif
+
+[FUNCTION ABSVAL] 
+if ( <<args>> < 0 ) 
+	TRY <ARGS> = <eval (0 - <<args>> )> 
+endif 
+
+[ITEMDEF i_cikiyor] 
+id=i_gold 
+name=balik cikariyor 
+type=t_eq_script
+
+ON=@Create 
+Timer=1
+
+ON=@Timer
+remove
+return 1
+
+[ITEMDEF i_nolog] 
+id=i_gold 
+name=log onle 
+type=t_eq_script
+
+ON=@Create 
+Timer=2
+
+ON=@Timer
+remove
+return 1
+
+[itemdef i_sos_bottle] 
+NAME=message in a bottle 
+id=099f 
+VALUE=2000 
+SKILLMAKE=MINING 98.0 
+
+on=@create 
+attr attr_magic
+TIMER=0 
+
+On=@Click
+message @60 [hazine mesaji]
+message a sos bottle
+if (<attr>&(attr_identified))  
+	message @60 [hazine mesaji]
+endif 
+return 1
+
+on=@dclick 
+    	src.newitem=i_sos_message 
+    	src.act.timer=0 
+    	src.act.bounce
+	REMOVE 
+
+[itemdef i_sos_tile] 
+ID=i_water 
+type=t_script 
+
+on=@create 
+ATTR=attr_static|attr_move_never
+
+[FUNCTION f_generate_coords]
+var.coords=<eval {2304 5008}>,<eval {1344 3696}> 
+// Only generate coords in deep sea 
+if (<serv.map(<var.coords>).type> != t_water) 
+  var.coords=
+  tag.coords=
+  f_generate_coords
+else 
+  tag.sextantp2=<var.coords>,-1
+  tag.coords=
+  var.coords= 
+endif
+
+[itemdef i_sos_message] 
+NAME=waterstained sos 
+id=014ed 
+TYPE=t_script 
+VALUE=20000 
+
+on=@create 
+ATTR=attr_decay 
+TIMER=0 
+
+on=@click
+message @60 [hazine mesaji]
+message a waterstained sos 
+return 1
+
+on=@dclick
+if (<src.cartography> < 750) 
+ 	src.sysmessage @38 Bu hazineyi gorebilmeniz icin 75.0 Cartography yeteginizin olmasi gerekiyor. 
+return 1 
+endif
+if (<src.account.plevel>>6)
+	if (<src.cartography> < 800) && !(<src.cartography> > 800) && !(0<tag.level>>0)
+		if (rand(5)==1)
+			tag.level 2
+			src.sysmessage @100 Level: <eval <tag.level>>
+		else
+			tag.level 1
+			src.sysmessage @100 Level: <eval <tag.level>>
+		endif 
+	elseif (<src.cartography> > 800) && !(<src.cartography> > 850) && !(0<tag.level>>0)
+		if (rand(2)==1)
+			tag.level 3
+			src.sysmessage @100 Level: <eval <tag.level>>
+		else
+			tag.level 2
+			src.sysmessage @100 Level: <eval <tag.level>>
+		endif 
+	elseif (<src.cartography> > 850) && !(<src.cartography> > 900) && !(0<tag.level>>0)
+		if (rand(5)==1)
+			tag.level 4
+			src.sysmessage @100 Level: <eval <tag.level>>
+		elseif (rand(5)==1)
+			tag.level 2
+			src.sysmessage @100 Level: <eval <tag.level>>
+		else
+			tag.level 3
+			src.sysmessage @100 Level: <eval <tag.level>>
+		endif 
+	elseif (<src.cartography> > 900) && !(<src.cartography> > 950) && !(0<tag.level>>0)
+		if (rand(5)==1)
+			tag.level 5
+			src.sysmessage @100 Level: <eval <tag.level>>
+		elseif (rand(5)==1)
+			tag.level 3
+			src.sysmessage @100 Level: <eval <tag.level>>
+		else
+			tag.level 4
+			src.sysmessage @100 Level: <eval <tag.level>>
+		endif 
+	elseif (<src.cartography> > 950) && !(<src.cartography> > 1000) && !(0<tag.level>>0)
+		if (rand(5)==1)
+			tag.level 6
+			src.sysmessage @100 Level: <eval <tag.level>>
+		elseif (rand(5)==1)
+			tag.level 4
+			src.sysmessage @100 Level: <eval <tag.level>>
+		else
+			tag.level 5
+			src.sysmessage @100 Level: <eval <tag.level>>
+		endif 
+	endif
+endif
+if (!<eval <tag.sextantp2>>)
+  	f_generate_coords
+	src.sysmessage @100 Hazine sizi cagiriyor.. Kordinatlar belirlendi.
+  	newitem=i_sos_tile 
+  	new.link=<UID>
+  	//new.link=<new.uid> 
+  	new.attr=attr_static|attr_move_never 
+	new.p=<tag.sextantp2>
+  	new.sextant2
+  	new.fix
+	tag.kordinatlar2 <new.var.kord> //<new.tag.coords>
+endif
+	src.tag.kordinatlar <tag.sextantp2>
+	src.tag.kordinatlar2 <tag.kordinatlar2>
+	dialog d_sos_message 
+return 1 
+
+[DIALOG d_sos_message] 
+0, 0 
+PAGE 0 
+resizepic 63 62 2520 317 319 
+resizepic 91 103 3500 256 205 
+htmlgump 122 114 200 300 0 0 0
+text 91 310 0 2
+
+[DIALOG d_sos_message TEXT] 
+Bir hazine buldunuz bir gemi bulup acik denizlere acilmaniz gerekiyor. Hazinenin kordinatlari asagida verildi hazineyi bulabilmeniz icin  bir tane sextant almaniz onerilir. Hazineyi cikarirken dikkatli olmaniz gerekmektedir. Yaratiklar sizi bekliyor. Haritayi kapatirsaniz hazineyi bulamazsiniz.
+OKAY 
+Kordinat: <src.tag.kordinatlar2>
+
+[DIALOG d_sos_message BUTTON] 
+on=0 
+src.tag.kordinatlar
+src.tag.kordinatlar2
+
+[ITEMDEF 0dbf] 
+//Fishing Pole
+DEFNAME=i_fishing_pole 
+TYPE=T_FISH_POLE 
+WEIGHT=2 
+CATEGORY=Items by Professions 
+SUBSECTION=Fisherman 
+DESCRIPTION=Fishing Pole 
+//RESOURCES=5 i_cloth 
+RESOURCES=5 i_log,5 i_cloth
+SKILLMAKE=CARPENTRY 68.4, TAILORING 40.0, t_carpentry
+DUPELIST=0dc0 
+//RESOURCES2=1 i_log,1 i_thread
+
+ON=@Targon_item 
+if (<src.targ.baseid>==i_sos_tile) 
+	src.anim 12 
+	src.sound 027 
+	VAR.PERCENT=<EVAL RAND(100)> 
+if (<EVAL <VAR.PERCENT>>>80) 
+	src.sysmessage @60 Hazineyi cikarmayi basardiniz.
+	SRC.NEWNPC c_waterelem_chest
+	SRC.NEWNPC chest_sea_serpent
+	SRC.NEWNPC chest_sea_serpent
+	src.targ.newitem=loot_sos_treasure 
+	src.targ.new.p=<src.targp> 
+	src.targ.link.remove
+	src.targ.remove 
+elseif (<EVAL <VAR.PERCENT>><20) 
+	src.sysmessage @38 Oltaniza sea serpent takildi! 
+	src.targ.newnpc=chest_sea_serpent 
+	src.targ.new.home=<src.targp> 
+	src.targ.new.homedist=5 
+	src.targ.new.attack 
+else 
+	src.message @38 Hazine sizi zorluyor. 
+endif 
+	VAR.PERCENT= 
+else 
+	SRC.SYSMESSAGE @38 Burada balik kalmamis.
+endif
+return 1 
+
+ON=@Targon_char 
+SRC.SYSMESSAGE @38 Sadece denize.
+return 1 
+
+ON=@Targon_ground
+if (<src.findid.i_cikiyor>)
+src.sysmessage @38 Balik tutma islemi suruyor.
+return 1
+endif
+if !(<src.findid> == i_cikiyor)
+src.newitem i_cikiyor
+src.act.equip
+endif
+if !(<src.findid> == i_nolog)
+src.newitem i_nolog
+src.act.equip
+endif
+//if (<eval RAND(1)> < 3)
+if (<eval RAND(300)>==1)
+if (<src.region.flags>&040) //on a boat, lets spawn a deep sea serpent 
+	src.sysmessage @38 Oltaniza sea serpent takildi! 
+	src.newitem=i_worldgem_bit 
+	src.new.p=<src.targp> 
+
+if (<src.fishing> > 600) && (<eval RAND(10)>==1) 
+	src.new.newnpc=chest_sea_serpent 
+else 
+	src.new.newnpc=chest_sea_serpent
+endif 
+	src.new.tag.npcuid=<src.act.new.uid> 
+	src.act.new.home=<src.targp> 
+	src.act.new.homedist=5 
+   	src.act.new.attack 
+   	src.act.newitem=i_fishing_spawn_remover 
+   	src.act.new.cont=<src.act.tag.npcuid> 
+   	src.act.remove 
+else 
+	src.sysmessage @90 Hazine buldunuz.
+	src.newitem=i_sos_bottle
+	src.act.equip
+   	src.sysmessage @90 Oltaniza sea serpent takildi!
+   	src.newitem=i_worldgem_bit 
+  	src.act.p=<src.targp> 
+   	src.act.newnpc=chest_sea_serpent 
+   	src.act.tag.npcuid=<src.act.new.uid> 
+   	src.act.new.home=<src.targp> 
+   	src.act.new.homedist=5 
+   	src.act.new.attack 
+   	src.act.newitem=i_fishing_spawn_remover 
+   	src.act.new.cont=<src.act.tag.npcuid> 
+   	src.act.remove 
+endif 
+return 1 
+endif 
+return 0 
+endif 
+
+[ITEMDEF 0dc0] 
+//fishing pole 
+DUPEITEM=0dbf 
+
+[TEMPLATE tm_paintings] 
+CATEGORY=Item Templates 
+SUBSECTION=SOS LootTemplates 
+DESCRIPTION=Paintings 
+ITEM={ i_portrait_1 1 i_portrait_2 1 i_portrait_3 1 i_portrait_4 1 i_portrait_5 1 i_portrait_6 1 i_portrait_7 1 i_portrait_big 1 i_painting_ruined 1 } 
+
+[TEMPLATE tm_bodyparts] 
+CATEGORY=Item Templates 
+SUBSECTION=SOS LootTemplates 
+DESCRIPTION=Body Parts 
+ITEM={ i_flesh_arm_right 1 i_flesh_upper_body 1 i_flesh_leggings 1 i_flesh_torso_2 1 i_flesh_head 1 i_flesh_leg 1 i_flesh 1 i_flesh_legs_3 1 i_flesh_arm_left 1 i_flesh_upper_body_2 1 i_flesh_legs_4 1 i_flesh_torso_3 1 i_flesh_2 1 i_flesh_legs_5 1 i_flesh_leg_2 1 i_flesh_heart 1 i_flesh_liver 1 i_flesh_entrails 1 i_flesh_brain 1 i_flesh_torso 1 i_flesh_head_2 1 i_flesh_left_arm 1 i_flesh_right_arm 1 i_flesh_left_leg 1 i_flesh_right_leg 1 i_brazier_2 1 0b47 1 i_mat_woven 1 i_shackles_hanging 1 i_skull_candle 1 i_bone_Skull 1 i_book_damaged 1 } 
+item={ i_brazier_2 1 0b47 1 i_mat_woven 1 i_shackles_hanging 1 i_skull_candle 1 i_bone_Skull 1 i_book_damaged 1 }
+
+[TEMPLATE sos_deco] 
+CATEGORY=Item Templates 
+SUBSECTION=SOS LootTemplates 
+DESCRIPTION=decorative
+container=i_0e41
+item={ i_decorative_shield_2 1 i_decorative_shield_3 1 i_decorative_shield_4 1 i_decorative_shield_5 1 i_decorative_shield_6 1 i_decorative_shield_7 1 i_decorative_shield_8 1 i_decorative_shield_9 1 i_decorative_shield_10 1 i_decorative_shield_11 1  }
+
+[TEMPLATE loot_sos_treasure] 
+CATEGORY=Item Templates 
+SUBSECTION=SOS LootTemplates 
+DESCRIPTION=Treasure Chest 
+CONTAINER=0e41 
+ITEM={ tm_paintings 1 tm_bodyparts 1 } 
+ITEM=i_arrow,{10 25} 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM={ RANDOM_SHIELD_HARDENING 1 RANDOM_PLATEMAIL_HARDENING 1 RANDOM_PLATEMAIL_HARDENING 1 RANDOM_RINGMAIL_HARDENING 1 RANDOM_SHIELD_DEFENSE 1 RANDOM_PLATEMAIL_DEFENSE 1 RANDOM_PLATEMAIL_DEFENSE 1 RANDOM_RINGMAIL_DEFENSE 1 } 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=RANDOM_RICH_MAGIC_GOODIE 
+ITEM={ RANDOM_RICH_MAGIC_LOOT 1 RANDOM_AVERAGE_MAGIC_LOOT 1 } 
+ITEM=i_gold,{35000 40000} 
+ITEM=random_magic_wands,R3 
+ITEM=i_reag_black_pearl,{10 30} 
+ITEM=i_reag_blood_moss,{10 30} 
+ITEM=i_reag_garlic,{10 30} 
+ITEM=i_reag_ginseng,{10 30} 
+ITEM=i_reag_mandrake_root,{10 30} 
+ITEM=i_reag_nightshade,{10 30} 
+ITEM=i_reag_sulfur_ash,{10 30} 
+ITEM=i_reag_spider_silk,{10 30} 
+ITEM=i_reag_blood_vial,{5 35} 
+ITEM=RANDOM_FILTHY_RICH_MONSTER_GOODIE 
+container=i_bag
+ITEM=i_gold,{5500 15000}
+
+[TEMPLATE loot_sos_treasure_1] 
+CATEGORY=Item Templates 
+SUBSECTION=SOS LootTemplates 
+DESCRIPTION=Treasure Chest 
+CONTAINER=0e41 
+ITEM={ tm_paintings 1 tm_bodyparts 1 } 
+ITEM=i_arrow,{10 25} 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM={ RANDOM_SHIELD_HARDENING 1 RANDOM_PLATEMAIL_HARDENING 1 RANDOM_PLATEMAIL_HARDENING 1 RANDOM_RINGMAIL_HARDENING 1 RANDOM_SHIELD_DEFENSE 1 RANDOM_PLATEMAIL_DEFENSE 1 RANDOM_PLATEMAIL_DEFENSE 1 RANDOM_RINGMAIL_DEFENSE 1 } 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=i_gold,{10000 25000} 
+ITEM=random_magic_wands,R3 
+ITEM=i_reag_black_pearl,{10 30} 
+ITEM=i_reag_blood_moss,{10 30} 
+ITEM=i_reag_garlic,{10 30} 
+ITEM=i_reag_ginseng,{10 30} 
+ITEM=i_reag_mandrake_root,{10 30} 
+ITEM=i_reag_nightshade,{10 30} 
+ITEM=i_reag_sulfur_ash,{10 30} 
+ITEM=i_reag_spider_silk,{10 30} 
+ITEM=i_reag_blood_vial,{5 35} 
+ITEM=random_poor_magic_loot,R4
+item=POOR_MONSTER_GOODIE_1
+container=i_bag
+ITEM=i_gold,{5000 15000}
+
+[TEMPLATE loot_sos_treasure_2] 
+CATEGORY=Item Templates 
+SUBSECTION=SOS LootTemplates 
+DESCRIPTION=Treasure Chest 
+CONTAINER=0e41 
+ITEM={ tm_paintings 1 tm_bodyparts 1 } 
+ITEM=i_arrow,{10 25} 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM={ RANDOM_SHIELD_HARDENING 1 RANDOM_PLATEMAIL_HARDENING 1 RANDOM_PLATEMAIL_HARDENING 1 RANDOM_RINGMAIL_HARDENING 1 RANDOM_SHIELD_GUARDING 1 RANDOM_PLATEMAIL_GUARDING 1 RANDOM_PLATEMAIL_GUARDING 1 RANDOM_RINGMAIL_DEFENSE 1 } 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=RANDOM_MEAGER_MAGIC_GOODIE
+ITEM={ RANDOM_POOR_MAGIC_LOOT 1 RANDOM_MEAGER_MAGIC_LOOT 1 } 
+ITEM={ i_PITCHFORK 1 i_KRYSS 1 i_SPEAR 1 i_SPEAR_SHORT 1 i_WAR_FORK 1 }
+ITEM=i_gold,{15000 30000} 
+ITEM=random_magic_wands,R3 
+ITEM=i_potion_healgreat
+ITEM=i_potion_explosiongreat
+item=i_poikry,R6
+ITEM=i_reag_black_pearl,{10 30} 
+ITEM=i_reag_blood_moss,{10 30} 
+ITEM=i_reag_garlic,{10 30} 
+ITEM=i_reag_ginseng,{10 30} 
+ITEM=i_reag_mandrake_root,{10 30} 
+ITEM=i_reag_nightshade,{10 30} 
+ITEM=i_reag_sulfur_ash,{10 30} 
+ITEM=i_reag_spider_silk,{10 30} 
+ITEM=i_reag_blood_vial,{5 35} 
+ITEM=RANDOM_MEAGER_MAGIC_LOOT,R4
+item=POOR_MONSTER_GOODIE_1
+container=i_bag
+ITEM=i_gold,{5000 20000}
+
+[TEMPLATE loot_sos_treasure_3] 
+CATEGORY=Item Templates 
+SUBSECTION=SOS LootTemplates 
+DESCRIPTION=Treasure Chest 
+CONTAINER=0e41 
+ITEM={ tm_paintings 1 tm_bodyparts 1 } 
+ITEM=i_arrow,{10 25} 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM={ RANDOM_SHIELD_HARDENING 1 RANDOM_PLATEMAIL_HARDENING 1 RANDOM_PLATEMAIL_HARDENING 1 RANDOM_RINGMAIL_HARDENING 1 RANDOM_SHIELD_GUARDING 1 RANDOM_PLATEMAIL_HARDENING 1 RANDOM_PLATEMAIL_HARDENING 1 } 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=RANDOM_AVERAGE_MAGIC_GOODIE
+ITEM={ RANDOM_MEAGER_MAGIC_LOOT 1 RANDOM_AVERAGE_MAGIC_LOOT 1 } 
+ITEM={ i_PITCHFORK 1 i_KRYSS 1 i_SPEAR 1 i_SPEAR_SHORT 1 i_WAR_FORK 1 }
+ITEM=i_gold,{20000 35000} 
+ITEM=random_magic_wands,R3 
+item=i_poikry,R8
+ITEM=i_reag_black_pearl,{10 30} 
+ITEM=i_reag_blood_moss,{10 30} 
+ITEM=i_potion_healgreat
+ITEM=i_potion_explosiongreat
+ITEM=i_reag_garlic,{10 30} 
+ITEM=i_reag_ginseng,{10 30} 
+ITEM=i_reag_mandrake_root,{10 30} 
+ITEM=i_reag_nightshade,{10 30} 
+ITEM=i_reag_sulfur_ash,{10 30} 
+ITEM=i_reag_spider_silk,{10 30} 
+ITEM=i_reag_blood_vial,{5 35} 
+ITEM=random_MEAGER_magic_loot,R4
+item=POOR_MONSTER_GOODIE_1
+container=i_bag
+ITEM=i_gold,{10000 25000}
+
+[TEMPLATE loot_sos_treasure_4] 
+CATEGORY=Item Templates 
+SUBSECTION=SOS LootTemplates 
+DESCRIPTION=Treasure Chest 
+CONTAINER=0e41 
+ITEM={ tm_paintings 1 tm_bodyparts 1 } 
+ITEM=i_arrow,{10 25} 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM={ RANDOM_SHIELD_fortification 1 RANDOM_PLATEMAIL_fortification 1 RANDOM_PLATEMAIL_fortification 1 RANDOM_RINGMAIL_fortification 1 RANDOM_SHIELD_hardening 1 RANDOM_PLATEMAIL_fortification 1 RANDOM_PLATEMAIL_hardening 1 } 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=RANDOM_AVERAGE_MAGIC_GOODIE
+ITEM={ RANDOM_average_MAGIC_LOOT 1 RANDOM_rich_MAGIC_LOOT 1 } 
+ITEM=i_gold,{25000 45000} 
+ITEM=random_magic_wands,R3 
+item=i_bow_lightning,R4
+item=i_bow_composite,R4
+ITEM=i_reag_black_pearl,{10 30} 
+ITEM=i_reag_blood_moss,{10 30} 
+ITEM=i_reag_garlic,{10 30} 
+ITEM=i_reag_ginseng,{10 30} 
+ITEM=i_reag_mandrake_root,{10 30} 
+ITEM=i_potion_healgreat
+ITEM=i_potion_explosiongreat
+ITEM=i_reag_nightshade,{10 30} 
+ITEM=i_reag_sulfur_ash,{10 30} 
+ITEM=i_reag_spider_silk,{10 30} 
+ITEM=i_reag_blood_vial,{5 35} 
+ITEM=random_meager_magic_loot,R4
+item=POOR_MONSTER_GOODIE_1
+container=i_bag
+ITEM=i_gold,{15000 30000}
+
+[TEMPLATE loot_sos_treasure_5] 
+CATEGORY=Item Templates 
+SUBSECTION=SOS LootTemplates 
+DESCRIPTION=Treasure Chest 
+CONTAINER=0e41 
+ITEM={ tm_paintings 1 tm_bodyparts 1 } 
+ITEM=i_arrow,{10 25} 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM={ RANDOM_SHIELD_fortification 1 RANDOM_PLATEMAIL_fortification 1 RANDOM_PLATEMAIL_fortification 1 RANDOM_RINGMAIL_fortification 1 RANDOM_SHIELD_fortification 1 RANDOM_PLATEMAIL_fortification 1 RANDOM_PLATEMAIL_fortification 1 } 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=RANDOM_rich_MAGIC_GOODIE
+ITEM={ RANDOM_average_MAGIC_LOOT 1 RANDOM_rich_MAGIC_LOOT 1 } 
+ITEM=i_gold,{35000 55000} 
+ITEM=random_magic_wands,R3 
+item=i_bow_composite,R4
+item=i_heart_diablo,R7
+item=i_poikry,R8
+item=i_magic_artifact,R12
+ITEM=i_reag_black_pearl,{10 30} 
+ITEM=i_reag_blood_moss,{10 30} 
+ITEM=i_reag_garlic,{10 30} 
+ITEM=i_reag_ginseng,{10 30} 
+ITEM=i_reag_mandrake_root,{10 30} 
+ITEM=i_reag_nightshade,{10 30} 
+ITEM=i_reag_sulfur_ash,{10 30} 
+ITEM=i_reag_spider_silk,{10 30} 
+ITEM=i_reag_blood_vial,{5 35} 
+ITEM=random_average_magic_loot,R4
+ITEM=i_potion_healgreat
+ITEM=i_potion_explosiongreat
+ITEM=i_potion_healgreat
+ITEM=i_potion_explosiongreat
+item=POOR_MONSTER_GOODIE_1
+container=i_bag
+ITEM=i_gold,{20000 35000}
+
+[TEMPLATE loot_sos_treasure_6] 
+CATEGORY=Item Templates 
+SUBSECTION=SOS LootTemplates 
+DESCRIPTION=Treasure Chest 
+CONTAINER=0e41 
+ITEM={ tm_paintings 1 tm_bodyparts 1 } 
+ITEM=i_arrow,{10 25} 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM=random_scroll 
+ITEM={ RANDOM_SHIELD_invulnerability 1 RANDOM_PLATEMAIL_invulnerability 1 RANDOM_PLATEMAIL_invulnerability 1 RANDOM_RINGMAIL_fortification 1 RANDOM_SHIELD_fortification 1 RANDOM_PLATEMAIL_fortification 1 RANDOM_PLATEMAIL_invulnerability 1 } 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=random_jewel,{1 3} 
+ITEM=RANDOM_FILTHY_RICH_MAGIC_GOODIE
+ITEM={ RANDOM_average_MAGIC_LOOT 1 RANDOM_FILTHY_RICH_MAGIC_LOOT 1 } 
+ITEM=i_gold,{45000 65000} 
+ITEM=random_magic_wands,R3 
+ITEM=i_potion_healgreat
+ITEM=i_potion_explosiongreat
+ITEM=i_potion_healgreat
+ITEM=i_potion_explosiongreat
+ITEM=i_potion_healgreat
+ITEM=i_potion_explosiongreat
+item=i_bow_elven,R4
+item=i_bow_composite,R4
+item=i_magic_artifact,R10
+ITEM=i_reag_black_pearl,{10 30} 
+ITEM=i_reag_blood_moss,{10 30} 
+ITEM=i_reag_garlic,{10 30} 
+ITEM=i_reag_ginseng,{10 30} 
+ITEM=i_reag_mandrake_root,{10 30} 
+ITEM=i_reag_nightshade,{10 30} 
+ITEM=i_reag_sulfur_ash,{10 30} 
+ITEM=i_reag_spider_silk,{10 30} 
+ITEM=i_reag_blood_vial,{5 35} 
+ITEM=random_rich_magic_loot,R4
+item=POOR_MONSTER_GOODIE_1
+container=i_bag
+ITEM=i_gold,{30000 40000}
+
+[ITEMDEF i_fishing_spawn_remover] 
+NAME=Spawn Remover Memory 
+ID=i_memory 
+TYPE=t_eq_script 
+
+on=@create 
+ATTR=attr_invis|attr_newbie 
+TIMER=60*60*4 //4 hours 
+
+on=@timer 
+cont.remove 
+RETURN 1 
+
+[FUNCTION f_generate_monsters] 
+dorand 4 
+newnpc=096 
+newnpc=01024 
+newnpc=010 
+newnpc=chest_sea_serpent
+enddo 
+
+tag.npcuid=<src.act.new.uid> 
+new.home=<src.targp> 
+new.homedist=5 
+newitem=i_fishing_spawn_remover
+new.cont=<tag.npcuid>
+
+[EOF]

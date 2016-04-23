@@ -1,0 +1,243 @@
+[PLEVEL 2]
+d
+
+[FUNCTION d]
+SERV.ALLCLIENTS smsj * Valinor Duyuru * : 
+SERV.ALLCLIENTS smsj <args>
+
+[FUNCTION smsj]
+endif
+
+[FUNCTION smsj]
+VAR.OLDACT <ACT> 
+VAR.BLAH=<P> 
+NEWITEM=i_colored_speech 
+ACT.P=5190 1150 
+VAR.OLD_FLAGS=<ACT.REGION.FLAGS> 
+VAR.OLD_EVENTS=<REGION.EVENTS> 
+ACT.REGION.FLAGS=<REGION.FLAGS> 
+ACT.CONT=<UID> 
+REGION.EVENTS -0  
+P=5190 1150 
+ACT.CONT=<UID>
+TAG.SUA_COLOR=0481
+ACT.SAYUA <EVAL <TAG.SUA_COLOR>>,0,0,1 <ARGS> 
+P=<VAR.BLAH> 
+REGION.EVENTS <VAR.OLD_EVENTS> 
+ACT.P=5190 1150 
+ACT.REGION.FLAGS=<VAR.OLD_FLAGS> 
+ACT.REMOVE 
+ACT <VAR.OLDACT> 
+TAG.SUA_COLOR= 
+
+[ITEMDEF i_colored_speech]
+Name=~
+Id=i_memory
+Type=t_eq_script
+
+ON=@Timer
+remove
+
+[FUNCTION anons]
+var.smsgx 0835
+serv.allclients sound 247
+serv.allclients smsgx * <src.name>  * : 
+serv.allclients smsgx <ARGS>
+return 1
+
+[itemdef i_duyuru_delay]
+name oy delay
+type t_eq_script
+layer layer_special
+
+on=@equip
+timer 1
+
+on=@timer
+remove
+
+[itemdef i_mesaj_suresi]
+name=mesaj suresi
+id=i_gold
+type=t_eq_script
+weight=0
+layer=layer_special
+
+On=@Equip
+serv.b Valinor UO shard iyi oyunlar diler..
+timer 1
+
+On=@Timer
+attr attr_decay
+remove
+newitem i_mesaj_suresi
+return 1
+
+[ITEMDEF i_cookbook]
+ID=i_spellbook
+TYPE=t_eq_script
+NAME=Cookbook
+RESOURCES=96 i_scroll_blank
+VALUE=15000
+WEIGHT=1
+
+ON=@Create
+COLOR=003ca
+ATTR=attr_newbie
+
+ON=@DClick 
+DIALOG d_cookbook
+return 1
+
+[DIALOG d_cookbook]
+5, 5
+PAGE 0
+PAGE 1
+gumppic 0 0 2201
+text 84 5 1153 0
+button 25 35 210 211 1 0 1
+text 50 35 1153 1
+button 25 65 210 211 1 0 2
+text 50 65 1153 2
+button 25 95 210 211 1 0 3
+text 50 95 1153 3
+button 25 125 210 211 1 0 4
+text 50 125 1153 4
+button 25 155 210 211 1 0 5
+text 50 155 1153 5
+button 180 35 210 211 1 0 6
+text 205 35 1153 6
+button 180 65 210 211 1 0 7
+text 205 65 1153 7
+button 180 95 210 211 1 0 8
+text 205 95 1153 8
+button 180 125 210 211 1 0 9
+text 206 122 1153 9
+text 188 158 1153 10
+
+[DIALOG d_cookbook TEXT]
+<serv.servname> Cook Book
+Ekmek
+French Bread
+Wonder Bread
+Pizza
+Baked Pie
+Salca
+Spam
+Vakifbekir E.
+Koy Ekmegi
+Devami Yakinda !
+
+
+[DIALOG d_cookbook BUTTON]
+on=1
+IF  (<SRC.cooking> < 70.1) || !(<src.restest 1 i_flour_sack>)
+	SRC.SYSMESSAGE Bunu yapmak icin en az 70.1 Cooking ve 1 sack of flour'a ihtiyaciniz var.
+	RETURN 1
+		ELSE
+		src.makeitem=i_sekmek
+		ENDIF
+on=2
+IF (<SRC.cooking> < 70.1) || !(<src.restest 1 i_flour_sack>)
+	SRC.SYSMESSAGE Bunu yapmak icin en az 70.01 Cooking ve 1 sack of flour'a ihtiyaciniz var.
+	RETURN 1
+ELSE
+	src.makeitem=i_bread_french
+	src.tag.tailor=i_bread_french	
+ENDIF
+on=3
+IF (<SRC.cooking> < 70.1) || !(<src.restest 1 i_flour_sack>)
+	SRC.SYSMESSAGE Bunu yapmak icin en az 70.01 Cooking ve 1 sack of flour'a ihtiyaciniz var.
+	RETURN 1
+ELSE
+	src.makeitem=i_bread_wonder
+	src.tag.tailor=i_bread_wonder	
+ENDIF
+on=4
+IF (<SRC.cooking> < 66.0) || !(<src.restest i_pizza_uncooked>) &&  (<RESTEST 1 i_pot>)
+	SRC.SYSMESSAGE Bunu yapmak icin en az 66 Cooking ve 1 sack of flour'a ihtiyaciniz var.
+	RETURN 1
+ELSE
+	src.makeitem=i_pizza
+	src.tag.tailor=i_pizza
+ENDIF
+on=5
+IF (<SRC.cooking> < 76.0) || !(<src.restest i_pie_unbaked>) 
+	SRC.SYSMESSAGE Bunu yapmak icin en az 76 Cooking ve 1 Unbaked pie'ye ihtiyaciniz var.
+	RETURN 1
+ELSE
+	src.makeitem=i_pie_baked
+	src.tag.tailor=i_pie_baked
+ENDIF
+on=6
+IF (<SRC.cooking> < 96.0) || !(<src.restest i_salca>)  &&  (<RESTEST 25 i_domates>)
+	SRC.SYSMESSAGE Bunu yapmak icin en az 96 Cooking ve 25 Domates'e ihtiyaciniz var.
+	RETURN 1
+ELSE
+	src.makeitem=i_salca
+	src.tag.tailor=i_salca
+ENDIF
+on=7
+IF (<SRC.cooking> < 56.0) || !(<src.restest 1 i_POT>)  &&  (<RESTEST 1 i_HAM>)
+	SRC.SYSMESSAGE Bunu yapmak icin en az 56 Cooking ve 1 Pot ve 1 ham'a ihtiyaciniz var.
+	RETURN 1
+ELSE
+	src.makeitem=i_spam
+	src.tag.tailor=i_spam
+ENDIF
+on=8
+IF (<SRC.cooking> < 56.0) || !(<src.restest 1 i_POT>)  &&  (<RESTEST 1 i_HAM>)
+	SRC.SYSMESSAGE Bunu yapmak icin en az  ihtiyaciniz var.ffffffffff
+	RETURN 1
+ELSE
+	src.makeitem=i_f
+	src.tag.tailor=i_f
+ENDIF
+on=9
+IF (<SRC.cooking> < 86.0) || !(<src.restest 1 i_POT>)  &&  (<RESTEST 1 i_EGG>) &&  (<RESTEST 1 i_WATER>) 
+	SRC.SYSMESSAGE Bunu yapmak icin en az   86 cooking ve 1 pot-egg-water'a ihtiyaciniz var.
+	RETURN 1
+ELSE
+	src.makeitem=i_u
+ENDIF
+
+///////////////////////////////////////////////////////////////////
+
+[ITEMDEF i_sekmek]
+ID=0103b
+NAME=Surulmeli Ekmek
+DEFNAME=i_sekmek
+TYPE=T_normal
+TDATA1=i_crop_vines2
+VALUE=500
+WEIGHT=2
+RESOURCES=1 i_flour_sack
+SKILLMAKE=COOKING 70.1
+
+[ITEMDEF i_u]
+ID=i_ekmek
+NAME=Koy Ekmegi
+DEFNAME=i_u
+TYPE=T_food
+VALUE=80
+SKILLMAKE=1 COOKING
+RESOURCES=1 i_dough, 1 i_WATER
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Koy
+
+[ITEMDEF i_us]
+ID=i_ekmek
+NAME=Vakifbekir Ekmegi
+DEFNAME=i_us
+TYPE=T_FOOD
+VALUE=50
+SKILLMAKE=1 COOKING
+RESOURCES=1 i_WATER, 1 i_EGG, 1 i_POT
+WEIGHT=1
+CATEGORY=Items by Professions
+SUBSECTION=Baker
+DESCRIPTION=Vakifbekir
+
+[EOF]

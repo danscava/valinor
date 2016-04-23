@@ -1,0 +1,458 @@
+// ----------------------------
+// COMMANDS.SCP - GENEL KOMUTLAR
+// ----------------------------
+
+VERSION=0.55
+
+[PLEVEL 1]
+DISARM
+FORUM
+INFSVR
+INGOTS
+HUNGRY
+OKSIL
+ORES
+PLAYER
+REGS
+STAT
+SKILLDUSUR
+KUFUR
+MAP
+GUILDSIL
+GC
+ONLINE
+KIZOLCAM
+ERKEKOLCAM
+TEKRARYAP
+
+[PLEVEL 2]
+AFK
+CHARLIST
+FIX
+WHERE
+SALUTE
+BANKSELF
+ADMIN
+ANIM
+BARK
+CAST
+CLIENTS
+FOLLOW
+GATE
+FROZEN
+GETIR
+XGO
+GO
+GOCHAR
+GOCLI
+GONAME
+GOSOCK
+GOUID
+HELP
+INVIS
+JAMENU
+JAIL
+KAFESLE
+PG
+S
+SUMMONTO
+XSUMMONTO
+STAFFADMIN
+SA
+SUICIDE
+TELE
+INVUL
+
+[PLEVEL 3]
+NOT
+RESURRECT
+SICIL
+SINFO
+FLY
+KILL
+LINK
+LOCK
+REMOVE
+MACROADMIN
+MA
+DIALOG
+STONE
+XSTONE
+
+[PLEVEL 4]
+PRIVSHOW
+ADD
+STATIC
+SUMMON
+EDIT
+GOTYPE
+INFO
+NUKE
+PROPS
+PINGOSTER
+SAVE
+SET
+TAG
+TAGLIST
+TILE
+TWEAK
+QUESTARR
+AMOUNT
+
+[PLEVEL 5]
+ALLCLIENTS
+SAVE
+REGION
+SECTOR
+PASSWORD
+XPASSWORD
+JFORGIVE
+CONTROL
+
+[PLEVEL 6]
+KICK
+EVENTS
+SHOW
+TAGLIST
+show
+SERV
+
+[PLEVEL 7]
+PAGE
+GMPAGE
+PAGE KICK
+PAGE K
+PAGE BAN
+PAGE B
+TAGLIST
+
+// pLevel 1
+[function guildsil]
+guild_test
+
+[function player]
+dialog d_player
+
+[function forum] // bronx 05.11.2001
+if !(0<args> == 0)
+	weblink www.valinor.gen.tr/forum
+	sysmessage Lutfen bekleyin..
+else
+	weblink www.valinor.gen.tr/forum
+	sysmessage Lutfen bekleyin..
+endif
+
+[function oksil] // oyuncularýn oku silmesi için. 
+arrowquest
+
+// pLevel 1 d0ne.
+
+[function questarr] // Quest Oku çýkartýr. GM ler için.
+serv.allclients arrowquest <args>
+
+[function sa]
+staffadmin
+
+[function ma]
+macroadmin
+
+[function cnct]
+return <eval ((<serv.time> - <tag.sa_timer>) / 600)>
+
+[function sanim] // region-wide
+region.allclients sanim2 <args>
+
+[function sanim2]
+if (<account.plevel> > 1)
+	anim <args>
+endif
+
+[function sgo] // server-wide
+serv.allclients sgo2 <ARGS>
+
+[function sgo2]
+if (<account.plevel> > 1)
+	go <args>
+endif
+
+[function ssay]
+serv.allclients ssay2 <args>
+
+[function ssay2]
+if (<account.plevel> > 1)
+	sayu <args>
+endif
+
+[function editchk]
+region.allclients editchk2
+
+[function editchk2]
+if ((<skilltotal> > 800.0) && (0<account.plevel> < 2))
+	var.smsgx 0482
+	serv.allclients stafftrig2 *** Warning: character '<name>' skill total over 800.0 (<skilltotal>)
+	serv.allclients stafftrig2 *** 'Skill total' check complete.
+endif
+
+[FUNCTION stafftrig2]
+if (<account.plevel> > 1)
+	smsgx <args>
+endif
+
+[function sysmessageua] 
+var.act <act>
+var.p <p>
+newitem i_memory
+act.p 6000 2000
+var.regfla <act.region.flags>
+act.region.flags <region.flags>
+p 6000 2000
+act.sayua <eval <var.sysmessageua>> 0 0 1 <args> 
+p <var.p>
+act.region.flags <var.regfla>
+act.remove
+act <var.act>
+
+[function smsgx] 
+var.act <act>
+var.p <p>
+newitem i_memory
+act.p 6000 2000
+var.regfla <act.region.flags>
+act.region.flags <region.flags>
+p 6000 2000
+act.sayua <eval <var.smsgx>> 0 0 1 <args>
+p <var.p>
+act.region.flags <var.regfla>
+act.remove
+act <var.act>
+
+[function f_disc]
+newitem i_insta_disconnecter
+act.equip
+
+[itemdef i_insta_disconnecter]
+name Instant Disconnecter
+id i_memory
+type t_eq_script
+weight 0
+layer layer_special
+
+On=@Create
+attr attr_invis|attr_decay
+
+On=@Equip
+timer 1
+
+On=@Timer
+if (<cont>)
+cont.disconnect 
+remove
+return 1
+endif 
+
+[function f_fizzle] // fizzle func.
+effect 3,i_fx_smoke_small,3,40,1
+sound 92
+if (<mana> > 8)
+	mana (<mana> - {5 8})
+else
+	mana 1
+endif
+if (<findid.i_magerylvl>)
+	findid.i_magerylvl.remove
+endif
+if (<findid.i_evallvl>)
+	findid.i_evallvl.remove
+endif
+if (<findid.i_poisonlvl>)
+	findid.i_poisonlvl.remove
+endif
+if (<findid.i_spdelay_man>)
+	findid.i_spdelay_man.remove
+elseif (<findid.i_spdelay_woman>)
+	findid.i_spdelay_woman.remove
+elseif (<findid.i_spdelay_unisex>)
+	findid.i_spdelay_unisex.remove
+endif
+
+[function f_statloss] // pk's stat loss
+if (<isevent.e_spr>)
+	events -e_spr
+	sysmessage Stat'lariniz artik korunmuyor.
+	tag.ostr
+	tag.oint
+	tag.odex
+endif
+
+if (0<tag.loss>)
+	if (<kills> > <eval <tag.loss>>)
+		if (<str> > 26)
+			str (<str> - 2)
+		endif
+		if (<dex> > 26)
+			dex (<dex> - 2)
+		endif
+		if (<int> > 26)
+			int (<int> - 2)
+		endif
+	endif
+endif
+tag.loss <kills>
+
+[function f_player_login] // playerlar boyle login oluyor
+if (0<account.plevel> > 1)
+	skillclass 1
+	var.smsgx 0482
+	smsgx Valinor yetkili kadrosuna hosgeldiniz, <name>!
+	f_staff_login
+	return 1
+else
+	account.plevel
+endif
+
+ if !(strmatch('<clientversion>','2.0.0'))
+	var.smsgx 0481
+	smsgx *** Valinor baglanti programini kullanmadiginiz icin baglantiniz kesiliyor...
+	weblink www.valinor.gen.tr
+	f_disc
+	return 1
+endif
+
+if (<necromancy> > 0) && (<necromancy> < 50.1)
+	necromancy
+endif
+
+tag.hungry
+tag.affet
+tag.af
+tag.aff
+tag.bagn
+tag.questp
+tag.umcn
+tag.umc
+tag.msk
+tag.mco
+tag.bear
+tag.af
+tag.aff
+tag.nysnowball
+tag.vendorella
+
+if !(<isevent.fix>)
+	events +fix
+endif
+
+if (<serv.clients> > 249)
+	sysmessage @38 250 limiti dolu oldugundan giris yapamiyorsunuz. Lutfen daha sonra tekrar deneyiniz.
+	f_disc
+	return 1
+endif
+
+// clearation wrong accounts from fctn system & guild retreat
+//if !(strmatch('<uid.040079abb.tag.<account.name>>',''))
+	//if (strmatch('<uid.040079abb.tag.<account.name>>','<uid>')) && //!(<memoryfindtype.memory_town>)
+		//var.p <p>
+		//p 5123 1778
+		//try uid.040079abb.tag.<account.name>
+		//p <var.p>
+		//update
+	//elseif (<memoryfindtype.memory_guild>) && (<memoryfindtype.memory_town>) && //(<memoryfindtype.memory_guild.link.link.uid> != <memoryfindtype.memory_town.link.uid>)
+		//if !(<findid.i_fctn_resigner>)
+			//newitem i_fctn_resigner
+			//act.equip
+			//findid.i_fctn_resigner.timer 1
+			//sysmessage <memoryfindtype.memory_guild.link.name>: O/C/F destek yonu //degisimi.
+		//endif
+	//elseif (strmatch('<uid.040079abb.tag.<account.name>>','X'))
+		//if !(<findid.i_fctn_resigner>)
+			//newitem i_fctn_resigner
+			//act.equip
+			//findid.i_fctn_resigner.timer 1
+			//sysmessage Hesabiniz faction sisteminden diskalifiye edilmis.
+		//endif
+	//endif
+//endif
+
+[function f_player_logout] // playerlar boyle logout oluyor
+if (<findid.i_rune_incognito>)
+	findid.i_rune_incognito.remove
+endif
+
+if (<region.guarded>) && !(<region.flags>&region_flag_insta_logout) && (<hits> < <str>) && !(<flags>&statf_dead)
+	if (<memoryfindtype.memory_town>) || (<memoryfindtype.memory_guild.link.align> > 0)
+		hits 1
+	endif
+endif
+
+if (<kills>) // murder count fix
+	if !(0<tag.lg>)
+		tag.lg 1
+	elseif (<tag.lg> > 2)
+		kills (<kills> + 1)
+		tag.lg 0
+	else
+		tag.lg <eval (<tag.lg> + 1)>
+	endif
+else
+	tag.loss
+	tag.lg
+endif
+
+[function f_stpublish] // staff join-part messager
+if (0<account.plevel> > 1)
+	smsgx *** <args>
+endif
+
+[function f_staff_login] // staff boyle login oluyor
+if !(0<account.plevel>)
+	skillclass
+	f_player_login
+	return 1
+endif
+
+if (0<allshow>)
+	allshow 0
+endif
+
+if !(strmatch('<account.plevel>','7'))
+	privshow 1
+	nightsight 1
+	fame 0
+	kills 0
+	karma 0
+endif
+
+tag.stf_timer
+tag.sa_timer <serv.time>
+if !(strmatch('<account.plevel>','7'))
+	var.smsgx 045
+	serv.allclients f_stpublish <name> baglandi.
+endif
+if (strmatch('<serv.servname>','Valinor'))
+	var.pg_box 04022b54a
+endif
+var.smsgx 0482
+smsgx Hizmet sureniz: <eval (<account.totalconnecttime> / 60)> saat.
+if (<uid.<var.pg_box>.rescount>)
+	sysmessage @0481 Toplam <uid.<var.pg_box>.rescount> adet page mevcut. Liste icin: '.pg'
+endif
+events -fix
+events gmfix
+dialog d_staff
+
+[function f_staff_logout] // staff boyle logout oluyor
+if !(strmatch('<account.plevel>','7'))
+	var.smsgx 020
+	serv.allclients f_stpublish <name> cikti. (<cnct>m)
+	src.invis 1
+endif
+
+[function erkekolcam]
+src.body c_man
+src.sysmessage @050 Delikanliligin kitabini sen mi yazdin bilader?
+
+[function kizolcam]
+src.body c_woman
+src.sysmessage @050 Seni Bulent Ersoy kilikli labunya seni! :P
+		
+[eof]

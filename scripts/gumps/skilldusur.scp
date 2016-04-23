@@ -1,0 +1,741 @@
+// ----------------------------
+// SKILLDUSUR.SCP - SKILL DUSURME SISTEMI
+// SON GUNCELLENME TARIHI: 24 Aralik 2001 -cQ
+// ----------------------------
+VERSION=0.55
+
+[plevel 1]
+skilldusur
+
+[FUNCTION skilldusur]
+src.tag.skilldusurmenu 0 
+if (<skilltotal> < 1000) 
+sysmessage Skillerinizi daha fazla dusuremezsiniz. 
+return 1 
+else 
+dialog d_skilldusur 
+return 1 
+endif
+
+[DIALOG d_skilldusur]
+0,0
+resizepic 0 0 5100 500 400
+page 0
+text 125 30 1153 0
+text 50 70 80 1
+text 125 70 400 2
+text 315 70 80 3
+text 380 70 400 4
+page 1
+button 25 104 2117 2118 1 0 2
+text 50 100 0 8
+text 175 100 400 16
+button 25 124 2117 2118 1 0 3
+text 50 120 0 9
+text 175 120 400 17
+button 25 144 2117 2118 1 0 4
+text 50 140 0 10
+text 175 140 400 18
+button 25 164 2117 2118 1 0 26
+text 175 160 400 19
+text 50 160 0 11
+button 25 184 2117 2118 1 0 5
+text 50 180 0 12
+text 175 180 400 20
+button 25 204 2117 2118 1 0 6
+text 175 200 400 21
+text 50 200 0 13
+button 25 224 2117 2118 1 0 7
+text 50 220 0 14
+text 175 220 400 22
+button 25 244 2117 2118 1 0 8
+text 50 240 0 15
+text 175 240 400 23
+button 25 264 2117 2118 1 0 9
+text 50 260 0 24
+text 175 260 400 25
+button 25 284 2117 2118 1 0 10
+text 50 280 0 26
+text 175 280 400 27
+button 25 304 2117 2118 1 0 11
+text 50 300 0 28
+text 175 300 400 29
+button 25 324 2117 2118 1 0 12
+text 50 320 0 30
+text 175 320 400 31
+button 275 104 2117 2118 1 0 13
+text 300 100 0 32
+text 425 100 400 33
+button 275 124 2117 2118 1 0 14
+text 300 120 0 34
+text 425 120 400 35
+button 275 144 2117 2118 1 0 15
+text 300 140 0 36
+text 425 140 400 37
+button 275 164 2117 2118 1 0 16
+text 300 160 0 38
+text 425 160 400 39
+button 275 184 2117 2118 1 0 17
+text 300 180 0 40
+text 425 180 400 41
+button 275 204 2117 2118 1 0 18
+text 300 200 0 42
+text 425 200 400 43
+button 150 364 2117 2118 1 0 19
+text 175 360 400 45
+button 275 224 2117 2118 1 0 20
+text 300 220 0 47
+text 425 220 400 48
+button 275 244 2117 2118 1 0 21
+text 300 240 0 49
+text 425 240 400 50
+button 275 264 2117 2118 1 0 22
+text 300 260 0 51
+text 425 260 400 52
+button 275 284 2117 2118 1 0 23
+text 300 280 0 53
+text 425 280 400 54
+button 275 304 2117 2118 1 0 24
+text 300 300 0 55
+text 425 300 400 56
+button 275 324 2117 2118 1 0 25
+text 300 320 0 57
+text 425 320 400 58
+button 275 344 2117 2118 1 0 27
+text 300 340 0 59
+text 425 340 400 60
+resizepic 0 410 5100 500 100
+text 60 440 990 61
+text 60 460 990 62
+
+[DIALOG d_skilldusur TEXT]
+-- Valinor UO Shard -- //0
+Kullanici: //1
+<ACCOUNT> //2
+Isim: //3
+<NAME> //4
+General Info //5
+Skills //6
+Misc Info //7
+Alchemy //8
+Anatomy //9
+Animal Lore //10
+Animal Taming //11
+Archery //12
+Arms Lore //13
+Begging //14
+Black Smithing //15
+<ALCHEMY> //16
+<ANATOMY> //17
+<ANIMALLORE> //18
+<TAMING> //19
+<ARCHERY> //20
+<ARMSLORE> //21
+<BEGGING> //22
+<BLACKSMITHING> //23
+Bowcraft //24
+<BOWCRAFT> //25
+Camping //26
+<Camping> //27 
+Carpentry //28
+<Carpentry> //29
+Cartography //30
+<CARTOGRAPHY> //31
+Cooking //32
+<COOKING> //33 
+Detect Hidden //34
+<DETECTINGHIDDEN> //35
+Enticement //36
+<ENTICEMENT> //37
+Eval Intelligence //38
+<EVALUATINGINTEL> //39
+Fencing //40
+<FENCING> //41
+Fishing //42
+<FISHING> //43
+Goto //44
+Ileri //45
+More Skills //46
+Forensics //47
+<FORENSICS> //48
+Healing //49
+<HEALING> //50
+Herding //51
+<HERDING> //52
+Hiding //53
+<HIDING> //54
+Inscription //55
+<INSCRIPTION> //56
+Item ID //57
+<ITEMID> //58
+Lock Picking//59
+<LOCKPICKING>//60
+Uyari: Yanlislikla dusurulen skiller geri verilmez.//61
+Bu konuda atilan pageler cevapsiz kalacaktir.//62
+
+[DIALOG d_skilldusur BUTTON]
+ONBUTTON=2
+IF (<SRC.Alchemy> > 100)
+SRC.Alchemy=(<SRC.Alchemy> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Alchemy=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=3
+IF (<SRC.Anatomy> > 100)
+SRC.Anatomy=(<SRC.Anatomy> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Anatomy=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=4
+IF (<SRC.Animallore> > 100)
+SRC.Animallore=(<SRC.Animallore> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Animallore=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=5
+IF (<SRC.Archery> > 100)
+SRC.Archery=(<SRC.Archery> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Archery=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=6
+IF (<SRC.Armslore> > 100)
+SRC.Armslore=(<SRC.Armslore> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Armslore=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=7
+IF (<SRC.Begging> > 100)
+SRC.Begging=(<SRC.Begging> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Begging=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=8
+IF (<SRC.Blacksmithing> > 100)
+SRC.Blacksmithing=(<SRC.Blacksmithing> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Blacksmithing=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=9
+IF (<SRC.Bowcraft> > 100)
+SRC.Bowcraft=(<SRC.Bowcraft> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Bowcraft=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=10
+IF (<SRC.Camping> > 100)
+SRC.Camping=(<SRC.Camping> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Camping=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=11
+IF (<SRC.Carpentry> > 100)
+SRC.Carpentry=(<SRC.Carpentry> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Carpentry=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=12
+IF (<SRC.Cartography> > 100)
+SRC.Cartography=(<SRC.Cartography> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Cartography=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=13
+IF (<SRC.Cooking> > 100)
+SRC.Cooking=(<SRC.Cooking> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Cooking=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=14
+IF (<SRC.Detectinghidden> > 100)
+SRC.Detectinghidden=(<SRC.Detectinghidden> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Detectinghidden=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=15
+IF (<SRC.Enticement> > 100)
+SRC.Enticement=(<SRC.Enticement> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Enticement=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=16
+IF (<SRC.Evaluatingintel> > 100)
+SRC.Evaluatingintel=(<SRC.Evaluatingintel> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Evaluatingintel=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=17
+IF (<SRC.Fencing> > 100)
+SRC.Fencing=(<SRC.Fencing> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Fencing=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=18
+IF (<SRC.Fishing> > 100)
+SRC.Fishing=(<SRC.Fishing> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Fishing=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=19
+dialog d_skilldusur2
+ONBUTTON=20
+IF (<SRC.Forensics> > 100)
+SRC.Forensics=(<SRC.Forensics> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Forensics=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=21
+IF (<SRC.Healing> > 100)
+SRC.Healing=(<SRC.Healing> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Healing=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=22
+IF (<SRC.Herding> > 100)
+SRC.Herding=(<SRC.Herding> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Herding=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=23
+IF (<SRC.Hiding> > 100)
+SRC.Hiding=(<SRC.Hiding> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Hiding=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=24
+IF (<SRC.Inscription> > 100)
+SRC.Inscription=(<SRC.Inscription> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Inscription=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=25
+IF (<SRC.Itemid> > 100)
+SRC.Itemid=(<SRC.Itemid> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Itemid=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=26
+IF (<SRC.Taming> > 100)
+SRC.Taming=(<SRC.Taming> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Taming=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=27
+IF (<SRC.Lockpicking> > 100)
+SRC.Lockpicking=(<SRC.Lockpicking> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Lockpicking=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=51
+dialog d_skilldusur
+ONBUTTON=52
+dialog d_skilldusur2
+
+[DIALOG d_skilldusur2]
+0,0
+resizepic 0 0 5100 500 400
+page 0
+text 125 30 1153 0
+text 50 70 80 1
+text 125 70 400 2
+text 315 70 80 3
+text 380 70 400 4
+page 1
+button 25 104 2117 2118 1 0 2
+text 50 100 0 8
+text 175 100 400 16
+button 25 124 2117 2118 1 0 3
+text 50 120 0 9
+text 175 120 400 17
+button 25 144 2117 2118 1 0 4
+text 50 140 0 10
+text 175 140 400 18
+button 25 164 2117 2118 1 0 26
+text 175 160 400 19
+text 50 160 0 11
+button 25 184 2117 2118 1 0 5
+text 50 180 0 12
+text 175 180 400 20
+button 25 204 2117 2118 1 0 6
+text 175 200 400 21
+text 50 200 0 13
+button 25 224 2117 2118 1 0 7
+text 50 220 0 14
+text 175 220 400 22
+button 25 244 2117 2118 1 0 8
+text 50 240 0 15
+text 175 240 400 23
+button 25 264 2117 2118 1 0 9
+text 50 260 0 24
+text 175 260 400 25
+button 25 284 2117 2118 1 0 10
+text 50 280 0 26
+text 175 280 400 27
+button 25 304 2117 2118 1 0 11
+text 50 300 0 28
+text 175 300 400 29
+button 25 324 2117 2118 1 0 12
+text 50 320 0 30
+text 175 320 400 31
+button 275 104 2117 2118 1 0 13
+text 300 100 0 32
+text 425 100 400 33
+button 275 124 2117 2118 1 0 14
+text 300 120 0 34
+text 425 120 400 35
+button 275 144 2117 2118 1 0 15
+text 300 140 0 36
+text 425 140 400 37
+button 275 164 2117 2118 1 0 16
+text 300 160 0 38
+text 425 160 400 39
+button 275 184 2117 2118 1 0 17
+text 300 180 0 40
+text 425 180 400 41
+button 275 204 2117 2118 1 0 18
+text 300 200 0 42
+text 425 200 400 43
+button 150 364 2117 2118 1 0 19
+text 175 360 400 45
+button 275 224 2117 2118 1 0 20
+text 300 220 0 47
+text 425 220 400 48
+button 275 244 2117 2118 1 0 21
+text 300 240 0 49
+text 425 240 400 50
+button 275 264 2117 2118 1 0 22
+text 300 260 0 51
+text 425 260 400 52
+button 275 284 2117 2118 1 0 23
+text 300 280 0 53
+text 425 280 400 54
+button 275 304 2117 2118 1 0 24
+text 300 300 0 55
+text 425 300 400 56
+button 275 324 2117 2118 1 0 25
+text 300 320 0 57
+text 425 320 400 58
+resizepic 0 410 5100 500 100
+text 60 440 990 59
+text 60 460 990 60
+
+[DIALOG d_skilldusur2 TEXT]
+-- Valinor UO Shard -- //0
+Kullanici: //1
+<ACCOUNT> //2
+Isim: //3
+<NAME> //4
+General Info //5
+Skills //6
+Misc Info //7
+Lumberjacking //8
+Mace Fighting //9
+Magery //10
+Meditation //11
+Mining //12
+Musicianship //13
+Parrying //14
+Peacemaking //15
+<LUMBERJACKING> //16
+<MACEFIGHTING> //17
+<MAGERY> //18
+<MEDITATION> //19
+<MINING> //20
+<MUSICIANSHIP> //21
+<PARRYING> //22
+<PEACEMAKING> //23
+Poisoning //24
+<POISONING> //25
+Provocation //26
+<PROVOCATION> //27 
+Magic Resist //28
+<MAGICRESISTANCE> //29
+Remove Trap //30
+<REMOVETRAP> //31
+Snooping //32
+<SNOOPING> //33 
+Spirit Speak //34
+<SPIRITSPEAK> //35
+Stealing //36
+<STEALING> //37
+Stealth //38
+<STEALTH> //39
+Swordsmanship //40
+<SWORDSMANSHIP> //41
+Tactics //42
+<TACTICS> //43
+Goto //44
+Geri //45
+More Skills //46
+Tailoring //47
+<TAILORING> //48
+Taste ID //49
+<TASTEID> //50
+Tinkering //51
+<TINKERING> //52
+Tracking //53
+<TRACKING> //54
+Veterinary //55
+<VETERINARY> //56
+Wrestling //57
+<WRESTLING> //58
+Uyari: Yanlislikla dusurulen skiller geri verilmez.//59
+Bu konuda atilan pageler cevapsiz kalacaktir.//60
+
+[DIALOG d_skilldusur2 BUTTON]
+ONBUTTON=2
+IF (<SRC.Lumberjacking> > 100)
+SRC.Lumberjacking=(<SRC.Lumberjacking> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Lumberjacking=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=3
+IF (<SRC.Macefighting> > 100)
+SRC.Macefighting=(<SRC.Macefighting> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Macefighting=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=4
+IF (<SRC.Magery> > 100)
+SRC.Magery=(<SRC.Magery> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Magery=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=5
+IF (<SRC.Mining> > 100)
+SRC.Mining=(<SRC.Mining> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Mining=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=6
+IF (<SRC.Musicianship> > 100)
+SRC.Musicianship=(<SRC.Musicianship> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Musicianship=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=7
+IF (<SRC.Parrying> > 100)
+SRC.Parrying=(<SRC.Parrying> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Parrying=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=8
+IF (<SRC.Peacemaking> > 100)
+SRC.Peacemaking=(<SRC.Peacemaking> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Peacemaking=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=9
+IF (<SRC.Poisoning> > 100)
+SRC.Poisoning=(<SRC.Poisoning> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Poisoning=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=10
+IF (<SRC.Provocation> > 100)
+SRC.Provocation=(<SRC.Provocation> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Provocation=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=11
+IF (<SRC.Magicresistance> > 100)
+SRC.Magicresistance=(<SRC.Magicresistance> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Magicresistance=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=12
+IF (<SRC.Removetrap> > 100)
+SRC.Removetrap=(<SRC.Removetrap> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Removetrap=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=13
+IF (<SRC.Snooping> > 100)
+SRC.Snooping=(<SRC.Snooping> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Snooping=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=14
+IF (<SRC.Spiritspeak> > 100)
+SRC.Spiritspeak=(<SRC.Spiritspeak> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Spiritspeak=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=15
+IF (<SRC.Stealing> > 100)
+SRC.Stealing=(<SRC.Stealing> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Stealing=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=16
+IF (<SRC.Stealth> > 100)
+SRC.Stealth=(<SRC.Stealth> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Stealth=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=17
+IF (<SRC.Swordsmanship> > 100)
+SRC.Swordsmanship=(<SRC.Swordsmanship> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Swordsmanship=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=18
+IF (<SRC.Tactics> > 100)
+SRC.Tactics=(<SRC.Tactics> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Tactics=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=19
+dialog d_skilldusur
+ONBUTTON=20
+IF (<SRC.Tailoring> > 100)
+SRC.Tailoring=(<SRC.Tailoring> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Tailoring=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=21
+IF (<SRC.Tasteid> > 100)
+SRC.Tasteid=(<SRC.Tasteid> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Tasteid=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=22
+IF (<SRC.Tinkering> > 100)
+SRC.Tinkering=(<SRC.Tinkering> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Tinkering=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=23
+IF (<SRC.Tracking> > 100)
+SRC.Tracking=(<SRC.Tracking> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Tracking=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=24
+IF (<SRC.Veterinary> > 100)
+SRC.Veterinary=(<SRC.Veterinary> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Veterinary=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=25
+IF (<SRC.Wrestling> > 100)
+SRC.Wrestling=(<SRC.Wrestling> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Wrestling=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=26
+IF (<SRC.Meditation> > 100)
+SRC.Meditation=(<SRC.Meditation> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Meditation=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=27
+IF (<SRC.Lockpicking> > 100)
+SRC.Lockpicking=(<SRC.Lockpicking> - 100)
+SRC.SYSMESSAGE Skilliniz 10.0 dusuruldu.
+ELSE
+SRC.Lockpicking=0
+SRC.SYSMESSAGE Skilliniz sifirlandi.
+ENDIF
+ONBUTTON=51
+dialog d_skilldusur
+ONBUTTON=52
+dialog d_skilldusur2

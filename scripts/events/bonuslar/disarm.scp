@@ -1,0 +1,29 @@
+[function disarm]
+if (<isevent.e_disarm>)
+	sysmessage Disarm: kapali
+	events -e_disarm
+elseif ((<wrestling> > 79.9) && (<armslore> > 79.9))
+	sysmessage Disarm: acik
+	events +e_disarm
+else
+	sysmessage Disarm yapabilmek icin 80.0 Wrestling ve Arms Lore skilline ihtiyaciniz var.
+endif
+
+[events e_disarm] 
+On=@Hit
+if ((<wrestling> < 80.0) || (<armslore> < 80.0))
+	sysmessage Disarm icin gereken skillere sahip degilsiniz.
+	events -e_disarm
+elseif !(<findlayer(1)> || <findlayer(2)>) 
+	if (rand(2) == 1)
+		if (<src.findlayer(1)> || <src.findlayer(2)>)
+			src.findlayer(1).unequip
+			if (<src.findlayer(2)>)
+				src.findlayer(2).unequip
+			endif
+			src.sayua 0481,0,0,0 * silahsizlandirilir *
+		endif
+	endif 
+endif
+
+[EOF]

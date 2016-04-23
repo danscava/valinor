@@ -1,0 +1,182 @@
+[itemdef i_reward_barrel]
+defname i_reward_barrel
+id i_barrel_open
+name Valinor reward barrel
+type 00
+
+on=@create
+color 0515
+attr 010
+
+on=@click
+//message @54 a reward barrel
+message @0 cop kutusu
+return 1
+
+on=@dclick
+dialog d_lynticket
+return 1
+
+on=@targon_char
+dx Bunu cope atamazsiniz.
+return 1
+
+on=@targon_item
+if !(<src.restest 1 <src.targ.baseid>>)
+src.sysmessage @38,1,1 Bu mumkun degil.
+return 1
+elseif ((<src.targ.type> == t_food) || (<src.targ.type> == t_food_raw) || (<src.targ.type> == t_fish) || (<src.targ.type> == t_booze) || (<src.targ.type> == t_bboard) || (<src.targ.type> == t_fruit) || (<src.targ.type> == t_shield) || (<src.targ.type> == t_wall) || (<src.targ.type> == t_board) || (<src.targ.type> == t_gold) || (<src.targ.type> == t_sign_gump) || (<src.targ.type> == t_wand) || (<src.targ.type> == t_telepad) || (<src.targ.type> == t_door) || (<src.targ.type> == t_dye_vat) || (<src.targ.type> == t_deed))
+src.sysmessage @38,1,1 Bunu bilete ceviremezsiniz.
+//dialog d_ticket
+return 1
+elseif ((<src.targ.baseid> == i_backpack) || (<src.targ.baseid> == i_robe_mage) || (<src.targ.baseid> == i_shield_order) || (<src.targ.baseid> == i_shield_chaos) || (<src.targ.baseid> == i_bandage) || (<src.targ.baseid> == i_robe) || (<src.targ.baseid> == i_barrel_open))
+src.sysmessage @38,1,1 Bunu bilete ceviremezsiniz.
+//dialog d_ticket
+return 1
+elseif ((<src.targ.attr> == 0004) || (<src.targ.attr> == 010))
+src.sysmessage @38,1,1 Bunu bilete ceviremezsiniz.
+//dialog d_ticket
+return 1
+elseif (<src.targ.more2> == 899)
+src.sysmessage @38,1,1 Bunu bilete ceviremezsiniz.
+//dialog d_ticket
+return 1
+elseif (<src.targ.amount> < 1)
+src.sysmessage @38,1,1 Bunu bilete ceviremezsiniz.
+//dialog d_ticket
+return 1
+elseif (<src.targ.value> < 2)
+src.sysmessage @38,1,1 Bunu bilete ceviremezsiniz.
+//dialog d_ticket
+return 1
+else
+var.x (<src.targ.amount>*(<src.targ.value>/2))
+src.newitem i_ticket
+src.act.amount x
+src.act.bounce
+src.targ.remove
+target
+src.sysmessage @1153,1,1 Cope atmak istediginiz e$yayi secin.
+return 1
+endif
+
+[itemdef i_ticket]
+defname i_ticket
+id i_gem_ruby
+name ticket
+weight 0
+value 0
+type 0
+
+on=@create
+color 055
+
+on=@click
+message @0 [<amount>]
+message @1153 a <name>
+return 1
+
+[itemdef i_coupon]
+defname i_coupon
+id i_gem_ruby
+name coupon
+weight 0
+value 0
+type 0
+
+on=@create
+color 022
+
+on=@click
+message @0 [<amount>]
+message @1153 a <name>
+return 1
+
+[DIALOG d_lynticket]
+100,100
+
+resizepic 0 0 5120 200 170
+resizepic 10 10 3000 180 150
+htmlgump 30 13 210 20 0 0 0 
+
+button 20 40 1209 1210 1 0 1 
+button 20 60 1209 1210 1 0 2 
+button 20 80 1209 1210 1 0 3 
+button 20 140 1209 1210 1 0 4 
+button 120 140 1209 1210 1 0 5
+
+htmlgump 40 36 210 20 1 0 0
+htmlgump 40 59 210 20 2 0 0
+htmlgump 40 79 210 20 3 0 0
+
+htmlgump 40 137 80 20 4 0 0
+htmlgump 140 137 210 20 5 0 0
+
+[DIALOG d_lynticket TEXT]
+Valinor Reward Barrel
+Rare dye
+Leather dye
+Black dye
+Kupon al
+Cope at
+
+[DIALOG d_lynticket BUTTON]
+on=0
+message @54 Menu kapatildi...
+
+ONBUTTON=1
+IF <SRC.RESTEST 20 i_coupon>
+SRC.CONSUME=20 i_coupon
+SRC.NEWITEM=i_rare_dye
+SRC.ACT.BOUNCE
+SRC.SYSMESSAGE @68 Tebrikler rare dye aldiniz..
+SOUND 0F7
+RETURN 1
+ELSE
+SRC.SYSMESSAGE @54 20 adet kupona sahip olmaniz gerekmektedir..
+ENDIF
+RETURN 1
+
+ONBUTTON=2
+IF <SRC.RESTEST 30 i_coupon>
+SRC.CONSUME=30 i_coupon
+SRC.NEWITEM= i_rare_leather_dye
+SRC.ACT.BOUNCE
+SRC.SYSMESSAGE @68 Tebrikler leather dye aldiniz..
+SOUND 0F7
+RETURN 1
+ELSE
+SRC.SYSMESSAGE @54 30 adet kupona sahip olmaniz gerekmektedir..
+ENDIF
+RETURN 1
+
+ONBUTTON=3
+IF <SRC.RESTEST 25 i_coupon>
+SRC.CONSUME=25 i_coupon
+SRC.NEWITEM= i_black_dye_tub
+SRC.ACT.BOUNCE
+SRC.SYSMESSAGE @68 Tebrikler black dye aldiniz..
+SOUND 0F7
+RETURN 1
+ELSE
+SRC.SYSMESSAGE @54 25 adet kupona sahip olmaniz gerekmektedir..
+ENDIF
+RETURN 1
+
+ONBUTTON=4
+IF <SRC.RESTEST 10000 i_ticket>
+SRC.CONSUME=10000 i_ticket
+SRC.NEWITEM=i_coupon
+SRC.ACT.BOUNCE
+SRC.SYSMESSAGE @68 Kupon aldiniz..
+SOUND 0F7
+RETURN 1
+ELSE
+SRC.SYSMESSAGE @54 Kupon alabilmek icin 10.000 adet ticket'a ihtiyaciniz var..
+ENDIF
+RETURN 1
+
+ON=5
+TARGET
+SRC.SYSMESSAGE @1153 Cope atmak istediginiz esyayi secin!
+RETURN 1

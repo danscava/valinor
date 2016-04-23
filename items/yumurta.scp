@@ -1,0 +1,188 @@
+[ITEMDEF i_kulucka]////////////////Ostard in yumurtasi
+DEFNAME=i_kulucka
+NAME Kulucka
+ID=i_nest
+WEIGHT=3
+SKILLMAKE=CARPENTRY 70.0
+resources 5 i_kindling
+CATEGORY=Miscellaneous
+SUBSECTION=Kulucka
+DESCRIPTION=Kulucka
+DUPELIST=01ad5
+
+On=@Click
+message @482 <name>
+return 1
+
+
+ON=@DCLICK
+	if !((0<src.uid> == <region.tag.owner>) || (0<src.uid> == <region.tag.co1uid>) || (0<src.uid> == <region.tag.co2uid>) || (0<src.uid> == <region.tag.co3uid>) || (0<src.uid> == <region.tag.co4uid>) || (0<src.uid> == <region.tag.co5uid>) || (0<src.uid> == <region.tag.co6uid>) || (0<src.uid> == <region.tag.co7uid>) || (0<src.uid> == <region.tag.co8uid>))
+		src.sysmessage @0482 Sadece sahibi veya ortagi oldugunuz evlere kulucka yerlestirebilir.,
+	return 1
+	else
+	if ((<link.tag.kulucka1>) && (<link.tag.kulucka2>) && (<link.tag.kulucka3>))
+		src.sysmessage @0482 Bir eve 3'ten fazla kulucka yerlestiremezsiniz.
+	return 1
+	else
+	src.sysmessage @0482 Kuluckayi kurabilmek icin ostard yumurtasina tikalyip kuluckayi secmelisiniz
+	return 1
+	endif
+
+[ITEMDEF i_ostard_egg_kulucka]////////////////Ostard in yumurtasi
+DEFNAME=i_ostard_egg_kulucka
+ID=i_nest_with_eggs
+WEIGHT=3
+CATEGORY=Miscellaneous
+SUBSECTION=OstarD Yumurtasi
+DESCRIPTION=Yumurta
+DUPELIST=01ad5
+
+On=@Click
+if (<timer> > 3600)
+message @0482 Kalan: <eval(<timer>/3600)> Saat
+return 1
+else
+if (<timer> > -1) && (<timer> < 3600)
+message @0482 Kalan: <eval(<timer>/60)> Dakika
+return 1
+else
+message @0482 Bitmis Kulucka
+return 1
+endif
+
+On=@dclick
+	if !((0<src.uid> == <region.tag.owner>) || (0<src.uid> == <region.tag.co1uid>) || (0<src.uid> == <region.tag.co2uid>) || (0<src.uid> == <region.tag.co3uid>) || (0<src.uid> == <region.tag.co4uid>) || (0<src.uid> == <region.tag.co5uid>) || (0<src.uid> == <region.tag.co6uid>) || (0<src.uid> == <region.tag.co7uid>) || (0<src.uid> == <region.tag.co8uid>))
+		src.sysmessage @0482 Sadece ev sahibi yada ortagi kuluckarlarda islem yapabilir
+	else
+if (<timer> == -1)
+src.sysmessage @0482 Kulucka donemi sona ermis yumurtayi cantaniza aldiniz
+src.newitem i_egg_ostard_olgun
+src.act.bounce
+src.targ.remove
+link.tag.oskuluc <link.tag.oskuluc> - 1)
+return 1
+endif
+
+On=@step
+src.sayua 075f,6,6,0  * yumurtayi kirar *
+link.tag.oskuluc <link.tag.oskuluc> - 1)
+remove
+return 1
+
+ON=@TIMER
+return 1
+
+[ITEMDEF i_egg_ostard]
+//Ostard Egg
+ID=i_fruit_coconut
+NAME=Ostard Egg
+
+CATEGORY=Custom Items
+SUBSECTION=Dragons Egg
+DESCRIPTION=Dragons Egg
+
+ON=@CREATE
+color 0450
+
+ON=@CLICK
+MESSAGE @482 Ostard Egg
+return 1
+
+ON=@DCLICK
+if !(<cont>)
+src.sysmessage @0482 Yumurtanin cantanizda olmasi gerekiyor...
+return 1
+endif
+target
+src.sysmessage @0482 Bos bir kulucka seciniz.
+return 1
+
+ON=@TARGON_ITEM
+if (<src.targ.link> == 04fffffff)
+		src.sysmessage @0482 Kuluckayi eve sabitlemelisiniz
+return 1
+else
+if !((0<src.uid> == <region.tag.owner>) || (0<src.uid> == <region.tag.co1uid>) || (0<src.uid> == <region.tag.co2uid>) || (0<src.uid> == <region.tag.co3uid>) || (0<src.uid> == <region.tag.co4uid>) || (0<src.uid> == <region.tag.co5uid>) || (0<src.uid> == <region.tag.co6uid>) || (0<src.uid> == <region.tag.co7uid>) || (0<src.uid> == <region.tag.co8uid>))
+	src.sysmessage @0482 Sadece sahibi veya ortagi oldugunuz evlere kulucka yerlestirebilir.
+return 1
+	else
+if (<src.veterinary> > 90.0) && (<src.veterinary> < 100.1)
+src.sysmessage @037 Yumurtayi Kuluckaya koydunuz.
+src.targ.id i_ostard_egg_kulucka
+tag.kulucka_sahibi <uid>
+src.targ.timer 331200
+src.consume 1 i_egg_ostard
+src.update
+return 1
+endif
+
+if (<src.veterinary> > 70.0) && (<src.veterinary> < 90.1)
+src.sysmessage @037 Yumurtayi Kuluckaya koydunuz.
+src.targ.id i_ostard_egg_kulucka
+tag.kulucka_sahibi <uid>
+src.targ.timer 445200
+src.consume 1 i_egg_ostard
+src.update
+return 1
+endif
+
+if (<src.veterinary> > 39.9) && (<src.veterinary> < 70.1)
+src.sysmessage @037 Yumurtayi Kuluckaya koydunuz.
+src.targ.id i_ostard_egg_kulucka
+tag.kulucka_sahibi <uid>
+src.targ.timer 631200
+src.consume 1 i_egg_ostard
+src.update
+remove
+return 1
+endif
+
+if (<src.veterinary> < 40.0)
+src.sysmessage @037 Yumurtayi Kuluckaya koydunuz.
+src.targ.id i_ostard_egg_kulucka
+tag.kulucka_sahibi <uid>
+src.targ.timer 831200
+src.consume 1 i_egg_ostard
+src.update
+return 1
+endif
+
+ON=@TIMER
+return 1
+
+
+[ITEMDEF i_egg_ostard_olgun] //////////Bitmis yumurta
+//Ostard Egg
+ID=i_fruit_coconut
+NAME=olgun ostard egg
+
+CATEGORY=Custom Items
+SUBSECTION=Ostard Egg
+DESCRIPTION=Olgun Ostard Egg
+
+ON=@CLICK
+MESSAGE @482 Ostard Egg (olgun)
+return 1
+
+ON=@DCLICK
+if !(<cont> == <src.findlayer.21.uid>)
+src.sysmessage @027 Cantanizda Olmali.
+return 1
+endif
+src.newnpc {c_ostard_desert 1 c_ostard_forest 1 c_ostard_zostrich 1 c_ostard_mid 1}
+	src.act.newitem i_memory
+	src.act.act.attr 04
+	src.act.act.more1 04
+	src.act.act.more2 <serv.time>
+	src.act.act.morep <src.act.p>
+	src.act.act.color memory_ipet
+	src.act.act.timer -1
+	src.act.act.link <src.uid>
+	src.act.act.cont <src.act.uid>
+	src.act.flags <src.act.flags>&statf_pet
+	src.act.update
+src.act.anim 6
+src.consume i_egg_ostard_olgun
+return 1
+
+[eof]

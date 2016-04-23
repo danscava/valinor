@@ -1,0 +1,545 @@
+[ITEMDEF i_staff_stone]
+ID=i_grave_stone
+NAME=Staff Giyim
+TYPE=0
+
+ON=@CREATE
+COLOR=0800
+
+ON=@Click
+message @049,,1 [<serv.name> UO]
+message @07a1,,1 Staff giyim
+return 1
+
+ON=@DClick
+src.f_staffs
+return 1
+endif
+
+[function f_staffs]
+nightsight 1
+invul 1
+findlayer(1).remove
+findlayer(2).remove 
+findlayer(3).remove
+findlayer(4).remove
+findlayer(5).remove
+findlayer(6).remove
+findlayer(7).remove
+findlayer(8).remove
+findlayer(10).remove
+findlayer(12).remove
+findlayer(13).remove
+findlayer(14).remove 
+findlayer(17).remove
+findlayer(18).remove
+findlayer(19).remove
+findlayer(20).remove
+findlayer(22).remove
+findlayer(23).remove
+findlayer(24).remove
+findid.i_backpack.remove
+src.sysmessage @055 Staff giysilerini giydiniz ! | Bu size verilenlerin disina cikan itemler size plevel dusurecektir.
+src.nightsight 1
+src.effect 3,0376a,2,20,1
+
+src.newitem i_staff_robe
+src.act.bounce
+src.act.equip
+
+src.newitem i_scissors
+src.act.bounce
+src.act.equip
+
+src.newitem i_boots_calf
+src.act.color 0810
+src.act.bounce
+src.act.equip
+
+src.newitem i_studded_gloves
+src.act.color 0810
+src.act.bounce
+src.act.equip
+
+src.newitem i_studded_gorget
+src.act.color 0810
+src.act.bounce
+src.act.equip
+
+src.newitem i_staff_tele
+src.act.color 0810
+src.act.bounce
+src.act.equip
+
+src.newitem i_bilgi
+src.act.color 0800
+src.act.equip
+
+src.newitem i_full_spellbook
+src.act.color 0810
+src.act.equip
+return 1
+
+[itemdef i_staff_robe]
+name=Staff Robe
+id=i_robe_gm
+armor=500
+type=t_clothing
+
+on=@create
+name=Staff Robe
+color=0
+attr=04
+hitpoints {5000 6000}
+
+on=@dclick
+if (<src.account.plevel>==1)  
+src.bomba
+color=052f
+elseif (<src.account.plevel>==2)  
+src.bomba
+color=080c
+elseif (<src.account.plevel>==3) 
+src.bomba
+Color=0846
+elseif (<src.account.plevel>==4) 
+src.bomba
+Color=0812
+elseif (<src.account.plevel>==5) 
+src.bomba
+src.id=i_robe_gm
+Color=07e5
+elseif (<src.account.plevel>==6)  
+src.bomba
+Color=0810
+elseif (<src.account.plevel>==7)  
+src.turgut07asd
+src.invis
+else 
+src.sysmessage @055,,1 Staff'a ait olan esyalari kullanamazsiniz.
+endif
+return 0
+
+on=@equip
+if (<src.account.plevel>==1)  
+color=052f
+name <name>
+elseif (<src.account.plevel>==2)  
+color=080c
+name <name>
+elseif (<src.account.plevel>==3) 
+Color=0846
+name <name>
+elseif (<src.account.plevel>==4) 
+Color=0812
+name <name>
+elseif (<src.account.plevel>==5) 
+Color=07e5
+name <name>
+elseif (<src.account.plevel>==6)  
+Color=0810
+name <name>
+elseif (<src.account.plevel>==7)  
+Color=07a1
+name <name>
+else 
+src.sysmessage @055,,1 Staff'a ait olan esyalari kullanamazsiniz.
+src.stone=1
+src.go jail
+src.name <src.name> / Staff a ait robe bulundu!
+src.sysmessage @055,,1 Staff tarafindan karakter kontrol edilene kadar bekleyiniz. Eger ba$ka bi karakteriniz war ise onla page atmaniz zaman kazandirabilir.
+endif
+return 0
+
+on=@unequip
+return 0
+
+[ITEMDEF i_teleport_staff]
+NAME=Teleport Book
+ID=i_spellbook
+WEIGHT=1
+
+ON=@CREATE
+COLOR= {0481}
+ATTR=attr_newbie
+CATEGORY=GM Items
+SUBSECTION=Other Items
+
+if (<src.account.plevel> < 2) 
+src.sysmessage Staff'a ait olan esyalari kullanmaniz yasaktir.
+src.stone
+src.go star
+src.name <src.name> / Staff'a ait esya bulunduruyor.
+endif
+return 0
+
+
+ON=@DClick
+serv.newitem i_staff_tele
+new.bounce
+src.sysmessage @50 Eski hatali spinning wheel deed'iniz yenisiyle degistirildi.
+remove
+return 1
+
+[plevel 5]
+staffdeed
+[function staffdeed]
+src.newitem i_spawnci
+src.act.bounce
+
+src.newitem i_spawnciyar
+src.act.bounce
+
+src.newitem i_spawnciani
+src.act.bounce
+
+
+[ITEMDEF i_staff_tele]
+ID=i_staff_quarter
+WEIGHT=1
+
+ON=@CREATE
+COLOR= {0481}
+ATTR=attr_newbie
+CATEGORY=GM Items
+SUBSECTION=Other Items
+
+if (<src.account.plevel> < 2) 
+src.sysmessage Staff'a ait olan esyalari kullanmaniz yasaktir.
+src.stone
+src.go star
+src.name <src.name> / Staff'a ait esya bulunduruyor.
+endif
+return 0
+
+ON=@Click
+message @50,,1 Teleporter Staff
+return 1
+
+ON=@DCLICK
+src.sysmessage @38 Lutfen NPC Teleport etmeyiniz.
+TARGET @50 Kimi teleport edeceksiniz ?
+RETURN 1
+
+ON=@TARGON_CHAR
+IF (<src.targ.account.plevel> > <src.account.plevel>)
+src.sysmessage <src.targ.name> bu kisinin pleveli sizden yuksek oldugu icin onu teleport edemezsiniz .
+elseif  (<src.targ.account.plevel> <  <src.account.plevel>) || (<src.targ.account.plevel> =  <src.account.plevel>)
+LINK=<SRC.TARG.UID>
+TARGETG @50 <SRC.TARG.NAME> adli kisiyi nereye teleport etmek istiyorsunuz ?
+endif
+RETURN 1
+
+ON=@TARGON_GROUND
+LINK.GO <SRC.TARGP>
+RETURN 1
+
+
+ON=@Timer
+return 1
+
+[ITEMDEF i_bilgi]
+id=i_spellbook
+type=t_weapon_mace_staff
+
+ON=@Click
+message @50,,1 Staff Book
+return 1
+
+
+ON=@DClick
+if (<src.account.plevel> > 1)
+Target Kimin bilgilerini kontrol edeceksiniz?
+return 1
+else (<src.account.plevel> < 2) 
+src.sysmessage @055,,1 Staff'a ait olan esyalari kullanamazsiniz.
+src.stone=1
+src.go jail
+src.name <src.name> / Staff a ait info kitabi bulundu!
+src.sysmessage @055,,1 Staff tarafindan karakter kontrol edilene kadar bekleyiniz. Eger ba$ka bi karakteriniz war ise onla page atmaniz zaman kazandirabilir.
+endif
+return 0
+
+On=@Create
+hitpoints {5000 6000}
+Color 066d
+attr 00004
+
+On=@TargOn_Char
+DIALOG d_xbilgi
+return 1
+
+[DIALOG d_xbilgi]
+0,0
+PAGE 0
+resizepic 40 129 3600 470 230
+text 55 178 1152 0
+text 55 157 1152 1
+text 54 202 1152 2
+text 55 228 1152 3
+text 55 253 1152 4
+text 56 277 1152 5
+button 100 311 4005 4007 1 0 0
+//button 290 311 4005 4007 1 0 1
+text 140 311 1152 6
+text 260 179 995 7
+text 259 203 995 8
+text 259 228 995 9
+text 259 254 995 10
+text 260 279 995 11
+
+[DIALOG d_xbilgi TEXT]
+Kayit Tarihi
+Account Name : <src.targ.account>
+Toplam Baglanti Zamani
+Son Baglanti Tarihi
+Son Baglanti Suresi
+Karakter Sayisi
+Kapat                   
+<src.targ.account.firstconnectdate>
+<eval <src.targ.account.totalconnecttime>/60> saat
+<src.targ.account.lastconnectdate>
+( <serv.rtime> + (-<eval <src.targ.account.lastconnecttime>>)) dakika
+<src.targ.account.chars>
+
+[DIALOG d_xbilgi BUTTON]
+on=1
+DIALOG d_showskills
+
+
+[DIALOG d_xbilgi]
+0,0
+PAGE 0
+resizepic 40 129 3600 470 230
+text 55 178 1152 0
+text 55 157 1152 1
+text 54 202 1152 2
+text 55 228 1152 3
+text 55 253 1152 4
+text 56 277 1152 5
+button 100 311 4005 4007 1 0 0
+button 290 311 4005 4007 1 0 1
+text 140 311 1152 6
+text 260 179 995 7
+text 259 203 995 8
+text 259 228 995 9
+text 259 254 995 10
+text 260 279 995 11
+
+[DIALOG d_xbilgi TEXT]
+Kayit Tarihi
+Account Name : <src.targ.account>
+Toplam Baglanti Zamani
+Son Baglanti Tarihi
+Son Baglanti Suresi
+Karakter Sayisi
+Kapat                   Skill View
+<src.targ.account.firstconnectdate>
+<eval <src.targ.account.totalconnecttime>/60> saat
+<src.targ.account.lastconnectdate>
+<src.targ.account.lastconnecttime> dakika
+<src.targ.account.chars>
+
+[DIALOG d_xbilgi BUTTON]
+
+on=1
+DIALOG d_showskills
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+[DIALOG d_showskills]
+70,70
+resizepic 0 0 3600 475 370
+text 24 11 150 0
+text 24 30 365 1
+text 101 30 0085 2
+text 24 50 365 3
+text 101 50 0085 4
+text 24 70 365 5
+text 101 70 0085 6
+text 24 90 365 7
+text 101 90 0085 8
+text 24 110 365 9
+text 101 110 0085 10
+text 24 130 365 11
+text 101 130 0085 12
+text 24 150 365 13
+text 101 150 0085 14
+text 24 170 365 15
+text 101 170 0085 16
+text 24 190 365 17
+text 101 190 0085 18
+text 24 210 365 19
+text 101 210 0085 20
+text 24 230 365 21
+text 101 230 0085 22
+text 24 250 365 23
+text 101 250 0085 24
+text 24 270 365 25
+text 101 270 0085 26
+text 24 290 365 27
+text 101 290 0085 28
+button 24 320 2117 2118 1 1
+text 120 337 150 29
+text 150 30 365 30
+text 235 30 0085 31
+text 150 50 365 32
+text 235 50 0085 33
+text 150 70 365 34
+text 235 70 0085 35
+text 150 90 365 36
+text 235 90 0085 37
+text 150 110 365 38
+text 235 110 0085 39
+text 150 130 365 40
+text 235 130 0085 41
+text 150 150 365 42
+text 235 150 0085 43
+text 150 170 365 44
+text 235 170 0085 45
+text 150 190 365 46
+text 235 190 0085 47
+text 150 210 365 48
+text 235 210 0085 49
+text 150 230 365 50
+text 235 230 0085 51
+text 150 250 365 52
+text 235 250 0085 53
+text 150 270 365 54
+text 235 270 0085 55
+text 150 290 365 56
+text 235 290 0085 57
+text 300 30 365 58
+text 400 30 0085 59
+text 300 50 365 60
+text 400 50 0085 61
+text 300 70 365 62
+text 400 70 0085 63
+text 300 90 365 64
+text 400 90 0085 65
+text 300 110 365 66
+text 400 110 0085 67
+text 300 130 365 68
+text 400 130 0085 69
+text 300 150 365 70
+text 400 150 0085 71
+text 300 170 365 72
+text 400 170 0085 73
+text 300 190 365 74
+text 400 190 0085 75
+text 300 210 365 76
+text 400 210 0085 77
+text 300 230 365 78
+text 400 230 0085 79
+text 300 250 365 80
+text 400 250 0085 81
+text 300 270 365 82
+text 400 270 0085 83
+text 300 290 365 84
+text 400 290 0085 85
+text 42 316 150 92
+text 100 315 150 86
+text 150 315 0085 87
+text 200 315 150 88
+text 250 315 0085 89
+text 300 315 150 90
+text 350 315 0085 91
+[DIALOG d_showskills TEXT]
+<SRC.TARG.NAME> Skill'leri Gosteriliyor.
+Alchemy
+<SRC.TARG.ALCHEMY>
+Anatomy
+<SRC.TARG.ANATOMY>
+Anim Lore
+<SRC.TARG.ANIMALLORE>
+Archery
+<SRC.TARG.ARCHERY>
+Arms Lore
+<SRC.TARG.ARMSLORE>
+Begging
+<SRC.TARG.BEGGING>
+Blacksmith
+<SRC.TARG.BLACKSMITHING>
+Bow Craft
+<SRC.TARG.BOWCRAFT>
+Camping
+<SRC.TARG.CAMPING>
+Carpentry
+<SRC.TARG.CARPENTRY>
+Cartog
+<SRC.TARG.Cartography>
+Cooking
+<SRC.TARG.Cooking>
+Enticement
+<SRC.TARG.Enticement>
+Eval Int
+<SRC.TARG.EVALUATINGINTEL>
+<serv.servname> Player Skill Menu
+Fencing
+<SRC.TARG.FENCING>
+Fishing
+<SRC.TARG.FISHING>
+Healing
+<SRC.TARG.HEALING>
+Herding
+<SRC.TARG.HERDING>
+Hiding
+<SRC.TARG.HIDING>
+Inscription
+<SRC.TARG.Inscription>
+Item ID
+<SRC.TARG.ITEMID>
+Lockpick
+<SRC.TARG.LOCKPICKING>
+Lumberjack
+<SRC.TARG.LUMBERJACKING>
+Mace Fight
+<SRC.TARG.MACEFIGHTING>
+Magery
+<SRC.TARG.MAGERY>
+Resisting
+<SRC.TARG.MAGICRESISTANCE>
+Meditation
+<SRC.TARG.Meditation>
+Mining
+<SRC.TARG.MINING>
+Music
+<SRC.TARG.MUSICIANSHIP>
+Parrying
+<SRC.TARG.PARRYING>
+Peacemake
+<SRC.TARG.PEACEMAKING>
+Poisoning
+<SRC.TARG.Poisoning>
+Provocation
+<SRC.TARG.Provocation>
+Snooping
+<SRC.TARG.Snooping>
+Tinkering
+<SRC.TARG.Tinkering>
+Stealing
+<SRC.TARG.Stealing>
+Stealth
+<SRC.TARG.Stealth>
+Swords
+<SRC.TARG.SWORDSMANSHIP>
+Tactics
+<SRC.TARG.Tactics>
+Tailoring
+<SRC.TARG.Tailoring>
+Taming
+<SRC.TARG.Taming>
+Wrestling
+<SRC.TARG.Wrestling>
+STR
+<SRC.TARG.STR>
+DEX
+<SRC.TARG.DEX>
+INT
+<SRC.TARG.INT>
+Kapat
+[DIALOG d_showskills BUTTON]
+ONBUTTON=1
+CONT.SYSMESSAGE Skill gosterimi bitti.
+[EOF]

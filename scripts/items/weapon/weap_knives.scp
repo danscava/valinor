@@ -1,0 +1,100 @@
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+The Owner Prodigy Tarafindan Fixlenmistir ! ....
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+Date =  23 / 07 / 2004 ---- Tum Haklarý Saklýdýr !
+VERSION=0.55i
+
+[itemdef 013f6]
+defname i_knife_butcher
+resources 2 i_ingot_iron
+skillmake TINKERING 26.1,t_tinker_tools
+weight 7.5
+type T_WEAPON_SWORD
+flip 1
+dam 2,14
+skill Swordsmanship
+reqstr 5
+twohands N
+category Provisions - Weapons
+subsection Knives & Daggers
+description Butchers Knife
+dupelist 013f7
+
+On=@Create
+hitpoints 25
+
+[itemdef 013f7] // butcher knife
+dupeitem 013f6
+
+[itemdef 0ec2]
+defname i_cleaver_meat
+type T_WEAPON_SWORD
+flip 1
+resources 3 i_ingot_iron
+skillmake TINKERING 23.4,t_tinker_tools
+dam 2,13
+SPEED=40
+skill Swordsmanship
+reqstr 10
+twohands N
+weight 7.5
+category Provisions - Weapons
+subsection Knives & Daggers
+description Cleaver
+dupelist 0ec3
+
+On=@Create
+hitpoints 25
+
+[itemdef 0ec3] // cleaver
+dupeitem 0ec2
+
+[itemdef 0f51]
+defname i_dagger
+resources 3 i_ingot_iron
+type T_WEAPON_FENCE
+flip 1
+dam 3,15
+skill Fencing
+reqstr 1
+twohands N
+weight 3.7
+category Provisions - Weapons
+subsection Knives & Daggers
+description Dagger
+skillmake blacksmithing 26.7
+dupelist 0f52
+
+On=@Create
+hitpoints 25
+
+ON=@TargOn_Item
+if (<SRC.TARG.TYPE>=t_log)
+	SRC.DIALOG d_skill_bowcraft
+return 1
+
+[itemdef 0f52] // dagger
+dupeitem 0f51
+
+[itemdef 0ec4]
+defname i_knife_skinning
+type T_WEAPON_FENCE
+flip 1
+resources 2 i_ingot_iron
+skillmake TINKERING 23.3,t_tinker_tools
+dam 1,10
+skill Swordsmanship
+twohands N
+weight 7.5
+category Provisions - Weapons
+subsection Knives & Daggers
+description Skinning Knife
+dupelist 0ec5
+
+On=@Create
+hitpoints 25
+
+[itemdef 0ec5] // skinning knife
+dupeitem 0ec4
+
+[EOF]

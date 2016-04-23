@@ -1,0 +1,897 @@
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+The Owner Prodigy Tarafindan Fixlenmistir ! ....
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+Date =  23 / 07 / 2004 ---- Tum Haklarý Saklýdýr !
+VERSION=0.55i
+
+[itemdef i_silver_wfork]
+name silver war fork
+id i_war_fork
+type 14
+dam 4,32
+skill Fencing
+reqstr 35
+twohands N
+weight 7
+resources 12 i_ingot_silver
+skillmake BLACKSMITHING 80.0
+
+On=@Create
+color 03e9
+hitpoints 25
+
+On=@Damage
+if (<src.npc> == brain_undead)
+	src.damage {18 50}
+	src.effect 3,i_fx_sparkle,6,15,1
+	src.spelleffect s_poison 50.0
+endif
+
+[itemdef 0e87]
+defname i_pitchfork
+type T_WEAPON_FENCE
+flip 1
+resources 5 i_ingot_iron
+skillmake blacksmithing 20.0
+dam 4,16
+skill Fencing
+reqstr 15
+twohands Y
+weight 7
+category Provisions - Weapons
+subsection Polearms
+description Pitchfork
+dupelist 0e88
+
+On=@Create
+hitpoints 25
+
+[itemdef 0e88] // pitchfork
+dupeitem 0e87
+
+[itemdef 01402]
+defname i_spear_short
+resources 6 i_ingot_iron
+weight 5
+type T_WEAPON_FENCE
+flip 1
+dam 5,28
+skill Fencing
+reqstr 15
+layer 2
+category Provisions - Weapons
+subsection Spears and Forks
+description Short Spear
+dupelist 01403
+skillmake blacksmithing 70.2
+//RESOURCES2=6 i_ingot_iron,1 i_board
+
+On=@Create
+hitpoints 25
+
+[itemdef 01403] // short spear
+dupeitem 01402
+
+[itemdef 0f62]
+defname i_spear
+resources 12 i_ingot_iron
+type T_WEAPON_FENCE
+flip 1
+dam 5,36
+skill Fencing
+twohands N
+weight 6
+category Provisions - Weapons
+subsection Polearms
+description Spear
+skillmake blacksmithing 73.8
+dupelist 0f63
+
+On=@Create
+hitpoints 25
+
+On=@Equip
+src.events +e_spear
+src.events +e_dismount
+
+ON=@UnEquip
+src.events -e_spear
+src.events -e_dismount
+
+[itemdef 0f63] // spear
+dupeitem 0f62
+
+[itemdef 01404]
+defname i_war_fork
+resources 12 i_ingot_iron
+weight 6.2
+type T_WEAPON_FENCE
+flip 1
+dam 4,32
+skill Fencing
+reqstr 35
+twohands N
+category Provisions - Weapons
+subsection Spears and Forks
+description 
+dupelist 01405
+skillmake blacksmithing 63.2
+//RESOURCES2=9 i_ingot_iron
+
+On=@Create
+hitpoints 25
+
+[itemdef 01405] // war fork
+dupeitem 01404
+
+[itemdef 04134]
+defname i_PITCHFORK_RUIN
+value 1500
+id i_PITCHFORK
+name magical pitchfork
+resources i_PITCHFORK,i_enchant_weapon
+
+description pitchfork of ruin
+subsection Magic pitchforks
+category Provisions - Weapons - Magic
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 20.0
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 04135]
+defname i_PITCHFORK_MIGHT
+value 3700
+id i_PITCHFORK
+name magical pitchfork
+resources i_PITCHFORK,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic pitchforks
+description pitchfork of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04136]
+defname i_PITCHFORK_FORCE
+value 5000
+id i_PITCHFORK
+name magical pitchfork
+resources i_PITCHFORK,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic pitchforks
+description pitchfork of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 04137]
+defname i_PITCHFORK_POWER
+value 7500
+id i_PITCHFORK
+name magical pitchfork
+resources i_PITCHFORK,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic pitchforks
+description pitchfork of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04138]
+defname i_PITCHFORK_vanq
+value 10000
+id i_PITCHFORK
+name magical pitchfork
+resources i_PITCHFORK,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic pitchforks
+description pitchfork of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 04155]
+defname i_SPEAR_SHORT_RUIN
+value 1500
+id i_spear_short
+name magical short spear
+resources i_spear_short,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic short spears
+description short spear of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+src.events +e_spear
+if (<src.fencing> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+On=@UnEquip
+src.events -e_spear
+
+[itemdef 04156]
+defname i_SPEAR_SHORT_MIGHT
+value 3700
+id i_spear_short
+name magical short spear
+resources i_spear_short,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic short spears
+description short spear of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+src.events +e_spear
+if (<src.fencing> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+On=@UnEquip
+src.events -e_spear
+
+[itemdef 04157]
+defname i_spear_short_FORCE
+value 5000
+id i_spear_short
+name magical short spear
+resources i_spear_short,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic short spears
+description short spear of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+src.events +e_spear
+if (<src.fencing> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+On=@UnEquip
+src.events -e_spear
+
+[itemdef 04158]
+defname i_spear_short_POWER
+value 7500
+id i_spear_short
+name magical short spear
+resources i_spear_short,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic short spears
+description short spear of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+src.events +e_spear
+if (<src.fencing> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+On=@UnEquip
+src.events -e_spear
+
+[itemdef 04159]
+defname i_spear_short_vanq
+value 10000
+id i_spear_short
+name magical short spear
+resources i_spear_short,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic short spears
+description short spear of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+src.events +e_spear
+if (<src.fencing> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+On=@UnEquip
+src.events -e_spear
+
+[itemdef 04144]
+defname i_SPEAR_RUIN
+value 1500
+id i_spear
+name magical spear
+resources i_spear,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic spears
+description spear of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+src.events +e_spear
+if (<src.fencing> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+src.events +e_dismount
+color 02bc
+
+on=@unequip
+src.events -e_dismount
+src.events -e_spear
+
+[itemdef 04145]
+defname i_SPEAR_MIGHT
+value 3700
+id i_spear
+name magical spear
+resources i_spear,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic spears
+description spear of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+src.events +e_spear
+if (<src.fencing> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+src.events +e_dismount
+color 0373
+
+On=@UnEquip
+src.events -e_spear
+src.events -e_dismount
+
+[itemdef 04146]
+defname i_SPEAR_FORCE
+value 5000
+id i_spear
+name magical spear
+resources i_spear,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic spears
+description spear of force
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 60.0
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+src.events +e_spear
+src.events +e_dismount
+if (<src.fencing> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+On=@UnEquip
+src.events -e_spear
+src.events -e_dismount
+
+[itemdef 04147]
+defname i_SPEAR_POWER
+value 7500
+id i_spear
+name magical spear
+resources i_spear,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic spears
+description spear of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+src.events +e_spear
+src.events +e_dismount
+if (<src.fencing> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+On=@UnEquip
+src.events -e_spear
+src.events -e_dismount
+
+[itemdef 04148]
+defname i_SPEAR_vanq
+value 10000
+id i_spear
+name magical spear
+resources i_spear,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic spears
+description spear of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+src.events +e_spear
+if (<src.fencing> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+src.events +e_dismount
+color 0454
+
+On=@UnEquip
+src.events -e_spear
+src.events -e_dismount
+
+[itemdef 0415a]
+defname i_WAR_FORK_RUIN
+value 1500
+id I_WAR_FORK
+name magical war fork
+resources i_WAR_FORK,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war forks
+description war fork of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 0415b]
+defname i_WAR_FORK_MIGHT
+value 3700
+id I_WAR_FORK
+name magical war fork
+resources i_WAR_FORK,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war forks
+description war fork of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 0415c]
+defname i_WAR_FORK_FORCE
+value 5000
+id I_WAR_FORK
+name magical war fork
+resources i_WAR_FORK,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war forks
+description war fork of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 0415d]
+defname i_WAR_FORK_POWER
+value 7500
+id I_WAR_FORK
+name magical war fork
+resources i_WAR_FORK,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war forks
+description war fork of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 0415e]
+defname i_WAR_FORK_vanq
+value 10000
+id I_WAR_FORK
+name magical war fork
+resources i_WAR_FORK,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war forks
+description war fork of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.fencing> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[EOF]

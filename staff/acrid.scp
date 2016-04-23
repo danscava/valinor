@@ -1,0 +1,354 @@
+[itemdef i_robe_acrid]
+name=Acrid
+id=i_deathshroud
+armor=500
+type=t_clothing
+
+ON=@create
+color 0809
+HITPOINTS={500 505}
+
+ON=@DCLICK
+src.font 1
+src.invis
+src.turgut07asd
+src.nightsight 1
+
+on=@click
+message @065 CEO AcriD
+return 1
+
+on=@pickup_pack
+src.findlayer(11).REMOVE ///saç varsa siler
+src.findlayer(16).REMOVE /// sakal varsa siler
+if <src.account.plevel> < 3)
+src.targ.remove
+return 1
+endif
+
+on=@equip
+if (<src.account.plevel> > 4)
+	if (strmatch('<src.account>','v_acrid'))
+	src.allskills 1000
+	src.title=CEO AcriD
+	src.fame=0
+	src.font 1
+	src.karma=0
+	src.kills=0
+	src.gm=1
+	src.events +gmfix
+	src.str 100
+	src.dex 100
+	src.int 100
+	src.hits 100
+	src.mana 100
+	src.stam 100
+	else
+	remove
+	src.smg Acrid'e ozel itemleri kullanamazsiniz..
+	src.sayu Acrid'e ozel item kullanmaya calisti..
+	return 1
+	endif
+
+endif
+
+[itemdef i_staff_llama] 
+name Ethereal Llama
+id i_pet_llama
+type t_script 
+
+On=@Create 
+color 0840
+attr 14
+
+On=@DClick 
+if !(<src.findlayer(25)>)
+	src.newitem i_mt_llama_staff
+	src.act.link <src.uid>
+	src.act.more2 <src.uid>
+	src.act.more1 c_staff_llama
+	src.act.equip
+	src.update
+	remove
+else 
+	src.sysmessage Binegin varken ata binemezsin
+endif
+return 1
+
+[itemdef i_mt_llama_staff] 
+name staff llama
+id i_mt_llama
+type t_eq_horse
+layer 25
+tdata3 c_staff_llama
+
+ON=@EQUIP 
+if (strmatch('<src.account>','v_acrid'))
+Color=0cae5
+else 
+src.sysmessage @1100,,1 Acrid'e ait olan esyalari kullanamazsiniz.
+src.findid.i_mt_llama_staff.remove
+src.findid.i_staff_llama.remove
+endif 
+
+On=@UnEquip
+src.newitem i_staff_llama
+src.act.bounce
+return 1
+
+[events e_staff_llama]
+On=@EnvirOnChange
+events -e_staff_llama
+
+[chardef c_staff_llama]
+defname c_staff_llama
+name Ethereal Llama
+CAN=MT_WALK|MT_RUN
+ID=c_llama
+
+ON=@Create
+	STR={66 80}
+	DEX=90
+	INT={66 80}
+
+on=@click
+remove
+return 1
+
+on=@npcrestock
+return 1
+
+on=@death
+remove
+return 1
+
+[itemdef i_ethereal_horse]
+NAME=Ethereal Horse
+id=i_pet_horse_brown_lt
+type=t_normal
+CATEGORY=eth
+SUBSECTION=Ethereal Horse
+DESCRIPTION=Ethereal Horse
+
+on=@create
+color=00     
+attr=14
+
+on=@dclick
+if !(<src.findlayer.25.uid>)
+src.newitem i_us
+src.act.link <src.uid>
+src.act.more2 <src.uid>
+src.act.more1=c_staff
+src.act.equip
+src.update
+remove
+return 1
+else
+src.message @38,1,1 Zaten bir at uzerindesiniz..
+return 1
+endif
+
+[itemdef i_us]
+name=Horse
+id=i_mt_horse_brown_dk
+TDATA3=c_staff
+layer=25
+
+on=@create
+color=00
+
+on=@equip
+link=<src.uid>
+
+on=@unequip
+src.newitem i_ethereal_horse
+src.act.bounce
+
+[chardef c_staff]
+id=c_horse_brown_lt
+
+on=@create
+color=12
+
+on=@click
+remove
+return 1
+
+on=@npcrestock
+return 1
+
+on=@death
+remove
+return 1
+
+[PLEVEL 2]
+bomba
+[PLEVEL 5]
+csefer123
+turgut07asd
+
+[function bomba]
+if !(<src.flags>&statf_insubstantial)
+src.invis 1
+src.newitem 03709
+src.sound 0207
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move n 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move s 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move e 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move w 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move near 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move sw 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move nw 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move se 1
+
+else
+src.invis 0
+src.newitem 03709
+src.sound 0207
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move n 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move s 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move e 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move w 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move near 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move sw 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move nw 1
+src.newitem 03709
+src.act.p <src.p>
+src.act.timer 2
+src.act.attr attr_decay
+src.act.move se 1
+endif
+
+[function turgut07asd]
+newitem i_fx_sparkle
+act.type t_normal
+act.color 0481
+act.p <p>
+act.MOVE 2,1
+act.attr attr_decay
+act.timer 2
+
+newitem i_fx_sparkle
+act.type t_normal
+act.color 0481
+act.p <p>
+act.MOVE -2,-1
+act.attr attr_decay
+act.timer 2
+
+
+newitem i_fx_sparkle
+act.type t_normal
+act.color 0481
+act.p <p>
+act.move 1,-2 
+act.attr attr_decay
+act.timer 2
+
+newitem i_fx_sparkle
+act.type t_normal
+act.color 0481
+act.p <p>
+act.move -1,2
+act.attr attr_decay
+act.timer 2
+
+
+[function csefer123]
+invis
+newitem i_fx_explode
+act.type t_normal
+act.color 025
+act.p <p>
+act.MOVE 2,1
+act.attr attr_decay
+act.timer 2
+
+newitem i_fx_explode
+act.type t_normal
+act.color 025
+act.p <p>
+act.MOVE -2,-1
+act.attr attr_decay
+act.timer 2
+
+
+newitem i_fx_explode
+act.type t_normal
+act.color 025
+act.p <p>
+act.move 1,-2 
+act.attr attr_decay
+act.timer 2
+
+newitem i_fx_explode
+act.type t_normal
+act.color 025
+act.p <p>
+act.move -1,2
+act.attr attr_decay
+act.timer 2
+
+return 1
+endif
+
+[eof]

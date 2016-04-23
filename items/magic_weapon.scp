@@ -1,0 +1,269 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Buyulu Silahlar	--
+// -- Son Düzenleme Tarihi : 18.08.2004		--
+// -----------------------------------------------
+
+[FUNCTION f_enchant_weapon]
+IF (<SRC.MAGERY> < 65.0)
+	SRC.SYSMESSAGE Not enough skill to enchant a weapon.
+	RETURN 1
+ENDIF
+IF ((<ATTR> & attr_magic) || (<ATTR> & attr_newbie))
+	SRC.SAY You can not enchant this weapon.
+	SRC.ACTION -1
+	RETURN 1
+ENDIF
+SRC.MESSAGE You enchant the weapon.
+SRC.SOUND snd_SPELL_PROTECTION
+ACT.ATTR=attr_magic
+ACT.MOREY=<SRC.MAGERY>
+
+[EVENTS e_enchant_bless]
+ON=@itemSpell
+IF ((<ARGN> == id(s_bless)) && ((<ACT.TYPE> == t_weapon_sword) || (<ACT.TYPE> == t_weapon_mace_sharp) || (<ACT.TYPE> == t_weapon_fence)))
+	ACT.f_enchant_weapon
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_enchant_weapon]
+// WEAPON ENHANCER - good for 20 % enchantment
+// Player must be holding a weapon in their right hand.
+// Weapon decays when timer runs out.
+ID=i_virtstone_1
+VALUE=40	// set price per level of magic enhancement.
+
+ON=@DCLICK
+	if (<src.magery><65.0) //Not enough Magery
+		src.message Your magery is not high enough to enchant a weapon.
+		return 1
+	endif
+	if (<src.findlayer(layer_hand1).UID>==0) //Do they have a weapon in the hand?
+		src.message You must have a one-handed weapon equipped to use this.
+		return 1
+	endif
+	if (<src.findlayer(layer_hand1).ATTR>&(attr_magic|attr_newbie))
+		src.message This weapon is already magical or newbied!
+		return 1
+	endif
+
+	//Success!!
+	SRC.MESSAGE You enchant the weapon.
+	SRC.SOUND snd_SPELL_PROTECTION
+	SRC.FINDLAYER(layer_hand1).ATTR=attr_magic
+	SRC.FINDLAYER(layer_hand1).MOREY=03
+	LINK=<src.findlayer(layer_hand1).uid>
+	IF (<src.magery><80.0)
+		TIMER=120
+	ELSEIF ((<SRC.MAGERY>>80.0)&&(<SRC.MAGERY><95.0))
+		TIMER=180
+	ELSEIF ((<SRC.MAGERY>>95.0)&&(<SRC.MAGERY><99.9))
+		TIMER=240
+	ELSEIF (<SRC.MAGERY>==100.0)
+		TIMER=300
+	ENDIF
+	ATTR=attr_invis
+	SRC.UPDATE
+	RETURN 1
+
+[ITEMDEF 04129]
+//Same as [ITEMDEF 0412f] Do not remove! Here for backward compatility!
+DEFNAME=i_BOW_RUIN_O
+ID=i_bow
+NAME=magical bow
+RESOURCES=i_bow,i_enchant_weapon
+
+ON=@Create
+ATTR=attr_magic
+MOREY=20.0
+HITPOINTS={31 60}
+
+ON=@CLICK
+MESSAGE a <name>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [ruin]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04139]
+//Same as [ITEMDEF 0413f] Do not remove! Here for backward compatility!
+DEFNAME=i_KRYSS_RUIN_O
+VALUE=1500
+ID=i_kryss
+NAME=magical kryss
+RESOURCES=i_kryss,i_enchant_weapon
+
+ON=@Create
+MOREY=20.0
+ATTR=attr_magic
+HITPOINTS={31 90}
+
+ON=@CLICK
+MESSAGE a <name>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [ruin]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04149]
+//viking sword of vanquishing & Fireball 40 charges
+ID=i_sword_viking
+NAME=magical viking sword
+RESOURCES=i_sword_viking,5 i_enchant_weapon,i_wand_1,40 i_scroll_fireball
+
+CATEGORY=Provisions - Weapons - Magic
+SUBSECTION=Magic Special Weapons
+DESCRIPTION=Viking of vanquishing and Daemon's Breath
+
+ON=@Create
+ATTR=attr_magic
+MOREX=s_fireball
+MOREY=100.0
+MORE2=40
+HITPOINTS={31 90}
+
+ON=@CLICK
+MESSAGE a <name>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [daemon's breath]
+	MESSAGE [<eval <MORE2>> charges]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04150]
+//viking sword of vanquishing & Flamestrike 40 charges
+DEFNAME=i_sword_viking_vanq_brimstone
+VALUE=20000
+ID=i_sword_viking
+NAME=magical viking sword
+RESOURCES=i_sword_viking,5 i_enchant_weapon,i_wand_1,40 i_scroll_flamestrike
+
+CATEGORY=Provisions - Weapons - Magic
+SUBSECTION=Magic Special Weapons
+DESCRIPTION=Viking of vanquishing and brimstone
+
+ON=@Create
+HITPOINTS={31 90}
+ATTR=attr_magic
+MOREX=s_flamestrike
+MOREY=100.0
+MORE2=40
+
+ON=@CLICK
+MESSAGE a <name>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [brimstone]
+	MESSAGE [<eval <MORE2>> charges]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04151]
+//viking sword of vanquishing & Energy Bolt 40 charges
+DEFNAME=i_sword_viking_vanq_Electricity
+VALUE=20000
+ID=i_sword_viking
+NAME=magical viking sword
+RESOURCES=i_sword_viking,5 i_enchant_weapon,i_wand_1,40 i_scroll_energy_bolt
+
+CATEGORY=Provisions - Weapons - Magic
+SUBSECTION=Magic Special Weapons
+DESCRIPTION=Viking of vanquishing and Electricity
+
+ON=@Create
+ATTR=attr_magic
+MOREX=s_energy_bolt
+MOREY=100.0
+MORE2=40
+HITPOINTS={31 90}
+COLOR=063
+
+ON=@CLICK
+MESSAGE a <name>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [electricity]
+	MESSAGE [<eval <MORE2>> charges]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04152]
+//heavy crossbow of vanquishing & Fireball 40 charges
+DEFNAME=i_crossbow_heavy_vanq_Daemon_Breath
+VALUE=20000
+ID=i_crossbow_heavy
+NAME=magical heavy crossbow
+RESOURCES=i_crossbow_heavy,5 i_enchant_weapon,i_wand_1,40 i_scroll_fireball
+
+CATEGORY=Provisions - Weapons - Magic
+SUBSECTION=Magic Special Weapons
+DESCRIPTION=heavy crossbow of vanquishing & Daemon's Breath
+
+ON=@Create
+MOREX=s_fireball
+MOREY=100.0
+MORE2=40
+ATTR=attr_magic
+HITPOINTS=31 100
+
+ON=@CLICK
+MESSAGE a <name>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [daemon's breath]
+	MESSAGE [<eval <MORE2>> charges]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04153]
+//bow of vanquishing & Energy Bolt 40 Charges
+DEFNAME=i_bow_vanq_Electricity
+VALUE=20000
+ID=i_bow
+NAME=magical bow
+RESOURCES=i_bow,5 i_enchant_weapon,i_wand_1,40 i_scroll_energy_bolt
+
+CATEGORY=Provisions - Weapons - Magic
+SUBSECTION=Magic Special Weapons
+DESCRIPTION=bow of vanquishing & Electricity
+
+ON=@Create
+MOREX=s_energy_bolt
+MOREY=100.0
+MORE2=40
+ATTR=attr_magic
+HITPOINTS=31 60
+COLOR=063
+
+ON=@CLICK
+MESSAGE a <name>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [electricity]
+	MESSAGE [<eval <MORE2>> charges]
+ENDIF 
+RETURN 1
+
+[ITEMDEF 04154]
+//GM bow of Smite and Energy Bolt
+DEFNAME=i_BOW_Smite_Electricity
+ID=i_bow
+NAME=magical superior bow
+RESOURCES=i_bow,50 i_enchant_weapon,i_wand_1,100 i_scroll_energy_bolt
+
+CATEGORY=Provisions - Weapons - Magic
+SUBSECTION=Magic Special Weapons
+DESCRIPTION=GM bow of Smite and Electricity
+
+ON=@Create
+ATTR=attr_magic
+MOREX=s_energy_bolt
+MOREY=500.0
+MORE2=100
+HITPOINTS={20 30}
+COLOR=063
+
+ON=@CLICK
+MESSAGE a <name>
+IF (<ATTR>&(attr_identified))  
+	MESSAGE [electricity]
+	MESSAGE [<eval <MORE2>> charges]
+ENDIF 
+RETURN 1
+
+[EOF]

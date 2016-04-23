@@ -1,0 +1,74 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Genel Itemler	--
+// -- Son Düzenleme Tarihi : 18.08.2004		--
+// -----------------------------------------------
+
+[ITEMDEF I_FIRE_STORM]
+// Fire Storm
+NAME=fire storm
+ID=i_fx_explode
+TYPE=T_SPELL
+
+CATEGORY=TFL Additions
+SUBSECTION=Animations
+DESCRIPTION=Fire Storm Piece
+
+ON=@Create
+	ATTR=attr_magic|attr_move_never
+	MORE=0
+	MOREP=42,55,99
+	TIMER=1
+
+ON=@DCLICK
+  MORE=<MORE>+1
+  IF (<MORE> > 15)
+	   REMOVE
+		RETURN 1
+  ENDIF
+  MOREP=<LINK.P>
+  VAR.NEG=RAND(2)
+  VAR.TX=RAND(6)
+  IF (<VAR.NEG> == 1)
+	   MOREX= <MOREX> - <VAR.TX>
+  ELSE
+	   MOREX= <MOREX> + <VAR.TX>
+  ENDIF
+  VAR.NEG=RAND(2)
+  VAR.TY=RAND(6)
+  IF (<VAR.NEG> == 1)
+	   MOREY= <MOREY> - <VAR.TY>
+  ELSE
+	   MOREY= <MOREY> + <VAR.TY>
+  ENDIF
+  ATTR=attr_move_never|attr_invis|attr_magic  //set invs
+  P=<MOREP>
+  ATTR=attr_magic|attr_move_never  //unhide object, shos it at new location
+  MOREP=42,55,99
+  TIMER=1
+  RETURN 1
+
+[ITEMDEF I_BARDICHE_SA]
+//Bardiche (this may not work!)
+//Using Sword type below
+NAME=supremely accurate bardiche
+ID=i_bardiche
+TYPE=T_WEAPON_SWORD
+RESOURCES=i_bardiche,i_enchant_weapon,i_scroll_bless	// ,5 i_enchant_weapon
+
+ON=@Create
+	HITPOINTS={31 100}
+	COLOR=color_magic_weap
+	ATTR=attr_magic
+	//MOREY=100.0
+
+ON=@EQUIP
+	SRC.SWORDSMANSHIP=(<SRC.SWORDSMANSHIP> + 25.0)
+	SRC.TACTICS=(<SRC.TACTICS> + 25.0)
+	SRC.DEX=(<SRC.DEX> + 1)
+
+ON=@UNEQUIP
+	SRC.SWORDSMANSHIP=(<SRC.SWORDSMANSHIP> - 25.0)
+	SRC.TACTICS=(<SRC.TACTICS> - 25.0)
+	SRC.DEX=(<SRC.DEX> - 1)
+
+[EOF]

@@ -1,0 +1,719 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Wandlar		--
+// -- Son Düzenleme Tarihi : 18.08.2004		--
+// -----------------------------------------------
+
+[DEFNAME RANDOM_MAGIC_WANDS]
+random_magicwand={i_wand_circle1 1 i_wand_circle2 1 i_wand_circle3 1 i_wand_circle4 1 i_wand_circle5 1 i_wand_circle6 1 i_wand_circle7 1 i_wand_circle8 1}
+random_magicstaff={i_staff_circle1 1 i_staff_circle2 1 i_staff_circle3 1 i_staff_circle4 1 i_staff_circle5 1 i_staff_circle6 1 i_staff_circle7 1 i_staff_circle8 1}
+
+[ITEMDEF i_wand_circle1]
+ID=i_wand_3
+TYPE=T_WAND
+
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Wands
+DESCRIPTION=1st Circle Random Wand
+
+ON=@Create
+ATTR=attr_magic
+MOREX={1 8}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+
+ON=@SPELLEFFECT
+REMOVE
+RETURN 0
+
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_wand_circle2]
+ID=i_wand_3
+TYPE=T_WAND
+
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Wands
+DESCRIPTION=2nd Circle Random Wand
+
+ON=@Create
+ATTR=attr_magic
+MOREX={9 16}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+
+ON=@SPELLEFFECT
+REMOVE
+RETURN 0
+
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_wand_circle3]
+ID=i_wand_3
+TYPE=T_WAND
+
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Wands
+DESCRIPTION=3rd Circle Random Wand
+
+ON=@Create
+ATTR=attr_magic
+MOREX={17 24}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+
+ON=@SPELLEFFECT
+REMOVE
+RETURN 0
+
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_wand_circle4]
+ID=i_wand_3
+TYPE=T_WAND
+
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Wands
+DESCRIPTION=4th Circle Random Wand
+
+ON=@Create
+ATTR=attr_magic
+MOREX={25 32}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+
+ON=@SPELLEFFECT
+REMOVE
+RETURN 0
+
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_wand_circle5]
+ID=i_wand_3
+TYPE=T_WAND
+
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Wands
+DESCRIPTION=5th Circle Random Wand
+
+ON=@Create
+ATTR=attr_magic
+MOREX={33 40}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+
+ON=@SPELLEFFECT
+REMOVE
+RETURN 0
+
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_wand_circle6]
+ID=i_wand_3
+TYPE=T_WAND
+
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Wands
+DESCRIPTION=6th Circle Random Wand
+
+ON=@Create
+ATTR=attr_magic
+MOREX={41 48}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+
+ON=@SPELLEFFECT
+REMOVE
+RETURN 0
+
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_wand_circle7]
+ID=i_wand_3
+TYPE=T_WAND
+
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Wands
+DESCRIPTION=7th Circle Random Wand
+
+ON=@Create
+ATTR=attr_magic
+MOREX={49 56}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+
+ON=@SPELLEFFECT
+REMOVE
+RETURN 0
+
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+On=@DClick
+if (<morex> == 56)
+	remove
+endif
+
+[ITEMDEF i_wand_circle8]
+ID=i_wand_3
+TYPE=T_WAND
+
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Wands
+DESCRIPTION=8th Circle Random Wand
+
+ON=@Create
+ATTR=attr_magic
+MOREX={57 64}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+
+ON=@SPELLEFFECT
+REMOVE
+RETURN 0
+
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_staff_circle1]
+TYPE=T_WAND
+DAM=8,33
+SKILL=Macefighting
+REQSTR=35
+TWOHANDS=Y
+WEIGHT=6
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Staves
+DESCRIPTION=1st Circle Random Staff
+
+ON=@CREATE
+ID={0df0 1 0e89 1 013f8 1}
+HITPOINTS={31 70}
+ATTR=attr_magic
+MOREX={1 8}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+COLOR={colors_all 20 04aa 1 049b 1 049d 1 049e 1 049f 1 04a1 1 04a7 1 04a9 1 04ab 1 04ac 1}
+
+ON=@SPELLEFFECT
+SRC.SYSMESSAGE Wandlari sarj etmek Lord British tarafindan yasaklanmistir.
+SRC.ACTION -1
+RETURN 1
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_staff_circle2]
+TYPE=T_WAND
+DAM=8,33
+SKILL=Macefighting
+REQSTR=35
+TWOHANDS=Y
+WEIGHT=6
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Staves
+DESCRIPTION=2nd Circle Random Staff
+
+ON=@CREATE
+ID={0df0 1 0e89 1 013f8 1}
+HITPOINTS={31 70}
+ATTR=attr_magic
+MOREX={9 16}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+COLOR={colors_all 20 04aa 1 049b 1 049d 1 049e 1 049f 1 04a1 1 04a7 1 04a9 1 04ab 1 04ac 1}
+
+ON=@SPELLEFFECT
+SRC.SYSMESSAGE Wandlari sarj etmek Lord British tarafindan yasaklanmistir.
+SRC.ACTION -1
+RETURN 1
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_staff_circle3]
+TYPE=T_WAND
+DAM=8,33
+SKILL=Macefighting
+REQSTR=35
+TWOHANDS=Y
+WEIGHT=6
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Staves
+DESCRIPTION=3rd Circle Random Staff
+
+ON=@CREATE
+ID={0df0 1 0e89 1 013f8 1}
+HITPOINTS={31 70}
+ATTR=attr_magic
+MOREX={17 24}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+COLOR={colors_all 20 04aa 1 049b 1 049d 1 049e 1 049f 1 04a1 1 04a7 1 04a9 1 04ab 1 04ac 1}
+
+ON=@SPELLEFFECT
+SRC.SYSMESSAGE Wandlari sarj etmek Lord British tarafindan yasaklanmistir.
+SRC.ACTION -1
+RETURN 1
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_staff_circle4]
+TYPE=T_WAND
+DAM=8,33
+SKILL=Macefighting
+REQSTR=35
+TWOHANDS=Y
+WEIGHT=6
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Staves
+DESCRIPTION=4th Circle Random Staff
+
+ON=@CREATE
+ID={0df0 1 0e89 1 013f8 1}
+HITPOINTS={31 70}
+ATTR=attr_magic
+MOREX={25 32}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+COLOR={colors_all 20 04aa 1 049b 1 049d 1 049e 1 049f 1 04a1 1 04a7 1 04a9 1 04ab 1 04ac 1}
+
+ON=@SPELLEFFECT
+SRC.SYSMESSAGE Wandlari sarj etmek Lord British tarafindan yasaklanmistir.
+SRC.ACTION -1
+RETURN 1
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_staff_circle5]
+TYPE=T_WAND
+DAM=8,33
+SKILL=Macefighting
+REQSTR=35
+TWOHANDS=Y
+WEIGHT=6
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Staves
+DESCRIPTION=5th Circle Random Staff
+
+ON=@CREATE
+ID={0df0 1 0e89 1 013f8 1}
+HITPOINTS={31 70}
+ATTR=attr_magic
+MOREX={33 40}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+COLOR={colors_all 20 04aa 1 049b 1 049d 1 049e 1 049f 1 04a1 1 04a7 1 04a9 1 04ab 1 04ac 1}
+
+ON=@SPELLEFFECT
+SRC.SYSMESSAGE Wandlari sarj etmek Lord British tarafindan yasaklanmistir.
+SRC.ACTION -1
+RETURN 1
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_staff_circle6]
+TYPE=T_WAND
+DAM=8,33
+SKILL=Macefighting
+REQSTR=35
+TWOHANDS=Y
+WEIGHT=6
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Staves
+DESCRIPTION=6th Circle Random Staff
+
+ON=@CREATE
+ID={0df0 1 0e89 1 013f8 1}
+HITPOINTS={31 70}
+ATTR=attr_magic
+MOREX={41 48}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+COLOR={colors_all 20 04aa 1 049b 1 049d 1 049e 1 049f 1 04a1 1 04a7 1 04a9 1 04ab 1 04ac 1}
+
+ON=@SPELLEFFECT
+SRC.SYSMESSAGE Wandlari sarj etmek Lord British tarafindan yasaklanmistir.
+SRC.ACTION -1
+RETURN 1
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_staff_circle7]
+TYPE=T_WAND
+DAM=8,33
+SKILL=Macefighting
+REQSTR=35
+TWOHANDS=Y
+WEIGHT=6
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Staves
+DESCRIPTION=7th Circle Random Staff
+
+ON=@CREATE
+ID={0df0 1 0e89 1 013f8 1}
+HITPOINTS={31 70}
+ATTR=attr_magic
+MOREX={49 56}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+COLOR={colors_all 15 04aa 1 049b 1 049d 1 049e 1 049f 1 04a1 1 04a7 1 04a9 1 04ab 1 04ac 1}
+
+ON=@SPELLEFFECT
+SRC.SYSMESSAGE Wandlari sarj etmek Lord British tarafindan yasaklanmistir.
+SRC.ACTION -1
+RETURN 1
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+10))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[ITEMDEF i_staff_circle8]
+TYPE=T_WAND
+DAM=8,33
+SKILL=Macefighting
+REQSTR=35
+TWOHANDS=Y
+WEIGHT=6
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Staves
+DESCRIPTION=8th Circle Random Staff
+
+ON=@CREATE
+ID={0df0 1 0e89 1 013f8 1}
+HITPOINTS={31 70}
+ATTR=attr_magic
+MOREX={57 64}
+MOREY=50.0
+MORE2=RAND(5)+5	// charges
+COLOR={colors_all 20 04aa 1 049b 1 049d 1 049e 1 049f 1 04a1 1 04a7 1 04a9 1 04ab 1 04ac 1}
+
+ON=@SPELLEFFECT
+SRC.SYSMESSAGE Wandlari sarj etmek Lord British tarafindan yasaklanmistir.
+SRC.ACTION -1
+RETURN 1
+IF (<ARGN> == <MOREX>)
+	IF (<SRC.MANA><(<ARGN>+50))
+		SRC.SYSMESSAGE You don't have enough mana to recharge this.
+		RETURN 1
+	ENDIF
+	SRC.MESSAGE You recharge the wand.
+	SRC.SFX=01eb
+	SRC.ANIM=17
+	MORE2=<MORE2>+1
+	SRC.TAG.MANACOST=<eval (<ARGN>+10)>
+	SRC.MANA=<SRC.MANA>+(-<SRC.TAG.MANACOST>)
+	SRC.TAG.MANACOST=
+	IF (<MORE2>>10)
+		SRC.SYSMESSAGE The wand is overcharged!
+		SRC.EFFECT=1,036b0,6,15,1 
+		SRC.SOUND=011d
+		SRC.DAMAGE={20 25}
+		REMOVE
+		RETURN 1
+	ENDIF
+	RETURN 1
+ENDIF
+
+[EOF]

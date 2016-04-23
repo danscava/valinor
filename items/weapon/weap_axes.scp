@@ -1,0 +1,1502 @@
+[itemdef i_silver_daxe]
+name silver double axe
+id i_axe_double
+type 13
+type t_weapon_axe
+dam 5,35
+skill Swordsmanship
+reqstr 45
+twohands Y
+weight 8
+resources 16 i_ingot_silver
+skillmake BLACKSMITHING 80.0
+
+On=@Create
+color 03e9
+hitpoints 25
+
+On=@Damage
+if (<src.npc> == brain_undead)
+	src.damage {18 50}
+	src.effect 3,i_fx_sparkle,6,15,1
+	src.spelleffect s_poison 50.0
+endif
+
+[itemdef 0f49]
+defname i_axe
+resources 14 i_ingot_iron
+skillmake blacksmithing 59.7
+flip 1
+dupelist 0f4a
+type t_weapon_axe
+twohands Y
+reqstr 35
+dam 6,33
+weight 8.2
+skill Swordsmanship
+
+On=@Create
+hitpoints 25
+
+category Provisions - Weapons
+subsection Axes
+description Axe
+
+[itemdef 0f4a] // axe
+dupeitem 0f49
+
+[itemdef 0f47]
+defname i_axe_battle
+resources 14 i_ingot_iron
+type t_weapon_axe
+flip 1
+dam 6,38
+skill Swordsmanship
+twohands Y
+weight 10
+category Provisions - Weapons
+subsection Axes
+description Battle Axe
+skillmake blacksmithing 56.1
+dupelist 0f48
+reqstr 40
+
+On=@Create
+hitpoints 25
+
+[itemdef 0f48] // battle axe
+dupeitem 0f47
+
+[itemdef 0f4b]
+defname i_axe_double
+resources 12 i_ingot_iron
+type t_weapon_axe
+flip 1
+dam 5,35
+skill Swordsmanship
+reqstr 45
+twohands Y
+weight 8.2
+category Provisions - Weapons
+subsection Axes
+description Double Axe
+skillmake blacksmithing 55.0
+dupelist 0f4c
+//RESOURCES2=16 i_ingot_iron
+
+On=@Create
+hitpoints 25
+
+[itemdef 0f4c] // double axe
+dupeitem 0f4b
+
+[itemdef 0f45]
+defname i_axe_exec
+resources 16 i_ingot_iron
+type t_weapon_axe
+flip 1
+dam 6,33
+skill Swordsmanship
+reqstr 35
+twohands Y
+weight 8.2
+category Provisions - Weapons
+subsection Axes
+description Executioner's Axe
+skillmake blacksmithing 59.7
+dupelist 0f46
+
+On=@Create
+hitpoints 25
+
+[itemdef 0f46] // executioner's axe
+dupeitem 0f45
+
+[itemdef 0f43]
+defname i_hatchet
+resources 4 i_ingot_iron
+type t_weapon_axe
+flip 1
+dam 2,17
+skill Swordsmanship
+twohands N
+weight 7.5
+category Provisions - Weapons
+subsection Axes
+description Hatchet
+skillmake TINKERING 33.9,t_tinker_tools
+dupelist 0f44
+
+On=@Create
+hitpoints 25
+
+[itemdef 0f44] // hatchet
+dupeitem 0f43
+
+[itemdef 013fa]
+defname i_axe_battle_large
+resources 14 i_ingot_iron
+//RESOURCES2=20 i_ingot_iron
+skillmake blacksmithing 53.8
+weight 10
+type T_WEAPON_AXE
+flip 1
+dam 6,38
+skill Swordsmanship
+reqstr 45
+twohands Y
+category Provisions - Weapons
+subsection Axes
+description Large Battle Axe
+dupelist 013fb
+
+On=@Create
+hitpoints 25
+
+[itemdef 013fb] // large battle axe
+dupeitem 013fa
+
+[itemdef 0e85]
+defname i_pickaxe
+type T_WEAPON_MACE_PICK
+flip 1
+dam 1,15
+twohands N
+weight 8.7
+category Provisions - Weapons
+subsection Axes
+description PickAxe
+
+skillmake TINKERING 42.1,t_tinker_tools
+resources 4 i_ingot_iron
+
+dupelist 0e86
+
+On=@Create
+hitpoints 25
+
+On=@TargOn_Item
+return 1 
+
+On=@TargOn_Char 
+return 1
+
+On=@TargOn_Ground 
+if <src.findlayer.layer_horse.uid> 
+src.sysmessage At uzerinde kazi yapamazsiniz.
+return 1 
+endif
+
+[itemdef 0e86] // pickaxe
+dupeitem 0e85
+
+[itemdef 01442]
+defname i_axe_two_hand
+resources 16 i_ingot_iron
+weight 10
+type T_WEAPON_AXE
+flip 1
+dam 5,39
+skill Swordsmanship
+reqstr 40
+twohands Y
+category Provisions - Weapons
+subsection Axes
+description Two Handed Axe
+dupelist 01443
+skillmake blacksmithing 58.5
+//RESOURCES2=5 i_ingot_iron,1 i_board
+
+On=@Create
+hitpoints 25
+
+[itemdef 01443] // two handed axe
+dupeitem 01442
+
+[itemdef 013af]
+defname i_axe_war
+resources 16 i_ingot_iron
+skillmake blacksmithing 64.4
+weight 7.5
+type T_WEAPON_MACE_SHARP
+flip 1
+dam 9,27
+reqstr 35
+twohands N
+category Provisions - Weapons
+subsection Axes
+description War Axe
+dupelist 013b0
+
+On=@Create
+hitpoints 25
+
+On=@Damage
+src.dropstam
+
+[itemdef 013B0] // war axe
+dupeitem 013af
+
+[itemdef 04180]
+defname i_AXE_RUIN
+value 1500
+id i_axe
+name magical axe
+resources i_axe,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic axes
+description axe of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 04181]
+defname i_AXE_MIGHT
+value 3700
+id i_axe
+name magical axe
+resources i_axe,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic axes
+description axe of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04182]
+defname i_AXE_FORCE
+value 5000
+id i_axe
+name magical axe
+resources i_axe,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic axes
+description axe of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 04183]
+defname i_AXE_POWER
+value 7500
+id i_axe
+name magical axe
+resources i_axe,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic axes
+description axe of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04184]
+defname i_AXE_vanq
+value 10000
+id i_axe
+name magical axe
+resources i_axe,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic axes
+description axe of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 0418a]
+defname i_axe_battle_RUIN
+value 1500
+id i_axe_battle
+name magical battle axe
+resources i_axe_battle,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic battle axes
+description battle axe of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 0418b]
+defname i_axe_battle_MIGHT
+value 3700
+id i_axe_battle
+name magical battle axe
+resources i_axe_battle,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic battle axes
+description battle axe of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 0418c]
+defname i_axe_battle_FORCE
+value 5000
+id i_axe_battle
+name magical battle axe
+resources i_axe_battle,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic battle axes
+description battle axe of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 0418d]
+defname i_axe_battle_POWER
+value 7500
+id i_axe_battle
+speed 20
+name magical battle axe
+resources i_axe_battle,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic battle axes
+description battle axe of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 0418e]
+defname i_axe_battle_vanq
+value 10000
+id i_axe_battle
+speed 20
+name magical battle axe
+resources i_axe_battle,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic battle axes
+description battle axe of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 04190]
+defname i_axe_double_RUIN
+value 1500
+id i_axe_double
+name magical double axe
+resources i_axe_double,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic double axes
+description double axe of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 04191]
+defname i_axe_double_MIGHT
+value 3700
+id i_axe_double
+name magical double axe
+resources i_axe_double,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic double axes
+description double axe of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04192]
+defname i_axe_double_FORCE
+value 5000
+id i_axe_double
+name magical double axe
+resources i_axe_double,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic double axes
+description double axe of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 04193]
+defname i_axe_double_POWER
+value 7500
+id i_axe_double
+name magical double axe
+resources i_axe_double,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic double axes
+description double axe of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04194]
+defname i_axe_double_vanq
+value 10000
+id i_axe_double
+name magical double axe
+resources i_axe_double,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic double axes
+description double axe of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 04185]
+defname i_axe_exec_RUIN
+value 1500
+id i_axe_exec
+name magical executioner's axe
+resources i_axe_exec,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic executioner's axes
+description executioner's axe of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 04186]
+defname i_axe_exec_MIGHT
+value 3700
+id i_axe_exec
+name magical executioner's axe
+resources i_axe_exec,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic executioner's axes
+description executioner's axe of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04187]
+defname i_axe_exec_FORCE
+value 5000
+id i_axe_exec
+name magical executioner's axe
+resources i_axe_exec,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic executioner's axes
+description executioner's axe of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 04188]
+defname i_axe_exec_POWER
+value 7500
+id i_axe_exec
+name magical executioner's axe
+resources i_axe_exec,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic executioner's axes
+description executioner's axe of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04189]
+defname i_axe_exec_vanq
+value 10000
+id i_axe_exec
+name magical executioner's axe
+resources i_axe_exec,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic executioner's axes
+description executioner's axe of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 041a0]
+defname i_axe_battle_large_RUIN
+value 1500
+id i_axe_battle_large
+name magical large battle axe
+resources i_axe_battle_large,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic large battle axes
+description large battle axe of ruin
+
+On=@Create
+attr attr_magic
+morey 20.0
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 041a1]
+defname i_axe_battle_large_MIGHT
+value 3700
+id i_axe_battle_large
+name magical large battle axe
+resources i_axe_battle_large,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic large battle axes
+description large battle axe of might
+
+On=@Create
+attr attr_magic
+morey 40.0
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 041a2]
+defname i_axe_battle_large_FORCE
+value 5000
+id i_axe_battle_large
+name magical large battle axe
+resources i_axe_battle_large,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic large battle axes
+description large battle axe of force
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 60.0
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 041a3]
+defname i_axe_battle_large_POWER
+value 7500
+id i_axe_battle_large
+name magical large battle axe
+resources i_axe_battle_large,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic large battle axes
+description large battle axe of power
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 80.0
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 041a4]
+defname i_axe_battle_large_vanq
+value 10000
+id i_axe_battle_large
+name magical large battle axe
+resources i_axe_battle_large,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic large battle axes
+description large battle axe of vanquishing
+
+On=@Create
+attr attr_magic
+morey 100.0
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 04195]
+defname i_axe_two_hand_RUIN
+value 1500
+id i_axe_two_hand
+name magical two handed axe
+resources i_axe_two_hand,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic two handed axes
+description two handed axe of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 04196]
+defname i_axe_two_hand_MIGHT
+value 3700
+id i_axe_two_hand
+name magical two handed axe
+resources i_axe_two_hand,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic two handed axes
+description two handed axe of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 04197]
+defname i_axe_two_hand_FORCE
+value 5000
+id i_axe_two_hand
+name magical two handed axe
+resources i_axe_two_hand,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic two handed axes
+description two handed axe of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 04198]
+defname i_axe_two_hand_POWER
+value 7500
+id i_axe_two_hand
+name magical two handed axe
+resources i_axe_two_hand,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic two handed axes
+description two handed axe of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 04199]
+defname i_axe_two_hand_vanq
+value 10000
+id i_axe_two_hand
+name magical two handed axe
+resources i_axe_two_hand,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic two handed axes
+description two handed axe of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[itemdef 0419a]
+defname i_axe_war_RUIN
+value 1500
+id i_axe_war
+name magical war axe
+resources i_axe_war,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war axes
+description war axe of ruin
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.macefighting> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 02bc
+
+[itemdef 0419b]
+defname i_axe_war_MIGHT
+value 3700
+id i_axe_war
+name magical war axe
+resources i_axe_war,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war axes
+description war axe of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.macefighting> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0373
+
+[itemdef 0419c]
+defname i_axe_war_FORCE
+value 5000
+id i_axe_war
+name magical war axe
+resources i_axe_war,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war axes
+description war axe of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.macefighting> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 070d
+
+[itemdef 0419d]
+defname i_axe_war_POWER
+value 7500
+id i_axe_war
+name magical war axe
+resources i_axe_war,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war axes
+description war axe of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.macefighting> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 075d
+
+[itemdef 0419e]
+defname i_axe_war_vanq
+value 10000
+id i_axe_war
+name magical war axe
+resources i_axe_war,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic war axes
+description war axe of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.macefighting> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+color 0454
+
+[EOF]

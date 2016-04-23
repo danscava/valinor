@@ -1,0 +1,21 @@
+[itemdef i_accstone]
+id=i_grave_stone
+weight 200
+Name 
+type t_script
+
+
+On=@Create
+color=0455
+attr 010
+
+On=@click
+message @1153 Acc Active Stone
+src.sysmessage @1153,,1 Silme yoksa silerim seni / AcriD
+return 1
+
+
+On=@dclick
+src.serv.account update
+src.sysmessage @1153 Accler aktive edildi..
+return 1

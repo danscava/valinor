@@ -1,0 +1,730 @@
+[CHARDEF c_shire] 
+NAME=Shire
+SOUND=snd_ANIMALS_HORSE1
+ID=c_horse_brown_lt
+CAN=MT_WALK|MT_RUN
+FOODTYPE=55 t_crops, 55 t_fruit, 55 t_grain, 64 t_grass
+ICON=i_pet_horse_brown_lt
+DESCRIPTION=Shire
+SUBSECTION=Horses 
+CATEGORY=Animals 
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Shire
+return 1
+
+
+
+ON=@Create
+DORAND 12
+	COLOR=07d4 // ye$il
+	COLOR=0846 // kirmizi
+	COLOR=084a // mavi
+	COLOR=06af // sari
+	COLOR=04dc // mor
+	COLOR=0840 // kahve
+	COLOR=0455 // siyah
+	COLOR=0901 // gri
+	COLOR=04c3 // pembe
+	COLOR=05e3 // cikolata
+	COLOR=051b // sky
+	COLOR=08ad // skygray
+ENDDO
+
+STR={80 100} 
+DEX={100 120} 
+INT={50 60} 
+
+PARRYING={45.0 55.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=85.1
+ANIMALLORE=85.1
+
+KARMA=1000
+FAME=1000
+
+[CHARDEF c_shire111] 
+NAME=Shire
+SOUND=snd_ANIMALS_HORSE1
+ID=c_horse_brown_lt
+CAN=MT_WALK|MT_RUN
+FOODTYPE=55 t_crops, 55 t_fruit, 55 t_grain, 64 t_grass
+ICON=i_pet_horse_brown_lt
+DESCRIPTION=Tiburon
+SUBSECTION=Horses 
+CATEGORY=Animals 
+
+ON=@Create
+DORAND 12
+COLOR=08a1 //ye$il
+COLOR=0809 //ta$ beyaz 
+COLOR=0810 //siyah beyaz
+COLOR=0831 //mor
+COLOR=0835 //gri
+COLOR=0846 //kýrmýzý
+COLOR=0849 //mavi
+COLOR=0794 //parlak
+COLOR=0796 //parlak mavi
+COLOR=0798 //parlak sari
+COLOR=0455 //ncr
+COLOR=0799 //parlak kýrmýzý
+ENDDO
+
+STR={80 100} 
+DEX={100 120} 
+INT={50 60} 
+
+PARRYING={45.0 55.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=85.1
+ANIMALLORE=85.1
+
+KARMA=1000
+FAME=1000
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Shire
+return 1
+
+[CHARDEF c_m_unicorn] 
+DEFNAME=c_m_unicorn 
+NAME=Unicorn 
+SOUND=snd_ANIMALS_HORSE1
+ID=c_horse_brown_dk
+CAN=MT_WALK|MT_RUN
+FOODTYPE=55 t_crops, 55 t_fruit, 55 t_grain, 64 t_grass
+ICON=i_pet_horse_brown_dk
+DESCRIPTION=Unicorn 
+SUBSECTION=Horses 
+CATEGORY=Animals 
+
+ON=@Create 
+COLOR=0481
+STR={240 260} 
+DEX={100 120} 
+INT={112 113} 
+
+PARRYING={45.0 55.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=99.9
+ANIMALLORE=99.9
+
+KARMA=1000
+FAME=1000
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Unicorn
+return 1
+
+[CHARDEF c_m_silver] 
+DEFNAME=c_m_silver
+NAME=Silver Steed
+SOUND=snd_ANIMALS_HORSE1
+ID=c_horse_brown_lt
+CAN=MT_WALK|MT_RUN
+FOODTYPE=55 t_crops, 55 t_fruit, 55 t_grain, 64 t_grass
+ICON=i_pet_horse_brown_dk
+DESCRIPTION=Unicorn 
+SUBSECTION=Horses 
+CATEGORY=Animals 
+
+ON=@Create 
+COLOR=0800
+STR={280 320} 
+DEX={100 120} 
+INT={112 113} 
+
+PARRYING={45.0 55.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=99.9
+ANIMALLORE=99.9
+
+KARMA=1000
+FAME=1000
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Silver Steed
+return 1
+
+[CHARDEF c_m_kirin] 
+DEFNAME=c_m_kirin
+NAME=Kirin
+ID=c_horse_brown_lt
+SOUND=snd_ANIMALS_HORSE1
+CAN=MT_WALK|MT_RUN
+FOODTYPE=35 t_crops, 35 t_fruit, 35 t_grain, 35 t_grass
+ICON=i_pet_horse_brown_dk
+DESCRIPTION=Kirin
+SUBSECTION=Horses 
+CATEGORY=Animals 
+
+ON=@Create 
+COLOR=02b
+STR={250 320} 
+DEX={100 120} 
+INT={112 113} 
+
+PARRYING={45.0 55.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=90.1
+ANIMALLORE=90.1
+
+KARMA=1000
+FAME=1000
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Kii Rin
+return 1
+
+[CHARDEF 01114]
+DEFNAME=C_A_MUST_BLACK
+NAME=Friesian
+SOUND=snd_ANIMALS_HORSE1
+ID=c_horse_brown_dk
+ICON=i_pet_horse_brown_dk
+DAM=3,4
+ARMOR=9
+RESOURCES=15 i_ribs_raw,10 i_hide
+CAN=MT_WALK|MT_RUN
+FOODTYPE=55 t_crops, 55 t_fruit, 55 t_grain, 64 t_grass
+DESIRES=e_horses,c_man,c_woman
+TEVENTS=e_horses
+//////SHELTER=r_stables,e_Human_Greet
+AVERSIONS=e_carnivores3
+DESCRIPTION=Horse (Black Mustang)
+SUBSECTION=Land (Wild)
+CATEGORY=Animals
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Fresian
+return 1
+
+ON=@Create
+COLOR=0455
+STR={150 280}
+DEX={400 700}
+INT={6 10}
+KARMA=0
+
+PARRYING={35.0 45.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=80.1
+ANIMALLORE=80.1
+
+
+NPC=brain_animal
+
+ON=@EQUIP
+RETURN 1
+
+[CHARDEF C_A_must]
+DEFNAME=C_A_must
+NAME=Mustang
+SOUND=snd_ANIMALS_HORSE1
+ID=c_horse_gray
+ICON=i_pet_horse_brown_dk
+
+DAM=3,4
+ARMOR=9
+RESOURCES=15 i_ribs_raw, 10 i_hide
+
+//ALIGNMENT=NEUTRAL
+CAN=MT_WALK|MT_RUN
+FOODTYPE=55 t_crops, 55 t_fruit, 55 t_grain, 64 t_grass
+////SHELTER=r_stables,e_Human_Greet
+DESIRES=e_horses,c_man,c_woman
+TEVENTS=e_horses
+AVERSIONS=e_carnivores3
+DESCRIPTION=Horse (Mustang)
+SUBSECTION=Land (Wild)
+CATEGORY=Animals
+
+ON=@Create
+STR={100 180}
+DEX={90 130}
+INT={6 10}
+DORAND 5
+	COLOR=0158
+	COLOR=033
+	COLOR=0279
+	COLOR=01bb
+	COLOR=03e7
+ENDDO
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Mustang
+return 1
+
+PARRYING={35.0 45.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=80.1
+ANIMALLORE=80.1
+
+NPC=brain_animal
+
+KARMA=0
+
+[CHARDEF C_A_must1]
+DEFNAME=C_A_must1
+NAME=Mustang
+SOUND=snd_ANIMALS_HORSE1
+ID=c_horse_brown_dk
+ICON=i_pet_horse_brown_dk
+
+DAM=3,4
+ARMOR=9
+RESOURCES=15 i_ribs_raw, 10 i_hide
+
+//ALIGNMENT=NEUTRAL
+CAN=MT_WALK|MT_RUN
+FOODTYPE=55 t_crops, 55 t_fruit, 55 t_grain, 64 t_grass
+////SHELTER=r_stables,e_Human_Greet
+DESIRES=e_horses,c_man,c_woman
+TEVENTS=e_horses
+AVERSIONS=e_carnivores3
+DESCRIPTION=Horse (Mustang)
+SUBSECTION=Land (Wild)
+CATEGORY=Animals
+
+ON=@Create
+STR={100 180}
+DEX={90 130}
+INT={6 10}
+DORAND 3
+	COLOR=01b6
+	COLOR=031c
+	COLOR=01bb
+ENDDO
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Mustang
+return 1
+
+PARRYING={35.0 45.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=80.1
+ANIMALLORE=80.1
+
+NPC=brain_animal
+
+KARMA=0
+
+[CHARDEF 0dc]
+DEFNAME=c_llama
+NAME=Llama
+SOUND=snd_ANIMALS_LLAMA3
+ICON=i_pet_LLAMA
+CAN=MT_WALK|MT_RUN
+ANIM=01fff
+DAM=2,6
+ARMOR=8
+RESOURCES=7 i_ribs_raw,2 i_fur_light
+FOODTYPE=5 t_crops, 5 t_fruit, 5 t_grain, 5 i_hay, 64 t_grass
+////SHELTER=r_stables,spk_human_prime
+DESIRES=c_llama,c_llama_pack,spk_human_prime
+DESCRIPTION=Llama
+SUBSECTION=Land (Domestic)
+CATEGORY=Animals
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Llama
+return 1
+
+ON=@Create
+NPC=brain_animal
+
+STR={31 49}
+DEX={336 455}
+INT={16 30}
+
+PARRYING={35.0 45.0}
+MAGICRESISTANCE={15.0 20.0}
+TACTICS={19.0 29.0}
+WRESTLING={19.0 29.0}
+TAMING=55.1
+animallore=55.1
+
+FAME=10
+karma=1500
+//ALIGNMENT=NEUTRAL
+
+[CHARDEF 0d2]
+//OSTARD (OCLOCK) Desert Ostard
+DEFNAME=c_ostard_desert
+NAME=Desert Ostard
+SOUND=snd_ANIMAL_OSTARD_DESERT1
+ICON=i_pet_OSTARD_Desert
+DAM=7,15
+ARMOR=9
+RESOURCES=15 i_ribs_raw
+CAN=MT_WALK|MT_RUN
+FOODTYPE=55 t_crops, 55 t_fruit, 64 t_grass
+////SHELTER=r_stables
+DESIRES=e_OSTARDS
+ANIM=01fff
+DESCRIPTION=Oclock
+SUBSECTION=T2A Animals
+CATEGORY=Animals
+
+ON=@Create
+NPC=brain_animal
+
+STR={94 170}
+DEX={36 55}
+INT={6 10}
+
+PARRYING={25.0 35.0}
+MAGICRESISTANCE={27.0 32.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=60.1
+animallore=60.1
+
+FAME=0
+KARMA=1000
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Desert Ostard
+return 1
+
+[CHARDEF 0da]
+DEFNAME=c_ostard_zostrich
+NAME=Frenzied Ostard
+SOUND=snd_ANIMAL_OSTARD_FRENZIED1
+ICON=i_pet_OSTARD_ZOSTRICH
+CAN=MT_WALK|MT_RUN
+DAM=8,23
+ARMOR=15
+RESOURCES=15 i_ribs_raw
+FOODTYPE=55 t_crops, 55 t_fruit, 64 t_grass
+////SHELTER=r_stables
+DESIRES=e_OSTARDS
+ANIM=01fff
+DESCRIPTION=Zostrich
+SUBSECTION=T2A Animals
+CATEGORY=Animals
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Frenzied Ostard
+return 1
+
+
+ON=@Create
+NPC=brain_animal
+
+STR={94 170}
+DEX={96 115}
+INT={6 10}
+
+PARRYING={75.0 85.0}
+MAGICRESISTANCE={75.0 80.0}
+TACTICS={79.0 94.0}
+WRESTLING={79.0 94.0}
+TAMING=70.1
+animallore=70.1
+FAME=0
+KARMA=1000
+//ALIGNMENT=NEUTRAL
+
+
+
+[CHARDEF 0db]
+DEFNAME=c_ostard_forest
+NAME=Forest Ostard
+SOUND=snd_ANIMAL_OSTARD_DESERT1
+ICON=i_pet_OSTARD_Forest
+CAN=MT_WALK|MT_RUN
+DAM=4,12
+ARMOR=9
+RESOURCES=15 i_ribs_raw
+FOODTYPE=55 t_crops, 55 t_fruit, 64 t_grass
+////SHELTER=r_stables,spk_human_prime
+DESIRES=e_OSTARDS,c_man,c_woman
+AVERSIONS=e_carnivores3
+ANIM=01fff
+DESCRIPTION=Orn
+SUBSECTION=T2A Animals
+CATEGORY=Animals
+
+
+ON=@Create
+NPC=brain_animal
+
+STR={94 170}
+DEX={36 55}
+INT={6 10}
+
+PARRYING={35.0 45.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=65.1
+animallore=65.1
+
+FAME=0
+KARMA=1000
+//ALIGNMENT=NEUTRAL
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Forest Ostard
+return 1
+
+[CHARDEF c_ostard_mid] 
+NAME=Mid Ostard 
+SOUND=snd_ANIMAL_OSTARD_DESERT1 
+FOODTYPE=55 t_crops, 55 t_fruit, 55 t_grain, 64 t_grass
+ICON=02135 
+ID=00d2 
+
+//ATT=10,15
+DEF=10 
+//RESOURCES=
+CAN=MT_WALK|MT_RUN 
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1  Mid Ostard
+return 1
+
+
+
+ON=@CREATE 
+DORAND 3
+	COLOR=0961 
+	COLOR=0901
+	COLOR=0450
+ENDDO
+STR={150 190} 
+DEX={150 300} 
+INT={6 10} 
+
+PARRYING={25.0 35.0} 
+MAGICRESISTANCE={27.0 32.0} 
+TACTICS={29.0 44.0} 
+WRESTLING={29.0 44.0} 
+TAMING=68.1
+ANIMALLORE=68.1
+
+FAME=0 
+KARMA=-1 
+NPC=brain_animal 
+
+CATEGORY=Animals
+SUBSECTION=Ostard 
+DESCRIPTION=Midnight Ostard 
+ANIM=01fff
+
+[CHARDEF 0C8]
+//HORSE (Warm Tan)(light brown)
+DEFNAME=c_horse_tan
+NAME=Horse
+SOUND=snd_ANIMALS_HORSE1
+ICON=i_pet_horse_tan
+ANIM=01fff
+CAN=MT_WALK|MT_RUN
+RESOURCES=15 i_ribs_raw, 10 i_hide
+FOODTYPE=55 t_crops,55 t_fruit,55 t_grain, 64 t_grass
+DAM=3,4
+ARMOR=9
+DESIRES=e_horses,c_man,c_woman
+TEVENTS=e_horses
+////SHELTER=r_stables,e_Human_Greet
+AVERSIONS=e_carnivores3
+DESCRIPTION=Horse (Beige)
+SUBSECTION=Land (Domestic)
+CATEGORY=Animals
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Horse
+return 1
+
+ON=@Create
+NPC=brain_animal
+karma=-60
+STR={44 120}
+DEX={36 55}
+INT={6 10}
+
+PARRYING={35.0 45.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=52.1
+animallore=52.1
+
+
+[CHARDEF 0CC]
+//HORSE (Brown)
+DEFNAME=c_horse_brown_dk
+NAME=Horse
+ANIM=01fff
+SOUND=snd_ANIMALS_HORSE1
+ICON=i_pet_horse_brown_dk
+CAN=MT_WALK|MT_RUN
+DAM=3,4
+ARMOR=9
+RESOURCES=15 i_ribs_raw,10 i_hide
+FOODTYPE=55 t_crops,55 t_fruit,55 t_grain,64 t_grass
+DESIRES=e_horses,c_man,c_woman
+TEVENTS=e_horses
+////SHELTER=r_stables,e_Human_Greet
+AVERSIONS=e_carnivores3
+DESCRIPTION=Horse (Brown)
+SUBSECTION=Land (Domestic)
+CATEGORY=Animals
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Horse
+return 1
+
+ON=@Create
+NPC=brain_animal
+STR={44 120}
+DEX={36 55}
+INT={6 10}
+
+PARRYING={35.0 45.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=52.1
+animallore=52.1
+
+karma=-60
+//ALIGNMENT=NEUTRAL
+
+
+[CHARDEF 0E2]
+//HORSE,Gray,White
+DEFNAME=c_horse_gray
+NAME=Horse
+SOUND=snd_ANIMALS_HORSE1
+ICON=i_pet_horse_gray
+CAN=MT_WALK|MT_RUN
+ANIM=01fff
+DAM=3,4
+ARMOR=9
+DESIRES=c_horse_gray,c_man,c_woman
+FOODTYPE=55 t_crops, 55 t_fruit, 55 t_grain, 64 t_grass
+////SHELTER=r_stables,e_Human_Greet
+AVERSIONS=e_carnivores3
+RESOURCES=15 i_ribs_raw,10 i_hide
+DESCRIPTION=Horse (White)
+SUBSECTION=Land (Domestic)
+CATEGORY=Animals
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Gray Horse
+return 1
+
+ON=@Create
+NPC=brain_animal
+STR={44 120}
+DEX={36 55}
+INT={6 10}
+
+PARRYING={35.0 45.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=52.1
+animallore=52.1
+
+karma=-60
+
+//ALIGNMENT=NEUTRAL
+
+[CHARDEF 0E4]
+//HORSE3 light tan
+DEFNAME=c_horse_brown_lt
+NAME=Horse
+SOUND=snd_ANIMALS_HORSE1
+ICON=i_pet_horse_brown_lt
+ANIM=01fff
+DAM=3,4
+ARMOR=9
+RESOURCES=15 i_ribs_raw,10 i_hide
+CAN=MT_WALK|MT_RUN
+FOODTYPE=55 t_crops, 55 t_fruit, 55 t_grain, 64 t_grass
+////SHELTER=r_stables,e_Human_Greet
+DESIRES=e_horses,c_man,c_woman
+TEVENTS=e_horses
+AVERSIONS=e_carnivores3
+DESCRIPTION=Horse (Tan)
+SUBSECTION=Land (Domestic)
+CATEGORY=Animals
+
+on=@Click
+message @026,,1 [<memoryfindtype(memory_ipet).link.name>]
+
+message @07a1,,1 Horse
+return 1
+
+
+ON=@Create
+NPC=brain_animal
+
+STR={44 120}
+DEX={36 55}
+INT={6 10}
+
+PARRYING={35.0 45.0}
+MAGICRESISTANCE={25.0 30.0}
+TACTICS={29.0 44.0}
+WRESTLING={29.0 44.0}
+TAMING=52.1
+animallore=52.1
+
+karma=-60
+//ALIGNMENT=NEUTRAL
+
+
+[EOF]
+

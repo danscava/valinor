@@ -1,0 +1,99 @@
+[FUNCTION newgold2]
+IF (<ARGS> > 0)
+serv.newitem i_gold
+IF (<ARGS> > 65000)
+new.amount=65000
+new.bounce
+newgold2 <eval <ARGS>-<NEW.AMOUNT>>
+ELSE
+new.amount=<ARGS>
+new.bounce
+ENDIF
+ENDIF
+
+
+[chardef c_tuccar]
+defname c_tuccar
+name #NAMES_HUMANMALE
+id c_man
+can mt_equip|mt_nonmover
+hiredaywage 52
+desires i_gold
+tspeech merchant
+
+on=@click
+message @049,,1 [<serv.name> Tuccar]
+message @07a1,,1 <name>
+return 1
+
+on=@dclick
+src.sysmessage @080a Herhangi bir item satabilmek icin sell yaziniz.
+return 1
+
+On=@Create
+invul 1
+str 9500
+dex 25
+int 25
+color colors_skin
+speechcolor 0481
+food 990
+npc 1
+
+TAMING={999.9 888.8}
+
+ITEMNEWBIE=i_robe
+color=01
+name= @1153 Robe Of Tuccar
+ITEMNEWBIE=i_hair_long
+color=07b5
+ITEMNEWBIE=i_boots_calf
+color=07b5
+name= @1153 Boot Of Tuccar
+ITEMNEWBIE=i_staff_quarter
+color=07b5
+name= @1153 Zopa Of Tuccar
+ITEMNEWBIE=i_leather_gloves
+color=07b5
+name= @1153 Gloves Of Tuccar
+ITEMNEWBIE=i_leather_gorget
+color=07b5
+name= @1153 Gorget Of Tuccar
+ITEMNEWBIE=i_cape
+color=07b5
+name= @1153 Sapka Of Tuccar
+ITEMNEWBIE=i_apron_half
+color=07b5
+name= @1153 Apron Of Tuccar
+
+[speech merchant]
+on=*sell*
+targetf=esyasat
+src.sysmessage @1153 Satmak istediginiz esyayi secin.
+
+
+
+[function esyasat]
+if !(<argo.isitem>
+sysmessage @1153 Bu Bir Esya Degil.
+elseif !(<argo.topobj.uid> == <src.uid>
+sysmessage @1153 Sadece Cantanizda olan esyalarisSatabilirsiniz..
+elseif (<eval <argo.value>*<argo.amount>> > 2000000)
+sysmessage @1153 Sattiginiz Itemin satis bedeli 2m'i gecmemelidir...
+elseif (<argo.type> == t_gold)
+sysmessage @1153 Cok zekisin??
+elseif (<argo.baseid> == i_backpack)
+sysmessage @1153 Cok zekisin??
+elseif (<argo.attr>&attr_newbie)
+sysmessage @1153 Newbie esyalarinizi satamazsiniz...
+elseif !(<argo.value>)
+sysmessage @1153 Bu item satilmadi.
+return 1
+else
+newgold2 <eval <argo.value>*<argo.amount>>
+sysmessage @1153 Satis bedeli : <eval <argo.value>*<argo.amount>>
+targetf=esyasat
+obj=<argo.uid>
+
+obj.remove
+endif

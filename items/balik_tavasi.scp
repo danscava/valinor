@@ -1,0 +1,26 @@
+[itemdef i_tava_balik]
+Name Balik Tavasi
+Defname i_tava_balik
+id 2530
+weight 5
+TYPE t_script
+RESOURCES=250 i_ingot_iron
+SKILLMAKE tinkering 74.9
+VALUE 17825
+
+ON=@CREATE
+COLOR 0ba4
+
+ON=@DCLICK
+if (<src.cooking> < 97.9)
+src.sysmessage @066d,3,1 Balik tavasini sadece usta ascilar kullanabilir.
+return 1
+elseif (<src.findid.i_fish_cut_raw>)
+	SRC.CONSUME=10 i_fish_cut_raw.REMOVE
+SRC.NEWITEM=i_fish_cut_cooked,10
+src.act.bounce
+return 1
+else
+src.sysmessage @066d,3,1 Cantanizda 10 adet balik bulunmuyor.
+return 1
+endif

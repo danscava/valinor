@@ -1,0 +1,307 @@
+[ITEMDEF i_soyadi_kolye_katilimci]
+id=i_necklace_gold
+type=t_jewelry
+name=Aile Uyesi
+
+on=@create
+color=07c5
+attr=04
+
+on=@dclick
+return 1
+
+[ITEMDEF i_soyadi_kolye]
+id=i_necklace_gold
+type=t_jewelry
+name=Aile Reisi
+
+on=@create
+color=07c5
+attr=04
+
+on=@dclick
+src.sysmessage @69,1,1 .AILEDENAT komutunu kullanarak istediginiz kisiyi aileden atabilirsiniz.
+target @049,,1 Kimi aileye dahil etmek istiyorsunuz?
+return 1
+
+on=@targon_char
+src.targ.tag.ismimbu <src.targ.name> 	// Aileden atmak icin.
+src.targ.tag.ailename <src.tag.ailename>
+if <src.targ.npc>
+src.sysmessage @38,1,1 Bu fonksiyon sadece oyuncular icin gecerlidir.
+return 1
+elseif (<src.targ.uid>==<src.uid>
+src.sysmessage @38,1,1 Kendinizi secemezsiniz.
+return 1
+elseif (<src.targ.tag.soyadi>==1)
+src.sysmessage @38,1,1 Bu kisi zaten evli veya bir aileye kayitli.
+return 1
+elseif (<src.targ.npc>)
+src.sysmessage @38,1,1 Sadece playerlari secebilirsiniz.
+return 1
+elseif (<src.targ.account.plevel> > 1)
+src.sysmessage @38,1,1 Staff uyelerini secemezsiniz.
+return 1
+else
+src.sysmessage @69,1,1 <src.targ.name> isimli kisiyi ailenize davet ettiniz. 
+src.newitem i_soysor_equip
+src.act.cont <src.targ.uid>
+Var.soyadi_uid <src.uid>
+src.act.timer 1
+return 1
+ENDIF
+
+
+[itemdef i_soysor_equip]
+name aileme gel
+weight 0
+id i_gold
+type t_eq_script
+layer layer_special
+
+On=@UnEquip
+try src.dialog d_katilcanmi
+return 1
+
+On=@Timer
+remove
+return 1
+
+[dialog d_katilcanmi]
+0,0
+nomove
+resizepic 60 110 5120 300 250
+resizepic 70 120 3000 280 230
+text 100 170 0 0 
+text 100 190 0 1 
+text 100 210 0 2 
+button 120 280 4005 4006 1 0 1
+button 200 280 4017 4018 1 0 2
+
+[dialog d_katilcanmi text]
+<src.tag.ailename> isimli aileye
+davet edildiniz. 50k karsiliginda
+katilmak istiyormusunuz?
+
+[dialog d_katilcanmi button]
+on=1
+if (<src.restest 50000 i_gold>
+src.consume i_gold 50000
+src.name <src.name> <src.tag.ailename>
+src.tag.soyadi 1
+src.newitem i_katilimci_benim
+src.act.equip
+src.act.timer 1
+src.sysmessage @049,,1 Basariyla <src.tag.ailename> isimli aileye katildiniz.
+return 1
+else
+src.sysmessage @38,1,1 Cantanizda 50000gp bulunmuyor.
+return 1
+endif
+
+on=2
+src.sysmessage @38,1,1 <src.tag.ailename> isimli aileye girisinizi reddettiniz.
+return 1
+
+[function katilimsor]
+src.newitem i_katilimci_benim
+src.act.cont <src.targ.uid>
+Var.soyadi_uid <src.uid>
+src.act.equip
+src.act.timer 1
+
+[itemdef i_katilimci_benim]
+name katilicam dedim sana
+weight 0
+id i_gold
+type t_eq_script
+layer layer_special
+
+On=@UnEquip
+try src.katilimci
+return 1
+
+On=@Timer
+remove
+return 1
+
+
+
+[ITEMDEF i_soyadim]
+id=i_deed
+type=t_script
+name=Aile Belgesi
+value=180000
+
+on=@create
+color=0792
+attr=04
+
+On=@Click
+
+on=@dclick
+IF (<topobj.uid> != <src.uid>)
+src.sysmessage @38,1,1 Bu esyayi kullanmak icin cantanizda olmasi gerekiyor.
+return 1
+ENDIF
+if (<src.tag.soyadi> != 1)
+dialog d_soyver
+return 1
+else
+src.sysmessage @38,1,1 Zaten soyadiniz var.
+return 1
+endif
+
+
+[dialog d_soyver]
+0,0
+nomove
+resizepic 60 110 5120 250 200
+resizepic 70 120 3000 230 180
+resizepic 100 180 3000 170 20
+text 100 150 0 0 
+textentry 105 180 160 16 0 1 1
+button 120 230 4005 4006 1 0 1
+button 200 230 4017 4018 1 0 2
+
+[dialog d_soyver text]
+Soyisminiz ne olsun ?
+<var.blankline>
+
+[dialog d_soyver Button]
+on=1
+if (strlen(<argtxt[1]>) > 16)
+src.sysmessage @1100,,1 Soyadinizin uzunlugu 16 harften uzun olamaz.
+return 1
+else
+src.name <src.name> <argtxt[1]>
+src.tag.soyadi=1
+src.tag.ailename <argtxt[1]>
+src.burdanal
+remove
+endif
+
+[function burdanal]
+src.newitem i_soysor_equip_hebele
+src.act.cont <src.targ.uid>
+Var.soyadi_uid <src.uid>
+src.act.equip
+src.act.timer 1
+
+[itemdef i_soysor_equip_hebele]
+name isim ver abee
+weight 0
+id i_gold
+type t_eq_script
+layer layer_special
+
+on=@create
+timer=1
+
+On=@UnEquip
+try src.hebele
+return 1
+
+On=@Timer
+remove
+return 1
+
+[function hebele]
+src.sysmessage @69,1,1 Suandan itibaren <src.tag.ailename> isimli ailenin reisisiniz.
+src.sysmessage @69,1,1 Kolyeniz boynunuzda belirecektir.
+src.newitem i_soyadi_kolye
+src.act.attr 04
+src.act.name <src.tag.ailename> [reis]
+src.act.equip
+src.tag.kolyeuid <src.act.uid>
+serv.b @69,,1 <src.tag.ailename> Ailesi kurulmustur. Kendilerine basarilar diliyoruz.
+
+[function katilimci]
+src.sysmessage @69,1,1 <src.tag.ailename> isimli aileye katildiniz.
+src.sysmessage @69,1,1 Kolyeniz boynunuzda belirecektir.
+src.newitem i_soyadi_kolye_katilimci
+src.act.attr 04
+src.act.name <src.tag.ailename> [uye]
+src.act.equip
+tag.kolyeuid <src.act.uid>
+
+[function soybak]
+src.sysmessage @69,1,1 <tag.ailename> 
+
+[dialog d_eminmisin]
+0,0
+nomove
+noclose
+resizepic 60 110 5120 300 250
+resizepic 70 120 3000 280 230
+text 100 170 0 0 
+text 100 190 0 1 
+text 100 210 0 2 
+button 120 280 4005 4006 1 0 1
+button 200 280 4017 4018 1 0 2
+
+[dialog d_eminmisin text]
+<src.targ.name> isimli kisiyi
+ailenizden atmayi istiyormusunuz?
+Donusu olmayan bir islemdir.
+
+[dialog d_eminmisin button]
+on=1
+tag.ailename
+name <tag.ismimbu>
+try uid.<tag.kolyeuid>.remove
+tag.soyadi
+src.sysmessage @049,,1 <name> isimli kisi ailenizden atilmistir.
+sysmessage @38,1,1 <src.name> tarafindan ailenizden atildiniz.
+return 1
+
+[FUNCTION ailedenat]
+if (<src.findid.i_soyadi_kolye>)
+serv.newitem i_AiledenAt
+new.target @049,,1 Ailenizden atmak istediginiz kisiyi secin.
+new.timer 15
+return 1
+else
+src.sysmessage @38,1,1 Kolyeniz yaninizda olmadigindan bunu yapamazsiniz.
+endif
+
+[ITEMDEF i_AiledenAt]
+Name=AiledenAt (sittir:)
+Id=i_memory
+Type=t_eq_script
+layer layer_special
+weight 0
+
+On=@TargOn_Char
+if (<src.findid.i_soyadi_kolye>)
+	if (strmatch('<src.targ.tag.ailename>','<src.tag.ailename>')
+		src.sysmessage @38,1,1 <src.targ.name> isimli sahsi ailenizden atmak istediginize emin misiniz?
+		src.targ.dialog d_eminmisin
+	else
+		src.sysmessage @38,1,1 Bu kisi sizin ailenizden degil.
+	endif
+else
+	src.sysmessage @38,1,1 Kolyeniz yaninizda olmadigindan bunu yapamazsiniz.
+endif
+return 1
+
+On=@TargOn_Item
+return 1
+
+On=@TargOn_Ground
+return 1
+
+On=@Timer
+remove
+
+[FUNCTION ailedencik]
+src.tag.ailename
+src.name <src.tag.ismimbu>
+try uid.<src.tag.kolyeuid>.remove
+src.tag.soyadi
+src.sysmessage @69,1,1 Ailenizden ayrildiniz.
+
+[PLEVEL 1]
+ailedencik
+
+[EOF]

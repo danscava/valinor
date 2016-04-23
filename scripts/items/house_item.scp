@@ -1,0 +1,108 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Ev Itemleri	--
+// -- Son Düzenleme Tarihi : 18.08.2004		--
+// -----------------------------------------------
+
+[DIALOG d_ship_key]
+150,200
+page 0 
+resizepic 100 10 2620 175 85 // 100 to 85
+button 120 56 2103 2104 1 0 1 
+// button 120 71 2103 2104 1 0 2
+text 135 30 300 0 
+text 135 50 900 1
+// text 135 65 900 2
+
+[DIALOG d_ship_key TEXT]
+Key Options
+recall to ship.
+rename this key.
+
+[DIALOG d_ship_key BUTTON]  
+ONBUTTON=0
+ONBUTTON=1
+  IF <SRC.REGION.FLAGS>&0E
+     SRC.SYSMESSAGE Anti-magic area blocks you.
+     RETURN 1
+  ENDIF
+  IF ( <SRC.MAGERY> < 250 )
+    SRC.SYSMESSAGE Low skill. (25 magery)
+    SRC.SOUND=92
+    RETURN 1
+  ENDIF
+  IF (<SRC.MANA><15)
+    SRC.SOUND=92
+    SRC.SYSMESSAGE You lack enough mana.
+    RETURN 1
+  ENDIF
+  IF (<SRC.RESTEST 1 i_scroll_recall>)
+    SRC.SAY Kal Ort Por
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME 1 i_scroll_recall
+    SRC.NEWITEM i_sr_delay
+    SRC.ACT.MOREP=<SRC.TARG.LINK.P>
+    SRC.ACT.MORE1=4
+    SRC.ACT.EQUIP
+    RETURN 1
+  ELSEIF (<SRC.RESTEST 1 i_reag_black_pearl>) && (<SRC.RESTEST 1 i_reag_mandrake_root>) && (<SRC.RESTEST 1 i_reag_blood_moss>)
+      IF ( <SRC.MAGERY> < 400 )
+      SRC.SYSMESSAGE Low skill. (40 magery)
+      SRC.SYSMESSAGE Thou need a recall scroll.
+      SRC.SOUND=92
+      RETURN 0
+      ENDIF
+    SRC.SAY Kal Ort Por
+    SRC.ANIM=17
+    SRC.MANA=(<SRC.MANA>+-15)
+    SRC.CONSUME=1 i_reag_black_pearl
+    SRC.CONSUME=1 i_reag_blood_moss
+    SRC.CONSUME=1 i_reag_mandrake_root
+    SRC.NEWITEM i_sr_delay
+    SRC.ACT.MOREP=<SRC.TARG.LINK.P>
+    SRC.ACT.MORE1=4
+    SRC.ACT.EQUIP
+    RETURN 1
+  ENDIF
+IF (<SRC.MAGERY> < 400)
+SRC.SYSMESSAGE Thou need a recall scroll.
+SRC.SOUND=92
+ELSE
+SRC.SYSMESSAGE Thou need a recall scroll or reagents.
+SRC.SOUND=92
+ENDIF
+ONBUTTON=2
+SRC.SYSMESSAGE Not ready yet.
+RETURN 1
+
+[ITEMDEF i_sr_delay]
+NAME=ship recall delay
+ID=i_memory
+TYPE=T_EQ_SCRIPT
+WEIGHT=0
+LAYER=layer_special
+
+ON=@Create
+        ATTR=attr_invis|attr_decay
+
+ON=@Equip
+        TIMER=1
+        CONT.EVENTS=e_x_breakspell
+
+ON=@Timer
+	if ( <cont> )
+		if ( <more1> )
+			more1=<more1>-1
+			TIMER=1
+			return 1
+		else
+                        cont.go=<morep>
+                        cont.move 0,1
+                        cont.fix
+		endif
+	endif
+CONT.EVENTS= -e_x_breakspell
+REMOVE
+RETURN 1
+
+[EOF]

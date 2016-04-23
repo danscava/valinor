@@ -1,0 +1,47 @@
+[plevel 7]
+spawnsil
+[function spawnsil]
+Foritems 65553
+if (<type> == t_spawn_char)
+obj=<uid>
+if (!<serv.allchardef.<obj.more1>>)
+obj.remove 1
+endif
+endif
+endfor
+
+[plevel 7]
+spawnaktif
+[function spawnaktif]
+Foritems 6144
+if (<type> == t_spawn_char)
+timer 0
+endfor
+src.sysmessage @05,1,1 World uzerindeki butun spawnlar aktif edilmistir...
+
+[function wipe]
+if !(strcmpi(<args>,))
+src.sysmessage @randcor Item id'si yazmak zorundasin.
+return 1
+endif
+
+serv.newitem <args>
+new.p <src.p>
+local.total=<eval <new.instances>-1>
+local.id=<new.baseid>
+local.name=<new.name>
+local.quantos=0
+new.remove
+
+if (<local.total> > 1500)
+local.total=1500
+endif
+
+while (<Local.total> > 0)
+goitemid <local.id>
+act.remove
+local.total -= 1
+local.quantos += 1
+endwhile
+
+serv.allclients sysmessage @randcor <local.quantos> <local.name> Dunyadan Silindi.,

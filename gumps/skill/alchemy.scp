@@ -1,0 +1,421 @@
+[function d_alchemy]
+src.tag.makelast <src.tag.alchemy> 
+var.notice yaninizdaki 'empty bottle' adedi: <src.rescount i_bottle_empty>, alchemy bilginiz: %<src.alchemy>
+src.dialogclose  d_skill_alchemy
+dialog d_skill_alchemy
+
+
+[dialog d_skill_alchemy]
+50,50
+page 0
+resizepic 0 30 5120 520 220
+resizepic 10 40 3000 500 200
+
+resizepic 120 50 3000 370 110
+
+resizepic 120 185 3000 370 30
+
+htmlgump 50 55 90 20 0 0 0
+htmlgump 50 75 90 20 1 0 0
+htmlgump 50 95 90 20 2 0 0
+htmlgump 50 115 90 20 3 0 0
+
+htmlgump 130 190 360 20 4 0 0
+htmlgump 300 220 90 20 5 0 0
+htmlgump 165 220 90 20 6 0 0
+
+button 18 55 4006 4007 0 1 1
+button 18 75 4006 4007 0 2 2
+button 18 95 4006 4007 0 3 3
+button 18 115 4006 4007 0 4 4
+
+button 265 218 4006 4007 1 0 67 // iptal
+button 130 218 4006 4007 1 0 <eval <tag.alchemy>> // tekrar yap
+
+page 1
+htmlgump 150 55 90 20 7 0 0
+htmlgump 250 55 90 20 8 0 0
+htmlgump 350 55 90 20 9 0 0
+htmlgump 450 55 90 20 10 0 0
+//htmlgump 150 110 90 20 11 0 0
+
+//tilepic 140 130 3847
+tilepic 145 75 3850
+tilepic 235 75 3847
+tilepic 345 75 3853
+tilepic 435 75 3852
+
+//button 135 115 2103 2104 1 0 21
+button 135 60 2103 2104 1 0 1
+button 235 60 2103 2104 1 0 2
+button 335 60 2103 2104 1 0 3
+button 435 60 2103 2104 1 0 4
+
+page 2
+htmlgump 150 55 90 20 12 0 0
+htmlgump 250 55 90 20 13 0 0
+htmlgump 350 55 90 20 14 0 0
+htmlgump 450 55 90 20 15 0 0
+
+htmlgump 150 115 90 20 16 0 0
+htmlgump 250 115 90 20 17 0 0
+htmlgump 350 115 90 20 18 0 0
+htmlgump 450 115 90 20 19 0 0
+
+tilepic 135 75 3851
+tilepic 255 75 3846
+tilepic 345 75 3848
+tilepic 445 75 3850
+tilepic 135 135 3847
+tilepic 255 135 3853
+tilepic 345 135 3849
+tilepic 435 135 3852
+
+button 135 60 2103 2104 1 0 5
+button 235 60 2103 2104 1 0 6
+button 335 60 2103 2104 1 0 7
+button 435 60 2103 2104 1 0 8
+button 135 120 2103 2104 1 0 9
+button 235 120 2103 2104 1 0 10
+button 335 120 2103 2104 1 0 11
+button 435 120 2103 2104 1 0 12
+
+page 3
+htmlgump 150 55 90 20 20 0 0
+htmlgump 250 55 90 20 21 0 0
+htmlgump 350 55 90 20 22 0 0
+htmlgump 450 55 90 20 23 0 0
+
+htmlgump 150 115 90 20 24 0 0
+htmlgump 250 115 90 20 25 0 0
+htmlgump 350 115 90 20 26 0 0
+
+tilepic 155 75 3851
+tilepic 250 75 3848
+tilepic 340 75 3850
+tilepic 435 75 3847
+tilepic 145 135 3853
+tilepic 245 135 3849
+tilepic 330 135 3852
+
+button 135 60 2103 2104 1 0 13
+button 235 60 2103 2104 1 0 14
+button 335 60 2103 2104 1 0 15
+button 435 60 2103 2104 1 0 16
+button 135 120 2103 2104 1 0 17
+button 235 120 2103 2104 1 0 18
+button 335 120 2103 2104 1 0 19
+
+page 4
+htmlgump 150 55 90 20 27 0 0
+tilepic 155 75 3850
+button 135 60 2103 2104 1 0 20
+
+[dialog d_skill_alchemy text]
+lesser
+normal
+greater
+deadly
+<var.notice>
+iptal
+tekrar yap
+poison
+cure
+explosion
+heal
+bleed cure
+refresh
+nightsight
+agility
+poison
+cure
+explosion
+strength
+heal
+total refresh
+agility
+poison
+cure
+exploison
+strength
+heal
+deadly poison
+
+[dialog d_skill_alchemy button] // menu 1
+on 1
+if (<alchemy> < 0.1) 
+var.notice gerekli skill: %0.1 alchemy
+elseif !(<src.restest 1 i_reag_nightshade>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 1 nightshade, 1 bo$ sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_poisonless
+tag.alchemy 1
+tag.makelast i_potion_poisonless
+endif
+dialog d_skill_alchemy
+
+on 2
+if (<alchemy> < 0.1)
+var.notice gerekli skill: %0.1 alchemy
+elseif !(<src.restest 1 i_reag_garlic>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 1 garlic, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_cureless
+tag.alchemy 2
+tag.makelast i_potion_cureless
+endif
+dialog d_skill_alchemy
+
+on 3
+if (<alchemy> < 5.1) 
+var.notice gerekli skill: %5.1 alchemy
+elseif !(<src.restest 3 i_reag_sulfur_ash>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 1 sulfur ash, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_explosionless
+tag.alchemy 3
+tag.makelast i_potion_explosionless
+endif
+dialog d_skill_alchemy
+
+on 4
+if (<alchemy> < 0.1) 
+var.notice gerekli skill: %0.1 alchemy
+elseif !(<src.restest 1 i_reag_ginseng>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 1 ginseng, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_healless
+tag.alchemy 4
+tag.makelast i_potion_healless
+endif
+dialog d_skill_alchemy
+
+on 5
+if (<alchemy> < 0.1) 
+var.notice gerekli skill: %0.1 alchemy
+elseif !(<src.restest 1 i_reag_black_pearl>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 1 black pearl, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_refresh
+tag.alchemy 5
+tag.makelast i_potion_refresh
+endif
+dialog d_skill_alchemy
+
+on 6
+if (<alchemy> < 0.1) 
+var.notice gerekli skill: %0.1 alchemy
+elseif !(<src.restest 1 i_reag_spider_silk>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 1 spider silk, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_nightsight
+tag.alchemy 6
+tag.makelast i_potion_nightsight
+endif
+dialog d_skill_alchemy
+
+on 7
+if (<alchemy> < 15.1) 
+var.notice gerekli skill: %15.1 alchemy
+elseif !(<src.restest 1 i_reag_blood_moss>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 1 blood moss, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_agility
+tag.alchemy 7
+tag.makelast i_potion_agility
+endif
+dialog d_skill_alchemy
+
+on 8
+if (<alchemy> < 15.1) 
+var.notice gerekli skill: %15.1 alchemy
+elseif !(<src.restest 2 i_reag_nightshade>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 2 nightshade, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_poison
+tag.alchemy 8
+tag.makelast i_potion_poison
+endif
+dialog d_skill_alchemy
+
+on 9
+if (<alchemy> < 25.1) 
+var.notice gerekli skill: %25.1 alchemy
+elseif !(<src.restest 3 i_reag_garlic>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 3 garlic, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_cure
+tag.alchemy 9
+tag.makelast i_potion_cure
+endif
+dialog d_skill_alchemy
+
+on 10
+if (<alchemy> < 35.1) 
+var.notice gerekli skill: %35.1 alchemy
+elseif !(<src.restest 5 i_reag_sulfur_ash>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 5 sulfur ash, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_explosion
+tag.alchemy 10
+tag.makelast i_potion_explosion
+endif
+dialog d_skill_alchemy
+
+on 11
+if (<alchemy> < 25.1) 
+var.notice gerekli skill: %25.1 alchemy
+elseif !(<src.restest 2 i_reag_mandrake_root>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 2 mandrake root, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_strength
+tag.alchemy 11
+tag.makelast i_potion_strength
+endif
+dialog d_skill_alchemy
+
+on 12
+if (<alchemy> < 15.1) 
+var.notice gerekli skill: %15.1 alchemy
+elseif !(<src.restest 3 i_reag_ginseng>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 3 ginseng, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_heal
+tag.alchemy 12
+tag.makelast i_potion_heal
+endif
+dialog d_skill_alchemy
+
+on 13
+if (<alchemy> < 25.1) 
+var.notice gerekli skill: %25.1 alchemy
+elseif !(<src.restest 5 i_reag_black_pearl>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 5 black pearl, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_refreshtotal
+tag.alchemy 13
+tag.makelast i_potion_refreshtotal
+endif
+dialog d_skill_alchemy
+
+on 14
+if (<alchemy> < 35.1) 
+var.notice gerekli skill: %35.1 alchemy
+elseif !(<src.restest 3 i_reag_blood_moss>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 3 blood moss, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_agilitygreat
+tag.alchemy 14
+tag.makelast i_potion_agilitygreat
+endif
+dialog d_skill_alchemy
+
+on 15
+if (<alchemy> < 55.1) 
+var.notice gerekli skill: %55.1 alchemy
+elseif !(<src.restest 4 i_reag_nightshade>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 4 nightshade, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_poisongreat
+tag.alchemy 15
+tag.makelast i_potion_poisongreat
+endif
+dialog d_skill_alchemy
+
+on 16
+if (<alchemy> < 65.1) 
+var.notice gerekli skill: %65.1 alchemy
+elseif !(<src.restest 6 i_reag_garlic>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 6 garlic, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_curegreat
+tag.alchemy 16
+tag.makelast i_potion_curegreat
+endif
+dialog d_skill_alchemy
+
+on 17
+if (<alchemy> < 65.1) 
+var.notice gerekli skill: %65.1 alchemy
+elseif !(<src.restest 10 i_reag_sulfur_ash>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 10 sulfur ash, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_explosiongreat
+tag.alchemy 17
+tag.makelast i_potion_explosiongreat
+endif
+dialog d_skill_alchemy
+
+on 18
+if (<alchemy> < 45.1) 
+var.notice gerekli skill: %45.1 alchemy
+elseif !(<src.restest 5 i_reag_mandrake_root>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 5 mandrake root, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_strengthgreat
+tag.alchemy 18
+tag.makelast i_potion_strenghtgreat
+endif
+dialog d_skill_alchemy
+
+on 19
+if (<alchemy> < 55.1) 
+var.notice gerekli skill: %55.1 alchemy
+elseif !(<src.restest 7 i_reag_ginseng>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 7 ginseng, 1 bos sise
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_healgreat
+tag.alchemy 19
+tag.makelast i_potion_healgreat
+endif
+dialog d_skill_alchemy
+
+on 20
+if (<alchemy> < 90.1) 
+var.notice gerekli skill: %90.1 alchemy
+elseif !(<src.restest 8 i_reag_nightshade>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 8 nightshade, 1 bos sise.
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_poisondeadly
+tag.alchemy i_potion_poisondeadly
+tag.makelast i_potion_poisondeadly
+endif
+dialog d_skill_alchemy
+
+on 21
+if (<alchemy> < 75.1) || (<healing> < 60.1)
+var.notice gerekli skill: %75.0 alchemy & 60.0 healing
+
+elseif !(<src.restest 1 i_reag_garlic>) || !(<src.restest 1 i_reag_ginseng>) || !(<src.restest 1 i_bottle_empty>)
+var.notice gerekli malzeme: 1 garlic, 1 ginseng, 5 bandaj, 1 bos sise.
+
+else
+var.notice e$yayi hazirliyorsunuz.
+makeitem i_potion_bleed
+tag.alchemy i_potion_bleed
+tag.makelast i_potion_bleed
+endif
+
+dialog d_skill_alchemy
+
+[eof]

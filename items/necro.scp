@@ -1,0 +1,1655 @@
+//*************************************************
+//*******                                   *******
+//*******  Konum : scripts/items/necro.scp  *******
+//*******                                   *******
+//*************************************************
+VERSION=0.55
+
+[itemdef i_bookncr]
+ID=0efa
+WEIGHT=1
+NAME=book of the dead
+
+On=@Create
+color 0455
+attr 04
+type t_eq_script
+
+On=@DClick
+equip
+if (0<src.tag.ncr> == 2)
+	src.dialog d_bookncr
+	return 1
+elseif (0<src.tag.ncr> == 1)
+	src.color 0
+	src.oskin 0
+	src.say An Corp Jux
+	src.anim 17
+	//src.sysmessage After saying necromantic powerwords, the binding flesh creeps back and allows itself to be opened.
+	src.dialog d_bookncr
+	src.tag.ncr 2
+	return 1
+else
+	//src.sysmessage As you do not know the powerwords that protects the spellbook, the death ripple spell on the book tears your soul from your body..
+	src.newitem i_killer
+	src.act.equip
+	return 1
+endif
+
+[DIALOG d_bookncr]
+0,0
+page 1
+gumppic 100 10 2203
+button 393 14 2206 2206 0 2 0
+
+tilepic 168 109 4622
+tilepic 190 110 4623
+tilepic 212 126 4624
+tilepic 191 142 4625
+tilepic 170 164 4626
+tilepic 150 143 4627
+tilepic 128 125 4628
+tilepic 150 110 4629
+tilepic 171 120 4630
+
+tilepic 155 20 14107
+
+text 143 44 0 54
+text 145 42 1109 54
+text 168 59 0 55
+text 170 57 1109 55
+text 130 189 1109 64
+//text 150 189 1109 57
+
+button 292 42 2103 2104 1 0 1
+text 305 37 1109 5
+button 292 57 2103 2104 1 0 2
+text 305 52 1109 6
+button 292 72 2103 2104 1 0 3
+text 305 67 1109 7
+button 292 87 2103 2104 1 0 4
+text 305 82 1109 8
+button 292 102 2103 2104 1 0 5
+text 305 97 1109 9
+button 292 117 2103 2104 1 0 6
+text 305 112 1109 10
+button 292 132 2103 2104 1 0 7
+text 305 127 1109 11
+button 292 147 2103 2104 1 0 8
+text 305 142 1109 12 //6
+button 292 162 2103 2104 1 0 9
+text 305 157 1109 13
+button 292 177 2103 2104 1 0 10
+text 305 172 1109 14
+
+
+page 2
+gumppic 100 10 2203
+gumppic 135 88 58
+gumppic 150 88 58
+gumppic 165 88 58
+gumppic 180 88 58
+gumppic 195 88 58
+gumppic 210 88 58
+gumppic 225 88 58
+gumppic 240 88 58
+gumppic 300 88 58
+gumppic 315 88 58
+gumppic 330 88 58
+gumppic 345 88 58
+gumppic 360 88 58
+gumppic 375 88 58
+gumppic 390 88 58
+gumppic 405 88 58
+button 135 45 2293 2293 1 0 1
+button 300 45 2298 2298 1 0 2
+button 125 14 2205 2205 0 1 0
+button 393 14 2206 2206 0 3 0
+text 170 15 1109 0
+text 330 15 1109 1
+text 180 42 1109 39
+text 180 57 1109 40
+text 130 98 1102 17
+text 130 113 1109 22
+text 130 128 1109 23
+text 345 42 1109 41
+text 345 57 1109 42
+text 300 98 1102 17
+text 300 113 1109 22
+text 300 129 1109 28
+text 130 189 1112 36
+text 290 189 1112 37
+page 3
+gumppic 100 10 2203
+gumppic 135 88 58
+gumppic 150 88 58
+gumppic 165 88 58
+gumppic 180 88 58
+gumppic 195 88 58
+gumppic 210 88 58
+gumppic 225 88 58
+gumppic 240 88 58
+gumppic 300 88 58
+gumppic 315 88 58
+gumppic 330 88 58
+gumppic 345 88 58
+gumppic 360 88 58
+gumppic 375 88 58
+gumppic 390 88 58
+gumppic 405 88 58
+button 125 14 2205 2205 0 2 0
+button 393 14 2206 2206 0 4 0
+button 135 45 2246 2246 1 0 3
+button 300 45 2245 2245 1 0 4
+text 170 15 1109 2
+text 330 15 1109 3
+text 180 42 1109 43
+text 180 57 1109 44
+text 130 98 1102 17
+text 130 113 1109 23
+text 130 128 1109 26
+text 345 42 1109 8
+text 300 98 1102 17
+text 300 113 1109 19
+text 300 129 1109 29
+text 130 189 1112 36
+text 290 189 1112 37
+page 4
+gumppic 100 10 2203
+gumppic 135 88 58
+gumppic 150 88 58
+gumppic 165 88 58
+gumppic 180 88 58
+gumppic 195 88 58
+gumppic 210 88 58
+gumppic 225 88 58
+gumppic 240 88 58
+gumppic 300 88 58
+gumppic 315 88 58
+gumppic 330 88 58
+gumppic 345 88 58
+gumppic 360 88 58
+gumppic 375 88 58
+gumppic 390 88 58
+gumppic 405 88 58
+button 125 14 2205 2205 0 3 0
+button 393 14 2206 2206 0 5 0
+button 135 45 2257 2257 1 0 5
+button 300 45 2283 2283 1 0 6
+text 170 15 1109 4
+text 330 15 1109 49
+text 180 42 1109 45
+text 180 57 1109 46
+text 130 98 1102 17
+text 130 113 1109 21
+text 130 128 1109 24
+text 345 42 1109 47
+text 345 57 1109 48
+text 300 98 1102 17
+text 300 113 1109 18
+text 300 129 1109 20
+text 130 189 1112 36
+text 290 189 1112 37
+
+//newzz
+
+page 5
+gumppic 100 10 2203
+gumppic 135 88 58
+gumppic 150 88 58
+gumppic 165 88 58
+gumppic 180 88 58
+gumppic 195 88 58
+gumppic 210 88 58
+gumppic 225 88 58
+gumppic 240 88 58
+gumppic 300 88 58
+gumppic 315 88 58
+gumppic 330 88 58
+gumppic 345 88 58
+gumppic 360 88 58
+gumppic 375 88 58
+gumppic 390 88 58
+gumppic 405 88 58
+button 125 14 2205 2205 0 4 0
+button 393 14 2206 2206 0 6 0
+button 135 45 2275 2275 1 0 7 //death mirror
+button 300 45 2283 2283 1 0 8
+text 170 15 1109 50
+text 330 15 1109 51
+text 180 42 1109 56
+text 180 57 1109 57
+text 130 98 1102 17
+text 130 113 1109 65
+text 130 128 1109 66
+text 130 143 1109 67
+text 130 158 1109 68
+text 345 42 1109 58
+text 345 57 1109 59
+text 300 98 1102 17
+text 300 113 1109 69
+text 300 128 1109 70
+text 300 143 1109 71
+text 300 158 1109 72
+text 130 189 1112 36
+text 290 189 1112 37
+page 6
+gumppic 100 10 2203
+gumppic 135 88 58
+gumppic 150 88 58
+gumppic 165 88 58
+gumppic 180 88 58
+gumppic 195 88 58
+gumppic 210 88 58
+gumppic 225 88 58
+gumppic 240 88 58
+gumppic 300 88 58
+gumppic 315 88 58
+gumppic 330 88 58
+gumppic 345 88 58
+gumppic 360 88 58
+gumppic 375 88 58
+gumppic 390 88 58
+gumppic 405 88 58
+button 125 14 2205 2205 0 5 0
+button 135 45 2257 2257 1 0 9
+button 300 45 2283 2283 1 0 10
+text 170 15 1109 52
+text 330 15 1109 53
+text 180 42 1109 60
+text 180 57 1109 61
+text 130 98 1102 17
+text 130 113 1109 73
+text 130 128 1109 74
+text 130 143 1109 75
+text 130 158 1109 76
+text 345 42 1109 62
+text 345 57 1109 63
+text 300 98 1102 17
+text 300 113 1109 77
+text 300 128 1109 78
+text 300 143 1109 79
+text 300 158 1109 80
+text 130 189 1112 36
+text 290 189 1112 37
+
+
+[DIALOG d_bookncr TEXT]
+Page 1
+Page 2
+Page 3
+Page 4
+Page 5
+Call Undead
+Raise Dead
+Bone Armor
+Light
+Fire Bolt
+Dim Vision // 10
+Death Mirror
+Shadow Vortex
+Summon Storm
+Infernal Strike
+Future
+Future
+Reagents:
+Obsidian
+Batwing
+Blackmoor // 20
+Bloodspawn
+Vial of Blood
+Bone
+Brimstone
+Daemon Bone
+Fertile dirt
+Dragon's Blood
+Executioner's Cap
+Eye of Newt
+Pig Iron // 30
+Pumice
+Serpent's Scale
+Volcanic Ash
+Dead Wood
+Wyrm's Heart
+Necromancy:
+<SRC.NECROMANCY>
+Necromancy
+Call
+Undead // 40
+Raise
+Dead
+Bone
+Armor
+Fire
+Bolt
+Dim
+Vision
+Page 6
+Page 7 // 50
+Page 8
+Page 9
+Page 10
+Necromancer's 
+Book
+//<SRC.NECROMANCY>
+Death
+Mirror
+Shadow
+Vortex // 60
+Summon //buyu 3-1
+Storm //buyu 3-2
+Infernal //buyu 4-1
+Strike //buyu 4-2 
+Necromancy: <SRC.NECROMANCY>
+Black Pearl
+Bone
+Vial of Blood
+Batwing
+Mandrake Root //11
+Blackmoor //12
+Daemon Bone //13
+Nightshade //14
+Blackmoor // 2 1 - 70
+Daemon Bone //2 2
+Volcanic Ash //2 3
+ //2 4
+Vial of Blood //3 1
+Batwing //3 2
+ //3 3
+ //3 4
+Bone //4 1
+Sulphurous Ash //4 2
+Volcanic Ash // 4 3 - 80
+ //4 4
+
+[DIALOG d_bookncr BUTTON]
+onbutton=1
+tag.ncrs 1
+ncrs
+onbutton=2
+tag.ncrs 2
+ncrs
+onbutton=3
+tag.ncrs 3
+ncrs
+onbutton=4
+tag.ncrs 4
+ncrs
+onbutton=5
+tag.ncrs 5
+ncrs
+onbutton=6
+tag.ncrs 6
+ncrs
+onbutton=7
+tag.ncrs 7
+ncrs
+onbutton=8
+tag.ncrs 8
+ncrs
+onbutton=9
+tag.ncrs 9
+ncrs
+onbutton=10
+tag.ncrs 10
+ncrs
+
+[function ncrs]
+if !(<tag.ncrs>) // lastspell yok ise
+	return 1
+endif
+
+if <findid.i_ncr_caster>
+	findid.i_ncr_caster.remove
+endif
+
+if <findid.i_ncr_fizzler>
+	findid.i_ncr_fizzler.remove
+endif
+
+if !(<isgm>)
+	if ((<region.flags>&01) || (<region.flags>&020))
+  		sysmessage An anti-magic field disturbs the spells.
+  		return 1
+  	endif
+  	if <flags>&statf_freeze
+		effect 3,i_fx_smoke_small,3,40,1
+		effect 3,i_fx_curse,3,25,1
+		sound snd_spell_paralyze
+		return 1
+	endif
+endif
+
+if (<tag.ncrs> == 1) // call undead
+
+	if (<necromancy> < 20.0)
+		sysmessage You are not skilled enough.
+		return 1
+	endif
+	if (<mana> < 15)
+		sysmessage Not enough mana.
+		return 1
+	endif
+	if !(<restest 1 i_reag_blood_vial>) || !(<restest 1 i_reag_bone>)
+		sysmessage You lack one vial of blood or one bone.
+		return 1
+	else
+		consume 1 i_reag_blood_vial
+		consume 1 i_reag_bone
+	endif
+	
+	sd 3
+	if ((rand(25) == 1))
+			sysmessage Where would you like to summon the undead?
+			say Kal Nox Mani
+			dorand 2
+				anim 16
+				anim 17
+			enddo
+			newitem i_ncr_fizzler
+			act.more1 4
+			act.equip
+			return 1
+	endif
+	mana (<mana> - (15))
+	newitem i_ncr_caster
+	act.morex 65
+	act.equip
+	
+elseif (<tag.ncrs> == 2) // raise dead
+
+	if (<necromancy> < 50.0)
+		sysmessage You are not skilled enough.
+		return 1
+	endif
+	if (<mana> < 45)
+		sysmessage Not enough mana.
+		return 1
+	endif
+	if !(<restest 1 i_reag_blood_vial>) || !(<restest 1 i_reag_executioners_cap>)
+			sysmessage You lack one vial of blood or one executioner's cap.
+		return 1
+	else
+		consume 1 i_reag_blood_vial
+		consume 1 i_reag_executioners_cap
+	endif
+	
+	sd 4
+	if ((rand(10) == 1))
+			sysmessage Select Target
+			say In An Mani Grav
+			dorand 2
+				anim 16
+				anim 17
+			enddo
+			newitem i_ncr_fizzler
+			act.more1 5
+			act.equip
+			return 1
+	endif
+	mana (<mana> - (45))
+	newitem i_ncr_caster
+	act.morex 66
+	act.equip
+	
+elseif (<tag.ncrs> == 3) // bone armor
+
+	if (<necromancy> < 30.0)
+		sysmessage You are not skilled enough.
+		return 1
+	endif
+	if (<mana> < 10)
+		sysmessage Not enough mana.
+		return 1
+	endif
+	if !(<restest 1 i_reag_bone>) || !(<restest 1 i_reag_fertile_dirt>)
+			sysmessage You lack one bone or one fertile dirt.
+		return 1
+	else
+		consume 1 i_reag_bone
+		consume 1 i_reag_fertile_dirt
+	endif
+	
+	sd 1
+	if ((rand(25) == 1))
+			sysmessage Select Target
+			say In Corp Sanct Ylem
+			dorand 2
+				anim 16
+				anim 17
+			enddo
+			newitem i_ncr_fizzler
+			act.more1 3
+			act.equip
+			return 1
+	endif
+	mana (<mana> - (10))
+	newitem i_ncr_caster
+	act.morex 67
+	act.equip
+	
+elseif (<tag.ncrs> == 4) // light
+
+	if (<necromancy> < 10.0)
+		sysmessage You are not skilled enough.
+		return 1
+	endif
+	if (<mana> < 5)
+		sysmessage Not enough mana.
+		return 1
+	endif
+	if !(<restest 1 i_reag_batwing>) || !(<restest 1 i_reag_eye_of_newt>)
+			sysmessage You lack one bone or one fertile dirt.
+		return 1
+	else
+		consume 1 i_reag_batwing
+		consume 1 i_reag_eye_of_newt
+	endif
+	
+	if ((rand(40) == 1))
+			sysmessage Select Target
+			say In Lor
+			dorand 2
+				anim 16
+				anim 17
+			enddo
+			newitem i_ncr_fizzler
+			act.more1 1
+			act.equip
+			return 1
+	endif
+	mana (<mana> - (5))
+	newitem i_ncr_caster
+	act.morex 68
+	act.equip
+
+elseif (<tag.ncrs> == 5) // fire bolt
+
+	if (<necromancy> < 50.0)
+		sysmessage You are not skilled enough.
+		return 1
+	endif
+	if (<mana> < 40)
+		sysmessage Not enough mana.
+		return 1
+	endif
+	if !(<restest 1 i_reag_bloodspawn>) || !(<restest 1 i_reag_brimstone>)
+			sysmessage You lack one bone or one fertile dirt.
+		return 1
+	else
+		consume 1 i_reag_bloodspawn
+		consume 1 i_reag_brimstone
+	endif
+	
+	sd 4
+	if ((rand(15) == 1))
+			sysmessage Select Target
+			say Vas Flam Por
+			dorand 2
+				anim 16
+				anim 17
+			enddo
+			newitem i_ncr_fizzler
+			act.more1 5
+			act.equip
+			return 1
+	endif
+	mana (<mana> - (40))
+	newitem i_ncr_caster
+	act.morex 69
+	act.morey 0120
+	act.equip
+
+elseif (<tag.ncrs> == 6) // dim vision
+
+	if (<necromancy> < 40.0)
+		sysmessage You are not skilled enough.
+		return 1
+	endif
+	if (<mana> < 25)
+		sysmessage Not enough mana.
+		return 1
+	endif
+	if !(<restest 1 i_reag_obsidian>) || !(<restest 1 i_reag_blackmoor>)
+			sysmessage You lack one bone or one fertile dirt.
+		return 1
+	else
+		consume 1 i_reag_obsidian
+		consume 1 i_reag_blackmoor
+	endif
+	
+	sd 2
+	if ((rand(25) == 1))
+			sysmessage Select Target
+			say Wis Nox
+			dorand 2
+				anim 16
+				anim 17
+			enddo
+			newitem i_ncr_fizzler
+			act.more1 3
+			act.equip
+			return 1
+	endif
+	mana (<mana> - (25))
+	newitem i_ncr_caster
+	act.morex 70
+	act.equip
+
+elseif (<tag.ncrs> == 7) // death mirror
+
+	if (<findid.i_dm_image> || <findid.i_dm_image2>)
+		sysmessage You are already casting this spell.
+		return 1
+	endif
+	if (<necromancy> < 80.0)
+		sysmessage You are not skilled enough.
+		return 1
+	endif
+	if (<mana> < 65)
+		sysmessage Not enough mana.
+		return 1
+	endif
+	if !(<restest 1 i_reag_bone>) || !(<restest 1 i_reag_batwing>) || !(<restest 1 i_reag_blood_vial>) || !(<restest 1 i_reag_black_pearl>)
+			sysmessage You lack one bone, bat wings, one vial of blood or one black pearl.
+		return 1
+	else
+		consume 1 i_reag_bone
+		consume 1 i_reag_batwing
+		consume 1 i_reag_blood_vial
+		consume 1 i_reag_black_pearl
+	endif
+	
+	sd 4
+	if ((rand(10) == 1))
+			say Kal Xen Quas
+			dorand 2
+				anim 16
+				anim 17
+			enddo
+			newitem i_ncr_fizzler
+			act.more1 5
+			act.equip
+			return 1
+	endif
+	mana (<mana> - (65))
+	spell_1
+
+elseif (<tag.ncrs> == 8) // shadow vortex
+
+	if <findid.i_sv_timer>
+		sysmessage You are already casting this spell.
+		return 1
+	endif
+	if (<necromancy> < 90.0)
+		sysmessage You are not skilled enough.
+		return 1
+	endif
+	if (<mana> < 55)
+		sysmessage Not enough mana.
+		return 1
+	endif
+	if !(<restest 1 i_reag_blackmoor>) || !(<restest 1 i_reag_daemon_bone>) || !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_nightshade>)
+			sysmessage You lack one daemon bone, one blackmoor,one mandrake root or one nightshade.
+		return 1
+	else
+		consume 1 i_reag_blackmoor
+		consume 1 i_reag_daemon_bone
+		consume 1 i_reag_mandrake_root
+		consume 1 i_reag_nightshade
+	endif
+	
+	sd 5
+	if ((rand(10) == 1))
+			say Kal Corp Por
+			dorand 2
+				anim 16
+				anim 17
+			enddo
+			newitem i_ncr_fizzler
+			act.more1 5
+			act.equip
+			return 1
+	endif
+	mana (<mana> - (55))
+	spell_72
+
+elseif (<tag.ncrs> == 9) // summon storm
+
+	if <findid.i_ss_timer>
+		sysmessage You are already casting this spell.
+		return 1
+	endif
+	if (<necromancy> < 98.0)
+		sysmessage You are not skilled enough.
+		return 1
+	endif
+	if (<mana> < 95)
+		sysmessage Not enough mana.
+		return 1
+	endif
+	if !(<restest 1 i_reag_blackmoor>) || !(<restest 1 i_reag_daemon_bone>) || !(<restest 1 i_reag_volcanic_ash>) || !(<restest 1 i_reag_blood_vial>)
+			sysmessage You lack one daemon bone, one blackmoor, one volcanic ash or one blood of vial.
+		return 1
+	else
+		consume 1 i_reag_blackmoor
+		consume 1 i_reag_daemon_bone
+		consume 1 i_reag_volcanic_ash
+		consume 1 i_reag_vial_blood
+	endif
+	
+	sd 5
+	if ((rand(10) == 1))
+			say Kal Vas Ort Grav
+			dorand 2
+				anim 16
+				anim 17
+			enddo
+			newitem i_ncr_fizzler
+			act.more1 6
+			act.equip
+			return 1
+	endif
+	mana (<mana> - (95))
+	spell_73
+
+elseif (<tag.ncrs> == 10) // infernal strike
+
+	if <findid.i_is_timer>
+		sysmessage You are already casting this spell.
+		return 1
+	endif
+	if (<necromancy> < 98.0)
+		sysmessage You are not skilled enough.
+		return 1
+	endif
+	if (<mana> < 95)
+		sysmessage Not enough mana.
+		return 1
+	endif
+	if !(<restest 1 i_reag_batwing>) || !(<restest 1 i_reag_bone>) || !(<restest 1 i_reag_volcanic_ash>) || !(<restest 1 i_reag_sulfur_ash>)
+			sysmessage You lack one bone, batwings, one volcanic ash or one sulphurous ash.
+		return 1
+	else
+		consume 1 i_reag_batwing
+		consume 1 i_reag_bone
+		consume 1 i_reag_volcanic_ash
+		consume 1 i_reag_sulfur_ash
+	endif
+	
+	sd 5
+	if ((rand(10) == 1))
+			say In Vas Corp Jux
+			dorand 2
+				anim 16
+				anim 17
+			enddo
+			newitem i_ncr_fizzler
+			act.more1 6
+			act.equip
+			return 1
+	endif
+	mana (<mana> - (95))
+	spell_74
+
+endif
+
+[function ncrskill]
+if (<necromancy> < 100.0)
+	if ((rand(10) == 1))
+		necromancy (<necromancy> + 1)
+		//sysmessage Your skill in Necromancy has increased by 0.1%. It is now <necromancy>%.
+	endif
+endif
+
+[itemdef i_ncr_caster]
+ID=i_RUNE_ALCHEM_3
+WEIGHT=0
+NAME=Necromancy [casting a spell]
+LAYER=layer_special
+
+On=@Create
+type t_eq_script
+attr 036
+
+On=@Equip
+type 32
+src.findid.i_ncr_caster.dclick // cast edek
+src.ncrskill // skill arti$i
+
+[itemdef i_ncr_fizzler]
+ID=i_RUNE_ALCHEM_4
+WEIGHT=0
+NAME=Necromancy [fizzle the spell]
+LAYER=layer_special
+
+On=@Create
+type t_eq_script
+attr 016
+
+On=@Equip
+timer 0
+
+On=@Timer
+if (<more1> <= 0)
+	cont.effect 3,i_fx_smoke_small,3,40,1
+	cont.sound 92
+	remove
+else
+	more1 <eval (<more1> - 1)>
+endif
+
+timer 1
+return 1
+
+[function spell_74]
+//ncrskill // skill arti$i
+say In Vas Corp Jux
+dorand 2
+	anim 16
+	anim 17
+enddo
+
+newitem i_is_timer
+act.cont <uid>
+
+[itemdef i_is_timer]
+ID=i_memory
+TYPE=t_eq_script
+NAME=infernal strike caster
+
+On=@Create
+attr attr_decay|attr_newbie
+more1 6
+timer 0
+
+On=@Timer
+if (<more1> <= 0)
+	
+	cont.newnpc c_armageddon_man // 1
+	var.uid <cont.act.uid>
+	cont.act.events +e_armageddon
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_armageddon
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_armageddon_man // 2
+	var.uid <cont.act.uid>
+	cont.act.events +e_armageddon
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_armageddon
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_armageddon_man // 3
+	var.uid <cont.act.uid>
+	cont.act.events +e_armageddon
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_armageddon
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_armageddon_man // 4
+	var.uid <cont.act.uid>
+	cont.act.events +e_armageddon
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_armageddon
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_armageddon_man // 5
+	var.uid <cont.act.uid>
+	cont.act.events +e_armageddon
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_armageddon
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_armageddon_man // 6
+	var.uid <cont.act.uid>
+	cont.act.events +e_armageddon
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_armageddon
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_armageddon_man // 7
+	var.uid <cont.act.uid>
+	cont.act.events +e_armageddon
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_armageddon
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_armageddon_man // 8
+	var.uid <cont.act.uid>
+	cont.act.events +e_armageddon
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_armageddon
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+
+	remove
+	more1 0
+else
+	more1 <eval (<more1> - 1)>
+	timer 1
+endif
+return 1
+
+[function spell_73]
+ncrskill // skill arti$i
+say Kal Vas Ort Grav
+dorand 2
+	anim 16
+	anim 17
+enddo
+
+newitem i_ss_timer
+act.cont <src.uid>
+return 1
+
+[itemdef i_ss_timer]
+ID=i_memory
+TYPE=t_eq_script
+NAME=summon storm caster
+
+On=@Create
+attr attr_decay|attr_newbie
+more1 6
+timer 0
+
+On=@Timer
+if (<more1> <= 0)
+	
+	cont.newnpc c_lightning_man // 1
+	var.uid <cont.act.uid>
+	cont.act.events +e_lightningstorm
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_lightning
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_lightning_man // 2
+	var.uid <cont.act.uid>
+	cont.act.events +e_lightningstorm
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_lightning
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_lightning_man // 3
+	var.uid <cont.act.uid>
+	cont.act.events +e_lightningstorm
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_lightning
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_lightning_man // 4
+	var.uid <cont.act.uid>
+	cont.act.events +e_lightningstorm
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_lightning
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_lightning_man // 5
+	var.uid <cont.act.uid>
+	cont.act.events +e_lightningstorm
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_lightning
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_lightning_man // 6
+	var.uid <cont.act.uid>
+	cont.act.events +e_lightningstorm
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_lightning
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_lightning_man // 7
+	var.uid <cont.act.uid>
+	cont.act.events +e_lightningstorm
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_lightning
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+	
+	cont.newnpc c_lightning_man // 8
+	var.uid <cont.act.uid>
+	cont.act.events +e_lightningstorm
+	cont.act.p <p>
+	cont.act.fix
+	cont.act.move <eval (rand(21)-10)> <eval (rand(21)-10)>
+
+	cont.newitem m_lightning
+	cont.act.link <uid>
+	cont.act.cont <var.uid>
+	cont.act.timer 0
+
+	remove
+	more1 0
+else
+	more1 <eval (<more1> - 1)>
+	timer 1
+endif
+return 1
+
+[function spell_72]
+ncrskill // skill arti$i
+say Kal Corp Por
+dorand 2
+	anim 16
+	anim 17
+enddo
+
+newitem i_sv_timer
+act.cont <src.uid>
+return 1
+
+[itemdef i_sv_timer]
+ID=i_memory
+TYPE=t_eq_script
+NAME=shadow vortex
+
+On=@Create
+attr attr_decay
+timer 5
+
+On=@Timer
+if (<more1> <= 0)
+	cont.newnpc c_vortex_shadow
+	cont.sfx snd_elementl_airelem1
+	cont.act.p <cont.p>
+	cont.act.flags statf_conjured
+	remove
+else
+	more1 <eval (<more1> - 1)>
+endif
+
+timer 1
+return 1
+
+//[function spell_71]
+//ncrskill // skill arti$i
+//say Kal Xen Quas
+//dorand 2
+//	anim 16
+//	anim 17
+//enddo
+
+//newitem i_dm_image
+//act.cont <src.uid>
+//return 1
+
+[itemdef i_dm_image]
+ID=i_memory
+TYPE=t_eq_script
+NAME=death mirror [step 1]
+
+On=@Create
+attr attr_decay
+more1 5
+timer 0
+
+On=@Timer
+if (<more1> <= 0)
+	cont.newitem i_dm_image2
+	cont.act.link <cont.uid>
+	cont.act.p <cont.p>
+	remove
+else
+	more1 <eval (<more1> - 1)>
+endif
+
+timer 1
+return 1
+
+[chardef c_dm_image]
+ID=c_man
+NAME=Dupe
+CAN=MT_EQUIP|MT_USEHANDS
+
+On=@Create
+flags statf_invul|statf_conjured
+dex 0
+
+[itemdef i_dm_image2]
+ID=i_memory
+TYPE=t_script
+NAME=death mirror [step 2]
+
+On=@Create
+more1 15
+attr attr_static|attr_invis
+timer 0
+
+On=@Timer
+more1 <eval (<more1> - 1)>
+
+if (<eval (<more1>)> <= 0)
+	link.p <p>
+	link.dir {0 7}
+	link.move <eval (rand(15) - 7)> <eval (rand(15) - 7)>
+	remove
+endif
+
+link.newnpc c_dm_image
+link.act.p=<link.p>
+link.act.body=<link.body>
+link.act.dir=<link.dir>
+link.act.name=<link.name>
+link.act.title=<link.title>
+link.act.color=<link.color>
+link.act.karma=<link.karma>
+link.act.fame=<link.fame>
+link.act.kills=<link.kills>
+link.act.str=<link.str>
+link.act.int=<link.int>
+link.act.hitpoints=<link.hitpoints>
+link.act.stamina=<link.stamina>
+link.act.mana=<link.mana>
+link.act.fix
+var.npcuid=<link.act.uid>
+if (<link.findlayer(layer_hand1)>)
+	link.newitem=<link.findlayer(layer_hand1).id>
+	link.act.color=<link.findlayer(layer_hand1).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_hand2)>)
+	link.newitem=<link.findlayer(layer_hand2).id>
+	link.act.color=<link.findlayer(layer_hand2).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_shoes)>)
+	link.newitem=<link.findlayer(layer_shoes).id>
+	link.act.color=<link.findlayer(layer_shoes).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_pants)>)
+	link.newitem=<link.findlayer(layer_pants).id>
+	link.act.color=<link.findlayer(layer_pants).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_shirt)>)
+	link.newitem=<link.findlayer(layer_shirt).id>
+	link.act.color=<link.findlayer(layer_shirt).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_helm)>)
+	link.newitem=<link.findlayer(layer_helm).id>
+	link.act.color=<link.findlayer(layer_helm).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_gloves)>)
+	link.newitem=<link.findlayer(layer_gloves).id>
+	link.act.color=<link.findlayer(layer_gloves).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_ring)>)
+	link.newitem=<link.findlayer(layer_ring).id>
+	link.act.color=<link.findlayer(layer_ring).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_collar)>)
+	link.newitem=<link.findlayer(layer_collar).id>
+	link.act.color=<link.findlayer(layer_collar).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_hair)>)
+	link.newitem=<link.findlayer(layer_hair).id>
+	link.act.color=<link.findlayer(layer_hair).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_half_apron)>)
+	link.newitem=<link.findlayer(layer_half_apron).id>
+	link.act.color=<link.findlayer(layer_half_apron).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_chest)>)
+	link.newitem=<link.findlayer(layer_chest).id>
+	link.act.color=<link.findlayer(layer_chest).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_wrist)>)
+	link.newitem=<link.findlayer(layer_wrist).id>
+	link.act.color=<link.findlayer(layer_wrist).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_beard)>)
+	link.newitem=<link.findlayer(layer_beard).id>
+	link.act.color=<link.findlayer(layer_beard).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_tunic)>)
+	link.newitem=<link.findlayer(layer_tunic).id>
+	link.act.color=<link.findlayer(layer_tunic).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_arms)>)
+	link.newitem=<link.findlayer(layer_arms).id>
+	link.act.color=<link.findlayer(layer_arms).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_cape)>)
+	link.newitem=<link.findlayer(layer_cape).id>
+	link.act.color=<link.findlayer(layer_cape).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_robe)>)
+	link.newitem=<link.findlayer(layer_robe).id>
+	link.act.color=<link.findlayer(layer_robe).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_skirt)>)
+	link.newitem=<link.findlayer(layer_skirt).id>
+	link.act.color=<link.findlayer(layer_skirt).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_legs)>)
+	link.newitem=<link.findlayer(layer_legs).id>
+	link.act.color=<link.findlayer(layer_legs).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_horse)>)
+	link.newitem=<link.findlayer(layer_horse).id>
+	link.act.color=<link.findlayer(layer_horse).color>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_light)>)
+	link.newitem=<link.findlayer(layer_light).id>
+	link.act.cont=<var.npcuid>
+endif
+if (<link.findlayer(layer_pack)>)
+	link.findlayer(layer_pack).color=<link.findlayer(layer_pack).color>
+endif
+link.newitem i_dm_remove
+link.act.cont <var.npcuid>
+link.p <p>
+link.dir {0 7}
+link.move <eval (rand(15) - 7)> <eval (rand(15) - 7)>
+timer 1
+return 1
+
+[itemdef i_dm_remove]
+ID=i_memory
+TYPE=t_eq_script
+NAME=image remover!
+
+On=@Create
+attr attr_decay
+timer 70
+
+On=@Timer
+cont.remove
+
+[ITEMDEF i_necro_reg20]
+ID=i_crystal_purple
+Value=2000
+WEIGHT=3
+NAME=necro reg crystal (20)
+
+On=@Create
+attr attr_newbie
+
+On=@Click
+message a necro reagents crystal
+return 1
+
+On=@DClick
+if !(<topobj.uid> == <src.uid>)
+	return 1
+endif
+
+src.emote use necro reagents crystal
+src.newitem i_reag_blood_vial,20
+src.act.cont <cont>
+src.newitem i_reag_bone,20
+src.act.cont <cont>
+src.newitem i_reag_executioners_cap,20
+src.act.cont <cont>
+src.newitem i_reag_fertile_dirt,20
+src.act.cont <cont>
+src.newitem i_reag_batwing,20
+src.act.cont <cont>
+src.newitem i_reag_eye_of_newt,20
+src.act.cont <cont>
+src.newitem i_reag_blood_spawn,20
+src.act.cont <cont>
+src.newitem i_reag_brimstone,20
+src.act.cont <cont>
+src.newitem i_reag_obsidian,20
+src.act.cont <cont>
+src.newitem i_reag_blackmoor,20
+src.act.cont <cont>
+src.newitem i_reag_daemon_bone,20
+src.act.cont <cont>
+src.newitem i_reag_volcanic_ash,20
+src.act.cont <cont>
+remove
+return 1
+
+[ITEMDEF i_necro_reg40]
+ID=i_crystal_purple
+Value=3800
+WEIGHT=6
+NAME=necro reg crystal (40)
+
+On=@Create
+attr attr_newbie
+
+On=@DClick
+if !(<topobj.uid> == <src.uid>)
+	return 1
+endif
+
+src.emote use necro reagents crystal
+src.newitem i_reag_blood_vial,40
+src.act.cont <cont>
+src.newitem i_reag_bone,40
+src.act.cont <cont>
+src.newitem i_reag_executioners_cap,40
+src.act.cont <cont>
+src.newitem i_reag_fertile_dirt,40
+src.act.cont <cont>
+src.newitem i_reag_batwing,40
+src.act.cont <cont>
+src.newitem i_reag_eye_of_newt,40
+src.act.cont <cont>
+src.newitem i_reag_blood_spawn,40
+src.act.cont <cont>
+src.newitem i_reag_brimstone,40
+src.act.cont <cont>
+src.newitem i_reag_obsidian,40
+src.act.cont <cont>
+src.newitem i_reag_blackmoor,40
+src.act.cont <cont>
+src.newitem i_reag_daemon_bone,40
+src.act.cont <cont>
+src.newitem i_reag_volcanic_ash,40
+src.act.cont <cont>
+remove
+return 1
+
+[ITEMDEF 0f78]
+//Batwings
+DEFNAME=i_reag_batwing
+name=batwing
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=BatWing
+
+[ITEMDEF 0f79]
+//Blackmoor
+DEFNAME=i_reag_blackmoor
+name=blackmoor
+TYPE=T_REAGENT
+PILE=1
+VALUE=3
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Blackmoor
+
+[ITEMDEF 0f7c]
+// Bloodspawn
+DEFNAME=i_reag_blood_spawn
+name=bloodspawn
+TYPE=T_REAGENT
+VALUE=5
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Bloodspawn
+
+[ITEMDEF 0f7d]
+// Vial of Blood
+DEFNAME=i_reag_blood_vial
+name=vial%s of blood
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Vial of Blood
+
+[ITEMDEF 0f7e]
+// Bone
+DEFNAME=i_reag_bone
+name=bone%s
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Bone
+
+[ITEMDEF 0f7f]
+// Brimstone
+DEFNAME=i_reag_brimstone
+name=brimstone
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Brimstone
+
+[ITEMDEF 0f80]
+// Daemon Bone
+DEFNAME=i_reag_daemon_bone
+name=daemon bone
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Daemon Bone
+
+[ITEMDEF 0f81]
+// Fertile Dirt
+DEFNAME=i_reag_fertile_dirt
+name=fertile dirt
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Fertile Dirt
+
+[ITEMDEF 0f82]
+// Dragons Blood
+DEFNAME=i_reag_dragon_blood
+name=dragon's blood
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Dragons Blood
+
+[ITEMDEF 0f83]
+//Executioner's Cap
+DEFNAME=i_reag_executioners_cap
+name=executioner's cap
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Executioner's Cap
+
+[ITEMDEF 0f87]
+// Eye of Newt
+DEFNAME=i_reag_eye_of_newt
+name=eye%s of newt
+TYPE=T_REAGENT
+VALUE=5
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Eye of Newt
+
+[ITEMDEF 0F89]
+// Obsidian
+DEFNAME=i_reag_obsidian
+name=obsidian
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Obsidian
+
+[ITEMDEF 0f8a]
+//Pig Iron
+DEFNAME=i_reag_pig_iron
+name=pig iron
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Pig Iron
+
+[ITEMDEF 0f8b]
+//Pumice
+DEFNAME=i_reag_pumice
+name=pumice
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Pumice
+
+[ITEMDEF 0f8e]
+//Serpent's Scales
+DEFNAME=i_reag_serpent_scale
+name=serpent's scale
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Serpent's Scales
+
+[ITEMDEF 0f8f]
+//Volcanic Ash
+DEFNAME=i_reag_volcanic_ash
+name=volcanic ash
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Volcanic Ash
+
+[ITEMDEF 0f90]
+//Dead Wood
+DEFNAME=i_reag_dead_wood
+name=dead wood
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Dead Wood
+
+[ITEMDEF 0f91]
+// Worms Heart
+DEFNAME=i_reag_worm_heart
+name=worm's heart
+TYPE=T_REAGENT
+VALUE=3
+PILE=1
+WEIGHT=.1
+CATEGORY=Provisions - Alchemy & Magic
+SUBSECTION=Reagents - Pagan
+DESCRIPTION=Wyrms Heart
+
+
+[EOF]

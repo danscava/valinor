@@ -1,0 +1,196 @@
+// ----------------------------
+// DRYDOCK.SCP - YENI GEMI OZELLIKLERI
+// SON GUNCELLENME TARIHI: 1 Aralik 2001
+// ----------------------------
+VERSION=0.55 
+
+[function tiller]
+if (<src.region.flags> == 010d2)
+	dorand 5
+		sayu Efendim?
+		sayu Ha!
+		sayu Ne var yine?
+		sayu Hoo hooyy!!
+		sayu Ha! Ne var be?
+	enddo
+elseif (<link.more> == <src.uid>)
+	dialog d_ship_dock
+endif
+
+[DIALOG d_ship_dock]
+50, 50
+PAGE 0
+resizepic 0 0 5120 200 80
+text 5 5 1152 0
+button 62 45 2117 2118 1 0 1
+text 21 41 1250 1
+text 95 41 1250 2
+button 145 45 2117 2118 1 0 0
+
+[DIALOG d_ship_dock TEXT]
+Gemiyi kaldiracak misiniz?
+Evet
+Hayir
+
+
+[DIALOG d_ship_dock BUTTON]
+on=1
+link.remove
+if ((<link.baseid> == i_multi_ship_small_n) || (<link.baseid> == i_multi_ship_small_s) || (<link.baseid> == i_multi_ship_small_e) || (<link.baseid> == i_multi_ship_small_w))
+	if !(<src.findid.i_shipredeeder>
+		src.newitem i_shipredeeder
+		src.act.more2 i_deed_ship_small_n
+		src.act.equip
+	endif
+elseif ((<link.baseid> == i_multi_ship_medium_n) || (<link.baseid> == i_multi_ship_medium_s) || (<link.baseid> == i_multi_ship_medium_e) || (<link.baseid> == i_multi_ship_medium_w))
+	if !(<src.findid.i_shipredeeder>
+		src.newitem i_shipredeeder
+		src.act.more2 i_deed_ship_medium_n
+		src.act.equip
+	endif
+elseif ((<link.baseid> == i_multi_ship_long_n) || (<link.baseid> == i_multi_ship_long_s) || (<link.baseid> == i_multi_ship_long_e) || (<link.baseid> == i_multi_ship_long_w))
+	if !(<src.findid.i_shipredeeder>
+		src.newitem i_shipredeeder
+		src.act.more2 i_deed_ship_long_n
+		src.act.equip
+	endif
+elseif ((<link.baseid> == i_multi_ship_dragon_small_n) || (<link.baseid> == i_multi_ship_dragon_small_s) || (<link.baseid> == i_multi_ship_dragon_small_e) || (<link.baseid> == i_multi_ship_dragon_small_w))
+	if !(<src.findid.i_shipredeeder>
+		src.newitem i_shipredeeder
+		src.act.more2 i_deed_ship_dragon_small_n
+		src.act.equip
+	endif
+elseif ((<link.baseid> == i_multi_ship_dragon_medium_n) || (<link.baseid> == i_multi_ship_dragon_medium_s) || (<link.baseid> == i_multi_ship_dragon_medium_e) || (<link.baseid> == i_multi_ship_dragon_medium_w))
+	if !(<src.findid.i_shipredeeder>
+		src.newitem i_shipredeeder
+		src.act.more2 i_deed_ship_dragon_medium_n
+		src.act.equip
+	endif
+elseif ((<link.baseid> == i_multi_ship_dragon_long_n) || (<link.baseid> == i_multi_ship_dragon_long_s) || (<link.baseid> == i_multi_ship_dragon_long_e) || (<link.baseid> == i_multi_ship_dragon_long_w))
+	if !(<src.findid.i_shipredeeder>
+		src.newitem i_shipredeeder
+		src.act.more2 i_deed_ship_dragon_long_n
+		src.act.equip
+	endif
+endif
+
+[itemdef i_shipredeeder]
+id=i_memory
+weight=0
+layer=layer_special
+type t_eq_script
+
+On=@Equip
+cont.smsgx Tekne kaldiriliyor, lutfen bekleyin.
+timer 2
+
+On=@UnEquip
+cont.newitem <more2>
+cont.act.attr 04
+cont.act.bounce
+
+On=@Timer
+remove
+return 1
+
+[ITEMDEF 03e4a]
+//tiller man
+DEFNAME=i_ship_tillerman
+TYPE=t_sign_gump
+
+On=@DClick
+tiller
+
+CATEGORY=Ship Parts
+SUBSECTION=Tillerman
+DESCRIPTION=Tiller man
+
+[ITEMDEF 03e4b]
+//tiller man
+TYPE=t_sign_gump
+//DUPEITEM=03e4a
+
+On=@DClick
+tiller
+
+[ITEMDEF 03e4c]
+//tiller man
+TYPE=t_sign_gump
+//DUPEITEM=03e4a
+
+On=@DClick
+tiller
+
+[ITEMDEF 03e4d]
+//tiller man
+TYPE=t_sign_gump
+//DUPEITEM=03e4a
+
+On=@DClick
+tiller
+
+[ITEMDEF 03e4e]
+//tiller man
+TYPE=t_sign_gump
+//DUPEITEM=03e4a
+
+On=@DClick
+tiller
+
+[ITEMDEF 03e4f]
+//tiller man
+TYPE=t_sign_gump
+//DUPEITEM=03e4a
+
+On=@DClick
+tiller
+
+[ITEMDEF 03e50]
+//tiller man
+TYPE=t_sign_gump
+//DUPEITEM=03e4a
+
+On=@DClick
+tiller
+
+[ITEMDEF 03e51]
+//tiller man
+TYPE=t_sign_gump
+//DUPEITEM=03e4a
+
+On=@DClick
+tiller
+
+[ITEMDEF 03e52]
+//tiller man
+TYPE=t_sign_gump
+//DUPEITEM=03e4a
+
+On=@DClick
+tiller
+
+[ITEMDEF 03e53]
+//tiller man
+TYPE=t_sign_gump
+//DUPEITEM=03e4a
+
+On=@DClick
+tiller
+
+[ITEMDEF 03e54]
+//tiller man
+TYPE=t_sign_gump
+//DUPEITEM=03e4a
+
+On=@DClick
+tiller
+
+[ITEMDEF 03e55]
+//tiller man
+TYPE=t_sign_gump
+//DUPEITEM=03e4a
+
+On=@DClick
+tiller
+
+[EOF]

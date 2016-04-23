@@ -1,0 +1,32 @@
+[PLEVEL 1]
+sifre
+
+[function sifre]
+dialog d_sifre
+Return 1 
+
+[DIALOG d_sifre]
+0,0
+nomove
+resizepic 190 175 3000 335 150
+resizepic 200 185 3000 315 130
+resizepic 220 235 3000 270 22
+text 215 200 995 0
+text 255 275 0000 1
+button 220 275 4005 4006 1 0 1
+text 435 275 0000 2
+button 400 275 4005 4006 1 0 0
+textentry 225 237 253 25 0 0 3
+
+[DIALOG d_sifre TEXT]
+Yeni account sifreniz ne olsun ?
+Tamam
+Iptal
+yenisifre
+
+[DIALOG d_sifre BUTTON]
+ON=0
+src.sysmessage @1100,,1 Sifreniz degistirilmedi.
+ON=1
+SRC.password <ARGTXT[0]>
+RETURN 1

@@ -1,0 +1,864 @@
+[SPEECH spk_steacher]
+On=teach
+src.dialog d_skill_teach
+return 1
+
+[CHARDEF c_steacher]
+DEFNAME=c_steacher
+ID=C_MAN
+NAME=#NAMES_HUMANMALE
+DESIRES=i_gold,e_notoriety
+AVERSIONS=t_TRAP,t_eerie_stuff
+
+TSPEECH=spk_steacher
+
+ON=@Create
+COLOR=colors_skin
+STR={71 85}
+DEX=0
+INT={66 80}
+FLAGS=01
+TITLE=the Skill Teacher
+ITEMID={50.0 70.0}
+
+On=@Click
+message @055 <name> <title>
+return 1
+
+On=@Dclick
+if (<src.hits> == <0>)
+src.sysmessage @050,,1 Olu durumda bu islemi yapamazsiniz.
+return 1
+else (<distance> < 3)
+src.dialog d_skill_teach
+return 1
+endif
+
+On=@Spelleffect
+Return 1
+
+NPC=BRAIN_HUMAN
+
+ITEMNEWBIE=random_male_hair
+COLOR=colors_hair
+ITEMNEWBIE=random_facial_hair
+COLOR=match_hair
+
+ON=@NPCRestock
+ITEM=RANDOM_LIGHT
+ITEM=i_robe
+COLOR=colors_green
+ITEM=i_pants_long
+COLOR=colors_yellow
+ITEM=random_shoes
+COLOR=colors_neutral
+ITEM=random_coin_purse
+
+CATEGORY=Civilized
+SUBSECTION=Tradesmen
+DESCRIPTION=Skill Teacher
+
+[DIALOG d_skill_teach]
+0,0
+NOMOVE
+PAGE 1
+resizepic 100 30 3000 360 350
+resizepic 110 40 3000 340 330
+htmlgump 200 50 200 20 0 0 0
+tilepic 370 80 4825
+button 135 83 2117 2118 1 0 2
+htmlgump 155 81 80 300 1 0 0
+htmlgump 265 81 80 300 2 0 0
+button 135 102 2117 2118 1 0 3
+button 135 120 2117 2118 1 0 4
+button 135 138 2117 2118 1 0 5
+button 135 155 2117 2118 1 0 6
+button 135 173 2117 2118 1 0 7
+button 135 190 2117 2118 1 0 8
+button 135 209 2117 2118 1 0 9
+button 135 227 2117 2118 1 0 10
+button 135 245 2117 2118 1 0 11
+button 135 263 2117 2118 1 0 12
+button 135 281 2117 2118 1 0 13
+button 135 299 2117 2118 1 0 14
+button 245 83 2117 2118 1 0 15
+button 245 102 2117 2118 1 0 16
+button 245 120 2117 2118 1 0 17
+button 245 138 2117 2118 1 0 18
+button 245 155 2117 2118 1 0 19
+button 245 173 2117 2118 1 0 20
+button 245 190 2117 2118 1 0 21
+button 245 209 2117 2118 1 0 22
+button 245 227 2117 2118 1 0 23
+button 245 245 2117 2118 1 0 24
+button 245 263 2117 2118 1 0 25
+button 245 281 2117 2118 1 0 26
+button 245 299 2117 2118 1 0 27
+htmlgump 144 320 200 40 3 0 0
+button 396 315 4005 4006 0 2 0
+PAGE 2
+resizepic 100 30 3000 360 350
+resizepic 110 40 3000 340 330
+htmlgump 200 50 200 20 0 0 0
+tilepic 370 80 4825
+button 135 83 2117 2118 1 0 28
+htmlgump 155 81 80 300 4 0 0
+htmlgump 265 81 80 300 5 0 0
+button 135 102 2117 2118 1 0 29
+button 135 120 2117 2118 1 0 30
+button 135 138 2117 2118 1 0 31
+button 135 155 2117 2118 1 0 32
+button 135 173 2117 2118 1 0 33
+button 135 190 2117 2118 1 0 34
+button 135 209 2117 2118 1 0 35
+button 135 227 2117 2118 1 0 36
+button 135 245 2117 2118 1 0 37
+button 135 263 2117 2118 1 0 38
+button 135 281 2117 2118 1 0 39
+button 135 299 2117 2118 1 0 40
+button 245 83 2117 2118 1 0 41
+button 245 102 2117 2118 1 0 42
+button 245 120 2117 2118 1 0 43
+button 245 138 2117 2118 1 0 44
+button 245 155 2117 2118 1 0 45
+button 245 173 2117 2118 1 0 46
+button 245 190 2117 2118 1 0 47
+button 245 209 2117 2118 1 0 48
+button 245 227 2117 2118 1 0 49
+//button 245 245 2117 2118 0 0 0
+//button 245 263 2117 2118 0 0 0
+//button 245 281 2117 2118 0 0 0
+//button 245 299 2117 2118 0 0 0
+htmlgump 144 320 200 40 3 0 0
+button 396 315 4016 4015 0 1 0
+
+[DIALOG d_skill_teach TEXT]
+Valinor Teach Menu
+Alchemy Anatomy Animal Lore Animal Tam. Archery Arms Lore Begging B.Smith Bowcraft Camping Carpentry Cartography Cooking
+Detect Hid. Eval Int. Fencing Fishing Forensics Healing Inscription Item Iden. Lock Pick. Lumberjack Mace Fight. Magery Meditation
+Her skill ogrenimi icin 300gp gereklidir.
+Mining Musicianship Parrying Poisoning Provocation Magic Resist Remove Trap Snooping Spirit Speak Stealing Swordsmanship Tactics Tailoring 
+Taste Iden. Tinkering Tracking Veterinary Hiding Stealth Wrestling Herding Peacemaking
+
+[DIALOG d_skill_teach BUTTON]
+On=2
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.alchemy> < 30.0)
+	src.alchemy 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Alchemy skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=3
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.anatomy> < 30.0)
+	src.anatomy 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Anatomy skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=4
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.animallore> < 30.0)
+	src.animallore 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Animal Lore skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=5
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.taming> < 30.0)
+	src.taming 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Animal Taming skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=6
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.archery> < 30.0)
+	src.archery 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Archery skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=7
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.armslore> < 30.0)
+	src.armslore 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Arms Lore skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=8
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.begging> < 30.0)
+	src.begging 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Begging skilliniz <src.begging> oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=9
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.blacksmithing> < 30.0)
+	src.blacksmithing 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Black Smithing skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=10
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.bowcraft> < 30.0)
+	src.bowcraft 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Bowcraft skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=11
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.camping> < 30.0)
+	src.camping 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Camping skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=12
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.carpentry> < 30.0)
+	src.carpentry 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Carpentry skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=13
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.cartography> < 30.0)
+	src.cartography 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Cartography skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=14
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.cooking> < 30.0)
+	src.cooking 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Cooking skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=15
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.detectinghidden> < 30.0)
+	src.detectinghidden 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Detectinghidden skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=16
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.evaluatingintel> < 30.0)
+	src.evaluatingintel 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Evaluating Intelligence skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=17
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.fencing> < 30.0)
+	src.fencing 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Fencing skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=18
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.fishing> < 30.0)
+	src.fishing 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Fishing skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=19
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.forensics> < 30.0)
+	src.forensics 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Forensics Evaluation skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=20
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.healing> < 30.0)
+	src.healing 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Healing skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=21
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.inscription> < 30.0)
+	src.inscription 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Inscription skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=22
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.itemid> < 30.0)
+	src.itemid 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Item Itentification skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=23
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.lockpicking> < 30.0)
+	src.lockpicking 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Lock Picking skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=24
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.lumberjacking> < 30.0)
+	src.lumberjacking 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Lumberjacking skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=25
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.macefighting> < 30.0)
+	src.macefighting 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Mace Fighting skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=26
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.magery> < 30.0)
+	src.magery 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Magery skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=27
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.meditation> < 30.0)
+	src.meditation 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Meditation skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=28
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.mining> < 30.0)
+	src.mining 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Mining skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=29
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.musicianship> < 30.0)
+	src.musicianship 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Musicianship skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=30
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.parrying> < 30.0)
+	src.parrying 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Parrying skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=31
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.poisoning> < 30.0)
+	src.poisoning 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Poisoning skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=32
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.provocation> < 30.0)
+	src.provocation 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Provocation skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=33
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.magicresistance> < 30.0)
+	src.magicresistance 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Magic Resistance skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=34
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.removetrap> < 30.0)
+	src.removetrap 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Remove Trap skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=35
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.snooping> < 30.0)
+	src.snooping 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Snooping skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=36
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.spiritspeak> < 30.0)
+	src.spiritspeak 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Spirit Speak skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=37
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.stealing> < 30.0)
+	src.stealing 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Stealing skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=38
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.swordsmanship> < 30.0)
+	src.swordsmanship 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Swordsmanship skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=39
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.tactics> < 30.0)
+	src.tactics 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Tactics skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=40
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.tailoring> < 30.0)
+	src.tailoring 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Tailoring skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=41
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.tasteid> < 30.0)
+	src.tasteid 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Taste Identification skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=42
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.tinkering> < 30.0)
+	src.tinkering 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Tinkering skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=43
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.tracking> < 30.0)
+	src.tracking 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Tracking skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=44
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.veterinary> < 30.0)
+	src.veterinary 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Veterinary skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=45
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.hiding> < 30.0)
+	src.hiding 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Hiding skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=46
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.stealth> < 30.0)
+	src.stealth 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Stealth skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=47
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.wrestling> < 30.0)
+	src.wrestling 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Wrestling skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=48
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.herding> < 30.0)
+	src.herding 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Herding skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+On=49
+if (<src.skilltotal> > 770.0)
+	src.sysmessage @034 Skill capinizde daha fazla yer yok.
+	return 1
+elseif !(<src.restest 300 i_gold>)
+	src.sysmessage @034 Bunu ogrenmek icin 300 gp gerekli.
+	return 1
+elseif (<src.peacemaking> < 30.0)
+	src.peacemaking 30.0
+	src.consume 300 i_gold
+	src.sysmessage @055 Peacemaking skilliniz 30.0 oldu.
+else
+	src.sysmessage @034 Sectiginiz skilli zaten ogrenmissiniz.
+endif
+
+[EOF]

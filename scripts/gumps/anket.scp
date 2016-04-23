@@ -1,0 +1,200 @@
+[function sil]
+var.tag.ilkbasla 0
+var.TAG.OYKULLAN 0
+src.TAG.OYKULLAN 0
+
+[function sole]
+src.say <var.tag.ilkbasla>
+src.say <var.TAG.OYKULLAN>
+src.say <src.TAG.OYKULLAN>
+
+
+////////
+// Dialoglardaki duzenlenlemeler yapildi. / Noxier
+////////
+
+/////Anket Ayarlama
+
+
+[DIALOG d_admin_anket_yazi]               // Main
+100,50                                // Position
+resizepic 190 175 3000 335 150        // Curved Grey background 
+resizepic 200 185 3000 315 130        // Curved White background 
+resizepic 220 235 3000 270 22         // Curved White background 
+text 215 200 995 0                    // Place House Text
+text 255 275 0000 1                   // Continue Text
+button 220 275 4005 4007 1 0 1        // Opens Continue
+text 435 275 0000 2                   // Cancel Text
+button 400 275 4005 4007 1 0 0        // Opens Cancel
+textentry 225 237 253 25 0 0 3        // Text Input
+
+
+[DIALOG d_admin_anket_yazi TEXT]
+<src.tag.secim>. Secenek
+Tamam
+Iptal
+Buraya Yaziniz.
+
+[DIALOG d_admin_anket_yazi BUTTON]
+ONBUTTON=0
+SRC.SYSMESSAGE Anket Ayarlanmadi.
+ONBUTTON=1
+if (<eval <src.tag.secim>>=1)
+VAR.TAG.SECIM1TEXT <ARGTXT[0]>
+ELSEif (<eval <src.tag.secim>>=2)
+VAR.TAG.SECIM2TEXT <ARGTXT[0]>
+ELSEif (<eval <src.tag.secim>>=3)
+VAR.TAG.SECIM3TEXT <ARGTXT[0]>
+ELSEif (<eval <src.tag.secim>>=4)
+VAR.TAG.SECIM4TEXT <ARGTXT[0]>
+ENDIF
+dialog d_admin_menu
+RETURN 1
+
+
+
+[function anket2]
+if (strmatch('<src.account>','v_acrid')
+sysmessage Gral sensin Stizz:D
+dialog d_admin_menu
+else
+message Anket duzenleyemiyorsunuz.
+return 1
+endif
+
+[DIALOG d_admin_menu]
+0, 0
+PAGE 0
+resizepic 33 85 83 310 226
+resizepic 40 94 3000 292 202
+text 74 103 455 0
+button 72 144 2117 2118 1 0 1
+button 71 198 2117 2118 1 0 2
+button 71 171 2117 2118 1 0 3
+button 151 260 2311 2312 1 0 5
+button 211 259 243 241 1 0 0
+text 90 141 955 1
+text 88 169 955 2
+text 88 196 955 3
+button 109 230 2117 2118 1 0 4
+text 129 226 1313 4
+
+[DIALOG d_admin_menu TEXT]
+Anket Admin Menu
+1. Secenek Ne Olsun?
+2. Secenek Ne Olsun?
+3. Secenek Ne Olsun?
+Anket Sorusu Ne Olsun??
+
+
+[DIALOG d_admin_menu BUTTON]
+onbutton=1
+src.tag.secim 1
+DIALOG d_admin_anket_yazi
+onbutton=2
+src.tag.secim 3
+DIALOG d_admin_anket_yazi
+onbutton=3
+src.tag.secim 2
+DIALOG d_admin_anket_yazi
+onbutton=4
+src.tag.secim 4
+DIALOG d_admin_anket_yazi
+onbutton=5
+src.message Anket Ayarlandi.
+var.duzenleyici <src.name>
+var.timenoxi <serv.rtime>
+if (<eval <var.tag.ilkbasla>> = 1)
+var.tag.oykullan <EVAL <var.TAG.OYKULLAN>> + 1
+else 
+var.tag.ilkbasla 1
+var.TAG.OYKULLAN 1
+endif
+VAR.SECIM1 0
+VAR.SECIM2 0
+VAR.SECIM3 0
+
+
+[plevel 5]
+anket2
+
+
+[plevel 1]
+anket
+[FUNCTION anket]
+   DIALOG d_anket
+
+
+RETURN 1
+
+[DIALOG d_anket]
+20, 30
+
+resizepic 0 0 83 360 230		
+resizepic 7 9 3000 348 212
+resizepic 9 12 3500 345 208
+resizepic 20 25 3500 320 50
+resizepic 20 135 3500 320 75
+htmlgump 85 17 500 20 0 0 0
+htmlgump 55 40 500 20 1 0 0
+htmlgump 55 70 500 20 2 0 0
+htmlgump 55 90 500 20 3 0 0
+htmlgump 55 110 500 20 4 0 0
+htmlgump 55 145 120 20 5 0 0
+htmlgump 115 145 120 20 6 0 0
+htmlgump 260 70 500 20 7 0 0
+htmlgump 260 90 500 20 8 0 0
+htmlgump 260 110 500 20 9 0 0
+htmlgump 55 160 120 20 10 0 0
+htmlgump 115 160 120 20 11 0 0
+htmlgump 55 175 120 20 12 0 0
+htmlgump 115 175 120 20 13 0 0
+button 25 73 2117 2118 1 0 1
+button 25 93 2117 2118 1 0 2
+button 25 113 2117 2118 1 0 3
+
+[DIALOG d_anket TEXT]
+Valinor Anket Menusu
+<VAR.TAG.SECIM4TEXT>
+<VAR.TAG.SECIM1TEXT>
+<VAR.TAG.SECIM2TEXT>
+<VAR.TAG.SECIM3TEXT>
+Duzenleyen
+ : <var.duzenleyici>
+<EVAL <VAR.SECIM1>>
+<EVAL <VAR.SECIM2>>
+<EVAL <VAR.SECIM3>>
+Tarih
+ : <var.timenoxi>
+Toplam Oy
+ : <eval <var.secim1> + <var.secim2> + <var.secim3>>
+
+[DIALOG d_anket BUTTON]
+onbutton=0
+	return 0
+onbutton=1
+IF (<EVAL <SRC.TAG.OYKULLAN>>=<eval <var.tag.oykullan>>)
+   SRC.sysMESSAGE Daha once oy kullanmissiniz...
+else
+	SRC.TAG.oykullan=<EVAL <SRC.TAG.OYKULLAN>> + 1
+	var.secim1= <EVAL <VAR.SECIM1>> + 1
+	return 0
+endif
+onbutton=2
+IF (<EVAL <SRC.TAG.OYKULLAN>>=<eval <var.tag.oykullan>>)
+   SRC.sysMESSAGE Daha once oy kullanmissiniz...
+else
+	SRC.TAG.oykullan=<EVAL <SRC.TAG.OYKULLAN>> + 1
+	var.secim2= <EVAL <VAR.SECIM2>> + 1
+	return 0
+endif
+onbutton=3
+IF (<EVAL <SRC.TAG.OYKULLAN>>=<eval <var.tag.oykullan>>)
+   SRC.sysMESSAGE Daha once oy kullanmissiniz...
+else
+	SRC.TAG.oykullan=<EVAL <SRC.TAG.OYKULLAN>> + 1
+	var.secim3= <EVAL <VAR.SECIM3>> + 1
+	return 0
+endif
+
+[EOF]

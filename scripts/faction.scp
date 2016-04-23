@@ -1,0 +1,667 @@
+// ----------------------------
+// FACTION.SCP 
+// SON GUNCELLENME TARIHI: 5 Aralik 2002
+// ----------------------------
+Version 0.55
+
+[function fctn_conf]
+try var.p <p>
+try p <uid.040079abb.p>
+try uid.040079abb.dclick
+try p <var.p>
+
+// Tagger: 	040079abb
+// ----------------------
+// Shamino: 	04009163d
+// Jakama: 	04009149f
+// Daxantec:	040091450
+// Arcanum:	04009139c
+
+[function fctn_rec]
+if (<eval (<age> / 86400)> < 1) && !(<src.isgm>)
+	sysmessage Bir faction'a kaydolabilmeniz icin karakterinizin 1 gun veya daha once dogmus olmasi gerekiyor.
+elseif (strmatch('<uid.040079abb.tag.<account.name>>','X'))
+	sysmessage Hesabiniz faction sisteminden diskalifiye edilmis, uye olamazsiniz.
+elseif (<memoryfindtype.memory_guild>) && (<memoryfindtype.memory_guild.link.link.uid> != <targ.link.uid>)
+	if (<memoryfindtype.memory_guild.link.link> != 04fffffff)
+		sysmessage Uyesi oldugunuz guild destegini <uid.<memoryfindtype.memory_guild.link.link>.name> faction'ina veriyor, <targ.link.name> uyesi olamazsiniz.
+	else
+		sysmessage Uyesi oldugunuz guild hicbir faction'a destek vermiyor, <targ.link.name> uyesi olamazsiniz.
+	endif
+elseif (<targ.link.morey> >= <eval (<uid.04009163d.morey> + 5)>) || (<targ.link.morey> >= <eval (<uid.04009149f.morey> + 5)>) || (<targ.link.morey> >= <eval (<uid.040091450.morey> + 5)>) || (<targ.link.morey> >= <eval (<uid.04009139c.morey> + 5)>)
+	sysmessage Baska bir faction'dan 5 veya daha fazla uyeye sahip oldugu icin, su an <targ.link.name> uyesi olamazsiniz.
+elseif (<tactics> >= 75.0) || (<magery> >= 75.0)
+	try uid.<targ.link.uid>.applytojoin
+	try uid.<targ.link.uid>.sayu
+	try uid.<targ.link.uid>.sayu
+	try uid.<targ.link.uid>.sayu <targ.link.name> yeni uye: <name>.
+	try uid.<targ.link.uid>.morey <eval (<uid.<targ.link.uid>.morey> + 1)>
+	try uid.<targ.link.link.uid>.tag.<account.name> <uid>
+	try uid.<targ.link.link.uid>.more2 <eval (<uid.<targ.link.link.uid>.more2> + 1)>
+	try events +e_faction
+	try tag.fctn_silver 0
+	try tag.fctn_score 0
+	try tag.fctn_deficit 0
+	try targ.sayu <targ.link.name> yeni uye: <name>.
+	try targ.dclick
+	try sysmessage <targ.link.name>: hosgeldiniz.
+	try update
+else
+	sysmessage Bir faction'a kaydolabilmeniz icin Tactics veya Magery yeteginizin %75.0 veya daha yuksek olmasi gerekiyor.	
+endif
+
+[itemdef i_fctn_resigner]
+name faction resigner
+id 0186b
+type t_eq_script
+weight 0
+layer layer_special
+
+On=@Create
+attr attr_invis|attr_newbie
+
+On=@Equip
+timer 86400
+
+On=@UnEquip
+try link <src.memoryfindtype.memory_town.link.uid>
+try var.p <src.p>
+try src.p <src.memoryfindtype.memory_town.link.link.p> // clear acc
+if !(strmatch('<src.memoryfindtype.memory_town.link.link.tag.<src.account.name>>','X'))
+	try src.memoryfindtype.memory_town.link.link.tag.<src.account.name>
+endif
+try src.memoryfindtype.memory_town.link.link.more2 <eval (<src.memoryfindtype.memory_town.link.link.more2> - 1)>
+try src.p <src.memoryfindtype.memory_town.link.p> // clear char
+try src.memoryfindtype.memory_town.link.morey <eval (<src.memoryfindtype.memory_town.link.morey> - 1)>
+try src.memoryfindtype.memory_town.link.resign
+try src.events -e_faction
+try src.tag.fctn_score
+try src.tag.fctn_silver
+if !(<eval <src.tag.fctn_deficit>> > 0)
+	try src.tag.fctn_deficit
+endif
+if (<src.findlayer(22).baseid> == i_fctn_robe)
+	try src.findlayer(22).unequip
+endif
+try src.p <var.p>
+try src.update
+try src.sysmessage <link.name>: cikis yaptiniz.
+link.sayu <link.name> uye cikisi: <src.name>.
+
+On=@Timer
+if (<cont.flags>&statf_dead)
+	timer 30
+else
+	remove
+endif
+return 1
+
+[itemdef i_fctn_silver]
+name silver piece%s
+id 0ef0
+weight 0
+type t_coin
+dupelist 0ef1,0ef2
+
+[itemdef i_brnx_factionstone]
+name New Faction
+id i_grave_stone
+type t_stone_town
+weight 2000
+
+On=@Create
+color 0901
+attr attr_move_never|attr_owned
+
+On=@DClick
+if !(strmatch('<src.account.name>','Royal'))
+	return 1
+endif
+
+On=@Click
+sayua 045f,0,0,0 <name>
+sayua 0482,0,0,0 [pop: <morey> gd: <morex> tk: <eval <link.tag.<name>_kill>>]
+return 1
+
+On=@PickUp_Ground
+return 1
+
+On=@Timer
+return 1
+
+[itemdef i_brnx_acctagger_faction]
+name Acctag: Faction
+id i_grave_stone
+type t_script
+weight 2000
+
+On=@Create
+attr attr_move_never
+
+On=@DClick
+if (strmatch('<src.account.name>','Royal'))
+	dialog d_fctn_conf
+endif
+return 1
+
+On=@Click
+sayua 020,0,0,0 <serv.servname> <name>
+sayua 0482,0,0,0 [<eval <more2>> hesap]
+return 1
+
+On=@PickUp_Ground
+return 1
+
+On=@Timer
+return 1
+
+[itemdef i_fctn_stone]
+name Faction
+id 0ed5 // grave_stone_2
+type t_script
+weight 2000
+
+On=@Create
+color 0450
+attr attr_move_never
+
+On=@DClick
+if
+        src.sysmessage Hatali faction stone.
+	src.sysmessage Lutfen durumu yetkililere bildiriniz. (<link.type> != t_stone_town)
+	
+elseif !(strmatch('<src.account.name>','Royal')) && (0<src.account.plevel> > 1)
+	src.sysmessage Staff uyesisiniz, bunu kullanamazsiniz.
+elseif !(<src.memoryfindtype.memory_town>)
+	if (strmatch('<link.name>','Shamino'))
+		var.fctn_color 2215
+	elseif (strmatch('<link.name>','Jakama'))
+		var.fctn_color 1612
+	elseif (strmatch('<link.name>','Daxantec'))
+		var.fctn_color 2208
+	elseif (strmatch('<link.name>','Arcanum'))
+		var.fctn_color 2118
+	endif
+	var.font3 <basefont color=#202088
+	dialog d_fctn_recruit
+elseif !(<src.memoryfindtype.memory_town.link.uid> == <link.uid>)
+	src.sysmessage Bunu kullanamazsiniz.
+elseif (<src.findid.i_fctn_resigner>)
+	if (<eval (<src.findid.i_fctn_resigner.timer> / 3600)> < 1)
+		src.sysmessage Faction'dan ayrilmaniza <eval (<src.findid.i_fctn_resigner.timer> / 60)> dakika kalmis. Bu surecteyken bunu kullanamazsiniz.
+	else
+		src.sysmessage Faction'dan ayrilmaniza <eval (<src.findid.i_fctn_resigner.timer> / 3600)> saat kalmis. Bu surecteyken bunu kullanamazsiniz.
+	endif
+else
+	if (strmatch('<link.name>','Shamino'))
+		var.fctn_color 2215
+	elseif (strmatch('<link.name>','Jakama'))
+		var.fctn_color 1612
+	elseif (strmatch('<link.name>','Daxantec'))
+		var.fctn_color 2208
+	elseif (strmatch('<link.name>','Arcanum'))
+		var.fctn_color 2118
+	endif
+	dialog d_fctn_member
+endif
+return 1
+
+On=@Click
+message a faction stone
+message <link.name>
+message [pop: <link.morey>]
+return 1
+
+On=@PickUp_Ground
+if !(strmatch('<src.account.name>','Royal'))
+	return 1
+endif
+
+On=@Timer
+return 1
+
+[itemdef i_fctn_robe]
+name faction robe
+id i_robe
+weight 1
+type t_clothing
+armor 35
+
+On=@Create
+attr attr_newbie
+hitpoints 100
+
+On=@Equip
+if !(<src.memoryfindtype.memory_town>) || !(<src.memoryfindtype.memory_town.link.uid> == <link.link.uid>)
+	cont <src.findlayer(21).uid>
+endif
+
+On=@Click
+message a <name>
+message [<link.link.name>]
+return 1
+
+[dialog d_fctn_recruit]
+60,40
+
+page 0
+resizepic 50 10 5120 310 320 // dis lacivert bg
+resizepic 60 20 3000 290 300 // ust beyaz bg
+text 90 30 <eval <var.fctn_color>> 0 // baslik seysi
+htmlgump 80 50 250 200 1 1 1
+
+button 80 282 4012 4013 1 0 2
+button 80 260 4009 4010 1 0 1
+button 298 260 4018 4019 1 0 0
+htmlgump 113 284 50 20 4 0 0
+htmlgump 113 262 50 20 2 0 0
+htmlgump 256 262 50 20 3 0 0
+
+[dialog d_fctn_recruit text]
+<link.name>
+<var.font3>>Bu faction'a kayit olacak misiniz? On-bilgi: hesabinizdaki 3 gunu doldurmus karakterlerinizden sadece bir tanesini herhangi bir faction'a sokabilirsiniz. Cikmak istediginizde 24 saat cikis surecini beklemelisiniz. Uyeleri sayisi baska bir faction'in uye sayisindan 5 veya daha fazla olan bir faction'a giris yapamazsiniz. Ayri faction uyeleri birbirini dusman olarak gorur ve gz icinde dahi birbirlerine saldirabilir/loot'layabilirler.
+Kaydol
+Vazgec
+Ayrinti?
+
+[dialog d_fctn_recruit button]
+On=1
+src.fctn_rec
+
+On=2
+src.forum 66169
+
+[dialog d_fctn_member]
+60,40
+
+page 0
+resizepic 50 10 5120 310 280 // dis lacivert bg
+resizepic 60 20 3000 290 260 // ust beyaz bg
+text 90 30 <eval <var.fctn_color>> 0 // baslik seysi
+resizepic 80 50 3000 250 200
+
+page 1
+htmlgump 90 60 90 20 1 0 0
+htmlgump 90 80 90 20 19 0 0
+htmlgump 90 100 90 20 2 0 0
+htmlgump 90 120 90 20 3 0 0
+htmlgump 90 140 90 20 17 0 0
+htmlgump 90 160 90 20 4 0 0
+htmlgump 180 61 160 20 5 0 0
+htmlgump 180 81 160 20 20 0 0
+htmlgump 180 101 160 20 6 0 0
+htmlgump 180 121 160 20 7 0 0
+htmlgump 180 141 160 20 18 0 0
+htmlgump 180 161 160 20 8 0 0
+
+button 140 195 2714 2715 0 2
+button 140 215 2714 2715 0 3
+htmlgump 162 196 100 20 9 0 0
+htmlgump 162 216 100 20 10 0 0
+
+page 2
+button 100 80 2714 2715 1 0 20
+button 100 100 2714 2715 1 0 30
+htmlgump 122 81 170 20 11 0 0
+htmlgump 122 101 150 20 12 0 0
+
+button 100 200 2714 2715 0 1
+htmlgump 122 201 100 20 13 0 0
+
+page 3
+htmlgump 90 55 230 140 14 0 0
+button 230 190 4003 4004 1 0 10
+button 230 212 4009 4010 0 1
+htmlgump 265 192 50 20 15 0 0
+htmlgump 265 214 50 20 16 0 0
+
+[dialog d_fctn_member text]
+<link.name>
+Populasyon:
+Rekor Puan:
+Rekorer:
+Seviyeniz:
+<link.morey> / <eval <link.link.more2>>
+<eval <link.link.tag.<link.name>_kill>>
+<src.uid.<link.link.tag.<link.name>_record>.name>
+<eval <src.tag.fctn_score>> puan ile %<eval ((<src.tag.fctn_score> * 100) / <link.link.tag.<link.name>_kill>)>
+<link.name> Market
+Faction'dan Ayril
+War horse (5000 silver)
+Faction robe (150 silver)
+Geri Don
+Bunu yapmak istediginize emin misiniz? eger faction'dan ayrilmayi secerseniz 24 saat boyunca hala faction'da gorunecek ve diger faction uyeleri tarafindan saldiriya acik olacaksiniz. Bu surenin sonunda faction'dan otomatik olarak cikacak ve faction puaniniz sifirlancaktir.
+Terket!
+Vazgec.
+Ziyaniniz:
+<eval <src.tag.fctn_deficit>>
+Guild'ler:
+<link.morex> / <eval (<serv.guilds> - 4)>
+
+[dialog d_fctn_member button]
+On=10
+src.sysmessage 24 saat icerisinde <src.memoryfindtype.memory_town.link.name> faction'indan ayrilacaksiniz.
+src.newitem i_fctn_resigner
+src.act.link <link.uid>
+src.act.equip
+
+On=20
+src.sysmessage War horse'lar su an icin test asamasindadir.
+return 1
+if !(<src.restest 5000 i_fctn_silver>)
+	src.sysmessage War horse alabilmek icin yaninizda yeterli silver piece bulunmuyor.
+else
+	src.sysmessage bla bla.
+endif
+
+On=30
+if !(<src.restest 150 i_fctn_silver>)
+	src.sysmessage Faction robe alabilmek icin yaninizda yeterli silver piece bulunmuyor.
+else
+	src.consume 150 i_fctn_silver
+	src.newitem i_fctn_robe
+	src.act.link <uid>
+	src.act.color <link.more2>
+	src.act.bounce
+endif
+
+[dialog d_fctn_conf]
+0,40
+
+resizepic 50 10 5120 570 480 // dis lacivert bg
+resizepic 60 20 3000 550 460 // ust beyaz bg
+
+htmlgump 82 30 250 20 0 0 0 // baslik seysi
+
+resizepic 80 50 3000 250 200 // Shamino
+text 90 60 2215 1
+htmlgump 93 85 90 20 5 0 0
+htmlgump 93 105 90 20 40 0 0
+htmlgump 93 125 90 20 6 0 0
+htmlgump 113 145 90 20 7 0 0
+htmlgump 113 165 90 20 8 0 0
+htmlgump 113 185 90 20 9 0 0
+htmlgump 113 205 90 20 10 0 0
+htmlgump 113 225 90 20 11 0 0
+button 90 147 2224 2117 1 0 10
+button 90 167 2224 2117 1 0 11
+button 90 187 2224 2117 1 0 12
+button 90 207 2224 2117 1 0 13
+button 90 227 2224 2117 1 0 14
+htmlgump 200 86 130 20 12 0 0
+htmlgump 200 106 130 20 41 0 0
+htmlgump 200 126 130 20 16 0 0
+htmlgump 200 146 130 20 20 0 0
+htmlgump 200 166 130 20 24 0 0
+htmlgump 200 186 130 20 28 0 0
+htmlgump 200 206 130 20 32 0 0
+htmlgump 200 226 130 20 36 0 0
+
+resizepic 340 50 3000 250 200 // Jakama
+text 350 60 1612 2
+htmlgump 353 85 90 20 5 0 0
+htmlgump 353 105 90 20 40 0 0
+htmlgump 353 125 90 20 6 0 0
+htmlgump 373 145 90 20 7 0 0
+htmlgump 373 165 90 20 8 0 0
+htmlgump 373 185 90 20 9 0 0
+htmlgump 373 205 90 20 10 0 0
+htmlgump 373 225 90 20 11 0 0
+button 350 147 2224 2117 1 0 20
+button 350 167 2224 2117 1 0 21
+button 350 187 2224 2117 1 0 22
+button 350 207 2224 2117 1 0 23
+button 350 227 2224 2117 1 0 24
+htmlgump 460 86 130 20 13 0 0
+htmlgump 460 106 90 20 42 0 0
+htmlgump 460 126 130 20 17 0 0
+htmlgump 460 146 130 20 21 0 0
+htmlgump 460 166 130 20 25 0 0
+htmlgump 460 186 130 20 29 0 0
+htmlgump 460 206 130 20 33 0 0
+htmlgump 460 226 130 20 37 0 0
+
+resizepic 80 260 3000 250 200 // Daxantec
+text 90 270 2208 3
+htmlgump 93 295 90 20 5 0 0
+htmlgump 93 315 90 20 40 0 0
+htmlgump 93 335 90 20 6 0 0
+htmlgump 113 355 90 20 7 0 0
+htmlgump 113 375 90 20 8 0 0
+htmlgump 113 395 90 20 9 0 0
+htmlgump 113 415 90 20 10 0 0
+htmlgump 113 435 90 20 11 0 0
+button 90 357 2224 2117 1 0 30
+button 90 377 2224 2117 1 0 31
+button 90 397 2224 2117 1 0 32
+button 90 417 2224 2117 1 0 33
+button 90 437 2224 2117 1 0 34
+htmlgump 200 296 130 20 14 0 0
+htmlgump 200 316 130 20 43 0 0
+htmlgump 200 336 130 20 18 0 0
+htmlgump 200 356 130 20 22 0 0
+htmlgump 200 376 130 20 26 0 0
+htmlgump 200 396 130 20 30 0 0
+htmlgump 200 416 130 20 34 0 0
+htmlgump 200 436 130 20 38 0 0
+
+resizepic 340 260 3000 250 200 // Arcanum
+text 350 270 2118 4
+htmlgump 353 295 90 20 5 0 0
+htmlgump 353 315 90 20 40 0 0
+htmlgump 353 335 90 20 6 0 0
+htmlgump 373 355 90 20 7 0 0
+htmlgump 373 375 90 20 8 0 0
+htmlgump 373 395 90 20 9 0 0
+htmlgump 373 415 90 20 10 0 0
+htmlgump 373 435 90 20 11 0 0
+button 350 357 2224 2117 1 0 40
+button 350 377 2224 2117 1 0 41
+button 350 397 2224 2117 1 0 42
+button 350 417 2224 2117 1 0 43
+button 350 437 2224 2117 1 0 44
+htmlgump 460 296 130 20 15 0 0
+htmlgump 460 316 130 20 44 0 0
+htmlgump 460 336 130 20 19 0 0
+htmlgump 460 356 130 20 23 0 0
+htmlgump 460 376 130 20 27 0 0
+htmlgump 460 396 130 20 31 0 0
+htmlgump 460 416 130 20 35 0 0
+htmlgump 460 436 130 20 39 0 0
+
+[dialog d_fctn_conf text]
+CHIMERA FACTIONS [<eval <more2>> hesap]
+Shamino
+Jakama
+Daxantec
+Arcanum
+Populasyon:
+Puan Rekoru:
+Rekorer:
+Rutbe 1:
+Rutbe 2:
+Rutbe 3:
+Rutbe 4:
+<src.uid.04009163d.morey>
+<src.uid.04009149f.morey>
+<src.uid.040091450.morey>
+<src.uid.04009139c.morey>
+<eval <tag.shamino_kill>>
+<eval <tag.jakama_kill>>
+<eval <tag.daxantec_kill>>
+<eval <tag.arcanum_kill>>
+<src.uid.<tag.shamino_record>.name>
+<src.uid.<tag.jakama_record>.name>
+<src.uid.<tag.daxantec_record>.name>
+<src.uid.<tag.arcanum_record>.name>
+<tag.shamino_rank1>
+<tag.jakama_rank1>
+<tag.daxantec_rank1>
+<tag.arcanum_rank1>
+<tag.shamino_rank2>
+<tag.jakama_rank2>
+<tag.daxantec_rank2>
+<tag.arcanum_rank2>
+<tag.shamino_rank3>
+<tag.jakama_rank3>
+<tag.daxantec_rank3>
+<tag.arcanum_rank3>
+<tag.shamino_rank4>
+<tag.jakama_rank4>
+<tag.daxantec_rank4>
+<tag.arcanum_rank4>
+Guild'ler:
+<src.uid.04009163d.morex> / <eval (<serv.guilds> - 4)>
+<src.uid.04009149f.morex> / <eval (<serv.guilds> - 4)>
+<src.uid.040091450.morex> / <eval (<serv.guilds> - 4)>
+<src.uid.04009139c.morex> / <eval (<serv.guilds> - 4)>
+
+[dialog d_fctn_conf button]
+On=10
+src.gouid <tag.shamino_record>
+
+On=20
+src.gouid <tag.jakama_record>
+
+On=30
+src.gouid <tag.daxantec_record>
+
+On=40
+src.gouid <tag.arcanum_record>
+
+On=11
+tryp 7 inpdlg tag.shamino_rank1 12
+
+On=12
+tryp 7 inpdlg tag.shamino_rank2 12
+
+On=13
+tryp 7 inpdlg tag.shamino_rank3 12
+
+On=14
+tryp 7 inpdlg tag.shamino_rank4 12
+
+On=21
+tryp 7 inpdlg tag.jakama_rank1 12
+
+On=22
+tryp 7 inpdlg tag.jakama_rank2 12
+
+On=23
+tryp 7 inpdlg tag.jakama_rank3 12
+
+On=24
+tryp 7 inpdlg tag.jakama_rank4 12
+
+On=31
+tryp 7 inpdlg tag.daxantec_rank1 12
+
+On=32
+tryp 7 inpdlg tag.daxantec_rank2 12
+
+On=33
+tryp 7 inpdlg tag.daxantec_rank3 12
+
+On=34
+tryp 7 inpdlg tag.daxantec_rank4 12
+
+On=41
+tryp 7 inpdlg tag.arcanum_rank1 12
+
+On=42
+tryp 7 inpdlg tag.arcanum_rank2 12
+
+On=43
+tryp 7 inpdlg tag.arcanum_rank3 12
+
+On=44
+tryp 7 inpdlg tag.arcanum_rank4 12
+
+[events e_faction]
+On=@Click
+if (<isevent.e_notted>) && (<src.isgm>)
+	return 0
+elseif !(<findid.i_rune_incognito>)
+	if (<tag.fctn_score> < <eval ((<src.uid.040079abb.tag.<memoryfindtype.memory_town.link.name>_kill> * 50) / 100)>)
+		message [<src.uid.040079abb.tag.<memoryfindtype.memory_town.link.name>_rank1>, <memoryfindtype.memory_town.link.name>]
+	elseif (<tag.fctn_score> < <eval ((<src.uid.040079abb.tag.<memoryfindtype.memory_town.link.name>_kill> * 75) / 100)>)
+		message [<src.uid.040079abb.tag.<memoryfindtype.memory_town.link.name>_rank2>, <memoryfindtype.memory_town.link.name>]
+	elseif (<tag.fctn_score> < <src.uid.040079abb.tag.<memoryfindtype.memory_town.link.name>_kill>)
+		message [<src.uid.040079abb.tag.<memoryfindtype.memory_town.link.name>_rank3>, <memoryfindtype.memory_town.link.name>]
+	else
+		message [<src.uid.040079abb.tag.<memoryfindtype.memory_town.link.name>_rank4>, <memoryfindtype.memory_town.link.name>]
+	endif
+	if (<memoryfindtype.memory_guild>) // guild name
+		if (strmatch('<tag.gs_title>','')
+			message [<memoryfindtype.memory_guild.link.name>]
+		else
+			message [<tag.gs_title>, <memoryfindtype.memory_guild.link.abbrev>]
+		endif
+	endif
+endif
+
+On=@Death
+if (<act.ischar>)
+if (<act.memoryfindtype.memory_town>) && (<act.memoryfindtype.memory_town.link> != <memoryfindtype.memory_town.link>)
+	// LOSER (<uid>)
+	if (strmatch('<tag.fctn_silver>',''))
+		tag.fctn_silver 0
+	endif
+	if (<eval <tag.fctn_score>> < 1)
+		if (<eval <tag.fctn_deficit>> >= 10)
+			act.sysmessage <name>: puansiz.
+			return 0
+		else
+			var.fctn_point 1
+			tag.fctn_deficit <eval (<tag.fctn_deficit> + 1)>
+			sysmessage <act.name>: +<eval <var.fctn_point>> ziyan.
+		endif
+	elseif (<eval <tag.fctn_score>> < 20)
+		var.fctn_point 1
+		tag.fctn_score <eval (<tag.fctn_score> - 1)>
+		sysmessage <act.name>: -<eval <var.fctn_point>> puan.
+	else
+		var.fctn_point <eval ((<tag.fctn_score> * 10) / 100)>
+		tag.fctn_score <eval (<tag.fctn_score> - <var.fctn_point>)>
+		sysmessage <act.name>: -<eval <var.fctn_point>> puan.
+	endif
+	// WINNER (<act.uid>)
+	if (<eval <act.tag.fctn_deficit>> > 0)
+		if (<eval <var.fctn_point>> <= <eval <act.tag.fctn_deficit>>)
+			act.tag.fctn_deficit <eval (<act.tag.fctn_deficit> - <var.fctn_point>)>
+			act.sysmessage <name>: -<eval <var.fctn_point>> ziyan.
+			return 0
+		else
+			act.sysmessage <name>: -<eval <act.tag.fctn_deficit>> ziyan.
+			var.fctn_point <eval (<var.fctn_point> - <act.tag.fctn_deficit>)>
+			act.tag.fctn_deficit 0
+		endif
+	endif
+	act.tag.fctn_score <eval (<act.tag.fctn_score> + <var.fctn_point>)>
+	act.sysmessage <name>: +<eval <var.fctn_point>> puan.
+	// SILVER COINS
+	if (<eval <var.fctn_point>> > 0) && (<tag.fctn_silver> != <act.uid>)
+		var.fctn_svtra <act.findlayer(21).uid>
+		tag.fctn_silver <act.uid>
+		newitem i_fctn_silver
+		act.amount <eval (<var.fctn_point> * 10)>
+		act.cont <var.fctn_svtra>
+	endif
+endif
+endif
+
+On=@EnvironChange
+if (strmatch('<tag.fctn_silver>',''))
+	tag.fctn_silver 0
+endif
+
+if (<tag.fctn_score> > <memoryfindtype.memory_town.link.link.tag.<memoryfindtype.memory_town.link.name>_kill>)
+	try memoryfindtype.memory_town.link.link.tag.<memoryfindtype.memory_town.link.name>_kill <tag.fctn_score>
+	if !(strmatch('<memoryfindtype.memory_town.link.link.<memoryfindtype.memory_town.link.name>_record>','<uid>'))
+		sysmessage <memoryfindtype.memory_town.link.name> puan rekorunu kirdiniz.
+		try uid.<memoryfindtype.memory_town.link.link.tag.<memoryfindtype.memory_town.link.name>_record>.sysmessage <memoryfindtype.memory_town.link.name> puan rekorunuz <name> tarafindan egale edildi.
+		try memoryfindtype.memory_town.link.link.tag.<memoryfindtype.memory_town.link.name>_record <uid>
+	endif
+endif
+
+[EOF]

@@ -1,0 +1,591 @@
+// ----------------------------
+// Lyn Blacksmitg Dialogs
+// Admin Lyn
+// ----------------------------
+VERSION=0.55
+
+
+[function d_blackrock]
+src.tag.makelast <src.tag.makelast>
+var.noticebs yaninizdaki 'blackrock ingot' adedi: <src.rescount i_ingot_blackrock>, blacksmithing bilginiz: %<src.blacksmithing>
+tag.tinkering 1
+if !(strmatch('<tag.bs>',''))
+	tag.bs
+endif
+dialog d_blackrock
+
+[dialog d_blackrock]
+0,40
+
+page 0
+resizepic 50 10 5120 595 310 // dis lacivert bg
+resizepic 60 20 3000 575 290
+
+resizepic 200 56 3000 420 170 // item cercevesi yenii
+resizepic 200 230 3000 421 40 // noticess yeni
+
+htmlgump 200 30 210 20 0 0 0 // baslik seysi
+htmlgump 205 231 410 40 1 0 0 // notices tekst
+htmlgump 233 278 100 20 2 0 0 // tekrar yap
+htmlgump 558 278 25 20 9 0 0 // cikis
+button 200 275 4030 4031 1 0 31 <eval <tag.tinkering>> // tekrar yap buttonu
+button 589 275 4018 4019 1 0 0 // cikis butonu
+button 350 275 4030 4031 1 0 32 // tamir
+htmlgump 385 278 100 20 54 0 0 // tekrar yap
+htmlgump 80 278 100 20 55 0 0 // Ingot name
+//resizepic 75 278 9350 100 20 // IngoT cerceveeeeeeeee
+
+
+button 70 75 4006 4007 0 1 1 // Platemail
+button 70 95 4006 4007 0 2 1 // Chainmail
+button 70 115 4006 4007 0 3 1 // Ringmail
+button 70 135 4006 4007 0 4 1 // Helms
+button 70 155 4006 4007 0 5 1 // Shields
+//button 70 175 4006 4007 0 6 1 // Weapons
+//button 70 195 4006 4007 0 7 1 // Weapons II
+htmlgump 103 77 100 20 3 0 0 // Platemail
+htmlgump 103 97 100 20 4 0 0 // Chainmail
+htmlgump 103 117 100 20 5 0 0 // Ringmail
+htmlgump 103 137 100 20 6 0 0 // Helms
+htmlgump 103 157 100 20 7 0 0 // Shields
+//htmlgump 103 177 100 20 8 0 0 // Weapons
+//htmlgump 103 197 100 20 53 0 0 // Weapons II
+
+page 1 ////////////////////////////////////////////////////////
+tilepic 215 70 5142 // platemail
+button 210 100 2714 2715 1 0 10
+htmlgump 230 100 80 20 10 0 0
+
+tilepic 325 70 7173 // female armor
+button 310 100 2714 2715 1 0 11
+htmlgump 330 100 80 20 11 0 0
+
+tilepic 425 70 5146 // leggings
+button 410 100 2714 2715 1 0 12
+htmlgump 430 100 80 20 12 0 0
+
+tilepic 230 145 5145 // helm
+button 210 170 2714 2715 1 0 13
+htmlgump 230 170 80 20 13 0 0
+
+tilepic 325 150 5143 // arms
+button 310 170 2714 2715 1 0 14
+htmlgump 330 170 80 20 14 0 0
+
+tilepic 425 150 5144 // gloves
+button 410 170 2714 2715 1 0 15
+htmlgump 430 170 80 20 15 0 0
+
+tilepic 535 150 5139 // gorget
+button 510 170 2714 2715 1 0 16
+htmlgump 530 170 100 20 16 0 0
+
+page 2 ////////////////////////////////////////////////////////
+tilepic 230 67 5060 // chainmail
+button 210 100 2714 2715 1 0 17
+htmlgump 230 100 80 20 17 0 0
+
+tilepic 330 67 5059 // leggings
+button 310 100 2714 2715 1 0 18
+htmlgump 330 100 80 20 18 0 0
+
+tilepic 430 75 5056 // coif
+button 410 100 2714 2715 1 0 19
+htmlgump 430 100 80 20 19 0 0
+
+page 3 ////////////////////////////////////////////////////////
+tilepic 215 70 5101 // ringmail
+button 210 100 2714 2715 1 0 20
+htmlgump 230 100 80 20 20 0 0
+
+tilepic 320 75 5105 // leggings
+button 310 100 2714 2715 1 0 21
+htmlgump 330 100 80 20 21 0 0
+
+tilepic 225 145 5103 // sleeves
+button 210 170 2714 2715 1 0 22
+htmlgump 230 170 80 20 22 0 0
+
+tilepic 330 150 5106 // gloves
+button 310 170 2714 2715 1 0 23
+htmlgump 330 170 80 20 23 0 0
+
+page 4 //////////////////////////////////////////////////////// 
+tilepic 225 80 5128 // close
+button 210 100 2714 2715 1 0 24
+htmlgump 230 100 80 20 24 0 0
+
+tilepic 315 80 5130 // helmet
+button 310 100 2714 2715 1 0 25
+htmlgump 330 100 80 20 25 0 0
+
+tilepic 225 145 5132 // bascinet
+button 210 170 2714 2715 1 0 26
+htmlgump 230 170 80 20 26 0 0
+
+tilepic 315 145 5134 // nose
+button 310 170 2714 2715 1 0 27
+htmlgump 330 170 80 20 27 0 0
+
+page 5 ////////////////////////////////////////////////////////
+tilepic 220 80 7027 // buckler
+button 210 100 2714 2715 1 0 28
+htmlgump 230 100 80 20 28 0 0
+
+tilepic 320 80 7035 // metal
+button 310 100 2714 2715 1 0 29
+htmlgump 330 100 80 20 29 0 0
+
+tilepic 420 72 7031 // heater
+button 410 100 2714 2715 1 0 30
+htmlgump 430 100 80 20 30 0 0
+
+page 6 ////////////////////////////////////////////////////////
+htmlgump 215 60 80 20 31 0 0
+
+
+page 7 ////////////////////////////////////////////////////////
+htmlgump 215 60 80 20 32 0 0
+	
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+
+[dialog d_blackrock text]
+<serv.servname> BLACKSMITH MENU 	//1
+<var.noticebs>
+Tekrar Yap
+Platemail
+Chainmail
+Ringmail
+Helms
+Shields
+Weapons
+Cikis
+platemail		// 10
+female ar.
+leggings
+helm
+arms
+gloves
+gorget
+chainmail
+leggings
+coif
+ringmail		// 20
+leggings
+sleeves
+gloves
+close
+helmet
+bascinet
+nose
+buckler
+metal
+heater			// 30
+Hazirlaniyor.
+Hazirlaniyor.
+goblet
+skin. knife
+plate
+cleaver
+p. mug
+spoon
+fork
+knife			// 40
+keyring
+iron key
+iron golem
+trp. pouch
+potion keg
+candlabra
+heating st.
+lantern
+globe
+spyglass		// 50
+metal box
+scales
+Weapons II		// 53
+Tamir et
+Blackrock
+
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+
+[dialog d_blackrock button]
+On=0
+sysmessage @1153 Menu kapatildi..
+
+On=1
+var.noticebs blacksmith ile son yaptiginiz esyayi hatirlayamiyorsunuz.
+dialog d_blackrock
+
+On=10
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 79.0)
+	var.noticebs blackrock platemail yapimi icin %79.0 blacksmithing bilmeniz gerekli.
+elseif !(<src.restest 25 i_ingot_blackrock>)
+	var.noticebs blackrock platemail yapimi icin 25 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock platemail yapmaya basladiniz.
+	makeitem i_blackrock_platemail
+	src.tag.makelast=i_blackrock_platemail
+endif
+dialog d_blackrock
+
+On=11
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 74.0)
+	var.noticebs blackrock female platemail yapimi icin %74.0 blacksmithing bilmeniz gerekli.
+elseif !(<restest 1 i_ingot_iron>)
+	var.noticebs blackrock female platemail yapimi icin 22 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock female platemail yapmaya basladiniz.
+	makeitem i_blackrock_female_platemail
+	src.tag.makelast=i_blackrock_female_platemail
+endif
+dialog d_blackrock
+
+On=12
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 70.8)
+	var.noticebs blackrock platemail leggings yapimi icin %70,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 20 i_ingot_blackrock>)
+	var.noticebs blackrock platemail leggings yapimi icin 20 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock platemail leggings yapmaya basladiniz.
+	makeitem i_blackrock_platemail_leggings
+	src.tag.makelast=i_blackrock_platemail_leggings
+endif
+dialog d_blackrock
+
+On=13
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 62.6)
+	var.noticebs blackrock plate helm yapimi icin %62,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 15 i_ingot_blackrock>)
+	var.noticebs blackrock plate helm yapimi icin 15 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock plate helm yapmaya basladiniz.
+	makeitem i_blackrock_plate_helm
+	src.tag.makelast=i_blackrock_plate_helm
+endif
+dialog d_blackrock
+
+On=14
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 67.5)
+	var.noticebs blackrock platemail arms yapimi icin %67,5 blacksmithing bilmeniz gerekli.
+elseif !(<restest 18 i_ingot_blackrock>)
+	var.noticebs blackrock platemail arms yapimi icin 18 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock platemail arms yapmaya basladiniz.
+	makeitem i_blackrock_platemail_arms
+	src.tag.makelast=i_blackrock_platemail_arms
+endif
+dialog d_blackrock
+
+On=15
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 57.7)
+	var.noticebs blackrock platemail gauntlets yapimi icin %57,7 blacksmithing bilmeniz gerekli.
+elseif !(<restest 12 i_ingot_blackrock>)
+	var.noticebs blackrock platemail gauntlets yapimi icin 12 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock platemail gauntlets yapmaya basladiniz.
+	makeitem i_blackrock_platemail_gauntlets
+	src.tag.makelast=i_blackrock_platemail_gauntlets
+endif
+dialog d_blackrock
+
+
+On=16
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 54.4)
+	var.noticebs blackrock platemail gorget yapimi icin %54,4 blacksmithing bilmeniz gerekli.
+elseif !(<restest 10 i_ingot_blackrock>)
+	var.noticebs blackrock platemail gorget yapimi icin 10 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock platemail gorget yapmaya basladiniz.
+	makeitem i_blackrock_platemail_gorget
+	src.tag.makelast=i_blackrock_platemail_gorget
+endif
+dialog d_blackrock
+
+
+On=17
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 47.8)
+	var.noticebs blackrock chainmail tunic yapimi icin %47,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 20 i_ingot_blackrock>)
+	var.noticebs blackrock chainmail tunic yapimi icin 20 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock chainmail tunic yapmaya basladiniz.
+	makeitem i_blackrock_chainmail_tunic
+	src.tag.makelast=i_blackrock_chainmail_tunic
+endif
+dialog d_blackrock
+
+On=18
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 35.1)
+	var.noticebs blackrock chainmail leggings yapimi icin %35,1 blacksmithing bilmeniz gerekli.
+elseif !(<restest 18 i_ingot_blackrock>)
+	var.noticebs blackrock chainmail leggings yapimi icin 18 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock chainmail leggings yapmaya basladiniz.
+	makeitem i_blackrock_chainmail_leggings
+	src.tag.makelast=i_blackrock_chainmail_leggings
+endif
+dialog d_blackrock
+On=19
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 31.6)
+	var.noticebs blackrock chainmail coif yapimi icin %31,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 10 i_ingot_blackrock>)
+	var.noticebs blackrock chainmail coif yapimi icin 10 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock chainmail coif yapmaya basladiniz.
+	makeitem i_blackrock_chainmail_coif
+	src.tag.makelast=i_blackrock_chainmail_coif
+endif
+dialog d_blackrock
+
+On=20
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 35.1)
+	var.noticebs blackrock ringmail tunic yapimi icin %32,1 blacksmithing bilmeniz gerekli.
+elseif !(<restest 18 i_ingot_blackrock>)
+	var.noticebs blackrock ringmail tunic icin 18 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock ringmail tunic yapmaya basladiniz.
+	makeitem i_blackrock_ringmail_tunic
+	src.tag.makelast=i_blackrock_ringmail_tunic
+endif
+dialog d_blackrock
+
+On=21
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 31.6)
+	var.noticebs blackrock ringmail leggings yapimi icin %31,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 16 i_ingot_blackrock>)
+	var.noticebs blackrock ringmail leggings icin 16 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock ringmail leggings yapmaya basladiniz.
+	makeitem i_blackrock_ringmail_leggings
+	src.tag.makelast=i_blackrock_ringmail_leggings
+endif
+dialog d_blackrock
+
+On=22
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 28.3)
+	var.noticebs blackrock ringmail sleeves yapimi icin %28,3 blacksmithing bilmeniz gerekli.
+elseif !(<restest 14 i_ingot_blackrock>)
+	var.noticebs blackrock ringmail sleeves icin 14 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock ringmail sleeves yapmaya basladiniz.
+	makeitem i_blackrock_ringmail_sleeves
+	src.tag.makelast=i_blackrock_ringmail_sleeves
+endif
+dialog d_blackrock
+
+On=23
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 21.8)
+	var.noticebs blackrock ringmail gloves yapimi icin %21,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 10 i_ingot_blackrock>)
+	var.noticebs blackrock ringmail gloves icin 10 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock ringmail gloves yapmaya basladiniz.
+	makeitem i_blackrock_ringmail_gloves
+	src.tag.makelast=i_blackrock_ringmail_gloves
+endif
+dialog d_blackrock
+
+On=24
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 62.6)
+	var.noticebs blackrock closed helm yapimi icin %62,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 15 i_ingot_blackrock>)
+	var.noticebs blackrock closed helm icin 15 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock closed helm yapmaya basladiniz.
+	makeitem i_blackrock_closed_helm
+	src.tag.makelast=i_blackrock_closed_helm
+endif
+dialog d_blackrock
+
+
+On=25
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 62.6)
+	var.noticebs blackrock helmet yapimi icin %62,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 15 i_ingot_blackrock>)
+	var.noticebs blackrock helmet icin 15 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock helmet yapmaya basladiniz.
+	makeitem i_blackrock_helmet
+	src.tag.makelast=i_blackrock_helmet
+endif
+dialog d_blackrock
+
+On=26
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 23.2)
+	var.noticebs blackrock bascinet yapimi icin %23,2 blacksmithing bilmeniz gerekli.
+elseif !(<restest 15 i_ingot_blackrock>)
+	var.noticebs blackrock bascinet icin 15 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock bascinet yapmaya basladiniz.
+	makeitem i_blackrock_bascinet
+	src.tag.makelast=i_blackrock_bascinet
+endif
+dialog d_blackrock
+
+On=27
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 62.6)
+	var.noticebs blackrock nose helm  yapimi icin %62,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 15 i_ingot_blackrock>)
+	var.noticebs blackrock nose helm icin 15 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock nose helm yapmaya basladiniz.
+	makeitem i_blackrock_nose_helm
+	src.tag.makelast=i_blackrock_nose_helm
+endif
+dialog d_blackrock
+
+On=28
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 9.0)
+	var.noticebs blackrock buckler shield  yapimi icin %9,0 blacksmithing bilmeniz gerekli.
+elseif !(<restest 10 i_ingot_blackrock>)
+	var.noticebs blackrock buckler shield icin 10 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock buckler shield yapmaya basladiniz.
+	makeitem i_blackrock_buckler_shield
+	src.tag.makelast=i_blackrock_buckler_shield
+endif
+dialog d_blackrock
+
+On=29
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 19.0)
+	var.noticebs blackrock metal shield  yapimi icin %19,0 blacksmithing bilmeniz gerekli.
+elseif !(<restest 14 i_ingot_blackrock>)
+	var.noticebs blackrock metal shield icin 10 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock metal shield yapmaya basladiniz.
+	makeitem i_blackrock_metal_shield
+	src.tag.makelast=i_blackrock_metal_shield
+endif
+dialog d_blackrock
+
+On=30
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 44.6)
+	var.noticebs blackrock heater shield  yapimi icin %44,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 18 i_ingot_blackrock>)
+	var.noticebs blackrock heater shield icin 18 adet 'blackrock ingot' gerekli.
+else
+	var.noticebs blackrock heater shield yapmaya basladiniz.
+	makeitem i_blackrock_heater_shield
+	src.tag.makelast=i_blackrock_heater_shield
+endif
+dialog d_blackrock
+
+
+ON=31
+	src.makeitem=<src.tag.makelast>
+	var.noticebs tekrar yapmaya basladiniz.
+	dialog d_blackrock
+
+ON=32
+sysmessage @1153 Tamir etmek istediginiz parcayi secin.
+repair
+
+[EOF]

@@ -1,0 +1,300 @@
+// ----------------------------
+// NEWB.SCP - BASLANGIC ESYALARI 
+// SON GUNCELLENME TARIHI: 13 ocak 2009 - Acrid
+// ----------------------------
+
+[itemdef i_stat_stabil]
+id i_memory
+type t_eq_script
+weight 0
+name new char stat
+
+On=@Equip
+timer 1
+
+On=@UnEquip
+if (<cont.str> < 25)
+	cont.str 25
+endif
+if (<cont.int> < 25)
+	cont.int 25
+endif
+if (<cont.dex> < 25)
+	cont.dex 25
+endif
+
+On=@Timer
+remove
+return 1
+
+[NEWBIE MALE_DEFAULT]
+// Male Generic Starting Clothes
+ITEMNEWBIE=i_shirt_plain
+COLOR=colors_all
+ITEMNEWBIE=random_pants
+COLOR=colors_neutral
+ITEMNEWBIE=random_shoes
+COLOR=colors_neutral
+ITEMNEWBIE=i_dagger
+ITEMNEWBIE=i_gold,6000
+ITEMNEWBIE=i_young_ticket
+ITEMNEWBIE=i_hat_floppy
+
+[NEWBIE FEMALE_DEFAULT]
+// Female Generic Starting Clothes
+ITEMNEWBIE=i_shirt_plain
+COLOR=colors_all
+ITEMNEWBIE=random_skirt
+COLOR=colors_neutral
+ITEMNEWBIE=random_shoes
+COLOR=colors_neutral
+ITEMNEWBIE=i_dagger
+ITEMNEWBIE=i_gold,6000
+ITEMNEWBIE=i_young_ticket
+ITEMNEWBIE=i_hat_floppy
+
+[NEWBIE ALCHEMY]
+// Alchemy 
+ITEMNEWBIE=i_mortar_pestle
+ITEMNEWBIE=i_BOTTLE_EMPTY,10
+ITEMNEWBIE=i_reag_black_pearl,50
+ITEMNEWBIE=i_reag_garlic,50
+ITEMNEWBIE=i_reag_ginseng,50
+ITEMNEWBIE=i_reag_spider_silk,50
+ITEMNEWBIE=i_robe
+COLOR=colors_red
+
+[NEWBIE ANATOMY]
+// Anatomy 
+ITEMNEWBIE=i_robe
+COLOR=colors_yellow
+ITEMNEWBIE=i_bandage,50
+
+[NEWBIE ANIMALLORE]
+// Animal Lore 
+ITEMNEWBIE=i_robe
+COLOR=colors_green
+ITEMNEWBIE=i_shepherds_crook
+
+[NEWBIE ITEMID]
+// Item Identification 
+ITEMNEWBIE=i_staff_gnarled
+
+[NEWBIE ARMSLORE]
+// Armslore 
+ITEMNEWBIE=random_start_weapon
+
+[NEWBIE PARRYING]
+// Parrying 
+ITEMNEWBIE=i_shield_wood
+
+[NEWBIE BEGGING]
+// Begging 
+ITEMNEWBIE=i_staff_gnarled
+
+[NEWBIE BLACKSMITHING]
+// Blacksmithing 
+ITEMNEWBIE=i_hammer_smith
+ITEMNEWBIE=i_apron_half
+COLOR=colors_brown
+
+[NEWBIE BOWCRAFT]
+// Bowcraft/Fletching 
+ITEMNEWBIE=i_log,14
+ITEMNEWBIE=i_feather,5
+ITEMNEWBIE=i_arrow_shaft,5
+ITEMNEWBIE=i_hatchet
+
+[NEWBIE PEACEMAKING]
+// Peacemaking 
+ITEMNEWBIE=random_instrument
+
+[NEWBIE CAMPING]
+// Camping 
+ITEMNEWBIE=i_kindling,5
+ITEMNEWBIE=i_bedroll
+
+[NEWBIE CARPENTRY]
+// Carpentry 
+ITEMNEWBIE=i_saw_dovetail
+ITEMNEWBIE=i_hammer_smith
+ITEMNEWBIE=i_plane_moulding
+ITEMNEWBIE=i_nails
+ITEMNEWBIE=i_plane_jointing
+ITEMNEWBIE=i_plane_smoothing
+ITEMNEWBIE=i_saw
+ITEMNEWBIE=i_scorp
+ITEMNEWBIE=i_inshave
+ITEMNEWBIE=i_log,10
+ITEMNEWBIE=i_board,10
+ITEMNEWBIE=i_apron_half
+COLOR=colors_brown
+
+[NEWBIE CARTOGRAPHY]
+// Cartography 
+ITEMNEWBIE=i_map_blank,10
+ITEMNEWBIE=i_sextant
+
+[NEWBIE COOKING]
+// Cooking 
+ITEMNEWBIE=i_eggs_fresh
+ITEMNEWBIE=i_fish_big_2
+ITEMNEWBIE=i_dough
+ITEMNEWBIE=i_flour_sack
+ITEMNEWBIE=i_pitcher_water
+ITEMNEWBIE=i_kindling,5
+
+[NEWBIE DetectingHidden]
+// Detecting Hidden 
+ITEMNEWBIE=i_cape
+COLOR=colors_black
+
+[NEWBIE ENTICEMENT]
+// Enticement 
+ITEMNEWBIE=random_instrument
+
+[NEWBIE EvaluatingIntel]
+// Evaluate Intelligence 
+
+[NEWBIE HEALING]
+// Healing 
+ITEMNEWBIE=i_bandage,100
+ITEMNEWBIE=i_scissors
+
+[NEWBIE FISHING]
+// Fishing 
+ITEMNEWBIE=i_fishing_pole
+COLOR=colors_brown
+
+[NEWBIE FORENSICS]
+// Forensics 
+
+[NEWBIE HERDING]
+// Herding 
+ITEMNEWBIE=i_shepherds_crook
+
+[NEWBIE HIDING]
+// Hiding 
+ITEMNEWBIE=i_cape
+COLOR=colors_black
+
+[NEWBIE PROVOCATION]
+// Provocation 
+ITEMNEWBIE=random_instrument
+
+[NEWBIE INSCRIPTION]
+// Inscription 
+ITEMNEWBIE=i_scroll_blank,100
+ITEMNEWBIE=i_book_sm
+
+[NEWBIE LOCKPICKING]
+// Lockpicking 
+ITEMNEWBIE=i_lockpick,5
+
+[NEWBIE MAGERY]
+// Magery 
+ITEMNEWBIE=i_magic_reg90
+ITEMNEWBIE=i_scroll_night_sight
+ITEMNEWBIE=i_scroll_clumsy
+ITEMNEWBIE=i_scroll_create_food
+ITEMNEWBIE=i_scroll_feeblemind
+ITEMNEWBIE=i_scroll_heal
+ITEMNEWBIE=i_scroll_magic_arrow
+ITEMNEWBIE=i_scroll_night_sight
+ITEMNEWBIE=i_scroll_weaken
+ITEMNEWBIE=i_reag_sulfur_ash,100
+ITEMNEWBIE=i_reag_spider_silk,100
+
+[NEWBIE MAGICRESISTANCE]
+// Resisting Spells 
+
+[NEWBIE TACTICS]
+// Tactics 
+
+[NEWBIE SNOOPING]
+// Snooping 
+ITEMNEWBIE=i_lockpick,4
+
+[NEWBIE MUSICIANSHIP]
+// Musicianship 
+ITEMNEWBIE=random_instrument
+
+[NEWBIE POISONING]
+// Poisoning 
+ITEMNEWBIE=i_potion_poison,1
+
+[NEWBIE ARCHERY]
+// Archery 
+ITEMNEWBIE=i_bow
+ITEMNEWBIE=i_arrow,25
+
+[NEWBIE SPIRITSPEAK]
+// Spirit Speak 
+//ITEMNEWBIE=i_cape
+//COLOR=colors_black
+
+[NEWBIE STEALING]
+// Steal 
+//ITEMNEWBIE=i_lockpick,30
+
+[NEWBIE TAILORING]
+// Tailoring 
+ITEMNEWBIE=i_sewing_kit
+ITEMNEWBIE=i_CLOTH,20
+COLOR=colors_neutral
+ITEMNEWBIE=i_knife_skinning
+ITEMNEWBIE=i_scissors
+
+[NEWBIE TAMING]
+// Animal Training 
+ITEMNEWBIE=i_shepherds_crook
+ITEMNEWBIE=i_staff_taming
+
+[NEWBIE TASTEID]
+// Taste Identification 
+ITEMNEWBIE=random_potion,1
+
+[NEWBIE TINKERING]
+// Tinkering 
+ITEMNEWBIE=i_clock_frame
+ITEMNEWBIE=i_springs
+ITEMNEWBIE=i_tinker_tools
+ITEMNEWBIE=i_apron_half
+COLOR=colors_brown
+
+[NEWBIE TRACKING]
+// Tracking 
+ITEMNEWBIE=i_knife_skinning
+ITEMNEWBIE=i_boots_calf
+COLOR=colors_brown
+
+[NEWBIE VETERINARY]
+// Veterinary 
+ITEMNEWBIE=i_bandage,5
+ITEMNEWBIE=i_scissors
+
+[NEWBIE SWORDSMANSHIP]
+// Swordsmanship 
+
+[NEWBIE MACEFIGHTING]
+// Mace Fighting 
+ITEMNEWBIE=i_mace
+
+[NEWBIE FENCING]
+// Fencing 
+ITEMNEWBIE=i_spear
+
+[NEWBIE WRESTLING]
+// Wrestling 
+ITEMNEWBIE=i_leather_gloves
+
+[NEWBIE LUMBERJACKING]
+// Lumberjacking 
+ITEMNEWBIE=i_hatchet
+
+[NEWBIE MINING]
+// Mining 
+ITEMNEWBIE=i_pickaxe
+ITEMNEWBIE=i_hammer_smith
+
+[EOF]

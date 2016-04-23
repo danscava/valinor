@@ -1,0 +1,232 @@
+[itemdef i_gater]
+name gater
+id i_handr_1
+type t_eq_script
+weight 0
+layer layer_special
+
+On=@Create
+attr attr_invis|attr_can_decay
+
+On=@Equip
+timer 30
+src.dialog d_gatetravel
+	
+On=@Timer
+remove
+return 1
+
+[itemdef i_moongater]
+name moongater
+id i_handr_1
+type t_eq_script
+weight 0
+layer layer_special
+
+On=@Create
+attr attr_invis|attr_can_decay
+
+On=@Equip
+timer 30
+src.dialog d_facet_moongate
+	
+On=@Timer
+remove
+return 1
+
+[typedef t_facet_moongate]
+On=@Step
+if !((<src.findid.i_moongater>) || (<src.flags>&statf_stone))
+	src.newitem i_moongater
+	src.act.link <uid>
+	src.act.equip
+endif
+return 1
+
+On=@Dclick
+if !(<src.flags>&statf_stone)
+	if (<distance> > 3)
+		src.sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	else
+		if (<src.findid.i_moongater>)
+			src.findid.i_moongater.remove
+		endif
+		src.newitem i_moongater
+		src.act.link <uid>
+		src.act.equip
+	endif
+endif
+return 1
+
+On=@Click
+if (<src.region.uid> == <region.uid>)
+	sayua 0905,0,0,0 a Moongate
+else
+	message a Moongate
+endif
+return 1
+
+[dialog d_gatetravel]
+-100,-100
+nomove
+
+resizepic 190 165 5120 140 120
+resizepic 200 175 3000 120 100
+htmlgump 220 185 120 20 0 0 0
+
+htmlgump 258 218 80 20 1 0 0
+htmlgump 258 238 80 20 2 0 0
+
+button 225 215 4006 4007 1 0 1
+button 225 235 4018 4019 1 0 0
+
+[dialog d_gatetravel text]
+GATE TRAVEL
+Evet
+Hayir
+
+[dialog d_gatetravel button]
+On=0
+findid.i_gater.remove
+
+On=1 // gate'e gir
+if !(<findid.i_gater.link.isitem>)
+	sysmessage @1100,,1 Gate gecemeden kapanmis.
+	findid.i_gater.remove
+elseif (<findid.i_gater.link.distance> > 3)
+	sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	findid.i_gater.remove
+else
+	go <findid.i_gater.morep>
+	findid.i_gater.timer 2
+endif
+
+[dialog d_facet_moongate]
+-100,-100
+nomove
+
+resizepic 190 165 5120 180 260
+resizepic 200 175 3000 160 240
+htmlgump 220 185 140 20 0 0 0
+
+htmlgump 240 215 80 20 1 0 0
+htmlgump 240 235 80 20 2 0 0
+htmlgump 240 255 80 20 3 0 0
+htmlgump 240 275 80 20 4 0 0
+htmlgump 240 295 80 20 5 0 0
+htmlgump 240 315 80 20 6 0 0
+htmlgump 240 335 80 20 7 0 0
+htmlgump 240 355 80 20 8 0 0
+htmlgump 240 375 80 20 9 0 0
+
+button 220 215 2714 2715 1 0 2
+button 220 235 2714 2715 1 0 3
+button 220 255 2714 2715 1 0 4
+button 220 275 2714 2715 1 0 5
+button 220 295 2714 2715 1 0 6
+button 220 315 2714 2715 1 0 7
+button 220 335 2714 2715 1 0 8
+button 220 355 2714 2715 1 0 9
+button 220 375 2714 2715 1 0 10
+
+[dialog d_facet_moongate text]
+<serv.servname> Moongate
+Moonglow
+Britain
+Jhelom
+Yew
+Minoc
+Trinsic
+Skara Brae
+Magincia
+Pazar Alani
+
+[dialog d_facet_moongate button]
+On=0
+findid.i_moongater.remove
+
+On=2
+if (<findid.i_moongater.link.distance> > 3)
+	sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	findid.i_moongater.remove
+else
+	go moonglow moongate
+	findid.i_moongater.timer 2
+endif
+
+On=3
+if (<findid.i_moongater.link.distance> > 3)
+	sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	findid.i_moongater.remove
+else
+	go britain moongate
+	findid.i_moongater.timer 2
+endif
+
+On=4
+if (<findid.i_moongater.link.distance> > 3)
+	sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	findid.i_moongater.remove
+else
+	go 1499,3772,5 //jhelom moongate
+	findid.i_moongater.timer 2
+endif
+
+On=5
+if (<findid.i_moongater.link.distance> > 3)
+	sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	findid.i_moongater.remove
+else
+	go 771,752,5 //yew moongate
+	findid.i_moongater.timer 2
+endif
+
+On=6
+if (<findid.i_moongater.link.distance> > 3)
+	sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	findid.i_moongater.remove
+else
+	go 2702,693,5 //minoc-vesper moongate
+	findid.i_moongater.timer 2
+endif
+
+On=7
+if (<findid.i_moongater.link.distance> > 3)
+	sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	findid.i_moongater.remove
+else
+	go trinsic moongate
+	findid.i_moongater.timer 2
+endif
+
+On=8
+if (<findid.i_moongater.link.distance> > 3)
+	sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	findid.i_moongater.remove
+else
+	go skara brae moongate
+	findid.i_moongater.timer 2
+endif
+
+On=9
+if (<findid.i_moongater.link.distance> > 3)
+	sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	findid.i_moongater.remove
+else
+	go 3563,2139,34 //magincia moongate
+	findid.i_moongater.timer 2
+endif
+
+On=10
+if (<findid.i_moongater.link.distance> > 3)
+	sysmessage @1100,,1 Gate'e ulasamiyorsunuz.
+	findid.i_moongater.remove
+elseif (<flags>&statf_criminal)
+	sysmessage @1100,,1 Pazar alani'na criminal iken gidemezsiniz.
+	findid.i_moongater.remove
+else
+	go 1911 2134
+	findid.i_moongater.timer 2
+endif
+
+[EOF]

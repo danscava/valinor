@@ -1,0 +1,484 @@
+[ITEMDEF 0ee9]
+DUPEITEM=0e21
+
+[ITEMDEF 0e22]
+DUPEITEM=0e20
+
+[ITEMDEF 0e21]
+DEFNAME=i_bandage 
+RESOURCES=i_cloth 
+TYPE=T_BANDAGE 
+WEIGHT=0.2 
+DUPELIST=0ee9 
+CATEGORY=Items by Professions 
+SUBSECTION=Healer 
+DESCRIPTION=clean bandages 
+
+On=@DClick
+if !(<topobj.uid> == <src.uid>)
+	src.sysmessage @1100,,1 Bandajlar cantanizda olmali.
+	return 1
+elseif (<src.findid.i_mem_healing.timer> < 0)
+	src.findid.i_mem_healing.remove
+	return 0
+elseif (<src.findid.i_mem_healing>)
+	src.sysmessage @1100,,1 Bandajlari su an kullanamazsiniz.
+	return 1
+else
+	return 0
+endif
+
+On=@Targon_Char
+if !(<src.restest 1 i_bandage>)
+	src.sysmessage @1100,,1 Bandajiniz yok.
+	return 1
+elseif (<src.targ.distance> > 3)
+	src.sysmessage @1100,,1 Hedefe ulasamiyorsunuz.
+	return 1
+elseif (<src.targ.npc> == 10) ||(<src.targ.npc> == 11) || (<src.targ.npc> == 12) || (<src.targ.npc> == 13)
+	src.sysmessage @1100,,1 Bunu iyilestiremezsiniz.
+	return 1
+elseif (<src.targ.npc> == 1)
+	if (<src.targ.id> == c_m_golem_tinker1) || (<src.targ.id> == c_m_golem_tinker2) || (<src.targ.id> == c_m_golem)
+		src.sysmessage @1100,,1 Golem'leri bandajla iyilestiremezsiniz.
+	elseif !((<src.targ.hits> < <src.targ.str>) || (<src.targ.findid.i_rune_poison>))
+		src.sysmessage @1100,,1 <src.targ.name> tedaviye ihtiyac duymuyor.
+		return 1
+	elseif (<src.targ.findid.i_rune_poison>)
+		if ((<src.veterinary> < 60.0) || (<src.animallore> < 60.0))
+			src.sysmessage @1100,,1 Hayvan uzerindeki zehiri tedavi edecek kadar yetenekli degilsiniz.
+			return 1
+		endif
+	else
+		var.nx1 (<src.veterinary> / {20 50})
+		var.nx2 (<src.animallore> / 50)
+		var.nx3 <eval (<var.nx1> + <var.nx2> + {3 10})>
+	endif
+	src.sd 1
+	src.anim 17
+	src.newitem i_mem_healing
+	src.act.morey <eval <var.nx3>>
+	src.act.morex 3
+	src.act.link <src.targ.uid>
+	src.act.equip
+	src.face
+	return 1
+elseif (<src.targ.flags>&statf_dead)
+	if ((<src.healing> < 80.0) || (<src.anatomy> < 80.0))
+		src.sysmessage @1100,,1 Henuz oluleri diriltecek kudrete sahip degilsiniz.
+	elseif !(<src.restest 5 i_bandage>)
+		src.sysmessage @1100,,1 Diriltme islemi icin 5 bandaja ihtiyaciniz var.
+	else
+		if (<src.targ.kills> > 7)
+			src.criminal 1
+			src.sayua 048,6,6,0 * <src.targ.name> isimli katili diriltir *
+		elseif (<src.targ.flags>&statf_criminal)
+			src.criminal 1
+			src.sayua 048,6,6,0 * <src.targ.name> isimli sucluyu diriltir *
+		elseif (<src.memoryfindtype.memory_town>) && (<src.targ.memoryfindtype.memory_town>) && (<src.memoryfindtype.memory_town.link> != <src.targ.memoryfindtype.memory_town.link>)
+			src.criminal 1
+		elseif (<src.memoryfindtype.memory_guild.link.align>) && (<src.targ.memoryfindtype.memory_guild.link.align>) && (<src.memoryfindtype.memory_guild.link.align> != <src.targ.memoryfindtype.memory_guild.link.align>)
+			src.criminal 1
+		endif
+		src.sd 2
+		src.face
+		src.anim 17
+		src.consume 5 i_bandage
+		src.targ.spelleffect s_resurrection 1000
+		src.targ.sayua 048,6,6,0 * <src.name> sayesinde hayata doner *
+		src.checkhealing 2
+		src.checkanatomy 2
+	endif
+	return 1
+elseif (<src.targ.memoryfindtype.memory_town>) && !(<src.memoryfindtype.memory_town>)
+	src.sysmessage @1100,,1 Faction uyelerini iyilestiremezsiniz.
+	return 1
+elseif (<src.targ.memoryfindtype.memory_guild.link.align> > 0) && !(<src.memoryfindtype.memory_guild.link.align>)
+	src.sysmessage @1100,,1 Order/Chaos uyelerini iyilestiremezsiniz.
+	return 1
+elseif !((<src.targ.hits> < <src.targ.str>) || (<src.targ.findid.i_rune_poison>)) // 100
+	if !(<src.targ.uid> == <src.uid>)
+		src.sysmessage @1100,,1 <src.targ.name> tedaviye ihtiyac duymuyor.
+	else
+		src.sysmessage @1100,,1 Tedaviye ihtiyaciniz yok.
+	endif
+	return 1
+elseif (<src.targ.findid.i_rune_poison>)
+	if ((<src.healing> < 60.0) || (<src.anatomy> < 60.0))
+		src.sysmessage @1100,,1 Zehiri tedavi edecek kadar yetenekli degilsiniz.
+		return 1
+	endif
+elseif (<src.targ.findid.i_bleeding>)         ///Bleeding
+	if ((<src.healing> < 70.0) || (<src.anatomy> < 70.0))
+		src.sysmessage @1100,,1 Yarayi tedavi edecek kadar yetenekli degilsiniz.
+		return 1
+	endif
+else
+	var.nx1 (<src.healing> / {20 50})
+	var.nx2 (<src.anatomy> / 50)
+	var.nx3 <eval (<var.nx1> + <var.nx2> + {3 10})>
+endif
+
+src.sd 1
+src.anim 17
+src.newitem i_mem_healing
+src.act.morey <eval <var.nx3>>
+if !(<src.targ.uid> == <src.uid>) // heal other
+	src.act.morex 1
+	src.act.link <src.targ.uid>
+	src.face
+endif
+src.act.equip
+return 1
+
+[itemdef i_mem_healing]
+ID=i_memory
+TYPE=t_eq_script
+NAME=healing mem
+
+On=@Create
+attr attr_decay|attr_newbie
+
+On=@Equip
+src.newitem i_mageryfix
+src.act.equip
+src.events +e_healing
+timer 4
+
+On=@UnEquip
+cont.events -e_healing
+
+On=@Timer
+if (<morey>)
+	if (<morex> == 3) // veterinary
+		if !(<link.hits> < <link.str>) && !(<link.findid.i_rune_poison>)
+			cont.sysmessage @1100,,1 <link.name> tedaviye ihtiyac duymuyor.
+			remove
+			return 1
+		elseif (<link.findid.i_rune_poison>)
+			if (<cont.veterinary> < 60.0) || (<cont.animallore> < 60.0)
+				cont.sysmessage @1100,,1 Zehiri tedavi edecek kadar yetenekli degilsiniz.
+				remove
+				return 1
+			endif
+		elseif (<link.findid.i_bleeding>)       ///////Hayvanlarda bleeding
+			if (<cont.veterinary> < 70.0) || (<cont.animallore> < 70.0)
+				cont.sysmessage @1100,,1 Yarayi tedavi edecek kadar yetenekli degilsiniz.
+				remove
+				return 1
+			endif
+		elseif !(<cont.restest 1 i_bandage>)
+			cont.sysmessage @1100,,1 Bandajiniz yok.
+			remove
+			return 1
+		endif
+		cont.consume 1 i_bandage
+		if (<link.findid.i_rune_poison>) // cure animal
+			if !(rand(5) == 1)
+				link.findid.i_rune_poison.remove
+				link.effect 3,0376a,2,10,1
+				link.sayu * iyilestirilir *
+			else
+				cont.sayua 020,6,6,0 * <link.name> uzerindeki zehiri iyilestiremez *
+			endif
+		elseif (<link.findid.i_bleeding>) //hayvanlarda yara iyilestirme poff :D
+			if !(rand(5) == 1)
+                                link.findid.i_bleeding2.remove
+				link.findid.i_bleeding.remove
+				link.effect 3,0376a,2,10,1
+				link.sayu * yarasi iyilestirilir *
+			else
+				cont.sayua 020,6,6,0 * <link.name> uzerindeki yarayi iyilestiremez *
+cont.findid.i_mem_healing.remove
+			endif
+		else // heal animal
+			link.hits <eval (<link.hits> + <morey>)>
+			link.effect 3,0376a,2,10,1
+			if (<link.hits> > <link.str>)
+				link.hits <link.str>
+			endif
+			link.sayu * tedavi gorur *
+			link.update //100
+		endif
+		cont.checkveterinary
+		cont.checkanimallore
+		if (<cont.dex> < 35)
+			timer 6
+		else
+			timer 4
+		endif
+	elseif (<morex>) // others
+		if !(<link.hits> < <link.str>) && !(<link.findid.i_rune_poison>)
+			cont.sysmessage @1100,,1 <link.name> tedaviye ihtiyac duymuyor.
+			remove
+			return 1
+		elseif (<link.hits> < 1)
+			cont.sysmessage @1100,,1 <link.name> tedavi esnasinda hayatini kaybetti.
+			remove
+			return 1
+		elseif (<link.findid.i_rune_poison>)
+			if (<cont.healing> < 60.0) || (<cont.anatomy> < 60.0)
+				cont.sysmessage @1100,,1 Zehiri tedavi edecek kadar yetenekli degilsiniz.
+				remove
+				return 1
+			endif
+		elseif !(<cont.restest 1 i_bandage>)
+			cont.sysmessage @1100,,1 Bandajiniz yok.
+			remove
+			return 1
+		endif
+		cont.consume 1 i_bandage
+		if (<link.findid.i_rune_poison>) // cure other
+			if !(rand(5) == 1)
+				link.findid.i_rune_poison.remove
+				link.effect 3,0376a,2,10,1
+				if (<link.kills> > 7)
+					cont.criminal 1
+					cont.sayua 048,6,6,0 * <link.name> isimli katili iyilestirir *
+				elseif (<link.flags>&statf_criminal)
+					cont.criminal 1
+					cont.sayua 048,6,6,0 * <link.name> isimli sucluyu iyilestirir *
+				else
+					link.sayua 048,6,6,0 * <cont.name> tarafindan iyilestirilir *
+					if (<link.memoryfindtype.memory_town>) && (<cont.memoryfindtype.memory_town>) && (<cont.memoryfindtype.memory_town.link> != <link.memoryfindtype.memory_town.link>)
+						cont.criminal 1
+					elseif (<link.memoryfindtype.memory_guild.link.align>) && (<cont.memoryfindtype.memory_guild.link.align>) && (<cont.memoryfindtype.memory_guild.link.align> != <link.memoryfindtype.memory_guild.link.align>)
+						cont.criminal 1
+					endif
+				endif
+			else
+				cont.sayua 020,6,6,0 * <link.name> uzerindeki zehiri iyilestiremez *
+			endif
+		elseif (<link.findid.i_bleeding>)///////////////////////////Bleeding 
+			if !(rand(5) == 1)
+				link.findid.i_bleeding2.remove
+				link.findid.i_bleeding.remove
+				link.effect 3,0376a,2,10,1
+				if (<link.kills> > 7)
+					cont.criminal 1
+					cont.sayua 048,6,6,0 * <link.name> yarasini iyilestirir.*
+				elseif (<link.flags>&statf_criminal)
+					cont.criminal 1
+					cont.sayua 048,6,6,0 * <link.name> isimli suclunun yarasini iyilestirir. *
+				else
+					link.sayua 048,6,6,0 * <cont.name> tarafindan yarasi iyilestirilir. *
+					if (<link.memoryfindtype.memory_town>) && (<cont.memoryfindtype.memory_town>) && (<cont.memoryfindtype.memory_town.link> != <link.memoryfindtype.memory_town.link>)
+						cont.criminal 1
+					elseif (<link.memoryfindtype.memory_guild.link.align>) && (<cont.memoryfindtype.memory_guild.link.align>) && (<cont.memoryfindtype.memory_guild.link.align> != <link.memoryfindtype.memory_guild.link.align>)
+						cont.criminal 1
+					endif
+				endif
+			else
+				cont.sayua 020,6,6,0 * <link.name> uzerindeki yarayi tedavi edemez *
+cont.findid.i_mem_healing.remove
+
+			endif        ////////////////////////////////////////////////////////////
+		else // heal other
+			link.hits (<link.hits> + <morey>)
+			link.effect 3,0376a,2,10,1
+			if (<link.hits> > <link.str>)
+				link.hits <link.str>
+			endif
+			if (<link.kills> > 7)
+				cont.criminal 1
+				cont.sayua 048,6,6,0 * <link.name> isimli katili tedavi eder *
+			elseif (<link.flags>&statf_criminal)
+				cont.criminal 1
+				cont.sayua 048,6,6,0 * <link.name> isimli sucluyu tedavi eder *
+			else
+				link.sayua 048,6,6,0 * <cont.name> tarafindan tedavi edilir *
+				if (<link.memoryfindtype.memory_town>) && (<cont.memoryfindtype.memory_town>) && (<cont.memoryfindtype.memory_town.link> != <link.memoryfindtype.memory_town.link>)
+					cont.criminal 1
+				elseif (<link.memoryfindtype.memory_guild.link.align>) && (<cont.memoryfindtype.memory_guild.link.align>) && (<cont.memoryfindtype.memory_guild.link.align> != <link.memoryfindtype.memory_guild.link.align>)
+					cont.criminal 1
+				endif
+			endif
+		endif
+		cont.checkhealing 1
+		cont.checkanatomy 1
+		if (<cont.dex> < 35)
+			timer 6
+		else // 100
+			timer 4
+		endif
+	else
+		if !(<cont.hits> < <cont.str>) && !(<cont.findid.i_rune_poison>)
+			cont.sysmessage @1100,,1 Tedaviye ihtiyac duymuyorsunuz.
+			remove
+			return 1
+		elseif (<cont.hits> < 1)
+			remove
+			return 1
+		elseif (<cont.findid.i_rune_poison>)
+			if (<cont.healing> < 60.0) || (<cont.anatomy> < 60.0)
+				cont.sysmessage @1100,,1 Zehiri tedavi edecek kadar yetenekli degilsiniz.
+				remove
+				return 1
+			endif 
+   		elseif !(<cont.restest 1 i_bandage>)
+			cont.sysmessage Bandajiniz yok.
+			remove
+			return 1
+		endif
+		cont.consume 1 i_bandage
+		if (<cont.findid.i_rune_poison>) // cure self
+			if !(rand(5) == 1)
+				cont.findid.i_rune_poison.remove
+				cont.effect 3,0376a,2,10,1
+				cont.sayua 048,6,6,0 * zehir etkisini iyilestirir *
+			else
+				cont.sayua 020,6,6,0 * zehiri iyilestiremez *
+			endif
+		elseif (<cont.findid.i_bleeding>)/////////Bleeding bana bleed
+			if !(rand(5) == 1)
+				cont.findid.i_bleeding2.remove
+				cont.findid.i_bleeding.remove
+				cont.effect 3,0376a,2,10,1
+				cont.sayua 048,6,6,0 * yarayi tedavi eder *
+
+			else
+				cont.sayua 020,6,6,0  * yarayi tedavi edemez *
+cont.findid.i_mem_healing.remove
+			endif
+		else // heal self
+			cont.hits (<cont.hits> + <morey>)
+			cont.effect 3,0376a,2,10,1
+			cont.sayua 048,6,6,0 * kendini tedavi eder *
+			if (<cont.hits> > <cont.str>)
+				cont.hits <cont.str>
+			endif
+		endif
+		cont.checkhealing 1
+		cont.checkanatomy 1
+		if (<cont.dex> < 35)
+			timer 14
+		else
+			timer 8
+		endif
+	endif
+	morey 0 // memory'yi etkisiz hale getir
+	cont.events -e_healing // eventi kaldir artik gerek yok
+	return 1
+endif
+remove
+return 1
+	
+[events e_healing]
+On=@GetHit
+if (rand(2) == 1)
+	sayua 020,6,6,0 * bandajlari yirtilir *
+	findid.i_mem_healing.remove
+	findid.i_mageryfix.remove
+endif 
+
+On=@Death
+findid.i_mem_healing.remove
+findid.i_mageryfix.remove
+
+On=@Logout
+findid.i_mem_healing.remove
+findid.i_mageryfix.remove
+
+
+[function checkhealing]
+if ((<skilllock[17]> == 0) && (<skilltotal> < 800.0))
+	if (<healing> < 30.0)
+		if (rand(2) == 1)
+			healing (<healing> + 1)
+		endif
+	elseif (<healing> < 50.0)
+		if (rand(2) == 1)
+			healing (<healing> + 1)
+		endif
+	elseif (<healing> < 75.0)
+		if (rand(2) == 1)
+			healing (<healing> + 1)
+		endif
+	elseif (<healing> < 100.0)
+		if (rand(2) == 1)
+			healing (<healing> + 1)
+		endif
+	endif
+endif
+[function checkveterinary]
+if ((<skilllock[39]> == 0) && (<skilltotal> < 700.0))
+	if (<veterinary> < 30.0)
+		if (rand(1) == 1)
+			veterinary (<veterinary> + 1)
+		endif
+	elseif (<veterinary> < 50.0)
+		if (rand(2) == 1)
+			veterinary (<veterinary> + 1)
+		endif
+	elseif (<veterinary> < 75.0)
+		if (rand(3) == 1)
+			veterinary (<veterinary> + 1)
+		endif
+	elseif (<veterinary> < 100.0)
+		if (rand(5) == 1)
+			veterinary (<veterinary> + 1)
+		endif
+	endif
+endif
+
+[function checkanatomy]
+if ((<skilllock[1]> == 0) && (<skilltotal> < 800.0))
+	if (<anatomy> < 30.0)
+		if (rand(2) == 1)
+			anatomy (<anatomy> + 1)
+		endif
+	elseif (<anatomy> < 50.0)
+		if (rand(2) == 1)
+			anatomy (<anatomy> + 1)
+		endif
+	elseif (<anatomy> < 75.0)
+		if (rand(2) == 1)
+			anatomy (<anatomy> + 1)
+		endif
+	elseif (<anatomy> < 100.0)
+		if (rand(2) == 1)
+			anatomy (<anatomy> + 1)
+		endif
+	endif
+endif
+
+[function checkanimallore]
+if ((<skilllock[2]> == 0) && (<skilltotal> < 700.0))
+	if (<animallore> < 30.0)
+		if (rand(1) == 1)
+			animallore (<animallore> + 1)
+		endif
+	elseif (<animallore> < 50.0)
+		if (rand(2) == 1)
+			animallore (<animallore> + 1)
+		endif
+	elseif (<animallore> < 75.0)
+		if (rand(4) == 1)
+			animallore (<animallore> + 1)
+		endif
+	elseif (<animallore> < 100.0)
+		if (rand(5) == 1)
+			animallore (<animallore> + 1)
+		endif
+	endif
+endif
+
+[itemdef i_mageryfix]
+ID=i_memory
+TYPE=t_eq_script
+NAME=magery fix
+
+On=@Create
+attr attr_newbie|attr_decay
+
+On=@Equip
+src.flags <src.flags>|04
+timer 3
+endif
+
+On=@Timer
+cont.flags <cont.flags>&~04
+remove
+return 1
+
+[EOF]

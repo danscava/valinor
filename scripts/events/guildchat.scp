@@ -1,0 +1,47 @@
+[PLEVEL 1]
+gc
+
+[FUNCTION gc]
+IF <SRC.MEMORYFINDTYPE.MEMORY_GUILD.LINK.UID>!=0
+SERV.ALLCLIENTS SMSGc GC-<NAME> : <args>
+sound 070
+else
+smsua Su An Bir Guilde Uye Degilsiniz !
+endif
+
+[FUNCTION SMSGc]
+IF <MEMORYFINDTYPE.MEMORY_GUILD.LINK.UID>==<SRC.MEMORYFINDTYPE.MEMORY_GUILD.LINK.UID>
+sysmessage @050,,1 <args>
+endif
+
+[PLEVEL 6]
+mremove
+
+[function mremove]
+src.newitem=i_mremove
+src.new.equip
+src.new.timer=30
+return 1
+
+[itemdef i_mremove]
+ID=i_gold
+TYPE=t_eq_script
+
+ON=@EQUIP
+target
+
+ON=@TARGON_GROUND
+return 1
+
+ON=@TARGON_ITEM
+src.targ.remove
+mremove
+remove
+return 1
+
+ON=@TARGON_CHAR
+return 1
+
+ON=@TIMER
+remove
+return 1

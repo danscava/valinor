@@ -1,0 +1,1227 @@
+// ---------------------------
+// Lyn Crafting Dialogs
+// Admin Lyn
+// ---------------------------
+VERSION=0.55
+
+[function d_ins]
+src.tag.makelast <src.tag.makelast>
+var.noticeins yaninizdaki 'blank scroll' adedi: (<src.rescount i_scroll_blank>), inscription bilginiz: %<src.inscription>
+src.dialogclose d_ins
+dialog d_ins
+
+[dialog d_ins]
+0,40
+
+page 0
+resizepic 50 10 5120 595 310 // dis lacivert bg
+resizepic 60 20 3000 575 290
+
+resizepic 201 55 3000 420 170 // item cercevesi yenii
+resizepic 200 230 3000 421 40 // noticess yenii
+
+htmlgump 200 30 210 20 0 0 0 // baslik seysi
+htmlgump 205 231 410 40 1 0 0 // notices tekst
+
+htmlgump 233 288 100 20 2 0 0 // tekrar yap
+htmlgump 558 288 25 20 78 0 0 // ciki
+
+button 200 285 4030 4031 1 0 99  // tekrar yap buttonu
+button 589 285 4018 4019 1 0 0 // cikis butonu
+
+button 70 75 4006 4007 0 1 1 // 1
+button 70 95 4006 4007 0 2 1 // 2
+button 70 115 4006 4007 0 3 1 // 3
+button 70 135 4006 4007 0 4 1 // 4
+button 70 155 4006 4007 0 5 1 // 5
+button 70 175 4006 4007 0 6 1 // 6
+button 70 195 4006 4007 0 7 1 // 7
+button 70 215 4006 4007 0 8 1 // 8
+button 70 235 4006 4007 0 9 1 // misc.
+
+htmlgump 103 77 100 20 3 0 0 // 1
+htmlgump 103 97 100 20 4 0 0 // 2
+htmlgump 103 117 100 20 5 0 0 // 3
+htmlgump 103 137 100 20 6 0 0 // 4
+htmlgump 103 157 100 20 7 0 0 // 5
+htmlgump 103 177 100 20 8 0 0 // 6
+htmlgump 103 197 100 20 9 0 0 // 7
+htmlgump 103 217 100 20 10 0 0 // 8
+htmlgump 103 237 100 20 11 0 0 // misc.
+
+page 1 ////////////////////////////////////////////////////////
+gumppic 235 60 2240 //
+button 210 100 2103 2104 1 0 10
+htmlgump 230 100 80 20 12 0 0
+
+gumppic 335 60 2241 //
+button 310 100 2103 2104 1 0 11
+htmlgump 330 100 80 20 13 0 0
+
+gumppic 435 60 2242 //
+button 410 100 2103 2104 1 0 12
+htmlgump 430 100 80 20 14 0 0
+
+gumppic 535 60 2243 //
+button 510 100 2103 2104 1 0 13
+htmlgump 530 100 80 20 15 0 0
+
+gumppic 235 130 2244 //
+button 210 170 2103 2104 1 0 14
+htmlgump 230 170 80 20 16 0 0
+
+gumppic 335 130 2245 //
+button 310 170 2103 2104 1 0 15
+htmlgump 330 170 80 20 17 0 0
+
+gumppic 435 130 2246 //
+button 410 170 2103 2104 1 0 16
+htmlgump 430 170 80 20 18 0 0
+
+gumppic 535 130 2247 // 
+button 510 170 2103 2104 1 0 17
+htmlgump 530 170 100 20 19 0 0
+
+page 2 ////////////////////////////////////////////////////////
+gumppic 235 60 2248 // 
+button 210 100 2103 2104 1 0 18
+htmlgump 230 100 80 20 20 0 0
+
+gumppic 335 60 2249 // 
+button 310 100 2103 2104 1 0 19
+htmlgump 330 100 80 20 21 0 0
+
+gumppic 435 60 2250 // 
+button 410 100 2103 2104 1 0 20
+htmlgump 430 100 80 20 22 0 0
+
+gumppic 535 60 2251 // 
+button 510 100 2103 2104 1 0 21
+htmlgump 530 100 80 20 23 0 0
+
+gumppic 235 130 2252 // 
+button 210 170 2103 2104 1 0 22
+htmlgump 230 170 80 20 24 0 0
+
+gumppic 335 130 2253 //
+button 310 170 2103 2104 1 0 23
+htmlgump 330 170 80 20 25 0 0
+
+gumppic 435 130 2254 //
+button 410 170 2103 2104 1 0 24
+htmlgump 430 170 80 20 26 0 0
+
+gumppic 535 130 2255 //
+button 510 170 2103 2104 1 0 25
+htmlgump 530 170 100 20 27 0 0
+
+page 3 ////////////////////////////////////////////////////////
+gumppic 235 60 2256 //
+button 210 100 2103 2104 1 0 26
+htmlgump 230 100 80 20 28 0 0
+
+gumppic 335 60 2257 //
+button 310 100 2103 2104 1 0 27
+htmlgump 330 100 80 20 29 0 0
+
+gumppic 435 60 2258 //
+button 410 100 2103 2104 1 0 28
+htmlgump 430 100 80 20 30 0 0
+
+gumppic 535 60 2259 // 
+button 510 100 2103 2104 1 0 29
+htmlgump 530 100 80 20 31 0 0
+
+gumppic 235 130 2260 //
+button 210 170 2103 2104 1 0 30
+htmlgump 230 170 80 20 32 0 0
+
+gumppic 335 130 2261 //
+button 310 170 2103 2104 1 0 31
+htmlgump 330 170 80 20 33 0 0
+
+gumppic 435 130 2262 //
+button 410 170 2103 2104 1 0 32
+htmlgump 430 170 80 20 34 0 0
+
+gumppic 535 130 2263 //
+button 510 170 2103 2104 1 0 33
+htmlgump 530 170 100 20 35 0 0
+
+page 4 //////////////////////////////////////////////////////// 
+gumppic 235 60 2264 //
+button 210 100 2103 2104 1 0 34
+htmlgump 230 100 80 20 36 0 0
+
+gumppic 335 60 2265 // 
+button 310 100 2103 2104 1 0 35
+htmlgump 330 100 80 20 37 0 0
+
+gumppic 435 60 2266 //
+button 410 100 2103 2104 1 0 36
+htmlgump 430 100 80 20 38 0 0
+
+gumppic 535 60 2267 //
+button 510 100 2103 2104 1 0 37
+htmlgump 530 100 80 20 39 0 0
+
+gumppic 235 130 2268 //
+button 210 170 2103 2104 1 0 38
+htmlgump 230 170 80 20 40 0 0
+
+gumppic 335 130 2269 //
+button 310 170 2103 2104 1 0 39
+htmlgump 330 170 80 20 41 0 0
+
+gumppic 435 130 2270 //
+button 410 170 2103 2104 1 0 40
+htmlgump 430 170 80 20 42 0 0
+
+gumppic 535 130 2271 // 
+button 510 170 2103 2104 1 0 41
+htmlgump 530 170 100 20 43 0 0
+
+page 5 ////////////////////////////////////////////////////////
+gumppic 235 60 2272 //
+button 210 100 2103 2104 1 0 42
+htmlgump 230 100 80 20 44 0 0
+
+gumppic 335 60 2273 // 
+button 310 100 2103 2104 1 0 43
+htmlgump 330 100 80 20 45 0 0
+
+gumppic 435 60 2274 //
+button 410 100 2103 2104 1 0 44
+htmlgump 430 100 80 20 46 0 0
+
+gumppic 535 60 2275 // 
+button 510 100 2103 2104 1 0 45
+htmlgump 530 100 80 20 47 0 0
+
+gumppic 235 130 2276 // 
+button 210 170 2103 2104 1 0 46
+htmlgump 230 170 80 20 48 0 0
+
+gumppic 335 130 2277 // 
+button 310 170 2103 2104 1 0 47
+htmlgump 330 170 80 20 49 0 0
+
+gumppic 435 130 2278 //
+button 410 170 2103 2104 1 0 48
+htmlgump 430 170 80 20 50 0 0
+
+gumppic 535 130 2279 // 
+button 510 170 2103 2104 1 0 49
+htmlgump 530 170 100 20 51 0 0
+
+page 6 ////////////////////////////////////////////////////////
+gumppic 235 60 2280 // 
+button 210 100 2103 2104 1 0 50
+htmlgump 230 100 80 20 52 0 0
+
+gumppic 335 60 2281 // 
+button 310 100 2103 2104 1 0 51
+htmlgump 330 100 80 20 53 0 0
+
+gumppic 435 60 2282 // 
+button 410 100 2103 2104 1 0 52
+htmlgump 430 100 80 20 54 0 0
+
+gumppic 535 60 2283 //
+button 510 100 2103 2104 1 0 53
+htmlgump 530 100 80 20 55 0 0
+
+gumppic 235 130 2284 // 
+button 210 170 2103 2104 1 0 54
+htmlgump 230 170 80 20 56 0 0
+
+gumppic 335 130 2285 //
+button 310 170 2103 2104 1 0 55
+htmlgump 330 170 80 20 57 0 0
+
+gumppic 435 130 2286 // 
+button 410 170 2103 2104 1 0 56
+htmlgump 430 170 80 20 58 0 0
+
+gumppic 535 130 2287 // 
+button 510 170 2103 2104 1 0 57
+htmlgump 530 170 100 20 59 0 0
+
+
+page 7 ////////////////////////////////////////////////////////
+gumppic 235 60 2288 // 
+button 210 100 2103 2104 1 0 58
+htmlgump 230 100 80 20 60 0 0
+
+gumppic 335 60 2289 //
+button 310 100 2103 2104 1 0 59
+htmlgump 330 100 80 20 61 0 0
+
+gumppic 435 60 2290 // 
+button 410 100 2103 2104 1 0 60
+htmlgump 430 100 80 20 62 0 0
+
+gumppic 535 60 2291 //
+button 510 100 2103 2104 1 0 61
+htmlgump 530 100 80 20 63 0 0
+
+gumppic 235 130 2292 // 
+button 210 170 2103 2104 1 0 62
+htmlgump 230 170 80 20 64 0 0
+
+gumppic 335 130 2293 //
+button 310 170 2103 2104 1 0 63
+htmlgump 330 170 80 20 65 0 0
+
+gumppic 435 130 2294 // 
+button 410 170 2103 2104 1 0 64
+htmlgump 430 170 80 20 66 0 0
+
+gumppic 535 130 2295 //
+button 510 170 2103 2104 1 0 65
+htmlgump 530 170 100 20 67 0 0
+
+page 8 ///////////////////////////////////////////////////////
+gumppic 235 60 2296 // 
+button 210 100 2103 2104 1 0 66
+htmlgump 230 100 80 20 68 0 0
+
+gumppic 335 60 2297 //
+button 310 100 2103 2104 1 0 67
+htmlgump 330 100 80 20 69 0 0
+
+gumppic 435 60 2298 // 
+button 410 100 2103 2104 1 0 68
+htmlgump 430 100 80 20 70 0 0
+
+gumppic 535 60 2299 // 
+button 510 100 2103 2104 1 0 69
+htmlgump 530 100 80 20 71 0 0
+
+gumppic 235 130 2300 // 
+button 210 170 2103 2104 1 0 70
+htmlgump 230 170 80 20 72 0 0
+
+gumppic 335 130 2301 // 
+button 310 170 2103 2104 1 0 71
+htmlgump 330 170 80 20 73 0 0
+
+gumppic 435 130 2302 //
+button 410 170 2103 2104 1 0 72
+htmlgump 430 170 80 20 74 0 0
+
+gumppic 535 130 2303 //
+button 510 170 2103 2104 1 0 73
+htmlgump 530 170 100 20 75 0 0
+
+page 9 ///////////////////////////////////////////////////////
+gumppic 235 60 2234 // runebook
+button 210 110 2103 2104 1 0 74
+htmlgump 235 110 80 20 76 0 0
+
+//gumppic 335 60 2234 // full spellbook
+//button 310 110 2103 2104 1 0 75
+//htmlgump 335 110 80 20 77 0 0
+	
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+
+[dialog d_ins text]
+VALINOR INSCRIPTION MENU 	//1
+<var.noticeins>
+Tekrar Yap
+Circle 1
+Circle 2
+Circle 3
+Circle 4
+Circle 5
+Circle 6
+Circle 7
+Circle 8		// 10
+Misc.
+Clumsy
+Create Food
+Freeblemind
+Heal
+Magic Arrow
+Night Sight
+Reactive A.
+Weaken
+Agility		// 20
+Cunning
+Cure
+Harm
+Magic Trap
+Magic Untrap
+Protection
+Strength
+Bless
+Fireball
+Magic Lock			// 30
+Poison
+Telekinesis
+Teleport
+Unlock
+Wall of stone
+Arch Cure
+Arch Protec.
+Curse
+Fire Field
+Greater Heal			// 40
+Lightning
+Mana Drain
+Recall
+Blade Spirits
+Dispel Field
+Incognito
+Magic Ref.
+Mind Blast
+Paralyze
+Poison Field		// 50
+Summ. Create
+Dispel
+Energy Bolt
+Explosion
+Invisibility		// 60
+Mark
+Mass Curse
+Paralyze F.
+Reveal
+Chain Light.		// 65	
+Energy Field
+Flame Strike	
+Gate Travel
+Mana Vam.
+Mass Dispel		// 70
+Meteor Sw.
+Polymorph
+Earthquake
+Energy Vor.
+Ressurection		// 75	
+Air Elem.
+Summon Dea.
+Eath Elem.
+Fire Elem.
+Water Elem.
+Runebook
+Full Spellbook
+Cikis			//83
+
+
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+
+[dialog d_ins button]
+On=0
+sysmessage @1153 Menu kapatildi..
+
+On=1
+var.noticeins inscription ile son yaptiginiz esyayi hatirlayamiyorsunuz.
+dialog d_ins
+
+On=10
+if (<inscription> < 10.0) || (<magery> < 5.0)
+	var.noticeins clumsy scroll yapimi icin %10.0 inscription ve %5.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_nightshade>) || !(<restest 1 i_scroll_blank>) || !(<cancast s_clumsy>)
+	var.noticeins clumsy scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins clumsy scroll yazmaya basladiniz.
+	makeitem i_scroll_clumsy
+	src.tag.makelast=i_scroll_clumsy
+endif
+dialog d_ins
+
+On=11
+if (<inscription> < 10.0) || (<magery> < 5.0)
+	var.noticeins create food scroll yapimi icin %10.0 inscription ve %5.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_ginseng>) || !(<restest 1 i_scroll_blank>) || !(<cancast s_create_food>)
+	var.noticeins create food scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins create food scroll yazmaya basladiniz.
+	makeitem i_scroll_create_food
+	src.tag.makelast=i_scroll_create_food
+endif
+dialog d_ins
+
+On=12
+if (<inscription> < 10.0) || (<magery> < 5.0)
+	var.noticeins feeblemind scroll yapimi icin %10.0 inscription ve %5.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_ginseng>) || !(<restest 1 i_reag_nightshade>) || !(<cancast s_feeblemind>)
+	var.noticeins feeblemind scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins feeblemind scroll yazmaya basladiniz.
+	makeitem i_scroll_feeblemind
+	src.tag.makelast=i_scroll_feeblemind
+endif
+dialog d_ins
+
+On=13
+if (<inscription> < 10.0) || (<magery> < 5.0)
+	var.noticeins heal scroll yapimi icin %10.0 inscription ve %5.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_ginseng>) || !(<cancast s_heal>)
+	var.noticeins heal scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins heal scroll yazmaya basladiniz.
+	makeitem i_scroll_heal
+	src.tag.makelast=i_scroll_heal
+endif
+dialog d_ins
+
+On=14
+if (<inscription> < 10.0) || (<magery> < 5.0)
+	var.noticeins magic arrow scroll yapimi icin %10.0 inscription ve %5.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_nightshade>) || !(<cancast s_magic_arrow>)
+	var.noticeins magic arrow scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins magic arrow scroll yazmaya basladiniz.
+	makeitem i_scroll_magic_arrow
+	src.tag.makelast=i_scroll_magic_arrow
+endif
+dialog d_ins
+
+On=15
+if (<inscription> < 10.0) || (<magery> < 5.0)
+	var.noticeins sight scroll scroll yapimi icin %10.0 inscription ve %5.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_nightshade>) || || !(<cancast s_night_sight>)
+	var.noticeins night sight scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins night sight scroll yazmaya basladiniz.
+	makeitem i_scroll_night_sight
+	src.tag.makelast=i_scroll_night_sight
+endif
+dialog d_ins
+
+
+On=16
+if (<inscription> < 10.0) || (<magery> < 5.0)
+	var.noticeins reactive armor scroll yapimi icin %10.0 inscription ve %5.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_reactive_armor>)
+	var.noticeins reactive armor scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins reactive armor scroll yazmaya basladiniz.
+	makeitem i_scroll_reactive_armor
+	src.tag.makelast=i_scroll_reactive_armor
+endif
+dialog d_ins
+
+
+On=17
+if (<inscription> < 10.0) || (<magery> < 5.0)
+	var.noticeins weaken scroll yapimi icin %10.0 inscription ve %5.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_nightshade>) || !(<restest 1 i_reag_garlic>) || !(<cancast s_weaken>)
+	var.noticeins weaken scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins weaken scroll yazmaya basladiniz.
+	makeitem i_scroll_weaken
+	src.tag.makelast=i_scroll_weaken
+endif
+dialog d_ins
+
+On=18
+if (<inscription> < 20.0) || (<magery> < 10.0)
+	var.noticeins agility scroll yapimi icin %20.0 inscription ve %10.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_agility>)
+	var.noticeins agility scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins agility scroll yazmaya basladiniz.
+	makeitem i_scroll_agility
+	src.tag.makelast=i_scroll_agility
+endif
+dialog d_ins
+
+On=19
+if (<inscription> < 20.0) || (<magery> < 10.0)
+	var.noticeins cunning scroll yapimi icin %20.0 inscription ve %10.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_nightshade>) || !(<cancast s_cunning>)
+	var.noticeins cunning scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins cunning scroll yazmaya basladiniz.
+	makeitem i_scroll_cunning
+	src.tag.makelast=i_scroll_cunning
+endif
+dialog d_ins
+
+
+On=20
+if (<inscription> < 20.0) || (<magery> < 10.0)
+	var.noticeins cure scroll yapimi icin %20.0 inscription ve %10.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_ginseng>) || !(<cancast s_cure>)
+	var.noticeins cure scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins cure scroll yazmaya basladiniz.
+	makeitem i_scroll_cure
+	src.tag.makelast=i_scroll_cure
+endif
+dialog d_ins
+
+On=21
+if (<inscription> < 20.0) || (<magery> < 10.0)
+	var.noticeins harm scroll yapimi icin %20.0 inscription ve %10.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_nightshade>) || !(<cancast s_harm>)
+	var.noticeins harm scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins harm scroll yazmaya basladiniz.
+	makeitem i_scroll_harm
+	src.tag.makelast=i_scroll_harm
+endif
+dialog d_ins
+
+On=22
+if (<inscription> < 20.0) || (<magery> < 10.0)
+	var.noticeins magic trap scroll yapimi icin %20.0 inscription ve %10.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_magic_trap>)
+	var.noticeins magic trap scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins magic trap scroll yazmaya basladiniz.
+	makeitem i_scroll_magic_trap
+	src.tag.makelast=i_scroll_magic_trap
+endif
+dialog d_ins
+
+
+On=23
+if (<inscription> < 20.0) || (<magery> < 10.0)
+	var.noticeins magic untrap scroll yapimi icin %20.0 inscription ve %10.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_magic_untrap>)
+	var.noticeins magic untrap scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins magic untrap scroll yazmaya basladiniz.
+	makeitem i_scroll_magic_untrap
+	src.tag.makelast=i_scroll_magic_untrap
+endif
+dialog d_ins
+
+On=24
+if (<inscription> < 20.0) || (<magery> < 10.0)
+	var.noticeins protection scroll yapimi icin %20.0 inscription ve %10.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_ginseng>) || !(<restest 1 i_reag_sulfur_ash>) !(<cancast s_magic_protection>)
+	var.noticeins protection scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins protection scroll yazmaya basladiniz.
+	makeitem i_scroll_protection
+	src.tag.makelast=i_scroll_protection
+endif
+dialog d_ins
+
+
+On=25
+if (<inscription> < 20.0) || (<magery> < 10.0)
+	var.noticeins strength scroll yapimi icin %20.0 inscription ve %10.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_nightshade>) || !(<cancast s_strength>)
+	var.noticeins strength scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins strength scroll yazmaya basladiniz.
+	makeitem i_scroll_strength
+	src.tag.makelast=i_scroll_strength
+endif
+dialog d_ins
+
+On=26
+if (<inscription> < 30.0) || (<magery> < 20.0)
+	var.noticeins bless scroll yapimi icin %30.0 inscription ve %20.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_bless>)
+	var.noticeins bless scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins bless scroll yazmaya basladiniz.
+	makeitem i_scroll_bless
+	src.tag.makelast=i_scroll_bless
+endif
+dialog d_ins
+
+On=27
+if (<inscription> < 30.0) || (<magery> < 20.0)
+	var.noticeins fireball scroll yapimi icin %30.0 inscription ve %20.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_fireball>)
+	var.noticeins fireball scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins fireball scroll yazmaya basladiniz.
+	makeitem i_scroll_fireball
+	src.tag.makelast=i_scroll_fireball
+endif
+dialog d_ins
+
+On=28
+if (<inscription> < 30.0) || (<magery> < 20.0)
+	var.noticeins magic lock scroll yapimi icin %30.0 inscription ve %20.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_magic_lock>)
+	var.noticeins magic lock scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins magic lock scroll yazmaya basladiniz.
+	makeitem i_scroll_magic_lock
+	src.tag.makelast=i_scroll_magic_lock
+endif
+dialog d_ins
+
+On=29
+if (<inscription> < 30.0) || (<magery> < 20.0)
+	var.noticeins poison scroll yapimi icin %30.0 inscription ve %20.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_nightshade>) || !(<cancast s_poison>)
+	var.noticeins poison scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins poison scroll yazmaya basladiniz.
+	makeitem i_scroll_poison
+	src.tag.makelast=i_scroll_poison
+endif
+dialog d_ins
+
+On=30
+if (<inscription> < 30.0) || (<magery> < 20.0)
+	var.noticeins telekinesis scroll yapimi icin %30.0 inscription ve %20.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_telekinesis>)
+	var.noticeins telekinesis scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins telekinesis scroll yazmaya basladiniz.
+	makeitem i_scroll_telekinesis
+	src.tag.makelast=i_scroll_telekinesis
+endif
+dialog d_ins
+
+On=31
+if (<inscription> < 30.0) || (<magery> < 20.0)
+	var.noticeins teleport scroll yapimi icin %30.0 inscription ve %20.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_teleport>)
+	var.noticeins teleport scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins teleport scroll yazmaya basladiniz.
+	makeitem i_scroll_teleport
+	src.tag.makelast=i_scroll_teleport
+endif
+dialog d_ins
+
+On=32
+if (<inscription> < 30.0) || (<magery> < 20.0)
+	var.noticeins unlock scroll yapimi icin %30.0 inscription ve %20.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_unlock>)
+	var.noticeins unlock scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins unlock scroll yazmaya basladiniz.
+	makeitem i_scroll_unlock
+	src.tag.makelast=i_scroll_unlock
+endif
+dialog d_ins
+
+On=33
+if (<inscription> < 30.0) || (<magery> < 20.0)
+	var.noticeins wall of stone scroll yapimi icin %30.0 inscription ve %20.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_garlic>) || !(<cancast s_wall_of_stone>)
+	var.noticeins wall of stone scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins wall of stone scroll yazmaya basladiniz.
+	makeitem i_scroll_wall_of_stone
+	src.tag.makelast=i_scroll_wall_of_stone
+endif
+dialog d_ins
+
+On=34
+if (<inscription> < 40.0) || (<magery> < 30.0)
+	var.noticeins archcure scroll yapimi icin %40.0 inscription ve %30.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_ginseng>) || !(<cancast s_archcure>)
+	var.noticeins archcure scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins archcure scroll yazmaya basladiniz.
+	makeitem i_scroll_archcure
+	src.tag.makelast=i_scroll_archcure
+endif
+dialog d_ins
+
+On=35
+if (<inscription> < 40.0) || (<magery> < 30.0)
+	var.noticeins archprotection scroll yapimi icin %40.0 inscription ve %30.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_ginseng>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_archprotection>)
+	var.noticeins archprotection scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins archprotection scroll yazmaya basladiniz.
+	makeitem i_scroll_archprotection
+	src.tag.makelast=i_scroll_archprotection
+endif
+dialog d_ins
+
+On=36
+if (<inscription> < 40.0) || (<magery> < 30.0)
+	var.noticeins curse scroll yapimi icin %40.0 inscription ve %30.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_nightshade>) || !(<restest 1 i_reag_garlic>) || !(<cancast s_curse>)
+	var.noticeins curse scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins curse scroll yazmaya basladiniz.
+	makeitem i_scroll_curse
+	src.tag.makelast=i_scroll_curse
+endif
+dialog d_ins
+
+On=37
+if (<inscription> < 40.0) || (<magery> < 40.0)
+	var.noticeins fire field scroll yapimi icin %40.0 inscription ve %40.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_spider_silk>) || !(<cancast s_fire_field>)
+	var.noticeins fire field scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins fire field scroll yazmaya basladiniz.
+	makeitem i_scroll_fire_field
+	src.tag.makelast=i_scroll_fire_field
+endif
+dialog d_ins
+
+
+On=38
+if (<inscription> < 40.0) || (<magery> < 50.0)
+	var.noticeins greater heal scroll yapimi icin %40.0 inscription ve %50.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_ginseng>) || !(<restest 1 i_reag_spider_silk>) || !(<cancast s_greater_heal>)
+	var.noticeins greater heal scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins greater heal scroll yazmaya basladiniz.
+	makeitem i_scroll_greater_heal
+	src.tag.makelast=i_scroll_greater_heal
+endif
+dialog d_ins
+
+On=39
+if (<inscription> < 40.0) || (<magery> < 50.0)
+	var.noticeins lightning scroll yapimi icin %40.0 inscription ve %50.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_lightning>)
+	var.noticeins lightning scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins lightning scroll yazmaya basladiniz.
+	makeitem i_scroll_lightning
+	src.tag.makelast=i_scroll_lightning
+endif
+dialog d_ins
+
+On=40
+if (<inscription> < 40.0) || (<magery> < 60.0)
+	var.noticeins mana drain scroll yapimi icin %40.0 inscription ve %60.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_spider_silk>) || !(<cancast s_mana_drain>)
+	var.noticeins mana drain scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins mana drain scroll yazmaya basladiniz.
+	makeitem i_scroll_mana_drain
+	src.tag.makelast=i_scroll_mana_drain
+endif
+dialog d_ins
+
+On=41
+if (<inscription> < 60.0) || (<magery> < 60.0)
+	var.noticeins recall scroll yapimi icin %60.0 inscription ve %60.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_blood_moss>) || !(<cancast s_recall>)
+	var.noticeins recall scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins recall scroll yazmaya basladiniz.
+	makeitem i_scroll_recall
+	src.tag.makelast=i_scroll_recall
+endif
+dialog d_ins
+
+On=42
+if (<inscription> < 50.0) || (<magery> < 40.0)
+	var.noticeins  blade spirits  scroll yapimi icin %50.0 inscription ve %40.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_nightshade>) || !(<cancast s_blade_spirits>)
+	var.noticeins  blade spirits  scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins blade spirits scroll yazmaya basladiniz.
+	makeitem i_scroll_blade_spirits
+	src.tag.makelast=i_scroll_blade_spirits
+endif
+dialog d_ins
+
+On=43
+if (<inscription> < 50.0) || (<magery> < 60.0)
+	var.noticeins  dispel field  scroll yapimi icin %50.0 inscription ve %60.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_dispel_field>)
+	var.noticeins  dispel field  scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins dispel field scroll yazmaya basladiniz.
+	makeitem i_scroll_dispel_field
+	src.tag.makelast=i_scroll_dispel_field
+endif
+dialog d_ins
+
+On=44
+if (<inscription> < 50.0) || (<magery> < 60.0)
+	var.noticeins  incognito  scroll yapimi icin %50.0 inscription ve %60.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_nightshade>) || !(<restest 1 i_reag_blood_moss>) || !(<cancast s_incognito>)
+	var.noticeins  incognito  scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins incognito scroll yazmaya basladiniz.
+	makeitem i_scroll_incognito
+	src.tag.makelast=i_scroll_incognito
+endif
+dialog d_ins
+
+On=45
+if (<inscription> < 50.0) || (<magery> < 60.0)
+	var.noticeins  magic reflection  scroll yapimi icin %50.0 inscription ve %60.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_magic_reflection>)
+	var.noticeins  magic reflection  scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins magic reflection scroll yazmaya basladiniz.
+	makeitem i_scroll_magic_reflection
+	src.tag.makelast=i_scroll_magic_reflection
+endif
+dialog d_ins
+
+On=46
+if (<inscription> < 50.0) || (<magery> < 65.0)
+	var.noticeins  mind blast scroll yapimi icin %50.0 inscription ve %65.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_nightshade>) || !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_mind_blast>)
+	var.noticeins  mind blast scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins mind blast scroll yazmaya basladiniz.
+	makeitem i_scroll_mind_blast
+	src.tag.makelast=i_scroll_mind_blast
+endif
+dialog d_ins
+
+On=47
+if (<inscription> < 50.0) || (<magery> < 65.0)
+	var.noticeins paralyze scroll yapimi icin %50.0 inscription ve %40.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_paralyze>)
+	var.noticeins paralyze scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins paralyze scroll yazmaya basladiniz.
+	makeitem i_scroll_paralyze
+	src.tag.makelast=i_scroll_paralyze
+endif
+dialog d_ins
+
+On=48
+if (<inscription> < 50.0) || (<magery> < 65.0)
+	var.noticeins poison field scroll yapimi icin %50.0 inscription ve %50.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_nightshade>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_black_pearl>) || !(<cancast s_poison_field>)
+	var.noticeins poison field scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins poison field scroll yazmaya basladiniz.
+	makeitem i_scroll_poison_field
+	src.tag.makelast=i_scroll_poison_field
+endif
+dialog d_ins
+
+On=49
+if (<inscription> < 50.0) || (<magery> < 60.0)
+	var.noticeins summon creature scroll yapimi icin %50.0 inscription ve %60.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_blood_moss>) || !(<cancast s_summon_creature>)
+	var.noticeins summon creature scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins summon creature scroll yazmaya basladiniz.
+	makeitem i_scroll_summon_creature
+	src.tag.makelast=i_scroll_summon_creature
+endif
+dialog d_ins
+
+On=50
+if (<inscription> < 60.0) || (<magery> < 65.0)
+	var.noticeins dispel scroll yapimi icin %60.0 inscription ve %65.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_dispel>)
+	var.noticeins dispel scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins dispel scroll yazmaya basladiniz.
+	makeitem i_scroll_dispel
+	src.tag.makelast=i_scroll_dispel
+endif
+dialog d_ins
+
+On=51
+if (<inscription> < 60.0) || (<magery> < 70.0)
+	var.noticeins energy bolt scroll yapimi icin %60.0 inscription ve %70.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_nightshade>) || !(<cancast s_energy_bolt>)
+	var.noticeins energy bolt scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins energy bolt scroll yazmaya basladiniz.
+	makeitem i_scroll_energy_bolt
+	src.tag.makelast=i_scroll_energy_bolt
+endif
+dialog d_ins
+
+On=52
+if (<inscription> < 60.0) || (<magery> < 75.0)
+	var.noticeins explosion scroll yapimi icin %60.0 inscription ve %75.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_explosion>)
+	var.noticeins explosion scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins explosion scroll yazmaya basladiniz.
+	makeitem i_scroll_explosion
+	src.tag.makelast=i_scroll_explosion
+endif
+dialog d_ins
+
+On=53
+if (<inscription> < 60.0) || (<magery> < 70.0)
+	var.noticeins invisibility scroll yapimi icin %60.0 inscription ve %70.0 magery bilmeniz gerekli.
+elseif  !(<restest 1 i_reag_nightshade>) || !(<restest 1 i_reag_blood_moss>) || !(<cancast s_invisibility>)
+	var.noticeins invisibility scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins invisibility scroll yazmaya basladiniz.
+	makeitem i_scroll_invisibility
+	src.tag.makelast=i_scroll_invisibility
+endif
+dialog d_ins
+
+On=54
+if (<inscription> < 60.0) || (<magery> < 70.0)
+	var.noticeins mark scroll yapimi icin %60.0 inscription ve %70.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_blood_moss>) || !(<cancast s_mark>)
+	var.noticeins mark scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins mark scroll yazmaya basladiniz.
+	makeitem i_scroll_mark
+	src.tag.makelast=i_scroll_mark
+endif
+dialog d_ins
+
+On=55
+if (<inscription> < 60.0) || (<magery> < 75.0)
+	var.noticeins mass curse scroll yapimi icin %60.0 inscription ve %75.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_nightshade>) || !(<restest 1 i_reag_ginseng>) || !(<cancast s_mass_curse>)
+	var.noticeins mass curse scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins mass curse scroll yazmaya basladiniz.
+	makeitem i_scroll_mass_curse
+	src.tag.makelast=i_scroll_mass_curse
+endif
+dialog d_ins
+
+On=56
+if (<inscription> < 60.0) || (<magery> < 75.0)
+	var.noticeins paralyze field scroll yapimi icin %60.0 inscription ve %75.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_ginseng>) || !(<cancast s_paralyzation_field>)
+	var.noticeins paralyze field scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins paralyze field scroll yazmaya basladiniz.
+	makeitem i_scroll_paralyze_field
+	src.tag.makelast=i_scroll_paralyze_field
+endif
+dialog d_ins
+
+On=57
+if (<inscription> < 60.0) || (<magery> < 80.0)
+	var.noticeins reveal scroll yapimi icin %60.0 inscription ve %80.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_blood_moss>) || !(<cancast s_reveal>)
+	var.noticeins reveal scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins reveal scroll yazmaya basladiniz.
+	makeitem i_scroll_reveal
+	src.tag.makelast=i_scroll_reveal
+endif
+dialog d_ins
+
+On=58
+if (<inscription> < 70.0) || (<magery> < 85.0)
+	var.noticeins chain lightning scroll yapimi icin %60.0 inscription ve %85.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_chain_lightning>)
+	var.noticeins chain lightning scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins chain lightning scroll yazmaya basladiniz.
+	makeitem i_scroll_chain_lightning
+	src.tag.makelast=i_scroll_chain_lightning
+endif
+dialog d_ins
+
+On=59
+if (<inscription> < 70.0) || (<magery> < 80.0)
+	var.noticeins energy field scroll yapimi icin %60.0 inscription ve %80.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_energy_field>)
+	var.noticeins energy field scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins energy field scroll yazmaya basladiniz.
+	makeitem i_scroll_energy_field
+	src.tag.makelast=i_scroll_energy_field
+endif
+dialog d_ins
+
+On=60
+if (<inscription> < 70.0) || (<magery> < 85.0)
+	var.noticeins flamestrike scroll yapimi icin %60.0 inscription ve %85.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_flamestrike>)
+	var.noticeins flamestrike scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins flamestrike scroll yazmaya basladiniz.
+	makeitem i_scroll_flamestrike
+	src.tag.makelast=i_scroll_flamestrike
+endif
+dialog d_ins
+
+On=61
+if (<inscription> < 70.0) || (<magery> < 75.0)
+	var.noticeins gate travel scroll yapimi icin %60.0 inscription ve %75.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_gate_travel>)
+	var.noticeins gate travel scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins gate travel scroll yazmaya basladiniz.
+	makeitem i_scroll_gate_travel
+	src.tag.makelast=i_scroll_gate_travel
+endif
+dialog d_ins
+
+On=62
+if (<inscription> < 70.0) || (<magery> < 85.0)
+	var.noticeins mana vampire scroll yapimi icin %60.0 inscription ve %85.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_mana_vampire>)
+	var.noticeins mana vampire scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins mana vampire scroll yazmaya basladiniz.
+	makeitem i_scroll_mana_vampire
+	src.tag.makelast=i_scroll_mana_vampire
+endif
+dialog d_ins
+
+On=63
+if (<inscription> < 70.0) || (<magery> < 85.0)
+	var.noticeins mass dispel scroll yapimi icin %60.0 inscription ve %85.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_mass_dispel>)
+	var.noticeins mass dispel scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins mass dispel scroll yazmaya basladiniz.
+	makeitem i_scroll_mass_dispel
+	src.tag.makelast=i_scroll_mass_dispel
+endif
+dialog d_ins
+
+On=64
+if (<inscription> < 70.0) || (<magery> < 85.0)
+	var.noticeins meteor swarm scroll yapimi icin %60.0 inscription ve %85.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_meteor_swarm>)
+	var.noticeins meteor swarm scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins meteor swarm scroll yazmaya basladiniz.
+	makeitem i_scroll_meteor_swarm
+	src.tag.makelast=i_scroll_meteor_swarm
+endif
+dialog d_ins
+
+On=65
+if (<inscription> < 70.0) || (<magery> < 85.0)
+	var.noticeins polymorph scroll yapimi icin %60.0 inscription ve %85.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_polymorph>)
+	var.noticeins polymorph scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins polymorph scroll yazmaya basladiniz.
+	makeitem i_scroll_polymorph
+	src.tag.makelast=i_scroll_polymorph
+endif
+dialog d_ins
+
+On=66
+if (<inscription> < 80.0) || (<magery> < 90.0)
+	var.noticeins earthquake scroll yapimi icin %80.0 inscription ve %90.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_ginseng>) || !(<restest 1 i_reag_sulfur_ash>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_earthquake>)
+	var.noticeins earthquake scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins earthquake scroll yazmaya basladiniz.
+	makeitem i_scroll_earthquake
+	src.tag.makelast=i_scroll_earthquake
+endif
+dialog d_ins
+
+On=67
+if (<inscription> < 80.0) || (<magery> < 90.0)
+	var.noticeins energy vortex scroll yapimi icin %80.0 inscription ve %90.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_black_pearl>) || !(<restest 1 i_reag_nightshade>) || !(<restest 1 i_reag_mandrake_root>) || !(<cancast s_energy_vortex>)
+	var.noticeins energy vortex scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins energy vortex scroll yazmaya basladiniz.
+	makeitem i_scroll_energy_vortex
+	src.tag.makelast=i_scroll_energy_vortex
+endif
+dialog d_ins
+
+On=68
+if (<inscription> < 80.0) || (<magery> < 90.0)
+	var.noticeins resurrection scroll yapimi icin %80.0 inscription ve %90.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_garlic>) || !(<restest 1 i_reag_ginseng>) || !(<cancast s_resurrection>)
+	var.noticeins resurrection scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins resurrection scroll yazmaya basladiniz.
+	makeitem i_scroll_resurrection
+	src.tag.makelast=i_scroll_resurrection
+endif
+dialog d_ins
+
+On=69
+if (<inscription> < 80.0) || (<magery> < 90.0)
+	var.noticeins air elemental scroll yapimi icin %80.0 inscription ve %90.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_spider_silk>) || !(<cancast s_summon_elem_air>)
+	var.noticeins air elemental scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins air elemental scroll yazmaya basladiniz.
+	makeitem i_scroll_summon_elem_air
+	src.tag.makelast=i_scroll_summon_elem_air
+endif
+dialog d_ins
+
+On=70
+if (<inscription> < 80.0) || (<magery> < 90.0)
+	var.noticeins summon deamon scroll yapimi icin %80.0 inscription ve %90.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_summon_daemon>)
+	var.noticeins summon deamon scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins summon deamon scroll yazmaya basladiniz.
+	makeitem i_scroll_summon_daemon
+	src.tag.makelast=i_scroll_summon_daemon
+endif
+dialog d_ins
+
+On=71
+if (<inscription> < 80.0) || (<magery> < 90.0)
+	var.noticeins earth elemental scroll yapimi icin %80.0 inscription ve %90.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_summon_elem_earth>)
+	var.noticeins earth elemental scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins earth elemental scroll yazmaya basladiniz.
+	makeitem i_scroll_summon_elem_earth
+	src.tag.makelast=i_scroll_summon_elem_earth
+endif
+dialog d_ins
+
+On=72
+if (<inscription> < 80.0) || (<magery> < 90.0)
+	var.noticeins fire elemental scroll yapimi icin %80.0 inscription ve %90.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_spider_silk>) || !(<restest 1 i_reag_sulfur_ash>) || !(<cancast s_summon_elem_fire>)
+	var.noticeins fire elemental scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins fire elemental scroll yazmaya basladiniz.
+	makeitem=i_scroll_summon_elem_fire
+	src.tag.makelast=i_scroll_summon_elem_fire
+endif
+dialog d_ins
+
+On=73
+if (<inscription> < 80.0) || (<magery> < 90.0)
+	var.noticeins water elemental scroll yapimi icin %80.0 inscription ve %90.0 magery bilmeniz gerekli.
+elseif !(<restest 1 i_reag_blood_moss>) || !(<restest 1 i_reag_mandrake_root>) || !(<restest 1 i_reag_spider_silk>) || !(<cancast s_summon_elem_water>)
+	var.noticeins water elemental scroll yapimi icin bu buyunun reglerine ihtiyaciniz var.
+else
+	var.noticeins water elemental scroll yazmaya basladiniz.
+	makeitem=i_scroll_summon_elem_water
+	src.tag.makelast=i_scroll_summon_elem_water
+endif
+dialog d_ins
+
+On=74
+if (<inscription> < 98.0) || (<magery> < 90.0)
+	var.noticeins runebook yapimi icin %98.0 inscription ve %90.0 magery bilmeniz gerekli.
+elseiF !(<RESTEST 32 i_scroll_blank>) || !(<RESTEST 8 i_scroll_recall>)) || !(<RESTEST 1 i_scroll_gate_travel>))
+	var.noticeins runebook yapimi icin bu 32 adet 'blank scroll' , 8 adet 'recall scroll' ve 1 adet 'gate travel scroll' gerekli.
+else
+	var.noticeins runebook yazmaya basladiniz.
+	makeitem=i_runebook
+	src.tag.makelast==i_runebook
+endif
+dialog d_ins
+
+On=75
+if (<inscription> < 100.0) || (<magery> < 100.0)
+	var.noticeins full spellbook yapimi bir sure sonra aktif hale gelecektir.
+elseiF !(<RESTEST 64 i_scroll_blank>) || !(<RESTEST 90 i_reag_garlic>)) || !(<RESTEST 90 i_reag_ginseng>)) || !(<RESTEST 90 i_reag_black_pearl>)) || !(<RESTEST 90 i_reag_blood_moss>)) || !(<RESTEST 90 i_reag_sulfur_ash>)) || !(<RESTEST 90 i_reag_spider_silk>)) || !(<RESTEST 90 i_reag_mandrake_root>)) || !(<RESTEST 90 i_reag_nightshade>))
+	var.noticeins full spellbook yapimi bir sure sonra aktif hale gelecektir.
+else
+	var.noticeins full spellbook yapimi bir sure sonra aktif hale gelecektir.
+	makeitem =i_spellbook
+	more1=0ffffffffffffff
+	more2=0ffffffffffffff
+endif
+dialog d_ins
+
+
+ON=99
+	src.makeitem=<src.tag.makelast>
+	dialog d_ins	
+	var.noticeins tekrar yapmaya basladiniz...
+
+[EOF]

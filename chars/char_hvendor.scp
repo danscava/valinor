@@ -1,0 +1,614 @@
+[ITEMDEF i_deed_pv]
+name Player Vendor Contract
+id i_deed
+type t_script
+value 869566
+
+On=@Create
+color 066f
+attr 04
+
+On=@DClick
+if (<src.isevent.e_pazar>)
+if !(<src.restest 2500 i_gold>)
+		src.sysmessage @050 Vendoru kurabilmek icin yaninizda 2500 altin olmali.
+	elseif (strmatch('<src.uid.<src.tag.vendor>.id>','c_pv'))
+		try var.vhomeowner <src.uid.<src.tag.vendor>.region.tag.owner>
+		try var.vhomeowner <src.uid.<var.vhomeowner>.name>
+		if !(strmatch('<var.vhomeowner>','<src.name>'))
+			
+			src.sysmessage @41 Zaten bir vendorunuz bulunuyor.
+		endif
+	else
+		src.consume 2500 i_gold
+		src.newnpc c_pv
+				
+		src.act.findid.i_pv.link <link.uid>
+		src.act.tag.owner <src.uid>
+		src.act.findlayer(29).more1 2500
+		src.act.memorydel <src.uid>
+		src.act.newitem i_memory
+		src.act.act.attr 04
+		src.act.act.more1 04
+		src.act.act.more2 <serv.time>
+		src.act.act.morep <src.act.p>
+		src.act.act.color memory_ipet
+		src.act.act.timer -1
+		src.act.act.link <src.uid>
+		src.act.act.cont <src.act.uid>
+		src.act.flags <src.act.flags>&statf_pet
+		src.act.update
+		src.sysmessage @038 Vendorunuz kuruldu, komutlar icin '<src.act.name> yardim' yaziniz.
+		src.tag.vendor <src.act.uid>
+		link.tag.locknumber <eval (<link.tag.locknumber> - 1)>
+		link.tag.vendnumber <eval (<link.tag.vendnumber> + 1)>
+		if !(<link.tag.vendor1>)
+			link.tag.vendor1 <src.act.uid>
+		elseif !(<link.tag.vendor2>)
+			link.tag.vendor2 <src.act.uid>
+		else
+			link.tag.vendor3 <src.act.uid>
+		endif
+		remove
+	endif
+else
+	src.sms Bu deed'i kullanabilmek icin Pazar Alaninda olmalisiniz.
+endif
+return 1
+
+// **************
+// VENDOR CHARDEF
+// **************
+
+[chardef c_pv]
+defname c_pv
+name #names_humanmale the Player Vendor
+id c_man
+can mt_equip|mt_nonmover
+hiredaywage 500
+desires i_gold
+
+tspeech pv_spch
+tevents e_pv
+
+On=@Create
+str 9500
+dex 25
+int 25
+color colors_skin
+speechcolor 0481
+food 990
+npc 1
+
+itemnewbie random_male_hair
+color colors_hair
+itemnewbie random_facial_hair
+color match_hair
+item i_robe
+color colors_all
+item i_torch_lit
+morey -1
+itemnewbie i_backpack
+itemnewbie i_bankbox
+color 0384
+timer 900
+attr 014
+itemnewbie i_pv
+itemnewbie i_pv_rem
+
+// *******
+// ITEMLAR
+// *******
+
+[itemdef i_pv_rem]
+id i_memory
+name vendor silici
+type t_eq_script
+
+On=@UnEquip
+cont.memoryfindtype.memory_ipet.link.tag.vendor
+if !(<more2> == 3)
+	cont.findid.i_pv.link.tag.vendnumber <eval (<cont.findid.i_pv.link.tag.vendnumber> - 1)>
+	if (<cont.findid.i_pv.link.tag.vendor1> == <cont.uid>)
+		cont.findid.i_pv.link.tag.vendor1 0
+	endif
+endif
+cont.remove
+
+On=@Timer
+remove
+return 1
+
+[itemdef i_pv]
+id i_memory
+name vendor ana kontroller
+type t_eq_script
+
+On=@TargOn_Char
+if (<src.targ.uid> == <cont.uid>)
+	cont.findlayer(21).open
+	target
+endif
+return 1
+
+On=@TargOn_Item
+if (<more1> == 1) // dinamik fiyatlandirma
+	if !(<src.uid> == <cont.tag.owner>)
+		cont.sayu <src.name>, siz benim isverenim degilsiniz.
+	elseif !(<src.targ.topobj.uid> == <cont.uid>)
+		cont.sayu Bu esya cantamda degil.
+	elseif (strmatch('<src.targ.price>',''))
+		cont.sayu Bu satilabilecek bir esya degil.
+	elseif (<eval <more2>> <= 0)
+		src.targ.price 0
+		cont.sayu <src.targ.name>: 'satilik degil' olarak isaretlendi.
+	else
+		src.targ.price <eval <more2>>
+		more2 0
+		cont.sayu <src.targ.name>: <src.targ.price> altin.
+	endif
+elseif (<more1> == 2) // satis
+	if !(<src.targ.topobj.uid> == <cont.uid>)
+		cont.sayu Bu esya cantamda degil.
+	elseif (strmatch('<src.targ.price>',''))
+		cont.sayu Bu esya satilik degil.
+	elseif (<src.targ.price> <= 0)
+		cont.sayu Bu esya satilik degil.
+	elseif (<src.gp> < <src.targ.price>)
+		cont.sayu Bankanizin en ust kisminda <src.targ.price> altininiz bulunmuyor.
+	else
+		src.targ.dialog d_pv_buy
+	endif
+elseif (<more1> == 3) // para aktarma
+	if !(<src.uid> == <cont.tag.owner>)
+		cont.sayu <src.name>, siz benim isverenim degilsiniz.
+	elseif !(<src.targ.topobj.uid> == <src.uid>)
+		cont.sayu Gosterdiginiz nesne sizin uzerinizde degil.
+	elseif !(<src.targ.baseid> == i_gold)
+		cont.sayu Bu gosterdiginiz altin degil.
+	else
+		cont.findlayer(29).more1 <eval (<cont.findlayer(29).more1> + <src.targ.amount>)>
+		if (<eval (<src.targ.amount> / <cont.hiredaywage>)> > 0)
+			cont.sayu <src.targ.amount> altin calisma suremi <eval (<src.targ.amount> / <cont.hiredaywage>)> gun uzatti, tesekkur ederim.
+		else
+			cont.sayu <src.targ.amount> altin kasama eklendi, tesekkur ederim.
+		endif
+		src.targ.remove
+	endif
+endif
+return 1
+
+On=@Timer
+return 1
+
+// *********
+// DIALOGLAR
+// *********
+
+[dialog d_pv_cash]
+300,300
+
+resizepic 0 0 5054 200 75
+resizepic 5 10 2620 190 35
+textentry 15 16 600 20 1152 1 0
+button 165 50 4005 4006 1 0 1
+
+[dialog d_pv_cash text]
+<eval (<findlayer(29).more1> - 2500)>
+
+[dialog d_pv_cash button]
+On=1
+if (<eval <argtxt[1]>> <= 0)
+	sayu Hmm.. Sanirim tam anlayamadim?
+elseif (<eval <argtxt[1]>> > <eval <findlayer(29).more1>>)
+	sayu Bu miktar kasamda bulunmuyor.
+elseif (<eval (<findlayer(29).more1> - <argtxt[1]>)> < 2500)
+	sayu Bu miktari veremeyecegim, kasamda en az 2500 altin kalmali.
+elseif (<eval <argtxt[1]>> >= 65000)
+	vend_collect <eval <argtxt[1]>>
+	sayu <argtxt[1]> altin bankaniza aktarildi.
+else
+	findlayer(29).more1 <eval (<findlayer(29).more1> - <argtxt[1]>)>
+	src.newitem i_gold
+	src.act.amount <eval <argtxt[1]>>
+	src.act.cont <src.findlayer(29).uid>
+	sayu <argtxt[1]> altin bankaniza aktarildi.
+endif
+
+[dialog d_pv_buy]
+300,300
+
+resizepic 0 0 5054 270 105
+htmlgump 10 15 250 60 0 1 0
+button 200 80 1153 1155 1 0 1
+button 233 80 1150 1152 1 0 0
+
+[dialog d_pv_buy text]
+<name>, fiyati: <price> altin. Bunu satin almak istediginize emin misiniz?
+
+[dialog d_pv_buy button]
+On=1
+if (strmatch('<price>',''))
+	src.sysmessage Bu esya satilik degil.
+elseif (<price> <= 0)
+	src.sysmessage Bu esya satilik degil.
+elseif (<src.gp> >= <price>)
+	src.gpconsume <price>
+	topobj.findlayer(29).more1 (<topobj.findlayer(29).more1> + <price>)
+	cont <src.findlayer(21).uid>
+	price
+	update
+	if ((<baseid> == i_spellbook) || (<baseid> == i_runebook) || (<baseid> == i_magic_reg30) || (<baseid> == i_magic_reg60) || (<baseid> == i_magic_reg90) || (<baseid> == i_necro_reg20) || (<baseid> == i_necro_reg40) || (<baseid> == i_taxi_kit) || (<baseid> == i_dye_tub_furny) || (<dispid> == i_deed))
+		attr <attr>|attr_newbie
+	endif
+else
+	topobj.sayu Bankanizin en ust kisminda bunu alacak kadar altininiz yok.
+endif
+
+[dialog d_pv_dismiss]
+300,300
+
+resizepic 0 0 5054 270 105
+htmlgump 10 15 250 60 0 1 0
+button 200 80 1153 1155 1 0 1
+button 233 80 1150 1152 1 0 0
+
+[dialog d_pv_dismiss text]
+DIKKAT! Tezgahtarinizda <findlayer(21).rescount> adet esya ve <eval <findlayer(29).more1>> altin bulunuyor, onu deed haline getirmek istediginize emin misiniz?
+
+[dialog d_pv_dismiss button]
+On=1
+if (<findid.i_pv_rem.timer> < 0)
+	if (<findid.i_pv_rem.more2> == 1)
+		sayu Sizinle calismak guzeldi.
+		bow
+		findid.i_pv_rem.timer 3
+		src.newitem i_deed_pv
+		src.act.bounce
+	elseif (<findid.i_pv_rem.more2> == 2)
+		sayu Nasil isterseniz.
+		salute
+		findid.i_pv_rem.timer 3
+		src.newitem i_deed_pv
+		src.act.cont <memoryfindtype.memory_ipet.link.findlayer(21).uid>
+	endif
+endif
+
+// ******
+// SPEECH
+// ******
+
+[speech pv_spch]
+On=*Holygun*
+	sayu Tanri sizi korusun.
+	salute
+	return 1
+
+On=bilgi
+On=yardim
+	if (<src.uid> == <tag.owner>)
+		sayu Kullanabileceginiz komutlar: durum, kasa, hasila, fiyat, lokasyon, kontrat.
+		sayu Belirli bir komut hakkinda bilgi icin 'Komut ?' yazmaniz yeterlidir.
+	else
+		sayu Uzerime cift tiklayarak veya 'alisveris' komutuyla cantami acabilir, cantamdaki kutu veya torbalara cift tiklayarak iclerine bakabilir, 'buy' veya 'satin al' komutuyla satilik esyalari satin alabilirsiniz.
+	endif
+	return 1
+
+On=durum*
+	if ((<src.uid> == <tag.owner>) || (<src.isgm>))
+		if (strmatch('<args>','DURUM ?'))
+			sayu Kasamdaki para miktarini ve kasamdaki parayla calisacagim gun sayisini (reel gun) ogrenmek icin kullancaginiz komuttur.
+		else
+			sayu Kasamdaki <eval <findlayer(29).more1>> altin ile <eval (<findlayer(29).more1> / (<hiredaywage>))> gun daha sizin icin calisacagim.
+		endif
+	endif
+	return 1
+
+On=kasa*
+	if (<src.uid> == <tag.owner>)
+		if (strmatch('<args>','KASA ?'))
+			sayu Satis olmamasi ve kasamdaki paranin azalmasi durumunda kasama yaninizda getireceginiz altini eklemek icin kullanacaginiz komuttur.
+		else
+			findid.i_pv.more1 3
+			findid.i_pv.target
+			sayu Kasama yatirmak istediginiz parayi seciniz.
+		endif
+	endif
+	return 1
+
+On=hasila*
+	if (<src.uid> == <tag.owner>)
+		if (strmatch('<args>','HASILA ?'))
+			sayu Kasamdaki parayi banka hesabiniza aktarmakta kullanacaginiz komuttur. Kasamdaki son 2500 altini aktarmaniz mumkun degildir.
+		else
+			if (<eval <findlayer(29).more1>> < 2501)
+				sayu Kasamda 2500 veya daha az altin var, su durumda size nakit veremem.
+			else
+				dialog d_pv_cash
+			endif
+		endif
+	endif
+	return 1
+
+On=fiyat *
+	if (<src.uid> == <tag.owner>)
+		if (strmatch('<args>','FIYAT ?'))
+			sayu Cantama yerlestirdiginiz esyalari fiyatlandirmakta kullanacaginiz komuttur. Kullanilisi, X'in yerine bir sayi gelecek bicimde 'Fiyat X' seklindedir.
+			sayu Satilamaz ibareli esyalari asla fiyatlandiramazsiniz. Satilik haldeki bir esyayi 'satilik degil' hale getirmek icin 0 fiyat vermeniz gereklidir.
+		else
+			if !(<findlayer(21).findcont(0)>)
+				sayu Cantamda fiyatlandirilacak mal bulunmuyor.
+			else
+				try <args>
+			endif
+		endif
+	endif
+	return 1
+
+On=lokasyon*
+	if ((<src.uid> == <tag.owner>) || (<src.uid> == <region.tag.owner>) || (<src.isgm>))
+		if (strmatch('<args>','LOKASYON ?'))
+			sayu Ev icerisinde durdugum noktayi degistirmek icin kullanacaginiz komuttur. Durmami istediginiz yeni noktaya gecip kullanmaniz gerekmektedir.
+		else
+			
+				tag.p <src.p>
+				tag.px <src.p.x>
+				tag.py <src.p.y>
+				tag.pz <src.p.z>
+				go <tag.p>
+			else
+				src.sysmessage Bulundugunuz nokta evin icinde degil.
+			endif
+	endif
+	return 1
+	
+On=kontrat*
+	if ((<src.uid> == <tag.owner>) || (<src.isgm>) || (<src.uid> == <region.tag.owner>))
+		if (strmatch('<args>','KONTRAT ?'))
+			if (<src.uid> == <region.tag.owner>)
+				sayu Bu komutu sadece siz kullanabilirsiniz. Komutu kullandiginizda cantamdaki esya sayisini ve kasamdaki para miktarini gosteren bir konfirmasyon diyalogu cikacaktir, tamami tiklamaniz isten ayrilmama ve kontratimi geri kazanmaniza vesile olacaktir.
+			else
+				sayu Bu komutu sadece siz ve ev sahibi kullanabilir. Komutu kullandiginizda cantamdaki esya sayisini ve kasamdaki para miktarini gosteren bir konfirmasyon diyalogu cikacaktir, tamami tiklamaniz isten ayrilmama vesile olacaktir. Kontratim sahibimin cantasina dusecektir.
+			endif
+		elseif (<src.uid> == <tag.owner>)
+			if (<findid.i_pv_rem.timer> < 0)
+				findid.i_pv_rem.more2 1
+				dialog d_pv_dismiss
+			endif
+		else
+			if (<findid.i_pv_rem.timer> < 0)
+				findid.i_pv_rem.more2 2
+				dialog d_pv_dismiss
+			endif
+		endif
+	endif
+	return 1
+
+On=alisveris
+	if ((<canseelos>) && (<distance> < 4))
+		face
+		if (<src.uid> == <tag.owner>)
+			sayu Satilacak esyalari buraya koyabilirsiniz.
+			pack
+		elseif !(<findlayer(21).findcont(0)>)
+			sayu Su an satilik malim yok, lutfen daha sonra tekrar geliniz.
+		else
+			pack
+		endif
+	else
+		src.sysmessage Vendor'a ulasamiyorsunuz.
+	endif
+	return 1
+
+On=buy
+On=satin al
+	if (<src.uid> == <tag.owner>)
+		sayu Isverenim oldugunuz icin istediginizi alabilirsiniz, para vermenize gerek yok.
+	elseif !(<findlayer(21).findcont(0)>)
+		sayu Su an satilik malim yok uzgunum.
+	else
+		findid.i_pv.more1 2
+		findid.i_pv.target
+	endif
+	return 1
+
+On=*
+return 1
+	
+// *****
+// EVENT
+// *****
+
+[events e_pv]
+On=@GetHit
+if !(<src.npc>)
+	src.newitem i_killer
+	src.act.equip
+else
+	src.leave 20
+endif
+return 1
+
+On=@Hit
+return 1
+
+On=@HitTry
+return 1
+
+On=@Death
+hits <str>
+return 1
+
+On=@SpellEffect
+if (<src.npc>)
+	src.leave 20
+endif
+return 1
+
+On=@ItemEquip
+if ((<act.layer> == 1) || (<act.layer> == 2))
+	findid.i_torch.equip
+	findid.i_torch.dclick
+	return 1
+endif
+
+On=@Click
+if !(strmatch('<eval 0<tag.px>>','<eval <p.x>>')) || !(strmatch('<eval 0<tag.py>>','<eval <p.y>>')) || !(strmatch('<eval 0<tag.pz>>','<eval <p.z>>'))
+	p <tag.p>
+	update
+	return 1
+endif
+message * <memoryfindtype.memory_ipet.link.name> *
+return 1
+
+On=@DClick
+if !(strmatch('<eval 0<tag.px>>','<eval <p.x>>')) || !(strmatch('<eval 0<tag.py>>','<eval <p.y>>')) || !(strmatch('<eval 0<tag.pz>>','<eval <p.z>>'))
+	p <tag.p>
+	update
+	return 1
+endif
+
+if !(<memoryfindtype.memory_ipet>)
+	memorydel <src.uid>
+	newitem i_memory
+	act.attr 04
+	act.more1 04
+	act.more2 <serv.time>
+	act.morep <link.p>
+	act.color memory_ipet
+	act.timer -1
+	act.link <tag.owner>
+	act.cont <uid>
+	flags <flags>&statf_pet
+endif
+
+if (<src.uid> == <tag.owner>)
+	src.tag.vendor <uid>
+endif
+
+if (<src.isgm>)
+	pack
+elseif (<src.flags>&statf_dead)
+	src.sysmessage Su anki durumuzda bu islemi gerceklestiremezsiniz.
+elseif ((<canseelos>) && (<distance> < 4))
+	face
+	if (<src.uid> == <tag.owner>)
+		sayu Satilacak esyalari buraya koyabilirsiniz.
+		pack
+	elseif !(<findlayer(21).findcont(0)>)
+		sayu Su an satilik malim yok, lutfen daha sonra tekrar geliniz.
+	else
+		pack
+	endif
+else
+	src.sysmessage Vendor'a ulasamiyorsunuz.
+endif
+return 1
+
+On=@EnvironChange
+if (<flags>&statf_war)
+	flags <flags>&~statf_war
+	update
+endif
+food 990
+p <tag.p>
+tag.p <p>
+tag.px <p.x>
+tag.py <p.y>
+tag.pz <p.z>
+if (<eval <findlayer(29).more1>> < 1)
+	if (<findid.i_pv_rem.timer> < 0)
+		if (<findid.i_pv_rem.more1>)
+			sayu Bedavaya calisacak degilim.
+			salute
+			findid.i_pv_rem.timer 3
+			memoryfindtype.memory_ipet.link.sysmessage Vendorunuz maas alamadigi icin istifa etti.
+		else
+			findid.i_pv_rem.more1 1
+			go <tag.p>
+		endif
+	endif
+endif
+
+// *********************
+// ALTINSAL FONKSIYONLAR
+// *********************
+
+[function fiyat]
+if (<eval <argn>> > 5000000)
+	sayu Tek bir mali 5 milyon altinin uzerinde fiyatla satmam yasalara aykiridir.
+else
+	findid.i_pv.more1 1
+	findid.i_pv.more2 <eval <argn>>
+	findid.i_pv.target
+endif
+
+[function vend_collect]
+var.vendorcash <eval (<argn> - 65000)>
+findlayer(29).more1 <eval (<findlayer(29).more1> - 65000)>
+src.newitem i_gold
+src.act.amount 65000
+src.act.cont <src.findlayer(29).uid>
+if (<eval <var.vendorcash>> >= 65000)
+	vend_collect <eval <var.vendorcash>>
+elseif (<eval <var.vendorcash>> > 0)
+	findlayer(29).more1 <eval (<findlayer(29).more1> - <var.vendorcash>)>
+	src.newitem i_gold
+	src.act.amount <eval <var.vendorcash>>
+	src.act.cont <src.findlayer(29).uid>
+	var.vendorcash
+else
+	var.vendorcash
+endif
+
+[function packo] // (special thx to laroux below this line)
+try src.tag.<uid> <rescount>
+packo_loop <args>
+
+[function packo_loop]
+if (<eval <src.tag.<uid>>> > 0)
+	try src.tag.<uid> <eval (<src.tag.<uid>> - 1)>
+	//if (strmatch('<findcont.<eval <src.tag.<uid>>>.type>','t_container'))
+	//	try findcont.<eval <src.tag.<uid>>>.packo <args>
+	//else
+		try findcont.<eval <src.tag.<uid>>>.<args>
+	//endif
+	packo_loop <args>
+else
+	try src.tag.<uid>
+endif
+
+[function gp]
+var.gp 0
+//findlayer(21).packo gp_ctrl
+findlayer(29).packo gp_ctrl
+return <eval <var.gp>>
+
+[function gp_ctrl]
+if (strmatch('<baseid>','i_gold'))
+	var.gp <eval (<var.gp> + <amount>)>
+endif
+
+[function gpconsume]
+var.gp <argn>
+//findlayer(21).packo gpconsume_ctrl <argn>
+findlayer(29).packo gpconsume_ctrl <argn>
+return 1
+
+[function gpconsume_ctrl]
+if ((<var.gp> > 0) && (strmatch('<baseid>','i_gold')))
+	if (<amount> > <eval (<var.gp>)>)
+		amount <eval (<amount> - <var.gp>)>
+		var.gp 0
+	else
+		var.gp <eval (<var.gp> - <amount>)>
+		remove
+	endif
+endif
+
+[function evl]
+
+sysmessage Evaluating [0<args>]: <eval 0<args>>.
+return <valstr 0<args>>
+
+[EOF]

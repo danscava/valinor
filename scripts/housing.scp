@@ -1,0 +1,5178 @@
+//8temmuz-Ev adini <b veya <bZ yapýlýrsa server çökyor. tespiti yapýlýp tarafýmca //kapatýldý/munin
+
+[dialog d_house_red]
+0, 0
+page 0
+resizepic 125 100 5120 280 180
+resizepic 135 110 3000 260 160
+
+htmlgump 180 110 200 20 0 0 0
+htmlgump 210 130 200 20 1 0 0
+htmlgump 145 150 200 20 2 0 0
+htmlgump 145 170 240 20 3 0 0
+htmlgump 145 190 200 20 4 0 0
+htmlgump 145 210 200 20 5 0 0
+
+htmlgump 180 236 100 20 6 0 0
+htmlgump 330 236 100 20 7 0 0
+
+button 145 235 4006 4007 1 0 1
+button 295 235 4006 4007 1 0 0
+
+[dialog d_house_red text]
+Evinizin kurulumu reddedilmi$tir!
+-Reddedilme nedeni-
+<link.tag.declined>
+Evinizi en kisa sure icerisinde kaldirin,
+Aksi takdirde eviniz silinecektir.
+Kalan sure: <eval ((<link.timer>/60)/60)/24)> gun - <eval ((<link.timer>/60)/60)> saat
+Evi kaldir!
+Tamam!
+
+[dialog d_house_red button]
+on 1
+if ((<region.tag.vendor1>) || (<region.tag.vendor2>) || (<region.tag.vendor3>))
+		src.sysmessage @54 Evinizde calisan vendor oldugu surece evi yikamazsiniz.
+else
+link.hredeed
+link.more2 02
+link.remove
+return 1
+endif
+
+[dialog d_house_approve]
+250, 250
+page 0
+resizepic 0 0 5120 220 100
+resizepic 10 10 3000 200 80
+
+dtext 30 20 0481 Valinor Staff Panel
+
+page 1
+dtext 25 40 0481 Evi onaylayacakmisiniz?
+button 20 62 2117 2118 1 0 1
+button 140 62 2117 2118 0 2 0
+
+dtext 40 60 56 Evet
+dtext 160 60 56 Hayir
+
+page 2
+resizepic 0 0 5120 350 190
+resizepic 10 10 3000 330 170
+dtext 64 34 0481 Red sebebini secin:
+button 40 56 2117 2118 1 0 3
+button 40 75 2117 2118 1 0 4
+button 40 94 2117 2118 1 0 5
+button 40 113 2117 2118 1 0 6
+button 40 130 2117 2118 1 0 7
+dtext 58 53 56 Diger etkenlere cok yakin!
+dtext 58 70 56 Dogal etkenler (yol,agac)
+dtext 58 90 56 Sehir, zindan ya da mezara yakin.
+dtext 57 108 56 Ev kurulumu yasak bolge
+dtext 57 125 56 Spawn bolgesi
+
+
+[dialog d_house_approve text]
+Indinolla House System
+Evi onaylayacakmisiniz?
+Evet
+Hayir
+
+[dialog d_house_approve button]
+on 1
+link.tag.status 1
+link.tag.now Evin kurulumu kabul edildi.
+src.sysmessage Evin kurulumu kabul edildi.
+color 00
+
+on 3
+link.tag.now Evin kurulumu reddedildi.
+link.tag.declined Diger etkenlere cok yakin!
+link.tag.status 2
+link.timer 196800
+//link.tag.time <src.serv.rtime>
+color 0480
+
+on 4
+link.tag.now Evin kurulumu reddedildi.
+link.tag.declined Dogal etkenler (yol,agac)
+link.tag.status 2
+link.timer 196800
+//link.tag.time <src.serv.rtime>
+color 0480
+
+on 5
+link.tag.now Evin kurulumu reddedildi.
+link.tag.declined Sehir, zindan ya da mezara yakin.
+link.tag.status 2
+link.timer 196800
+//link.tag.time <src.serv.rtime>
+color 0480
+
+on 6
+link.tag.now Evin kurulumu reddedildi.
+link.tag.status 2
+link.tag.declined Ev kurulumu yasak bolge
+link.timer 196800
+//link.tag.time <src.serv.rtime>
+color 0480
+
+on 7
+link.tag.now Evin kurulumu reddedildi.
+link.tag.declined Spawn bolgesi
+link.tag.status 2
+link.timer 196800
+//link.tag.time <src.serv.rtime>
+color 0480
+
+[dialog d_house_public]
+100,50
+resizepic 130 140 5120 380 180
+resizepic 140 150 3000 360 160
+
+
+page 0
+htmlgump 200 170 60 20 0 0 0
+htmlgump 300 170 60 20 1 0 0
+htmlgump 420 170 60 20 2 0 0
+
+button 160 169 4009 4010 0 1
+button 260 169 4009 4010 0 2
+button 380 169 4009 4010 0 5 
+
+page 1
+htmlgump 160 205 100 20 3 0 0
+htmlgump 160 225 100 20 4 0 0
+htmlgump 160 245 160 20 5 0 0
+htmlgump 160 265 160 20 6 0 0
+
+htmlgump 325 205 200 20 7 0 0
+htmlgump 325 225 200 20 8 0 0
+htmlgump 325 245 160 20 9 0 0
+htmlgump 325 265 160 20 10 0 0
+
+htmlgump 340 285 125 20 11 0 0
+button 460 285 4009 4010 1 0 1	// isim degi$tir
+
+page 2
+htmlgump 200 200 100 20 12 0 0
+htmlgump 200 220 100 20 13 0 0
+htmlgump 200 240 100 20 14 0 0
+htmlgump 200 260 100 20 15 0 0
+
+button 160 200 4006 4007 1 0 2
+button 160 220 4006 4007 1 0 8
+button 160 240 4006 4007 1 0 4
+button 160 260 4006 4007 1 0 6
+
+htmlgump 360 200 80 20 16 0 0
+htmlgump 360 220 80 20 17 0 0
+htmlgump 360 240 80 20 18 0 0
+htmlgump 360 260 80 20 19 0 0
+
+button 440 200 4015 4016 1 0 3
+button 440 220 4015 4016 1 0 9
+button 440 240 4015 4016 1 0 5
+button 440 260 4015 4016 1 0 7
+
+page 5
+htmlgump 200 200 200 20 20 0 0
+htmlgump 200 220 200 20 21 0 0
+htmlgump 200 240 200 20 22 0 0
+htmlgump 200 260 200 20 23 0 0
+
+button 160 200 4006 4007 1 0 14
+button 160 220 4006 4007 1 0 17
+button 160 240 4006 4007 1 0 15 
+button 160 260 4006 4007 1 0 16
+
+[dialog d_house_public text]
+Bilgi				//0
+Dostlar
+Diger
+Evin ismi:
+Evin sahibi:
+Sabit e$ya sayisi:		//5
+Guvenli e$ya sayisi:
+<link.name>
+<src.uid.<more>.name>
+<eval <tag.locknumber>> / <morey>
+<eval <tag.secnumber>> / <morez>	//10
+Evin ismini degi$tir
+Ortak listesi
+Ortaklari sil
+Ortak ekle
+Ortak sil			//15
+Dost Listesi
+Dostlari sil
+Dost Ekle
+Dost sil
+Evi ba$kasina devret.
+Evin tabelasini degi$tir.
+Evi tapu haline cevir.
+Evi ozel mulkiyete cevir.
+
+[dialog d_house_public button]
+on 1
+if (<src.uid> == <more>)
+dialog d_house_rename
+else
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi olmaniz gereklidir.
+opendialog
+endif
+
+on 2
+dialog d_house_colist
+
+on 3
+dialog d_house_flist
+
+on 4
+if (<src.uid> == <more>)
+morex 8
+target
+else
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi olmaniz gereklidir.
+opendialog
+endif
+
+on 5
+if ((<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>))
+morex 9
+target
+else 
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi yada ortagi olmaniz gereklidir.
+opendialog
+endif
+
+on 6
+if (<src.uid> == <more>)
+dialog d_house_removec
+else 
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi olmaniz gereklidir.
+opendialog
+endif
+
+on 7
+if ((<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>))
+dialog d_house_rfriend
+else 
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi yada ortagi olmaniz gereklidir.
+dialog d_house_flist
+endif
+
+on=8
+if (<src.uid> == <more>)
+dialog d_house_rcoowner_all
+
+else
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi olmaniz gereklidir.
+opendialog
+endif
+
+on=9
+if ((<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>))
+dialog d_house_rfriend_all
+
+else 
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi yada ortagi olmaniz gereklidir.
+opendialog
+endif
+
+on=10 // ban
+morex 5
+target
+
+on=11 // eject
+morex 6
+target
+
+on=12
+dialog d_house_elist
+
+on=13
+dialog d_house_liftban
+
+on=14
+src.sysmessage @54 Ev devretme ozelligi aktif degil!
+return 1
+//if !(<src.uid> == <more>)
+//src.sysmessage @54 Bunu yapabilmek icin evin sahibi olmaniz gereklidir.
+//opendialog
+//
+//elseif (<src.region.uid> == <uid>)
+//	src.sysmessage @54 Evi devredebilmek icin, evin disina cikmalisiniz.
+//opendialog
+//
+//else
+//	morex 7
+//	target Evi devretmek istediginiz kisiyi seciniz.
+//endif
+
+on=15
+if (<src.uid> == <more>)
+dialog d_house_redeed
+
+else
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi olmaniz gereklidir.
+opendialog
+endif
+
+on=16
+if (<src.uid> == <more>)
+if ((<region.tag.vendor1>) || (<region.tag.vendor2>) || (<region.tag.vendor3>))
+		src.sysmessage @54 Evinizde calisan vendorlar oldugu surece ozel duruma getiremezsiniz.
+else
+region.events +r_house_private
+region.events -r_house_public
+link.morey 0
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bd2
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+		src.sysmessage @68 Eviniz ozel duruma getirildi.
+opendialog
+endif
+
+else
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi olmaniz gereklidir.
+endif
+
+on=17
+dialog d_tabelalar
+
+
+[dialog d_tabelalar]
+100,50
+resizepic 90 140 5120 420 280
+resizepic 100 150 3000 400 260
+
+page 0
+
+htmlgump 175 170 100 20 0 0 0
+button 140 169 4009 4010 0 1
+
+htmlgump 375 170 100 20 1 0 0
+button 340 169 4009 4010 0 2
+
+tilepic 149 195 2980
+tilepic 149 230 2982
+tilepic 149 265 2984
+tilepic 149 300 2986
+tilepic 204 195 2988
+tilepic 204 230 2990
+tilepic 204 265 2992
+tilepic 204 300 2994
+tilepic 259 195 2996
+tilepic 259 230 2998
+tilepic 259 265 3000
+tilepic 259 300 3002
+tilepic 314 195 3004
+tilepic 314 230 3006
+tilepic 314 265 3008
+tilepic 314 300 3010
+tilepic 369 195 3012
+tilepic 369 230 3014
+tilepic 369 265 3016
+tilepic 369 300 3018
+tilepic 424 195 3020
+tilepic 424 230 3022
+tilepic 424 265 3024
+tilepic 424 300 3026
+
+radio 140 203 210 211 0 0
+radio 140 238 210 211 0 1
+radio 140 273 210 211 0 2
+radio 140 308 210 211 0 3
+radio 195 203 210 211 0 4
+radio 195 238 210 211 0 5
+radio 195 273 210 211 0 6
+radio 195 308 210 211 0 7
+radio 250 203 210 211 0 8
+radio 250 238 210 211 0 9
+radio 250 273 210 211 0 10
+radio 250 308 210 211 0 11
+radio 305 203 210 211 0 12
+radio 305 238 210 211 0 13
+radio 305 273 210 211 0 14
+radio 305 308 210 211 0 15
+radio 360 203 210 211 0 16
+radio 360 238 210 211 0 17
+radio 360 273 210 211 0 18
+radio 360 308 210 211 0 19
+radio 415 203 210 211 0 20
+radio 415 238 210 211 0 21
+radio 415 273 210 211 0 22
+radio 415 308 210 211 0 23
+
+htmlgump 175 380 200 40 2 0 0
+button 140 380 4006 4007 1 0 1
+
+page 1			// lonca tabelalari
+radio 140 203 210 211 0 24
+tilepic 149 195 3028
+radio 140 238 210 211 0 25
+tilepic 149 230 3030
+radio 140 273 210 211 0 26
+tilepic 149 265 3032
+radio 140 308 210 211 0 27
+tilepic 149 300 3034
+radio 140 343 210 211 0 28
+tilepic 149 335 3036
+radio 195 203 210 211 0 29
+tilepic 204 195 3038
+radio 195 238 210 211 0 30
+tilepic 204 230 3040
+radio 195 273 210 211 0 31
+tilepic 204 265 3042
+radio 195 308 210 211 0 32
+tilepic 204 300 3044
+radio 195 343 210 211 0 33
+tilepic 204 335 3046
+radio 250 203 210 211 0 34
+tilepic 259 195 3048
+radio 250 238 210 211 0 35
+tilepic 259 230 3050
+radio 250 273 210 211 0 36
+tilepic 259 265 3052
+radio 250 308 210 211 0 37
+tilepic 259 300 3054
+radio 250 343 210 211 0 38
+tilepic 259 335 3056
+radio 305 203 210 211 0 39
+tilepic 314 195 3058
+radio 305 238 210 211 0 40
+tilepic 314 230 3060
+radio 305 273 210 211 0 41
+tilepic 314 265 3062
+radio 305 308 210 211 0 42
+tilepic 314 300 3064
+radio 305 343 210 211 0 43
+tilepic 314 335 3066
+radio 360 203 210 211 0 44
+tilepic 369 195 3068
+radio 360 238 210 211 0 45
+tilepic 369 230 3070
+radio 360 273 210 211 0 46
+tilepic 369 265 3072
+radio 360 308 210 211 0 47
+tilepic 369 300 3074
+radio 360 343 210 211 0 48
+tilepic 369 335 3076
+radio 415 203 210 211 0 49
+tilepic 424 195 3078
+radio 415 238 210 211 0 50
+tilepic 424 230 3080
+radio 415 273 210 211 0 51
+tilepic 424 265 3082
+radio 415 308 210 211 0 52
+tilepic 424 300 3084
+
+[dialog d_tabelalar text]
+Guild tabelalari
+Dukkan tabelalari
+Bu tabelayi istiyorum!
+
+[dialog d_tabelalar button]
+on=1
+if !((<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>))
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi olmaniz gereklidir.
+return 1
+endif
+
+if (<argchk[0]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0ba4
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[1]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0ba6
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[2]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0ba8
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[3]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0baa
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[4]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bac
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[5]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bae
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[6]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bb0
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[7]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bb2
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[8]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bb4
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[9]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bb6
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[10]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bb8
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[11]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bba
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[12]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bbc
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[13]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bbe
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[14]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bc0
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[15]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bc2
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[16]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bc4
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[17]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bc6
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[18]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bc8
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[19]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bca
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[20]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bcc
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[21]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bce
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[22]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bd0
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[23]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bd2
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[24]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bd4
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[25]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bd6
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[26]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bd8
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[27]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bda
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[28]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bdc
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[29]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bde
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[30]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0be0
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[31]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0be2
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[32]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0be4
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[33]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0be6
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[34]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0be8
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[34]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bea
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[35]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bec
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[36]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bee
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[37]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bf0
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[38]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bf2
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[39]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bf4
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[40]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bf6
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[42]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bf8
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[43]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bfa
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[44]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bfc
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[45]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0bfe
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[46]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0c00
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[47]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0c02
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[48]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0c04
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[49]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0c06
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[50]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0c08
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[51]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0c0a
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+elseif (<argchk[52]> == 1)
+var.houseposition <link.p>
+var.housename <link.name>
+link.dispid 0c0c
+link.p <var.houseposition>
+link.name <var.housename>
+updatex
+
+else
+	src.sysmessage @54 Bir secim yapmadiniz.
+endif
+opendialog
+var.houseposition
+var.housename
+
+[dialog d_house_private]
+100,50
+resizepic 130 140 5120 380 180
+resizepic 140 150 3000 360 160
+
+page 0
+htmlgump 200 170 60 20 0 0 0
+htmlgump 300 170 60 20 1 0 0
+htmlgump 420 170 60 20 2 0 0
+
+button 160 169 4009 4010 0 1
+button 260 169 4009 4010 0 2
+button 380 169 4009 4010 0 5 
+
+page 1
+htmlgump 160 205 120 20 3 0 0
+htmlgump 160 225 120 20 4 0 0
+htmlgump 160 245 120 20 5 0 0
+htmlgump 160 265 120 20 6 0 0
+
+
+htmlgump 325 205 200 20 7 0 0
+htmlgump 325 225 120 20 8 0 0
+htmlgump 325 245 120 20 9 0 0
+htmlgump 325 265 120 20 10 0 0
+
+htmlgump 340 285 125 20 11 0 0
+button 460 285 4009 4010 1 0 1	// isim degi$tir
+
+//dtext 355 310 0481 Evin ismini degi$!
+//button 460 310 4009 4010 1 0 1	// isim degi$tir
+
+page 2
+htmlgump 200 200 100 20 12 0 0
+htmlgump 200 220 100 20 13 0 0
+htmlgump 200 240 100 20 14 0 0
+htmlgump 200 260 100 20 15 0 0
+
+button 160 200 4006 4007 1 0 2
+button 160 220 4006 4007 1 0 8
+button 160 240 4006 4007 1 0 4
+button 160 260 4006 4007 1 0 6
+
+htmlgump 360 200 80 20 16 0 0
+htmlgump 360 220 80 20 17 0 0
+htmlgump 360 240 80 20 18 0 0
+htmlgump 360 260 80 20 19 0 0
+
+button 440 200 4015 4016 1 0 3
+button 440 220 4015 4016 1 0 9
+button 440 240 4015 4016 1 0 5
+button 440 260 4015 4016 1 0 7
+
+page 5
+htmlgump 200 200 200 20 20 0 0
+htmlgump 200 220 200 20 21 0 0
+
+//dtext 160 200 0481 Evi tapu haline getir.
+//dtext 160 220 0481 Evi halka acik hale getir.
+
+button 160 200 4006 4007 1 0 15 
+button 160 220 4006 4007 1 0 16
+
+[dialog d_house_private text]
+Bilgi
+Dostlar
+Diger
+Evin ismi:
+Evin sahibi:
+Sabit e$ya sayisi:
+Guvenli e$ya sayisi:
+<link.name>
+<src.uid.<more>.name>
+<eval <tag.locknumber>> / <morey>
+<eval <tag.secnumber>> / <morez>
+Evin ismini degi$tir!
+Ortak listesi
+Ortaklari sil
+Ortak ekle
+Ortak sil			//15
+Dost Listesi
+Dostlari sil
+Dost Ekle
+Dost sil
+Evi tapu haline cevir.
+Evi halka acik hale getir.
+
+
+[dialog d_house_private button]
+on=0
+
+on=1
+if (<eval <src.uid>> == <more>)
+dialog d_house_rename
+
+else
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi olmaniz gereklidir.
+opendialog
+endif
+
+on=2
+dialog d_house_colist
+
+on=3
+dialog d_house_flist
+
+on=4
+if (<eval <src.uid>> == <more>)
+morex 8
+target
+
+else
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi yada ortagi olmaniz gereklidir.
+opendialog
+endif
+
+on=5
+if ((<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>))
+morex 9
+target
+
+else 
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi yada ortagi olmaniz gereklidir.
+opendialog
+endif
+
+on=6
+if (<src.uid> == <more>)
+dialog d_house_removec
+
+else 
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi olmaniz gereklidir.
+opendialog
+endif
+
+on=7
+if ((<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>))
+dialog d_house_rfriend
+
+else 
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi yada ortagi olmaniz gereklidir.
+dialog d_house_flist
+endif
+
+on=8
+if (<src.uid> == <more>)
+dialog d_house_rcoowner_all
+
+else
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi olmaniz gereklidir.
+opendialog
+endif
+
+on=9
+if ((<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>))
+dialog d_house_rfriend_all
+
+else 
+src.sysmessage @54 Bunu yapabilmek icin evin sahibi yada ortagi olmaniz gereklidir.
+opendialog
+endif
+
+On=10 // ban
+morex 5
+target
+
+On=11 // eject
+morex 6
+target
+
+On=12
+dialog d_house_elist
+
+On=13
+dialog d_house_liftban
+
+on=14
+//src.sysmessage @54 Ev devretme ozelligi kapatilmi$tir.
+//return 1
+if !(<src.uid> == <more>)
+src.sysmessage @54 Evi devretmek icin, evin sahibi olmalisiniz.
+opendialog
+
+elseif (<src.region.uid> == <uid>)
+src.sysmessage @54 Evi sadece evin di$inda devredebilirsiniz.
+opendialog
+
+else
+morex 7
+target Evi kime devretmek istiyorsunuz?
+endif
+
+on=15
+if (<src.uid> == <more>)
+dialog d_house_redeed
+
+else
+src.sysmessage @54 Sadece evin sahibi evi tapu haline getirebilir.
+opendialog
+endif
+
+on 16
+if (<src.uid> == <more>)
+region.events +r_house_public
+region.events -r_house_private
+link.morey 1
+src.sysmessage @54 Eviniz halka acildi.
+opendialog
+else
+src.sysmessage @54 Sadece evin sahibi evin durumunu degi$tirebilir.
+endif
+
+[dialog d_house_staff]
+100,50
+resizepic 90 145 5120 420 260
+resizepic 100 155 3000 400 240
+page 0
+htmlgump 215 172 100 20 0 0 0
+htmlgump 345 172 100 20 1 0 0
+
+//dtext 215 172 56 GENEL BILGI
+//dtext 345 172 56 SECENEKLER
+
+button 180 169 4006 4007 0 1 // genel bilgi
+button 310 169 4006 4007 0 2 // secenekler
+
+page 1
+htmlgump 110 200 200 20 2 0 0
+htmlgump 110 220 200 20 3 0 0
+htmlgump 110 240 200 20 4 0 0
+htmlgump 110 260 200 20 5 0 0
+htmlgump 110 280 200 20 6 0 0
+htmlgump 110 300 200 20 7 0 0
+htmlgump 110 320 200 20 8 0 0
+htmlgump 110 340 200 20 9 0 0
+htmlgump 110 360 200 20 10 0 0
+
+htmlgump 310 200 200 20 11 0 0
+htmlgump 310 220 200 20 12 0 0
+htmlgump 310 240 200 20 13 0 0
+htmlgump 310 260 200 20 14 0 0
+htmlgump 310 280 200 20 15 0 0
+htmlgump 310 300 200 20 16 0 0
+htmlgump 310 320 200 20 17 0 0
+htmlgump 310 340 200 20 18 0 0
+htmlgump 310 360 200 20 19 0 0
+
+page 2
+htmlgump 160 210 200 20 20 0 0
+htmlgump 160 230 200 20 21 0 0
+htmlgump 160 250 200 20 22 0 0
+htmlgump 160 270 200 20 23 0 0
+htmlgump 160 290 200 20 24 0 0
+htmlgump 160 310 200 20 25 0 0
+htmlgump 160 330 200 20 33 0 0
+
+htmlgump 345 210 100 20 26 0 0
+htmlgump 345 230 100 20 27 0 0
+htmlgump 345 250 100 20 28 0 0
+htmlgump 345 270 100 20 29 0 0
+htmlgump 345 290 100 20 30 0 0
+htmlgump 345 310 100 20 31 0 0
+htmlgump 345 330 100 20 32 0 0
+
+button 125 210 4006 4007 1 0 10 // duzenle
+button 125 230 4006 4007 1 0 2 // liste
+button 125 250 4006 4007 1 0 8 // hepsini sil
+button 125 270 4006 4007 1 0 4 // ekle
+button 125 290 4006 4007 1 0 6 // sil
+button 125 310 4006 4007 1 0 1 // degi$
+button 125 330 4006 4007 1 0 14 // devret
+
+button 440 210 4015 4016 1 0 11 // dostlari duzenle
+button 440 230 4015 4016 1 0 3 // dost listesi
+button 440 270 4015 4016 1 0 5 // dost ekle
+button 440 250 4015 4016 1 0 9 // dostlari sil
+button 440 290 4015 4016 1 0 7 // dost sil
+button 440 310 4015 4016 1 0 15 // redeed
+button 440 330 4015 4016 1 0 16 // hatali ev
+
+
+//htmlgump 365 423 200 20 43 0 0		// cikis
+//button 330 420 4018 4019 1 0 16
+
+[dialog d_house_staff text]
+GENEL BILGI
+SECENEKLER
+Evin sahibi:
+Sahibinin hesabi:
+Sabitlenmi$ e$ya sayisi:
+Kilitli kasa adeti:
+Vendorlar:
+Evin ismi:
+Evin durumu:
+Evin ya$i:
+Evin koordinatlari:
+<src.uid.<more>.name>
+<src.uid.<more>.account>
+<eval <tag.locknumber>> / <morey>
+<eval <tag.secnumber>> / <morez>
+<eval <tag.vendnumber>> / 3
+<link.name>
+<region.events>
+<eval (((((<serv.time> - <tag.time>) / 10) / 60) / 60) / 24)> gn (<eval ((((<serv.time> - <tag.time>) / 10) / 60) / 60)>st, <eval (((<serv.time> - <tag.time>) / 10) / 60)>dk)
+<p.x>,<p.y>
+Ortaklari duzenle
+Ortak listesi
+Ortaklari sil
+Ortak ekle
+Ortak sil
+Evin ismi  
+Dostlari duzenle
+Dost listesi
+Dostlari sil
+Dost ekle
+Dost sil
+Evi kaldir
+Hatali ev!
+Evi devret
+
+[dialog d_house_staff button]  
+on 1
+dialog d_house_rename
+
+on 2
+dialog d_house_colist
+
+on 3
+dialog d_house_flist
+
+on 4
+morex 8
+target <src.uid.<more>.name> isimli $ahsin evine ortak olarak ekleyeceginiz elemani seciniz.
+
+on 5
+morex 9
+target <src.uid.<more>.name> isimli $ahsin evine dost olarak ekleyeceginiz elemani seciniz.
+
+on 6
+dialog d_house_removec
+
+On=7
+dialog d_house_rfriend
+
+On=8
+dialog d_house_rcoowner_all
+
+On=9
+dialog d_house_rfriend_all
+
+On=10
+dialog d_house_edit_c
+
+On=11
+dialog d_house_edit_f
+
+On=12
+dialog d_house_elist
+
+On=13
+dialog d_house_liftban
+
+On=14
+morex 7
+target Evi vereceginiz $ahsi seciniz.
+
+On=15
+if (<src.account.plevel> >= 5)
+dialog d_house_redeed
+else
+src.sysmessage @54 yava$...
+return 1
+endif
+
+On=16
+dialog d_house_approveon
+
+[dialog d_house_rename] // bitti!
+100,50
+resizepic 190 175 5120 335 150
+resizepic 200 185 3000 315 130
+resizepic 220 235 3000 270 22
+htmlgump 215 200 200 20 0 0 0
+htmlgump 255 275 100 20 1 0 0
+button 220 275 4006 4007 1 0 1
+htmlgump 435 275 100 20 2 0 0
+button 400 275 4006 4007 1 0 0
+textentry 225 237 253 25 0 0 3
+
+[dialog d_house_rename text]
+Evin yeni ismi ne olsun?
+Tamam
+Iptal
+<link.name>
+
+[dialog d_house_rename button]
+on=0
+opendialog
+
+on=1
+link.name <argtxt[0]>
+opendialog
+
+[dialog d_house_colist] // ok!
+100,50
+page 0
+resizepic 90 140 5120 180 220
+resizepic 100 150 3000 160 200
+
+htmlgump 145 150 100 20 0 0 0
+//dtext 145 150 0481 Ortak Listesi
+
+page 1
+htmlgump 130 180 160 20 1 0 0
+htmlgump 130 200 160 20 2 0 0
+htmlgump 130 220 160 20 3 0 0
+htmlgump 130 240 160 20 4 0 0
+
+htmlgump 130 260 160 20 5 0 0
+htmlgump 130 280 160 20 6 0 0
+htmlgump 130 300 160 20 7 0 0
+htmlgump 130 320 160 20 8 0 0
+
+[dialog d_house_colist text]
+Ortak Listesi
+<tag.co1name>
+<tag.co2name>
+<tag.co3name>
+<tag.co4name>
+<tag.co5name>
+<tag.co6name>
+<tag.co7name>
+<tag.co8name>
+
+[dialog d_house_colist button]  
+on 0
+opendialog
+
+[dialog d_house_flist] // ok!
+100,50
+
+page 0
+resizepic 90 140 5120 260 260
+resizepic 100 150 3000 240 240
+htmlgump 185 150 150 20 0 0 0
+
+page 1
+htmlgump 130 180 100 20 1 0 0
+htmlgump 130 200 100 20 2 0 0
+htmlgump 130 220 100 20 3 0 0
+htmlgump 130 240 100 20 4 0 0
+htmlgump 130 260 100 20 5 0 0
+htmlgump 130 280 100 20 6 0 0
+htmlgump 130 300 100 20 7 0 0
+htmlgump 130 320 100 20 8 0 0
+button 305 363 4006 4007 0 2 // ileri
+
+page 2
+htmlgump 130 180 100 20 9 0 0
+htmlgump 130 200 100 20 10 0 0
+htmlgump 130 220 100 20 11 0 0
+htmlgump 130 240 100 20 12 0 0
+htmlgump 130 260 100 20 13 0 0
+htmlgump 130 280 100 20 14 0 0
+htmlgump 130 300 100 20 15 0 0
+htmlgump 130 320 100 20 16 0 0
+button 105 363 4015 4016 0 1 // geri
+button 305 363 4006 4007 0 3 // ileri
+
+page 3
+htmlgump 130 180 100 20 17 0 0
+htmlgump 130 200 100 20 18 0 0
+htmlgump 130 220 100 20 19 0 0
+htmlgump 130 240 100 20 20 0 0
+button 105 363 4015 4016 0 2 // geri
+
+[dialog d_house_flist text]
+Dost Listesi
+<tag.f1name>
+<tag.f2name>
+<tag.f3name>
+<tag.f4name>
+<tag.f5name>
+<tag.f6name>
+<tag.f7name>
+<tag.f8name>
+<tag.f9name>
+<tag.f10name>
+<tag.f11name>
+<tag.f12name>
+<tag.f13name>
+<tag.f14name>
+<tag.f15name>
+<tag.f16name>
+<tag.f17name>
+<tag.f18name>
+<tag.f19name>
+<tag.f20name>
+
+[dialog d_house_flist button]
+on=0
+opendialog
+
+[dialog d_house_removec] // ok!
+100,50
+page 0
+resizepic 90 100 5120 200 280
+resizepic 100 110 3000 180 260
+htmlgump 165 118 100 20 0 0 0 // ba$lik
+
+button 120 345 2714 2714 1 0 2
+htmlgump 140 345 100 20 1 0 0
+
+page 1
+radio 120 140 210 211 0 1
+radio 120 165 210 211 0 2
+radio 120 190 210 211 0 3
+radio 120 215 210 211 0 4
+radio 120 240 210 211 0 5
+radio 120 265 210 211 0 6
+radio 120 290 210 211 0 7
+radio 120 315 210 211 0 8
+htmlgump 150 140 100 20 2 0 0
+htmlgump 150 165 100 20 3 0 0
+htmlgump 170 190 100 20 4 0 0
+htmlgump 170 215 100 20 5 0 0
+htmlgump 170 240 100 20 6 0 0
+htmlgump 170 265 100 20 7 0 0
+htmlgump 170 290 100 20 8 0 0
+htmlgump 170 315 100 20 9 0 0
+
+[dialog d_house_removec text] // ok!
+Ortak Sil
+$imdi sil!
+<tag.co1name>
+<tag.co2name>
+<tag.co3name>
+<tag.co4name>
+<tag.co5name>
+<tag.co6name>
+<tag.co7name>
+<tag.co8name>
+
+[dialog d_house_removec button]
+on=0
+opendialog
+
+on=2
+if (<argchk[1]> == 1)
+if (<eval <tag.co1uid>> > 0)
+if ((strmatch('<src.uid.<tag.co1uid>.tag.vendor>','<tag.vendor1>')) || (strmatch('<src.uid.<tag.co1uid>.tag.vendor>','<tag.vendor2>')) || (strmatch('<src.uid.<tag.co1uid>.tag.vendor>','<tag.vendor3>')))
+src.sysmessage @54 Bu ki$inin evde vendoru bulundugundan ortak listesinden silemezsiniz.
+
+elseif ((strmatch('<tag.co1uid>','<tag.strongbox1>')) || (strmatch('<co1uid>','<tag.strongbox2>')) || (strmatch('<tag.co1uid>','<tag.strongbox3>')))
+src.sysmessage @54 Bu ki$inin evde strongbox'u oldugundan ortak listesinden silemezsiniz.
+
+else
+src.sysmessage @68 <tag.co1name> evinizin ortak listesinden silinmi$tir.
+region.tag.co1uid 0
+tag.co1uid 0
+tag.co1name
+endif
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_removec
+endif
+
+elseif (<argchk[2]> == 1)
+if (<eval <tag.co2uid>> > 0)
+if ((strmatch('<src.uid.<tag.co2uid>.tag.vendor>','<tag.vendor1>')) || (strmatch('<src.uid.<tag.co2uid>.tag.vendor>','<tag.vendor2>')) || (strmatch('<src.uid.<tag.co2uid>.tag.vendor>','<tag.vendor3>')))
+src.sysmessage @54 Bu ki$inin evde vendoru bulundugundan ortak listesinden silemezsiniz.
+
+elseif ((strmatch('<tag.co2uid>','<tag.strongbox1>')) || (strmatch('<co2uid>','<tag.strongbox2>')) || (strmatch('<tag.co2uid>','<tag.strongbox3>')))
+src.sysmessage @54 Bu ki$inin evde strongbox'u oldugundan ortak listesinden silemezsiniz.
+
+else
+src.sysmessage @68 <tag.co2name> evinizin ortak listesinden silinmi$tir.
+region.tag.co2uid 0
+tag.co2uid 0
+tag.co2name
+endif
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_removec
+endif
+
+elseif (<argchk[3]> == 1)
+if (<eval <tag.co3uid>> > 0)
+if ((strmatch('<src.uid.<tag.co3uid>.tag.vendor>','<tag.vendor1>')) || (strmatch('<src.uid.<tag.co3uid>.tag.vendor>','<tag.vendor2>')) || (strmatch('<src.uid.<tag.co3uid>.tag.vendor>','<tag.vendor3>')))
+src.sysmessage @54 Bu ki$inin evde vendoru bulundugundan ortak listesinden silemezsiniz.
+
+elseif ((strmatch('<tag.co3uid>','<tag.strongbox1>')) || (strmatch('<co3uid>','<tag.strongbox2>')) || (strmatch('<tag.co3uid>','<tag.strongbox3>')))
+src.sysmessage @54 Bu ki$inin evde strongbox'u oldugundan ortak listesinden silemezsiniz.
+
+else
+src.sysmessage @68 <tag.co3name> evinizin ortak listesinden silinmi$tir.
+region.tag.co3uid 0
+tag.co3uid 0
+tag.co3name
+endif
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_removec
+endif
+
+elseif (<argchk[4]> == 1)
+if (<eval <tag.co4uid>> > 0)
+if ((strmatch('<src.uid.<tag.co4uid>.tag.vendor>','<tag.vendor1>')) || (strmatch('<src.uid.<tag.co4uid>.tag.vendor>','<tag.vendor2>')) || (strmatch('<src.uid.<tag.co4uid>.tag.vendor>','<tag.vendor3>')))
+src.sysmessage @54 Bu ki$inin evde vendoru bulundugundan ortak listesinden silemezsiniz.
+
+elseif ((strmatch('<tag.co4uid>','<tag.strongbox1>')) || (strmatch('<co4uid>','<tag.strongbox2>')) || (strmatch('<tag.co4uid>','<tag.strongbox3>')))
+src.sysmessage @54 Bu ki$inin evde strongbox'u oldugundan ortak listesinden silemezsiniz.
+else
+src.sysmessage @68 <tag.co4name> evinizin ortak listesinden silinmi$tir.
+region.tag.co4uid 0
+tag.co4uid 0
+tag.co4name
+endif
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_removec
+endif
+
+elseif (<argchk[5]> == 1)
+if (<eval <tag.co5uid>> > 0)
+if ((strmatch('<src.uid.<tag.co5uid>.tag.vendor>','<tag.vendor1>')) || (strmatch('<src.uid.<tag.co5uid>.tag.vendor>','<tag.vendor2>')) || (strmatch('<src.uid.<tag.co5uid>.tag.vendor>','<tag.vendor3>')))
+src.sysmessage @54 Bu ki$inin evde vendoru bulundugundan ortak listesinden silemezsiniz.
+
+elseif ((strmatch('<tag.co5uid>','<tag.strongbox1>')) || (strmatch('<co5uid>','<tag.strongbox2>')) || (strmatch('<tag.co5uid>','<tag.strongbox3>')))
+src.sysmessage @54 Bu ki$inin evde strongbox'u oldugundan ortak listesinden silemezsiniz.
+
+else
+src.sysmessage @68 <tag.co5name> evinizin ortak listesinden silinmi$tir.
+region.tag.co5uid 0
+tag.co5uid 0
+tag.co5name
+endif
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_removec
+endif
+
+elseif (<argchk[6]> == 1)
+if (<eval <tag.co6uid>> > 0)
+if ((strmatch('<src.uid.<tag.co6uid>.tag.vendor>','<tag.vendor1>')) || (strmatch('<src.uid.<tag.co6uid>.tag.vendor>','<tag.vendor2>')) || (strmatch('<src.uid.<tag.co6uid>.tag.vendor>','<tag.vendor3>')))
+src.sysmessage @54 Bu ki$inin evde vendoru bulundugundan ortak listesinden silemezsiniz.
+
+elseif ((strmatch('<tag.co6uid>','<tag.strongbox1>')) || (strmatch('<co6uid>','<tag.strongbox2>')) || (strmatch('<tag.co6uid>','<tag.strongbox3>')))
+src.sysmessage @54 Bu ki$inin evde strongbox'u oldugundan ortak listesinden silemezsiniz.
+
+else
+src.sysmessage @68 <tag.co6name> evinizin ortak listesinden silinmi$tir.
+region.tag.co6uid 0
+tag.co6uid 0
+tag.co6name
+endif
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_removec
+endif
+
+elseif (<argchk[7]> == 1)
+if (<eval <tag.co7uid>> > 0)
+if ((strmatch('<src.uid.<tag.co7uid>.tag.vendor>','<tag.vendor1>')) || (strmatch('<src.uid.<tag.co7uid>.tag.vendor>','<tag.vendor2>')) || (strmatch('<src.uid.<tag.co7uid>.tag.vendor>','<tag.vendor3>')))
+src.sysmessage @54 Bu ki$inin evde vendoru bulundugundan ortak listesinden silemezsiniz.
+
+elseif ((strmatch('<tag.co7uid>','<tag.strongbox1>')) || (strmatch('<co7uid>','<tag.strongbox2>')) || (strmatch('<tag.co7uid>','<tag.strongbox3>')))
+src.sysmessage @54 Bu ki$inin evde strongbox'u oldugundan ortak listesinden silemezsiniz.
+else
+		
+src.sysmessage @68 <tag.co7name> evinizin ortak listesinden silinmi$tir.
+region.tag.co7uid 0
+tag.co7uid 0
+tag.co7name
+endif
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_removec
+endif
+
+elseif (<argchk[8]> == 1)
+if (<eval <tag.co8uid>> > 0)
+if ((strmatch('<src.uid.<tag.co8uid>.tag.vendor>','<tag.vendor1>')) || (strmatch('<src.uid.<tag.co8uid>.tag.vendor>','<tag.vendor2>')) || (strmatch('<src.uid.<tag.co8uid>.tag.vendor>','<tag.vendor3>')))
+src.sysmessage @54 Bu ki$inin evde vendoru bulundugundan ortak listesinden silemezsiniz.
+
+elseif ((strmatch('<tag.co8uid>','<tag.strongbox1>')) || (strmatch('<co8uid>','<tag.strongbox2>')) || (strmatch('<tag.co8uid>','<tag.strongbox3>')))
+src.sysmessage @54 Bu ki$inin evde strongbox'u oldugundan ortak listesinden silemezsiniz.
+
+else
+src.sysmessage @68 <tag.co8name> evinizin ortak listesinden silinmi$tir.
+region.tag.co8uid 0
+tag.co8uid 0
+tag.co8name
+endif
+
+else
+src.sysmessage @54 @54 Silmek icin birini secmediniz?
+dialog d_house_removec
+endif
+endif
+
+
+[dialog d_house_rfriend]
+100,50
+page 0
+
+resizepic 90 100 5120 200 280
+resizepic 100 110 3000 180 260
+htmlgump 165 118 100 20 0 0 0 // ba$lik
+
+button 120 315 2714 2714 1 0 2
+htmlgump 140 315 100 20 1 0 0
+
+page 1
+radio 120 140 210 211 0 1
+radio 120 165 210 211 0 2
+radio 120 190 210 211 0 3
+radio 120 215 210 211 0 4
+radio 120 240 210 211 0 5
+radio 120 265 210 211 0 6
+radio 120 290 210 211 0 7
+htmlgump 150 140 100 20 2 0 0
+htmlgump 150 165 100 20 3 0 0
+htmlgump 150 190 100 20 4 0 0
+htmlgump 150 215 100 20 5 0 0
+htmlgump 150 240 100 20 6 0 0
+htmlgump 150 265 100 20 7 0 0
+htmlgump 150 290 100 20 8 0 0
+
+//button 105 345 4015 4016 0 1 // geri
+button 245 345 4006 4007 0 2 // ileri
+
+page 2
+radio 120 140 210 211 0 8
+radio 120 165 210 211 0 9
+radio 120 190 210 211 0 10
+radio 120 215 210 211 0 11
+radio 120 240 210 211 0 12
+radio 120 265 210 211 0 13
+radio 120 290 210 211 0 14
+htmlgump 150 140 100 20 9 0 0
+htmlgump 150 165 100 20 10 0 0
+htmlgump 150 190 100 20 11 0 0
+htmlgump 150 215 100 20 12 0 0
+htmlgump 150 240 100 20 13 0 0
+htmlgump 150 265 100 20 14 0 0
+htmlgump 150 290 100 20 15 0 0
+
+button 105 345 4015 4016 0 1 // geri
+button 245 345 4006 4007 0 3 // ileri
+
+page 3
+radio 120 140 210 211 0 15
+radio 120 165 210 211 0 16
+radio 120 190 210 211 0 17
+radio 120 215 210 211 0 18
+radio 120 240 210 211 0 19
+radio 120 265 210 211 0 20
+htmlgump 150 140 100 20 16 0 0
+htmlgump 150 165 100 20 17 0 0
+htmlgump 150 190 100 20 18 0 0
+htmlgump 150 215 100 20 19 0 0
+htmlgump 150 240 100 20 20 0 0
+htmlgump 150 265 100 20 21 0 0
+
+button 105 345 4015 4016 0 2 // geri
+
+[dialog d_house_rfriend text]
+Dost Sil
+$imdi sil!
+<tag.f1name>
+<tag.f2name>
+<tag.f3name>
+<tag.f4name>
+<tag.f5name>
+<tag.f6name>
+<tag.f7name>
+<tag.f8name>
+<tag.f9name>
+<tag.f10name>
+<tag.f11name>
+<tag.f12name>
+<tag.f13name>
+<tag.f14name>
+<tag.f15name>
+<tag.f16name>
+<tag.f17name>
+<tag.f18name>
+<tag.f19name>
+<tag.f20name>
+
+[dialog d_house_rfriend button]  
+on=0
+opendialog
+
+on=2
+if (<argchk[1]> == 1)
+if (<eval <tag.f1uid>> > 0)
+src.sysmessage @68 <tag.f1name> evinizin dost listesinden silinmi$tir.
+region.tag.f1uid 0
+tag.f1uid 0
+tag.f1name
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[2]> == 1)
+if (<eval <tag.f2uid>> > 0)
+src.sysmessage @68 <tag.f2name> evinizin dost listesinden silinmi$tir.
+region.tag.f2uid 0
+tag.f2uid 0
+tag.f2name
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[3]> == 1)
+if (<eval <tag.f3uid>> > 0)
+src.sysmessage @68 <tag.f3name> evinizin dost listesinden silinmi$tir.
+region.tag.f3uid 0
+tag.f3uid 0
+tag.f3name
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[4]> == 1)
+if (<eval <tag.f4uid>> > 0)
+src.sysmessage @68 <tag.f4name> evinizin dost listesinden silinmi$tir.
+region.tag.f4uid 0
+tag.f4uid 0
+tag.f4name
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[5]> == 1)
+if (<eval <tag.f5uid>> > 0)
+src.sysmessage @68 <tag.f5name> evinizin dost listesinden silinmi$tir.
+region.tag.f5uid 0
+tag.f5uid 0
+tag.f5name
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[6]> == 1)
+if (<eval <tag.f6uid>> > 0)
+src.sysmessage @68 <tag.f6name> evinizin dost listesinden silinmi$tir.
+region.tag.f6uid 0
+tag.f6uid 0
+tag.f6name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[7]> == 1)
+if (<eval <tag.f7uid>> > 0)
+src.sysmessage @68 <tag.f7name> evinizin dost listesinden silinmi$tir.
+region.tag.f7uid 0
+tag.f7uid 0
+tag.f7name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[8]> == 1)
+if (<eval <tag.f8uid>> > 0)
+src.sysmessage @68 <tag.f8name> evinizin dost listesinden silinmi$tir.
+region.tag.f8uid 0
+tag.f8uid 0
+tag.f8name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[9]> == 1)
+if (<eval <tag.f9uid>> > 0)
+src.sysmessage @68 <tag.f9name> evinizin dost listesinden silinmi$tir.
+region.tag.f9uid 0
+tag.f9uid 0
+tag.f9name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[10]> == 1)
+if (<eval <tag.f10uid>> > 0)
+src.sysmessage @68 <tag.f10name> evinizin dost listesinden silinmi$tir.
+region.tag.f10uid 0
+tag.f10uid 0
+tag.f10name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[11]> == 1)
+if (<eval <tag.f11uid>> > 0)
+src.sysmessage @68 <tag.f11name> evinizin dost listesinden silinmi$tir.
+region.tag.f11uid 0
+tag.f11uid 0
+tag.f11name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[12]> == 1)
+if (<eval <tag.f12uid>> > 0)
+src.sysmessage @68 <tag.f12name> evinizin dost listesinden silinmi$tir.
+region.tag.f12uid 0
+tag.f12uid 0
+tag.f12name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[13]> == 1)
+if (<eval <tag.f13uid>> > 0)
+src.sysmessage @68 <tag.f13name> evinizin dost listesinden silinmi$tir.
+region.tag.f13uid 0
+tag.f13uid 0
+tag.f13name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[14]> == 1)
+if (<eval <tag.f14uid>> > 0)
+src.sysmessage @68 <tag.f14name> evinizin dost listesinden silinmi$tir.
+region.tag.f14uid 0
+tag.f14uid 0
+tag.f14name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[15]> == 1)
+if (<eval <tag.f15uid>> > 0)
+src.sysmessage @68 <tag.f15name> evinizin dost listesinden silinmi$tir.
+region.tag.f15uid 0
+tag.f15uid 0
+tag.f15name
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[16]> == 1)
+if (<eval <tag.f16uid>> > 0)
+src.sysmessage @68 <tag.f16name> evinizin dost listesinden silinmi$tir.
+region.tag.f16uid 0
+tag.f16uid 0
+tag.f16name
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[17]> == 1)
+if (<eval <tag.f17uid>> > 0)
+src.sysmessage @68 <tag.f17name> evinizin dost listesinden silinmi$tir.
+region.tag.f17uid 0
+tag.f17uid 0
+tag.f17name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[18]> == 1)
+if (<eval <tag.f18uid>> > 0)
+src.sysmessage @68 <tag.f18name> evinizin dost listesinden silinmi$tir.
+region.tag.f18uid 0
+tag.f18uid 0
+tag.f18name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[19]> == 1)
+if (<eval <tag.f19uid>> > 0)
+src.sysmessage @68 <tag.f19name> evinizin dost listesinden silinmi$tir.
+region.tag.f19uid 0
+tag.f19uid 0
+tag.f19name
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+
+elseif (<argchk[20]> == 1)
+if (<eval <tag.f20uid>> > 0)
+src.sysmessage @68 <tag.f20name> evinizin dost listesinden silinmi$tir.
+region.tag.f20uid 0
+tag.f20uid 0
+tag.f20name
+
+else
+src.sysmessage @54 Silmek icin birini secmediniz?
+dialog d_house_rfriend
+endif
+endif
+
+[dialog d_house_edit_c]
+0,50
+page 0
+resizepic 190 100 5120 390 325
+resizepic 200 110 3000 370 305
+htmlgump 220 118 200 20 0 0 0
+button 410 385 247 248 1 0 1
+button 485 385 243 244 1 0 0
+
+page 1
+htmlgump 225 135 200 20 10 0 0
+htmlgump 455 135 200 20 11 0 0
+
+resizepic 220 155 3000 175 22
+resizepic 450 155 3000 100 22
+textentry 225 157 150 25 0 1 2
+textentry 455 157 75 25 0 2 12
+
+resizepic 220 180 3000 175 22
+resizepic 450 180 3000 100 22
+textentry 225 182 150 25 0 3 3
+textentry 455 182 75 25 0 4 13
+
+resizepic 220 205 3000 175 22
+resizepic 450 205 3000 100 22
+textentry 225 207 150 25 0 5 4
+textentry 455 207 75 25 0 6 14
+
+resizepic 220 230 3000 175 22
+resizepic 450 230 3000 100 22
+textentry 225 232 150 25 0 7 5
+textentry 455 232 75 25 0 8 15
+
+resizepic 220 255 3000 175 22
+resizepic 450 255 3000 100 22
+textentry 225 257 150 25 0 9 6
+textentry 455 257 75 25 0 10 16
+
+resizepic 220 280 3000 175 22
+resizepic 450 280 3000 100 22
+textentry 225 282 150 25 0 11 7
+textentry 455 282 75 25 0 12 17
+
+resizepic 220 305 3000 175 22
+resizepic 450 305 3000 100 22
+textentry 225 307 150 25 0 13 8
+textentry 455 307 75 25 0 14 18
+
+resizepic 220 330 3000 175 22
+resizepic 450 330 3000 100 22
+textentry 225 332 150 175 0 15 9
+textentry 455 332 75 25 0 16 19
+                    
+[dialog d_house_edit_c TEXT]
+Ortak listesi duzeni
+--bo$--
+<tag.CO1name>
+<tag.CO2name>
+<tag.CO3name>
+<tag.CO4name>
+<tag.CO5name>
+<tag.CO6name>
+<tag.CO7name>
+<tag.CO8name>
+Isim:
+Seri-no:
+<tag.CO1uid>
+<tag.CO2uid>
+<tag.CO3uid>
+<tag.CO4uid>
+<tag.CO5uid>
+<tag.CO6uid>
+<tag.CO7uid>
+<tag.CO8uid>
+
+[dialog d_house_edit_c BUTTON]
+On=0
+dialog d_house_staff
+
+On=1
+tag.co1name <argtxt[1]>
+tag.co2name <argtxt[3]>
+tag.co3name <argtxt[5]>
+tag.co4name <argtxt[7]>
+tag.co5name <argtxt[9]>
+tag.co6name <argtxt[11]>
+tag.co7name <argtxt[13]>
+tag.co8name <argtxt[15]>
+tag.co1uid <argtxt[2]>
+tag.co2uid <argtxt[4]>
+tag.co3uid <argtxt[6]>
+tag.co4uid <argtxt[8]>
+tag.co5uid <argtxt[10]>
+tag.co6uid <argtxt[12]>
+tag.co7uid <argtxt[14]>
+tag.co8uid <argtxt[16]>
+src.sysmessage @68 Ortak listesi degi$tirdiginiz degerlere gore yeniden duzenlendi.
+dialog d_house_staff
+
+
+[dialog d_house_edit_f]
+0,50
+page 0
+resizepic 190 100 5120 390 345
+resizepic 200 110 3000 370 305
+htmlgump 220 118 200 20 0 0 0
+button 410 385 247 248 1 0 1
+button 485 385 243 244 1 0 0
+
+htmlgump 225 135 200 20 22 0 0
+htmlgump 455 135 200 20 23 0 0
+
+resizepic 220 155 3000 175 22 
+resizepic 450 155 3000 100 22
+resizepic 220 180 3000 175 22
+resizepic 450 180 3000 100 22
+resizepic 220 205 3000 175 22
+resizepic 450 205 3000 100 22
+resizepic 220 230 3000 175 22
+resizepic 450 230 3000 100 22
+resizepic 220 255 3000 175 22
+resizepic 450 255 3000 100 22
+resizepic 220 280 3000 175 22
+resizepic 450 280 3000 100 22
+resizepic 220 305 3000 175 22
+resizepic 450 305 3000 100 22
+resizepic 220 330 3000 175 22
+resizepic 450 330 3000 100 22
+
+page 1
+textentry 225 157 150 25 0 1 2 1
+textentry 455 157 75 25 0 2 25 1
+textentry 225 182 150 25 0 3 3
+textentry 455 182 75 25 0 4 26
+textentry 225 207 150 25 0 5 4
+textentry 455 207 75 25 0 6 27
+textentry 225 232 150 25 0 7 5
+textentry 455 232 75 25 0 8 28
+textentry 225 257 150 25 0 9 6
+textentry 455 257 75 25 0 10 29
+textentry 225 282 150 25 0 11 7
+textentry 455 282 75 25 0 12 30
+textentry 225 307 150 25 0 13 8
+textentry 455 307 75 25 0 14 31
+textentry 225 332 150 175 0 15 9
+textentry 455 332 75 25 0 16 32
+button 548 420 5224 5224 0 2
+
+page 2
+textentry 225 157 150 25 0 17 10 1
+textentry 455 157 75 25 0 18 33 1
+textentry 225 182 150 25 0 19 11
+textentry 455 182 75 25 0 20 34
+textentry 225 207 150 25 0 21 12
+textentry 455 207 75 25 0 22 35
+textentry 225 232 150 25 0 23 13
+textentry 455 232 75 25 0 24 36
+textentry 225 257 150 25 0 25 14
+textentry 455 257 75 25 0 26 37
+textentry 225 282 150 25 0 27 15
+textentry 455 282 75 25 0 28 38
+textentry 225 307 150 25 0 29 16
+textentry 455 307 75 25 0 30 39
+textentry 225 332 150 175 0 31 17
+textentry 455 332 75 25 0 32 40
+button 548 420 5224 5224 0 3
+button 202 420 5223 5223 0 1
+
+page 3
+textentry 225 157 150 25 0 33 18 1
+textentry 455 157 75 25 0 34 41 1
+textentry 225 182 150 25 0 35 19
+textentry 455 182 75 25 0 36 42
+textentry 225 207 150 25 0 37 20
+textentry 455 207 75 25 0 38 43
+textentry 225 232 150 25 0 39 21
+textentry 455 232 75 25 0 40 44
+button 202 420 5223 5223 0 2
+                    
+[dialog d_house_edit_f TEXT]
+Dost Listesi Duzeni
+--bo$--
+<tag.F1name>   
+<tag.F2name>   
+<tag.F3name>   
+<tag.F4name>   
+<tag.F5name>   
+<tag.F6name>   
+<tag.F7name>   
+<tag.F8name>   
+<tag.F9name>
+<tag.F10name>   
+<tag.F11name> 
+<tag.F12name>   
+<tag.F13name>   
+<tag.F14name>   
+<tag.F15name>   
+<tag.F16name>   
+<tag.F17name>   
+<tag.F18name>   
+<tag.F19name>   
+<tag.F20name>
+Isim:
+Seri-No:
+--bo$--
+<tag.F1uid>
+<tag.F2uid>
+<tag.F3uid>
+<tag.F4uid>
+<tag.F5uid>
+<tag.F6uid>
+<tag.F7uid>
+<tag.F8uid>
+<tag.F9uid>  
+<tag.F10uid>
+<tag.F11uid>
+<tag.F12uid>
+<tag.F13uid>
+<tag.F14uid>
+<tag.F15uid>
+<tag.F16uid>
+<tag.F17uid>
+<tag.F18uid>
+<tag.F19uid>
+<tag.F20uid>
+
+[dialog d_house_edit_f BUTTON]
+On=0
+dialog d_house_staff
+
+On=1
+tag.f1name <argtxt[1]>
+tag.f2name <argtxt[3]>
+tag.f3name <argtxt[5]>
+tag.f4name <argtxt[7]>
+tag.f5name <argtxt[9]>
+tag.f6name <argtxt[11]>
+tag.f7name <argtxt[13]>
+tag.f8name <argtxt[15]>
+tag.f9name <argtxt[17]>
+tag.f10name <argtxt[19]>
+tag.f11name <argtxt[21]>
+tag.f12name <argtxt[23]>
+tag.f13name <argtxt[25]>
+tag.f14name <argtxt[27]>
+tag.f15name <argtxt[29]>
+tag.f16name <argtxt[31]>
+tag.f17name <argtxt[33]>
+tag.f18name <argtxt[35]>
+tag.f19name <argtxt[37]>
+tag.f20name <argtxt[39]>
+tag.f1uid <argtxt[2]>
+tag.f2uid <argtxt[4]>
+tag.f3uid <argtxt[6]>
+tag.f4uid <argtxt[8]>
+tag.f5uid <argtxt[10]>
+tag.f6uid <argtxt[12]>
+tag.f7uid <argtxt[14]>
+tag.f8uid <argtxt[16]>
+tag.f9uid <argtxt[18]>
+tag.f10uid <argtxt[20]>
+tag.f11uid <argtxt[22]>
+tag.f12uid <argtxt[24]>
+tag.f13uid <argtxt[26]>
+tag.f14uid <argtxt[28]>
+tag.f15uid <argtxt[30]>
+tag.f16uid <argtxt[32]>
+tag.f17uid <argtxt[34]>
+tag.f18uid <argtxt[36]>
+tag.f19uid <argtxt[38]>
+tag.f20uid <argtxt[40]>
+src.sysmessage @68 Dost listesi degi$tirdiginiz degerlere gore yeniden duzenlendi.
+dialog d_house_staff
+
+[dialog d_house_redeed] // bitti!
+0,0
+resizepic 200 175 5120 380 160
+resizepic 210 185 3000 360 140
+resizepic 220 195 3000 340 70
+htmlgump 260 275 500 20 0 0 0
+button 220 275 4006 4007 1 0 1
+htmlgump 260 300 500 20 1 0 0
+button 220 300 4006 4007 1 0 2
+htmlgump 230 200 500 20 2 0 0
+htmlgump 230 215 500 20 3 0 0
+htmlgump 230 230 500 20 4 0 0
+htmlgump 230 245 500 20 5 0 0
+
+[dialog d_house_redeed text] // bitti!
+hayir, emin degilim, ben hakki.
+evet, eminim yik gitsin.
+eger evinizi yikarsaniz, vendorlarda dahil olmak uzere, 
+evdeki her$ey silinecek ve eviniz tapu haline cevrilip 
+bankaniza koyulacaktir.evinizi yikip yikmamak istediginizi 
+tekrar du$unun.evi yikmak istediginizden eminmisiniz?
+
+[dialog d_house_redeed button]
+on=0
+opendialog
+
+on=1
+opendialog
+
+on=2
+if ((<src.region.tag0.vendor1>) || (<src.region.tag0.vendor2>) || (<src.region.tag0.vendor3>))
+src.sysmessage @54 Evinizde calisan vendorlar oldugu surece evi yikamazsiniz.
+
+elseif (<baseid> == 0)
+src.sysmessage @54 Bir hata olu$tu.
+
+else
+hredeed
+link.more2 02
+remove
+endif
+
+[dialog d_house_rcoowner_all] // bitti!
+0,0
+resizepic 200 175 5120 380 200
+resizepic 210 185 3000 360 180
+resizepic 220 195 3000 340 100
+htmlgump 260 315 500 20 0 0 0
+button 220 315 4006 4007 1 0 1
+htmlgump 260 340 500 20 1 0 0
+button 220 340 4006 4007 1 0 2
+htmlgump 230 200 500 20 2 0 0
+htmlgump 230 215 500 20 3 0 0
+htmlgump 230 230 500 20 4 0 0
+htmlgump 230 245 500 20 5 0 0
+htmlgump 230 272 500 20 6 0 0
+
+[dialog d_house_rcoowner_all text]
+hayir, emin degilim, ben hakki.
+evet, eminim son kararim, sil gitsin.
+eger evet'i secerseniz, evinizin ortak listesindeki herkez
+silinecektir. boylece silinen ki$iler evin komutlarindan
+yararlanamayacaktir. bunlarida goz onune aldiktan sonra,
+tekrar ortak listenizi silip, silmeyeceginizi du$unun.
+ortak listenizi silmek istediginizden eminmisiniz?
+
+[dialog d_house_rcoowner_all button]
+on=0
+opendialog
+
+on=1
+
+on=2
+tag.co1uid 0
+tag.co1name
+region.tag.co1uid 0
+tag.co2uid 0
+tag.co2name
+region.tag.co2uid 0
+tag.co3uid 0
+tag.co3name
+region.tag.co3uid 0
+tag.co4uid 0
+tag.co4name
+region.tag.co4uid 0
+tag.co5uid 0
+tag.co5name
+region.tag.co5uid 0
+tag.co6uid 0
+tag.co6name
+region.tag.co6uid 0
+tag.co7uid 0
+tag.co7name
+region.tag.co7uid 0
+tag.co8uid 0
+tag.co8name
+region.tag.co8uid 0
+src.sysmessage @68 Ortak listeniz sifirlandi.
+opendialog
+
+
+[dialog d_house_rfriend_all] // bitti!
+0,0
+resizepic 200 175 5120 380 200
+resizepic 210 185 3000 360 180
+resizepic 220 195 3000 340 100
+htmlgump 260 315 500 20 0 0 0
+button 220 315 4006 4007 1 0 1
+htmlgump 260 340 500 20 1 0 0
+button 220 340 4006 4007 1 0 2
+htmlgump 230 200 500 20 2 0 0
+htmlgump 230 215 500 20 3 0 0
+htmlgump 230 230 500 20 4 0 0
+htmlgump 230 245 500 20 5 0 0
+htmlgump 230 272 500 20 6 0 0
+
+[dialog d_house_rfriend_all text]
+hayir, emin degilim, ben hakki.
+evet, eminim son kararim, sil gitsin.
+eger evet'i secerseniz, evinizin dost listesindeki herkez
+silinecektir.boylece silinen ki$iler evin komutlarindan
+yararlanamayacaktir.bunlarida goz onune aldiktan sonra,
+bir kez daha dost listenizi silip, silmeyeceginizi du$unun.
+dost listenizi silmek istediginizden eminmisiniz?
+
+[dialog d_house_rfriend_all button]
+on=0
+opendialog
+
+on=1
+return 1
+
+on=2
+tag.f1uid 0
+tag.f1name
+region.tag.f1uid 0
+tag.f2uid 0
+tag.f2name
+region.tag.f2uid 0
+tag.f3uid 0
+tag.f3name
+region.tag.f3uid 0
+tag.f4uid 0
+tag.f4name
+region.tag.f4uid 0
+tag.f5uid 0
+tag.f5name
+region.tag.f5uid 0
+tag.f6uid 0
+tag.f6name
+region.tag.f6uid 0
+tag.f7uid 0
+tag.f7name
+region.tag.f7uid 0
+tag.f8uid 0
+tag.f8name
+region.tag.f8uid 0
+tag.f9uid 0
+tag.f9name
+region.tag.f9uid 0
+tag.f10uid 0
+tag.f10name
+region.tag.f10uid 0
+tag.f11uid 0
+tag.f11name
+region.tag.f11uid 0
+tag.f12uid 0
+tag.f12name
+region.tag.f12uid 0
+tag.f13uid 0
+tag.f13name
+region.tag.f13uid 0
+tag.f14uid 0
+tag.f14name
+region.tag.f14uid 0
+tag.f15uid 0
+tag.f15name
+region.tag.f15uid 0
+tag.f16uid 0
+tag.f16name
+region.tag.f16uid 0
+tag.f17uid 0
+tag.f17name
+region.tag.f17uid 0
+tag.f18uid 0
+tag.f18name
+region.tag.f18uid 0
+tag.f19uid 0
+tag.f19name
+region.tag.f19uid 0
+tag.f20uid 0
+tag.f20name
+region.tag.f20uid 0
+src.sysmessage @68 Dost listeniz temizlendi.
+opendialog
+
+[dialog d_house_help]
+0,0
+resizepic 90 90 5120 390 245
+resizepic 100 100 3000 370 225
+
+htmlgump 110 110 200 20 0 0 0
+
+htmlgump 110 150 200 20 1 0 0
+htmlgump 110 170 200 20 2 0 0
+htmlgump 110 230 200 20 4 0 0
+htmlgump 110 210 200 20 5 0 0
+htmlgump 110 190 200 20 6 0 0
+htmlgump 110 130 200 20 8 0 0
+htmlgump 110 250 200 20 10 0 0
+htmlgump 110 270 200 20 11 0 0
+htmlgump 110 290 200 20 12 0 0
+
+htmlgump 355 130 200 20 17 0 0
+htmlgump 355 290 200 20 13 0 0
+htmlgump 355 270 200 20 14 0 0
+htmlgump 355 250 200 20 15 0 0
+htmlgump 355 230 200 20 21 0 0
+htmlgump 355 210 200 20 20 0 0
+htmlgump 355 190 200 20 19 0 0
+htmlgump 355 170 200 20 23 0 0
+htmlgump 355 150 200 20 24 0 0
+
+//button 580 180 3 4 1 0 1
+
+[dialog d_house_help TEXT]   
+Indinolla EV KOMUTLARI
+Esyalari yukseltme
+Esyalari alcaltma
+Canlanmak icin
+Esyalari sabitlemek icin
+Esyalarin sabitligini kaldirmak icin // 5
+Kutulari guvenli hale getirmek icin 
+Birini evden yasaklamak icin
+Birini evden atmak icin
+Cop kutusu icin
+Hediye stogu icin // 10
+Kasa icin 
+Kasa, esya kaldirmak icin
+"remove"
+"strongbox"
+"reward barrel" // 15
+"trash barrel"
+"i ban thee"
+I ban thee
+"secure"
+"unlock" // 20
+"lock"
+Resurrect
+"item down"
+"item up"
+
+[dialog d_house_help BUTTON]
+
+[itemdef 0bcf] // wooden sign
+type t_script
+dupelist 0bd0,0bcf,0bd1,0ba4,0ba6,0ba8,0baa,0bac,0bae,0bb0,0bb2,0bb4,0bb6,0bb8,0bba,0bbc,0bbe,0bc0,0bc2,0bc4,0bc6,0bc8,0bca,0bcc,0bce,0bd0,0bd2,0bd4,0bd6,0bd8,0bda,0bdc,0bde,0be0,0be2,0be4,0be6,0be8,0bea,0bec,0bee,0bf0,0bf2,0bf4,0bf6,0bf8,0bfa,0bfc,0bfe,0c00,0c02,0c04,0c06,0c08,0c0a,0c0c
+
+On=@Create
+timer 0
+
+On=@Timer
+htimer
+return 1
+
+On=@Click
+hclick
+return 1
+
+On=@DClick
+hdclick
+return 1
+
+[itemdef 0bd0] // wooden sign
+dupeitem 0bcf
+
+[itemdef 0bd1]
+defname i_sign_brass
+type t_script
+dupelist 0bd0,0bcf,0bd1,0ba4,0ba6,0ba8,0baa,0bac,0bae,0bb0,0bb2,0bb4,0bb6,0bb8,0bba,0bbc,0bbe,0bc0,0bc2,0bc4,0bc6,0bc8,0bca,0bcc,0bce,0bd0,0bd2,0bd4,0bd6,0bd8,0bda,0bdc,0bde,0be0,0be2,0be4,0be6,0be8,0bea,0bec,0bee,0bf0,0bf2,0bf4,0bf6,0bf8,0bfa,0bfc,0bfe,0c00,0c02,0c04,0c06,0c08,0c0a,0c0c
+
+On=@Create
+timer 0
+
+On=@Timer
+htimer
+return 1
+
+On=@Click
+hclick
+return 1
+
+On=@DClick
+hdclick
+return 1
+
+[itemdef 0675]
+defname i_door_metal
+type t_door
+dupelist 0676
+
+On=@DClick
+if (<distance> > 2)
+dx Kapiya yeterince yakin degilsiniz.
+return 1
+else
+src.checkdoor
+endif
+
+[itemdef 0676]
+type t_door_open
+dupelist 0675
+
+[itemdef 0677]
+dupelist 0678
+
+On=@DClick
+if (<distance> > 2)
+dx Kapiya yeterince yakin degilsiniz.
+return 1
+else
+src.checkdoor
+endif
+
+[itemdef 0678]
+dupeitem 0677
+
+[itemdef 0679]
+dupeitem 0675
+
+[itemdef 067a]
+dupeitem 0676
+
+[itemdef 067b]
+dupeitem 0675
+
+[itemdef 067c]
+dupeitem 0676
+
+[itemdef 067d]
+dupelist 067e
+
+On=@DClick
+if (<distance> > 2)
+dx Kapiya yeterince yakin degilsiniz.
+return 1
+else
+src.checkdoor
+endif
+
+[itemdef 067e]
+dupeitem 067d
+
+[itemdef 067f]
+dupeitem 0675
+
+[itemdef 0680]
+dupeitem 0676
+
+[itemdef 0681]
+dupeitem 0675
+
+[itemdef 0682]
+dupeitem 0676
+
+[itemdef 0683]
+dupeitem 0675
+
+[itemdef 0684]
+dupeitem 0676
+
+[itemdef 06a5]
+defname i_door_wood
+type t_door
+dupelist 06a6
+
+On=@DClick
+if (<distance> > 2)
+dx Kapiya yeterince yakin degilsiniz.
+return 1
+else
+src.checkdoor
+endif
+
+[itemdef 06a6]
+type t_door_open
+dupeitem 06a5
+
+[itemdef 06a7]
+type t_door
+dupelist 06a8
+
+On=@DClick
+if (<distance> > 2)
+dx Kapiya yeterince yakin degilsiniz.
+return 1
+else
+src.checkdoor
+endif
+
+[itemdef 06a8]
+type t_door_open
+dupeitem 06a7
+
+[itemdef 06a9]
+dupeitem 06a5
+
+[itemdef 06aa]
+dupeitem 06a6
+
+[itemdef 06ab]
+dupeitem 06a5
+
+[itemdef 06ac]
+dupeitem 06a6
+
+[itemdef 06ad]
+type t_door
+dupelist 06ae
+
+On=@DClick
+if (<distance> > 2)
+dx Kapiya yeterince yakin degilsiniz.
+return 1
+else
+src.checkdoor
+endif
+
+[itemdef 06ae]
+type t_door_open
+dupeitem 06ad
+
+[itemdef 06af]
+dupeitem 06a5
+
+[itemdef 06b0]
+dupeitem 06a6
+
+[itemdef 06b1]
+dupeitem 06a5
+
+[itemdef 06b2]
+dupeitem 06a6
+
+[itemdef 06b3]
+dupeitem 06a5
+
+[itemdef 06b4]
+dupeitem 06a6
+
+[itemdef 06b5]
+defname i_door_wood_4
+type t_door
+dupelist 06b6
+
+On=@DClick
+if (<distance> > 2)
+dx Kapiya yeterince yakin degilsiniz.
+return 1
+else
+src.checkdoor
+endif
+
+[itemdef 06b6]
+type t_door_open
+dupeitem 06b5
+
+[itemdef 06b7]
+dupeitem 06b5
+
+[itemdef 06b8]
+dupeitem 06b6
+
+[itemdef 06b9]
+dupeitem 06b5
+
+[itemdef 06ba]
+dupeitem 06b6
+
+[itemdef 06bb]
+dupeitem 06b5
+
+[itemdef 06bc]
+dupeitem 06b6
+
+[itemdef 06bd]
+dupeitem 06b5
+
+[itemdef 06be]
+dupeitem 06b6
+
+[itemdef 06bf]
+dupeitem 06b5
+
+[itemdef 06c0]
+dupeitem 06b6
+
+[itemdef 06c1]
+dupeitem 06b5
+
+[itemdef 06c2]
+dupeitem 06b6
+
+[itemdef 06c3]
+dupeitem 06b5
+
+[itemdef 06c4]
+dupeitem 06b6
+
+[itemdef 06c5]
+defname i_door_metal_2
+type t_door
+dupelist 06c7,06c9,06cb,06cd,06cf,06d1,06d3
+
+On=@DClick
+checkdoor
+
+[itemdef 06d5]
+defname i_door_wood_2
+type t_door
+dupelist 06d6
+
+On=@DClick
+if (<distance> > 2)
+dx Kapiya yeterince yakin degilsiniz.
+return 1
+else
+src.checkdoor
+endif
+
+[itemdef 06d6]
+type t_door_open
+dupeitem 06d5
+
+[itemdef 06d7]
+dupeitem 06d5
+
+[itemdef 06d8]
+dupeitem 06d6
+
+[itemdef 06d9]
+dupeitem 06d5
+
+[itemdef 06da]
+dupeitem 06d6
+
+[itemdef 06db]
+dupeitem 06d5
+
+[itemdef 06dc]
+dupeitem 06d6
+
+[itemdef 06dd]
+dupeitem 06d5
+
+[itemdef 06de]
+dupeitem 06d6
+
+[itemdef 06df]
+dupeitem 06d5
+
+[itemdef 06e0]
+dupeitem 06d6
+
+[itemdef 06e1]
+dupeitem 06d5
+
+[itemdef 06e2]
+dupeitem 06d6
+
+[itemdef 06e3]
+dupeitem 06d5
+
+[itemdef 06e4]
+dupeitem 06d6
+
+[itemdef 06e5]
+defname i_door_wood_3
+type t_door
+dupelist 06e7,06e9,06eb,06ed,06ef,06f1,06f3
+
+On=@DClick
+checkdoor
+
+[typedef t_secure]
+on=@click
+if (<src.region.uid> == <link.uid>)
+message @0 [sabit & kilitli]
+endif
+if (<rescount> > 0)
+message @0 <typedef.name> [<rescount>,<eval ((<weight> / 10) - <typedef.weight>)>]
+else
+message @0 <typedef.name>
+endif
+return 1
+
+on=@dclick
+if (<src.uid> == <link.more>) || (<link.tag.co1uid> == <src.uid>) || (<link.tag.co2uid> == <src.uid>) || (<link.tag.co3uid> == <src.uid>) || (<link.tag.co4uid> == <src.uid>) || (<link.tag.co5uid> == <src.uid>) || (<link.tag.co6uid> == <src.uid>) || (<link.tag.co7uid> == <src.uid>) || (<link.tag.co8uid> == <src.uid>) || strmatch('<src.account>','Lyn') || strmatch('<src.account>','madder') || strmatch('<src.account>','chapter')) || strmatch('<src.account>','odin'))
+type t_container
+use
+type t_secure
+else
+return 1
+endif
+
+on=@pickup_ground
+return 1
+
+[itemdef i_strong_box]
+defname i_strong_box
+type t_container
+id i_box_brass
+name strongbox
+tdata2 04b
+
+on=@create
+timer -1
+attr attr_move_never
+
+on=@click
+if (<rescount> > 0)
+message a <name> 
+message @0 [e$ya: <rescount>, agirlik: <eval ((<weight> / 10) - <typedef.weight>)>]
+message @54 [sahip: <src.uid.<more2>.name>]
+else
+message @0 a strongbox [bo$]
+message @54 [sahip: <src.uid.<more2>.name>]
+endif
+return 1
+
+on=@dclick
+if ((<link.more> == <src.uid>) || (<more2> == <src.uid>) || (<src.account.plevel> >=5))
+return 0
+
+else
+return 1
+endif
+
+on=@pickup_ground
+return 1
+
+
+[itemdef 0100e]
+defname i_key_copper
+weight 0.1
+type t_key
+skillmake tinkering 43.0,t_tinker_tools
+resources 1 i_ingot_copper
+
+on=@click
+if (<link.type>=t_ship)
+morem {1 9999}
+//message @0 Gemi sahibi: <src.name>
+message @68 Geminin koordinatlari:
+message @54 [<link.p>]
+return 1
+
+elseif (<link.type>=t_multi)
+//message @0 [Ev Anahtari]
+message @68 Ev: <link.link.name>
+message @54 [<link.p>]
+return 1
+endif
+
+on=@dclick
+if !(<link.link.link.uid> > 0)
+return 0
+
+elseif (<attr>&attr_move_never)
+src.sysmessage @54 Bu anahtari kullanamazsiniz.
+return 1
+endif
+
+if (<more> == 0)
+more <more2>
+target
+return 1
+
+else
+target
+return 1
+endif
+
+on=@targon_char
+return 1
+
+on=@targon_item
+if !(<link.link.link.uid> > 0)
+return 0
+
+elseif (<src.targ.type> == t_sign_gump)
+return 1
+
+elseif ((<src.targ.more> == <more>) && (<src.targ.link.link.morey> == 1))
+src.sysmessage @54 Eviniz halka acik oldugu icin kapisini kilitleyemezsiniz.
+src.targ.type t_door
+return 1
+
+elseif ((<src.targ.more> == <more>) && (<src.targ.type> == t_door)) 
+src.sysmessage @68 Evin kapisini kilitlediniz.
+src.targ.type t_door_locked
+return 1
+
+elseif ((<src.targ.more> == <more>) && (<src.targ.type> == t_door_locked))
+src.sysmessage @68 Evin kapisini actiniz.
+src.targ.type t_door
+return 1
+
+elseif ((<src.targ.type> == t_key) && (<src.targ.more> == 0))
+src.targ.more <more>
+src.targ.more2 <more2>
+src.targ.bounce
+src.targ.attr 04
+src.targ.link <more>
+src.sysmessage @68 Evin anahtarini cogalttiniz.
+return 1
+
+elseif (<src.targ.uid> == <uid>)
+return 1
+
+else
+src.sysmessage @54 Anahtari bununla kullanamazsiniz.
+return 1
+endif
+
+[itemdef i_redeeder]
+id=i_memory
+weight=0
+layer=layer_special
+type t_eq_script
+
+on=@equip
+cont.sysmessage @68 Eviniz tapu haline ceviriliyor.
+timer 2
+
+on=@unequip
+cont.newitem <more2>
+cont.act.attr 04
+cont.act.bounce
+
+on=@timer
+remove
+return 1
+
+[events e_house]
+on=@environchange
+if (strmatch('<region.tag.owner>,''))
+events -e_house
+endif
+
+On=@Spelleffect
+if (<argn> == 59) && (<flags>&statf_dead)
+	sysmessage @38 Bu bolgede canlanamazsiniz.
+	src.sysmessage @38 Ev icerisindeki bir oyuncuyu canlandiramazsiniz.
+	src.f_fizzle
+	return 1
+	//if (strmatch('<region.tag.owner>,''))
+	//	events -e_house
+	//else
+	//	var.p <p>
+	//	p 5 5
+	//	spelleffect 59 100.0
+	//	p <var.p>
+	//	update
+	//endif
+endif
+
+on=@login
+if !((<uid> == <eval <region.tag.owner>>) || (<eval <region.tag.co1uid>> == <uid>) || (<eval <region.tag.co2uid>> == <uid>) || (<eval <region.tag.co3uid>> == <uid>) || (<eval <region.tag.co4uid>> == <uid>) || (<eval <region.tag.co5uid>> == <uid>) || (<eval <region.tag.co6uid>> == <uid>) || (<eval <region.tag.co7uid>> == <uid>) || (<eval <region.tag.co8uid>> == <uid>) || (<eval <region.tag.f1uid>> == <uid>) || (<eval <region.tag.f2uid>> == <uid>) || (<eval <region.tag.f3uid>> == <uid>) || (<eval <region.tag.f4uid>> == <uid>) || (<eval <region.tag.f5uid>> == <uid>) || (<eval <region.tag.f6uid>> == <uid>) || (<eval <region.tag.f7uid>> == <uid>) || (<eval <region.tag.f8uid>> == <uid>) || (<eval <region.tag.f9uid>> == <uid>) || (<eval <region.tag.f10uid>> == <uid>) || (<eval <region.tag.f11uid>> == <uid>) || (<eval <region.tag.f12uid>> == <uid>) || (<eval <region.tag.f13uid>> == <uid>) || (<eval <region.tag.f14uid>> == <uid>) || (<eval <region.tag.f15uid>> == <uid>) || (<eval <region.tag.f16uid>> == <uid>) || (<eval <region.tag.f17uid>> == <uid>) || (<eval <region.tag.f18uid>> == <uid>) || (<eval <region.tag.f19uid>> == <uid>) || (<eval <region.tag.f20uid>> == <uid>))
+p <region.tag.signp>
+update
+endif
+
+on=@logout
+if ((<uid> == <eval <region.tag.owner>>) || (<eval <region.tag.co1uid>> == <uid>) || (<eval <region.tag.co2uid>> == <uid>) || (<eval <region.tag.co3uid>> == <uid>) || (<eval <region.tag.co4uid>> == <uid>) || (<eval <region.tag.co5uid>> == <uid>) || (<eval <region.tag.co6uid>> == <uid>) || (<eval <region.tag.co7uid>> == <uid>) || (<eval <region.tag.co8uid>> == <uid>) || (<eval <region.tag.f1uid>> == <uid>) || (<eval <region.tag.f2uid>> == <uid>) || (<eval <region.tag.f3uid>> == <uid>) || (<eval <region.tag.f4uid>> == <uid>) || (<eval <region.tag.f5uid>> == <uid>) || (<eval <region.tag.f6uid>> == <uid>) || (<eval <region.tag.f7uid>> == <uid>) || (<eval <region.tag.f8uid>> == <uid>) || (<eval <region.tag.f9uid>> == <uid>) || (<eval <region.tag.f10uid>> == <uid>) || (<eval <region.tag.f11uid>> == <uid>) || (<eval <region.tag.f12uid>> == <uid>) || (<eval <region.tag.f13uid>> == <uid>) || (<eval <region.tag.f14uid>> == <uid>) || (<eval <region.tag.f15uid>> == <uid>) || (<eval <region.tag.f16uid>> == <uid>) || (<eval <region.tag.f17uid>> == <uid>) || (<eval <region.tag.f18uid>> == <uid>) || (<eval <region.tag.f19uid>> == <uid>) || (<eval <region.tag.f20uid>> == <uid>))
+var.p <p>
+p <region.tag.signp>
+update
+p <var.p>
+disconnect
+var.p
+endif
+
+on=@itemclick
+if (<act.region.uid> == <region.uid>)
+if !(<act.cont>)
+if (<act.attr>&attr_move_never)
+if !((<act.baseid> == i_rb_gate) || (<act.baseid> == i_strong_box) || (<act.type> == t_door) || (<act.type> == t_door_locked) || (<act.type> == t_sign_gump) || (<act.type> == t_secure) || (<act.type> == t_stone_guild))
+act.message @68 [sabit]
+endif
+endif
+endif
+endif
+
+
+[regiontype r_house_public]
+on=@enter
+src.dialogclose d_runebook
+	src.events +e_house
+
+on=@exit
+if (<src.isevent.e_house>)
+src.events -e_house
+endif
+
+[regiontype r_house_private]
+on=@enter
+src.dialogclose d_runebook
+	src.events +e_house
+
+on=@exit
+if (<src.isevent.e_house>)
+src.events -e_house
+endif
+
+[speech spk_house_cmds]
+defname spk_house_cmds
+
+ON=*reward barrel* // evribadi ken du
+if (<src.flags>&statf_dead) || (<src.flags>&statf_war) || (<src.hits><<src.str>)
+src.sysmessage @38,1,1 Cansiz, sava$ modunda veya yarali durumda bu komutu kullanamazsiniz.
+return 1
+endif
+
+if (<tag.trashcan>)
+	src.sysmessage @54 Evinizde zaten bir tane hediye stogu bulunuyor, bir tane daha koyamazsiniz.
+elseif (<eval <tag.locknumber>> >= <morey>)
+	src.sysmessage @54 Eviniz daha fazla sabit esya alamaz.
+elseif (<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>) || (<tag.f1uid> == <src.uid>) || (<tag.f2uid> == <src.uid>) || (<tag.f3uid> == <src.uid>) || (<tag.f4uid> == <src.uid>) || (<tag.f5uid> == <src.uid>) || (<tag.f6uid> == <src.uid>) || (<tag.f7uid> == <src.uid>) || (<tag.f8uid> == <src.uid>) || (<tag.f9uid> == <src.uid>) || (<tag.f10uid> == <src.uid>) || (<tag.f11uid> == <src.uid>) || (<tag.f12uid> == <src.uid>) || (<tag.f13uid> == <src.uid>) || (<tag.f14uid> == <src.uid>) || (<tag.f15uid> == <src.uid>) || (<tag.f16uid> == <src.uid>) || (<tag.f17uid> == <src.uid>) || (<tag.f18uid> == <src.uid>) || (<tag.f19uid> == <src.uid>) || (<tag.f20uid> == <src.uid>) || (<src.account.plevel> > 4)
+	src.newitem i_reward_barrel
+	src.act.p <src.p>
+	//src.act.color 0515
+	src.act.link <uid>
+	src.act.attr 010
+	tag.locknumber <eval (<tag.locknumber> + 1)>
+	tag.trashcan 1
+else
+	src.sysmessage @54 Bu komutu kullanmak icin kendi evinizde olmalisiniz.
+endif
+
+On=*help* // evribadi ken du
+if (<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>) || (<tag.f1uid> == <src.uid>) || (<tag.f2uid> == <src.uid>) || (<tag.f3uid> == <src.uid>) || (<tag.f4uid> == <src.uid>) || (<tag.f5uid> == <src.uid>) || (<tag.f6uid> == <src.uid>) || (<tag.f7uid> == <src.uid>) || (<tag.f8uid> == <src.uid>) || (<tag.f9uid> == <src.uid>) || (<tag.f10uid> == <src.uid>) || (<tag.f11uid> == <src.uid>) || (<tag.f12uid> == <src.uid>) || (<tag.f13uid> == <src.uid>) || (<tag.f14uid> == <src.uid>) || (<tag.f15uid> == <src.uid>) || (<tag.f16uid> == <src.uid>) || (<tag.f17uid> == <src.uid>) || (<tag.f18uid> == <src.uid>) || (<tag.f19uid> == <src.uid>) || (<tag.f20uid> == <src.uid>) || (<src.isgm>)
+	dialog d_house_help
+else
+	src.sysmessage @54 Bu komutu kullanmak icin kendi evinizde olmalisiniz.
+endif
+
+on *i ban thee*
+if (<src.flags>&statf_dead)
+src.sysmessage @38,1,1 Bu komutu olu iken kullanamazsiniz.
+return 1
+endif
+
+if (<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>) || (<tag.f1uid> == <src.uid>) || (<tag.f2uid> == <src.uid>) || (<tag.f3uid> == <src.uid>) || (<tag.f4uid> == <src.uid>) || (<tag.f5uid> == <src.uid>) || (<tag.f6uid> == <src.uid>) || (<tag.f7uid> == <src.uid>) || (<tag.f8uid> == <src.uid>) || (<tag.f9uid> == <src.uid>) || (<tag.f10uid> == <src.uid>) || (<tag.f11uid> == <src.uid>) || (<tag.f12uid> == <src.uid>) || (<tag.f13uid> == <src.uid>) || (<tag.f14uid> == <src.uid>) || (<tag.f15uid> == <src.uid>) || (<tag.f16uid> == <src.uid>) || (<tag.f17uid> == <src.uid>) || (<tag.f18uid> == <src.uid>) || (<tag.f19uid> == <src.uid>) || (<tag.f20uid> == <src.uid>) || (<src.account.plevel> > 4)
+morex 6
+target @0 Evden kimi atmak istiyorsunuz?
+else
+src.sysmessage @54 Bu komutu kullanmak icin kendi evinizde olmalisiniz.
+endif
+
+On=*bank*
+if ((<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>))
+	SRC.BANK
+	SRC.FINDLAYER.29.morep <SRC.p>
+else
+	src.sysmessage @50 Sadece evin sahibi, ortaklari kullanabilir.
+endif
+
+on=lock
+if (<src.flags>&statf_dead) || (<src.flags>&statf_war) || (<src.hits><<src.str>)
+src.sysmessage @38,1,1 Cansiz, sava$ modunda veya yarali durumda bu komutu kullanamazsiniz.
+return 1
+endif
+
+if (<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>) || (<src.account.plevel> > 4)
+morex 1
+target @0 Sabitlemek istediginiz e$yayi secin.
+
+elseif (<tag.f1uid> == <src.uid>) || (<tag.f2uid> == <src.uid>) || (<tag.f3uid> == <src.uid>) || (<tag.f4uid> == <src.uid>) || (<tag.f5uid> == <src.uid>) || (<tag.f6uid> == <src.uid>) || (<tag.f7uid> == <src.uid>) || (<tag.f8uid> == <src.uid>) || (<tag.f9uid> == <src.uid>) || (<tag.f10uid> == <src.uid>) || (<tag.f11uid> == <src.uid>) || (<tag.f12uid> == <src.uid>) || (<tag.f13uid> == <src.uid>) || (<tag.f14uid> == <src.uid>) || (<tag.f15uid> == <src.uid>) || (<tag.f16uid> == <src.uid>) || (<tag.f17uid> == <src.uid>) || (<tag.f18uid> == <src.uid>) || (<tag.f19uid> == <src.uid>) || (<tag.f20uid> == <src.uid>)
+src.sysmessage @54 Bu komutu ancak evin sahibi ve ortaklari kullanabilir.
+
+else
+src.sysmessage @54 Bu komutu kullanmak icin kendi evinizde olmalisiniz.
+endif
+
+on unlock
+if (<src.flags>&statf_dead) || (<src.flags>&statf_war) || (<src.hits><<src.str>)
+src.sysmessage @38,1,1 Cansiz, sava$ modunda veya yarali durumda bu komutu kullanamazsiniz.
+return 1
+endif
+
+if (<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>) || (<src.account.plevel> > 4)
+morex 2
+target @0 Sabitligini kaldirmak istediginiz e$yayi secin.
+elseif (<tag.f1uid> == <src.uid>) || (<tag.f2uid> == <src.uid>) || (<tag.f3uid> == <src.uid>) || (<tag.f4uid> == <src.uid>) || (<tag.f5uid> == <src.uid>) || (<tag.f6uid> == <src.uid>) || (<tag.f7uid> == <src.uid>) || (<tag.f8uid> == <src.uid>) || (<tag.f9uid> == <src.uid>) || (<tag.f10uid> == <src.uid>) || (<tag.f11uid> == <src.uid>) || (<tag.f12uid> == <src.uid>) || (<tag.f13uid> == <src.uid>) || (<tag.f14uid> == <src.uid>) || (<tag.f15uid> == <src.uid>) || (<tag.f16uid> == <src.uid>) || (<tag.f17uid> == <src.uid>) || (<tag.f18uid> == <src.uid>) || (<tag.f19uid> == <src.uid>) || (<tag.f20uid> == <src.uid>)
+src.sysmessage @54 Bu komutu ancak evin sahibi ve ortaklari kullanabilir.
+else
+src.sysmessage @54 Bu komutu kullanmak icin kendi evinizde olmalisiniz.
+endif
+
+on *remove*
+if (<src.flags>&statf_dead) || (<src.flags>&statf_war) || (<src.hits><<src.str>)
+src.sysmessage @38,1,1 Cansiz, sava$ modunda veya yarali durumda bu komutu kullanamazsiniz.
+return 1
+endif
+
+if (<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>) || (<src.account.plevel> > 4)
+morex 3
+target @0 Silmek istediginiz strongbox veya copu secin.
+elseif (<tag.f1uid> == <src.uid>) || (<tag.f2uid> == <src.uid>) || (<tag.f3uid> == <src.uid>) || (<tag.f4uid> == <src.uid>) || (<tag.f5uid> == <src.uid>) || (<tag.f6uid> == <src.uid>) || (<tag.f7uid> == <src.uid>) || (<tag.f8uid> == <src.uid>) || (<tag.f9uid> == <src.uid>) || (<tag.f10uid> == <src.uid>) || (<tag.f11uid> == <src.uid>) || (<tag.f12uid> == <src.uid>) || (<tag.f13uid> == <src.uid>) || (<tag.f14uid> == <src.uid>) || (<tag.f15uid> == <src.uid>) || (<tag.f16uid> == <src.uid>) || (<tag.f17uid> == <src.uid>) || (<tag.f18uid> == <src.uid>) || (<tag.f19uid> == <src.uid>) || (<tag.f20uid> == <src.uid>)
+src.sysmessage @54 Bu komutu ancak evin sahibi ve ortaklari kullanabilir.
+else
+src.sysmessage @54 Bu komutu kullanmak icin kendi evinizde olmalisiniz.
+endif
+
+On=*secure* // owner and co's ken du
+if (<src.flags>&statf_dead) || (<src.flags>&statf_war) || (<src.hits><<src.str>)
+src.sysmessage @38,1,1 Cansiz, sava$ modunda veya yarali durumda bu komutu kullanamazsiniz.
+return 1
+endif
+
+if (<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>) || (<src.account.plevel> > 4)
+	morex 4
+	target @0 Guvenli hale getirmek istediginiz e$yayi secin.
+elseif ((<tag.f1uid> == <src.uid>) || (<tag.f2uid> == <src.uid>) || (<tag.f3uid> == <src.uid>) || (<tag.f4uid> == <src.uid>) || (<tag.f5uid> == <src.uid>) || (<tag.f6uid> == <src.uid>) || (<tag.f7uid> == <src.uid>) || (<tag.f8uid> == <src.uid>) || (<tag.f9uid> == <src.uid>) || (<tag.f10uid> == <src.uid>) || (<tag.f11uid> == <src.uid>) || (<tag.f12uid> == <src.uid>) || (<tag.f13uid> == <src.uid>) || (<tag.f14uid> == <src.uid>) || (<tag.f15uid> == <src.uid>) || (<tag.f16uid> == <src.uid>) || (<tag.f17uid> == <src.uid>) || (<tag.f18uid> == <src.uid>) || (<tag.f19uid> == <src.uid>) || (<tag.f20uid> == <src.uid>))
+	src.sysmessage @54 Bu komutu ancak evin sahibi ve ortaklari kullanabilir.
+else
+	src.sysmessage @54 Bu komutu kullanmak icin kendi evinizde olmalisiniz.
+endif
+
+On=*item up* // owner and co's ken du
+if (<src.flags>&statf_dead) || (<src.flags>&statf_war) || (<src.hits><<src.str>)
+src.sysmessage @38,1,1 Cansiz, sava$ modunda veya yarali durumda bu komutu kullanamazsiniz.
+return 1
+endif
+
+if (<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>) || (<src.account.plevel> > 4)
+	morex 10
+	target @0 Yukseltmek istediginiz e$yayi secin.
+elseif (<tag.f1uid> == <src.uid>) || (<tag.f2uid> == <src.uid>) || (<tag.f3uid> == <src.uid>) || (<tag.f4uid> == <src.uid>) || (<tag.f5uid> == <src.uid>) || (<tag.f6uid> == <src.uid>) || (<tag.f7uid> == <src.uid>) || (<tag.f8uid> == <src.uid>) || (<tag.f9uid> == <src.uid>) || (<tag.f10uid> == <src.uid>) || (<tag.f11uid> == <src.uid>) || (<tag.f12uid> == <src.uid>) || (<tag.f13uid> == <src.uid>) || (<tag.f14uid> == <src.uid>) || (<tag.f15uid> == <src.uid>) || (<tag.f16uid> == <src.uid>) || (<tag.f17uid> == <src.uid>) || (<tag.f18uid> == <src.uid>) || (<tag.f19uid> == <src.uid>) || (<tag.f20uid> == <src.uid>)
+	src.sysmessage @54 Bu komutu ancak evin sahibi ve ortaklari kullanabilir.
+else
+	src.sysmessage @54 Bu komutu kullanmak icin kendi evinizde olmalisiniz.
+endif
+
+On=*item down* // owner and co's ken du
+if (<src.flags>&statf_dead) || (<src.flags>&statf_war) || (<src.hits><<src.str>)
+src.sysmessage @38,1,1 Cansiz, sava$ modunda veya yarali durumda bu komutu kullanamazsiniz.
+return 1
+endif
+
+if (<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>) || (<src.account.plevel> > 4)
+	morex 11
+	target @0 Alcaltmak istediginiz e$yayi secin.
+elseif (<tag.f1uid> == <src.uid>) || (<tag.f2uid> == <src.uid>) || (<tag.f3uid> == <src.uid>) || (<tag.f4uid> == <src.uid>) || (<tag.f5uid> == <src.uid>) || (<tag.f6uid> == <src.uid>) || (<tag.f7uid> == <src.uid>) || (<tag.f8uid> == <src.uid>) || (<tag.f9uid> == <src.uid>) || (<tag.f10uid> == <src.uid>) || (<tag.f11uid> == <src.uid>) || (<tag.f12uid> == <src.uid>) || (<tag.f13uid> == <src.uid>) || (<tag.f14uid> == <src.uid>) || (<tag.f15uid> == <src.uid>) || (<tag.f16uid> == <src.uid>) || (<tag.f17uid> == <src.uid>) || (<tag.f18uid> == <src.uid>) || (<tag.f19uid> == <src.uid>) || (<tag.f20uid> == <src.uid>)
+	src.sysmessage @54 Bu komutu ancak evin sahibi ve ortaklari kullanabilir.
+else
+	src.sysmessage @54 Bu komutu kullanmak icin kendi evinizde olmalisiniz.
+endif
+
+on=*strongbox*
+if (<src.flags>&statf_dead) || (<src.flags>&statf_war) || (<src.hits><<src.str>)
+src.sysmessage @38,1,1 Cansiz, sava$ modunda veya yarali durumda bu komutu kullanamazsiniz.
+return 1
+endif
+
+if (<src.uid> == <more>) || (<tag.co1uid> == <src.uid>) || (<tag.co2uid> == <src.uid>) || (<tag.co3uid> == <src.uid>) || (<tag.co4uid> == <src.uid>) || (<tag.co5uid> == <src.uid>) || (<tag.co6uid> == <src.uid>) || (<tag.co7uid> == <src.uid>) || (<tag.co8uid> == <src.uid>) || (<src.account.plevel> > 4)
+if (<eval <tag.secnumber>> >= <morez>)
+		src.sysmessage @54 Bu ev daha fazla guvenli kasa alamaz.
+
+elseif ((<tag.strongbox1> == <src.uid>) || (<tag.strongbox2> == <src.uid>) || (<tag.strongbox3> == <src.uid>))
+src.sysmessage @54 Zaten bir strongbox'unuz bulunuyor.
+
+elseif !(<tag.strongbox1>)
+src.newitem i_strong_box
+src.act.p <src.p>
+src.act.link <uid>
+src.act.more2 <src.uid>
+src.act.morem 1
+tag.strongbox1 <src.uid>
+tag.secnumber <eval (<tag.secnumber> + 1)>
+
+elseif !(<tag.strongbox2>)
+src.newitem i_strong_box
+src.act.p <src.p>
+src.act.link <uid>
+src.act.more2 <src.uid>
+src.act.morem 2
+tag.strongbox2 <src.uid>
+tag.secnumber <eval (<tag.secnumber> + 1)>
+
+elseif !(<tag.strongbox3>)
+src.newitem i_strong_box
+src.act.p <src.p>
+src.act.link <uid>
+src.act.more2 <src.uid>
+src.act.morem 3
+tag.strongbox3 <src.uid>
+tag.secnumber <eval (<tag.secnumber> + 1)>
+
+else
+src.sysmessage @54 Ev strongbox limitini doldurmu$.
+endif
+
+elseif (<tag.f1uid> == <src.uid>) || (<tag.f2uid> == <src.uid>) || (<tag.f3uid> == <src.uid>) || (<tag.f4uid> == <src.uid>) || (<tag.f5uid> == <src.uid>) || (<tag.f6uid> == <src.uid>) || (<tag.f7uid> == <src.uid>) || (<tag.f8uid> == <src.uid>) || (<tag.f9uid> == <src.uid>) || (<tag.f10uid> == <src.uid>) || (<tag.f11uid> == <src.uid>) || (<tag.f12uid> == <src.uid>) || (<tag.f13uid> == <src.uid>) || (<tag.f14uid> == <src.uid>) || (<tag.f15uid> == <src.uid>) || (<tag.f16uid> == <src.uid>) || (<tag.f17uid> == <src.uid>) || (<tag.f18uid> == <src.uid>) || (<tag.f19uid> == <src.uid>) || (<tag.f20uid> == <src.uid>)
+		src.sysmessage @54 Bu komutu ancak evin ortaklari ve sahibi kullanabilir.
+
+else
+		src.sysmessage @54 Bu komutu kullanmak icin kendi evinizde olmalisiniz.
+endif
+
+[function opendialog]
+if (<src.isgm>)
+dialog d_house_staff
+elseif !(<link.morey>)
+dialog d_house_private
+else
+dialog d_house_public
+endif
+
+[function hdclick]
+if (<eval <link.tag.status>> == 0) && (<src.account.plevel> >5) && !(<link> == 04fffffff)
+dialog d_house_approve
+return 1
+endif
+
+if (<eval <link.tag.status>> == 2)
+if (<src.uid> == <link.more>)
+dialog d_house_red
+return 1
+
+elseif (<EVAL <LINK.TAG.F1UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F2UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F3UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F4UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F5UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F6UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F7UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F8UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F9UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F10UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F11UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F12UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F13UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F14UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F15UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F16UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F17UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F18UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F19UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.F20UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.CO1UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.CO2UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.CO3UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.CO4UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.CO5UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.CO6UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.CO7UID>>==<SRC.UID>) || (<EVAL <LINK.TAG.CO8UID>>==<SRC.UID>)
+src.sysmessage @54 Bu evin yerlesim onayi red edildigi icin evin fonksionlarini kullanamiyorsunuz.
+return 1
+endif
+endif
+hdclick2
+return 1
+
+[function hdclick2]
+if !(<link.baseid>)
+return 0
+
+elseif (<eval <more2>> == 2)
+link.remove
+remove
+
+elseif ((<src.uid> == <link.more>) || (<link.tag.f1uid> == <src.uid>) || (<link.tag.f2uid> == <src.uid>) || (<link.tag.f3uid> == <src.uid>) || (<link.tag.f4uid> == <src.uid>) || (<link.tag.f5uid> == <src.uid>) || (<link.tag.f6uid> == <src.uid>) || (<link.tag.f7uid> == <src.uid>) || (<link.tag.f8uid> == <src.uid>) || (<link.tag.f9uid> == <src.uid>) || (<link.tag.f10uid> == <src.uid>) || (<link.tag.f11uid> == <src.uid>) || (<link.tag.f12uid> == <src.uid>) || (<link.tag.f13uid> == <src.uid>) || (<link.tag.f14uid> == <src.uid>) || (<link.tag.f15uid> == <src.uid>) || (<link.tag.f16uid> == <src.uid>) || (<link.tag.f17uid> == <src.uid>) || (<link.tag.f18uid> == <src.uid>) || (<link.tag.f19uid> == <src.uid>) || (<link.tag.f20uid> == <src.uid>) || (<link.tag.co1uid> == <src.uid>) || (<link.tag.co2uid> == <src.uid>) || (<link.tag.co3uid> == <src.uid>) || (<link.tag.co4uid> == <src.uid>) || (<link.tag.co5uid> == <src.uid>) || (<link.tag.co6uid> == <src.uid>) || (<link.tag.co7uid> == <src.uid>) || (<link.tag.co8uid> == <src.uid>))
+
+if (<link.timer> < 864800) && !(<eval <link.tag.status>> == 2)
+link.timer 1036800
+src.sysmessage @68 Evinizi yenilediniz.
+endif
+
+if !(<morey>)
+link.dialog d_house_private
+else
+link.dialog d_house_public
+endif
+elseif (<src.isgm>)
+link.dialog d_house_staff
+endif
+
+[function hclick]
+if (<color> == 0480)
+message @1153 [Hatali Ev!]
+endif
+
+if !(<link.baseid>)
+message @0 <name>
+return 1
+
+elseif (<link.timer> > 864800)
+message @0 <name>
+	message @1153 [yepyeni]
+return 1
+
+elseif (<link.timer> > 692800)
+message @0 <name>
+	message @1153 [yeni]
+return 1
+
+elseif (<link.timer> > 520800)
+message @0 <name>
+	message @1153 [bakimsiz]
+return 1
+
+elseif (<link.timer> > 348800)
+message @0 <name>
+	message @1153 [eskimi$]
+return 1
+
+elseif (<link.timer> > 176800)
+message @0 <name>
+	message @1153 [dokuluyor]
+return 1
+
+elseif (<link.timer> < 176800)
+if (<link.timer> == -1)
+link.timer 650
+
+endif
+message @0 <name>
+	message @1153 [yikilmak uzere]
+return 1
+endif
+
+[function checkdoor]
+//if (0<targ.link.baseid> == 0) // eger player house deilse salla
+//	return 0
+//else
+//if (<targ.link.link.morey>) // publicse ac kapiyi
+//	targ.type t_door
+//endif
+
+[function htimer]
+if (<link.baseid> == 0)
+return 1
+
+elseif ((<link.timer> > 1) && (<link.timer> < 650))
+link.remove
+
+elseif !(<more2>)
+more2 1
+timer {120 500}
+type t_sign_gump
+name <link.name>
+more <link.uid>
+move 0 0 -1
+link.move 0 0 -1
+link.link <uid>
+link.region.flags 0892
+link.region.events r_house_private
+link.region.tag.owner <link.more1>
+link.tag.build duzgun
+link.tag.buildcheck 1
+link.tag.time <serv.time>
+link.tag.trashcan 0
+link.tag.vendnumber 0
+link.tag.locknumber 0
+link.tag.secnumber 0
+link.tag.strongbox1 0
+link.tag.strongbox2 0
+link.tag.strongbox3 0
+link.tag.vendor1 0
+link.tag.vendor2 0
+link.tag.vendor3 0
+link.tag.f1uid 0
+link.tag.f1uid 0
+link.tag.f2uid 0
+link.tag.f3uid 0
+link.tag.f4uid 0
+link.tag.f5uid 0
+link.tag.f6uid 0
+link.tag.f7uid 0
+link.tag.f8uid 0
+link.tag.f9uid 0
+link.tag.f10uid 0
+link.tag.f11uid 0
+link.tag.f12uid 0
+link.tag.f13uid 0
+link.tag.f14uid 0
+link.tag.f15uid 0
+link.tag.f16uid 0
+link.tag.f17uid 0
+link.tag.f18uid 0
+link.tag.f19uid 0
+link.tag.f20uid 0
+link.tag.co1uid 0
+link.tag.co2uid 0
+link.tag.co3uid 0
+link.tag.co4uid 0
+link.tag.co5uid 0
+link.tag.co6uid 0
+link.tag.co7uid 0
+link.tag.co8uid 0
+hcycle
+
+else // more2 1 olduktan sonra ev 150 ile 500 arasi bi snde bi check oluyo
+timer {150 450}
+
+if !(strmatch('<link.tag.vendornum>','')
+link.tag.vendnumber <link.tag.vendornum>
+link.tag.vendornum
+endif
+
+if !(strmatch('<link.tag.strongbox>','')
+link.tag.secnumber <link.tag.strongbox>
+link.tag.strongbox
+
+endif
+hcycle
+endif
+
+[function hcycle]
+if (<morey>)
+link.region.events +r_house_public
+link.region.events -r_house_private
+else
+link.region.events +r_house_private
+link.region.events -r_house_public
+endif
+link.region.flags 0892
+link.link <uid>
+link.region.tag.signp <p>
+link.region.tag.build <link.tag.buildcheck>
+link.region.tag.owner <link.more1>
+link.region.tag.f1uid <link.tag.f1uid>
+link.region.tag.f2uid <link.tag.f2uid>
+link.region.tag.f3uid <link.tag.f3uid>
+link.region.tag.f4uid <link.tag.f4uid>
+link.region.tag.f5uid <link.tag.f5uid>
+link.region.tag.f6uid <link.tag.f6uid>
+link.region.tag.f7uid <link.tag.f7uid>
+link.region.tag.f8uid <link.tag.f8uid>
+link.region.tag.f9uid <link.tag.f9uid>
+link.region.tag.f10uid <link.tag.f10uid>
+link.region.tag.f11uid <link.tag.f11uid>
+link.region.tag.f12uid <link.tag.f12uid>
+link.region.tag.f13uid <link.tag.f13uid>
+link.region.tag.f14uid <link.tag.f14uid>
+link.region.tag.f15uid <link.tag.f15uid>
+link.region.tag.f16uid <link.tag.f16uid>
+link.region.tag.f17uid <link.tag.f17uid>
+link.region.tag.f18uid <link.tag.f18uid>
+link.region.tag.f19uid <link.tag.f19uid>
+link.region.tag.f20uid <link.tag.f20uid>
+link.region.tag.co1uid <link.tag.co1uid>
+link.region.tag.co2uid <link.tag.co2uid>
+link.region.tag.co3uid <link.tag.co3uid>
+link.region.tag.co4uid <link.tag.co4uid>
+link.region.tag.co5uid <link.tag.co5uid>
+link.region.tag.co6uid <link.tag.co6uid>
+link.region.tag.co7uid <link.tag.co7uid>
+link.region.tag.co8uid <link.tag.co8uid>
+
+[function htargitem]
+if ((<morex> == 5) || (<morex> == 6) || (<morex> == 7) || (<morex> == 8) || (<morex> == 9))
+return 1
+
+elseif !(<src.targ.region.uid> == <uid>)
+src.sysmessage @54 Bu e$ya evinizde degil.
+elseif (<morex> == 1)
+
+if ((<src.targ.type> == t_stone_guild) || (<src.targ.type> == t_spell) || (<src.targ.type> == T_WEAPON_MACE_STAFF) || (<src.targ.baseid> == i_corpse) || (<src.targ.type> == t_blood) || (<src.targ.type> == T_WEAPON_MACE_SMITH))
+src.sysmessage @54 Bunu sabitleyemezsiniz.
+
+elseif (<src.targ.type> == t_secure)
+src.sysmessage @54 Kilitli bir kasayi sadece sabit hale getirmek icin once kilidini acmalisiniz.
+
+elseif (<src.targ.cont>)
+src.sysmessage @54 Sabitlemek istediginiz e$ya yerde degil?
+
+elseif (<src.targ.attr>&attr_move_never)
+src.sysmessage @54 Bu e$ya zaten sabit.
+
+elseif !(<src.targ.link> == 04fffffff)
+src.sysmessage @54 Bunu sabitleyemezsiniz.
+
+elseif (<eval <tag.locknumber>> >= <morey>)
+src.sysmessage @54 Evinizde cok fazla sabit e$ya oldugu icin bunu sabitleyemezsiniz.
+
+else
+tag.locknumber <eval (<tag.locknumber> + 1)>
+src.targ.link <uid>
+src.targ.attr <src.targ.attr>&~attr_decay
+src.targ.attr <src.targ.attr>|attr_move_never
+src.targ.timer -1
+src.sysmessage @68 E$ya sabitlendi.   
+
+if (<src.targ.type>) == t_book)
+src.targ.more 1
+endif
+src.targ.update
+endif
+
+elseif (<morex> == 2)
+if ((<src.targ.attr>&attr_move_never) && (<src.targ.link> != <uid>))
+src.sysmessage @54 E$ya evinizde degil?
+
+elseif ((<src.targ.type> == t_door) || (<src.targ.type> == t_door_locked) || (<src.targ.type> == t_sign_gump) || (<src.targ.type> == t_stone_guild))
+src.sysmessage @54 Bunun sabitligini kaldiramazsiniz.
+
+elseif (<src.targ.baseid> == i_strong_box))
+src.sysmessage @54 Bu komutu strongbox'lar uzerinde kullanamazsiniz.
+
+elseif (<src.targ.baseid> == i_reward_barrel))
+src.sysmessage @54 Bu komutu reward barrel uzerinde kullanamazsiniz.
+
+elseif (<src.targ.baseid> == i_forge)
+tag.locknumber <eval (<tag.locknumber> - 1)>
+src.targ.remove
+src.newitem i_deed_forge
+src.act.bounce
+
+elseif (<src.targ.baseid> == i_anvil)
+tag.locknumber <eval (<tag.locknumber> - 1)>
+src.targ.remove
+src.newitem i_deed_anvil
+src.act.bounce
+
+elseif (<src.targ.baseid> == i_training_dummy)
+tag.locknumber <eval (<tag.locknumber> - 1)>
+src.targ.remove
+src.newitem i_deed_dummyn
+src.act.bounce
+
+elseif (<src.targ.baseid> == i_pickpocket_dip)
+tag.locknumber <eval (<tag.locknumber> - 1)>
+src.targ.remove
+src.newitem i_deed_pickpockn
+src.act.bounce
+
+elseif (<src.targ.baseid> == i_spinning_wheel)
+tag.locknumber <eval (<tag.locknumber> - 1)>
+src.targ.remove
+src.newitem i_deed_wheel_n
+src.act.bounce
+
+elseif (<src.targ.baseid> == i_loom_upright)
+var.p <src.p>
+var.act <src.targ.uid>
+src.p <p>
+try tag.locknumber <eval (<tag.locknumber> - 1)>
+try src.uid.<tag.<var.act>part>.remove
+try src.uid.<tag.<tag.<var.act>part>part>.remove
+try tag.<var.act>part
+try tag.<tag.<var.act>part>part
+try src.newitem i_deed_loom_n
+try src.act.bounce
+src.p <var.p>
+var.p
+var.act
+
+elseif (<src.targ.baseid> == i_pentagram)
+if !(<src.targ.dispid> == 0fea)
+morex 2
+target Pentagrami kaldirmak icin tam ortasini secin.
+else
+var.p <src.p>
+var.act <src.targ.uid>
+src.p <p>
+try tag.locknumber <eval (<tag.locknumber> - 1)>
+try src.targ.remove
+try src.uid.<tag.<var.act>part1>.remove
+try src.uid.<tag.<var.act>part2>.remove
+try src.uid.<tag.<var.act>part3>.remove
+try src.uid.<tag.<var.act>part4>.remove
+try src.uid.<tag.<var.act>part5>.remove
+try src.uid.<tag.<var.act>part6>.remove
+try src.uid.<tag.<var.act>part7>.remove
+try src.uid.<tag.<var.act>part8>.remove
+try tag.<var.act>part1
+try tag.<var.act>part2
+try tag.<var.act>part3
+try tag.<var.act>part4
+try tag.<var.act>part5
+try tag.<var.act>part6
+try tag.<var.act>part7
+try tag.<var.act>part8
+try src.newitem i_deed_pentagram
+try src.act.bounce
+src.p <var.p>
+var.p
+var.act
+endif
+
+elseif (<src.targ.attr>&attr_move_never)
+tag.locknumber <eval (<tag.locknumber> - 1)>
+src.targ.link 04fffffff
+
+if (<src.targ.attr> == 04018)
+src.targ.attr attr_decay
+
+else
+src.targ.attr <src.targ.attr>&~attr_move_never
+src.targ.attr <src.targ.attr>|attr_decay
+
+endif
+src.targ.timer <eval (<serv.decaytimer> * 60)>
+if (<src.targ.type> == t_secure)
+src.targ.type t_container
+src.sysmessage @68 E$ya artik kilitli degil.
+tag.locknumber <eval (<tag.locknumber> - 124)>
+tag.secnumber <eval (<tag.secnumber> - 1)>
+
+else
+src.sysmessage @68 E$ya artik sabit degil.
+
+if (<src.targ.type> == t_book)
+src.targ.more 0
+endif
+
+endif
+src.targ.update
+
+else
+src.sysmessage @54 E$ya kilitli yada sabit degil?
+endif
+
+elseif (<morex> == 3)
+if ((<src.targ.attr>&attr_move_never) && (<src.targ.link> != <uid>))
+src.sysmessage @54 E$ya sizin evinizde degil?
+
+elseif (<src.targ.baseid> == i_strong_box)
+if !((<src.targ.more2> == <src.uid>) || (<src.targ.link.more1> == <src.uid>))
+src.sysmessage @54 Strongbox'u kaldirmak icin box'un yada evin sahibi olmalisiniz.
+
+else
+tag.secnumber <eval (<tag.secnumber> - 1)>
+
+if (<src.targ.morem> == 1)
+tag.strongbox1 0
+
+elseif (<src.targ.morem> == 2)
+tag.strongbox2 0
+
+elseif (<src.targ.morem> == 3)
+tag.strongbox3 0
+
+endif
+src.targ.remove
+src.sysmessage @68 Strongbox kaldirildi.
+endif
+
+elseif (<src.targ.baseid> == i_reward_barrel)
+src.targ.remove
+tag.trashcan 0
+tag.locknumber <eval (<tag.locknumber> - 1)>
+
+else
+src.sysmessage @54 Bu komutu bu e$yanin uzerinde kullanamazsiniz.
+endif
+
+elseif (<morex> == 4)
+if ((<src.targ.type> == t_secure) || (<src.targ.baseid> == i_strong_box))
+src.sysmessage @54 Bu e$ya zaten kilitli.
+
+elseif (<src.targ.cont>)
+src.sysmessage @54 E$ya yerde degil?
+
+elseif (<src.targ.baseid> == i_corpse)
+src.sysmessage @54 Cesetleri kilitlenemez.
+
+elseif !(<src.targ.type> == t_container)
+src.sysmessage @54 Sadece canta veya sandiklari kilitleyebilirsiniz.
+
+elseif (<eval <tag.locknumber>> > <eval (<morey> - 125)>)
+		src.sysmessage @54 Evinizin sabitlenebilir esya limiti dolmus. (gereken: 125)
+
+elseif (<eval <tag.secnumber>> >= <morez>)
+src.sysmessage @54 Evinizde cok fazla kilitli kasa oldugu icin bu kasayi kilitleyemezsiniz.
+
+elseif (<src.targ.attr>&attr_move_never)
+		src.sysmessage @54 Sabitlenmis bir kasayi kilitli hale getirmek icin once sabitligini kaldirmalisiniz.
+
+elseif !(<src.targ.link> == 04fffffff)
+src.sysmessage @54 Bunu kilitleyemezsiniz.
+
+else
+src.targ.type t_secure
+tag.locknumber <eval (<tag.locknumber> + 125)>
+tag.secnumber <eval (<tag.secnumber> + 1)>
+src.targ.link <uid>
+src.targ.attr <src.targ.attr>&~attr_decay
+src.targ.attr <src.targ.attr>|attr_move_never
+src.targ.timer -1
+src.targ.update
+src.sysmessage @68 E$ya kilitlendi.
+endif
+
+elseif (<morex> == 10) // item up
+if ((<src.targ.attr>&attr_move_never) && (<src.targ.link> != <uid>))
+src.sysmessage @54 E$ya evinizde degil?
+
+elseif ((<src.targ.baseid> == i_strong_box) || (<src.targ.type> == t_spell) || (<src.targ.type> == t_container) || (<src.targ.baseid> == i_corpse) || (<src.targ.type> == t_blood) || (<src.targ.type> == t_door) || (<src.targ.type> == t_door_locked) || (<src.targ.type> == t_sign_gump) || (<src.targ.type> == t_stone_guild) || (<src.targ.baseid> == i_forge) || (<src.targ.baseid> == i_anvil) || (<src.targ.baseid> == i_training_dummy) || (<src.targ.baseid> == i_pickpocket_dip) || (<src.targ.baseid> == i_spinning_wheel) || (<src.targ.baseid> == i_loom_upright) || (<src.targ.baseid> == i_reward_barrel) || (<src.targ.baseid> == i_pentagram))
+src.sysmessage @54 Bu e$yayi yukseltemezsiniz.
+
+
+elseif !(<src.targ.attr>&attr_move_never)
+src.sysmessage @54 E$ya sabit degil?
+
+elseif ((<baseid> == i_multi_house_3room) || (<baseid> == i_multi_house_stone_plaster_small) || (<baseid> == i_multi_house_stone_small) || (<baseid> == i_multi_house_stone_brick_small) || (<baseid> == i_multi_house_stone_wood_small) || (<baseid> == i_multi_house_wood_plaster_small) || (<baseid> == i_multi_house_wood_thatched_small))
+if (<src.targ.p.z> >= <eval (<p.z> + 25)>)
+src.sysmessage @54 E$ya zaten yeterince yuksekte.
+
+else
+src.targ.nudgeup
+endif
+
+elseif ((<baseid> == i_multi_keep) || (<baseid> == i_multi_castle) || (<baseid> == i_multi_house_patio_sand) || (<baseid> == i_multi_villa_2story) || (<baseid> == i_multi_cabin_log_2story) || (<baseid> == i_multi_house_wood_plaster_2story) || (<baseid> == i_multi_house_stone_plaster_2story))
+if (<src.targ.p.z> >= <eval (<p.z> + 45)>)
+src.sysmessage @54 E$ya zaten yeterince yuksekte.
+else
+src.targ.nudgeup
+endif
+
+elseif ((<baseid> == i_multi_shop_stone_small) || (<baseid> == i_multi_shop_marble_small) || (<baseid> == i_multi_house_patio_marble) || (<baseid> == i_multi_tower_wizard))
+if (<src.targ.p.z> >= <eval (<p.z> + 65)>)
+src.sysmessage @54 E$ya zaten yeterince yuksekte.
+
+else
+src.targ.nudgeup
+endif
+
+elseif (<baseid> == i_multi_tower)
+if (<src.targ.p.z> >= <eval (<p.z> + 85)>)
+src.sysmessage @54 E$ya zaten yeterince yuksekte.
+
+else
+src.targ.nudgeup
+endif
+
+else
+src.sysmessage @54 Eviniz e$ya yukselteyemeyecek kadar kucuk.
+endif
+
+elseif (<morex> == 11) // item down
+if ((<src.targ.attr>&attr_move_never) && (<src.targ.link> != <uid>))
+src.sysmessage @54 E$ya evinizde degil?
+
+elseif ((<src.targ.baseid> == i_strong_box) || (<src.targ.type> == t_spell) || (<src.targ.type> == t_container) || (<src.targ.baseid> == i_corpse) || (<src.targ.type> == t_blood) || (<src.targ.type> == t_door) || (<src.targ.type> == t_door_locked) || (<src.targ.type> == t_sign_gump) || (<src.targ.type> == t_stone_guild) || (<src.targ.baseid> == i_forge) || (<src.targ.baseid> == i_anvil) || (<src.targ.baseid> == i_training_dummy) || (<src.targ.baseid> == i_pickpocket_dip) || (<src.targ.baseid> == i_spinning_wheel) || (<src.targ.baseid> == i_loom_upright) || (<src.targ.baseid> == i_reward_barrel) || (<src.targ.baseid> == i_pentagram))
+src.sysmessage @54 Bu e$yanin yerini alcaltamazsiniz.
+
+elseif !(<src.targ.attr>&attr_move_never)
+src.sysmessage @54 E$ya sabit degil?
+
+elseif (<src.targ.p.z> <= <eval (<p.z> + 7)>)
+src.sysmessage @54 Bu e$ya zaten yeterince alcakta.
+
+else
+src.targ.nudgedown
+endif
+endif
+
+[function htargchar]
+if ((<morex> == 1) || (<morex> == 2) || (<morex> == 3) || (<morex> == 4) || (<morex> == 10) || (<morex> == 11))
+return 1
+
+elseif !(<src.targ.region.uid> == <uid>)
+src.sysmessage @54 <src.targ.name> $u anda evinizde degil.
+
+elseif (<morex> == 6) // remove thyself
+if (0<src.targ.account.plevel> > 1)
+src.sysmessage @54 Staff uyelerini evden atamazsiniz.
+
+//elseif (<src.targ.id> == c_pv)
+//src.sysmessage @54 Vendorlari evden atamazsiniz.
+
+elseif (<src.targ.uid> == <src.uid>)
+src.sysmessage @54 Kendinizi evden atamazsiniz.
+
+elseif (<src.targ.uid> == <more>) || (<tag.co1uid> == <src.targ.uid>) || (<tag.co2uid> == <src.targ.uid>) || (<tag.co3uid> == <src.targ.uid>) || (<tag.co4uid> == <src.targ.uid>) || (<tag.co5uid> == <src.targ.uid>) || (<tag.co6uid> == <src.targ.uid>) || (<tag.co7uid> == <src.targ.uid>) || (<tag.co8uid> == <src.targ.uid>) || (<tag.f1uid> == <src.targ.uid>) || (<tag.f2uid> == <src.targ.uid>) || (<tag.f3uid> == <src.targ.uid>) || (<tag.f4uid> == <src.targ.uid>) || (<tag.f5uid> == <src.targ.uid>) || (<tag.f6uid> == <src.targ.uid>) || (<tag.f7uid> == <src.targ.uid>) || (<tag.f8uid> == <src.targ.uid>) || (<tag.f9uid> == <src.targ.uid>) || (<tag.f10uid> == <src.targ.uid>) || (<tag.f11uid> == <src.targ.uid>) || (<tag.f12uid> == <src.targ.uid>) || (<tag.f13uid> == <src.targ.uid>) || (<tag.f14uid> == <src.targ.uid>) || (<tag.f15uid> == <src.targ.uid>) || (<tag.f16uid> == <src.targ.uid>) || (<tag.f17uid> == <src.targ.uid>) || (<tag.f18uid> == <src.targ.uid>) || (<tag.f19uid> == <src.targ.uid>) || (<tag.f20uid> == <src.targ.uid>)
+	src.sysmessage @54 Evin sahibini, ortaklarini ve dostlarini evden atamazsiniz. 
+
+else
+src.targ.go <link.p>
+src.targ.move 0 1
+src.targ.sysmessage @54 <src.name> tarafindan evden kovuldunuz.
+src.sysmessage @68 <src.targ.name> evden kovuldu.
+endif
+
+elseif (<morex> == 7) // transfer
+if (<src.targ.uid> == <src.uid>)
+src.sysmessage @54 Ev zaten size ait!
+
+elseif (<src.targ.npc>) || (0<src.targ.account.plevel> > 1)
+src.sysmessage @54 Evinizi yetkililere devremezsiniz.
+
+elseif (strmatch('<tag.vendor1>','<src.tag.vendor>')) || (strmatch('<tag.vendor2>','<src.tag.vendor>')) || (strmatch('<tag.vendor3>','<src.tag.vendor>'))
+src.sysmessage @54 Evi devretmek icin once vendorlari kaldirmalisiniz.
+
+else
+if (<src.targ.memoryfindtype.memory_guard>)
+if !(<src.targ.memoryfindtype.memory_guard.link.type> == t_ship)
+src.sysmessage @54 Evi devretmek istediginiz ki$inin zaten bir evi var.
+return 1
+endif
+endif
+
+if (<src.memoryfindtype.memory_guard>)
+if (<src.memoryfindtype.memory_guard.link> == <uid>)
+src.memoryfindtype.memory_guard.remove
+endif
+
+endif
+src.targ.newitem i_memory
+src.targ.act.attr 04
+src.targ.act.color 0100
+src.targ.act.link <uid>
+src.targ.act.cont <src.targ.uid>
+src.targ.newitem i_key_copper
+src.targ.act.more <uid>
+src.targ.act.link <uid>
+src.targ.act.attr 04
+src.targ.act.cont <src.targ.findlayer(layer_bankbox).uid>
+src.targ.newitem i_key_copper
+src.targ.act.more <uid>
+src.targ.act.more2 <uid>
+src.targ .act.attr 04
+src.targ.act.cont <src.targ.findlayer(layer_pack).uid>
+more1 <src.targ.uid>
+tag.f1uid 0
+tag.f2uid 0
+tag.f3uid 0
+tag.f4uid 0
+tag.f5uid 0
+tag.f6uid 0
+tag.f7uid 0
+tag.f8uid 0
+tag.f9uid 0
+tag.f10uid 0
+tag.f11uid 0
+tag.f12uid 0
+tag.f13uid 0
+tag.f14uid 0
+tag.f15uid 0
+tag.f16uid 0
+tag.f17uid 0
+tag.f18uid 0
+tag.f19uid 0
+tag.f20uid 0
+tag.co1uid 0
+tag.co2uid 0
+tag.co3uid 0
+tag.co4uid 0
+tag.co5uid 0
+tag.co6uid 0
+tag.co7uid 0
+tag.co8uid 0
+tag.f1name
+tag.f2name
+tag.f3name
+tag.f4name
+tag.f5name
+tag.f6name
+tag.f7name
+tag.f8name
+tag.f9name
+tag.f10name
+tag.f11name
+tag.f12name
+tag.f13name
+tag.f14name
+tag.f15name
+tag.f16name
+tag.f17name
+tag.f18name
+tag.f19name
+tag.f20name
+tag.co1name
+tag.co2name
+tag.co3name
+tag.co4name
+tag.co5name
+tag.co6name
+tag.co7name
+tag.co8name
+link.hcycle // region.tag lara da gecirelim bunnari
+src.sysmessage @68 Evinizi <src.targ.name> isimli ki$iye devrettiniz.
+src.targ.sysmessage @68 <src.name> evini size devretti.
+endif
+
+elseif (<morex> == 8) // add co-own
+if ((<src.targ.npc>) || (<src.targ.isgm>))
+src.sysmessage @54 Bu eve ortak olamaz.
+
+elseif ((<tag.f1uid> == <src.targ.uid>) || (<tag.f2uid> == <src.targ.uid>) || (<tag.f3uid> == <src.targ.uid>) || (<tag.f4uid> == <src.targ.uid>) || (<tag.f5uid> == <src.targ.uid>) || (<tag.f6uid> == <src.targ.uid>) || (<tag.f7uid> == <src.targ.uid>) || (<tag.f8uid> == <src.targ.uid>) || (<tag.f9uid> == <src.targ.uid>) || (<tag.f10uid> == <src.targ.uid>) || (<tag.f11uid> == <src.targ.uid>) || (<tag.f12uid> == <src.targ.uid>) || (<tag.f13uid> == <src.targ.uid>) || (<tag.f14uid> == <src.targ.uid>) || (<tag.f15uid> == <src.targ.uid>) || (<tag.f16uid> == <src.targ.uid>) || (<tag.f17uid> == <src.targ.uid>) || (<tag.f18uid> == <src.targ.uid>) || (<tag.f19uid> == <src.targ.uid>) || (<tag.f20uid> == <src.targ.uid>))
+src.sysmessage @54 <src.targ.name> zaten evin dostu.
+
+elseif ((<tag.co1uid> == <src.targ.uid>) || (<tag.co2uid> == <src.targ.uid>) || (<tag.co3uid> == <src.targ.uid>) || (<tag.co4uid> == <src.targ.uid>) || (<tag.co5uid> == <src.targ.uid>) || (<tag.co6uid> == <src.targ.uid>) || (<tag.co7uid> == <src.targ.uid>) || (<tag.co8uid> == <src.targ.uid>))
+src.sysmessage @54 <src.targ.name> zaten evin ortagi.
+
+
+elseif (<src.targ.uid> == <more>)
+src.sysmessage @54 <src.targ.name> zaten evin sahibi.
+
+elseif (<tag.co1uid> == 0)
+	tag.uids co1uid
+	tag.names co1name
+	src.newitem i_home_recruitco
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve ortak olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.co2uid> == 0)
+	tag.uids co2uid
+	tag.names co2name
+	src.newitem i_home_recruitco
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve ortak olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.co3uid> == 0)
+	tag.uids co3uid
+	tag.names co3name
+	src.newitem i_home_recruitco
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve ortak olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.co4uid> == 0)
+	tag.uids co4uid
+	tag.names co4name
+	src.newitem i_home_recruitco
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve ortak olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.co5uid> == 0)
+	tag.uids co5uid
+	tag.names co5name
+	src.newitem i_home_recruitco
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve ortak olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.co6uid> == 0)
+	tag.uids co6uid
+	tag.names co6name
+	src.newitem i_home_recruitco
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve ortak olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.co7uid> == 0)
+	tag.uids co7uid
+	tag.names co7name
+	src.newitem i_home_recruitco
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve ortak olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.co8uid> == 0)
+	tag.uids co8uid
+	tag.names co8name
+	src.newitem i_home_recruitco
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve ortak olarak eklenmesi icin onay gonderildi.
+
+else
+src.sysmessage @54 Ortak listeniz dolmu$.
+endif
+
+elseif (<morex> == 9) // add friend
+if ((<src.targ.npc>) || (<src.targ.isgm>))
+src.sysmessage @54 Sadece oyunculari eve dost ekleyebilirsiniz.
+
+elseif ((<tag.f1uid> == <src.targ.uid>) || (<tag.f2uid> == <src.targ.uid>) || (<tag.f3uid> == <src.targ.uid>) || (<tag.f4uid> == <src.targ.uid>) || (<tag.f5uid> == <src.targ.uid>) || (<tag.f6uid> == <src.targ.uid>) || (<tag.f7uid> == <src.targ.uid>) || (<tag.f8uid> == <src.targ.uid>) || (<tag.f9uid> == <src.targ.uid>) || (<tag.f10uid> == <src.targ.uid>) || (<tag.f11uid> == <src.targ.uid>) || (<tag.f12uid> == <src.targ.uid>) || (<tag.f13uid> == <src.targ.uid>) || (<tag.f14uid> == <src.targ.uid>) || (<tag.f15uid> == <src.targ.uid>) || (<tag.f16uid> == <src.targ.uid>) || (<tag.f17uid> == <src.targ.uid>) || (<tag.f18uid> == <src.targ.uid>) || (<tag.f19uid> == <src.targ.uid>) || (<tag.f20uid> == <src.targ.uid>))
+src.sysmessage @54 <src.targ.name> zaten evin dostu.
+
+elseif ((<tag.co1uid> == <src.targ.uid>) || (<tag.co2uid> == <src.targ.uid>) || (<tag.co3uid> == <src.targ.uid>) || (<tag.co4uid> == <src.targ.uid>) || (<tag.co5uid> == <src.targ.uid>) || (<tag.co6uid> == <src.targ.uid>) || (<tag.co7uid> == <src.targ.uid>) || (<tag.co8uid> == <src.targ.uid>))
+src.sysmessage @54 <src.targ.name> zaten evin ortagi.
+
+elseif (<src.targ.uid> == <more>)
+src.sysmessage @54 <src.targ.name> zaten evin sahibi.
+
+elseif (<src.targ.findid.i_gs_recruit>)
+src.sysmessage @54 <src.targ.name> su an dusunme asamasinda.
+
+elseif (<tag.f1uid> == 0)
+	tag.uids f1uid
+	tag.names f1name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f2uid> == 0)
+	tag.uids f2uid
+	tag.names f2name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f3uid> == 0)
+	tag.uids f3uid
+	tag.names f3name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f4uid> == 0)
+	tag.uids f4uid
+	tag.names f4name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f5uid> == 0)
+	tag.uids f5uid
+	tag.names f5name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f6uid> == 0)
+	tag.uids f6uid
+	tag.names f6name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f7uid> == 0)
+	tag.uids f7uid
+	tag.names f7name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f8uid> == 0)
+	tag.uids f8uid
+	tag.names f8name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f9uid> == 0)
+	tag.uids f9uid
+	tag.names f9name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f10uid> == 0)
+	tag.uids f10uid
+	tag.names f10name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f11uid> == 0)
+	tag.uids f11uid
+	tag.names f11name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f12uid> == 0)
+	tag.uids f12uid
+	tag.names f12name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f13uid> == 0)
+	tag.uids f13uid
+	tag.names f13name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f14uid> == 0)
+	tag.uids f14uid
+	tag.names f14name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f15uid> == 0)
+	tag.uids f15uid
+	tag.names f15name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f16uid> == 0)
+	tag.uids f16uid
+	tag.names f16name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f17uid> == 0)
+	tag.uids f17uid
+	tag.names f17name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f18uid> == 0)
+	tag.uids f18uid
+	tag.names f18name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f19uid> == 0)
+	tag.uids f19uid
+	tag.names f19name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+elseif (<tag.f20uid> == 0)
+	tag.uids f20uid
+	tag.names f20name
+	src.newitem i_home_recruit
+	src.act.cont <src.targ.uid>
+	src.act.more1 <src.uid>
+	src.act.more2 <uid>
+	src.act.timer 1
+	src.sysmessage @0 <src.targ.name> eve dost olarak eklenmesi icin onay gonderildi.
+
+else
+src.sysmessage @54 Dost listenizde yer kalmami$.
+endif
+endif
+
+[function hredeed]
+if (<baseid> == i_multi_house_stone_plaster_small)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04200
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_house_stone_small)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04202
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_house_stone_brick_small)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04204
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_house_stone_wood_small)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04206
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_house_wood_plaster_small)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04208
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_house_wood_thatched_small)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04210
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_house_3room)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04216
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_house_wood_plaster_2story)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04218
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_house_stone_plaster_2story)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04220
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_tower)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04222
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_keep)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04224
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_castle)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04226
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_house_patio_marble)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04229
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_tower_wizard)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 0422a
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_cabin_log_2story)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 0422b
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_house_patio_sand)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 0422c
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_villa_2story)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 0422d
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_shop_stone_small)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 0422e
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_shop_blacksmithy_large)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 04228
+src.act.equip
+endif
+
+elseif (<baseid> == i_multi_shop_marble_small)
+if !(<src.findid.i_redeeder>)
+src.newitem i_redeeder
+src.act.more2 0422f
+src.act.equip
+endif
+endif
+
+[itemdef 04064]
+defname i_multi_house_stone_plaster_small
+name small stone and plaster house
+type t_multi
+value 120000
+category Multis
+subsection houses
+description small stone and plaster house
+multiregion -3,-3,3,4
+component i_door_wood,0,3,6
+component i_sign_brass_2,2,4,5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 425
+morez 3
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 04066]
+defname i_multi_house_stone_small
+name small stone house
+type t_multi
+value 115000
+category Multis
+subsection houses
+description small stone house
+multiregion -3,-3,3,4
+component i_door_wood,0,3,6
+component i_sign_brass_2,2,4,5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 425
+morez 3
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 04068]
+defname i_multi_house_stone_brick_small
+name small brick house
+type t_multi
+value 115000
+category Multis
+subsection houses
+description small brick house
+multiregion -3,-3,3,4
+component i_door_wood,0,3,6
+component i_sign_brass_2,2,4,5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 425
+morez 3
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 0406a]
+defname i_multi_house_stone_wood_small
+name small wood house
+type t_multi
+value 120000
+category Multis
+subsection houses
+description small wood house
+multiregion -3,-3,3,4
+component i_door_wood,0,3,6
+component i_sign_brass_2,2,4,5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 425
+morez 3
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 0406c]
+defname i_multi_house_wood_plaster_small
+name small wood and plaster house
+type t_multi
+value 120000
+category Multis
+subsection houses
+description small wood and plaster house
+multiregion -3,-3,3,4
+component i_door_wood,0,3,6
+component i_sign_brass_2,2,4,5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 425
+morez 3
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 0406d]
+dupeitem 0406c
+
+[itemdef 0406e]
+defname i_multi_house_wood_thatched_small
+name small wood house thatched roof
+type t_multi
+value 120000
+category Multis
+subsection houses
+description small wood house thatched roof
+multiregion -3,-3,3,4
+component i_door_wood,0,3,6
+component 0bd0,2,4,5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 425
+morez 3
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 0406f]
+dupeitem 0406e
+
+[itemdef 04070]
+defname i_multi_tent_blue
+name blue tent
+type t_multi
+value 52000
+category Multis
+subsection Tents
+description Blue Tent
+multiregion -3,-3,4,4
+component 0e43,0,-1,7
+
+On=@Create
+timer 1036800
+morey 425
+morez 3
+
+On=@TargOn_Item
+return 1
+
+On=@TargOn_Char
+return 1
+
+[itemdef 04071]
+dupeitem 04070
+
+[itemdef 04072]
+defname i_multi_tent_green
+name green tent
+type t_multi
+value 52000
+category Multis
+subsection Tents
+description Green Tent
+multiregion -3,-3,4,4
+component 0e43,0,-1,7
+
+On=@Create
+timer 1036800
+morey 425
+morez 3
+
+On=@TargOn_Item
+return 1
+
+On=@TargOn_Char
+return 1
+
+[itemdef 04073]
+dupeitem 04072
+
+[itemdef 04074]
+defname i_multi_house_3room
+name large brick house
+type t_multi
+value 250000
+category Multis
+subsection houses
+description three room house
+multiregion -7,-7,6,6
+component i_door_wood,-1, 6, 6
+component 06A7,0, 6, 6
+component i_door_wood,-3,-1, 6
+component i_door_wood,3,-1, 6
+component i_sign_brass_2,3, 7, 5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 1100
+morez 8
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 04075]
+dupeitem 04074
+
+[itemdef 04076]
+defname i_multi_house_wood_plaster_2story
+name two story wood and plaster house
+type t_multi
+value 400000
+category Multis
+subsection houses
+description two story wood and plaster house
+multiregion -7,-7,6,7
+component i_door_wood,-3, 6, 6
+component 06A7,-2, 6, 6
+component i_door_wood,-2, 0, 26
+component i_door_wood,-3, 0, 6
+component i_sign_brass_2, 1, 7, 5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 1350
+morez 10
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 04077]
+dupeitem 04076
+
+[itemdef 04078]
+defname i_multi_house_stone_plaster_2story
+name two story stone and plaster house
+type t_multi
+value 420000
+category Multis
+subsection houses
+description two story stone and plaster house
+multiregion -7,-7,6,7
+component i_door_wood,-3, 6, 6
+component 06A7,-2, 6, 6
+component i_door_wood,-3, 0, 26
+component i_door_wood,-3, 0, 6
+component i_sign_brass_2, 1, 7, 5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 1350
+morez 10
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 04079]
+dupeitem 04078
+
+[itemdef 0407a]
+defname i_multi_tower
+name tower
+type t_multi
+value 1000000
+category Multis
+subsection houses
+description tower
+multiregion -11,-7,12,8
+component 067D,1,4,45
+component 067D,1,4,25
+component i_door_metal,3,-2,5
+component 0677,1,6,5
+component i_door_metal,0,6,5
+component 0bd0,4,7,5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 2100
+morez 15
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 0407b]
+dupeitem 0407a
+
+[itemdef 0407c]
+defname i_multi_keep
+name stone keep
+type t_multi
+value 2000000
+category Multis
+subsection houses
+description keep
+multiregion -11,-11,12,12
+component 0677,1,10,5
+component i_door_metal,0,10,5
+component 0bd0,4,11,5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 2600
+morez 18
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 0407d]
+dupeitem 0407c
+
+[itemdef 0407e]
+defname i_multi_castle
+name castle
+type t_multi
+value 4000000
+category Multis
+subsection houses
+description castle
+multiregion -15,-15,15,16
+component 0677,1,5,5
+component i_door_metal,0,5,5
+component 0677,1,15,5
+component i_door_metal,0,15,5
+component 0677,1,11,5
+component i_door_metal,0,11,5
+component 0677,0,-11,5
+component i_door_metal,-1,-11,5
+component 0bd0,4,16,5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 4075
+morez 28
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 0407f]
+dupeitem 0407e
+
+[itemdef 04087]
+defname i_multi_shop_blacksmithy_large_2
+name large blacksmithy shop
+type t_multi
+value 400000
+category Multis
+subsection houses
+description large blacksmithy shop
+multiregion -7,-7,7,7
+component i_door_wood,4,-1,7
+component 06ad,1,4,7
+component 06ad,1,-4,7
+component 06A7,-3, 6,// Front door 2.
+component i_door_wood,	-4, 6, 7// Front door 1.
+component i_sign_brass_2,0,7,5// Place the sign.
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 425
+morez 3
+
+On=@TargOn_Item
+return 1
+
+On=@TargOn_Char
+return 1
+
+[itemdef 0408c]
+defname i_multi_shop_blacksmithy_large
+name large blacksmithy shop
+type t_multi
+value 400000
+category Multis
+subsection houses
+description large blacksmithy shop
+multiregion -7,-7,7,7
+component i_door_wood,4,-1,7
+component 06ad,1,4,7
+component 06ad,1,-4,7
+component 06A7,-3,6,7
+component i_door_wood,-4, 6, 7
+component i_sign_brass_2, 0, 7, 5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 425
+morez 3
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 0408d]
+dupeitem 0408c
+
+[itemdef 04096]
+defname i_multi_house_patio_marble
+name large marble patio house
+type t_multi
+value 500000
+category Multis
+subsection houses
+description large marble patio house
+multiregion -7,-7,7,7
+component i_door_metal, -4, 3, 3
+component 0677, -3, 3, 3
+component i_sign_brass_2, 0, 7, 0
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 1350
+morez 10
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 04098]
+defname i_multi_tower_wizard
+name small tower
+type t_multi
+value 350000
+category Multis
+subsection houses
+description wizards tower
+multiregion -3,-3,4,4
+component i_door_metal, 3, 3, 4
+component i_sign_brass_2, 1, 4, 5
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 580
+morez 4
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 0409a]
+defname i_multi_cabin_log_2story
+name two story log cabin
+type t_multi
+value 200000
+category Multis
+subsection houses
+description two story log cabin
+multiregion -3,-6,4,7
+component 06b5,1,4,7
+component 06b5,1,0,28
+component i_sign_brass_2,4,7,9
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 1100
+morez 8
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 0409c]
+defname i_multi_house_patio_sand
+name sandstone patio house
+type t_multi
+value 250000
+category Multis
+subsection houses
+description sandstone patio house
+multiregion -5,-4,6,4
+component i_floor_sandstone_2, 0, 0, 5
+component i_door_wood, -1, 3, 5
+component i_sign_brass_2, 2, 4, 1
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 850
+morez 6
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 0409e]
+defname i_multi_villa_2story
+name two story villa
+type t_multi
+value 350000
+category Multis
+subsection Houses
+description Two Story Villa
+multiregion -5,-5,5,6
+component i_door_wood, -3, -1, 24
+component 06ad, 1, 0, 24
+component i_door_wood, 3, 1, 4
+component 06a7, 4, 1, 4
+component i_sign_brass_2, 1, 6, 3
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 1100
+morez 8
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 040a0]
+defname i_multi_shop_stone_small
+name small stone shop
+type t_multi
+value 200000
+category Multis
+subsection Houses
+description Small Stone Shop
+multiregion -3,-3,3,4
+component 067b,-2, 0, 26
+component i_sign_brass_2, 3, 4, 7
+tspeech spk_house_cmds
+
+On=@Create
+timer 1036800
+morey 425
+morez 3
+
+On=@TargOn_Item
+htargitem
+return 1
+
+On=@TargOn_Char
+htargchar
+return 1
+
+[itemdef 040a2]
+defname i_multi_shop_marble_small
+name small marble shop
+type t_multi
+value 210000
+multiregion -3,-3,3,4
+component 067b, -2, 0, 23
+component i_sign_brass_2, 3, 4, 5
+tspeech spk_house_cmds
+
+on=@create
+timer 1036800
+morey 425
+morez 3
+
+on=@targon_item
+htargitem
+return 1
+
+on=@targon_char
+htargchar
+return 1
+
+[itemdef i_home_recruit]
+name guild recruiter
+weight 0
+id i_gold
+type t_eq_script
+layer layer_special
+
+On=@UnEquip
+try src.act <more2>
+try src.dialog d_home_recruit
+return 1
+
+On=@Timer
+remove
+return 1
+
+[dialog d_home_recruit]
+-100,-100
+nomove
+
+resizepic 190 165 5120 275 155
+resizepic 200 175 3000 255 135
+
+htmlgump 215 188 223 60 0 1 1
+htmlgump 258 257 140 20 1 0 0
+htmlgump 258 277 150 20 2 0 0
+button 225 255 4006 4007 1 0 1
+button 225 275 4018 4019 1 0 0
+
+[dialog d_home_recruit text]
+<uid.<findid.i_home_recruit.more1>.name> tarafindan evine davet edildiniz. Bu eve dost olmak istiyor musunuz?
+Evet
+Hayir
+
+[dialog d_home_recruit button]
+On=1
+if (<act.distance> > 10)
+	sysmessage @54 Yeterince yakin degilsiniz.
+else
+	try uid.<act.uid>.tag.<act.tag.uids> <src.uid>
+	try uid.<act.uid>.tag.<act.tag.names> <src.name>
+	try uid.<act.uid>.region.tag.<act.tag.uids> <src.uid>
+	//try uid.<act.uid>.message @0 <src.name> eve dost olmayi kabul etti.
+	sysmessage @0 Eve dost olarak eklendiniz.
+endif
+
+[itemdef i_home_recruitco]
+name guild recruiter
+weight 0
+id i_gold
+type t_eq_script
+layer layer_special
+
+On=@UnEquip
+try src.act <more2>
+try src.dialog d_home_recruitco
+return 1
+
+On=@Timer
+remove
+return 1
+
+[dialog d_home_recruitco]
+-100,-100
+nomove
+
+resizepic 190 165 5120 275 155
+resizepic 200 175 3000 255 135
+
+htmlgump 215 188 223 60 0 1 1
+htmlgump 258 257 140 20 1 0 0
+htmlgump 258 277 150 20 2 0 0
+button 225 255 4006 4007 1 0 1
+button 225 275 4018 4019 1 0 0
+
+[dialog d_home_recruitco text]
+<uid.<findid.i_home_recruitco.more1>.name> tarafindan evine davet edildiniz. Bu eve ortak olmak istiyor musunuz?
+Evet
+Hayir
+
+[dialog d_home_recruitco button]
+On=1
+if (<act.distance> > 10)
+	sysmessage Yeterince yakin degilsiniz.
+else
+	try uid.<act.uid>.tag.<act.tag.uids> <src.uid>
+	try uid.<act.uid>.tag.<act.tag.names> <src.name>
+	try uid.<act.uid>.region.tag.<act.tag.uids> <src.uid>
+	//try uid.<act.uid>.message @0 <src.name> eve ortak olmayi kabul etti.
+	sysmessage @0 Eve ortak olarak eklendiniz.
+endif
+
+[dialog d_house_approveon]
+250, 150
+page 0
+resizepic 20 0 5120 380 200
+resizepic 30 10 3000 360 180
+
+dtext 125 20 0481 Indinolla Housing
+
+page 1
+dtext 100 50 0481 Evi onaylayacakmisiniz?
+button 105 82 2117 2118 1 0 1
+button 180 82 2117 2118 0 2 0
+
+dtext 125 80 56 Evet
+dtext 200 80 56 Hayir
+
+page 2
+dtext 64 34 0481 Red sebebini secin:
+button 40 56 2117 2118 1 0 3
+button 40 75 2117 2118 1 0 4
+button 40 94 2117 2118 1 0 5
+button 40 113 2117 2118 1 0 6
+button 40 130 2117 2118 1 0 7
+dtext 58 53 56 Diger etkenlere cok yakin!
+dtext 58 70 56 Dogal etkenler (yol,agac)
+dtext 58 90 56 Sehir, zindan ya da mezara yakin.
+dtext 57 108 56 Ev kurulumu yasak bolge
+dtext 57 125 56 Spawn bolgesi
+
+
+[dialog d_house_approveon text]
+Indinolla House System asda
+Evi onaylayacakmisiniz?
+Evet
+Hayir
+
+[dialog d_house_approveon button]
+on 1
+tag.status 1
+tag.now Evin kurulumu kabul edildi.
+src.sysmessage @68 Evin kurulumu kabul edildi.
+link.color 00
+
+on 3
+tag.now Evin kurulumu reddedildi.
+tag.declined Diger etkenlere cok yakin!
+tag.status 2
+timer 172800
+//tag.time <src.serv.rtime>
+link.color 0480
+
+on 4
+tag.now Evin kurulumu reddedildi.
+tag.declined Dogal etkenler (yol,agac)
+tag.status 2
+timer 172800
+//tag.time <src.serv.rtime>
+link.color 0480
+
+on 5
+tag.now Evin kurulumu reddedildi.
+tag.declined Sehir, zindan ya da mezara yakin.
+tag.status 2
+timer 172800
+//tag.time <src.serv.rtime>
+link.color 0480
+
+on 6
+tag.now Evin kurulumu reddedildi.
+tag.status 2
+tag.declined Ev kurulumu yasak bolge
+//tag.time <src.serv.rtime>
+timer 172800
+link.color 0480
+
+on 7
+tag.now Evin kurulumu reddedildi.
+tag.declined Spawn bolgesi
+tag.status 2
+//tag.time <src.serv.rtime>
+timer 172800
+link.color 0480
+
+[eof]

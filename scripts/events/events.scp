@@ -1,0 +1,332 @@
+[itemdef i_fx_bc]
+id 03779
+weight 0
+name freeze effect
+
+On=@Create
+color 0803
+attr attr_move_never
+timer 1
+
+On=@Timer
+remove
+return 1
+
+[events e_bow_carnesir]
+On=@HitTry
+if (<src.stone>)
+	flags <flags>&~statf_war
+	return 1
+endif
+
+On=@Hit
+if (<findlayer(2).baseid> == i_bow_carnesir)
+	src.sfx 485
+	src.newitem i_fx_bc
+	src.act.p <src.p>
+	src.act.nudgeup 5
+	if !(<src.findid.i_stoner>)
+		src.newitem i_stoner
+		src.act.equip
+	endif
+	flags <flags>&~statf_war
+	return 1
+else
+	events -e_bow_carnesir
+endif
+
+[events e_elf]
+On=@Click
+message [Elven Kin, Carnesir]
+message <name>
+return 1
+
+[events e_intelligent] // Auto-Dispel, Heal, Cure AI
+On=@NPCSeeNewPlayer
+if (<src.findid.i_morpher>) && !(<src.findid.i_pre_morph>) && (<mana> > 20)
+	// 'on sight plym dispel' by mana
+	face
+	anim 17
+	sound snd_spell_dispel
+	src.spelleffect 41 1000
+	mana (<mana> - 20)
+	sayu * buyu etkisini kaldirir *
+endif
+
+On=@EnvironChange
+if (<hits> < <str>) && !(<memoryfindtype.memory_war_targ>)
+	// 'heal self gradually when there's no fight going on' by %33 chance
+	if (rand(3) == 1)
+		anim 17
+		sound snd_spell_greater_heal
+		spelleffect 29 {500 1000}
+		sayu * kendini iyilestirir *
+	endif
+endif
+
+On=@GetHit
+if (<findid.i_rune_poison>) || (<findid.i_rune_poison_field>)
+	// 'cure self when poisoned' by %33 chance, no mana always cure
+	if (rand(3) == 1)
+		face
+		anim 17
+		effect 3,0376a,1,30,1
+		sound snd_spell_cure
+		findid.i_rune_poison.remove
+		findid.i_rune_poison_field.remove
+		sayu * zehir etkisini kaldirir *
+	endif
+elseif (<hits> <= (<str> / 3))
+	// 'heal self when fighting' by %33 chance and mana
+	if (<mana> > 30) && (<argn> < <hits>)
+		if (rand(3) == 1)
+			flee
+			anim 17
+			sound snd_spell_greater_heal
+			spelleffect 29 {900 1500}
+			mana (<mana> - 30)
+			sayu * kendini iyilestirir *
+			return 1
+		endif
+	endif
+elseif (<src.findid.i_rune_summon_creature>) && (<mana> > 20)
+	// 'dispel summoned creatures' by mana
+	face
+	anim 17
+	sound snd_spell_dispel
+	src.hits 0
+	mana (<mana> - 20)
+	sayu * buyu etkisini kaldirir *
+elseif (<src.findid.i_morpher>) && !(<src.findid.i_pre_morph>) && (<mana> > 20)
+	// 'dispel plyr if plym'ed' by mana
+	face
+	anim 17
+	sound snd_spell_dispel
+	src.spelleffect 41 1000
+	mana (<mana> - 20)
+	sayu * buyu etkisini kaldirir *
+endif
+
+[events e_orc_ai]
+On=@ItemStep
+// 'orcish looting madness'
+if (<act.type> == t_corpse) && (<act.link> != 04fffffff) && (<act.amount> == 400) || (<act.amount> == 401))
+	if !(strmatch('<tag.loot>','<act.uid>'))
+		tag.loot <act.uid>
+		if (<act.rescount> > 30)
+			tag.lootrescount 30
+		else
+			tag.lootrescount <act.rescount>
+		endif
+		leave 1
+		f_orcish_style
+	endif
+endif
+
+[function f_orcish_style]
+if (<eval <tag.lootrescount>> > 0)
+	tag.lootrescount <eval (<tag.lootrescount> - 1)>
+	if (strmatch('<act.findcont.(<eval <tag.lootrescount>>).type>','t_gold')) || (strmatch('<act.findcont.(<eval <tag.lootrescount>>).type>','t_reagent')) (strmatch('<act.findcont.(<eval <tag.lootrescount>>).type>','t_potion')) || (strmatch('<act.findcont.(<eval <tag.lootrescount>>).type>','t_bandage')) || (strmatch('<act.findcont.(<eval <tag.lootrescount>>).baseid>','i_pouch_trapped'))(strmatch('<act.findcont.(<eval <tag.lootrescount>>).type>','t_armor')) || (strmatch('<act.findcont.(<eval <tag.lootrescount>>).type>','t_clothing')) || (strmatch('<act.findcont.(<eval <tag.lootrescount>>).type>','t_food'))
+		try tag.lootstone <act.findcont.(<eval <tag.lootrescount>>).weight>
+		f_orcish_style_loot <eval <tag.lootrescount>>
+		tag.lootrescount
+	else
+		f_orcish_style
+	endif
+else
+	sayu * cesetteki esyalara goz atar *
+	tag.lootrescount
+endif
+
+[function f_orcish_style_loot]
+if !(<eval (<tag.lootstone> + <weight>)> > <weightmax>)
+	sayu * cesetten bir esya alir *
+	try act.findcont.<args>.cont <findlayer.(21).uid>
+	tag.lootrescount
+	tag.lootstone
+endif
+
+[events e_intel_golem_tinker]
+On=@GetHit
+if (<memoryfindtype.memory_ipet.link.canseelos>) && (<argn> > 5)
+	if (<memoryfindtype.memory_ipet.link.mana> > 5)
+		memoryfindtype.memory_ipet.link.mana (<memoryfindtype.memory_ipet.link.mana> - {3 5})
+	elseif (<memoryfindtype.memory_ipet.link.hits> > 5)
+		memoryfindtype.memory_ipet.link.damage {10 20}
+	endif
+endif
+
+On=@SpellEffect
+if ((<argn> == 4) || (<argn> == 29))
+	src.f_fizzle
+	src.sysmessage Golemleri buyu ile iyilestiremezsiniz.
+	return 1
+endif
+
+On=@EnvironChange
+food 999
+
+On=@Click
+if (<memoryfindtype.memory_ipet>)
+	message * <memoryfindtype.memory_ipet.link.name> *
+endif
+
+
+
+[events e_delucia]
+On=@GetHit
+if (<src.memoryfindtype.memory_ipet>)
+	if !(<src.findid.i_allahtaseder>)
+		src.newitem i_allahtaseder
+		src.act.equip
+	endif
+	return 1
+endif
+if (<kills> > 5) && (<src.isevent.e_delucia>)
+	if !(<src.findid.i_allahtaseder>)
+		src.newitem i_allahtaseder
+		src.act.equip
+	endif
+	return 1
+endif
+
+On=@SpellCast
+if !((<argn> == 32) || (<argn> == 45) || (<argn> == 52) || (<argn> == 6) || (<argn> == 2) || (<argn> == 4) || (<argn> == 7) || (<argn> == 9) || (<argn> == 10) || (<argn> == 11) || (<argn> == 15) || (<argn> == 16) || (<argn> == 17) || (<argn> == 36) || (<argn> == 59) || (<argn> == 41))
+	f_fizzle
+	return 1
+endif
+
+On=@SkillStart
+if !(<src.findid.i_allahtaseder>) && ((<src.action> == id(skill_snooping)) || (<src.action> == skill_snooping) || (<src.action> == id(skill_stealing)) || (<src.action> == skill_stealing))
+	src.newitem i_allahtaseder
+	src.act.equip
+	return 1
+endif
+
+[events e_pazar]
+On=@GetHit
+if (<src.memoryfindtype.memory_ipet>)
+	if !(<src.findid.i_allahtaseder>)
+		src.newitem i_allahtaseder
+		src.act.equip
+	endif
+	return 1
+endif
+if (<kills> > 5) && (<src.isevent.e_pazar>)
+	if !(<src.findid.i_allahtaseder>)
+		src.newitem i_allahtaseder
+		src.act.equip
+	endif
+	return 1
+endif
+
+
+[events e_touch]
+On=@GetHit
+if ((<argn> > 15) && (<hits> <= <eval (<str> - 10)>))
+	hits (<hits> + 10)
+endif
+
+[events e_nopd]
+On=@DClick
+if (<uid> != <src.uid>)
+	return 1
+endif
+
+[events e_human_environ]
+On=@GetHit
+if (<memoryfindtype.memory_ispawned>) && (<npc> == brain_banker) || (<npc> == brain_vendor) || (<npc> == brain_vendor_offduty) || (<npc> == brain_animal_trainer) || (<npc> == brain_healer))
+	if (<src.npc>))
+		src.leave 20
+	else
+		src.newitem i_killer
+		src.act.equip
+		return 1
+	endif
+endif
+
+On=@DClick
+if (<distance> < 4) && !(<src.flags>&statf_dead)
+	if ((<npc> == brain_vendor) || (<npc> == brain_animal_trainer) || (<npc> == brain_healer))
+		hear buy
+		return 1
+	endif
+endif
+
+On=@EnvironChange
+if (<flags>&statf_war) 
+	return 0
+endif
+if !(<sector.isdark>) || (<flags>&statf_nightsight)
+	if (<findlayer(layer_hand2)>)
+		if (<findlayer(layer_hand2).type> == t_light_lit)
+			findlayer(layer_hand2).bounce
+		endif
+	endif
+	return 0
+endif
+if (<findlayer(layer_hand2)>)
+	if (<findlayer(layer_hand2).type> == t_light_lit)
+		return 0
+	endif
+endif
+if (<findtype.t_light_out>)
+	findtype.t_light_out.equip
+	findtype.t_light_out.use
+endif
+return 0
+
+[events e_human_Greet]
+
+[events e_human_hearunk]
+
+[events e_human_convinit]
+
+[events e_human_space]
+
+[events e_human_needs]
+
+[events e_human_scavenge]
+
+[events e_human_refuse]
+
+[events e_heal_recall]
+
+[events e_heal]
+
+[events e_recall_recall]
+
+[events e_death_counter]
+
+[events e_undead]
+
+[events e_orc]
+
+[events e_carnivores]
+
+[events e_carnivores2]
+
+[events e_carnivores3]
+
+[events e_terathan]
+
+[events e_ophidian]
+
+[events e_horses]
+
+[events e_notoriety]
+
+[events e_ostards]
+
+[events ei2]
+
+[events e_ai]
+
+[events e_ai_s]
+
+[events 00]
+
+[events 01]
+
+
+[EOF]

@@ -1,0 +1,773 @@
+[defname color_ore]
+color_o_iron		0
+color_o_bronze		06d6
+color_o_gold		045e
+color_o_copper		0641
+color_o_oldcopper	0590
+color_o_dullcopper	060a
+color_o_silver 		0230
+color_o_shadow 		0770
+color_o_bloodrock 	04c2
+color_o_blackrock	0455
+color_o_mytheril 	051f
+color_o_rose 		0665
+color_o_verite		07d1
+color_o_agapite 	0400
+color_o_rusty 		0750
+color_o_valorite 	0515
+
+[itemdef 019b7]
+defname i_ore_iron
+name iron ore
+type t_ore
+skillmake mining 20.0
+tdata1 i_ingot_iron
+weight 2
+value 4
+dupelist 019b8,019b9,019ba
+
+[itemdef i_ore_copper]
+id i_ore_iron
+name copper ore
+skillmake mining 50.0
+tdata1 i_ingot_copper
+value 5
+weight 2
+
+on=@create
+color color_o_copper
+
+[itemdef i_ore_gold]
+id i_ore_iron
+name gold ore
+skillmake mining 65.0
+tdata1 i_ingot_gold
+value 10
+weight 2
+
+on=@create
+color color_o_gold
+
+[itemdef i_ore_silver]
+id i_ore_iron
+name silver ore
+skillmake mining 65.0
+tdata1 i_ingot_silver
+value 7
+weight 2
+
+on=@create
+color color_o_silver
+
+[itemdef i_ore_shadow]
+id i_ore_iron
+name shadow ore
+skillmake mining 70.0
+tdata1 i_ingot_shadow
+value 15
+weight 2
+
+on=@create
+color color_o_shadow
+
+[itemdef i_ore_agapite]
+id i_ore_iron
+name agapite ore
+skillmake mining 70.0
+tdata1 i_ingot_agapite
+value 10
+weight 2
+
+on=@create
+color color_o_agapite
+
+[itemdef i_ore_verite]
+id i_ore_iron
+name verite ore
+skillmake mining 75.0
+tdata1 i_ingot_verite
+value 15
+weight 2
+on=@create
+color color_o_verite
+
+[itemdef i_ore_rose]
+id i_ore_iron
+name rose ore
+skillmake mining 65.0
+tdata1 i_ingot_rose
+value 15
+weight 2
+on=@create
+color color_o_rose
+
+[itemdef i_ore_mytheril]
+id i_ore_iron
+name mytheril ore
+skillmake mining 75.0
+tdata1 i_ingot_mytheril
+value 15
+weight 2
+on=@create
+color color_o_mytheril
+
+[itemdef i_ore_blackrock]
+id i_ore_iron
+name blackrock ore
+skillmake mining 85.0
+tdata1 i_ingot_blackrock
+value 18
+weight 2
+on=@create
+color color_o_blackrock
+
+[itemdef i_ore_bloodrock]
+id i_ore_iron
+name bloodrock ore
+skillmake mining 90.0
+tdata1 i_ingot_bloodrock
+value 15
+weight 2
+on=@create
+color color_o_bloodrock
+
+[itemdef i_ore_valorite]
+id i_ore_iron
+name valorite ore
+skillmake mining 75.0
+tdata1 i_ingot_valorite
+value 15
+weight 2
+on=@create
+color color_o_valorite
+
+[itemdef i_ore_bronze]
+id i_ore_iron
+name bronze ore
+skillmake mining 60.0
+tdata1 i_ingot_bronze
+value 7
+weight 2
+on=@create
+color color_o_bronze
+
+[itemdef i_ore_rusty]
+id i_ore_iron
+name rusty ore
+skillmake mining 40.0
+tdata1 i_ingot_rusty
+value 15
+weight 2
+on=@create
+color color_o_rusty
+
+[itemdef i_ore_old_copper]
+id i_ore_iron
+name old copper ore
+skillmake mining 50.0
+tdata1 i_ingot_oldcopper
+value 15
+weight 2
+on=@create
+color color_o_oldcopper
+
+[itemdef i_ore_dull_copper]
+id i_ore_iron
+name dull copper ore
+skillmake mining 50.0
+tdata1 i_ingot_dull_copper
+value 15
+weight 2
+on=@create
+color color_o_dullcopper
+
+// ingots
+
+[itemdef 01bef]
+name iron ingot
+defname i_ingot_iron
+type t_ingot
+resources i_ore_iron
+skillmake 20.0 mining
+tdata1 20.0
+tdata2 50.0
+weight 1
+dupelist 01bf0,01bf1,01bf2,01bf3,01bf4
+value 7
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot iron
+src.d_ironmenu
+endif
+return 1
+
+[itemdef 01be3]
+defname i_ingot_copper
+type t_ingot
+resources i_ore_copper
+skillmake mining 75.0
+tdata1 70.0
+tdata2 100.0
+weight 1
+value 60
+dupelist 01be4,01be5,01be6,01be7,01be8
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot copper
+src.d_copper
+endif
+return 1
+
+[itemdef 01be9]
+defname i_ingot_gold
+type t_ingot
+skillmake mining 85.0
+tdata1 80.0
+tdata2 100.0
+resources i_ore_gold
+weight 1
+value 90
+dupelist 01bea,01beb,01bec,01bed,01bee
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot golden
+src.d_golden
+endif
+return 1
+
+[itemdef 01bf5]
+defname i_ingot_silver
+type t_ingot
+skillmake mining 95.0
+tdata1 90.0
+tdata2 100.0
+resources i_ore_silver
+weight 1
+dupelist 01bf6,01bf7,01bf8,01bf9,01bfa
+value 160
+
+on=@create
+color color_o_silver
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot silver
+src.d_silver
+endif
+return 1
+
+[itemdef 04541]
+defname i_ingot_shadow
+name shadow ingot
+id i_ingot_iron
+skillmake mining 70.0
+tdata1 60.0
+tdata2 100.0
+resources i_ore_shadow
+weight 1
+value 95
+
+on=@create
+color color_o_shadow
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot shadow
+src.d_shadow
+endif
+return 1
+
+[itemdef 04542]
+defname i_ingot_agapite
+id i_ingot_iron
+name agapite
+skillmake mining 90.0
+tdata1 80.0
+tdata2 100.0
+resources i_ore_agapite
+weight 1
+value 95
+
+on=@create
+color color_o_agapite
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot agapite
+src.d_agapite
+endif
+return 1
+
+[itemdef 04543]
+defname i_ingot_verite
+name verite ingot
+id i_ingot_iron
+resources i_ore_verite
+skillmake mining 95.0
+tdata1 90.0
+tdata2 120.0
+weight 1
+value 150
+
+on=@create
+color color_o_verite
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot verite
+src.d_verite
+endif
+return 1
+
+[itemdef 04544]
+defname i_ingot_rose
+id i_ingot_iron
+name rose ingot
+resources i_ore_rose
+skillmake mining 87.0
+weight 1
+value 120
+tdata1 80.0
+tdata2 100.0
+
+on=@create
+color color_o_rose
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot rose
+src.d_rose
+endif
+return 1
+
+[itemdef 04545]
+defname i_ingot_mytheril
+id i_ingot_iron
+name mytheril ingot
+resources i_ore_mytheril
+skillmake mining 99.5
+tdata1 90.0
+tdata2 120.0
+weight 1
+value 230
+
+on=@create
+color color_o_mytheril
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot mytheril
+src.d_mytheril
+endif
+return 1
+
+[itemdef 04546]
+defname i_ingot_blackrock
+id i_ingot_iron
+name black rock ingot
+resources i_ore_blackrock
+skillmake mining 100.0
+tdata1 90.0
+tdata2 120.0
+weight 1
+value 270
+
+on=@create
+color color_o_blackrock
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot blackrock
+src.d_blackrock
+endif
+return 1
+
+[itemdef 04547]
+defname i_ingot_bloodrock
+id i_ingot_iron
+name blood rock ingot
+resources i_ore_bloodrock
+skillmake mining 93.0
+tdata1 90.0
+tdata2 120.0
+weight 1
+value 170
+
+on=@create
+color color_o_bloodrock
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot bloodrock
+src.d_bloodrock
+endif
+return 1
+
+[itemdef 0454a]
+defname i_ingot_valorite
+name valorite ingot
+id i_ingot_iron
+resources i_ore_valorite
+skillmake mining 99.0
+tdata1 90.0
+tdata2 120.0
+weight 1
+value 200
+
+on=@create
+color color_o_valorite
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot valorite
+src.d_valorite
+endif
+return 1
+
+[itemdef 0454c]
+name bronze ingot
+defname i_ingot_bronze
+name bronze ingot
+id i_ingot_iron
+resources i_ore_bronze
+skillmake mining 80.0
+tdata1 70.0
+tdata2 100.0
+weight 1
+value 70
+
+on=@create
+color color_o_bronze
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot bronze
+src.d_bronze
+endif
+return 1
+
+[itemdef 04548]
+name rusty ingot
+defname i_ingot_rusty
+name rusty ingot
+id i_ingot_iron
+resources i_ore_rusty
+skillmake mining 50.0
+tdata1 40.0
+tdata2 80.0
+weight 1
+
+on=@create
+color color_o_rusty
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot rusty
+src.d_rusty
+endif
+return 1
+
+[itemdef 04549]
+name old copper ingot
+defname i_ingot_oldcopper
+name old copper ingot
+id i_ingot_iron
+resources i_ore_old_copper
+skillmake mining 60.0
+tdata1 50.0
+tdata2 80.0
+weight 1
+value 55
+
+on=@create
+color color_o_oldcopper
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot old_copper
+src.dialog d_oldcopper
+endif
+return 1
+
+[itemdef 0454b]
+name dull copper ingot
+defname i_ingot_dull_copper
+id i_ingot_iron
+name dull copper ingot
+resources i_ore_dull_copper
+skillmake mining 65.0
+weight 1
+value 45
+tdata1 40.0
+tdata2 80.0
+
+on=@create
+color color_o_dullcopper
+
+on=@click
+message <amount> <name>
+return 1
+
+on=@dclick
+if !(<src.restest 1 i_hammer_smith>)
+src.sysmessage Bunun icin 'smith's hammer' gereklidir.
+else
+src.findid.i_hammer_smith.equip
+src.tag.ingot dull_copper
+src.d_dullcopper
+endif
+return 1
+
+[regionresource mr_iron]
+skill 1.0,100.0
+amount 9,20
+reap i_ore_iron
+regen 60*60*2
+
+[regionresource mr_rusty]
+skill 50.0,100.0
+amount 9,20
+reap i_ore_rusty
+regen 60*60*2
+
+[regionresource mr_bronze]
+skill 50.0,100.0
+amount 4,10
+reap i_ore_bronze
+regen 60*60*2
+
+[regionresource mr_old_copper]
+skill 50.0,100.0
+amount 4,10
+reap i_ore_old_copper
+regen 60*60*2
+
+[regionresource mr_dull_copper]
+skill 30.0,100.0
+amount 5,15
+reap i_ore_dull_copper
+regen 60*60*2
+
+[regionresource mr_shadow]
+skill 30.0,100.0
+amount 4,10
+reap i_ore_shadow
+regen 60*60*2
+
+[regionresource mr_copper]
+skill 50.0,100.0
+amount 5,20
+reap i_ore_copper
+regen 60*60*2
+
+[regionresource mr_gold]
+skill 50.0,100.0
+amount 5,15
+reap i_ore_gold
+regen 60*60*5
+
+[regionresource mr_rose]
+skill 30.0,100.0
+amount 4,15
+reap i_ore_rose
+regen 60*60*5
+
+[regionresource mr_agapite]
+skill 50.0,100.0
+amount 4,12
+reap i_ore_agapite
+regen 60*60*5
+
+[regionresource mr_bloodrock]
+skill 50.0,100.0
+amount 4,10
+reap i_ore_bloodrock
+regen 60*60*10
+
+[regionresource mr_silver]
+skill 80.0,100.0
+amount 5,10
+reap i_ore_silver
+regen 60*60*10
+
+[regionresource mr_verite]
+skill 80.0,100.0
+amount 4,8
+reap i_ore_verite
+regen 60*60*10
+
+[regionresource mr_valorite]
+skill 90.0,110.0
+amount 4,5
+reap i_ore_valorite
+regen 60*60*10
+
+[regionresource mr_mytheril]
+skill 90.0,110.0
+amount 4,5
+reap i_ore_mytheril
+regen 60*60*10
+
+[regionresource mr_blackrock]
+skill 90.0,110.0
+amount 2,4
+reap i_ore_blackrock
+regen 60*60*10
+
+[comment regionresource mr_diamond]
+skill 60.0,110.0
+amount 1,4
+reap i_gem_diamond
+regen 60*60*10
+
+[comment regionresource mr_ruby]
+skill 50.0,100.0
+amount 4,10
+reap i_gem_ruby
+regen 60*60*10
+
+[comment regionresource mr_citrine]
+skill 50.0,110.0
+amount 1,4
+reap i_gem_citrine
+regen 60*60*10
+
+[comment regionresource mr_emerald]
+skill 50.0,110.0
+amount 1,4
+reap i_gem_emerald
+regen 60*60*10
+
+[comment regionresource mr_star_sapphire]
+skill 50.0,110.0
+amount 1,4
+reap i_gem_star_sapphire
+regen 60*60*10
+
+[comment regionresource mr_sapphire]
+skill 50.0,110.0
+amount 1,4
+reap i_gem_sapphire
+regen 60*60*10
+
+[comment regionresource mr_amethyst]
+skill 50.0,110.0
+amount 1,4
+reap i_gem_amethyst
+regen 60*60*10
+
+[comment regionresource mr_tourmaline]
+skill 50.0,110.0
+amount 1,4
+reap i_gem_tourmaline
+regen 60*60*10
+
+[EOF]

@@ -1,0 +1,1111 @@
+// ----------------------------
+// Lyn Crafting Dialogs
+// Admin Lyn
+// ----------------------------
+VERSION=0.55
+
+[function d_tailor]
+src.tag.makelast <src.tag.makelast>
+var.notice yaninizdaki 'cloth' adedi: <src.rescount i_cloth>, tailoring bilginiz: %<src.tailoring>
+src.dialogclose d_tailor
+dialog d_tailor
+
+[dialog d_tailor]
+0,40
+
+page 0
+resizepic 50 10 5120 595 400 // dis lacivert bg
+resizepic 60 20 3000 575 380 
+
+resizepic 200 55 3000 420 260 // item cercevesi yenii
+
+htmlgump 205 326 410 40 1 0 0 // notices tekst
+resizepic 199 325 3000 421 40 // noticess yeniii
+
+htmlgump 200 30 210 20 0 0 0 // baslik seysi
+
+htmlgump 233 373 100 20 2 0 0 // tekrar yap
+htmlgump 558 373 25 20 70 0 0 // cikis
+
+button 200 370 4030 4031 1 0 98 // tekrar
+button 589 370 4018 4019 1 0 0 // cikis butonu
+
+
+button 70 75 4006 4007 0 1 1 // hats
+button 70 95 4006 4007 0 2 1 // shirts
+button 70 115 4006 4007 0 3 1 // pants
+button 70 135 4006 4007 0 4 1 // foot
+button 70 155 4006 4007 0 5 1 // leather
+button 70 175 4006 4007 0 6 1 // studded
+button 70 195 4006 4007 0 7 1 // female armor
+button 70 215 4006 4007 0 8 1 // bags
+button 70 235 4006 4007 0 9 1 // misc
+
+htmlgump 103 77 100 20 3 0 0 // 
+htmlgump 103 97 100 20 4 0 0 // 
+htmlgump 103 117 100 20 5 0 0 //
+htmlgump 103 137 100 20 6 0 0 // 
+htmlgump 103 157 100 20 7 0 0 // 
+htmlgump 103 177 100 20 8 0 0 //
+htmlgump 103 197 100 20 9 0 0 // 
+htmlgump 103 217 100 20 10 0 0 // 
+htmlgump 103 237 100 20 11 0 0 //
+
+
+page 1 //////////////////////////////////////////////////////// HATS
+htmlgump 80 278 100 20 3 0 0
+
+tilepic 235 80 5443 //
+button 210 100 2103 2104 1 0 10
+htmlgump 230 100 80 20 12 0 0
+
+tilepic 335 80 5440 // 
+button 310 100 2103 2104 1 0 11
+htmlgump 330 100 80 20 13 0 0
+
+tilepic 425 80 5907 //
+button 410 100 2103 2104 1 0 12
+htmlgump 430 100 80 20 14 0 0
+
+tilepic 535 80 5908 //
+button 510 100 2103 2104 1 0 13
+htmlgump 530 100 80 20 15 0 0
+
+tilepic 245 145 5911 // kat 2
+button 210 170 2103 2104 1 0 14
+htmlgump 230 170 80 20 16 0 0
+
+tilepic 345 145 5910 // 
+button 310 170 2103 2104 1 0 15
+htmlgump 330 170 80 20 17 0 0
+
+tilepic 430 145 5913 // 
+button 410 170 2103 2104 1 0 16
+htmlgump 430 170 80 20 18 0 0
+
+tilepic 535 145 5914 //
+button 510 170 2103 2104 1 0 17
+htmlgump 530 170 80 20 19 0 0
+
+tilepic 240 230 5915 // kat 3
+button 210 250 2103 2104 1 0 18
+htmlgump 235 250 80 20 20 0 0
+
+tilepic 345 230 5916 // 
+button 310 250 2103 2104 1 0 19
+htmlgump 330 250 80 20 21 0 0
+
+tilepic 425 230 5909 //
+button 410 250 2103 2104 1 0 20
+htmlgump 430 250 80 20 22 0 0
+
+tilepic 535 230 5912 // 
+button 510 250 2103 2104 1 0 21
+htmlgump 530 250 80 20 23 0 0
+
+
+page 2 //////////////////////////////////////////////////////// SHIRTS
+htmlgump 80 278 100 20 4 0 0
+
+tilepic 215 80 8059 //
+button 210 100 2103 2104 1 0 22
+htmlgump 230 100 80 20 24 0 0
+
+tilepic 335 80 5399 // 
+button 310 100 2103 2104 1 0 23
+htmlgump 330 100 80 20 25 0 0
+
+tilepic 425 80 7933 //
+button 410 100 2103 2104 1 0 24
+htmlgump 430 100 80 20 26 0 0
+
+tilepic 535 80 8097 //
+button 510 100 2103 2104 1 0 25
+htmlgump 530 100 80 20 27 0 0
+
+tilepic 245 145 8189 // kat 2
+button 210 170 2103 2104 1 0 26
+htmlgump 230 170 80 20 28 0 0
+
+tilepic 345 145 7937 // 
+button 310 170 2103 2104 1 0 27
+htmlgump 330 170 80 20 29 0 0
+
+tilepic 430 145 7935 // 
+button 410 170 2103 2104 1 0 28
+htmlgump 430 170 80 20 30 0 0
+
+tilepic 535 145 5397 //
+button 510 170 2103 2104 1 0 29
+htmlgump 530 170 100 20 31 0 0
+
+tilepic 240 230 7939 // kat 3
+button 210 250 2103 2104 1 0 30
+htmlgump 235 250 80 20 32 0 0
+
+tilepic 345 230 8095 // 
+button 310 250 2103 2104 1 0 31
+htmlgump 330 250 80 20 33 0 0
+
+page 3 //////////////////////////////////////////////////////// PANTS
+htmlgump 80 278 100 20 5 0 0
+
+tilepic 215 80 5422 //
+button 210 100 2103 2104 1 0 32
+htmlgump 230 100 80 20 34 0 0
+
+tilepic 335 80 5433 // 
+button 310 100 2103 2104 1 0 33
+htmlgump 330 100 80 20 35 0 0
+
+tilepic 425 80 5431 //
+button 410 100 2103 2104 1 0 34
+htmlgump 430 100 80 20 36 0 0
+
+tilepic 535 80 5398 //
+button 510 100 2103 2104 1 0 35
+htmlgump 530 100 80 20 37 0 0
+
+page 4 ////////////////////////////////////////////////////////  FOOT
+htmlgump 80 278 100 20 6 0 0
+
+tilepic 215 80 5901 //
+button 210 100 2103 2104 1 0 36
+htmlgump 230 100 80 20 38 0 0
+
+tilepic 335 80 5903 // 
+button 310 100 2103 2104 1 0 37
+htmlgump 330 100 80 20 39 0 0
+
+tilepic 425 80 5899 //
+button 410 100 2103 2104 1 0 38
+htmlgump 430 100 80 20 40 0 0
+
+tilepic 535 80 5905 //
+button 510 100 2103 2104 1 0 39
+htmlgump 530 100 80 20 41 0 0
+
+page 5 ////////////////////////////////////////////////////////  LEATHER
+htmlgump 80 278 100 20 7 0 0
+
+tilepic 235 80 5063 //
+button 210 100 2103 2104 1 0 40
+htmlgump 230 100 80 20 42 0 0
+
+tilepic 335 80 7609 // 
+button 310 100 2103 2104 1 0 41
+htmlgump 330 100 80 20 43 0 0
+
+tilepic 425 80 5062 //
+button 410 100 2103 2104 1 0 42
+htmlgump 430 100 80 20 44 0 0
+
+tilepic 535 80 5061 //
+button 510 100 2103 2104 1 0 43
+htmlgump 530 100 80 20 45 0 0
+
+tilepic 245 145 5067 // kat 2
+button 210 170 2103 2104 1 0 44
+htmlgump 230 170 80 20 46 0 0
+
+tilepic 345 145 5068 // 
+button 310 170 2103 2104 1 0 45
+htmlgump 330 170 80 20 47 0 0
+
+page 6 //////////////////////////////////////////////////////// 
+htmlgump 80 278 100 20 8 0 0
+
+tilepic 235 80 5078 //
+button 210 100 2103 2104 1 0 46
+htmlgump 230 100 80 20 48 0 0
+
+tilepic 335 80 5077 // 
+button 310 100 2103 2104 1 0 47
+htmlgump 330 100 80 20 49 0 0
+
+tilepic 425 80 5076 //
+button 410 100 2103 2104 1 0 48
+htmlgump 430 100 80 20 50 0 0
+
+tilepic 535 80 5082 //
+button 510 100 2103 2104 1 0 49
+htmlgump 530 100 80 20 51 0 0
+
+tilepic 245 145 5083 // kat 2
+button 210 170 2103 2104 1 0 50
+htmlgump 230 170 80 20 52 0 0
+
+page 7 //////////////////////////////////////////////////////// 
+htmlgump 80 278 100 20 9 0 0
+
+tilepic 235 80 7168 //
+button 210 100 2103 2104 1 0 51
+htmlgump 230 100 80 20 53 0 0
+
+tilepic 335 80 7176 // 
+button 310 100 2103 2104 1 0 52
+htmlgump 330 100 80 20 54 0 0
+
+tilepic 425 80 7178 //
+button 410 100 2103 2104 1 0 53
+htmlgump 430 100 80 20 55 0 0
+
+tilepic 535 80 7180 //
+button 510 100 2103 2104 1 0 54
+htmlgump 530 100 80 20 56 0 0
+
+tilepic 245 145 7174 // kat 2
+button 210 170 2103 2104 1 0 55
+htmlgump 230 170 80 20 57 0 0
+
+tilepic 345 145 7170 // 
+button 310 170 2103 2104 1 0 56
+htmlgump 330 170 80 20 58 0 0
+
+page 8 //////////////////////////////////////////////////////// 
+htmlgump 80 278 100 20 10 0 0
+
+tilepic 235 80 2482 //
+button 210 100 2103 2104 1 0 57
+htmlgump 230 100 80 20 59 0 0
+
+tilepic 335 80 3705 // 
+button 310 100 2103 2104 1 0 58
+htmlgump 330 100 80 20 60 0 0
+
+tilepic 425 80 3702 //
+button 410 100 2103 2104 1 0 59
+htmlgump 430 100 80 20 61 0 0
+
+page 9 //////////////////////////////////////////////////////// 
+htmlgump 80 278 100 20 11 0 0
+
+tilepic 235 80 5441 //
+button 210 100 2103 2104 1 0 60
+htmlgump 230 100 80 20 62 0 0
+
+tilepic 335 80 5435 // 
+button 310 100 2103 2104 1 0 61
+htmlgump 330 100 80 20 63 0 0
+
+tilepic 425 80 5437 //
+button 410 100 2103 2104 1 0 62
+htmlgump 430 100 80 20 64 0 0
+
+tilepic 535 80 3617 //
+button 510 100 2103 2104 1 0 63
+htmlgump 530 100 80 20 65 0 0
+
+tilepic 240 145 0204e // kat 2
+button 210 170 2103 2104 1 0 64
+htmlgump 230 170 80 20 66 0 0
+
+tilepic 345 145 0204e // 
+button 310 170 2103 2104 1 0 65
+htmlgump 330 170 80 20 67 0 0
+
+tilepic 445 135 7939 //  8440 ojinal
+button 410 170 2103 2104 1 0 66
+htmlgump 430 170 80 20 68 0 0
+
+tilepic 545 145 0204e // 
+button 510 170 2103 2104 1 0 67
+htmlgump 530 170 80 20 69 0 0
+	
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+
+[dialog d_tailor text]
+VALINOR TAILORING MENU 	//1
+<var.notice>
+Tekrar Yap
+Hats
+Shirts
+Pants
+Foot
+Leather
+Studded
+Female Ar.
+Bags 		// 10
+Misc.
+Skullcap
+Bandana
+Floopy hat
+Brim hat
+Straw hat
+T.Straw hat
+Bonnet
+Feathered h.
+Tricorne
+Jester hat
+Cap
+Wizard hat
+Doublet
+Shirt
+Fancy S.
+Tunic 
+Surcoat
+Plain dress
+Fancy dress			// 30
+Cloak
+Robe
+jester's suit
+Short pants
+Long pants
+Kilt
+Skirt
+Sandals
+Shoes
+Boots		// 40
+Thigh boots
+Gorget
+Cap
+Gloves
+Sleeves
+Leggings
+Tunic
+Gorget
+Gloves
+Sleeves		/
+Leggings
+Tunic
+Leat.Shorts
+Leat.Skirt
+Leat.Bustier
+Stud.Bustier
+Leat.Armor
+Stud.Armor
+Backpack
+Belt pouch
+Bag
+Body Slash
+Half Apron
+Full Apron
+Oil Cloth
+Mage robe
+Warlock robe
+Warrior robe
+Shroud robe
+Cikis
+
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+
+[dialog d_tailor button]
+On=0
+src.sysmessage @1153 Menu kapatildi..
+
+On=1
+var.notice blacksmith ile son yaptiginiz esyayi hatirlayamiyorsunuz.
+dialog d_tailor
+
+On=10
+IF (<SRC.TAILORING> < 0.1)
+	var.notice skull cap yapimi icin %0.1 tailoring bilmeniz gerekli.
+elseif !(<src.restest 2 i_cloth>)
+	var.notice skull cap yapimi icin 2 adet 'cloth' gerekli.
+else
+	var.notice skull cap yapmaya basladiniz.
+	src.makeitem i_skull_cap
+	src.tag.makelast=i_skull_cap
+endif
+dialog d_tailor
+
+On=11
+IF (<SRC.TAILORING> < 0.2)
+	var.notice bandana yapimi icin %0.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 2 i_cloth>)
+	var.notice bandana yapimi icin 2 adet 'cloth' gerekli.
+else
+	var.notice bandana yapmaya basladiniz.
+	src.makeitem i_bandana
+	src.tag.makelast=i_bandana
+endif
+dialog d_tailor
+
+On=12
+IF (<SRC.TAILORING> < 6.8)
+	var.notice floopy hat yapimi icin %6.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 11 i_cloth>)
+	var.notice floopy hat icin 11 adet 'cloth' gerekli.
+else
+	var.notice floopy hat yapimi yapmaya basladiniz.
+	src.makeitem i_hat_floppy
+	src.tag.makelast=i_hat_floppy
+endif
+dialog d_tailor
+
+On=13
+IF (<SRC.TAILORING> < 6.8)
+	var.notice brim hat yapimi icin %6.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 11 i_cloth>)
+	var.notice brim hat yapimi icin 11 adet 'cloth' gerekli.
+else
+	var.notice brim hat yapmaya basladiniz.
+	src.makeitem i_hat_wide_brim
+	src.tag.makelast=i_hat_wide_brim
+endif
+dialog d_tailor
+
+On=14
+IF (<SRC.TAILORING> < 6.8)
+	var.notice straw hat yapimi icin %6.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 11 i_cloth>)
+	var.notice straw  hat yapimi icin 11 adet 'cloth' gerekli.
+else
+	var.notice straw hat yapmaya basladiniz.
+	src.makeitem i_hat_straw
+	src.tag.makelast=i_hat_straw
+endif
+dialog d_tailor
+
+On=15
+IF (<SRC.TAILORING> < 6.8)
+	var.notice tall straw hat yapimi icin %6.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 15 i_cloth>)
+	var.notice tall straw hat yapimi icin 15 adet 'cloth' gerekli.
+else
+	var.notice tall straw hat yapmaya basladiniz.
+	src.makeitem i_hat_straw_tall
+	src.tag.makelast=i_hat_straw_tall
+endif
+dialog d_tailor
+
+On=16
+IF (<SRC.TAILORING> < 6.8)
+	var.notice bonnet yapimi icin %6.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 15 i_cloth>)
+	var.notice bonnet yapimi icin 15 adet 'cloth' gerekli.
+else
+	var.notice bonnet yapmaya basladiniz.
+	src.makeitem i_bonnet
+	src.tag.makelast=i_bonnet
+endif
+dialog d_tailor
+
+
+On=17
+IF (<SRC.TAILORING> < 6.8)
+	var.notice feather hat yapimi icin %6.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 11 i_cloth>) || !(<src.restest 1 i_feather>)
+	var.notice feather hat yapimi icin 11 adet 'cloth' ve 1 adet 'kus tuyu' gerekli.
+else
+	var.notice feather hat yapmaya basladiniz.
+	src.makeitem i_hat_feather
+	src.tag.makelast=i_hat_feather
+endif
+dialog d_tailor
+
+
+On=18
+IF (<SRC.TAILORING> < 6.8)
+	var.notice tricorne yapimi icin %6.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 12 i_cloth>)
+	var.notice tricorne yapimi icin 12 adet 'cloth' gerekli.
+else
+	var.notice tricorne yapmaya basladiniz.
+	src.makeitem i_hat_tricorne
+	src.tag.makelast=i_hat_tricorne
+endif
+dialog d_tailor
+
+On=19
+IF (<SRC.TAILORING> < 7.8)
+	var.notice jester hat yapimi icin %7.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 15 i_cloth>)
+	var.notice jester hat yapimi icin 15 adet 'cloth' gerekli.
+else
+	var.notice jester hat yapmaya basladiniz.
+	src.makeitem i_hat_jester
+	src.tag.makelast=i_hat_jester
+endif
+dialog d_tailor
+
+On=20
+IF (<SRC.TAILORING> < 7.8)
+	var.notice cap yapimi icin %7.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 15 i_cloth>) || !(<src.restest 1 i_THREAD>)
+	var.notice cap yapimi icin 15 adet 'cloth' ve 1 adet 'kus tuyu' gerekli.
+else
+	var.notice cap yapmaya basladiniz.
+	src.makeitem i_cap
+	src.tag.makelast=i_cap
+endif
+dialog d_tailor
+
+
+On=21
+IF (<SRC.TAILORING> < 90.0) && (<SRC.MAGERY> < 70.0)
+	var.notice wizard hat yapimi icin %90.0 tailoring,70.0 magery bilmeniz gerekli.
+elseif !(<src.restest 16 i_cloth>)
+	var.notice wizard hat yapimi icin 16 adet 'cloth' gerekli.
+else
+	var.notice wizard hat yapmaya basladiniz.
+	src.makeitem i_hat_wizards
+	src.tag.makelast=i_hat_wizards
+endif
+dialog d_tailor
+
+
+On=22
+IF (<SRC.TAILORING> < 22.8)
+	var.notice doublet yapimi icin %22.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 8 i_cloth>) 
+	var.notice doublet yapimi icin 8 adet 'cloth' gerekli.
+else
+	var.notice doublet yapmaya basladiniz.
+	src.makeitem i_doublet
+	src.tag.makelast=i_doublet
+endif
+dialog d_tailor
+
+
+On=23
+IF (<SRC.TAILORING> < 22.8)
+	var.notice shirt yapimi icin %22.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 8 i_cloth>) 
+	var.notice shirt yapimi icin 8 adet 'cloth' gerekli.
+else
+	var.notice shirt yapmaya basladiniz.
+	src.makeitem i_shirt_plain
+	src.tag.makelast=i_shirt_plain
+endif
+dialog d_tailor
+
+On=24
+IF (<SRC.TAILORING> < 27.8)
+	var.notice facny shirt yapimi icin %27.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 8 i_cloth>) 
+	var.notice facny shirt yapimi icin 8 adet 'cloth' gerekli.
+else
+	var.notice facny shirt yapmaya basladiniz.
+	src.makeitem i_shirt_fancy
+	src.tag.makelast=i_shirt_fancy
+endif
+dialog d_tailor
+
+On=25
+IF (<SRC.TAILORING> < 1.8)
+	var.notice tunic yapimi icin %1.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 12 i_cloth>) 
+	var.notice tunic yapimi icin 8 adet 'cloth' gerekli.
+else
+	var.notice tunic yapmaya basladiniz.
+	src.makeitem i_tunic
+	src.tag.makelast=i_tunic
+endif
+dialog d_tailor
+
+On=26
+IF (<SRC.TAILORING> < 26.8)
+	var.notice surcoat yapimi icin %26.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 15 i_cloth>) 
+	var.notice surcoat yapimi icin 15 adet 'cloth' gerekli.
+else
+	var.notice surcoat yapmaya basladiniz.
+	src.makeitem i_surcoat
+	src.tag.makelast=i_surcoat
+endif
+dialog d_tailor
+
+On=27
+IF (<SRC.TAILORING> < 36.8)
+	var.notice plain dress yapimi icin %35.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 13 i_cloth>) 
+	var.notice plain dress yapimi icin 13 adet 'cloth' gerekli.
+else
+	var.notice plain dress yapmaya basladiniz.
+	src.makeitem i_dress_plain
+	src.tag.makelast=i_dress_plain
+endif
+dialog d_tailor
+
+On=28
+IF (<SRC.TAILORING> < 13.8)
+	var.notice fancy dress yapimi icin %13.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 13 i_cloth>) 
+	var.notice fancy dress yapimi icin 13 adet 'cloth' gerekli.
+else
+	var.notice fancy dress yapmaya basladiniz.
+	src.makeitem i_dress_full
+	src.tag.makelast=i_dress_full
+endif
+dialog d_tailor
+
+On=29
+IF (<SRC.TAILORING> < 45.8)
+	var.notice cape yapimi icin %45.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 14 i_cloth>) 
+	var.notice cape yapimi icin 14 adet 'cloth' gerekli.
+else
+	var.notice cape yapmaya basladiniz.
+	src.makeitem i_cape
+	src.tag.makelast=i_cape
+endif
+dialog d_tailor
+
+On=30
+IF (<SRC.TAILORING> < 58.8)
+	var.notice robe yapimi icin %58.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 16 i_cloth>) 
+	var.notice robe yapimi icin 16 adet 'cloth' gerekli.
+else
+	var.notice robe yapmaya basladiniz.
+	src.makeitem i_robe
+	src.tag.makelast=i_robe
+endif
+dialog d_tailor
+
+On=31
+IF (<SRC.TAILORING> < 9.8)
+	var.notice jester suit yapimi icin %9.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 14 i_cloth>) 
+	var.notice jester suit yapimi icin 14 adet 'cloth' gerekli.
+else
+	var.notice jester suit yapmaya basladiniz.
+	src.makeitem i_jester_suit
+	src.tag.makelast=i_jester_suit
+endif
+dialog d_tailor
+
+On=32
+IF (<SRC.TAILORING> < 9.8)
+	var.notice short pants yapimi icin %9.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 6 i_cloth>) 
+	var.notice short pants yapimi icin 6 adet 'cloth' gerekli.
+else
+	var.notice short pants yapmaya basladiniz.
+	src.makeitem i_pants_short
+	src.tag.makelast=i_pants_short
+endif
+dialog d_tailor
+
+On=33
+IF (<SRC.TAILORING> < 27.8)
+	var.notice long pants yapimi icin %27.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 8 i_cloth>) 
+	var.notice long pants yapimi icin 8 adet 'cloth' gerekli.
+else
+	var.notice long pants yapmaya basladiniz.
+	src.makeitem i_pants_long
+	src.tag.makelast=i_pants_long
+endif
+dialog d_tailor
+
+On=34
+IF (<SRC.TAILORING> < 22.8)
+	var.notice kilt yapimi icin %22.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 8 i_cloth>) 
+	var.notice kilt yapimi icin 8 adet 'cloth' gerekli.
+else
+	var.notice kilt yapmaya basladiniz.
+	src.makeitem i_kilt
+	src.tag.makelast=i_kilt
+endif
+dialog d_tailor
+
+On=35
+IF (<SRC.TAILORING> < 31.8)
+	var.notice long skirt yapimi icin %31.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 10 i_cloth>) 
+	var.notice long skirt yapimi icin 10 adet 'cloth' gerekli.
+else
+	var.notice long skirt yapmaya basladiniz.
+	src.makeitem i_skirt_long
+	src.tag.makelast=i_skirt_long
+endif
+dialog d_tailor
+
+On=36
+IF (<SRC.TAILORING> < 13.8)
+	var.notice saldals yapimi icin %13.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 4 i_hides_cut>) || !(<src.restest 4 i_hide>)
+	var.notice saldals yapimi icin 4 adet 'hide' gerekli.
+else
+	var.notice saldals yapmaya basladiniz.
+	src.makeitem i_sandals
+	src.tag.makelast=i_sandals
+endif
+dialog d_tailor
+
+On=37
+IF (<SRC.TAILORING> < 18.8)
+	var.notice shoes yapimi icin %18.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 6 i_hides_cut>) || !(<src.restest 6 i_hide>)
+	var.notice shoes yapimi icin 6 adet 'hide' gerekli.
+else
+	var.notice shoes yapmaya basladiniz.
+	src.makeitem i_shoes_plain
+	src.tag.makelast=i_shoes_plain
+endif
+dialog d_tailor
+
+On=38
+IF (<SRC.TAILORING> < 36.8)
+	var.notice boots yapimi icin %36.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 8 i_hides_cut>) || !(<src.restest 8 i_hide>)
+	var.notice boots yapimi icin 8 adet 'hide' gerekli.
+else
+	var.notice boots yapmaya basladiniz.
+	src.makeitem i_boots_calf
+	src.tag.makelast=i_boots_calf
+endif
+dialog d_tailor
+
+On=39
+IF (<SRC.TAILORING> < 25.8)
+	var.notice thigh boots yapimi icin %25.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 10 i_hides_cut>) || !(<src.restest 10 i_hide>)
+	var.notice thigh boots yapimi icin 10 adet 'hide' gerekli.
+else
+	var.notice thigh boots yapmaya basladiniz.
+	src.makeitem i_boots_thigh
+	src.tag.makelast=i_boots_thigh
+endif
+dialog d_tailor
+
+On=40
+IF (<SRC.TAILORING> < 59.8)
+	var.notice leather gorget yapimi icin %59.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 4 i_hides_cut>) || !(<src.restest 4 i_hide>)
+	var.notice leather gorget yapimi icin 4 adet 'hide' gerekli.
+else
+	var.notice leather gorget yapmaya basladiniz.
+	src.makeitem i_leather_gorget
+	src.tag.makelast=i_leather_gorget
+endif
+dialog d_tailor
+
+On=41
+IF (<SRC.TAILORING> < 59.8)
+	var.notice leather cap yapimi icin %59.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 4 i_hides_cut>) || !(<src.restest 1 i_thread>)
+	var.notice leather cap yapimi icin 4 adet 'hide' ve 1 adet 'kus tuyu' gerekli.
+else
+	var.notice leather cap yapmaya basladiniz.
+	src.makeitem i_leather_cap
+	src.tag.makelast=i_leather_cap
+endif
+dialog d_tailor
+
+On=42
+IF (<SRC.TAILORING> < 56.8)
+	var.notice leather gloves yapimi icin %56.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 3 i_hides_cut>) || !(<src.restest 3 i_hide>)
+	var.notice leather gloves yapimi icin 3 adet 'hide' gerekli
+else
+	var.notice leather gloves yapmaya basladiniz.
+	src.makeitem i_leather_gloves
+	src.tag.makelast=i_leather_gloves
+endif
+dialog d_tailor
+
+On=43
+IF (<SRC.TAILORING> < 59.8)
+	var.notice leather sleeves yapimi icin %59.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 4 i_hides_cut>) || !(<src.restest 4 i_hide>)
+	var.notice leather sleeves yapimi icin 4 adet 'hide' gerekli
+else
+	var.notice leather sleeves yapmaya basladiniz.
+	src.makeitem i_leather_sleeves
+	src.tag.makelast=i_leather_sleeves
+endif
+dialog d_tailor
+
+On=44
+IF (<SRC.TAILORING> < 59.8)
+	var.notice leather leggings yapimi icin %59.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 10 i_hides_cut>) || !(<src.restest 10 i_hide>)
+	var.notice leather leggings yapimi icin 10 adet 'hide' gerekli
+else
+	var.notice leather leggings yapmaya basladiniz.
+	src.makeitem i_leather_leggings
+	src.tag.makelast=i_leather_leggings
+endif
+dialog d_tailor
+
+On=45
+IF (<SRC.TAILORING> < 77.8)
+	var.notice leather tunic yapimi icin %77.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 12 i_hides_cut>) || !(<src.restest 12 i_hide>)
+	var.notice leather tunic yapimi icin 12 adet 'hide' gerekli
+else
+	var.notice leather tunic yapmaya basladiniz.
+	src.makeitem i_leather_tunic
+	src.tag.makelast=i_leather_tunic
+endif
+dialog d_tailor
+
+On=46
+IF (<SRC.TAILORING> < 77.8)
+	var.notice studded gorget yapimi icin %77.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 6 i_hides_cut>) || !(<src.restest 6 i_hide>)
+	var.notice studded gorget yapimi icin 6 adet 'hide' gerekli
+else
+	var.notice studded gorget yapmaya basladiniz.
+	src.makeitem i_studded_gorget
+	src.tag.makelast=i_studded_gorget
+endif
+dialog d_tailor
+
+On=47
+IF (<SRC.TAILORING> < 81.8)
+	var.notice studded gloves yapimi icin %81.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 8 i_hides_cut>) || !(<src.restest 8 i_hide>)
+	var.notice studded gloves yapimi icin 8 adet 'hide' gerekli
+else
+	var.notice studded gloves yapmaya basladiniz.
+	src.makeitem i_studded_gloves
+	src.tag.makelast=i_studded_gloves
+endif
+dialog d_tailor
+
+On=48
+IF (<SRC.TAILORING> < 86.8)
+	var.notice studded sleeves yapimi icin %86.8 tailoring bilmeniz gerekli.
+elseif !(<src.restest 10 i_hides_cut>) || !(<src.restest 10 i_hide>)
+	var.notice studded sleeves yapimi icin 10 adet 'hide' gerekli
+else
+	var.notice studded sleeves yapmaya basladiniz.
+	src.makeitem i_studded_sleeves
+	src.tag.makelast=i_studded_sleeves
+endif
+dialog d_tailor
+
+On=49
+IF (<SRC.TAILORING> < 90.2)
+	var.notice studded leggings yapimi icin %90.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 12 i_hides_cut>) || !(<src.restest 12 i_hide>)
+	var.notice studded leggings yapimi icin 12 adet 'hide' gerekli
+else
+	var.notice studded leggings yapmaya basladiniz.
+	src.makeitem i_studded_leggings
+	src.tag.makelast=i_studded_leggings
+endif
+dialog d_tailor
+
+On=50
+IF (<SRC.TAILORING> < 95.2)
+	var.notice studded tunic yapimi icin %95.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 14 i_hides_cut>) || !(<src.restest 14 i_hide>)
+	var.notice studded tunic yapimi icin 14 adet 'hide' gerekli
+else
+	var.notice studded tunic yapmaya basladiniz.
+	src.makeitem i_studded_tunic
+	src.tag.makelast=i_studded_tunic
+endif
+dialog d_tailor
+
+On=51
+IF (<SRC.TAILORING> < 68.2)
+	var.notice female shorts yapimi icin %68.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 8 i_hides_cut>) || !(<src.restest 8 i_hide>)
+	var.notice female shorts yapimi icin 8 adet 'hide' gerekli
+else
+	var.notice female shorts yapmaya basladiniz.
+	src.makeitem i_armor_female_shorts
+	src.tag.makelast=i_armor_female_shorts
+endif
+dialog d_tailor
+
+On=52
+IF (<SRC.TAILORING> < 63.2)
+	var.notice female skirt yapimi icin %63.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 6 i_hides_cut>) || !(<src.restest 6 i_hide>)
+	var.notice female skirt yapimi icin 8 adet 'hide' gerekli
+else
+	var.notice female skirt yapmaya basladiniz.
+	src.makeitem i_armor_female_skirt
+	src.tag.makelast=i_armor_female_skirt
+endif
+dialog d_tailor
+
+On=53
+IF (<SRC.TAILORING> < 63.2)
+	var.notice female bustier yapimi icin %63.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 6 i_hides_cut>) || !(<src.restest 6 i_hide>)
+	var.notice female bustier yapimi icin 8 adet 'hide' gerekli
+else
+	var.notice female bustier yapmaya basladiniz.
+	src.makeitem i_armor_female_bustier
+	src.tag.makelast=i_armor_female_bustier
+endif
+dialog d_tailor
+
+On=54
+IF (<SRC.TAILORING> < 81.2)
+	var.notice studded female bustier yapimi icin %81.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 8 i_hides_cut>) || !(<src.restest 8 i_hide>)
+	var.notice studded female bustier yapimi icin 8 adet 'hide' gerekli
+else
+	var.notice studded female bustier yapmaya basladiniz.
+	src.makeitem i_armor_female_bustier_studded
+	src.tag.makelast=i_armor_female_bustier_studded
+endif
+dialog d_tailor
+
+On=55
+IF (<SRC.TAILORING> < 86.2)
+	var.notice female leather armor yapimi icin %86.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 8 i_hides_cut>) || !(<src.restest 8 i_hide>)
+	var.notice female leather armor yapimi icin 8 adet 'hide' gerekli
+else
+	var.notice female leather armor yapmaya basladiniz.
+	src.makeitem i_armor_female_leather
+	src.tag.makelast=i_armor_female_leather
+endif
+dialog d_tailor
+
+On=56
+IF (<SRC.TAILORING> < 86.2)
+	var.notice female studded armor yapimi icin %86.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 8 i_hides_cut>) || !(<src.restest 8 i_hide>)
+	var.notice female studded armor yapimi icin 8 adet 'hide' gerekli
+else
+	var.notice female studded armor yapmaya basladiniz.
+	src.makeitem i_armor_female_studded
+	src.tag.makelast=i_armor_female_studded
+endif
+dialog d_tailor
+
+On=57
+IF (<SRC.TAILORING> < 15.2)
+	var.notice backpack yapimi icin %15.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 4 i_hides_cut>) || !(<src.restest 4 i_hide>)
+	var.notice backpack yapimi icin 4 adet 'hide' gerekli
+else
+	var.notice backpack yapmaya basladiniz.
+	src.makeitem i_backpack
+	src.tag.makelast=i_backpack
+endif
+dialog d_tailor
+
+On=58
+IF (<SRC.TAILORING> < 10.2)
+	var.notice pouch yapimi icin %10.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 4 i_hides_cut>) || !(<src.restest 4 i_hide>)
+	var.notice pouch yapimi icin 4 adet 'hide' gerekli
+else
+	var.notice pouch yapmaya basladiniz.
+	src.makeitem i_pouch
+	src.tag.makelast=i_pouch
+endif
+dialog d_tailor
+
+On=59
+IF (<SRC.TAILORING> < 10.2)
+	var.notice bag yapimi icin %10.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 4 i_hides_cut>) || !(<src.restest 4 i_hide>)
+	var.notice bag yapimi icin 4 adet 'hide' gerekli
+else
+	var.notice bag yapmaya basladiniz.
+	src.makeitem i_bag
+	src.tag.makelast=i_bag
+endif
+dialog d_tailor
+
+On=60
+IF (<SRC.TAILORING> < 4.2)
+	var.notice body slash yapimi icin %4.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 4 i_cloth>)
+	var.notice body slash yapimi icin 4 adet 'cloth' gerekli
+else
+	var.notice body slash yapmaya basladiniz.
+	src.makeitem i_sash
+	src.tag.makelast=i_sash
+endif
+dialog d_tailor
+
+On=61
+IF (<SRC.TAILORING> < 22.2)
+	var.notice half apron yapimi icin %22.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 7 i_cloth>)
+	var.notice half apron yapimi icin 7 adet 'cloth' gerekli
+else
+	var.notice half apron yapmaya basladiniz.
+	src.makeitem i_apron_half
+	src.tag.makelast=i_apron_half
+endif
+dialog d_tailor
+
+On=62
+IF (<SRC.TAILORING> < 31.2)
+	var.notice full apron yapimi icin %31.2 tailoring bilmeniz gerekli.
+elseif !(<src.restest 10 i_cloth>)
+	var.notice full apron yapimi icin 10 adet 'cloth' gerekli
+else
+	var.notice full apron yapmaya basladiniz.
+	src.makeitem i_apron_full
+	src.tag.makelast=i_apron_full
+endif
+dialog d_tailor
+
+On=63
+IF (<SRC.TAILORING> < 74.6)
+	var.notice oil cloth yapimi icin %74.6 tailoring bilmeniz gerekli.
+elseif !(<src.restest 1 i_cloth>)
+	var.notice oil cloth yapimi icin 1 adet 'cloth' gerekli
+else
+	var.notice oil cloth yapmaya basladiniz.
+	src.makeitem i_oil_cloth
+	src.tag.makelast=i_oil_cloth
+endif
+dialog d_tailor
+
+On=64
+IF (<SRC.TAILORING> < 98.0)
+	var.notice mage robe yapimi icin %98.0 tailoring bilmeniz gerekli.
+elseif !(<src.restest 40 i_cloth>) || !(<src.restest 1 i_mageitem1>) || !(<src.restest 1 i_mageitem2>)
+	var.notice mage robe yapimi icin 40 adet 'cloth' 1 adet 'Cloth of Triton' 1 adet 'Cyrstal of Triton' gerekli
+else
+	var.notice mage robe yapmaya basladiniz.
+	src.makeitem i_robe_mage
+	src.tag.makelast=i_robe_mage
+endif
+dialog d_tailor
+
+On=65
+IF (<SRC.TAILORING> < 98.0)
+	var.notice warlock robe yapimi icin %98.0 tailoring bilmeniz gerekli.
+elseif !(<src.restest 40 i_cloth>) || !(<src.restest 1 i_warlockitem1>) || !(<src.restest 1 i_warlockitem2>)
+	var.notice warlock robe yapimi icin 40 adet 'cloth' 1 adet 'Cloth of Kentauros' 1 adet 'Cyrstal of Kentauros' gerekli
+else
+	var.notice warlock robe yapmaya basladiniz.
+	src.makeitem i_robe_warlock
+	src.tag.makelast=i_robe_warlock
+endif
+dialog d_tailor
+
+On=66
+IF (<SRC.TAILORING> < 98.0)
+	var.notice warrior robe yapimi icin %98.0 tailoring bilmeniz gerekli.
+elseif !(<src.restest 40 i_cloth>) || !(<src.restest 1 i_warrioritem1>) || !(<src.restest 1 i_warrioritem2>)
+	var.notice warrior robe yapimi icin 40 adet 'cloth' 1 adet 'Cloth of  Khimaira' 1 adet 'Cyrstal of Khimaira' gerekli
+else
+	var.notice warrior robe yapmaya basladiniz.
+	src.makeitem i_robe_warrior
+	src.tag.makelast=i_robe_warrior
+endif
+dialog d_tailor
+
+On=67
+IF (<SRC.TAILORING> < 98.0)
+	var.notice shroud  robe yapimi icin %98.0 tailoring bilmeniz gerekli.
+elseif !(<src.restest 40 i_cloth>)
+	var.notice shroud robe yapimi icin 40 adet 'cloth' gerekli
+else
+	var.notice shroud robe yapmaya basladiniz.
+	src.makeitem i_robe_shroud
+	src.tag.makelast=i_robe_shroud
+endif
+dialog d_tailor
+
+
+ON=98
+	src.makeitem=<src.tag.makelast>
+	dialog d_tailor
+	var.notice tekrar yapmaya basladiniz..
+return 1
+
+
+[EOF]

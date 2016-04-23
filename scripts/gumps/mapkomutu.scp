@@ -1,0 +1,19 @@
+[plevel 1]
+map
+
+[function map]
+src.dialog mapdlg
+
+[dialog mapdlg]
+0,0
+nomove
+resizepic 0 0 3181 403 434 //1904 //3181
+gumppic 10 10 5528 //5528
+gumppic <eval (10+((<p.x>*100)/1337))> <eval (10+((<p.y>*100)/1067))> 2362
+text 20 400 455 0
+
+[dialog mapdlg text]
+Suan <region.name> civarlarindasiniz.
+
+[dialog mapdlg button]
+on=0

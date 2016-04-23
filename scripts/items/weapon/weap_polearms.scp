@@ -1,0 +1,488 @@
+[itemdef i_silver_halb]
+name silver halberd
+id i_halberd
+type 13
+dam 5,49
+skill Swordsmanship
+reqstr 40
+twohands Y
+weight 12
+resources 20 i_ingot_silver
+skillmake BLACKSMITHING 80.0
+
+On=@Create
+hitpoints 25
+color 03e9
+
+On=@Damage
+if (<src.npc> == brain_undead)
+	src.damage {18 50}
+	src.effect 3,i_fx_sparkle,6,15,1
+	src.spelleffect s_poison 50.0
+endif
+
+on=@equip
+src.events +e_dismount
+
+on=@unequip
+src.events -e_dismount
+
+[itemdef 0f4d]
+defname i_bardiche
+resources 18 i_ingot_iron
+type T_WEAPON_SWORD
+flip 1
+dam 5,43
+skill Swordsmanship
+reqstr 70
+twohands Y
+weight 11
+category Provisions - Weapons
+subsection Polearms
+description Bardiche
+skillmake blacksmithing 57.3
+dupelist 0f4e
+
+On=@Create
+hitpoints 25
+
+on=@equip
+src.events +e_dismount
+
+on=@unequip
+src.events -e_dismount
+
+[itemdef 0f4e] // bardiche
+dupeitem 0f4d
+
+[itemdef 0143e]
+defname i_halberd
+resources 20 i_ingot_iron
+weight 11.2
+type T_WEAPON_SWORD
+flip 1
+dam 5,49
+skill Swordsmanship
+reqstr 45
+twohands Y
+category Provisions - Weapons
+subsection Polearms
+description Halberd
+dupelist 0143f
+skillmake blacksmithing 64.4
+//RESOURCES2=6 i_ingot_iron,2 i_board
+
+On=@Create
+hitpoints 25
+
+on=@equip
+src.events +e_dismount
+
+on=@unequip
+src.events -e_dismount
+
+[itemdef 0143f] // halberd
+dupeitem 0143e
+
+[itemdef 04114]
+defname i_BARDICHE_RUIN
+value 1500
+id i_bardiche
+name magical bardiche
+resources i_bardiche,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic bardiches
+description bardiche of ruin
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 20.0
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+	src.events +e_dismount
+color 02bc
+
+On=@unEquip
+	src.events -e_dismount
+
+[itemdef 04115]
+defname i_BARDICHE_MIGHT
+value 3700
+id i_bardiche
+name magical bardiche
+resources i_bardiche,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic bardiches
+description bardiche of might
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+	src.events +e_dismount
+
+On=@unEquip
+	src.events -e_dismount
+color 0373
+
+[itemdef 04116]
+defname i_BARDICHE_FORCE
+value 5000
+id i_bardiche
+name magical bardiche
+resources i_bardiche,3 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic bardiches
+description bardiche of force
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click 
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+	src.events +e_dismount
+color 070d
+
+On=@unEquip
+	src.events -e_dismount
+
+[itemdef 04117]
+defname i_BARDICHE_POWER
+value 7500
+id i_bardiche
+name magical bardiche
+resources i_bardiche,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic bardiches
+description bardiche of power
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+	src.events +e_dismount
+color 075d
+
+On=@unEquip
+	src.events -e_dismount
+
+[itemdef 04118]
+defname i_BARDICHE_vanq
+value 10000
+id i_bardiche
+name magical bardiche
+resources i_bardiche,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic bardiches
+description bardiche of vanquishing
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+	src.events +e_dismount
+color 0454
+
+On=@unEquip
+	src.events -e_dismount
+
+[itemdef 04111]
+defname i_HALBERD_RUIN
+value 1500
+id i_halberd
+name magical halberd
+resources i_halberd,i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic halberds
+description halberd of ruin
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 20.0
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+	src.events +e_dismount
+color 02bc
+
+On=@unEquip
+	src.events -e_dismount
+
+[itemdef 04112]
+defname i_HALBERD_MIGHT
+value 3700
+id i_halberd
+name magical halberd
+resources i_halberd,2 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic halberds
+description halberd of might
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 40.0
+color 0373
+
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+	src.events +e_dismount
+
+On=@unEquip
+	src.events -e_dismount
+color 0373
+
+[itemdef 04107]
+defname i_HALBERD_FORCE
+value 5000
+id i_halberd
+name magical halberd
+resources i_halberd,3 i_enchant_weapon
+
+description halberd of force
+subsection Magic halberds
+category Provisions - Weapons - Magic
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 60.0
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+	src.events +e_dismount
+color 070d
+
+On=@unEquip
+	src.events -e_dismount
+
+[itemdef 04113]
+defname i_HALBERD_POWER
+value 7500
+id i_halberd
+name magical halberd
+resources i_halberd,4 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic halberds
+description halberd of power
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 80.0
+color 075d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+	src.events +e_dismount
+color 075d
+
+On=@unEquip
+	src.events -e_dismount
+
+[itemdef 04108]
+defname i_HALBERD_vanq
+value 10000
+id i_halberd
+name magical halberd 
+resources i_halberd,5 i_enchant_weapon
+
+category Provisions - Weapons - Magic
+subsection Magic halberds
+description halberd of vanquishing
+
+On=@Create
+hitpoints 25
+attr attr_magic
+morey 100.0
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Equip
+if (<src.swordsmanship> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+	src.events +e_dismount
+color 0454
+
+On=@unEquip
+	src.events -e_dismount
+
+[EOF]

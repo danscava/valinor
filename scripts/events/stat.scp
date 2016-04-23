@@ -1,0 +1,355 @@
+// ----------------------------
+// STAT.SCP - STAT CAP SISTEMI
+// SON GUNCELLENME TARIHI: 25 Haziran 2005 [Noxier]
+// ----------------------------
+VERSION=0.55
+
+[plevel 1]
+stat
+
+
+[function stat]
+stchk
+if (<isevent.e_str>)
+	sysmessage Su an str'niz dusus durumunda.
+elseif (<isevent.e_dex>)
+	sysmessage Su an dex'iniz dusus durumunda.
+elseif (<isevent.e_int>)
+	sysmessage Su an int'iniz dusus durumunda.
+elseif (<isevent.e_spr>)
+	sysmessage Su an statlariniz koruma altinda.
+else
+	sysmessage Henuz statlarinizla ilgili ayar yapmadiniz.
+endif
+dialog d_stat
+
+[function stchk]
+if !(<findlayer(32)> || <findlayer(44)> || <findlayer(47)>)
+	if (<str> > 100)
+		str 100
+	elseif (<dex> > 100)
+		dex 100
+	elseif (<int> > 100)
+		int 100
+	endif
+endif
+
+// Gump
+
+[DIALOG d_statdusur]
+0,0
+resizepic 118 104 83 240 155
+resizepic 125 113 3000 228 137
+resizepic 130 119 3500 220 130
+htmlgump 180 159 200 20 0 0 0
+htmlgump 180 180 200 20 1 0 0
+htmlgump 180 201 200 20 2 0 0
+htmlgump 165 130 250 20 3 0 0
+button 153 161 1210 1210 1 1 1
+button 153 181 1210 1210 1 1 2
+button 153 201 1210 1210 1 1 3
+
+[Dialog d_statdusur TEXT]
+Str dusur(-1)
+Dex dusur(-1)
+Int dusur (-1)
+Statlarinizi ayarlayiniz.
+
+[Dialog d_statdusur BUTTON]
+onbutton=0
+src.stat
+ONBUTTON=1
+if (<src.str> > 25)
+SRC.STR=(<SRC.STR> -1)
+SRC.SYSMESSAGE Strenghtiniz bir dusurulmustur.
+src.dialog d_statdusur
+else
+src.dialog d_statdusur
+src.smg Daha fazla dusuremezsiniz...
+return 1
+endif
+
+ONBUTTON=2
+if (<src.dex> > 25)
+SRC.DEX=(<SRC.DEX> -1)
+SRC.SYSMESSAGE Dexterityniz bir dusurulmustur.
+src.dialog d_statdusur
+else
+src.dialog d_statdusur
+src.sysmessage Daha fazla dusuremezsiniz...
+endif
+ONBUTTON=3
+if (<src.int> > 25)
+SRC.INT=(<SRC.INT> -1)
+SRC.SYSMESSAGE Intelligenceniz bir dusurulmustur.
+src.dialog d_statdusur
+else
+src.dialog d_statdusur
+src.smg Daha fazla dusuremezsiniz...
+endif
+
+[dialog d_stat]
+100,100
+
+resizepic 0 0 5100 300 210
+resizepic 11 9 3000 280 190
+//resizepic 10 12 3500 280 60
+//resizepic 10 65 3500 280 130
+
+htmlgump 35 25 100 20 0 0 0
+htmlgump 35 40 250 20 1 0 0
+
+	button 35 83 1210 1210 1 0 1 // STR
+	htmlgump 45 80 200 20 2 0 0
+	button 35 103 1210 1210 1 0 3 // INT
+	htmlgump 45 100 130 20 4 0 0
+	button 35 123 1210 1210 1 0 2 // DEX
+	htmlgump 45 120 200 20 3 0 0
+	button 35 143 1210 1210 1 0 4 // Koru
+	htmlgump 45 140 200 20 5 0 0
+	button 35 163 1210 1210 1 0 5 // dusur
+	htmlgump 45 160 150 20 6 0 0
+
+[dialog d_stat text]
+Statcap 225 dir 
+Dususe gecmesini istediginiz stati secin
+  Strength [<src.str>]
+  Dexterity [<src.dex>]
+  Intelligence [<src.int>]
+  Statlarimi korumaya al
+  Statlarimi dusur
+
+
+[dialog d_stat button]
+On=1
+if (<flags>&statf_dead)
+	sysmessage Bu islemi olu iken yapamazsiniz.
+	return 1
+endif
+if (<findlayer(32)> || <findlayer(44)> || <findlayer(47)>)
+	sysmessage Statlarinizi etkileyen bir buyunun etkisi
+	sysmessage altindayken bu secenegi kullanamazsiniz.
+	return 1
+endif
+sysmessage Strength'nizi dususe aldiniz.
+events +e_str
+events -e_dex
+events -e_int
+events -e_spr
+
+On=2
+if (<flags>&statf_dead)
+	sysmessage Bu islemi olu iken yapamazsiniz.
+	return 1
+endif
+if (<findlayer(32)> || <findlayer(44)> || <findlayer(47)>)
+	sysmessage Statlarinizi etkileyen bir buyunun etkisi
+	sysmessage altindayken bu secenegi kullanamazsiniz.
+	return 1
+endif
+sysmessage Dexterity'inizi dususe aldiniz.
+events -e_str
+events +e_dex
+events -e_int
+events -e_spr
+
+On=3
+if (<flags>&statf_dead)
+	sysmessage Bu islemi olu iken yapamazsiniz.
+	return 1
+endif
+if (<findlayer(32)> || <findlayer(44)> || <findlayer(47)>)
+	sysmessage Statlarinizi etkileyen bir buyunun etkisi
+	sysmessage altindayken bu secenegi kullanamazsiniz.
+	return 1
+endif
+sysmessage Intelligence'inizi dususe aldiniz.
+events -e_str
+events -e_dex
+events +e_int
+events -e_spr
+
+On=4
+if (<flags>&statf_dead)
+	sysmessage Bu islemi olu iken yapamazsiniz.
+	return 1
+endif
+if (<findlayer(32)> || <findlayer(44)> || <findlayer(47)>)
+	sysmessage Statlarinizi etkileyen bir buyunun etkisi
+	sysmessage altindayken bu secenegi kullanamazsiniz.
+	return 1
+endif
+findlayer(1).bounce
+findlayer(2).bounce
+findlayer(3).bounce
+findlayer(4).bounce
+findlayer(5).bounce
+findlayer(6).bounce
+findlayer(7).bounce
+findlayer(8).bounce
+findlayer(10).bounce
+findlayer(12).bounce
+findlayer(13).bounce
+findlayer(14).bounce
+findlayer(17).bounce
+findlayer(18).bounce
+findlayer(19).bounce
+findlayer(20).bounce
+findlayer(22).bounce
+findlayer(23).bounce
+findlayer(24).bounce
+var.stats <eval(<str>+<int>+<dex>)>
+if (<eval <var.stats>> == 225)
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage
+	sysmessage Stat'lariniz korumaya alindi.
+	tag.ostr <str>
+	tag.odex <dex>
+	tag.oint <int>
+	events -e_str
+	events -e_dex
+	events -e_int
+	events +e_spr
+else
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage
+sysmessage Bu secenegi kullanabilmeniz icin stat toplaminizin 225 olmasi gerekiyor.
+dialog d_stat
+endif
+
+on=5
+dialog d_statdusur
+
+// Eventz
+
+[events e_spr]
+On=@SkillStart
+if (<findlayer(32)> || <findlayer(44)> || <findlayer(47)>)
+	return 0
+else
+	str <tag.ostr>
+	int <tag.oint>
+	dex <tag.odex>
+endif
+
+On=@EnvironChange
+var.stats <eval(<tag.ostr>+<tag.oint>+<tag.odex>)>
+if !(<eval <var.stats>> == 225)
+	events -e_spr
+	sysmessage Stat'lariniz artik korunmuyor.
+	tag.ostr
+	tag.oint
+	tag.odex
+endif
+
+[events e_str]
+On=@SkillStart
+if (<findlayer(32)> || <findlayer(44)> || <findlayer(47)>)
+	return 0
+endif
+
+var.stats <eval (<str> + <int> + <dex>)>
+if (<eval <var.stats>> > 225)
+	statcapstr
+endif
+
+[events e_dex]
+On=@SkillStart
+if (<findlayer(32)> || <findlayer(44)> || <findlayer(47)>)
+	return 0
+endif
+
+var.stats <eval (<str> + <int> + <dex>)>
+if (<eval <var.stats>> > 225)
+	statcapdex
+endif
+
+[events e_int]
+On=@SkillStart
+if (<findlayer(32)> || <findlayer(44)> || <findlayer(47)>)
+	return 0
+endif
+
+var.stats <eval (<str> + <int> + <dex>)>
+if (<eval <var.stats>> > 225)
+	statcapint
+endif
+
+// Functionz
+
+[function statcapstr]
+if (<str> > 25)
+	str (<str> - 1)
+	var.stats <eval (<str>+<int>+<dex>)>
+	if (<eval <var.stats>> > 225)
+		statcapstr
+	endif
+endif
+
+[function statcapdex]
+if (<dex> > 25)
+	dex (<dex> - 1)
+	var.stats <eval (<str>+<int>+<dex>)>
+	if (<eval <var.stats>> > 225)
+		statcapdex
+	endif
+endif
+
+[function statcapint]
+if (<int> > 25)
+	int (<int> - 1)
+	var.stats <eval (<str>+<int>+<dex>)>
+	if (<eval <var.stats>> > 225)
+		statcapint
+	endif
+endif
+
+[EOF]

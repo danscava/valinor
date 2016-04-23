@@ -1,0 +1,2426 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Buyulu Armorlar	--
+// -- Son Düzenleme Tarihi : 18.08.2004		--
+// -----------------------------------------------
+VERSION=0.55
+
+[ITEMDEF i_enchant_armor]
+// ARMOR ENHANCER - good for 20 percent skill enchant.
+ID=i_virtstone_1
+VALUE=40	// set price per level of magic enhancement.
+
+[ITEMDEF 04905]
+DEFNAME=i_BUCKLER_SHIELD_DEFENSE
+ID=i_shield_buckler
+NAME=buckler
+RESOURCES=i_shield_buckler,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Buckler
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=55
+	COLOR=color_magic_defense
+
+[ITEMDEF 04906]
+DEFNAME=i_BUCKLER_SHIELD_GUARDING
+ID=i_shield_buckler
+NAME=buckler
+RESOURCES=i_shield_buckler,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Buckler
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=60
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04907]
+DEFNAME=i_BUCKLER_SHIELD_HARDENING
+ID=i_shield_buckler
+NAME=buckler
+RESOURCES=i_shield_buckler,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Buckler
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=65
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04908]
+DEFNAME=i_BUCKLER_SHIELD_FORTIFICATION
+ID=i_shield_buckler
+NAME=buckler
+RESOURCES=i_shield_buckler,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Buckler
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=70
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04909]
+DEFNAME=i_BUCKLER_SHIELD_INVULNERABILITY
+ID=i_shield_buckler
+NAME=buckler
+RESOURCES=i_shield_buckler,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Buckler
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=75
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04910]
+DEFNAME=i_WOODEN_SHIELD_DEFENSE
+ID=i_shield_wood
+NAME=wooden shield
+RESOURCES=i_shield_wood,1 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Wooden Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS={21 23}
+	COLOR=color_magic_defense
+
+[ITEMDEF 04911]
+DEFNAME=i_WOODEN_SHIELD_GUARDING
+ID=i_shield_wood
+NAME=wooden shield
+RESOURCES=i_shield_wood,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Wooden Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=30
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04912]
+DEFNAME=i_WOODEN_SHIELD_HARDENING
+ID=i_shield_wood
+NAME=wooden shield
+RESOURCES=i_shield_wood,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Wooden Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=35
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04913]
+DEFNAME=i_WOODEN_SHIELD_FORTIFICATION
+ID=i_shield_wood
+NAME=wooden shield
+RESOURCES=i_shield_wood,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Wooden Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=40
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04914]
+DEFNAME=i_WOODEN_SHIELD_INVULNERABILITY
+ID=i_shield_wood
+NAME=wooden shield
+RESOURCES=i_shield_wood,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Wooden Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=45
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04915]
+DEFNAME=i_BRONZE_SHIELD_DEFENSE
+ID=i_shield_round_bronze
+NAME=bronze shield
+RESOURCES=i_shield_round_bronze,1 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Bronze Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=35
+	COLOR=color_magic_defense
+
+[ITEMDEF 04916]
+DEFNAME=i_BRONZE_SHIELD_GUARDING
+ID=i_shield_round_bronze
+NAME=bronze shield
+RESOURCES=i_shield_round_bronze,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Bronze Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=40
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04917]
+DEFNAME=i_BRONZE_SHIELD_HARDENING
+ID=i_shield_round_bronze
+NAME=bronze shield
+RESOURCES=i_shield_round_bronze,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Bronze Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=45
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04918]
+DEFNAME=i_BRONZE_SHIELD_FORTIFICATION
+ID=i_shield_round_bronze
+NAME=bronze shield
+RESOURCES=i_shield_round_bronze,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Bronze Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=50
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04919]
+DEFNAME=i_BRONZE_SHIELD_INVULNERABILITY
+ID=i_shield_round_bronze
+NAME=bronze shield
+RESOURCES=i_shield_round_bronze,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Bronze Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=55
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04920]
+DEFNAME=i_METAL_SHIELD_DEFENSE
+ID=i_shield_round_metal
+NAME=metal shield
+RESOURCES=i_shield_round_metal,1 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Metal Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=70
+	COLOR=color_magic_defense
+
+[ITEMDEF 04921]
+DEFNAME=i_METAL_SHIELD_GUARDING
+ID=i_shield_round_metal
+NAME=metal shield
+RESOURCES=i_shield_round_metal,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Metal Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=75
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04922]
+DEFNAME=i_METAL_SHIELD_HARDENING
+ID=i_shield_round_metal
+NAME=metal shield
+RESOURCES=i_shield_round_metal,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Metal Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=80
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04923]
+DEFNAME=i_METAL_SHIELD_FORTIFICATION
+ID=i_shield_round_metal
+NAME=metal shield
+RESOURCES=i_shield_round_metal,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Metal Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=85
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04924]
+DEFNAME=i_METAL_SHIELD_INVULNERABILITY
+ID=i_shield_round_metal
+NAME=metal shield
+RESOURCES=i_shield_round_metal,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Metal Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=90
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04925]
+DEFNAME=i_METAL_KITE_SHIELD_DEFENSE
+ID=I_SHIELD_KITE_METAL
+NAME=kite shield
+RESOURCES=i_shield_kite_metal,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Metal Kite Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=35
+	COLOR=color_magic_defense
+
+[ITEMDEF 04926]
+DEFNAME=i_METAL_KITE_SHIELD_GUARDING
+ID=I_SHIELD_KITE_METAL
+NAME=kite shield
+RESOURCES=i_shield_kite_metal,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Metal Kite Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=40
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04927]
+DEFNAME=i_METAL_KITE_SHIELD_HARDENING
+ID=I_SHIELD_KITE_METAL
+NAME=kite shield
+RESOURCES=i_shield_kite_metal,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Metal Kite Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=45
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04928]
+DEFNAME=i_METAL_KITE_SHIELD_FORTIFICATION
+ID=I_SHIELD_KITE_METAL
+NAME=kite shield
+RESOURCES=i_shield_kite_metal,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Metal Kite Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=50
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04929]
+DEFNAME=i_METAL_KITE_SHIELD_INVULNERABILITY
+ID=I_SHIELD_KITE_METAL
+NAME=kite shield
+RESOURCES=i_shield_kite_metal,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Metal Kite Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=55
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04930]
+DEFNAME=i_WOODEN_KITE_SHIELD_DEFENSE
+ID=I_SHIELD_KITE_WOOD
+NAME=kite shield
+RESOURCES=i_shield_kite_wood,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Wooden Kite Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=60
+	COLOR=color_magic_defense
+
+[ITEMDEF 04931]
+DEFNAME=i_WOODEN_KITE_SHIELD_GUARDING
+ID=I_SHIELD_KITE_WOOD
+NAME=kite shield
+RESOURCES=i_shield_kite_wood,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Wooden Kite Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=65
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04932]
+DEFNAME=i_WOODEN_KITE_SHIELD_HARDENING
+ID=I_SHIELD_KITE_WOOD
+NAME=kite shield
+RESOURCES=i_shield_kite_wood,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Wooden Kite Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=70
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04933]
+DEFNAME=i_WOODEN_KITE_SHIELD_FORTIFICATION
+ID=I_SHIELD_KITE_WOOD
+NAME=kite shield
+RESOURCES=i_shield_kite_wood,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Wooden Kite Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=75
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04934]
+DEFNAME=i_WOODEN_KITE_SHIELD_INVULNERABILITY
+ID=I_SHIELD_KITE_WOOD
+NAME=kite shield
+RESOURCES=i_shield_kite_wood,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Wooden Kite Shield
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=80
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04935]
+DEFNAME=i_HEATER_SHIELD_DEFENSE
+ID=I_SHIELD_HEATER
+NAME=heater
+RESOURCES=i_shield_heater,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Heater
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=40
+	COLOR=color_magic_defense
+
+[ITEMDEF 04936]
+DEFNAME=i_HEATER_SHIELD_GUARDING
+ID=I_SHIELD_HEATER
+NAME=heater
+RESOURCES=i_shield_heater,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Heater
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=45
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04937]
+DEFNAME=i_HEATER_SHIELD_HARDENING
+ID=I_SHIELD_HEATER
+NAME=heater
+RESOURCES=i_shield_heater,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Heater
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=50
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04938]
+DEFNAME=i_HEATER_SHIELD_FORTIFICATION
+ID=I_SHIELD_HEATER
+NAME=heater
+RESOURCES=i_shield_heater,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Heater
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=55
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04939]
+DEFNAME=i_HEATER_SHIELD_INVULNERABILITY
+ID=I_SHIELD_HEATER
+NAME=heater
+RESOURCES=i_shield_heater,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=Shields
+DESCRIPTION=Heater
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=60
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04940]
+DEFNAME=i_PLATEMAIL_DEFENSE
+ID=i_platemail_chest
+NAME=platemail
+RESOURCES=i_platemail_chest,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=70
+	COLOR=color_magic_defense
+
+[ITEMDEF 04941]
+DEFNAME=i_PLATEMAIL_GUARDING
+ID=i_platemail_chest
+NAME=platemail
+RESOURCES=i_platemail_chest,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=75
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04942]
+DEFNAME=i_PLATEMAIL_HARDENING
+ID=i_platemail_chest
+NAME=platemail
+RESOURCES=i_platemail_chest,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=80
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04943]
+DEFNAME=i_PLATEMAIL_FORTIFICATION
+ID=i_platemail_chest
+NAME=platemail
+RESOURCES=i_platemail_chest,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=85
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04944]
+DEFNAME=i_PLATEMAIL_INVULNERABILITY
+ID=i_platemail_chest
+NAME=platemail
+RESOURCES=i_platemail_chest,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=90
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04945]
+DEFNAME=i_PLATEMAIL_leggings_DEFENSE
+ID=i_platemail_leggings
+NAME=platemail legs
+RESOURCES=i_platemail_leggings, i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Legs
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=70
+	COLOR=color_magic_defense
+
+[ITEMDEF 04946]
+DEFNAME=i_PLATEMAIL_leggings_GUARDING
+ID=i_platemail_leggings
+NAME=platemail legs
+RESOURCES=i_platemail_leggings,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Legs
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=75
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04947]
+DEFNAME=i_PLATEMAIL_leggings_HARDENING
+ID=i_platemail_leggings
+NAME=platemail legs
+RESOURCES=i_platemail_leggings,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Legs
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=80
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04948]
+DEFNAME=i_PLATEMAIL_leggings_FORTIFICATION
+ID=i_platemail_leggings
+NAME=platemail legs
+RESOURCES=i_platemail_leggings,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Legs
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=85
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04949]
+DEFNAME=i_PLATEMAIL_leggings_INVULNERABILITY
+ID=i_platemail_leggings
+NAME=platemail legs
+RESOURCES=i_platemail_leggings,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Legs
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=90
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04950]
+DEFNAME=i_PLATEMAIL_ARMS_DEFENSE
+ID=i_platemail_arms
+NAME=platemail arms
+RESOURCES=i_platemail_arms, i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Arms
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=70
+	COLOR=color_magic_defense
+
+[ITEMDEF 04951]
+DEFNAME=i_PLATEMAIL_ARMS_GUARDING
+ID=i_platemail_arms
+NAME=platemail arms
+RESOURCES=i_platemail_arms,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Arms
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=75
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04952]
+DEFNAME=i_PLATEMAIL_ARMS_HARDENING
+ID=i_platemail_arms
+NAME=platemail arms
+RESOURCES=i_platemail_arms,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Arms
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=80
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04953]
+DEFNAME=i_PLATEMAIL_ARMS_FORTIFICATION
+ID=i_platemail_arms
+NAME=platemail arms
+RESOURCES=i_platemail_arms,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Arms
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=85
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04954]
+DEFNAME=i_PLATEMAIL_ARMS_INVULNERABILITY
+ID=i_platemail_arms
+NAME=platemail arms
+RESOURCES=i_platemail_arms,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Arms
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=90
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04955]
+DEFNAME=i_platemail_HELM_DEFENSE
+ID=i_platemail_helm
+NAME=plate helm
+RESOURCES=i_platemail_helm,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=Plate Helm
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=60
+	COLOR=color_magic_defense
+
+[ITEMDEF 04956]
+DEFNAME=i_platemail_HELM_GUARDING
+ID=i_platemail_helm
+NAME=plate helm
+RESOURCES=i_platemail_helm,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=Plate Helm
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=65
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04957]
+DEFNAME=i_platemail_HELM_HARDENING
+ID=i_platemail_helm
+NAME=plate helm
+RESOURCES=i_platemail_helm,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=Plate Helm
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=70
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04958]
+DEFNAME=i_platemail_HELM_FORTIFICATION
+ID=i_platemail_helm
+NAME=plate helm
+RESOURCES=i_platemail_helm,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=Plate Helm
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=75
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04959]
+DEFNAME=i_platemail_HELM_INVULNERABILITY
+ID=i_platemail_helm
+NAME=plate helm
+RESOURCES=i_platemail_helm,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=Plate Helm
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=80
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04960]
+DEFNAME=i_PLATEMAIL_GORGET_DEFENSE
+ID=i_platemail_gorget
+NAME=platemail gorget
+RESOURCES=i_platemail_gorget,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Gorget
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=70
+	COLOR=color_magic_defense
+
+[ITEMDEF 04961]
+DEFNAME=i_PLATEMAIL_GORGET_GUARDING
+ID=i_platemail_gorget
+NAME=platemail gorget
+RESOURCES=i_platemail_gorget,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Gorget
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=75
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04962]
+DEFNAME=i_PLATEMAIL_GORGET_HARDENING
+ID=i_platemail_gorget
+NAME=platemail gorget
+RESOURCES=i_platemail_gorget,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Gorget
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=80
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04963]
+DEFNAME=i_PLATEMAIL_GORGET_FORTIFICATION
+ID=i_platemail_gorget
+NAME=platemail gorget
+RESOURCES=i_platemail_gorget,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Gorget
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=85
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04964]
+DEFNAME=i_PLATEMAIL_GORGET_INVULNERABILITY
+ID=i_platemail_gorget
+NAME=platemail gorget
+RESOURCES=i_platemail_gorget,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Gorget
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=90
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04965]
+DEFNAME=i_PLATEMAIL_GAUNTLETS_DEFENSE
+ID=i_platemail_gloves
+NAME=platemail gauntlets
+RESOURCES=i_platemail_gloves,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Gauntlets
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=70
+	COLOR=color_magic_defense
+
+[ITEMDEF 04966]
+DEFNAME=i_PLATEMAIL_GAUNTLETS_GUARDING
+ID=i_platemail_gloves
+NAME=platemail gauntlets
+RESOURCES=i_platemail_gloves,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Gauntlets
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=75
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04967]
+DEFNAME=i_PLATEMAIL_GAUNTLETS_HARDENING
+ID=i_platemail_gloves
+NAME=platemail gauntlets
+RESOURCES=i_platemail_gloves,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Gauntlets
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=80
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04968]
+DEFNAME=i_PLATEMAIL_GAUNTLETS_FORTIFICATION
+ID=i_platemail_gloves
+NAME=platemail gauntlets
+RESOURCES=i_platemail_gloves,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Gauntlets
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=85
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04969]
+DEFNAME=i_PLATEMAIL_GAUNTLETS_INVULNERABILITY
+ID=i_platemail_gloves
+NAME=platemail gauntlets
+RESOURCES=i_platemail_gloves,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=platemail Gauntlets
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=90
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04970]
+DEFNAME=i_PLATEMAIL_DEFENSE_FEMALE
+ID=i_ARMOR_FEMALE_PLATE
+NAME=platemail
+RESOURCES=i_armor_female_plate,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=Female platemail
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=65
+	COLOR=color_magic_defense
+
+[ITEMDEF 04971]
+DEFNAME=i_PLATEMAIL_GUARDING_FEMALE
+ID=i_ARMOR_FEMALE_PLATE
+NAME=platemail
+RESOURCES=i_armor_female_plate,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=Female platemail
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=70
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04972]
+DEFNAME=i_PLATEMAIL_HARDENING_FEMALE
+ID=i_ARMOR_FEMALE_PLATE
+NAME=platemail
+RESOURCES=i_armor_female_plate,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=Female platemail
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=65
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04973]
+DEFNAME=i_PLATEMAIL_FORTIFICATION_FEMALE
+ID=i_ARMOR_FEMALE_PLATE
+NAME=platemail
+RESOURCES=i_armor_female_plate,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=Female platemail
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS=65
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04974]
+DEFNAME=i_PLATEMAIL_INVULNERABILITY_FEMALE
+ID=i_ARMOR_FEMALE_PLATE
+NAME=platemail
+RESOURCES=i_armor_female_plate,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=platemail
+DESCRIPTION=Female platemail
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS=65
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04975]
+DEFNAME=i_CHAINMAIL_COIF_DEFENSE
+ID=i_chainmail_coif
+NAME=chainmail coif
+RESOURCES=i_chainmail_coif,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail coif
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS=45
+	COLOR=color_magic_defense
+
+[ITEMDEF 04976]
+DEFNAME=i_CHAINMAIL_COIF_GUARDING
+ID=i_chainmail_coif
+NAME=chainmail coif
+RESOURCES=i_chainmail_coif,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail coif
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS=50
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04977]
+DEFNAME=i_CHAINMAIL_COIF_HARDENING
+ID=i_chainmail_coif
+NAME=chainmail coif
+RESOURCES=i_chainmail_coif,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail coif
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS=55
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04978]
+DEFNAME=i_CHAINMAIL_COIF_FORTIFICATION
+ID=i_chainmail_coif
+NAME=chainmail coif
+RESOURCES=i_chainmail_coif,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail coif
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS={60 61}
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04979]
+DEFNAME=i_CHAINMAIL_COIF_INVULNERABILITY
+ID=i_chainmail_coif
+NAME=chainmail coif
+RESOURCES=i_chainmail_coif,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail coif
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={65 66}
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04980]
+DEFNAME=i_CHAINMAIL_LEGGINGS_DEFENSE
+ID=i_chainmail_leggings
+NAME=chainmail leggings
+RESOURCES=i_chainmail_leggings,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail leggings
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS={60 61}
+	COLOR=color_magic_defense
+
+[ITEMDEF 04981]
+DEFNAME=i_CHAINMAIL_LEGGINGS_GUARDING
+ID=i_chainmail_leggings
+NAME=chainmail leggings
+RESOURCES=i_chainmail_leggings,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail leggings
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS={65 66}
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04982]
+DEFNAME=i_CHAINMAIL_LEGGINGS_HARDENING
+ID=i_chainmail_leggings
+NAME=chainmail leggings
+RESOURCES=i_chainmail_leggings,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail leggings
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS={70 71}
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04983]
+DEFNAME=i_CHAINMAIL_LEGGINGS_FORTIFICATION
+ID=i_chainmail_leggings
+NAME=chainmail leggings
+RESOURCES=i_chainmail_leggings,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail leggings
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS={75 76}
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04984]
+DEFNAME=i_CHAINMAIL_LEGGINGS_INVULNERABILITY
+ID=i_chainmail_leggings
+NAME=chainmail leggings
+RESOURCES=i_chainmail_leggings,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail leggings
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={80 81}
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04985]
+DEFNAME=i_CHAINMAIL_TUNIC_DEFENSE
+ID=i_chainmail_tunic
+NAME=chainmail tunic
+RESOURCES=i_chainmail_tunic,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail tunic
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS={60 61}
+	COLOR=color_magic_defense
+
+[ITEMDEF 04986]
+DEFNAME=i_CHAINMAIL_TUNIC_GUARDING
+ID=i_chainmail_tunic
+NAME=chainmail tunic
+RESOURCES=i_chainmail_tunic,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail tunic
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS={65 66}
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04987]
+DEFNAME=i_CHAINMAIL_TUNIC_HARDENING
+ID=i_chainmail_tunic
+NAME=chainmail tunic
+RESOURCES=i_chainmail_tunic,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail tunic
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS={70 71}
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04988]
+DEFNAME=i_CHAINMAIL_TUNIC_FORTIFICATION
+ID=i_chainmail_tunic
+NAME=chainmail tunic
+RESOURCES=i_chainmail_tunic,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail tunic
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS={75 76}
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04989]
+DEFNAME=i_CHAINMAIL_TUNIC_INVULNERABILITY
+ID=i_chainmail_tunic
+NAME=chainmail tunic
+RESOURCES=i_chainmail_tunic,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=chainmail
+DESCRIPTION=chainmail tunic
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={80 81}
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 0498a]
+DEFNAME=i_RINGMAIL_LEGGINGS_DEFENSE
+NAME=ringmail leggings
+ID=i_ringmail_leggings
+RESOURCES=i_ringmail_leggings,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail leggings
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS={55 56}
+	COLOR=color_magic_defense
+
+[ITEMDEF 0498b]
+DEFNAME=i_RINGMAIL_LEGGINGS_GUARDING
+NAME=ringmail leggings
+ID=i_ringmail_leggings
+RESOURCES=i_ringmail_leggings,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail leggings
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS={60 61}
+	COLOR=color_magic_guarding
+
+[ITEMDEF 0498c]
+DEFNAME=i_RINGMAIL_LEGGINGS_HARDENING
+NAME=ringmail leggings
+ID=i_ringmail_leggings
+RESOURCES=i_ringmail_leggings,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail leggings
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS={65 66}
+	COLOR=color_magic_hardening
+
+[ITEMDEF 0498d]
+DEFNAME=i_RINGMAIL_LEGGINGS_FORTIFICATION
+NAME=ringmail leggings
+ID=i_ringmail_leggings
+RESOURCES=i_ringmail_leggings,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail leggings
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS={70 71}
+	COLOR=color_magic_fortification
+
+[ITEMDEF 0498e]
+DEFNAME=i_RINGMAIL_LEGGINGS_INVULNERABILITY
+NAME=ringmail leggings
+ID=i_ringmail_leggings
+RESOURCES=i_ringmail_leggings,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail leggings
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={75 76}
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04990]
+DEFNAME=i_RINGMAIL_SLEEVES_DEFENSE
+ID=i_ringmail_sleeves
+NAME=ringmail sleeves
+RESOURCES=i_ringmail_sleeves,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail sleeves
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS={55 56}
+	COLOR=color_magic_defense
+
+[ITEMDEF 04991]
+DEFNAME=i_RINGMAIL_SLEEVES_GUARDING
+ID=i_ringmail_sleeves
+NAME=ringmail sleeves
+RESOURCES=i_ringmail_sleeves,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail sleeves
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS={60 61}
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04992]
+DEFNAME=i_RINGMAIL_SLEEVES_HARDENING
+ID=i_ringmail_sleeves
+NAME=ringmail sleeves
+RESOURCES=i_ringmail_sleeves,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail sleeves
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS={65 66}
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04993]
+DEFNAME=i_RINGMAIL_SLEEVES_FORTIFICATION
+ID=i_ringmail_sleeves
+NAME=ringmail sleeves
+RESOURCES=i_ringmail_sleeves,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail sleeves
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS={70 71}
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04994]
+DEFNAME=i_RINGMAIL_SLEEVES_INVULNERABILITY
+ID=i_ringmail_sleeves
+NAME=ringmail sleeves
+RESOURCES=i_ringmail_sleeves,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail sleeves
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={75 76}
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 04995]
+DEFNAME=i_RINGMAIL_GLOVES_DEFENSE
+ID=i_ringmail_gloves
+NAME=ringmail gloves
+RESOURCES=i_ringmail_gloves,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail gloves
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	MOREY=20.0
+	ATTR=attr_magic
+	HITPOINTS={55 56}
+	COLOR=color_magic_defense
+
+[ITEMDEF 04996]
+DEFNAME=i_RINGMAIL_GLOVES_GUARDING
+ID=i_ringmail_gloves
+NAME=ringmail gloves
+RESOURCES=i_ringmail_gloves,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail gloves
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS={60 61}
+	COLOR=color_magic_guarding
+
+[ITEMDEF 04997]
+DEFNAME=i_RINGMAIL_GLOVES_HARDENING
+ID=i_ringmail_gloves
+NAME=ringmail gloves
+RESOURCES=i_ringmail_gloves,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail gloves
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS={65 66}
+	COLOR=color_magic_hardening
+
+[ITEMDEF 04998]
+DEFNAME=i_RINGMAIL_GLOVES_FORTIFICATION
+ID=i_ringmail_gloves
+NAME=ringmail gloves
+RESOURCES=i_ringmail_gloves,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail gloves
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS={70 71}
+	COLOR=color_magic_fortification
+
+[ITEMDEF 04999]
+DEFNAME=i_RINGMAIL_GLOVES_INVULNERABILITY
+ID=i_ringmail_gloves
+NAME=ringmail gloves
+RESOURCES=i_ringmail_gloves,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail gloves
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={75 76}
+	COLOR=color_magic_invulnerability
+
+[ITEMDEF 0499a]
+DEFNAME=i_RINGMAIL_TUNIC_DEFENSE
+ID=i_ringmail_tunic
+NAME=ringmail tunic
+RESOURCES=i_ringmail_tunic,i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail tunic
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [defense]
+endif 
+return 1
+
+ON=@Create
+	ATTR=attr_magic
+	MOREY=20.0
+	HITPOINTS={55 56}
+	COLOR=color_magic_defense
+
+[ITEMDEF 0499b]
+DEFNAME=i_RINGMAIL_TUNIC_GUARDING
+ID=i_ringmail_tunic
+NAME=ringmail tunic
+RESOURCES=i_ringmail_tunic,2 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail tunic
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [guarding]
+endif 
+return 1
+
+ON=@Create
+	MOREY=40.0
+	ATTR=attr_magic
+	HITPOINTS={60 61}
+	COLOR=color_magic_guarding
+
+[ITEMDEF 0499c]
+DEFNAME=i_RINGMAIL_TUNIC_HARDENING
+ID=i_ringmail_tunic
+NAME=ringmail tunic
+RESOURCES=i_ringmail_tunic,3 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail tunic
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [hardening]
+endif 
+return 1
+
+ON=@Create
+	MOREY=60.0
+	ATTR=attr_magic
+	HITPOINTS={65 66}
+	COLOR=color_magic_hardening
+
+[ITEMDEF 0499d]
+DEFNAME=i_RINGMAIL_TUNIC_FORTIFICATION
+ID=i_ringmail_tunic
+NAME=ringmail tunic
+RESOURCES=i_ringmail_tunic,4 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail tunic
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [fortification]
+endif 
+return 1
+
+ON=@Create
+	MOREY=80.0
+	ATTR=attr_magic
+	HITPOINTS={70 71}
+	COLOR=color_magic_fortification
+
+[ITEMDEF 0499e]
+DEFNAME=i_RINGMAIL_TUNIC_INVULNERABILITY
+ID=i_ringmail_tunic
+NAME=ringmail tunic
+RESOURCES=i_ringmail_tunic,5 i_enchant_armor
+
+CATEGORY=Provisions - Armor - Magic
+SUBSECTION=ringmail
+DESCRIPTION=ringmail tunic
+
+On=@Click
+message a magical <name>
+if (<attr>&attr_identified)
+	message [invulnerability]
+endif 
+return 1
+
+ON=@Create
+	MOREY=100.0
+	ATTR=attr_magic
+	HITPOINTS={75 76}
+	COLOR=color_magic_invulnerability
+
+[EOF]

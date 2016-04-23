@@ -1,0 +1,144 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2005
+//www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Partners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in part, in any format without express written permission from
+// Menasoft & Partners.  All donations and contributions
+// become the property of Menasoft & Partners.
+//****************************************************************************
+// FILE LAST UPDATED: Thursday, August 25th, 2005
+//
+// By Makar
+//
+
+[ITEMDEF 11550]
+DEFNAME=i_elven_composite_longbow
+Name=Elven Composite LongBow
+TYPE=T_WEAPON_BOW
+DAM=9,21
+SKILL=Archery
+REQSTR=20
+TWOHANDS=Y
+TDATA3=i_arrow
+
+CATEGORY=New Items
+SUBSECTION=ML
+DESCRIPTION=Elven Composite LongBow
+
+ON=@Create
+HITPOINTS={31 60}
+
+[ITEMDEF 11551]
+DEFNAME=i_magical_shortbow
+Name=Magical Shortbow
+TYPE=T_WEAPON_BOW
+DAM=9,21
+SKILL=Archery
+REQSTR=20
+TWOHANDS=Y
+TDATA3=i_arrow
+
+CATEGORY=New Items
+SUBSECTION=ML
+DESCRIPTION=Magical Shortbow
+
+ON=@Create
+HITPOINTS={31 60}
+
+
+[ITEMDEF 11552]
+DEFNAME=i_Elven_Spellblade
+Name=Elven Spellblade
+TYPE=T_WEAPON_SWORD
+DAM=9,21
+SKILL=Swordsmanship
+REQSTR=20
+TWOHANDS=N
+
+CATEGORY=New Items
+SUBSECTION=ML
+DESCRIPTION=Elven SpellBlade
+
+ON=@Create
+HITPOINTS={31 60}
+
+[ITEMDEF 11553]
+DEFNAME=i_sword_Assassin_Spike
+Name=Assassin Spike
+TYPE=T_WEAPON_SWORD
+DAM=9,21
+SKILL=Swordsmanship
+REQSTR=20
+TWOHANDS=N
+
+CATEGORY=New Items
+SUBSECTION=ML
+DESCRIPTION=Assasins Spike
+
+ON=@Create
+HITPOINTS={31 60}
+
+[ITEMDEF 11554]
+DEFNAME=i_sword_leafblade
+Name=LeafBlade
+TYPE=T_WEAPON_SWORD
+DAM=9,21
+SKILL=Swordsmanship
+REQSTR=20
+TWOHANDS=N
+
+CATEGORY=New Items
+SUBSECTION=ML
+DESCRIPTION=LeafBlade
+
+ON=@Create
+HITPOINTS={31 60}
+
+[ITEMDEF 11555]
+DEFNAME=i_sword_warcleaver
+Name=War Cleaver
+TYPE=T_WEAPON_SWORD
+DAM=9,21
+SKILL=Swordsmanship
+REQSTR=20
+TWOHANDS=N
+
+CATEGORY=New Items
+SUBSECTION=ML
+DESCRIPTION=War Cleaver
+
+ON=@Create
+HITPOINTS={31 60}
+
+[ITEMDEF 11556]
+DEFNAME=i_mace_diamondmace
+Name=Diamond Mace
+TYPE=T_WEAPON_MACE_SHARP
+DAM=9,21
+SKILL=Macefighting
+REQSTR=20
+TWOHANDS=N
+
+CATEGORY=New Items
+SUBSECTION=ML
+DESCRIPTION=Diamond Mace
+
+ON=@Create
+HITPOINTS={31 60}
+
+[ITEMDEF 11557]
+DEFNAME=i_mace_Wildstaff
+Name=Wild Staff
+TYPE=T_WEAPON_MACE_STAFF
+DAM=9,21
+SKILL=Macefighting
+REQSTR=20
+TWOHANDS=Y
+
+CATEGORY=New Items
+SUBSECTION=ML
+DESCRIPTION=Wild Staff
+
+ON=@Create
+HITPOINTS={31 60}

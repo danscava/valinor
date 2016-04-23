@@ -1,0 +1,286 @@
+// ----------------------------
+// SKILL_MISC.SCP - SKILL MENULERI
+// SON GUNCELLENME TARIHI: 1 Haziran 2002 - cQ
+// ----------------------------
+VERSION=0.55
+
+//PLAYER MENUSU SAYFANIN SONUNDADIR. 
+//ADI d_player 
+
+// Guildten cikarma mantýðý:
+// d_player daki guildden çýkarma button ý guild_test fonksiyonunu çalýþtýrýr. Böylelikle adamýn bir guildi var mý yok mu ona baklýr. 
+// varsa daha sonra guildden çýkma Menüsü gelir. (d_guildsil)
+// Bu menu de OK e basinca , i_guild_remover diye bir item adama verilir. 
+// 5 dakika sonra bu item , color'ý 0400 olan i_memory i siler. 
+
+// BUGLIST
+// 1)	Bu þekilde çýkarmalarda, guildstone da hala adamýn ismi geçer. 
+//	Ancak bu isim SAVE De silinir ve hiç bir sorun kalmaz. 
+// 	Save olana kadar dahi , friend /loot un guild içi açýk olmasý gibi bir sorun olmaz.
+
+
+// GUILD I VAR MI YOK MU? 
+[FUNCTION oyuncu]
+src.dialog d_player
+
+[FUNCTION guild_test]
+IF <SRC.MEMORYFINDTYPE.0400>
+	SRC.dialog d_guildsil
+ELSE 
+	SRC.SYSMESSAGE Su an bir guilde uye degilsiniz. 
+	SRC.SYSMESSAGE Bunun bir hata oldugunu dusunuyorsaniz lutfen yardim isteyin.
+ENDIF
+//------------------
+
+// GUILDDEN ÇIKARTAN ITEM
+[ITEMDEF i_guild_remover]
+ID=i_fence_iron
+NAME=Guild Remover
+TYPE=t_eq_script
+WEIGHT=0
+LAYER=layer_special
+
+On=@Create
+attr 096
+
+On=@Equip
+SRC.SYSMESSAGE @07a1,,1 5 dakika icinde guildden cikacaksiniz. 
+TIMER 290
+RETURN 1
+
+ON=@TIMER
+
+IF (<CONT.MEMORYFINDTYPE.0400>)
+	IF (<CONT.TAG.uyari> > 0)
+		CONT.tag.uyari
+		CONT.MEMORYFINDTYPE.0400.REMOVE
+		REMOVE
+		RETURN 1 
+	ELSE 
+		TIMER 10
+		CONT.TAG.uyari=1
+		CONT.sayua 025,0,0,0 * 10 saniye icinde guildden cikacaksiniz *
+		RETURN 1 
+	ENDIF
+ELSE 
+	SRC.SYSMESSAGE @07a1,,1 Su an bir guilde uye degilsiniz. 
+	
+REMOVE
+RETURN 1 
+ENDIF
+//-----------------
+
+
+// GUILDDEN ÇIKMA MENUSU
+[DIALOG d_guildsil]
+0, 0
+PAGE 0
+
+// Background
+resizepic 2 2 3500 370 230
+
+tilepic 30 50 3796
+
+
+text 30 20 455 0
+text 120 20 455 1
+text 92 50 1153 2
+text 92 75 1153 3
+text 92 100 1153 4
+text 92 125 1153 5
+text 92 150 1153 6
+
+button 90 177 2311 2312 1 0 0 // OK
+button 275 177 243 241 1 0 1 // CANCEL
+
+[DIALOG d_guildsil TEXT]
+Guild Name: 
+<SRC.MEMORYFINDTYPE.0400.NAME>
+Merhana <src.name>  ,			//0
+Okay tusuna basarak uyesi oldugun	//1
+guildinden ayrilmak istedigini		//2 
+kabul etmis oluyorsun. 			//3
+Bu istediginden emin misin?		//4
+
+
+[DIALOG d_guildsil BUTTON]
+ONBUTTON=0
+SRC.NEWITEM i_guild_remover
+ACT.EQUIP
+RETURN 1
+
+ONBUTTON=1
+RETURN 1
+
+
+
+//---------------
+// PLAYER GUMPI
+[DIALOG d_player]                            
+150, 30
+PAGE 0
+
+resizepic 0 0 5120 360 550 // Ana background
+resizepic 10 10 3000 340 530
+resizepic 20 30  3000 300 120 //Giris yazisi'nin BGu.
+
+// BAÞLIK BACKGROUNDLARI
+resizepic 55  170   3000 110 24
+resizepic 55  200   3000 110 24
+resizepic 55  230   3000 110 24
+resizepic 55  260  3000 110 24
+resizepic 55  290  3000 110 24
+resizepic 55  320  3000 110 24
+resizepic 55  350  3000 110 24
+resizepic 55  380  3000 110 24
+resizepic 55  410  3000 110 24
+resizepic 55  440  3000 110 24
+resizepic 55  470  3000 110 24
+
+// TANIM BACKGROUNDLARI
+resizepic 140  170   3000 200 24
+resizepic 140  200   3000 200 24
+resizepic 140  230   3000 200 24
+resizepic 140  260  3000 200 24
+resizepic 140  290  3000 200 24
+resizepic 140  320  3000 200 24
+resizepic 140  350  3000 200 24
+resizepic 140  380  3000 200 24
+resizepic 140  410  3000 200 24
+resizepic 140  440  3000 200 24
+resizepic 140  470  3000 200 24
+
+
+// TEXTLER
+text 70 8 455 22  // MENU ADI
+
+text 30 45 455 23  // Giris Mesaji
+text 30 65 455 24  // Giris Mesaji
+text 30 85 455 25  // Giris Mesaji
+text 200 105 455 26  // Giris Mesaji
+text 250 125 455 27  // Giris Mesaji
+text 240 510 0 28 // CLOSE 
+
+// BAÞLIKLAR
+text 60 172  455 0	// AGE
+text 60 202  455 1	// Blacksmith
+text 60 232  455 2	// Disarm
+text 60 262 455 3	// Forum
+text 60 292 455 4	// Guild
+text 60 322 455 5	// Help
+text 60 352 455 6	// Hungry
+text 60 382 455 7	// Quest Arrow
+text 60 412 455 8	// Regs
+text 60 442 455 9	// Skill 
+text 60 472 455 10	// Stats
+
+// TANIMLAR
+text 145 172  0 11
+text 145 202  0 12
+text 145 232  0 13
+text 145 262 0 14
+text 145 292 0 15
+text 145 322 0 16
+text 145 352 0 17
+text 145 382 0 18
+text 145 412 0 19
+text 145 442 0 20
+text 145 472 0 21
+
+// 
+button 15 170  4006 4007 1 0 1 	//AGE
+button 15 200  4006 4007 1 0 2	//blacksmith
+button 15 230  4006 4007 1 0 3	//disarm 
+button 15 260 4006 4007 1 0 4	// forum
+button 15 290 4006 4007 1 0 5	// Guildsil
+button 15 320 4006 4007 1 0 6	// Help
+button 15 350 4006 4007 1 0 7	// Hungry
+button 15 380 4006 4007 1 0 8	// Quest Arrow
+button 15 410 4006 4007 1 0 9	// Regs
+button 15 440 4006 4007 1 0 10	// Skills 
+button 15 470 4006 4007 1 0 11	// Stats
+
+button 290 510 4017 4018 1 0 12  // Close Button
+
+[DIALOG d_player text]
+Age			//0
+Blacksmith		//1
+Disarm			//2
+Forum			//3
+Guild			//4
+Help			//5
+Hungry
+Quest Oku
+Reagents
+Stats
+Skill	 		//10
+Karakterin yasi
+Malzemelerin sayisi
+Disarm: aktif/deaktif   // 13
+Valinor Forumlari
+Guild'den cikartir	//15
+Help Menusunu gosterir	//16
+Aclik seviyenizi gosterir //17
+Quest Okunu siler	 //18
+Malzemelerin sayisi 	//19
+Stat ayarlari		//20
+Skill dusurme islemi	//21
+Valinor Oyuncu Menusu 	//22
+Sayin <name>		//23
+Bir Valinor oyuncusu olarak asagidaki
+hizmetlerden yararlanabilirsiniz. 
+iyi eglenceler		//26
+Valinor  		//27
+Kapat			//28
+
+
+[DIALOG d_player button]
+ONBUTTON=1
+SRC.age
+
+ONBUTTON=2
+SYSMESSAGE @07a1,,1 Blacksmith icin gereken esyalariniz gosteriliyor.
+SYSMESSAGE @07a1,,1 Ingot sayisini gormek icin .ingots ,
+SYSMESSAGE @07a1,,1 Ore sayisini gormek icin .ores kullanabilirisinz.
+ingots
+
+
+ONBUTTON=3
+SRC.disarm
+
+
+ONBUTTON=4
+SRC.SYSMESSAGE @07a1,,1 .forum x formatinda x yerine gormek istediginiz forumun id numarasini yazin.
+SRC.SYSMESSAGE @1100,,1 Eger bir numara girmezseniz, forumlarin ana menusu acilir. 
+
+
+ONBUTTON=5
+SRC.SYSMESSAGE @1100,,1 Bu secenek henuz aktif degil.
+
+ONBUTTON=6
+SRC.dialog d_helpmenu
+
+
+ONBUTTON=7
+SRC.hungry
+
+
+ONBUTTON=8
+SRC.SYSMESSAGE @1100,,1 Quest'in gectigi yeri gosteren oku silindi. 
+SRC.oksil
+
+
+ONBUTTON=9
+SRC.REGS
+
+
+ONBUTTON=10
+SRC.STAT
+
+
+ONBUTTON=11
+SRC.SKILLDUSUR
+
+ONBUTTON=12
+
+[EOF]

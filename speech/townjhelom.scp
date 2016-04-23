@@ -1,0 +1,2259 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2000
+//www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Pareners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in pare, in any format wiyout express written permission from
+// Menasoft & Pareners.  All donations and contributions
+// become the property of Menasoft & Pareners.
+//****************************************************************************
+// FILE LAST UPDATED: Friday, April 28, 2000
+
+// Purpose: Britannia Jhelom City Script
+// Notes:  This is used for general information pertaining to all Britannian
+//			residents of Jhelom
+// Current Keyword List:
+//	britain, capital, trinsic, okllo, ocllo, jhelom, nujelm, nujel'm, moonglow,
+//	cove, skara brae, minoc, vesper, buccaneer's den, buccaneers den,
+//	buccaneers' den, magincia, yew, wind, serpent's hold, serpents hold,
+//	serpents' hold, lord british, ruler,  king, virtue, avatar, shrine, horse,
+//	ranch, blacksmith, fighters guild, fighter's guild, fighters' guild,
+//	scorpions tail, scorpion's tail, scorpions' tail, town hall, armorer,
+//	armourer, armor, armour, guard, guardhouse, guard house, guard tower, baker,
+//	bakery, dueling pit, duel, pit, shipwright, ship wright, mapmaker,
+//	careographer, map, fish, jeweler, jewler, gem, emerald, sapphire, ruby,
+//	rubies, citrine, amethyst, tourmaline, amber, diamond, gold, silver,
+//	thieves guild, warehouse, fisher's guild, fishers guild, fishers' guild,
+//	mage, theater, theatre, tailor, clothes, clothier, weapon, sword, axe, mace,
+//	hammer, healer, healing, tavern, ale, drinking, drink, provision, supplies,
+//	carpenter, tinker, inn, sleep, farmer, food, dock, library, cemetery, grave,
+//
+[SPEECH town_Jhelom]
+
+ON=*horse*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 8
+			sayu There are no finer horses in the realm than those bred in Jhelom.
+			sayu You shouldst find a ranch and view our magnificent herds.
+			sayu We raise only Valorian steeds in Jhelom. There are none better for stamina or courage.
+			sayu If you wanteth a fine steed, there are no mounts more intelligent than our fine Valorian horses.
+			sayu Our stables and pastures are to be found on the northern-most island.
+			sayu We do not have grand farmland, no, but the grass is fine for raising horses.
+			sayu You shouldst step over to our ranch. The viewing of horseflesh is free.
+			sayu 'Twould be a bad thing were you to leave Jhelom wiyout first visiting the ranch.
+		ENDDO
+	ELSE
+		DORAND 6
+			sayu We raise good horses.
+			sayu Our horses got stamina and courage.
+			sayu I don't know why they call 'em Valorian horses when we raise them in Jhelom. They should be Jhelomian horses.
+			sayu Our stables and pastures are north on the island.
+			sayu We don't got grand farmland, no, but any idiot can grow grass for horses.
+			sayu New folk like to go look at the ranches.
+		ENDDO
+	ENDIF
+ON=*ranch*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu Ranches are on the north-most island.
+			sayu Ranches are where horses are sold. They are on the southern end of the island to the north and west of the main island.
+			sayu The ranches are on the north-most island of Jhelom.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu Ranches are on the north-most island.
+			sayu Ranches are where horses are sold. They're on the southern end of the island to the north and west of the main island.
+			sayu The ranches are on the north-most island of Jhelom.
+		ENDDO
+	ENDIF
+ON=*blacksmith*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 4
+			sayu We do have blacksmith shops, one north of the city, just west of Town Hall, and another to the south, near the southern docks.
+			sayu We have at least two blacksmiths working here. One's north of the dueling pits. One's south. Another used to work near the stables on the northern island, but I misremember whether he is still there.
+			sayu If it is a blacksmith you'rt needing, head to the northern edge of the town, neither too far east nor west.
+			sayu My favorite blacksmith can be found just north of the southern fighters' guild.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu One blacksmith is north of the city, and another is to the south.
+			sayu We got at least two blacksmiths workin' here.
+			sayu The blacksmith is at the northern edge of the town, not too far east nor west.
+		ENDDO
+	ENDIF
+ON=*fighters guild*
+ON=*fighter's guild*
+ON=*fighters' guild*
+ON=*scorpions tail*
+ON=*scorpion's tail*
+ON=*scorpions' tail*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 5
+			sayu You hast a choice. There is one north and west, and one south and east.
+			sayu Indeed, the Fighters' Guild is in Jhelom. In fact, there are two. One is at the northern edge of the town, just west of the blacksmith. One is the farehest building south.
+			sayu If it is a Fighters' Guild you'rt lookin' for, one is just north and west of the Dueling Pit.
+			sayu If it is a Fighters' Guild you'rt lookin' for, one is just east of the main town's southern gate.
+			sayu The Fighters' Guild? Ah, you'lt be meaning the Scorpion's Tail. 'Tis two doors west of the Town Hall, at the north edge of town.
+		ENDDO
+	ELSE
+		DORAND 5
+			sayu There's one northwest, and one southeast.
+			sayu There're two fighter's guilds in Jhelom.
+			sayu If it's a Fighters' Guild you'rt lookin' for, one's just northwest of the Dueling Pit.
+			sayu If it's a Fighters' Guild you'rt lookin' for, one's just east of the main town's southern gate.
+			sayu Scorpion's Tail is two doors west of the Town Hall.
+		ENDDO
+	ENDIF
+ON=*town hall*
+ON=*city hall*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu You'rt lookin' for the town hall? 'Tis to the north of the town.
+			sayu Town Hall? Find the Dueling Pits, near the center of town, then head a few paces north and east.
+			sayu You'rt not in any trouble, I hope, to be lookin' for the Town Hall? 'Tis just inside the gates to the east docks.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu Town Hall is up north of the town.
+			sayu Town Hall? Near the Dueling Pits.
+			sayu I think 'tis inside the gates goin' to the east docks.
+		ENDDO
+	ENDIF
+ON=*armorer*
+ON=*armourer*
+ON=*armor*
+ON=*armour*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 7
+			sayu Armorers? We have two. One north and east, one south and east.
+			sayu Sure, every fighter is interested in armor. My favorite is the nearest building to the eastern gate. There's another, too, at the south end of town.
+			sayu There are two buildings in the north-east corner of town. An armourer is one of 'em.
+			sayu Next to the southernmost blacksmith is a good place to purchase armor.
+			sayu An armourer? You'lt need to go to the Dueling Pits, then head east and north a bit.
+			sayu Look into the store just south of the carpenter for armor.
+			sayu The armourer is east of Town Hall. Not much else is.
+		ENDDO
+	ELSE
+		DORAND 4
+			sayu Armorers? One northeast, one southeast.
+			sayu My favorite one's near the eastern gate. There's another one at the south end of town.
+			sayu There're two buildings in the north-east corner of town. An armourer is one of 'em.
+			sayu Next to the southernmost blacksmith is an armorer.
+		ENDDO
+	ENDIF
+ON=*guard*
+ON=*guardhouse*
+ON=*guard house*
+ON=*guard tower*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu There is a guards' tower  near the Warrior's Stead inn, a few paces east and north.
+			sayu Guards can be found near the library. If you knowest the Thieve's Guild resides nearby, you'll see the sense to it.
+			sayu The guard tower is south of the Dueling Pit, on the far side of the library.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu There's a guards' tower  near the Warrior's Stead inn, a few paces east and north.
+			sayu Guards can be found near the library.
+			sayu The guard tower is south of the Dueling Pit.
+		ENDDO
+	ENDIF
+ON=*baker*
+ON=*bakery*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu Baker? You are not a slave to a sweet tooth, I trust. 'Tis west of the Dueling Pit, but only a wee bit.
+			sayu If you wanteth the Baker, head south from the Scorpion's Tail. It is a sweet location to sell bread: close to the folks' homes, not to mention the Dueling Pit.
+			sayu The baker is north of the Weapons shop, west of the Dueling Pit.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu Baker? West of the Dueling Pit.
+			sayu If you'rt wantin' the Baker, go south from the Scorpion's Tail.
+			sayu The baker is north of the weapons shop.
+		ENDDO
+	ENDIF
+ON=*dueling pit*
+ON=*duel*
+ON=*pit*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu A bit of action, eh? The Dueling Pit is in the center of town, of course.
+			sayu Close to the center of town, just south of the blacksmith, you'lt find the Dueling Pit. Listen for the yells.
+			sayu You canst learn a lot, watching two good soldier's duel. The Dueling Pit is the biggest building in town, just north of center. 'Tis north of most of the shops, and south of the blacksmith.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu The Duelin' Pit is in the center of town, of course.
+			sayu Just south o' the blacksmith, you'lt find the Dueling Pit.
+			sayu The Dueling Pit is the biggest building in town, just north of center.
+		ENDDO
+	ENDIF
+ON=*shipwright*
+ON=*ship wright*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu You'lt find the shipwright just inside the eastern gate of town.
+			sayu The shipwright is nearest the town's eastern docks, but south of the armourer.
+			sayu The shipwright is two doors east of the Dueling Pit.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu You'lt find the shipwright just inside the eastern gate of town.
+			sayu The shipwright is nearest the town's eastern docks.
+			sayu The shipwright is two doors east of the Dueling Pit.
+		ENDDO
+	ENDIF
+ON=*mapmaker*
+ON=*careographer*
+ON=* map*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 2
+			sayu Careographer's can usually be found sharing space with shipwrights.
+			sayu If there's not a mapmaker to be found at the shipwright's, then I can't help thee much.
+		ENDDO
+	ELSE
+		DORAND 2
+			sayu Them mapmakers are usually sharin' space with shipwrights.
+			sayu If there ain't a mapmaker at the shipwright's, then I can't help much.
+		ENDDO
+	ENDIF
+ON=*fish*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu The best place to buy fish is found just east of the Dueling Pit.
+			sayu If you canst find the tavern, look to the north for the Fishery.
+			sayu Good, fresh fish can be had at the fish shop, just south of the armourer, not but a short walk in from the town's eastern gate.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu Fish is found just east of the Dueling Pit.
+			sayu If you can find the tavern, look to the north for the Fishery.
+			sayu Fish can be had just south of the armourer.
+		ENDDO
+	ENDIF
+ON=*jeweler*
+ON=*jewler*
+ON=*gem*
+ON=*emerald*
+ON=*sapphire*
+ON=*ruby*
+ON=*rubies*
+ON=*citrine*
+ON=*amethyst*
+ON=*tourmaline*
+ON=*amber*
+ON=*diamond*
+ON=*gold*
+ON=*silver*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu The jeweler? You do not look the type to be interested in fripperies, but 'tis on the westernmost edge of town, most close to the houses.
+			sayu You canst find him to the west of town, past the clothier and the Thieves' Guild.
+			sayu Closest to the ladies' houses is where the jeweler is to be found. He is fond of his western location.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu The jeweler's on the westernmost edge of town.
+			sayu You can find him to the west of town.
+			sayu Closest to the ladies' houses is where the jeweler is. He's fond of his western location.
+		ENDDO
+	ENDIF
+ON=*thieves guild*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu I'll not ask thy business at the Thieves' Guild. 'Tis just south of the Dueling Pit, beneath the Library.
+			sayu 'Tis two doors east of the Jewelers' shop, in the basement. Thieves and jewelers like to keep their eyes on each other, sure.
+			sayu The thieves have a nice, central location. They stand close to the healer, not too far northeast of the inn. They are in a basement, you shouldst know.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu I don't know nothin' 'bout thieves.
+			sayu None of my friends are thieves.
+			sayu I ain't no thief.
+		ENDDO
+	ENDIF
+ON=*warehouse*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu Warehouse? You must needs be coming on prosperous times. There is one on the main island, and another on the southern one.
+			sayu There is a warehouse just north of the southern city docks, and another nearest the docks on the southern isle.
+			sayu We have two. One south of town, and one on the southern isle.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu Warehouse? There's one on the main island, and another on the southern one.
+			sayu There's a warehouse just north of the southern city docks, and another nearest the docks on the southern isle.
+			sayu We got two. One south of town, and one on the southern isle.
+		ENDDO
+	ENDIF
+ON=*fisher's guild*
+ON=*fishers guild*
+ON=*fishers' guild*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu The Fisher's Guild is the most southern thing in the town, friend.
+			sayu The Fisher's Guild is close on the eastern gate of the southern dock. Never too far from water, is a fisher.
+			sayu Hast heard of the peaceful fisherman? He kills no fish - pulls them out of the water, yes, but they do the dyin' on their own. Ha! I heard that at the Guild, you knowest, way to the south of town.
+		ENDDO
+	ELSE
+		DORAND 2
+			sayu The Fisher's Guild is the most southern thing in the town.
+			sayu The Fisher's Guild is close on the eastern gate of the southern dock.
+		ENDDO
+	ENDIF
+ON=*mage*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu The mage? I think we still have a mage on the southern island. They do not stay long in business, so mayhap he's left us ....
+			sayu Last I saw, there was a mage's shop just north of the theater. That's on the southern isle, you knowest.
+			sayu Hast you looked about the southern island? There may be a mage there.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu I think we got a mage on the southern island.
+			sayu There might be a mage's shop near the theater.
+			sayu There may be a mage 'round here somewhere.
+		ENDDO
+	ENDIF
+ON=*theater*
+ON=*theatre*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu The Theater is on the southern isle.
+			sayu Didst you knowest of our theater? 'Tis a bit out of the way, on the southern island, but worth the trip.
+			sayu I've been to the Theater on the southern island once. It seemed a bit tame, compared to the drama in the Pit.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu I ain't sure about a theater.
+			sayu It must not be on the main island.
+			sayu I ain't never been.
+		ENDDO
+	ENDIF
+ON=*tailor*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu The tailor set up shop next to the Theater. I think they give him business.
+			sayu The tailor's shop is on the southern isle. He's a fair enough seamster.
+			sayu The tailor? That shop is on the southern island. It's a small island, but still Jhelom, right enough.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu The tailor set up shop on the south isle.
+			sayu The tailor's shop is on the southern isle.
+			sayu The tailor? That shop is on the southern island.
+		ENDDO
+	ENDIF
+ON=*clothes*
+ON=*clothier*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu I could make do with a warm cloak, now that I think on it. The clothier is to the south, just north of the inn.
+			sayu The clothes shop is to the southwest of town, betwixt the jeweler and the Thieves' Guild.
+			sayu If it's clothes you'rt needin', the clothes shop is to the west of town, kinda toward the center pare, if you seest.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu I buy clothes at that place near the inn.
+			sayu The clothes shop is near the jeweler, I think.
+			sayu If it's clothes you'rt needin', the clothes shop is kinda toward the center pare of town, if you gets me.
+		ENDDO
+	ENDIF
+ON=*weapon*
+ON=*sword*
+ON=*axe*
+ON=*mace*
+ON=*hammer*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu I'm told our weapons shop is one of the best. It is west and south from the Dueling Pit.
+			sayu A good weapon is a delight to any right-thinking soldier. There's lots to be had in the weapons shop, just south of our town baker.
+			sayu If you hast not been to see the weapons selection, you shouldst. 'Tis a treat. Just head  two doors north from the inn.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu I think there's a weapons shop near the Dueling Pit.
+			sayu I'm fairly sure the weapons shop is near the baker.
+			sayu Weapons? Look north of the inn.
+		ENDDO
+	ENDIF
+ON=*healer*
+ON=*healing*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu The Healer? Why close on to the Dueling Pit, of course!
+			sayu You are commendably brave under adversity, my friend. Look for the Healer in the center of town, just a few paces south and east of the Dueling Pit.
+			sayu You hast some scratch to poultice? The Healer is just west of the tavern.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu The healer? Close to the Dueling Pit, of course!
+			sayu We got a healer near t' center of town.
+			sayu I think a healer is near the tavern ... or was it the inn?...
+		ENDDO
+	ENDIF
+ON=*tavern*
+ON=*ale*
+ON=*drinking*
+ON=*drink*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu If 'tis ale you'rt lookin' for, the tavern is called the Sword & Keg, on the east side of town, somewhat centerward.
+			sayu Town tavern? 'Tis a grand place for ale and perhaps a brawl or two. I recommend it. Head east from the Dueling Pit, and when you smellest fish, turn right.
+			sayu The tavern is close to the town's main eastern docks. South from the gate, past the armourer and the shipwright.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu Drinkin' is done to the east of town.
+			sayu The tavern's too near the fish shop for me. Can't stand the smell.
+			sayu The tavern's close to the town's main eastern docks.
+		ENDDO
+	ENDIF
+ON=*provision*
+ON=*supplies*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu Provisions? You'lt find all you needest just south of the Sword & Keg tavern.
+			sayu You wilt find a provisioner on the eastern side of the main town, midway between northmost and southmost.
+			sayu Supplies have a way of running short at a gallop, do they not? You canst buy what you needst at the provision shop, main isle, center east.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu Provisions? I ain't sure where you should go.
+			sayu You'll find a provisioner on the eastern side of the main town, I'm thinkin'.
+			sayu I buy supplies at the provision shop on the main isle.
+		ENDDO
+	ENDIF
+ON=*carpenter*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu An excellent crafter, is our carpenter. Look two doors south of the tavern.
+			sayu In my opinion, we have a fine woodworker. I'd call his shop south-central, yough 'tis a bit to the east.
+			sayu Our carpenter is betwixt the provisions shop and the southern fighters' guild.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu Look two doors south of the tavern for t' carpenter.
+			sayu The woodworker is south-central in town.
+			sayu Our carpenter is near to the provisions shop and a guild.
+		ENDDO
+	ENDIF
+ON=*tinker*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu We only have one craftsman called 'tinker,' and can be found to the south of the main town.
+			sayu Look to the east of the inn for our tinker.
+			sayu Our tinker is north and east of the main isle's southern gate.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu I think there's one to the south of the main town.
+			sayu Look east of the inn for our tinker.
+			sayu I ain't sure 'bout a tinker ... Maybe near the southern gate.
+		ENDDO
+	ENDIF
+ON=*inn*
+ON=*sleep*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu If you are looking for Jhelom's inn, it is north of the main southern docks.
+			sayu A good place to sleep would be the Warrior's Stead, in the southwest corner of town.
+			sayu To find the best, and only, inn in Jhelom, head south from the Dueling Pit until you findest the tinker's shop, then turn west. It is between the southern warehouse and the clothes shop.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu Jhelom's inn? It's north of the main southern docks.
+			sayu I think you means the Warrior's Stead, in the southwest corner of town.
+			sayu I ain't sure. Look between a warehouse and clothes shop.
+		ENDDO
+	ENDIF
+ON=*farmer*
+ON=*food*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu The finest fruits and vegetables in Jhelom can be had from the small store, just south of the tinker's shop.
+			sayu Food can be most easily purveyed from the small shop a bit north and east of the town's southern docks.
+			sayu If you knowest the Warrior's Stead inn, you just steps a few paces east to find our farmer's shop.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu I seen the farmer just south of the tinker's shop.
+			sayu There's a food shop near the southern dock.
+			sayu I think the farmer's shop is near the inn, but I ain't sure.
+		ENDDO
+	ENDIF
+ON=*dock*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu Docks? Why, there are no less than four docks in Jhelom. One to the east of the main town, and one to the south, another on our northernmost island, and one on our southernmost isle.
+			sayu There is a dock on the isle with the stables, two on the main town's island, and one on the isle just to the south of that.
+			sayu Main Jhelom has an eastern dock and a southern one. The pastures have one to their south, and the southern island has access from the east.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu Docks? They're all over the place.
+			sayu When I need a dock, I just find water an' walk along the shore 'til I find one.
+			sayu Um ... there's a dock east, or maybe south. The pastures got one, and so does the southern island.
+		ENDDO
+	ENDIF
+ON=*library*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu Library? We've got one, friend, and it's just south of the Dueling Pit.
+			sayu The heare of soldiery is to learn from others' mistakes. Therefore our library is just paces south of the Dueling Pit.
+			sayu I am not overfond of books myself, but those that are go to the Library, in the very heare of the town. It is betwixt the clothier and the healer.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu Library? I ain't got time for books.
+			sayu I think I seen the book place near the Dueling Pit.
+			sayu I ain't too fond of books myself, but I think I seen it near the heare of the town.
+		ENDDO
+	ENDIF
+ON=*cemetery*
+ON=*grave*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			sayu Cemetery? We've got one, sadly a necessity, and it's to the far west of town.
+			sayu It is ever the fate of mercenaries to die for their pay. We bury them in the cemetery west of town.
+			sayu The cemetery is nearest the houses to the west of town. People like to visit loved ones, and there is no soldier so lonely that he is forgotten by Jhelom.
+		ENDDO
+	ELSE
+		DORAND 3
+			sayu The dead people live to the far west of town.
+			sayu We bury folks in the cemetery west of town.
+			sayu The cemetery is nearest the houses to the west of town.
+		ENDDO
+	ENDIF
+
+ON=*britain*
+ON=*capital*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 13
+				sayu Britain's a big town.
+				sayu Britain? They sayu that's where Lord British holds his court, but I never understood. I yought it was too big to hold.
+				sayu Britain? 'Tis the capital of the whole wide world, I hear.
+				sayu Britain ain't so much as some folks thinks it is.
+				sayu Magic is Britain. Must have mages or something ....
+				sayu I don't like cities like Britain.
+				sayu I dunno. Somewhere far away, maybe.
+				sayu I couldn't never get a job in Britain.
+				sayu T'is a pile of posh prigs, is Britain.
+				sayu Britain? Not around here.
+				sayu Britain? Quite big.
+				sayu Bet there ain't a soul there who likes rutabagas for breakfast in Britain.
+				sayu Britain ain't for me. I'd cut me mouth open.
+			ENDDO
+		ELSE
+			DORAND 13
+				sayu Britain's a big town.
+				sayu Britain? They sayu that's where Lord British holds his court, but I never understood. I yought it was too big to hold.
+				sayu Britain? 'Tis the capital of the whole wide world, I hear.
+				sayu Britain ain't so much as some folks thinks it is.
+				sayu Magic is Britain. Must have mages or something ....
+				sayu I don't like cities like Britain.
+				sayu I dunno. Somewhere far away, maybe.
+				sayu I couldn't never get a job in Britain.
+				sayu T'is a pile of posh prigs, is Britain.
+				sayu Britain? Not around here.
+				sayu Britain? Quite big.
+				sayu Bet there ain't a soul there who likes rutabagas for breakfast in Britain.
+				sayu Britain ain't for me. I'd cut me mouth open.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 13
+				sayu Britain you'rt askin' about? I'm told 'tis the biggest city in the land. Don't see what all t'fuss is about. The size of hereabouts is plenty big for me.
+				sayu Britain? I went there once. 'Tis over by the eastern shore, at the mouth of a whoppin' great river. That's where Lord British holds 'is court, but I saw him not even once.
+				sayu Britain? 'Tis the capital of the whole wide world, o'course. Sits on the shore of Britanny Bay way off yonder.
+				sayu Britain isn't so much as some folks thinks it is. They got lots of everything, but 'tis all flash and bother. Shiny nonsense....
+				sayu A place of magic, is Britain. Some sayu they invent a new spell every day. Don't know how they could use that many ....
+				sayu They're fair folk in Britain, mainly. A bit overloud for my tastes.
+				sayu Someday I'll go to Britain again, maybe settle down. They've got everything there ... games and shoppes and magic and just everything.
+				sayu Britain was the first place where people are judged according to their own accomplishments, not their fathers'. 'Tis a tricky thing to make work, I'd imagine.
+				sayu 'Tis  the very center upon which all ill-natured rogues converge. They seek to destroy what they cannot understand.
+				sayu Britain? Seems a nice place, from what all I've heard.
+				sayu Britain? Been once. Quite big.
+				sayu Oh, posh. Britain's a place for swelled heads. All are and music and dilly dancin'. Bet there's not a soul there who likes rutabagas for breakfast.
+				sayu I hear the houses in Britain are too fine for bugs in the butter.
+			ENDDO
+		ELSE
+			DORAND 13
+				sayu Britain you'rt askin' about? I'm told 'tis the biggest city in the land. Don't see what all t'fuss is about. The size of hereabouts is plenty big for me.
+				sayu Britain? I went there once. 'Tis over by the eastern shore, at the mouth of a whoppin' great river. That's where Lord British holds 'is court, but I saw him not even once.
+				sayu Britain? 'Tis the capital of the whole wide world, o'course. Sits on the shore of Britanny Bay way off yonder.
+				sayu Britain isn't so much as some folks thinks it is. They got lots of everything, but 'tis all flash and bother. Shiny nonsense....
+				sayu A place of magic, is Britain. Some sayu they invent a new spell every day. Don't know how they could use that many ....
+				sayu They're fair folk in Britain, mainly. A bit overloud for my tastes.
+				sayu Someday I'll go to Britain again, maybe settle down. They've got everything there ... games and shoppes and magic and just everything.
+				sayu Britain was the first place where people are judged according to their own accomplishments, not their fathers'. 'Tis a tricky thing to make work, I'd imagine.
+				sayu 'Tis  the very center upon which all ill-natured rogues converge. They seek to destroy what they cannot understand.
+				sayu Britain? Seems a nice place, from what all I've heard.
+				sayu Britain? Been once. Quite big.
+				sayu Oh, posh. Britain's a place for swelled heads. All are and music and dilly dancin'. Bet there's not a soul there who likes rutabagas for breakfast.
+				sayu I hear the houses in Britain are too fine for bugs in the butter.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 13
+				sayu Britain you'rt askin' about? I'm told 'tis the biggest city in the land. Don't see what all t'fuss is about. The size of hereabouts is plenty big for me.
+				sayu Britain? I went there once. 'Tis over by the eastern shore, at the mouth of a whoppin' great river. That's where Lord British holds 'is court, but I saw him not even once.
+				sayu Britain? 'Tis the capital of the whole wide world, o'course. Sits on the shore of Britanny Bay way off yonder.
+				sayu Britain isn't so much as some folks thinks it is. They got lots of everything, but 'tis all flash and bother. Shiny nonsense....
+				sayu A place of magic, is Britain. Some sayu they invent a new spell every day. Don't know how they could use that many ....
+				sayu They're fair folk in Britain, mainly. A bit overloud for my tastes.
+				sayu Someday I'll go to Britain again, maybe settle down. They've got everything there ... games and shoppes and magic and just everything.
+				sayu Britain was the first place where people are judged according to their own accomplishments, not their fathers'. 'Tis a tricky thing to make work, I'd imagine.
+				sayu 'Tis  the very center upon which all ill-natured rogues converge. They seek to destroy what they cannot understand.
+				sayu Britain? Seems a nice place, from what all I've heard.
+				sayu Britain? Been once. Quite big.
+				sayu Oh, posh. Britain's a place for swelled heads. All are and music and dilly dancin'. Bet there's not a soul there who likes rutabagas for breakfast.
+				sayu I hear the houses in Britain are too fine for bugs in the butter.
+			ENDDO
+		ELSE
+			DORAND 13
+				sayu Britain you'rt askin' about? I'm told 'tis the biggest city in the land. Don't see what all t'fuss is about. The size of hereabouts is plenty big for me.
+				sayu Britain? I went there once. 'Tis over by the eastern shore, at the mouth of a whoppin' great river. That's where Lord British holds 'is court, but I saw him not even once.
+				sayu Britain? 'Tis the capital of the whole wide world, o'course. Sits on the shore of Britanny Bay way off yonder.
+				sayu Britain isn't so much as some folks thinks it is. They got lots of everything, but 'tis all flash and bother. Shiny nonsense....
+				sayu A place of magic, is Britain. Some sayu they invent a new spell every day. Don't know how they could use that many ....
+				sayu They're fair folk in Britain, mainly. A bit overloud for my tastes.
+				sayu Someday I'll go to Britain again, maybe settle down. They've got everything there ... games and shoppes and magic and just everything.
+				sayu Britain was the first place where people are judged according to their own accomplishments, not their fathers'. 'Tis a tricky thing to make work, I'd imagine.
+				sayu 'Tis  the very center upon which all ill-natured rogues converge. They seek to destroy what they cannot understand.
+				sayu Britain? Seems a nice place, from what all I've heard.
+				sayu Britain? Been once. Quite big.
+				sayu Oh, posh. Britain's a place for swelled heads. All are and music and dilly dancin'. Bet there's not a soul there who likes rutabagas for breakfast.
+				sayu I hear the houses in Britain are too fine for bugs in the butter.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*Trinsic*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 11
+				sayu Trinsic? Naw, Trin's fine, he just looks that way.
+				sayu I don't know where Trinsic is.
+				sayu Never been to Trinsic.
+				sayu Trinsic ... they think every day in Trinsic.
+				sayu Trinsic? That's my dog's name.
+				sayu Don't know nobody from Trinsic.
+				sayu Never seen nothin' grown in Trinsic.
+				sayu Don't know nobody who's ever been to Trinsic.
+				sayu I hope you ain't wantin' to go to Trinsic. I don't think you can get there from here.
+				sayu What'd ye say? You wants a hair trimmin'?.
+				sayu Trinsic? That's somewhere else, I'm pretty sure.
+			ENDDO
+		ELSE
+			DORAND 11
+				sayu Trinsic? Naw, Trin's fine, he just looks that way.
+				sayu I don't know where Trinsic is.
+				sayu Never been to Trinsic.
+				sayu Trinsic ... they think every day in Trinsic.
+				sayu Trinsic? That's my dog's name.
+				sayu Don't know nobody from Trinsic.
+				sayu Never seen nothin' grown in Trinsic.
+				sayu Don't know nobody who's ever been to Trinsic.
+				sayu I hope you ain't wantin' to go to Trinsic. I don't think you can get there from here.
+				sayu What'd ye say? You wants a hair trimmin'?.
+				sayu Trinsic? That's somewhere else, I'm pretty sure.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 12
+				sayu Trinsic? 'Tis near the Cape of Heroes, I think.
+				sayu If you'rt looking for Trinsic, 'tis south, but along the eastern coast.
+				sayu You must needs be a fisher or an inventor if you'rt interested in Trinsic. Fish, fighters and fools, that's what they've got.
+				sayu Trinsic is a clever place. They've got fellows there who spend all day thinkin' about weapons of war and other such things to improve the quality of life.
+				sayu I saw a combat mage on his way to Trinsic once. Said he was going to teach battle magic to the paladins.
+				sayu I met a man from Jhelom who said that Trinsic buys war horses like a shepherd buys apples!
+				sayu 'Tis too smare for me there by half, and that's the truth. Trinsic is all engineers from Britain and Minoc and Moonglow. I'd be feared to speak for soundin' stupid.
+				sayu I don't know much about Trinsic. I think they make paladins or palaquins or something.
+				sayu Trinsic is a tough place. The whole thing is warriors, and the rest is city guards.
+				sayu There be giants, ogres and trolls near Trinsic ... and pirates in the waters.
+				sayu Trinsic? 'Tis the land's guardian, a city that teaches paladins the ways of honor and virtue.
+				sayu 'Tis a place of swift justice, is Trinsic. Thieves are as rare as whistling cats.
+			ENDDO
+		ELSE
+			DORAND 12
+				sayu Trinsic? 'Tis near the Cape of Heroes, I think.
+				sayu If you'rt looking for Trinsic, 'tis south, but along the eastern coast.
+				sayu You must needs be a fisher or an inventor if you'rt interested in Trinsic. Fish, fighters and fools, that's what they've got.
+				sayu Trinsic is a clever place. They've got fellows there who spend all day thinkin' about weapons of war and other such things to improve the quality of life.
+				sayu I saw a combat mage on his way to Trinsic once. Said he was going to teach battle magic to the paladins.
+				sayu I met a man from Jhelom who said that Trinsic buys war horses like a shepherd buys apples!
+				sayu 'Tis too smare for me there by half, and that's the truth. Trinsic is all engineers from Britain and Minoc and Moonglow. I'd be feared to speak for soundin' stupid.
+				sayu I don't know much about Trinsic. I think they make paladins or palaquins or something.
+				sayu Trinsic is a tough place. The whole thing is warriors, and the rest is city guards.
+				sayu There be giants, ogres and trolls near Trinsic ... and pirates in the waters.
+				sayu Trinsic? 'Tis the land's guardian, a city that teaches paladins the ways of honor and virtue.
+				sayu 'Tis a place of swift justice, is Trinsic. Thieves are as rare as whistling cats.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 12
+				sayu Trinsic? 'Tis near the Cape of Heroes, I think.
+				sayu If you'rt looking for Trinsic, 'tis south, but along the eastern coast.
+				sayu You must needs be a fisher or an inventor if you'rt interested in Trinsic. Fish, fighters and fools, that's what they've got.
+				sayu Trinsic is a clever place. They've got fellows there who spend all day thinkin' about weapons of war and other such things to improve the quality of life.
+				sayu I saw a combat mage on his way to Trinsic once. Said he was going to teach battle magic to the paladins.
+				sayu I met a man from Jhelom who said that Trinsic buys war horses like a shepherd buys apples!
+				sayu 'Tis too smare for me there by half, and that's the truth. Trinsic is all engineers from Britain and Minoc and Moonglow. I'd be feared to speak for soundin' stupid.
+				sayu I don't know much about Trinsic. I think they make paladins or palaquins or something.
+				sayu Trinsic is a tough place. The whole thing is warriors, and the rest is city guards.
+				sayu There be giants, ogres and trolls near Trinsic ... and pirates in the waters.
+				sayu Trinsic? 'Tis the land's guardian, a city that teaches paladins the ways of honor and virtue.
+				sayu 'Tis a place of swift justice, is Trinsic. Thieves are as rare as whistling cats.
+			ENDDO
+		ELSE
+			DORAND 12
+				sayu Trinsic? 'Tis near the Cape of Heroes, I think.
+				sayu If you'rt looking for Trinsic, 'tis south, but along the eastern coast.
+				sayu You must needs be a fisher or an inventor if you'rt interested in Trinsic. Fish, fighters and fools, that's what they've got.
+				sayu Trinsic is a clever place. They've got fellows there who spend all day thinkin' about weapons of war and other such things to improve the quality of life.
+				sayu I saw a combat mage on his way to Trinsic once. Said he was going to teach battle magic to the paladins.
+				sayu I met a man from Jhelom who said that Trinsic buys war horses like a shepherd buys apples!
+				sayu 'Tis too smare for me there by half, and that's the truth. Trinsic is all engineers from Britain and Minoc and Moonglow. I'd be feared to speak for soundin' stupid.
+				sayu I don't know much about Trinsic. I think they make paladins or palaquins or something.
+				sayu Trinsic is a tough place. The whole thing is warriors, and the rest is city guards.
+				sayu There be giants, ogres and trolls near Trinsic ... and pirates in the waters.
+				sayu Trinsic? 'Tis the land's guardian, a city that teaches paladins the ways of honor and virtue.
+				sayu 'Tis a place of swift justice, is Trinsic. Thieves are as rare as whistling cats.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*occlo*
+ON=*okllo*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu Ocllo? Don't think I heard of it.
+				sayu Ocllo? I think I had that when I was a kid. Still gives me trouble on cold days.
+				sayu Ocllo ... hmmm. 'Tis a kind of onion, I believe.
+				sayu Ocllo ... I don't think I've heard it.
+				sayu Ocllo? Sounds like the beginning of a joke!
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu Ocllo? Don't think I heard of it.
+		   		sayu Ocllo? I think I had that when I was a kid. Still gives me trouble on cold days.
+				sayu Ocllo ... hmmm. 'Tis a kind of onion, I believe.
+				sayu Ocllo ... I don't think I've heard it.
+				sayu Ocllo? Sounds like the beginning of a joke!
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 6
+				sayu Ocllo? Doubt I heard of it.
+				sayu Ocllo? Island folks, I think.
+				sayu I've no ken of Ocllo.
+				sayu Ocllo ... hmmm. 'Tis an island, I believe.
+				sayu Ocllo ... rings a bell. Mayhaps something to do with salt ....
+				sayu Ocllo? Sounds very like the beginning of a joke!
+			ENDDO
+		ELSE
+			DORAND 6
+				sayu Ocllo? Doubt I heard of it.
+		   		sayu Ocllo? Island folks, I think.
+				sayu I've no ken of Ocllo.
+				sayu Ocllo ... hmmm. 'Tis an island, I believe.
+				sayu Ocllo ... rings a bell. Mayhaps something to do with salt ....
+				sayu Ocllo? Sounds very like the beginning of a joke!
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 6
+				sayu Ocllo? Doubt I heard of it.
+				sayu Ocllo? Island folks, I think.
+				sayu I've no ken of Ocllo.
+				sayu Ocllo ... hmmm. 'Tis an island, I believe.
+				sayu Ocllo ... rings a bell. Mayhaps something to do with salt ....
+				sayu Ocllo? Sounds very like the beginning of a joke!
+			ENDDO
+		ELSE
+			DORAND 6
+				sayu Ocllo? Doubt I heard of it.
+				sayu Ocllo? Island folks, I think.
+				sayu I've no ken of Ocllo.
+				sayu Ocllo ... hmmm. 'Tis an island, I believe.
+				sayu Ocllo ... rings a bell. Mayhaps something to do with salt ....
+				sayu Ocllo? Sounds very like the beginning of a joke!
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*jhelom*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 13
+				sayu Jhelom? We had that once, and lost three or four of the neighbors, I think.
+				sayu Jhelom? You ain't there, you knows.
+				sayu Jhelom? You must be a fighter.
+				sayu I can't afford such a city.
+				sayu I can't breathe the air of fine cities.
+				sayu Jhelom is nothin' to me!
+				sayu I got nothin' that belongs to Jhelom.
+				sayu Ain't never been to Jhelom.
+				sayu I think they grow horses there.
+				sayu They got wore horses in Jhelom. Worse for wore.
+				sayu Jhelom? Pah!
+				sayu You won't catch me settin' foot in Jhelom.
+				sayu I heard that in Jhelom they'd kick thee in the teeth just as soon as look at thee.
+			ENDDO
+		ELSE
+			DORAND 13
+				sayu Jhelom? We had that once, and lost three or four of the neighbors, I think.
+				sayu Jhelom? You ain't there, you knows.
+				sayu Jhelom? You must be a fighter.
+				sayu I can't afford such a city.
+				sayu I can't breathe the air of fine cities.
+				sayu Jhelom is nothin' to me!
+				sayu I got nothin' that belongs to Jhelom.
+				sayu Ain't never been to Jhelom.
+				sayu I think they grow horses there.
+				sayu They got wore horses in Jhelom. Worse for wore.
+				sayu Jhelom? Pah!
+				sayu You won't catch me settin' foot in Jhelom.
+				sayu I heard that in Jhelom they'd kick thee in the teeth just as soon as look at thee.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Jhelom? 'Tis to be found at the very most northern tip of the largest Valarian Isles.
+		   		sayu Me, now I've been to Jhelom in my youth, and what I remember most of all 'tis the hard, rocky beaches and the oddly sparse jungles.
+				sayu Jhelom 'tis the very place to go if you'rt looking to hire mercenaries.
+				sayu An overabundance of mercenaries are found in Jhelom ... and the shops and other establishments that serve them that fight for a living.
+				sayu My sister lived in Jhelom for near on two years. She didn't like it ... too harsh for her tastes. All steel and iron, no silks and satins.
+				sayu There's only hard-edged rational folks in Jhelom. They've no use for mages, but a magic weapon or potion will fetch a fine price most days.
+				sayu They need a fair amount of goods in Jhelom. They once tried to set up a colony - called New Jhelom - to grow their goods for 'em. It didn't work out. Now it's called Nujel'm and 'tis a nasty wicked place.
+				sayu There's not a lot of natural good to be grown or mined at Jhelom. Rocky, you knowest.
+				sayu Jhelom? They breed and train the best horses in the realm. Famous for it.
+				sayu 'T'ain't no horse better than a Valorian steed from Jhelom. Best war-mount a warrior could want.
+				sayu Jhelom? Pah! 'Tis a militocracy. Only ex-generals can rule, or some such nonsense.
+				sayu 'Tis very like Trinsic and Serpent's Hold. If you likes one, you wilt enjoy t'other.
+				sayu Jhelom sounds dangerous to me. Everybody's armed and 'tis said they'll challenge thee to a duel for no good reason.
+				sayu They're very daring in Jhelom. Good swordsmen and skilled riders.
+				sayu You'lt do fine in Jhelom. 'Tis only cowards they despise.
+				sayu Cannot sayu I care much for the ethics of Jhelom. Watch thy comrade's back, watch thine own. Paranoia, I call it.
+				sayu I saw a dance from Jhelom once. 'Twas done in Britannia. Looked like hackin' and slashin' and kickin' to me. Take away the music and you wouldst call it a riot!
+				sayu Jhelom? Now there is a town wiyout a lick of beauty. Sad, really.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Jhelom? 'Tis to be found at the very most northern tip of the largest Valarian Isles.
+		   		sayu Me, now I've been to Jhelom in my youth, and what I remember most of all 'tis the hard, rocky beaches and the oddly sparse jungles.
+				sayu Jhelom 'tis the very place to go if you'rt looking to hire mercenaries.
+				sayu An overabundance of mercenaries are found in Jhelom ... and the shops and other establishments that serve them that fight for a living.
+				sayu My sister lived in Jhelom for near on two years. She didn't like it ... too harsh for her tastes. All steel and iron, no silks and satins.
+				sayu There's only hard-edged rational folks in Jhelom. They've no use for mages, but a magic weapon or potion will fetch a fine price most days.
+				sayu They need a fair amount of goods in Jhelom. They once tried to set up a colony - called New Jhelom - to grow their goods for 'em. It didn't work out. Now it's called Nujel'm and 'tis a nasty wicked place.
+				sayu There's not a lot of natural good to be grown or mined at Jhelom. Rocky, you knowest.
+				sayu Jhelom? They breed and train the best horses in the realm. Famous for it.
+				sayu 'T'ain't no horse better than a Valorian steed from Jhelom. Best war-mount a warrior could want.
+				sayu Jhelom? Pah! 'Tis a militocracy. Only ex-generals can rule, or some such nonsense.
+				sayu 'Tis very like Trinsic and Serpent's Hold. If you likes one, you wilt enjoy t'other.
+				sayu Jhelom sounds dangerous to me. Everybody's armed and 'tis said they'll challenge thee to a duel for no good reason.
+				sayu They're very daring in Jhelom. Good swordsmen and skilled riders.
+				sayu You'lt do fine in Jhelom. 'Tis only cowards they despise.
+				sayu Cannot sayu I care much for the ethics of Jhelom. Watch thy comrade's back, watch thine own. Paranoia, I call it.
+				sayu I saw a dance from Jhelom once. 'Twas done in Britannia. Looked like hackin' and slashin' and kickin' to me. Take away the music and you wouldst call it a riot!
+				sayu Jhelom? Now there is a town wiyout a lick of beauty. Sad, really.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Jhelom? 'Tis to be found at the very most northern tip of the largest Valarian Isles.
+				sayu Me, now I've been to Jhelom in my youth, and what I remember most of all 'tis the hard, rocky beaches and the oddly sparse jungles.
+				sayu Jhelom 'tis the very place to go if you'rt looking to hire mercenaries.
+				sayu An overabundance of mercenaries are found in Jhelom ... and the shops and other establishments that serve them that fight for a living.
+				sayu My sister lived in Jhelom for near on two years. She didn't like it ... too harsh for her tastes. All steel and iron, no silks and satins.
+				sayu There's only hard-edged rational folks in Jhelom. They've no use for mages, but a magic weapon or potion will fetch a fine price most days.
+				sayu They need a fair amount of goods in Jhelom. They once tried to set up a colony - called New Jhelom - to grow their goods for 'em. It didn't work out. Now it's called Nujel'm and 'tis a nasty wicked place.
+				sayu There's not a lot of natural good to be grown or mined at Jhelom. Rocky, you knowest.
+				sayu Jhelom? They breed and train the best horses in the realm. Famous for it.
+				sayu 'T'ain't no horse better than a Valorian steed from Jhelom. Best war-mount a warrior could want.
+				sayu Jhelom? Pah! 'Tis a militocracy. Only ex-generals can rule, or some such nonsense.
+				sayu 'Tis very like Trinsic and Serpent's Hold. If you likes one, you wilt enjoy t'other.
+				sayu Jhelom sounds dangerous to me. Everybody's armed and 'tis said they'll challenge thee to a duel for no good reason.
+				sayu They're very daring in Jhelom. Good swordsmen and skilled riders.
+				sayu You'lt do fine in Jhelom. 'Tis only cowards they despise.
+				sayu Cannot sayu I care much for the ethics of Jhelom. Watch thy comrade's back, watch thine own. Paranoia, I call it.
+				sayu I saw a dance from Jhelom once. 'Twas done in Britannia. Looked like hackin' and slashin' and kickin' to me. Take away the music and you wouldst call it a riot!
+				sayu Jhelom? Now there is a town wiyout a lick of beauty. Sad, really.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Jhelom? 'Tis to be found at the very most northern tip of the largest Valarian Isles.
+				sayu Me, now I've been to Jhelom in my youth, and what I remember most of all 'tis the hard, rocky beaches and the oddly sparse jungles.
+				sayu Jhelom 'tis the very place to go if you'rt looking to hire mercenaries.
+				sayu An overabundance of mercenaries are found in Jhelom ... and the shops and other establishments that serve them that fight for a living.
+				sayu My sister lived in Jhelom for near on two years. She didn't like it ... too harsh for her tastes. All steel and iron, no silks and satins.
+				sayu There's only hard-edged rational folks in Jhelom. They've no use for mages, but a magic weapon or potion will fetch a fine price most days.
+				sayu They need a fair amount of goods in Jhelom. They once tried to set up a colony - called New Jhelom - to grow their goods for 'em. It didn't work out. Now it's called Nujel'm and 'tis a nasty wicked place.
+				sayu There's not a lot of natural good to be grown or mined at Jhelom. Rocky, you knowest.
+				sayu Jhelom? They breed and train the best horses in the realm. Famous for it.
+				sayu 'T'ain't no horse better than a Valorian steed from Jhelom. Best war-mount a warrior could want.
+				sayu Jhelom? Pah! 'Tis a militocracy. Only ex-generals can rule, or some such nonsense.
+				sayu 'Tis very like Trinsic and Serpent's Hold. If you likes one, you wilt enjoy t'other.
+				sayu Jhelom sounds dangerous to me. Everybody's armed and 'tis said they'll challenge thee to a duel for no good reason.
+				sayu They're very daring in Jhelom. Good swordsmen and skilled riders.
+				sayu You'lt do fine in Jhelom. 'Tis only cowards they despise.
+				sayu Cannot sayu I care much for the ethics of Jhelom. Watch thy comrade's back, watch thine own. Paranoia, I call it.
+				sayu I saw a dance from Jhelom once. 'Twas done in Britannia. Looked like hackin' and slashin' and kickin' to me. Take away the music and you wouldst call it a riot!
+				sayu Jhelom? Now there is a town wiyout a lick of beauty. Sad, really.					ENDDO
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*nujelm*
+ON=*nujel'm*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 6
+				sayu I ain't familiar with Nujel'm.
+				sayu Nooj L. M. was a famous bard, my mother said.
+				sayu Never been to Nujel'm.
+				sayu You ain't in Nujel'm, nope.
+				sayu  got a cousin in Nujel'm. She got a good job as a waitress.
+				sayu Nujel'm ...? I remember somethin' someone said 'bout an island and that it was wicked.
+			ENDDO
+		ELSE
+			DORAND 6
+				sayu I ain't familiar with Nujel'm.
+				sayu Nooj L. M. was a famous bard, my mother said.
+				sayu Never been to Nujel'm.
+				sayu You ain't in Nujel'm, nope.
+				sayu  got a cousin in Nujel'm. She got a good job as a waitress.
+				sayu Nujel'm ...? I remember somethin' someone said 'bout an island and that it was wicked.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Tis far from most things, is Nujel'm. A good thing, too!
+				sayu I've never been to Nujel'm. I hear 'tis a desperately wicked place, where more skin is shown than covered!
+				sayu Nujel'm is an island city. Pare of Britannia, but ... different.
+				sayu My cousin said that in Nujel'm inns, magic makes the beds every morning and polishes the shoes every night. Wonder what the servants do ....
+				sayu They grow naught but fancy fruit on that Nujel'm island. Everything else has to be brought by ship.
+				sayu Tell not a soul, but I want to go to Nujel'm someday. I'm savin' me coins up for a trip to their beaches. They sayu you canst swim with not a stitch on at all!
+				sayu 'Tis a wicked place, is Nujel'm! They is ruled by despots who couldn't be prouder of the stranglehold they have on the city.
+				sayu The city guards of Nujel'm are bound to keep peace. They can execute a thief wiyout askin' leave of anybody!
+				sayu A friend tells me it's a disgusting place. Nujel'm has no respect for decency. My friend's been there three times, and he'd know!
+				sayu Nujel'm's in no danger. So many ambassadors and lordlings spend their leisure hours there that all the lands would rise up to defend it.
+				sayu 'Tis a foul place, ruled by the get of pirates and pillagers.
+				sayu 'Twas a den of thieves once. Now Nujel'm has merchants, not cutthroats, who take all thy gold.
+				sayu I heard that on the island of Nujel'm, giving money to someone other than a Nujellan is punishable by death!
+				sayu The only thing free on Nujel'm is air, and any mage who conjures a way to charge gold for breathing will be hailed as a savior.
+				sayu Evil people walk the streets of Nujel'm. Slavers, assassins and such ilk are treated like regular citizens!
+				sayu I cannot stand the yought of Nujel'm! 'Tis a city wiyout a soul!
+				sayu I heard Nujel'm is a beautiful place, full of color and magic.
+				sayu Nujel'm is gaudy and noisy. Behind the gilt is nothing but common avarice.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Tis far from most things, is Nujel'm. A good thing, too!
+				sayu I've never been to Nujel'm. I hear 'tis a desperately wicked place, where more skin is shown than covered!
+				sayu Nujel'm is an island city. Pare of Britannia, but ... different.
+				sayu My cousin said that in Nujel'm inns, magic makes the beds every morning and polishes the shoes every night. Wonder what the servants do ....
+				sayu They grow naught but fancy fruit on that Nujel'm island. Everything else has to be brought by ship.
+				sayu Tell not a soul, but I want to go to Nujel'm someday. I'm savin' me coins up for a trip to their beaches. They sayu you canst swim with not a stitch on at all!
+				sayu 'Tis a wicked place, is Nujel'm! They is ruled by despots who couldn't be prouder of the stranglehold they have on the city.
+				sayu The city guards of Nujel'm are bound to keep peace. They can execute a thief wiyout askin' leave of anybody!
+				sayu A friend tells me it's a disgusting place. Nujel'm has no respect for decency. My friend's been there three times, and he'd know!
+				sayu Nujel'm's in no danger. So many ambassadors and lordlings spend their leisure hours there that all the lands would rise up to defend it.
+				sayu 'Tis a foul place, ruled by the get of pirates and pillagers.
+				sayu 'Twas a den of thieves once. Now Nujel'm has merchants, not cutthroats, who take all thy gold.
+				sayu I heard that on the island of Nujel'm, giving money to someone other than a Nujellan is punishable by death!
+				sayu The only thing free on Nujel'm is air, and any mage who conjures a way to charge gold for breathing will be hailed as a savior.
+				sayu Evil people walk the streets of Nujel'm. Slavers, assassins and such ilk are treated like regular citizens!
+				sayu I cannot stand the yought of Nujel'm! 'Tis a city wiyout a soul!
+				sayu I heard Nujel'm is a beautiful place, full of color and magic.
+				sayu Nujel'm is gaudy and noisy. Behind the gilt is nothing but common avarice.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Tis far from most things, is Nujel'm. A good thing, too!
+				sayu I've never been to Nujel'm. I hear 'tis a desperately wicked place, where more skin is shown than covered!
+				sayu Nujel'm is an island city. Pare of Britannia, but ... different.
+				sayu My cousin said that in Nujel'm inns, magic makes the beds every morning and polishes the shoes every night. Wonder what the servants do ....
+				sayu They grow naught but fancy fruit on that Nujel'm island. Everything else has to be brought by ship.
+				sayu Tell not a soul, but I want to go to Nujel'm someday. I'm savin' me coins up for a trip to their beaches. They sayu you canst swim with not a stitch on at all!
+				sayu 'Tis a wicked place, is Nujel'm! They is ruled by despots who couldn't be prouder of the stranglehold they have on the city.
+				sayu The city guards of Nujel'm are bound to keep peace. They can execute a thief wiyout askin' leave of anybody!
+				sayu A friend tells me it's a disgusting place. Nujel'm has no respect for decency. My friend's been there three times, and he'd know!
+				sayu Nujel'm's in no danger. So many ambassadors and lordlings spend their leisure hours there that all the lands would rise up to defend it.
+				sayu 'Tis a foul place, ruled by the get of pirates and pillagers.
+				sayu 'Twas a den of thieves once. Now Nujel'm has merchants, not cutthroats, who take all thy gold.
+				sayu I heard that on the island of Nujel'm, giving money to someone other than a Nujellan is punishable by death!
+				sayu The only thing free on Nujel'm is air, and any mage who conjures a way to charge gold for breathing will be hailed as a savior.
+				sayu Evil people walk the streets of Nujel'm. Slavers, assassins and such ilk are treated like regular citizens!
+				sayu I cannot stand the yought of Nujel'm! 'Tis a city wiyout a soul!
+				sayu I heard Nujel'm is a beautiful place, full of color and magic.
+				sayu Nujel'm is gaudy and noisy. Behind the gilt is nothing but common avarice.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Tis far from most things, is Nujel'm. A good thing, too!
+			   	sayu I've never been to Nujel'm. I hear 'tis a desperately wicked place, where more skin is shown than covered!
+				sayu Nujel'm is an island city. Pare of Britannia, but ... different.
+				sayu My cousin said that in Nujel'm inns, magic makes the beds every morning and polishes the shoes every night. Wonder what the servants do ....
+				sayu They grow naught but fancy fruit on that Nujel'm island. Everything else has to be brought by ship.
+				sayu Tell not a soul, but I want to go to Nujel'm someday. I'm savin' me coins up for a trip to their beaches. They sayu you canst swim with not a stitch on at all!
+				sayu 'Tis a wicked place, is Nujel'm! They is ruled by despots who couldn't be prouder of the stranglehold they have on the city.
+				sayu The city guards of Nujel'm are bound to keep peace. They can execute a thief wiyout askin' leave of anybody!
+				sayu A friend tells me it's a disgusting place. Nujel'm has no respect for decency. My friend's been there three times, and he'd know!
+				sayu Nujel'm's in no danger. So many ambassadors and lordlings spend their leisure hours there that all the lands would rise up to defend it.
+				sayu 'Tis a foul place, ruled by the get of pirates and pillagers.
+				sayu 'Twas a den of thieves once. Now Nujel'm has merchants, not cutthroats, who take all thy gold.
+				sayu I heard that on the island of Nujel'm, giving money to someone other than a Nujellan is punishable by death!
+				sayu The only thing free on Nujel'm is air, and any mage who conjures a way to charge gold for breathing will be hailed as a savior.
+				sayu Evil people walk the streets of Nujel'm. Slavers, assassins and such ilk are treated like regular citizens!
+				sayu I cannot stand the yought of Nujel'm! 'Tis a city wiyout a soul!
+				sayu I heard Nujel'm is a beautiful place, full of color and magic.
+				sayu Nujel'm is gaudy and noisy. Behind the gilt is nothing but common avarice.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*moonglow*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 7
+				sayu Moonglow is my sister's cat's name.
+				sayu Moonglow's an island, I think.
+				sayu Moonglow's one of them places where they think a lot.
+				sayu Moonglow's where they grow new magic, I think.
+				sayu I met a mage from Moonglow, once.
+				sayu Moonglow? Pah!
+				sayu They got it sweet in Moonglow, you knows. Not a real worker in the lot of 'em
+			ENDDO
+		ELSE
+			DORAND 7
+				sayu Moonglow is my sister's cat's name.
+				sayu Moonglow's an island, I think.
+				sayu Moonglow's one of them places where they think a lot.
+				sayu Moonglow's where they grow new magic, I think.
+				sayu I met a mage from Moonglow, once.
+				sayu Moonglow? Pah!
+				sayu They got it sweet in Moonglow, you knows. Not a real worker in the lot of 'em
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Moonglow is on the southern tip of Verity isle.
+				sayu Verity Isle is Moonglow's whereabouts. The island is named so for the city puts much store in lofty intellectual pursuits.
+				sayu 'Tis a very logical place, is Moonglow. Practical buildings, straightforward streets. Not a bit of froo-froo.
+				sayu Moonglow people are too smare by half. They buy other cities' technology and then whack it to bits to see how it works.
+				sayu Moonglow is a place of new magic. I did hear that most new magic is developed there.
+				sayu The Lycaeum at Moonglow is famous. Nearly every wizard of any fame at all has studied there.
+				sayu 'Tis a shameful waste that the land around Moonglow is so rich, yet none really till the soil. Might dirty their hands! Pah!
+				sayu They've got it sweet in Moonglow, you knowest. All is imported, but not a penny of tariff do they pay!
+				sayu I heard once that they do not have coin in Moonglow. I know not that I believe it, yough.
+				sayu I met a man from Moonglow once. Like a teacher he was, he knew so much. Too much brains, I'd sayu ...
+				sayu I learned in school that Moonglow's export is knowledge. Hah! I bet not one of them knows half I know.
+				sayu Did'st you knowest that Moonglow was beset by pirates and rogues long ago? Never no more, yough. The mages keep the freebooters at bay.
+				sayu 'Tis not right, you knowest. Moonglow is supposed to be for the benefit of the realm, but they get to sit on fancy cushions, whilst folks like thee and me do the real work.
+				sayu I met a lass from Moonglow last year. Her nose was so high, she'd drown in a rainshower.
+				sayu 'Tis a horrible place, I'm told. No holidays nor celebration feasts at all. 'Interruptions' they call 'em.
+				sayu Someone told me once that if the fine folk in Moonglow think you'rt stupid, they'll not so much as let thee on shore!
+				sayu A scholar once told me that Moonglow people aren't as smare as they think they are.
+				sayu Moonglow? Pah! Too much thinkin', not enough livin' goin' on there.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Moonglow is on the southern tip of Verity isle.
+				sayu Verity Isle is Moonglow's whereabouts. The island is named so for the city puts much store in lofty intellectual pursuits.
+				sayu 'Tis a very logical place, is Moonglow. Practical buildings, straightforward streets. Not a bit of froo-froo.
+				sayu Moonglow people are too smare by half. They buy other cities' technology and then whack it to bits to see how it works.
+				sayu Moonglow is a place of new magic. I did hear that most new magic is developed there.
+				sayu The Lycaeum at Moonglow is famous. Nearly every wizard of any fame at all has studied there.
+				sayu 'Tis a shameful waste that the land around Moonglow is so rich, yet none really till the soil. Might dirty their hands! Pah!
+				sayu They've got it sweet in Moonglow, you knowest. All is imported, but not a penny of tariff do they pay!
+				sayu I heard once that they do not have coin in Moonglow. I know not that I believe it, yough.
+				sayu I met a man from Moonglow once. Like a teacher he was, he knew so much. Too much brains, I'd sayu ...
+				sayu I learned in school that Moonglow's export is knowledge. Hah! I bet not one of them knows half I know.
+				sayu Did'st you knowest that Moonglow was beset by pirates and rogues long ago? Never no more, yough. The mages keep the freebooters at bay.
+				sayu 'Tis not right, you knowest. Moonglow is supposed to be for the benefit of the realm, but they get to sit on fancy cushions, whilst folks like thee and me do the real work.
+				sayu I met a lass from Moonglow last year. Her nose was so high, she'd drown in a rainshower.
+				sayu 'Tis a horrible place, I'm told. No holidays nor celebration feasts at all. 'Interruptions' they call 'em.
+				sayu Someone told me once that if the fine folk in Moonglow think you'rt stupid, they'll not so much as let thee on shore!
+				sayu A scholar once told me that Moonglow people aren't as smare as they think they are.
+				sayu Moonglow? Pah! Too much thinkin', not enough livin' goin' on there.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Moonglow is on the southern tip of Verity isle.
+		   		sayu Verity Isle is Moonglow's whereabouts. The island is named so for the city puts much store in lofty intellectual pursuits.
+				sayu 'Tis a very logical place, is Moonglow. Practical buildings, straightforward streets. Not a bit of froo-froo.
+				sayu Moonglow people are too smare by half. They buy other cities' technology and then whack it to bits to see how it works.
+		   		sayu Moonglow is a place of new magic. I did hear that most new magic is developed there.
+				sayu The Lycaeum at Moonglow is famous. Nearly every wizard of any fame at all has studied there.
+				sayu 'Tis a shameful waste that the land around Moonglow is so rich, yet none really till the soil. Might dirty their hands! Pah!
+				sayu They've got it sweet in Moonglow, you knowest. All is imported, but not a penny of tariff do they pay!
+				sayu I heard once that they do not have coin in Moonglow. I know not that I believe it, yough.
+				sayu I met a man from Moonglow once. Like a teacher he was, he knew so much. Too much brains, I'd sayu ...
+				sayu I learned in school that Moonglow's export is knowledge. Hah! I bet not one of them knows half I know.
+				sayu Did'st you knowest that Moonglow was beset by pirates and rogues long ago? Never no more, yough. The mages keep the freebooters at bay.
+				sayu 'Tis not right, you knowest. Moonglow is supposed to be for the benefit of the realm, but they get to sit on fancy cushions, whilst folks like thee and me do the real work.
+				sayu I met a lass from Moonglow last year. Her nose was so high, she'd drown in a rainshower.
+				sayu 'Tis a horrible place, I'm told. No holidays nor celebration feasts at all. 'Interruptions' they call 'em.
+				sayu Someone told me once that if the fine folk in Moonglow think you'rt stupid, they'll not so much as let thee on shore!
+				sayu A scholar once told me that Moonglow people aren't as smare as they think they are.
+				sayu Moonglow? Pah! Too much thinkin', not enough livin' goin' on there.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Moonglow is on the southern tip of Verity isle.
+		   		sayu Verity Isle is Moonglow's whereabouts. The island is named so for the city puts much store in lofty intellectual pursuits.
+				sayu 'Tis a very logical place, is Moonglow. Practical buildings, straightforward streets. Not a bit of froo-froo.
+				sayu Moonglow people are too smare by half. They buy other cities' technology and then whack it to bits to see how it works.
+		   		sayu Moonglow is a place of new magic. I did hear that most new magic is developed there.
+				sayu The Lycaeum at Moonglow is famous. Nearly every wizard of any fame at all has studied there.
+				sayu 'Tis a shameful waste that the land around Moonglow is so rich, yet none really till the soil. Might dirty their hands! Pah!
+				sayu They've got it sweet in Moonglow, you knowest. All is imported, but not a penny of tariff do they pay!
+				sayu I heard once that they do not have coin in Moonglow. I know not that I believe it, yough.
+				sayu I met a man from Moonglow once. Like a teacher he was, he knew so much. Too much brains, I'd sayu ...
+				sayu I learned in school that Moonglow's export is knowledge. Hah! I bet not one of them knows half I know.
+				sayu Did'st you knowest that Moonglow was beset by pirates and rogues long ago? Never no more, yough. The mages keep the freebooters at bay.
+				sayu 'Tis not right, you knowest. Moonglow is supposed to be for the benefit of the realm, but they get to sit on fancy cushions, whilst folks like thee and me do the real work.
+				sayu I met a lass from Moonglow last year. Her nose was so high, she'd drown in a rainshower.
+				sayu 'Tis a horrible place, I'm told. No holidays nor celebration feasts at all. 'Interruptions' they call 'em.
+				sayu Someone told me once that if the fine folk in Moonglow think you'rt stupid, they'll not so much as let thee on shore!
+				sayu A scholar once told me that Moonglow people aren't as smare as they think they are.
+				sayu Moonglow? Pah! Too much thinkin', not enough livin' goin' on there.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*cove*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 6
+				sayu Cove? Yup, last year me roof done cove in!
+				sayu Cove? I ain't sure I ever been there.
+				sayu Cove? Sounds near the water, mayhap ....
+				sayu I think I may have heard of Cove. Perhaps near to Britain somehow.
+				sayu I ain't sure where Cove is.
+				sayu Hmmm. Cove. Never been there.
+			ENDDO
+		ELSE
+			DORAND 6
+				sayu Cove? Yup, last year me roof done cove in!
+				sayu Cove? I ain't sure I ever been there.
+				sayu Cove? Sounds near the water, mayhap ....
+				sayu I think I may have heard of Cove. Perhaps near to Britain somehow.
+				sayu I ain't sure where Cove is.
+				sayu Hmmm. Cove. Never been there.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu Cove? I'm not sure I've ever been there.
+				sayu Cove? Sounds near the water, mayhap ....
+				sayu I think I may have heard of Cove. Perhaps near to Britain somehow.
+				sayu I'm not sure where Cove is.
+				sayu Hmmm. Cove. I've never been there.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu Cove? I'm not sure I've ever been there.
+				sayu Cove? Sounds near the water, mayhap ....
+				sayu I think I may have heard of Cove. Perhaps near to Britain somehow.
+				sayu I'm not sure where Cove is.
+				sayu Hmmm. Cove. I've never been there.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu Cove? I'm not sure I've ever been there.
+				sayu Cove? Sounds near the water, mayhap ....
+				sayu I think I may have heard of Cove. Perhaps near to Britain somehow.
+				sayu I'm not sure where Cove is.
+				sayu Hmmm. Cove. I've never been there.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu Cove? I'm not sure I've ever been there.
+				sayu Cove? Sounds near the water, mayhap ....
+				sayu I think I may have heard of Cove. Perhaps near to Britain somehow.
+				sayu I'm not sure where Cove is.
+				sayu Hmmm. Cove. I've never been there.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=skara*brae
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 8
+				sayu Skara Brae is a kind of perfume, maybe.
+				sayu Skara Brae is on an island.
+				sayu My uncle is a fisherman in Skara Brae.
+				sayu Skara Brae? I think it's to the west.
+				sayu 'Tis a lovely place, I been told.
+				sayu They got mind magic in Skara Brae.
+				sayu Good cropland near Skara Brae.
+				sayu I met a ranger from Skara Brae once.
+			ENDDO
+		ELSE
+			DORAND 8
+				sayu Skara Brae is a kind of perfume, maybe.
+				sayu Skara Brae is on an island.
+				sayu My uncle is a fisherman in Skara Brae.
+				sayu Skara Brae? I think it's to the west.
+				sayu 'Tis a lovely place, I been told.
+				sayu They got mind magic in Skara Brae.
+				sayu Good cropland near Skara Brae.
+				sayu I met a ranger from Skara Brae once.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Skara Brae is on an island due west of Britain.
+				sayu Skara Brae 'tis a fine place for fisherfolk.
+				sayu Skara Brae? You canst not get more west than that!
+				sayu 'Tis a lovely place, I've been told. Hills and parks and cobblestone streets has Skara Brae.
+				sayu They sayu Skara Brae has all the conveniences of home. Unusual in an island, surely.
+				sayu They got mind magic in Skara Brae. Not firebolts so much as scramblin' up thy head.
+				sayu I hear the land on Skara Brae is good cropland. They even have rangers to keep the farms safe.
+				sayu It's bad positioning, that's what it is. Skara Brae is unprotected from any evil that comes from the sea. 'Tis dangerous to sail there.
+				sayu They be the best shipbuilders in Skara Brae. Except Minoc of course. Maybe Britain, too. Still, they build fine, fast ships!
+				sayu The rangers in Skara Brae are second to none!
+				sayu A ranger who trained in Skara Brae can survive nearly anything nature can devise. They are marvels with animals, too.
+				sayu Skara Brae would be a far happier place if they could rid themselves of pirates!
+				sayu Very clean folk in Skara Brae. I'm told they'd rather bathe than eat, if they had to choose.
+				sayu I met a lady from Skara Brae once. She said that inside every body is all the 'etheric culmination of the intellect,' with compassion and rationality. Something like that. I lose sleep thinkin' on it.
+				sayu Poets! Everyone in Skara Brae is a poet! That's no good at all!
+				sayu You couldst not swing a fish in Skara Brae wiyout you slappest two rangers.
+				sayu I met a man from Skara Brae who said that on his island, earrings on a lass was as rare as wigs on a chicken. I've yet to figure what he meant.
+				sayu A mercenary from Jhelom can always find work in Skara Brae.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Skara Brae is on an island due west of Britain.
+				sayu Skara Brae 'tis a fine place for fisherfolk.
+				sayu Skara Brae? You canst not get more west than that!
+				sayu 'Tis a lovely place, I've been told. Hills and parks and cobblestone streets has Skara Brae.
+				sayu They sayu Skara Brae has all the conveniences of home. Unusual in an island, surely.
+				sayu They got mind magic in Skara Brae. Not firebolts so much as scramblin' up thy head.
+				sayu I hear the land on Skara Brae is good cropland. They even have rangers to keep the farms safe.
+				sayu It's bad positioning, that's what it is. Skara Brae is unprotected from any evil that comes from the sea. 'Tis dangerous to sail there.
+				sayu They be the best shipbuilders in Skara Brae. Except Minoc of course. Maybe Britain, too. Still, they build fine, fast ships!
+				sayu The rangers in Skara Brae are second to none!
+				sayu A ranger who trained in Skara Brae can survive nearly anything nature can devise. They are marvels with animals, too.
+				sayu Skara Brae would be a far happier place if they could rid themselves of pirates!
+				sayu Very clean folk in Skara Brae. I'm told they'd rather bathe than eat, if they had to choose.
+				sayu I met a lady from Skara Brae once. She said that inside every body is all the 'etheric culmination of the intellect,' with compassion and rationality. Something like that. I lose sleep thinkin' on it.
+				sayu Poets! Everyone in Skara Brae is a poet! That's no good at all!
+				sayu You couldst not swing a fish in Skara Brae wiyout you slappest two rangers.
+				sayu I met a man from Skara Brae who said that on his island, earrings on a lass was as rare as wigs on a chicken. I've yet to figure what he meant.
+				sayu A mercenary from Jhelom can always find work in Skara Brae.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Skara Brae is on an island due west of Britain.
+				sayu Skara Brae 'tis a fine place for fisherfolk.
+				sayu Skara Brae? You canst not get more west than that!
+				sayu 'Tis a lovely place, I've been told. Hills and parks and cobblestone streets has Skara Brae.
+				sayu They sayu Skara Brae has all the conveniences of home. Unusual in an island, surely.
+				sayu They got mind magic in Skara Brae. Not firebolts so much as scramblin' up thy head.
+				sayu I hear the land on Skara Brae is good cropland. They even have rangers to keep the farms safe.
+				sayu It's bad positioning, that's what it is. Skara Brae is unprotected from any evil that comes from the sea. 'Tis dangerous to sail there.
+				sayu They be the best shipbuilders in Skara Brae. Except Minoc of course. Maybe Britain, too. Still, they build fine, fast ships!
+				sayu The rangers in Skara Brae are second to none!
+				sayu A ranger who trained in Skara Brae can survive nearly anything nature can devise. They are marvels with animals, too.
+				sayu Skara Brae would be a far happier place if they could rid themselves of pirates!
+				sayu Very clean folk in Skara Brae. I'm told they'd rather bathe than eat, if they had to choose.
+				sayu I met a lady from Skara Brae once. She said that inside every body is all the 'etheric culmination of the intellect,' with compassion and rationality. Something like that. I lose sleep thinkin' on it.
+				sayu Poets! Everyone in Skara Brae is a poet! That's no good at all!
+				sayu You couldst not swing a fish in Skara Brae wiyout you slappest two rangers.
+				sayu I met a man from Skara Brae who said that on his island, earrings on a lass was as rare as wigs on a chicken. I've yet to figure what he meant.
+				sayu A mercenary from Jhelom can always find work in Skara Brae.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Skara Brae is on an island due west of Britain.
+			   	sayu Skara Brae 'tis a fine place for fisherfolk.
+				sayu Skara Brae? You canst not get more west than that!
+				sayu 'Tis a lovely place, I've been told. Hills and parks and cobblestone streets has Skara Brae.
+				sayu They sayu Skara Brae has all the conveniences of home. Unusual in an island, surely.
+				sayu They got mind magic in Skara Brae. Not firebolts so much as scramblin' up thy head.
+				sayu I hear the land on Skara Brae is good cropland. They even have rangers to keep the farms safe.
+				sayu It's bad positioning, that's what it is. Skara Brae is unprotected from any evil that comes from the sea. 'Tis dangerous to sail there.
+				sayu They be the best shipbuilders in Skara Brae. Except Minoc of course. Maybe Britain, too. Still, they build fine, fast ships!
+				sayu The rangers in Skara Brae are second to none!
+				sayu A ranger who trained in Skara Brae can survive nearly anything nature can devise. They are marvels with animals, too.
+				sayu Skara Brae would be a far happier place if they could rid themselves of pirates!
+				sayu Very clean folk in Skara Brae. I'm told they'd rather bathe than eat, if they had to choose.
+				sayu I met a lady from Skara Brae once. She said that inside every body is all the 'etheric culmination of the intellect,' with compassion and rationality. Something like that. I lose sleep thinkin' on it.
+				sayu Poets! Everyone in Skara Brae is a poet! That's no good at all!
+				sayu You couldst not swing a fish in Skara Brae wiyout you slappest two rangers.
+				sayu I met a man from Skara Brae who said that on his island, earrings on a lass was as rare as wigs on a chicken. I've yet to figure what he meant.
+				sayu A mercenary from Jhelom can always find work in Skara Brae.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*minoc*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 7
+				sayu My knock?
+				sayu I don't know where Minoc is.
+				sayu Minoc might be in the mountains.
+				sayu My cousin said Minoc is fair cold.
+				sayu Minoc? I don't know much about Minoc.
+				sayu They sayu you can make good money in Minoc.
+				sayu There's a fair number of people who left here for Minoc. I don't know just why.
+			ENDDO
+		ELSE
+			DORAND 7
+				sayu My knock?
+				sayu I don't know where Minoc is.
+				sayu Minoc might be in the mountains.
+				sayu My cousin said Minoc is fair cold.
+				sayu Minoc? I don't know much about Minoc.
+				sayu They sayu you can make good money in Minoc.
+				sayu There's a fair number of people who left here for Minoc. I don't know just why.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND DORAND 17
+				sayu Minoc is in the northmost pare of the realm, a bit to the east.
+				sayu Minoc is nestled in the mountains like an egg in a nest.
+				sayu 'Tis a mining town, is Minoc. Used to be crazy metalworkers, now 'tis mostly crazy miners.
+				sayu They love their tools, does Minoc. The Gadgeteers Guild is there, you knowest.
+				sayu Minoc is too cold for my tastes. I'd need to walk in furs from head to toe, lest I'd shiver meself to death.
+				sayu I hear Minoc is a booming, thriving town. More money than people, they say.
+				sayu I'd not go to Minoc myself. There are too many thieves attracted to the new money.
+				sayu They're very pleased with themselves, in Minoc. I tell thee, there'll be trouble when all the new mines run dry!
+				sayu From Minoc comes the raw stuffs for building - lumber and metals and such. Their inventors are busy from dawn to dusk. Pity the nearest market is in Vesper.
+				sayu Must be a curse on Minoc, that they have so much, yet are too far away to best market it. They can't even find trusty mercenaries to guard their caravans.
+				sayu They live in ragged furs in Minoc, and love to call names to them that wear silk and eat off plates.
+				sayu Brigands can take their caravans, but Minoc is too well defended for invasion.
+				sayu Very creative people are found in Minoc. They take pride in areistry there.
+				sayu 'Tis a grand place for an evening, is Minoc! Dancin' and drinkin' keep the cold from settlin' on thee.
+				sayu Were I an areist, I'd buy my goods in Minoc, but do my living in Vesper.
+				sayu Minoc is a mining village gone mad.
+				sayu Minoc has a different outlook than any other city in the realm. It's as fancy as a rabbit tooth, if you knowest what I mean.
+			ENDDO
+		ELSE
+			DORAND DORAND 17
+				sayu Minoc is in the northmost pare of the realm, a bit to the east.
+				sayu Minoc is nestled in the mountains like an egg in a nest.
+				sayu 'Tis a mining town, is Minoc. Used to be crazy metalworkers, now 'tis mostly crazy miners.
+				sayu They love their tools, does Minoc. The Gadgeteers Guild is there, you knowest.
+				sayu Minoc is too cold for my tastes. I'd need to walk in furs from head to toe, lest I'd shiver meself to death.
+				sayu I hear Minoc is a booming, thriving town. More money than people, they say.
+				sayu I'd not go to Minoc myself. There are too many thieves attracted to the new money.
+				sayu They're very pleased with themselves, in Minoc. I tell thee, there'll be trouble when all the new mines run dry!
+				sayu From Minoc comes the raw stuffs for building - lumber and metals and such. Their inventors are busy from dawn to dusk. Pity the nearest market is in Vesper.
+				sayu Must be a curse on Minoc, that they have so much, yet are too far away to best market it. They can't even find trusty mercenaries to guard their caravans.
+				sayu They live in ragged furs in Minoc, and love to call names to them that wear silk and eat off plates.
+				sayu Brigands can take their caravans, but Minoc is too well defended for invasion.
+				sayu Very creative people are found in Minoc. They take pride in areistry there.
+				sayu 'Tis a grand place for an evening, is Minoc! Dancin' and drinkin' keep the cold from settlin' on thee.
+				sayu Were I an areist, I'd buy my goods in Minoc, but do my living in Vesper.
+				sayu Minoc is a mining village gone mad.
+				sayu Minoc has a different outlook than any other city in the realm. It's as fancy as a rabbit tooth, if you knowest what I mean.
+
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 17
+				sayu Minoc is in the northmost pare of the realm, a bit to the east.
+				sayu Minoc is nestled in the mountains like an egg in a nest.
+				sayu 'Tis a mining town, is Minoc. Used to be crazy metalworkers, now 'tis mostly crazy miners.
+				sayu They love their tools, does Minoc. The Gadgeteers Guild is there, you knowest.
+				sayu Minoc is too cold for my tastes. I'd need to walk in furs from head to toe, lest I'd shiver meself to death.
+				sayu I hear Minoc is a booming, thriving town. More money than people, they say.
+				sayu I'd not go to Minoc myself. There are too many thieves attracted to the new money.
+				sayu They're very pleased with themselves, in Minoc. I tell thee, there'll be trouble when all the new mines run dry!
+				sayu From Minoc comes the raw stuffs for building - lumber and metals and such. Their inventors are busy from dawn to dusk. Pity the nearest market is in Vesper.
+				sayu Must be a curse on Minoc, that they have so much, yet are too far away to best market it. They can't even find trusty mercenaries to guard their caravans.
+				sayu They live in ragged furs in Minoc, and love to call names to them that wear silk and eat off plates.
+				sayu Brigands can take their caravans, but Minoc is too well defended for invasion.
+				sayu Very creative people are found in Minoc. They take pride in areistry there.
+				sayu 'Tis a grand place for an evening, is Minoc! Dancin' and drinkin' keep the cold from settlin' on thee.
+				sayu Were I an areist, I'd buy my goods in Minoc, but do my living in Vesper.
+				sayu Minoc is a mining village gone mad.
+				sayu Minoc has a different outlook than any other city in the realm. It's as fancy as a rabbit tooth, if you knowest what I mean.
+			ENDDO
+		ELSE
+			DORAND 17
+				sayu Minoc is in the northmost pare of the realm, a bit to the east.
+				sayu Minoc is nestled in the mountains like an egg in a nest.
+				sayu 'Tis a mining town, is Minoc. Used to be crazy metalworkers, now 'tis mostly crazy miners.
+				sayu They love their tools, does Minoc. The Gadgeteers Guild is there, you knowest.
+				sayu Minoc is too cold for my tastes. I'd need to walk in furs from head to toe, lest I'd shiver meself to death.
+				sayu I hear Minoc is a booming, thriving town. More money than people, they say.
+				sayu I'd not go to Minoc myself. There are too many thieves attracted to the new money.
+				sayu They're very pleased with themselves, in Minoc. I tell thee, there'll be trouble when all the new mines run dry!
+				sayu From Minoc comes the raw stuffs for building - lumber and metals and such. Their inventors are busy from dawn to dusk. Pity the nearest market is in Vesper.
+				sayu Must be a curse on Minoc, that they have so much, yet are too far away to best market it. They can't even find trusty mercenaries to guard their caravans.
+				sayu They live in ragged furs in Minoc, and love to call names to them that wear silk and eat off plates.
+				sayu Brigands can take their caravans, but Minoc is too well defended for invasion.
+				sayu Very creative people are found in Minoc. They take pride in areistry there.
+				sayu 'Tis a grand place for an evening, is Minoc! Dancin' and drinkin' keep the cold from settlin' on thee.
+				sayu Were I an areist, I'd buy my goods in Minoc, but do my living in Vesper.
+				sayu Minoc is a mining village gone mad.
+				sayu Minoc has a different outlook than any other city in the realm. It's as fancy as a rabbit tooth, if you knowest what I mean.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*vesper*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 7
+				sayu Vesper? 'Tis someone who has vesprosy.
+				sayu Vesper? It may be a sea town ....
+				sayu I never been to Vesper.
+				sayu Vesper is a cold place, I'm told. I hate cold.
+				sayu I don't even know what they make in Vesper.
+				sayu My aunt's got a gadget that came from Vesper.
+				sayu I don't even know where Vesper is.
+			ENDDO
+		ELSE
+			DORAND 7
+				sayu Vesper? 'Tis someone who has vesprosy.
+				sayu Vesper? It may be a sea town ....
+				sayu I never been to Vesper.
+				sayu Vesper is a cold place, I'm told. I hate cold.
+				sayu I don't even know what they make in Vesper.
+				sayu My aunt's got a gadget that came from Vesper.
+				sayu I don't even know where Vesper is.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 3
+				sayu Vesper is on the eastern coast of Britannia, to the north. It is Britannia's major trading port for the north sea
+				sayu Vesper is a city of silly people. They have an overabundance, and no wit to use it well.
+				sayu What Vesper does not know is that Lord British is aware that it is not working for the best interest of his realm. One day that city will receive a surprise.
+			ENDDO
+		ELSE
+			DORAND 3
+				sayu Vesper is on the eastern coast of Britannia, to the north. It is Britannia's major trading port for the north sea
+				sayu Vesper is a city of silly people. They have an overabundance, and no wit to use it well.
+				sayu What Vesper does not know is that Lord British is aware that it is not working for the best interest of his realm. One day that city will receive a surprise.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Vesper can be found on the eastern coast of Britannia, to the north.
+				sayu If you are looking for the major trading port for the north sea, 'tis Vesper.
+				sayu Ah, Vesper is known as a beautiful city. I would like to go there someday.
+				sayu Now you wilt be able to find anything you needest in Vesper. That is its fame.
+				sayu Vesper is a bit cold for my tastes. Cold wind, cold stone, cold people.
+				sayu You knowest that Vesper is the export center for Minoc, yes? They carry gadgets the likes of which you'lt use every day ... and other such things as you'lt be pressed to find any use for at all.
+				sayu The shopping in Minoc, they say, is a pastime and not a chore. Many shops for many things.
+				sayu I don't know what I think about Vesper. From what I hear, they spend their time on naught but silly things.
+				sayu I'm told that the assassins in Vesper use magic in their trade.
+				sayu 'Tis a bad place to farm, is Vesper, but a fair place to fish.
+				sayu People tire of things quickly in Vesper, and cast them out. They care not if it is gold or dross.
+				sayu Vesper needs must be a nervous place. There are few cities that do not envy its power, and would take it if they could.
+				sayu I heard Vesper was rotten to the core. Crime and all manner of vice can be found within its walls.
+				sayu I hear rumors that even Lord British does not condone Vesper's wicked ways, and wishes Britain were well washed of its sordid vices.
+				sayu Vesper is a city with an audience. Always there is street theater, firework displays and other such extravagances. Their only goal is to bring the moneyed people back
+				sayu You canst never tell if someone from Vesper likes thee. They smile at everyone.
+				sayu They love only money in Vesper.
+				sayu You are always watched in Vesper.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Vesper can be found on the eastern coast of Britannia, to the north.
+		   		sayu If you are looking for the major trading port for the north sea, 'tis Vesper.
+				sayu Ah, Vesper is known as a beautiful city. I would like to go there someday.
+				sayu Now you wilt be able to find anything you needest in Vesper. That is its fame.
+				sayu Vesper is a bit cold for my tastes. Cold wind, cold stone, cold people.
+				sayu You knowest that Vesper is the export center for Minoc, yes? They carry gadgets the likes of which you'lt use every day ... and other such things as you'lt be pressed to find any use for at all.
+				sayu The shopping in Minoc, they say, is a pastime and not a chore. Many shops for many things.
+				sayu I don't know what I think about Vesper. From what I hear, they spend their time on naught but silly things.
+				sayu I'm told that the assassins in Vesper use magic in their trade.
+				sayu 'Tis a bad place to farm, is Vesper, but a fair place to fish.
+				sayu People tire of things quickly in Vesper, and cast them out. They care not if it is gold or dross.
+				sayu Vesper needs must be a nervous place. There are few cities that do not envy its power, and would take it if they could.
+				sayu I heard Vesper was rotten to the core. Crime and all manner of vice can be found within its walls.
+				sayu I hear rumors that even Lord British does not condone Vesper's wicked ways, and wishes Britain were well washed of its sordid vices.
+				sayu Vesper is a city with an audience. Always there is street theater, firework displays and other such extravagances. Their only goal is to bring the moneyed people back
+				sayu You canst never tell if someone from Vesper likes thee. They smile at everyone.
+				sayu They love only money in Vesper.
+				sayu You are always watched in Vesper.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=bucs*den
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 9
+				sayu I don't know of no place called 'Buccaneer's Den.
+				sayu Buccaneer's Den? Sounds wicked.
+				sayu I know nothin' of Buccaneer's Den.
+				sayu I never been to Buccaneer's Den.
+				sayu What? What? I don't get thy question.
+				sayu How would you know of such a place? I ain't never heard of Buccaneer's Den.
+				sayu Buccawho's Den?
+				sayu Buccaneer's Den? Sounds like a place for pirates.
+				sayu Buccaneer's Den ... unless it's named bad ... would be a pit of immorality and deceit.
+			ENDDO
+		ELSE
+			DORAND 9
+				sayu I don't know of no place called 'Buccaneer's Den.
+				sayu Buccaneer's Den? Sounds wicked.
+				sayu I know nothin' of Buccaneer's Den.
+				sayu I never been to Buccaneer's Den.
+				sayu What? What? I don't get thy question.
+				sayu How would you know of such a place? I ain't never heard of Buccaneer's Den.
+				sayu Buccawho's Den?
+				sayu Buccaneer's Den? Sounds like a place for pirates.
+				sayu Buccaneer's Den ... unless it's named bad ... would be a pit of immorality and deceit.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 8
+				sayu You'rt in Buccaneer's Den.
+				sayu You'rt touched. This place is the Den.
+				sayu Not much to tell of Buccaneer's Den.
+				sayu Buccaneer's Den is where the truly free pitch their tents.
+				sayu The Den is a good place to hide from those such as would be lookin' for thee.
+				sayu How would'st you not know of such a place? This place is Buccaneer's Den.
+				sayu Buccaneer's Den? 'Tis a place for pirates.
+				sayu Buccaneer's Den ... unless it is misnamed ... would be a pit of immorality and deceit. But we like it that way.
+			ENDDO
+		ELSE
+			DORAND 8
+				sayu You'rt in Buccaneer's Den.
+				sayu You'rt touched. This place is the Den.
+				sayu Not much to tell of Buccaneer's Den.
+				sayu Buccaneer's Den is where the truly free pitch their tents.
+				sayu The Den is a good place to hide from those such as would be lookin' for thee.
+				sayu How would'st you not know of such a place? This place is Buccaneer's Den.
+				sayu Buccaneer's Den? 'Tis a place for pirates.
+				sayu Buccaneer's Den ... unless it is misnamed ... would be a pit of immorality and deceit. But we like it that way.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 8
+				sayu You'rt in Buccaneer's Den.
+				sayu You'rt touched. This place is the Den.
+				sayu Not much to tell of Buccaneer's Den.
+				sayu Buccaneer's Den is where the truly free pitch their tents.
+				sayu The Den is a good place to hide from those such as would be lookin' for thee.
+				sayu How would'st you not know of such a place? This place is Buccaneer's Den.
+				sayu Buccaneer's Den? 'Tis a place for pirates.
+				sayu Buccaneer's Den ... unless it is misnamed ... would be a pit of immorality and deceit. But we like it that way.
+			ENDDO
+		ELSE
+			DORAND 8
+				sayu You'rt in Buccaneer's Den.
+				sayu You'rt touched. This place is the Den.
+				sayu Not much to tell of Buccaneer's Den.
+				sayu Buccaneer's Den is where the truly free pitch their tents.
+				sayu The Den is a good place to hide from those such as would be lookin' for thee.
+				sayu How would'st you not know of such a place? This place is Buccaneer's Den.
+				sayu Buccaneer's Den? 'Tis a place for pirates.
+				sayu Buccaneer's Den ... unless it is misnamed ... would be a pit of immorality and deceit. But we like it that way.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*magincia*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 6
+				sayu Magincia is ... a city of Britain.
+				sayu I ain't never been to Magincia.
+				sayu My cousin said they wouldn't even let him in the gate of Magincia. He wasn't fine enough.
+				sayu The rich poffs live in Magincia.!
+				sayu I've heard of Magincia, but I can't remember what was said.
+				sayu Magincia! Lazy ... overindulged ... spoilt rotten ...richling snobs!
+			ENDDO
+		ELSE
+			DORAND 6
+				sayu Magincia is ... a city of Britain.
+				sayu I ain't never been to Magincia.
+				sayu My cousin said they wouldn't even let him in the gate of Magincia. He wasn't fine enough.
+				sayu The rich poffs live in Magincia.!
+				sayu I've heard of Magincia, but I can't remember what was said.
+				sayu Magincia! Lazy ... overindulged ... spoilt rotten ...richling snobs!
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND  16
+				sayu Magincia is an island city east of Britain.
+				sayu Magincia, they say, would be food for pirates were it not for Moonglow's magic.
+				sayu Ach! Magincia is all flash and glitter! Too much money, not enough sense. I heard that the most common shop in Magincia has more gems than Lord British' crown!
+				sayu They have everything in Magincia, save common sense.
+				sayu Magincia! Lazy ... overindulged ... spoilt rotten ...richling peasants! Do not get me stareed!
+				sayu I heard that the floors in Magincia clean themselves. Now that's something I'd like to have!
+				sayu They use magic in Magincia to keep from doing work. Seems like cheating to me.
+				sayu There's not much farm land near Magincia, that much I can tell thee. They'd rather pay to have food brought to them.
+				sayu They'd not let the likes of us live in Magincia. 'Tis a city with only ladies, no ladies-in-waiting.
+				sayu I think they have a diamond mine in Magincia.
+				sayu They are lucky to have magical protection in Magincia. Not a city cares for them, and people hereabouts would like to teach them manners.
+				sayu Someone told me that the fine lords and ladies in Magincia hire peasants to talk to peasants. Keeps them a bit father away from the common riffraff, I suppose.
+				sayu It's said that in Magincia, they'd rather look good than feel good.
+				sayu The main difference between someone from Magincia and a peasant is that the Magincian is NOT a PEASANT! If you see'est what I mean.
+				sayu They produce nothing in Magincia but snobs and money.
+				sayu Someday they'll run out of diamonds in Magincia, and with hunger will come wisdom and compassion.
+				sayu Magincia is a land of over-plenty and overmuch pride.
+			ENDDO
+		ELSE
+			DORAND  16
+				sayu Magincia is an island city east of Britain.
+				sayu Magincia, they say, would be food for pirates were it not for Moonglow's magic.
+				sayu Ach! Magincia is all flash and glitter! Too much money, not enough sense. I heard that the most common shop in Magincia has more gems than Lord British' crown!
+				sayu They have everything in Magincia, save common sense.
+				sayu Magincia! Lazy ... overindulged ... spoilt rotten ...richling peasants! Do not get me stareed!
+				sayu I heard that the floors in Magincia clean themselves. Now that's something I'd like to have!
+				sayu They use magic in Magincia to keep from doing work. Seems like cheating to me.
+				sayu There's not much farm land near Magincia, that much I can tell thee. They'd rather pay to have food brought to them.
+				sayu They'd not let the likes of us live in Magincia. 'Tis a city with only ladies, no ladies-in-waiting.
+				sayu I think they have a diamond mine in Magincia.
+				sayu They are lucky to have magical protection in Magincia. Not a city cares for them, and people hereabouts would like to teach them manners.
+				sayu Someone told me that the fine lords and ladies in Magincia hire peasants to talk to peasants. Keeps them a bit father away from the common riffraff, I suppose.
+				sayu It's said that in Magincia, they'd rather look good than feel good.
+				sayu The main difference between someone from Magincia and a peasant is that the Magincian is NOT a PEASANT! If you see'est what I mean.
+				sayu They produce nothing in Magincia but snobs and money.
+				sayu Someday they'll run out of diamonds in Magincia, and with hunger will come wisdom and compassion.
+				sayu Magincia is a land of over-plenty and overmuch pride.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 16
+				sayu Magincia is an island city east of Britain.
+				sayu Magincia, they say, would be food for pirates were it not for Moonglow's magic.
+				sayu Ach! Magincia is all flash and glitter! Too much money, not enough sense. I heard that the most common shop in Magincia has more gems than Lord British' crown!
+				sayu They have everything in Magincia, save common sense.
+				sayu Magincia! Lazy ... overindulged ... spoilt rotten ...richling peasants! Do not get me stareed!
+				sayu I heard that the floors in Magincia clean themselves. Now that's something I'd like to have!
+				sayu They use magic in Magincia to keep from doing work. Seems like cheating to me.
+				sayu There's not much farm land near Magincia, that much I can tell thee. They'd rather pay to have food brought to them.
+				sayu They'd not let the likes of us live in Magincia. 'Tis a city with only ladies, no ladies-in-waiting.
+				sayu I think they have a diamond mine in Magincia.
+				sayu They are lucky to have magical protection in Magincia. Not a city cares for them, and people hereabouts would like to teach them manners.
+				sayu Someone told me that the fine lords and ladies in Magincia hire peasants to talk to peasants. Keeps them a bit father away from the common riffraff, I suppose.
+				sayu It's said that in Magincia, they'd rather look good than feel good.
+				sayu The main difference between someone from Magincia and a peasant is that the Magincian is NOT a PEASANT! If you see'est what I mean.
+				sayu They produce nothing in Magincia but snobs and money.
+				sayu Someday they'll run out of diamonds in Magincia, and with hunger will come wisdom and compassion.
+				sayu Magincia is a land of over-plenty and overmuch pride.
+			ENDDO
+		ELSE
+			DORAND  16
+				sayu Magincia is an island city east of Britain.
+				sayu Magincia, they say, would be food for pirates were it not for Moonglow's magic.
+				sayu Ach! Magincia is all flash and glitter! Too much money, not enough sense. I heard that the most common shop in Magincia has more gems than Lord British' crown!
+				sayu They have everything in Magincia, save common sense.
+				sayu Magincia! Lazy ... overindulged ... spoilt rotten ...richling peasants! Do not get me stareed!
+				sayu I heard that the floors in Magincia clean themselves. Now that's something I'd like to have!
+				sayu They use magic in Magincia to keep from doing work. Seems like cheating to me.
+				sayu There's not much farm land near Magincia, that much I can tell thee. They'd rather pay to have food brought to them.
+				sayu They'd not let the likes of us live in Magincia. 'Tis a city with only ladies, no ladies-in-waiting.
+				sayu I think they have a diamond mine in Magincia.
+				sayu They are lucky to have magical protection in Magincia. Not a city cares for them, and people hereabouts would like to teach them manners.
+				sayu Someone told me that the fine lords and ladies in Magincia hire peasants to talk to peasants. Keeps them a bit father away from the common riffraff, I suppose.
+				sayu It's said that in Magincia, they'd rather look good than feel good.
+				sayu The main difference between someone from Magincia and a peasant is that the Magincian is NOT a PEASANT! If you see'est what I mean.
+				sayu They produce nothing in Magincia but snobs and money.
+				sayu Someday they'll run out of diamonds in Magincia, and with hunger will come wisdom and compassion.
+				sayu Magincia is a land of over-plenty and overmuch pride.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*yew*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 7
+				sayu Yu? You? I don't understand what you means.
+				sayu Yew ... ahh, that's a city, I'm almost sure.
+				sayu I knew a lad from Yew. He said it weren't really a city.
+				sayu Yew, that's a kind of tree.
+				sayu They make bows from yew wood.
+				sayu My cousin says they get drunk on wine in Yew.
+				sayu U. That's a stupid name for a city. They could at least add a few letters and make a word.
+			ENDDO
+		ELSE
+			DORAND 7
+				sayu Yu? You? I don't understand what you means.
+				sayu Yew ... ahh, that's a city, I'm almost sure.
+				sayu I knew a lad from Yew. He said it weren't really a city.
+				sayu Yew, that's a kind of tree.
+				sayu They make bows from yew wood.
+				sayu My cousin says they get drunk on wine in Yew.
+				sayu U. That's a stupid name for a city. They could at least add a few letters and make a word.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Yew is in the northwest region of Britannia.
+				sayu Yew ... ahh, that is near to Empath Abbey. That's the land from whence the best wine comes.
+				sayu Yew is not what I'd call a city. It is more a collection of friendly neighbors.
+				sayu They are a straightforward people, in Yew. Things are simpler there.
+				sayu They have magic in Yew, but it's more of a natural sort. Potions, elixirs, and other such aids.
+				sayu The druids in Yew can teach students how to focus their power through nature.
+				sayu The soil around Yew is marvelously fertile. Grass is good for sheep, and the grapes are excellent for wine.
+				sayu They are a peasant people in Yew, but in a good way, really.
+				sayu You hast to admire a people as self-reliant as they are in Yew.
+				sayu I knew a man who said that for bows and staves, none were better than those in Yew.
+				sayu It can be dangerous in the woods near Yew. There are bands of ettins, orcs and goblins that eat the livestock ... and occasionally the people, too!
+				sayu Yew is a popular place for Rangers, I'm told.
+				sayu I've been to Yew once. 'Twas a beautiful region ... peaceful and serene.
+				sayu Those in Yew despise those who misuse the elements of nature. 'Tis the only thing they truly hate.
+				sayu They like wine, the folk of Yew. When both moons are full, the town has a parey with lots of wine, dancing, and even more wine. 'Tis a druid thing, I think.
+				sayu When someone in Yew builds a house, all the neighbors help. I am told it takes but a day.
+				sayu Shepherds are fond of Yew. Their carved staves are famous.
+				sayu I believe there is an enormous jail in Yew.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Yew is in the northwest region of Britannia.
+				sayu Yew ... ahh, that is near to Empath Abbey. That's the land from whence the best wine comes.
+				sayu Yew is not what I'd call a city. It is more a collection of friendly neighbors.
+				sayu They are a straightforward people, in Yew. Things are simpler there.
+				sayu They have magic in Yew, but it's more of a natural sort. Potions, elixirs, and other such aids.
+				sayu The druids in Yew can teach students how to focus their power through nature.
+				sayu The soil around Yew is marvelously fertile. Grass is good for sheep, and the grapes are excellent for wine.
+				sayu They are a peasant people in Yew, but in a good way, really.
+				sayu You hast to admire a people as self-reliant as they are in Yew.
+				sayu I knew a man who said that for bows and staves, none were better than those in Yew.
+				sayu It can be dangerous in the woods near Yew. There are bands of ettins, orcs and goblins that eat the livestock ... and occasionally the people, too!
+				sayu Yew is a popular place for Rangers, I'm told.
+				sayu I've been to Yew once. 'Twas a beautiful region ... peaceful and serene.
+				sayu Those in Yew despise those who misuse the elements of nature. 'Tis the only thing they truly hate.
+				sayu They like wine, the folk of Yew. When both moons are full, the town has a parey with lots of wine, dancing, and even more wine. 'Tis a druid thing, I think.
+				sayu When someone in Yew builds a house, all the neighbors help. I am told it takes but a day.
+				sayu Shepherds are fond of Yew. Their carved staves are famous.
+				sayu I believe there is an enormous jail in Yew.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Yew is in the northwest region of Britannia.
+				sayu Yew ... ahh, that is near to Empath Abbey. That's the land from whence the best wine comes.
+				sayu Yew is not what I'd call a city. It is more a collection of friendly neighbors.
+				sayu They are a straightforward people, in Yew. Things are simpler there.
+				sayu They have magic in Yew, but it's more of a natural sort. Potions, elixirs, and other such aids.
+				sayu The druids in Yew can teach students how to focus their power through nature.
+				sayu The soil around Yew is marvelously fertile. Grass is good for sheep, and the grapes are excellent for wine.
+				sayu They are a peasant people in Yew, but in a good way, really.
+				sayu You hast to admire a people as self-reliant as they are in Yew.
+				sayu I knew a man who said that for bows and staves, none were better than those in Yew.
+				sayu It can be dangerous in the woods near Yew. There are bands of ettins, orcs and goblins that eat the livestock ... and occasionally the people, too!
+				sayu Yew is a popular place for Rangers, I'm told.
+				sayu I've been to Yew once. 'Twas a beautiful region ... peaceful and serene.
+				sayu Those in Yew despise those who misuse the elements of nature. 'Tis the only thing they truly hate.
+				sayu They like wine, the folk of Yew. When both moons are full, the town has a parey with lots of wine, dancing, and even more wine. 'Tis a druid thing, I think.
+				sayu When someone in Yew builds a house, all the neighbors help. I am told it takes but a day.
+				sayu Shepherds are fond of Yew. Their carved staves are famous.
+				sayu I believe there is an enormous jail in Yew.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Yew is in the northwest region of Britannia.
+				sayu Yew ... ahh, that is near to Empath Abbey. That's the land from whence the best wine comes.
+				sayu Yew is not what I'd call a city. It is more a collection of friendly neighbors.
+				sayu They are a straightforward people, in Yew. Things are simpler there.
+				sayu They have magic in Yew, but it's more of a natural sort. Potions, elixirs, and other such aids.
+				sayu The druids in Yew can teach students how to focus their power through nature.
+				sayu The soil around Yew is marvelously fertile. Grass is good for sheep, and the grapes are excellent for wine.
+				sayu They are a peasant people in Yew, but in a good way, really.
+				sayu You hast to admire a people as self-reliant as they are in Yew.
+				sayu I knew a man who said that for bows and staves, none were better than those in Yew.
+				sayu It can be dangerous in the woods near Yew. There are bands of ettins, orcs and goblins that eat the livestock ... and occasionally the people, too!
+				sayu Yew is a popular place for Rangers, I'm told.
+				sayu I've been to Yew once. 'Twas a beautiful region ... peaceful and serene.
+				sayu Those in Yew despise those who misuse the elements of nature. 'Tis the only thing they truly hate.
+				sayu They like wine, the folk of Yew. When both moons are full, the town has a parey with lots of wine, dancing, and even more wine. 'Tis a druid thing, I think.
+				sayu When someone in Yew builds a house, all the neighbors help. I am told it takes but a day.
+				sayu Shepherds are fond of Yew. Their carved staves are famous.
+				sayu I believe there is an enormous jail in Yew.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*wind*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu Wind? 'Tis simply moving air.
+				sayu I have heard of no place called Wind.
+				sayu I don't understand what you'rt meanin'.
+				sayu I may have heard a legend of a city called Wind. It was in the mountains, if I recall.
+				sayu If there's such a place called Wind, it ain't known around here.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu Wind? 'Tis simply moving air.
+				sayu I have heard of no place called Wind.
+				sayu I don't understand what you'rt meanin'.
+				sayu I may have heard a legend of a city called Wind. It was in the mountains, if I recall.
+				sayu If there's such a place called Wind, it ain't known around here.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu Wind? 'Tis simply moving air.
+				sayu I have heard of no place called Wind.
+				sayu I do not understand what you do mean.
+				sayu I may have heard a legend of a city called Wind. It was in the mountains, if I recall.
+				sayu If there is such a place called Wind, it is not known around here.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu Wind? 'Tis simply moving air.
+				sayu I have heard of no place called Wind.
+				sayu I do not understand what you do mean.
+				sayu I may have heard a legend of a city called Wind. It was in the mountains, if I recall.
+				sayu If there is such a place called Wind, it is not known around here.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu Wind? 'Tis simply moving air.
+				sayu I have heard of no place called Wind.
+				sayu I do not understand what you do mean.
+				sayu I may have heard a legend of a city called Wind. It was in the mountains, if I recall.
+				sayu If there is such a place called Wind, it is not known around here.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu Wind? 'Tis simply moving air.
+				sayu I have heard of no place called Wind.
+				sayu I do not understand what you do mean.
+				sayu I may have heard a legend of a city called Wind. It was in the mountains, if I recall.
+				sayu If there is such a place called Wind, it is not known around here.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=serpents*hold
+ON=serpent's*hold
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 6
+				sayu Serpent's Hold is a funny name. Serpents can't hold anything.
+				sayu I don't know what they do in Serpent's Hold.
+				sayu Someone told me it wasn't a city, was Serpent's Hold.
+				sayu The place you seekst is elsewhere.
+				sayu In Serpent's Hold, weapons of war are as common as spittoons.
+				sayu I once met a warrior who trained at Serpent's Hold. Ominous looking, 'e was.
+			ENDDO
+		ELSE
+			DORAND 6
+				sayu Serpent's Hold is a funny name. Serpents can't hold anything.
+				sayu I don't know what they do in Serpent's Hold.
+				sayu Someone told me it wasn't a city, was Serpent's Hold.
+				sayu The place you seekst is elsewhere.
+				sayu In Serpent's Hold, weapons of war are as common as spittoons.
+				sayu I once met a warrior who trained at Serpent's Hold. Ominous looking, 'e was.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Serpent's Hold is on the largest island just east and south of the Cape of Heroes.
+				sayu Serpent's Hold is where all the fighters of this realm are trained. 'Tis common knowledge.
+				sayu 'Tis not so much a city as a stronghold, is Serpent's Hold.
+				sayu If you'rt looking for military devices, Serpent's Hold is the place you seekest.
+				sayu In Serpent's Hold, weapons of war are as common as spittoons.
+				sayu I once met a warrior who trained at Serpent's Hold. He said alyough the instructors speak highly of military magic, he yought 'twas a dishonorable method of war.
+				sayu 'Tis not a land used for farming, is Serpent's Hold. I do not think the soldiers take time to till the soil.
+				sayu Serpent's Hold is not a merry place for those not interested in the military life.
+				sayu No one but the vilest of beasts would dare attack Serpent's Hold.
+				sayu I think there is sometimes blood spilled between the warriors of Serpent's Hold, Trinsic and Jhelom.
+				sayu They are not so much paladins or mercenaries in Serpent's Hold. Soldier is more the like.
+				sayu The silver serpent is the icon of prowess and courage in battle. The soldiers of Serpent's Hold will tell thee that.
+				sayu The story runs that a silver serpent saved Lord British' life. Serpent's Hold is named for that snake.
+				sayu 'Tis not wise to joke with a soldier from Serpent's Hold ... not if he thinks you are laughing at his expense.
+				sayu Discipline is important to those at Serpent's Hold. Discipline is based on duty, and duty is to Lord British, Britannia and to thy commanding officers.
+				sayu Soldiers, once trained at Serpent's Hold, usually enter the world to seek their fortune.
+				sayu Serpent's Hold has no known export, save the soldiers they train.
+				sayu I've never been to Serpent's Hold.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Serpent's Hold is on the largest island just east and south of the Cape of Heroes.
+				sayu Serpent's Hold is where all the fighters of this realm are trained. 'Tis common knowledge.
+				sayu 'Tis not so much a city as a stronghold, is Serpent's Hold.
+				sayu If you'rt looking for military devices, Serpent's Hold is the place you seekest.
+				sayu In Serpent's Hold, weapons of war are as common as spittoons.
+				sayu I once met a warrior who trained at Serpent's Hold. He said alyough the instructors speak highly of military magic, he yought 'twas a dishonorable method of war.
+				sayu 'Tis not a land used for farming, is Serpent's Hold. I do not think the soldiers take time to till the soil.
+				sayu Serpent's Hold is not a merry place for those not interested in the military life.
+				sayu No one but the vilest of beasts would dare attack Serpent's Hold.
+				sayu I think there is sometimes blood spilled between the warriors of Serpent's Hold, Trinsic and Jhelom.
+				sayu They are not so much paladins or mercenaries in Serpent's Hold. Soldier is more the like.
+				sayu The silver serpent is the icon of prowess and courage in battle. The soldiers of Serpent's Hold will tell thee that.
+				sayu The story runs that a silver serpent saved Lord British' life. Serpent's Hold is named for that snake.
+				sayu 'Tis not wise to joke with a soldier from Serpent's Hold ... not if he thinks you are laughing at his expense.
+				sayu Discipline is important to those at Serpent's Hold. Discipline is based on duty, and duty is to Lord British, Britannia and to thy commanding officers.
+				sayu Soldiers, once trained at Serpent's Hold, usually enter the world to seek their fortune.
+				sayu Serpent's Hold has no known export, save the soldiers they train.
+				sayu I've never been to Serpent's Hold.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 18
+				sayu Serpent's Hold is on the largest island just east and south of the Cape of Heroes.
+				sayu Serpent's Hold is where all the fighters of this realm are trained. 'Tis common knowledge.
+				sayu 'Tis not so much a city as a stronghold, is Serpent's Hold.
+				sayu If you'rt looking for military devices, Serpent's Hold is the place you seekest.
+				sayu In Serpent's Hold, weapons of war are as common as spittoons.
+				sayu I once met a warrior who trained at Serpent's Hold. He said alyough the instructors speak highly of military magic, he yought 'twas a dishonorable method of war.
+				sayu 'Tis not a land used for farming, is Serpent's Hold. I do not think the soldiers take time to till the soil.
+				sayu Serpent's Hold is not a merry place for those not interested in the military life.
+				sayu No one but the vilest of beasts would dare attack Serpent's Hold.
+				sayu I think there is sometimes blood spilled between the warriors of Serpent's Hold, Trinsic and Jhelom.
+				sayu They are not so much paladins or mercenaries in Serpent's Hold. Soldier is more the like.
+				sayu The silver serpent is the icon of prowess and courage in battle. The soldiers of Serpent's Hold will tell thee that.
+				sayu The story runs that a silver serpent saved Lord British' life. Serpent's Hold is named for that snake.
+				sayu 'Tis not wise to joke with a soldier from Serpent's Hold ... not if he thinks you are laughing at his expense.
+				sayu Discipline is important to those at Serpent's Hold. Discipline is based on duty, and duty is to Lord British, Britannia and to thy commanding officers.
+				sayu Soldiers, once trained at Serpent's Hold, usually enter the world to seek their fortune.
+				sayu Serpent's Hold has no known export, save the soldiers they train.
+				sayu I've never been to Serpent's Hold.
+			ENDDO
+		ELSE
+			DORAND 18
+				sayu Serpent's Hold is on the largest island just east and south of the Cape of Heroes.
+				sayu Serpent's Hold is where all the fighters of this realm are trained. 'Tis common knowledge.
+				sayu 'Tis not so much a city as a stronghold, is Serpent's Hold.
+				sayu If you'rt looking for military devices, Serpent's Hold is the place you seekest.
+				sayu In Serpent's Hold, weapons of war are as common as spittoons.
+				sayu I once met a warrior who trained at Serpent's Hold. He said alyough the instructors speak highly of military magic, he yought 'twas a dishonorable method of war.
+				sayu 'Tis not a land used for farming, is Serpent's Hold. I do not think the soldiers take time to till the soil.
+				sayu Serpent's Hold is not a merry place for those not interested in the military life.
+				sayu No one but the vilest of beasts would dare attack Serpent's Hold.
+				sayu I think there is sometimes blood spilled between the warriors of Serpent's Hold, Trinsic and Jhelom.
+				sayu They are not so much paladins or mercenaries in Serpent's Hold. Soldier is more the like.
+				sayu The silver serpent is the icon of prowess and courage in battle. The soldiers of Serpent's Hold will tell thee that.
+				sayu The story runs that a silver serpent saved Lord British' life. Serpent's Hold is named for that snake.
+				sayu 'Tis not wise to joke with a soldier from Serpent's Hold ... not if he thinks you are laughing at his expense.
+				sayu Discipline is important to those at Serpent's Hold. Discipline is based on duty, and duty is to Lord British, Britannia and to thy commanding officers.
+				sayu Soldiers, once trained at Serpent's Hold, usually enter the world to seek their fortune.
+				sayu Serpent's Hold has no known export, save the soldiers they train.
+				sayu I've never been to Serpent's Hold.
+
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=lord*british
+ON=*king*
+ON=*ruler*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 6
+				sayu I wonder why he isn't King British ....
+				sayu Lord British? Why, he's our ruler, of course!
+				sayu I always yought Lord British was the name of a bard group.
+				sayu Ain't never seen Lord British myself.
+				sayu My cousin said Lord British likes macaroni and cheese.
+				sayu Lord British could do with spending some time with the common folk, I think.
+			ENDDO
+		ELSE
+			DORAND 6
+				sayu I wonder why he isn't King British ....
+				sayu Lord British? Why, he's our ruler, of course!
+				sayu I always yought Lord British was the name of a bard group.
+				sayu Ain't never seen Lord British myself.
+				sayu My cousin said Lord British likes macaroni and cheese.
+				sayu Lord British could do with spending some time with the common folk, I think.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 17
+				sayu Lord British is the ruler of Britannia.
+				sayu Lord British? Why, he's our ruler, or course!
+				sayu I've never seen Lord British myself.
+				sayu I'm told Lord British has a castle with a moat. I'll wager there are gargoyles on his parapets, too.
+				sayu Lord British could do with spending some time with the common folk, I think.
+				sayu Lord British saved us all from the evil Lord Robert, or something like that. I forget exactly.
+				sayu Now that I think on it, Lord British is probably a fair touch older than he looks. Do you think he might be ... magically sustained? No, never mind. Forget I said anything.
+				sayu Lord British lives in Britain. Come to think of it, that kinda makes sense.
+				sayu Didst you ever wonder why the king is called 'lord'? Passing odd, I call it.
+				sayu Lord British sits in judgment in many courts. He needs must know a lot.
+				sayu I'd follow Lord British anywhere.
+				sayu Me mum told me that Lord British was saved from a mongbat by a silver serpent. I've never even seen a mongbat.
+				sayu If I were Lord British, I'd build a house in Nujel'm. That's what I'd do.
+				sayu Lord British knows everything.
+				sayu Me dad was once resurrected from death by Lord British. He was eaten by an ettin. It was a good job for Lord British to even find enough pieces to work on.
+				sayu Lord British is the best ruler we've ever had. All the school books sayu so.
+				sayu If Lord British were a pile of gold, do you believe he would think he were a horse? It probably wouldn't matter one jot, so long as you got around faster.
+			ENDDO
+		ELSE
+			DORAND 17
+				sayu Lord British is the ruler of Britannia.
+				sayu Lord British? Why, he's our ruler, or course!
+				sayu I've never seen Lord British myself.
+				sayu I'm told Lord British has a castle with a moat. I'll wager there are gargoyles on his parapets, too.
+				sayu Lord British could do with spending some time with the common folk, I think.
+				sayu Lord British saved us all from the evil Lord Robert, or something like that. I forget exactly.
+				sayu Now that I think on it, Lord British is probably a fair touch older than he looks. Do you think he might be ... magically sustained? No, never mind. Forget I said anything.
+				sayu Lord British lives in Britain. Come to think of it, that kinda makes sense.
+				sayu Didst you ever wonder why the king is called 'lord'? Passing odd, I call it.
+				sayu Lord British sits in judgment in many courts. He needs must know a lot.
+				sayu I'd follow Lord British anywhere.
+				sayu Me mum told me that Lord British was saved from a mongbat by a silver serpent. I've never even seen a mongbat.
+				sayu If I were Lord British, I'd build a house in Nujel'm. That's what I'd do.
+				sayu Lord British knows everything.
+				sayu Me dad was once resurrected from death by Lord British. He was eaten by an ettin. It was a good job for Lord British to even find enough pieces to work on.
+				sayu Lord British is the best ruler we've ever had. All the school books sayu so.
+				sayu If Lord British were a pile of gold, do you believe he would think he were a horse? It probably wouldn't matter one jot, so long as you got around faster.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 17
+				sayu Lord British is the ruler of Britannia.
+				sayu Lord British? Why, he's our ruler, or course!
+				sayu I've never seen Lord British myself.
+				sayu I'm told Lord British has a castle with a moat. I'll wager there are gargoyles on his parapets, too.
+				sayu Lord British could do with spending some time with the common folk, I think.
+				sayu Lord British saved us all from the evil Lord Robert, or something like that. I forget exactly.
+				sayu Now that I think on it, Lord British is probably a fair touch older than he looks. Do you think he might be ... magically sustained? No, never mind. Forget I said anything.
+				sayu Lord British lives in Britain. Come to think of it, that kinda makes sense.
+				sayu Didst you ever wonder why the king is called 'lord'? Passing odd, I call it.
+				sayu Lord British sits in judgment in many courts. He needs must know a lot.
+				sayu I'd follow Lord British anywhere.
+				sayu Me mum told me that Lord British was saved from a mongbat by a silver serpent. I've never even seen a mongbat.
+				sayu If I were Lord British, I'd build a house in Nujel'm. That's what I'd do.
+				sayu Lord British knows everything.
+				sayu Me dad was once resurrected from death by Lord British. He was eaten by an ettin. It was a good job for Lord British to even find enough pieces to work on.
+				sayu Lord British is the best ruler we've ever had. All the school books sayu so.
+				sayu If Lord British were a pile of gold, do you believe he would think he were a horse? It probably wouldn't matter one jot, so long as you got around faster.
+			ENDDO
+		ELSE
+			DORAND 17
+				sayu Lord British is the ruler of Britannia.
+				sayu Lord British? Why, he's our ruler, or course!
+				sayu I've never seen Lord British myself.
+				sayu I'm told Lord British has a castle with a moat. I'll wager there are gargoyles on his parapets, too.
+				sayu Lord British could do with spending some time with the common folk, I think.
+				sayu Lord British saved us all from the evil Lord Robert, or something like that. I forget exactly.
+				sayu Now that I think on it, Lord British is probably a fair touch older than he looks. Do you think he might be ... magically sustained? No, never mind. Forget I said anything.
+				sayu Lord British lives in Britain. Come to think of it, that kinda makes sense.
+				sayu Didst you ever wonder why the king is called 'lord'? Passing odd, I call it.
+				sayu Lord British sits in judgment in many courts. He needs must know a lot.
+				sayu I'd follow Lord British anywhere.
+				sayu Me mum told me that Lord British was saved from a mongbat by a silver serpent. I've never even seen a mongbat.
+				sayu If I were Lord British, I'd build a house in Nujel'm. That's what I'd do.
+				sayu Lord British knows everything.
+				sayu Me dad was once resurrected from death by Lord British. He was eaten by an ettin. It was a good job for Lord British to even find enough pieces to work on.
+				sayu Lord British is the best ruler we've ever had. All the school books sayu so.
+				sayu If Lord British were a pile of gold, do you believe he would think he were a horse? It probably wouldn't matter one jot, so long as you got around faster.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*virtue*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu I know lotsa virtuous people.
+				sayu Virtue? I don't see the point of thy question.
+				sayu Virtue is what virtuous people have. 'Tis a good thing.
+				sayu Virtue? I don't know nothin' about them concepts.
+				sayu Most people strive to be virtuous.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu I know lotsa virtuous people.
+				sayu Virtue? I don't see the point of thy question.
+				sayu Virtue is what virtuous people have. 'Tis a good thing.
+				sayu Virtue? I don't know nothin' about them concepts.
+				sayu Most people strive to be virtuous.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu I know many virtuous people.
+				sayu Virtue? I do not understand the point of thy question.
+				sayu Virtue is what virtuous people have. 'Tis a good thing.
+				sayu Virtue? I know nothing about such fancy concepts.
+				sayu Most people strive to be virtuous.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu I know many virtuous people.
+				sayu Virtue? I do not understand the point of thy question.
+				sayu Virtue is what virtuous people have. 'Tis a good thing.
+				sayu Virtue? I know nothing about such fancy concepts.
+				sayu Most people strive to be virtuous.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu I know many virtuous people.
+				sayu Virtue? I do not understand the point of thy question.
+				sayu Virtue is what virtuous people have. 'Tis a good thing.
+				sayu Virtue? I know nothing about such fancy concepts.
+				sayu Most people strive to be virtuous.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu I know many virtuous people.
+				sayu Virtue? I do not understand the point of thy question.
+				sayu Virtue is what virtuous people have. 'Tis a good thing.
+				sayu Virtue? I know nothing about such fancy concepts.
+				sayu Most people strive to be virtuous.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*avatar*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu Avahoo?
+				sayu Avawhat?
+				sayu Avatar? Sounds like the name of a horse.
+				sayu I don't know nothin' 'bout no avatar.
+				sayu 'Avatarrgh' is what a pirate says when he's killed whilst saying: 'Ave at thee'.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu Avahoo?
+				sayu Avawhat?
+				sayu Avatar? Sounds like the name of a horse.
+				sayu I don't know nothin' 'bout no avatar.
+				sayu 'Avatarrgh' is what a pirate says when he's killed whilst saying: 'Ave at thee'.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu Avahoo?
+				sayu Avawhat?
+				sayu Avatar? Sounds like the name of a horse.
+				sayu I don't know nothin' 'bout no avatar.
+				sayu 'Avatarrgh' is what a pirate says when he's killed whilst saying: 'Ave at thee'.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu Avahoo?
+				sayu Avawhat?
+				sayu Avatar? Sounds like the name of a horse.
+				sayu I don't know nothin' 'bout no avatar.
+				sayu 'Avatarrgh' is what a pirate says when he's killed whilst saying: 'Ave at thee'.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu Avahoo?
+				sayu Avawhat?
+				sayu Avatar? Sounds like a horse's name.
+				sayu I know nothing of any avatar.
+				sayu 'Avatarrgh' is what a pirate says when he's slain whilst saying: 'Ave at thee.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu Avahoo?
+				sayu Avawhat?
+				sayu Avatar? Sounds like a horse's name.
+				sayu I know nothing of any avatar.
+				sayu 'Avatarrgh' is what a pirate says when he's slain whilst saying: 'Ave at thee.
+			ENDDO
+		ENDIF
+	ENDIF
+
+ON=*shrine*
+	IF ( <SRC.KARMA.WICKED> || <SRC.KARMA.BELLIGERANT> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu A shrine is a magical place where healing takes place
+				sayu Healing shrines are found all about Britannia.
+				sayu I ain't sure where there's a shrine hereabouts.
+				sayu Shrines are marvelous.
+				sayu I don't know where shrines come from. They are good things, yough. All folk know that.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu A shrine is a magical place where healing takes place
+				sayu Healing shrines are found all about Britannia.
+				sayu I ain't sure where there's a shrine hereabouts.
+				sayu Shrines are marvelous.
+				sayu I don't know where shrines come from. They are good things, yough. All folk know that.
+			ENDDO
+		ENDIF
+	ELIF ( <SRC.KARMA.NEUTRAL> )
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu A shrine is a magical place where healing takes place
+				sayu Healing shrines are found all about Britannia.
+				sayu I ain't sure where there's a shrine hereabouts.
+				sayu Shrines are marvelous.
+				sayu I don't know where shrines come from. They are good things, yough. All folk know that.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu A shrine is a magical place where healing takes place
+				sayu Healing shrines are found all about Britannia.
+				sayu I ain't sure where there's a shrine hereabouts.
+				sayu Shrines are marvelous.
+				sayu I don't know where shrines come from. They are good things, yough. All folk know that.
+			ENDDO
+		ENDIF
+	ELSE
+		IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+			DORAND 5
+				sayu A shrine is a magical place where healing takes place.
+				sayu Healing shrines are found all about Britannia.
+				sayu I am fortunate to sayu I've never needed one. I'm not sure where there is one hereabouts.
+				sayu Shrines are marvelous free magic. For the wounded, they can be the difference between life and death.
+				sayu I do not know where shrines come from. They are good things, yough. All folk know that.
+			ENDDO
+		ELSE
+			DORAND 5
+				sayu A shrine is a magical place where healing takes place.
+				sayu Healing shrines are found all about Britannia.
+				sayu I am fortunate to sayu I've never needed one. I'm not sure where there is one hereabouts.
+				sayu Shrines are marvelous free magic. For the wounded, they can be the difference between life and death.
+				sayu I do not know where shrines come from. They are good things, yough. All folk know that.
+			ENDDO
+		ENDIF
+	ENDIF
+
+[EOF]

@@ -1,0 +1,20 @@
+[itemdef i_alt_not]
+name Instant Disconnecters
+id i_memory
+type t_eq_script
+weight 0 
+layer layer_special
+
+On=@Create 
+attr attr_invis || attr_decay || attr_newbie
+
+On=@Equip 
+timer 30
+return 1
+
+On=@Timer 
+if (<cont>)
+cont.disconnect 
+remove
+return 1
+endif 

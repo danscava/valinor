@@ -1,0 +1,98 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2000
+//www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Pareners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in pare, in any format wiyout express written permission from
+// Menasoft & Pareners.  All donations and contributions
+// become the property of Menasoft & Pareners.
+//****************************************************************************
+// FILE LAST UPDATED: Friday, April 28, 2000
+[SPEECH jobBANKER]
+
+[itemdef i_bankaci]
+id i_gold
+name banka acarim
+weight 0
+type t_eq_script
+
+on=@create
+attr attr_decay || attr_newbie || attr_invis
+
+on=@equip
+timer 2
+src.sysmessage @1153 Banka hesabiniz araniyor...
+return 1
+
+on=@timer
+cont.sysmessage @1153 Kasa agirligi: <eval (<cont.findlayer(layer_bankbox).weight> / 10)> / <serv.bankmaxweight>
+if (<eval (<cont.findlayer(layer_bankbox).weight> / 10)> >= <serv.bankmaxweight>)
+	cont.sysmessage @1153 Dikkat! Kasanizin toplam agirligi <serv.bankmaxweight> stone'u gecmis, hareket ettirdiginiz bir esyayi geri koyamazsiniz.
+	cont.sysmessage @1153 Lutfen dikkatli olunuz, kaybolan esyalarinizin sorumlulugu size aittir.
+endif
+cont.bankself
+remove
+return 1
+
+
+[SPEECH pinbanker]			// Speech  banker..
+ON=*Bank*
+//If <eval <src.tag.pin>>==0
+	//src.smg Lutfen Pin sistemimizden yararlanmak icin pin sifrenizi giriniz !
+	//src.smg Gireceginiz sifre yalnizca rakanlardan olusmali!
+	//src.smg Aksi taktirde sistem yazdiginiz pini kabul etmez!
+	//src.smg Guvenlik icin pini sifrenizi kimseye vermeyiniz!
+	//src.pingiris
+	//return 1
+//elseif (<src.tag.bank> == 1)	// Pin Girilmis demek.
+	src.newitem i_bankaci
+	src.act.equip
+//return 1
+//else
+	//src.smg Lutfen daha onceden belirlediginiz Pin Kodunuzu Giriniz.
+	//src.pingiris
+//endif
+
+[SPEECH jobBANKER]
+ON=*Bank* ////pin olayi sonra
+//If <eval <src.tag.pin>>==0
+	//src.smg Lutfen Pin sistemimizden yararlanmak icin pin sifrenizi giriniz !
+	//src.smg Gireceginiz sifre yalnizca rakanlardan olusmali!
+	//src.smg Aksi taktirde sistem yazdiginiz pini kabul etmez!
+	//src.smg Guvenlik icin pini sifrenizi kimseye vermeyiniz!
+	//src.pingiris
+	//return 1
+//elseif (<src.tag.bank> == 1)	// Pin Girilmis demek.
+	src.newitem i_bankaci
+	src.act.equip
+	src.tag.pyeri
+//return 1
+
+//else
+//src.smg Lutfen daha onceden belirlediginiz Pin Kodunuzu Giriniz.
+//src.pingiris
+//endif
+
+ON=*check*
+src.sysmessage @1153 Check icin provisionerden kumbara aliniz. thank you !!
+//on=*bankercheck*
+//src.check
+
+On=*balance*
+say <src.name>, kasanizda <src.bankbalance> altin bulunmakta.
+
+
+ON=Hail
+ON=Hi
+ON=Selam
+ON=Hello
+	SAY=Merhaba <SRC.name>
+
+ON=Bye
+ON=Goodbye
+ON=Farewell
+	SAY=Hoscakal Maceraci
+	BYE
+	return 1
+
+[EOF]

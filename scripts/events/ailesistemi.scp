@@ -1,0 +1,1860 @@
+[itemdef i_ailedeed]
+name Aile Kurma Belgesi
+id 5359
+type t_script
+value 600000
+
+on=@create
+color 0846
+attr 04
+
+tag.uyename1 Yok!
+tag.uyename2 Yok!
+tag.uyename3 Yok!
+tag.uyename4 Yok!
+tag.uyename5 Yok!
+tag.uyename6 Yok!
+tag.uyename7 Yok!
+tag.uyename8 Yok!
+tag.uyename9 Yok!
+tag.uyename10 Yok!
+tag.uyename11 Yok!
+tag.uyename12 Yok!
+tag.uyename13 Yok!
+tag.uyename14 Yok!
+tag.uyename15 Yok!
+tag.uyename16 Yok!
+tag.uyename17 Yok!
+tag.uyename18 Yok!
+tag.uyename19 Yok!
+tag.uyename20 Yok!
+tag.uyeeskiname1 0
+tag.uyeeskiname2 0
+tag.uyeeskiname3 0
+tag.uyeeskiname4 0
+tag.uyeeskiname5 0
+tag.uyeeskiname6 0
+tag.uyeeskiname7 0
+tag.uyeeskiname8 0
+tag.uyeeskiname9 0
+tag.uyeeskiname10 0
+tag.uyeeskiname11 0
+tag.uyeeskiname12 0
+tag.uyeeskiname13 0
+tag.uyeeskiname14 0
+tag.uyeeskiname15 0
+tag.uyeeskiname16 0
+tag.uyeeskiname17 0
+tag.uyeeskiname18 0
+tag.uyeeskiname19 0
+tag.uyeeskiname20 0
+tag.onlinename1 Yok!
+tag.onlinename2 Yok!
+tag.onlinename3 Yok!
+tag.onlinename4 Yok!
+tag.onlinename5 Yok!
+tag.onlinename6 Yok!
+tag.onlinename7 Yok!
+tag.onlinename8 Yok!
+tag.onlinename9 Yok!
+tag.onlinename10 Yok!
+tag.onlinename11 Yok!
+tag.onlinename12 Yok!
+tag.onlinename13 Yok!
+tag.onlinename14 Yok!
+tag.onlinename15 Yok!
+tag.onlinename16 Yok!
+tag.onlinename17 Yok!
+tag.onlinename18 Yok!
+tag.onlinename19 Yok!
+tag.onlinename20 Yok!
+
+
+
+
+on=@click
+if (0<tag.ailekurulmus>)
+message @1153 Aile Belgesi [<uid.<tag.masteruid>.tag.soyad>]
+return 1
+else
+message @1153 <name>
+return 1
+endif
+
+
+on=@dclick
+if !(0<tag.ailekurulmus>)
+
+if (0<src.tag.soyad>)
+Src.sysmessage @0ad,6,1,1 Baska bir ailede iken aile kuramazsiniz.
+return 1
+else
+src.dialogclose d_ailesoyad
+src.dialog d_ailesoyad
+src.tag.deeduid <uid>
+src.tag.yedekdeeduid <uid>
+return 1
+endif
+
+else
+if !(<src.tag.aileyesahip>=<uid>)
+Src.sysmessage @0ad,6,1,1 Bu ailenin reisi degilsiniz.
+return 1
+else
+src.dialogclose d_ailemenu
+src.dialog d_ailemenu
+if !(0<uid.<src.tag.aileyesahip>.tag.dbaktarildi>)
+if !(<db.connected>)
+db.connect
+endif
+
+db.query SELECT * FROM fams WHERE fam_id='<eval <src.tag.aileyesahip>>'
+if !(strmatch('<db.row.0>','<eval <src.tag.aileyesahip>>')
+db.execute "insert into fams(fam_id, fam_name, fam_founder, create_time) values ('<eval <src.tag.aileyesahip>>', '<src.tag.soyad>', '<eval <src.uid>>', '<strsub 8 2 <serv.rtime>>/<strsub 5 2 <serv.rtime>>/<strsub 0 4 <serv.rtime>>');"
+try uid.<src.tag.aileyesahip>.tag.dbaktarildi 1
+endif
+endif
+
+return 1
+
+for 2 20
+if (<src.memoryfindtype.memory_guild>)
+if (<src.memoryfindtype.memory_guild.link.more1> = 1) && (0<uid.<uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>>>.memoryfindtype.memory_guild.link.more1> = 2)
+
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename<eval <local._for>>> isimli kisi Chaos oldugu icin aileden atildi!
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename<eval <local._for>>>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>>>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname<eval <local._for>>>
+
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>>>.tag.biraileuyesi 0
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>>>.tag.deeduid 0
+
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad 0
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+
+
+try uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>> 0
+try uid.<src.tag.deeduid>.tag.uyename<eval <local._for>> Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname<eval <local._for>> 0
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+
+endif
+endif
+endfor
+
+for 2 20
+if (<src.memoryfindtype.memory_guild>)
+if (<src.memoryfindtype.memory_guild.link.align> = 2) && (0<uid.<uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>>>.memoryfindtype.memory_guild.link.align> = 1)
+
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename<eval <local._for>>> isimli kisi Order oldugu icin aileden atildi!
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename<eval <local._for>>>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>>>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname<eval <local._for>>>
+
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>>>.tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>>>.tag.deeduid
+
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+
+
+try uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>>
+try uid.<src.tag.deeduid>.tag.uyename<eval <local._for>> Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname<eval <local._for>> 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+
+
+
+endif
+endif
+endfor
+
+
+
+endif
+
+
+
+
+[itemdef i_eskiisim]
+name Eski Ismim
+weight 0
+id i_gold
+type t_eq_script
+layer layer_special
+
+on=@create
+attr 04
+
+
+
+
+
+
+
+[itemdef i_ailemenucusu]
+name Menuyu ac
+weight 0
+id i_gold
+type t_eq_script
+layer layer_special
+
+On=@UnEquip
+try src.dialog d_ailedavetiye
+return 1
+
+On=@Timer
+remove
+return 1
+
+
+[itemdef i_uyeal]
+name Uye Al
+weight 0
+id i_gold
+type t_eq_script
+
+On=@equip
+timer 500
+target @262,0,1 Aileye almak istediginiz kisiyi secin.
+return 1
+
+On=@Timer
+remove
+return 1
+
+
+on=@targon_char
+if (<src.targ.npc>)
+Src.sysmessage @0ad,6,1,1 Npcleri ailenize alamazsiniz.
+return 1
+elseif (<src.targ.uid>==<src.uid>)
+Src.sysmessage @0ad,6,1,1 Zaten ailenin reisisiniz.
+return 1
+elseif (0<src.targ.tag.soyad>)
+Src.sysmessage @0ad,6,1,1 Bu kisi zaten bir ailenin uyesi.
+return 1
+elseif (0<src.targ.tag.bklan>)
+Src.sysmessage @0ad,6,1,1 Sadece a klanina ait uyeleri alabilirsiniz..
+return 1
+elseif (<src.memoryfindtype.memory_guild>) && (<src.memoryfindtype.memory_guild.link.align> = 1) && (<src.targ.memoryfindtype.memory_guild.link.align> = 2)
+Src.sysmessage @0ad,6,1,1 Savas halinde oldugunuz guild'in uyesini davet edemezsiniz!
+return 1
+elseif (<src.memoryfindtype.memory_guild>) && (<src.memoryfindtype.memory_guild.link.align> = 2) && (<src.targ.memoryfindtype.memory_guild.link.align> = 3)
+Src.sysmessage @0ad,6,1,1 Savas halinde oldugunuz guild'in uyesini davet edemezsiniz!
+elseif (<src.targ.findid.i_ailemenucusu>)
+Src.sysmessage @0ad,6,1,1 Bekleyiniz..
+return 1
+return 1
+
+else
+Src.sysmessage @0ad,6,1,1 <src.targ.name> isimli kisiyi ailenize davet ettiniz.
+src.targ.tag.gecicimaster <src.uid>
+src.targ.tag.gecicideed <src.tag.deeduid>
+src.newitem i_ailemenucusu
+src.act.cont <src.targ.uid>
+src.act.timer 1
+return 1
+ENDIF
+
+
+
+
+[itemdef i_uyeat]
+name Uye Al
+weight 0
+id i_gold
+type t_eq_script
+
+On=@equip
+timer 30
+target @38,0,1 Aileden atmak istediginiz kisiyi seciniz.
+return 1
+
+On=@Timer
+remove
+return 1
+
+
+on=@targon_char
+if (<src.targ.npc>)
+Src.sysmessage @0ad,6,1,1 Npcleri ailenizden atamazsiniz.
+return 1
+elseif (<src.targ.uid>==<src.uid>)
+Src.sysmessage @0ad,6,1,1 Kendinizi ailenizden atamazsiniz.
+return 1
+elseif (<src.targ.account.plevel> > 1)
+Src.sysmessage @0ad,6,1,1 Staff uyelerini ailenizden atamazsiniz.
+return 1
+elseif (<src.targ.soyad>=<src.soyad>)
+src.targ.soyad 0
+src.targ.name <src.targ.findid.i_eskiisim.name>
+src.targ.biraileuyesi 0
+src.targ.findid.i_eskiisim.remove
+Src.sysmessage @0ad,6,1,1 <src.targ.name> isimli kisiyi ailenizden attiniz.
+return 1
+endif
+
+//////////////////////////////// Menuler /////////////////////////////
+
+
+[dialog d_ailemenu]
+50, 50
+nomove
+
+
+
+Page 0
+resizepic 0 0 5120 340 270
+resizepic 10 10 3000 322 250
+
+htmlgump 150 60 170 185 4 1 1
+
+button 20 62 2714 2715 1 0 1
+button 20 92 2714 2715 1 0 2
+button 20 122 2714 2715 1 0 3
+button 20 152 2714 2715 1 0 4
+button 20 182 2714 2715 1 0 5
+ 
+
+htmlgump 100 20 150 25 5 1 0
+
+
+htmlgump 38 60 90 25 0 1 0
+htmlgump 38 90 90 25 1 1 0
+htmlgump 38 120 90 25 2 1 0
+htmlgump 38 150 90 25 7 1 0
+htmlgump 38 180 90 25 3 1 0
+
+htmlgump 20 220 108 25 6 1 0
+
+page 2
+
+
+[dialog d_ailemenu text]
+Uye Al
+Uye At
+Uye Listesi
+Aileyi Kapat
+Uye almak icin ;  " Uye Al " buttonuna tiklayarak uye alabilirsiniz.. Uye atmak icin ; "Uye At" buttonundan atmak istediðiniz üyeyi secip atabilirsiniz.. Uyelere bakmak icin ; "Uye Listesi" buttonundan uyelerinizi takip edebilirsiniz, Aileyi fes etmek icin ; " Aile Kapat " buttonundan ailenizi kapatabilir, fes edebilirsiniz..
+<src.tag.soyad> Aile Kontrol
+Fertler : <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>
+Online Listesi
+
+
+[dialog d_ailemenu button]
+on=1
+if (<eval <uid.<src.tag.deeduid>.tag.kisisayisi>>=20)
+Src.sysmessage @0ad,6,1,1 En fazla 20 kisi alabilirsiniz
+return 1
+else
+newitem i_uyeal
+act.equip
+return 1
+endif
+
+on=2
+dialog d_ailedenat
+
+
+on=3
+dialog d_ailelist
+
+
+on=4
+src.aileonlinecheck1
+dialogclose d_aileonline
+DIALOG d_aileonline
+
+on=5
+dialog d_aile_kapat
+Src.sysmessage @0ad,6,1,1 Lutfen ailenizi kapatmadan once iyi dusunun.
+
+[DIALOG d_ailesoyad]
+0,0
+nomove
+resizepic 190 175 5120 335 150
+resizepic 200 185 3000 315 130
+resizepic 220 235 3000 270 30
+text 215 200 995 0
+text 255 275 995 1
+button 220 275 4005 4006 1 0 1
+text 435 275 995 2
+button 400 275 4005 4006 1 0 0
+textentry 225 237 253 25 0 0 3
+
+[DIALOG d_ailesoyad TEXT]
+Lutfen ailenizin soyadini yaziniz.
+Tamam
+Iptal
+<tag.muccckkk>
+
+[DIALOG d_ailesoyad BUTTON]
+ON=0
+Src.sysmessage @0ad,6,1,1 Soyad girmeden ailenizi kuramazsiniz.
+ON=1
+src.newitem i_Eskiisim
+src.act.equip
+src.act.name <src.name>
+src.tag.eskiismim <src.findid.i_eskiisim.uid>
+src.name <src.name> <argtxt[0]>
+src.tag.soyad <argtxt[0]>
+src.tag.biraileuyesi 1
+src.tag.aileyesahip <src.tag.deeduid>
+try uid.<src.tag.deeduid>.tag.masteruid <src.uid>
+try uid.<src.tag.deeduid>.tag.ailekurulmus 1
+src.aileyegirdim
+Src.sysmessage @0ad,6,1,1 Aileyi basariyla kurdunuz!
+Src.sysmessage @0ad,6,1,1 Aile Ismi : <src.tag.soyad>
+
+if !(0<uid.<src.tag.aileyesahip>.tag.dbaktarildi>)
+if !(<db.connected>)
+//db.connect
+endif
+
+db.query SELECT * FROM fams WHERE fam_id='<eval <src.tag.aileyesahip>>'
+if !(strmatch('<db.row.0>','<eval <src.tag.aileyesahip>>')
+//db.execute "insert into fams(fam_id, fam_name, fam_founder, create_time) values ('<eval <src.tag.aileyesahip>>', '<src.tag.soyad>', '<eval <src.uid>>', '<strsub 8 2 <serv.rtime>>/<strsub 5 2 <serv.rtime>>/<strsub 0 4 <serv.rtime>>');"
+try uid.<src.tag.aileyesahip>.tag.dbaktarildi 1
+endif
+
+src.dialog d_ailemenu
+return 1
+
+
+
+
+[dialog d_aile_kapat]
+20, 20
+nomove
+Page 0
+resizepic 0 0 5120 200 100
+resizepic 10 10 3000 180 80
+text 50 20 995 0
+text 40 60 995 1
+text 120 60 995 2
+
+button 20 60 2714 2715 1 0 1
+button 100 60 2714 2715 1 0 2
+
+[dialog d_aile_kapat text]
+Eminmisiniz?
+Evet!
+Hayýr!
+
+
+[dialog d_aile_kapat button]
+on=1
+src.ailekapandi
+on=2
+src.dialogclose d_ailemenu
+src.dialog d_ailemenu
+on=0
+src.dialogclose d_ailemenu
+src.dialog d_ailemenu
+
+
+[dialog d_ailedavetiye]
+20, 20
+nomove
+Page 0
+resizepic 0 0 5120 250 150
+resizepic 10 10 3000 230 130
+
+htmlgump 20 20 210 90 2 1 1
+
+button 20 115 2714 2715 1 0 1        
+button 100 115 2714 2715 1 0 2
+     
+text 40 115 995 0
+text 120 115 995 1
+
+
+[dialog d_ailedavetiye text]
+Evet
+Hayir
+<uid.<tag.gecicimaster>.tag.soyad> ailesi olarak sizi aramizda gormek isteriz. Ancak aileye girmek icin 50.000gp odemelisiniz. Katilmak istiyor musunuz?
+
+
+
+
+[dialog d_ailedavetiye button]
+on=1
+if (<src.restest 50000 i_gold>)  /// yap
+src.consume i_gold 50000
+src.newitem i_eskiisim
+src.act.equip
+src.act.name <src.name>
+src.tag.masteruid <src.tag.gecicimaster>
+src.tag.deeduid <src.tag.gecicideed>
+src.tag.masterdeed <src.tag.deeduid>
+src.tag.biraileuyesi 1
+src.tag.eskiisimuid <src.act.uid>
+src.tag.eskiismim <src.findid.i_eskiisim.uid>
+src.name <src.name> <uid.<src.tag.masteruid>.tag.soyad>
+Src.sysmessage @0ad,6,1,1 Basariyla <uid.<tag.masteruid>.tag.soyad> isimli aileye katildiniz.
+try uid.<src.tag.masteruid>.sms Teklif ettiginiz kisi aileye basariyla katildi.
+src.aileyegirdim
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Cantanizda 50000gp bulunmuyor.
+try uid.<src.tag.gecicimaster>.sms Teklif ettiginiz kisinin 50.000gp parasi bulunmamaktadir.
+return 1
+endif
+
+on=2
+Src.sysmessage @0ad,6,1,1 <uid.<tag.gecicimaster>.tag.soyad> isimli aileye girisinizi reddettiniz.
+return 1
+
+on=0
+Src.sysmessage @0ad,6,1,1 <uid.<tag.gecicimaster>.tag.soyad> isimli aileye girisinizi reddettiniz.
+return 1
+
+
+
+[dialog d_ailelist]
+50, 50
+nomove
+Page 0
+resizepic 0 0 5120 210 390
+resizepic 10 10 3000 192 370
+
+
+PAGE 1
+button 20 342 2714 2715 0 2 1
+htmlgump 38 340 150 25 20 1 0
+
+htmlgump 20 30 170 25 0 1 0
+htmlgump 20 60 170 25 1 1 0
+htmlgump 20 90 170 25 2 1 0
+htmlgump 20 120 170 25 3 1 0
+htmlgump 20 150 170 25 4 1 0
+htmlgump 20 180 170 25 5 1 0
+htmlgump 20 210 170 25 6 1 0
+htmlgump 20 240 170 25 7 1 0
+htmlgump 20 270 170 25 8 1 0
+htmlgump 20 300 170 25 9 1 0
+
+
+PAGE 2
+
+htmlgump 38 340 150 25 21 1 0
+button 20 342 2714 2715 0 1 2
+
+
+htmlgump 20 30 170 25 10 1 0
+htmlgump 20 60 170 25 11 1 0
+htmlgump 20 90 170 25 12 1 0
+htmlgump 20 120 170 25 13 1 0
+htmlgump 20 150 170 25 14 1 0
+htmlgump 20 180 170 25 15 1 0
+htmlgump 20 210 170 25 16 1 0
+htmlgump 20 240 170 25 17 1 0
+htmlgump 20 270 170 25 18 1 0
+htmlgump 20 300 170 25 19 1 0
+
+
+
+[dialog d_ailelist text]
+<uid.<src.tag.deeduid>.tag.uyename1>
+<uid.<src.tag.deeduid>.tag.uyename2>
+<uid.<src.tag.deeduid>.tag.uyename3>
+<uid.<src.tag.deeduid>.tag.uyename4>
+<uid.<src.tag.deeduid>.tag.uyename5>
+<uid.<src.tag.deeduid>.tag.uyename6>
+<uid.<src.tag.deeduid>.tag.uyename7>
+<uid.<src.tag.deeduid>.tag.uyename8>
+<uid.<src.tag.deeduid>.tag.uyename9>
+<uid.<src.tag.deeduid>.tag.uyename10>
+<uid.<src.tag.deeduid>.tag.uyename11>
+<uid.<src.tag.deeduid>.tag.uyename12>
+<uid.<src.tag.deeduid>.tag.uyename13>
+<uid.<src.tag.deeduid>.tag.uyename14>
+<uid.<src.tag.deeduid>.tag.uyename15>
+<uid.<src.tag.deeduid>.tag.uyename16>
+<uid.<src.tag.deeduid>.tag.uyename17>
+<uid.<src.tag.deeduid>.tag.uyename18>
+<uid.<src.tag.deeduid>.tag.uyename19>
+<uid.<src.tag.deeduid>.tag.uyename20>
+Sonraki Sayfa
+Onceki Sayfa
+
+[dialog d_ailelist button]
+on=0
+src.dialogclose d_ailemenu
+src.dialog d_ailemenu
+
+
+
+
+
+
+
+
+
+[dialog d_uyebilgibolum]
+
+
+
+50, 50
+nomove
+Page 0
+resizepic 0 0 5120 210 390
+resizepic 10 10 3000 192 370
+
+
+PAGE 1
+
+
+htmlgump 20 30 170 25 0 1 0
+htmlgump 20 60 170 25 1 1 0
+htmlgump 20 90 170 25 2 1 0
+htmlgump 20 120 170 25 3 1 0
+htmlgump 20 150 170 25 4 1 0
+htmlgump 20 180 170 25 5 1 0
+htmlgump 20 210 170 25 6 1 0
+htmlgump 20 240 170 25 7 1 0
+htmlgump 20 270 170 25 8 1 0
+htmlgump 20 300 170 25 9 1 0
+htmlgump 20 330 170 25 10 1 0
+
+
+
+[dialog d_uyebilgibolum text]
+Aile Uye Bilgileri
+Isim : <uid.<src.tag.uyebilgi>.name>
+Str-Hp : <uid.<src.tag.uyebilgi>.str>/<uid.<src.tag.uyebilgi>.hits>
+Dex-Stam : <uid.<src.tag.uyebilgi>.dex>/<uid.<src.tag.uyebilgi>.stam>
+Int-Mana : <uid.<src.tag.uyebilgi>.int>/<uid.<src.tag.uyebilgi>.mana>
+Skill Toplami : <uid.<src.tag.uyebilgi>.skilltotal>
+Stat Toplami : <eval <uid.<src.tag.uyebilgi>.str>+<uid.<src.tag.uyebilgi>.dex>+<uid.<src.tag.uyebilgi>.int>>
+Food : <uid.<src.tag.uyebilgi>.food>
+Kill : <uid.<src.tag.uyebilgi>.kills>
+Death : <eval <uid.<src.tag.uyebilgi>.death>>
+Konum : <uid.<src.tag.uyebilgi>.region.name>
+
+[dialog d_uyebilgibolum button]
+
+on=0
+src.dialogclose d_aileonline
+src.dialog d_aileonline
+
+
+
+
+
+
+
+[dialog d_aileonline]
+50, 50
+nomove
+Page 0
+resizepic 0 0 5120 210 390
+resizepic 10 10 3000 192 370
+
+
+PAGE 1
+button 20 342 2714 2715 0 2 1
+htmlgump 38 340 150 25 20 1 0
+
+htmlgump 38 30 150 25 0 1 0
+htmlgump 38 60 150 25 1 1 0
+htmlgump 38 90 150 25 2 1 0
+htmlgump 38 120 150 25 3 1 0
+htmlgump 38 150 150 25 4 1 0
+htmlgump 38 180 150 25 5 1 0
+htmlgump 38 210 150 25 6 1 0
+htmlgump 38 240 150 25 7 1 0
+htmlgump 38 270 150 25 8 1 0
+htmlgump 38 300 150 25 9 1 0
+
+
+button 20 32 2714 2715 1 0 3
+button 20 62 2714 2715 1 0 4
+button 20 92 2714 2715 1 0 5
+button 20 122 2714 2715 1 0 6
+button 20 152 2714 2715 1 0 7
+button 20 182 2714 2715 1 0 8
+button 20 212 2714 2715 1 0 9
+button 20 242 2714 2715 1 0 10
+button 20 272 2714 2715 1 0 11
+button 20 302 2714 2715 1 0 12
+
+PAGE 2
+
+htmlgump 38 340 150 25 21 1 0
+button 20 342 2714 2715 0 1 2
+
+
+htmlgump 38 30 150 25 10 1 0
+htmlgump 38 60 150 25 11 1 0
+htmlgump 38 90 150 25 12 1 0
+htmlgump 38 120 150 25 13 1 0
+htmlgump 38 150 150 25 14 1 0
+htmlgump 38 180 150 25 15 1 0
+htmlgump 38 210 150 25 16 1 0
+htmlgump 38 240 150 25 17 1 0
+htmlgump 38 270 150 25 18 1 0
+htmlgump 38 300 150 25 19 1 0
+
+
+button 20 32 2714 2715 1 0 13
+button 20 62 2714 2715 1 0 14
+button 20 92 2714 2715 1 0 15
+button 20 122 2714 2715 1 0 16
+button 20 152 2714 2715 1 0 17
+button 20 182 2714 2715 1 0 18
+button 20 212 2714 2715 1 0 19
+button 20 242 2714 2715 1 0 20
+button 20 272 2714 2715 1 0 21
+button 20 302 2714 2715 1 0 22
+
+
+
+
+
+
+
+[dialog d_aileonline text]
+<uid.<src.tag.deeduid>.tag.onlinename1>
+<uid.<src.tag.deeduid>.tag.onlinename2>
+<uid.<src.tag.deeduid>.tag.onlinename3>
+<uid.<src.tag.deeduid>.tag.onlinename4>
+<uid.<src.tag.deeduid>.tag.onlinename5>
+<uid.<src.tag.deeduid>.tag.onlinename6>
+<uid.<src.tag.deeduid>.tag.onlinename7>
+<uid.<src.tag.deeduid>.tag.onlinename8>
+<uid.<src.tag.deeduid>.tag.onlinename9>
+<uid.<src.tag.deeduid>.tag.onlinename10>
+<uid.<src.tag.deeduid>.tag.onlinename11>
+<uid.<src.tag.deeduid>.tag.onlinename12>
+<uid.<src.tag.deeduid>.tag.onlinename13>
+<uid.<src.tag.deeduid>.tag.onlinename14>
+<uid.<src.tag.deeduid>.tag.onlinename15>
+<uid.<src.tag.deeduid>.tag.onlinename16>
+<uid.<src.tag.deeduid>.tag.onlinename17>
+<uid.<src.tag.deeduid>.tag.onlinename18>
+<uid.<src.tag.deeduid>.tag.onlinename19>
+<uid.<src.tag.deeduid>.tag.onlinename20>
+Sonraki Sayfa
+Onceki Sayfa
+
+[dialog d_aileonline button]
+
+on=0
+src.dialogclose d_ailemenu
+src.dialog d_ailemenu
+
+
+on=3
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu1>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid1>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=4
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu2>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid2>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=5
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu3>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid3>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=6
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu4>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid4>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=7
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu5>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid5>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=8
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu6>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid6>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=9
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu7>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid7>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=10
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu8>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid8>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=11
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu9>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid9>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=12
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu10>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid10>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=13
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu11>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid11>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=14
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu12>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid12>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=15
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu13>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid13>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=16
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu14>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid14>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=17
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu15>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid15>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+
+on=18
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu16>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid16>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=19
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu17>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid17>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=20
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu18>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid18>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+
+on=21
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu19>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid19>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+on=22
+if (0<uid.<src.tag.deeduid>.tag.uyeonlinedoldu20>)
+src.tag.uyebilgi <uid.<src.tag.deeduid>.tag.uyeonlineuid20>
+src.dialogclose d_uyebilgibolum
+src.dialog d_uyebilgibolum
+return 1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos!
+return 1
+endif
+
+
+
+
+
+
+
+
+
+[dialog d_ailedenat]
+50, 50
+nomove
+Page 0
+resizepic 0 0 5120 210 390
+resizepic 10 10 3000 192 370
+
+
+PAGE 1
+button 20 342 2714 2715 0 2 1
+htmlgump 38 340 150 25 20 1 0
+
+htmlgump 38 30 150 25 0 1 0
+htmlgump 38 60 150 25 1 1 0
+htmlgump 38 90 150 25 2 1 0
+htmlgump 38 120 150 25 3 1 0
+htmlgump 38 150 150 25 4 1 0
+htmlgump 38 180 150 25 5 1 0
+htmlgump 38 210 150 25 6 1 0
+htmlgump 38 240 150 25 7 1 0
+htmlgump 38 270 150 25 8 1 0
+htmlgump 38 300 150 25 9 1 0
+
+
+button 20 32 2714 2715 1 0 3
+button 20 62 2714 2715 1 0 4
+button 20 92 2714 2715 1 0 5
+button 20 122 2714 2715 1 0 6
+button 20 152 2714 2715 1 0 7
+button 20 182 2714 2715 1 0 8
+button 20 212 2714 2715 1 0 9
+button 20 242 2714 2715 1 0 10
+button 20 272 2714 2715 1 0 11
+button 20 302 2714 2715 1 0 12
+
+PAGE 2
+
+htmlgump 38 340 150 25 21 1 0
+button 20 342 2714 2715 0 1 2
+
+
+htmlgump 38 30 150 25 10 1 0
+htmlgump 38 60 150 25 11 1 0
+htmlgump 38 90 150 25 12 1 0
+htmlgump 38 120 150 25 13 1 0
+htmlgump 38 150 150 25 14 1 0
+htmlgump 38 180 150 25 15 1 0
+htmlgump 38 210 150 25 16 1 0
+htmlgump 38 240 150 25 17 1 0
+htmlgump 38 270 150 25 18 1 0
+htmlgump 38 300 150 25 19 1 0
+
+
+button 20 32 2714 2715 1 0 13
+button 20 62 2714 2715 1 0 14
+button 20 92 2714 2715 1 0 15
+button 20 122 2714 2715 1 0 16
+button 20 152 2714 2715 1 0 17
+button 20 182 2714 2715 1 0 18
+button 20 212 2714 2715 1 0 19
+button 20 242 2714 2715 1 0 20
+button 20 272 2714 2715 1 0 21
+button 20 302 2714 2715 1 0 22
+
+
+
+
+
+[dialog d_ailedenat text]
+<uid.<src.tag.deeduid>.tag.uyename1>
+<uid.<src.tag.deeduid>.tag.uyename2>
+<uid.<src.tag.deeduid>.tag.uyename3>
+<uid.<src.tag.deeduid>.tag.uyename4>
+<uid.<src.tag.deeduid>.tag.uyename5>
+<uid.<src.tag.deeduid>.tag.uyename6>
+<uid.<src.tag.deeduid>.tag.uyename7>
+<uid.<src.tag.deeduid>.tag.uyename8>
+<uid.<src.tag.deeduid>.tag.uyename9>
+<uid.<src.tag.deeduid>.tag.uyename10>
+<uid.<src.tag.deeduid>.tag.uyename11>
+<uid.<src.tag.deeduid>.tag.uyename12>
+<uid.<src.tag.deeduid>.tag.uyename13>
+<uid.<src.tag.deeduid>.tag.uyename14>
+<uid.<src.tag.deeduid>.tag.uyename15>
+<uid.<src.tag.deeduid>.tag.uyename16>
+<uid.<src.tag.deeduid>.tag.uyename17>
+<uid.<src.tag.deeduid>.tag.uyename18>
+<uid.<src.tag.deeduid>.tag.uyename19>
+<uid.<src.tag.deeduid>.tag.uyename20>
+Sonraki Sayfa
+Onceki Sayfa
+
+[dialog d_ailedenat button]
+on=3
+Src.sysmessage @0ad,6,1,1 Kendinizi aileden atamazsiniz.
+
+on=4
+if (0<uid.<src.tag.deeduid>.tag.uyeuid2>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename2> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename2>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid2>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname2>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid2>.tag.biraileuyesi 0
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid2>.tag.deeduid 0
+
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+
+
+try uid.<src.tag.deeduid>.tag.uyeuid2
+try uid.<src.tag.deeduid>.tag.uyename2 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname2
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+on=5
+if (0<uid.<src.tag.deeduid>.tag.uyeuid3>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename3> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename3>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid3>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname3>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid3>.tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid3>.tag.deeduid 0
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid3
+try uid.<src.tag.deeduid>.tag.uyename3 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname3
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+on=6
+if (0<uid.<src.tag.deeduid>.tag.uyeuid4>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename4> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename4>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid4>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname4>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid4>.tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid4>.tag.deeduid 0
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid4
+try uid.<src.tag.deeduid>.tag.uyename4 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname4
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+on=7
+if (0<uid.<src.tag.deeduid>.tag.uyeuid5>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename5> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename5>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid5>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname5>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid5>.tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid5>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid5
+try uid.<src.tag.deeduid>.tag.uyename5 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname5
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+on=8
+if (0<uid.<src.tag.deeduid>.tag.uyeuid6>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename6> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename6>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid6>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname6>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid6>tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid6>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid6 0
+try uid.<src.tag.deeduid>.tag.uyename6 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname6 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+on=9
+if (0<uid.<src.tag.deeduid>.tag.uyeuid7>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename7> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename7>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid7>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname7>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid7>.tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid7>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid7
+try uid.<src.tag.deeduid>.tag.uyename7 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname7
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+on=10
+if (0<uid.<src.tag.deeduid>.tag.uyeuid8>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename8> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename8>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid8>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname8>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid8>.tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid8>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid8
+try uid.<src.tag.deeduid>.tag.uyename8 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname8
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+
+on=11
+if (0<uid.<src.tag.deeduid>.tag.uyeuid9>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename9> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename9>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid9>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname9>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid9>.tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid9>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid9 
+try uid.<src.tag.deeduid>.tag.uyename9 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname9
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+
+on=12
+if (0<uid.<src.tag.deeduid>.tag.uyeuid10>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename10> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename10>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid10>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname10>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid10>.tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid10>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid10 
+try uid.<src.tag.deeduid>.tag.uyename10 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname10 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+
+on=13
+if (0<uid.<src.tag.deeduid>.tag.uyeuid11>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename11> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename11>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid11>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname11>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid11>.tag.biraileuyesi 
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid11>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad 
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid11 
+try uid.<src.tag.deeduid>.tag.uyename11 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname11 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+on=14
+if (0<uid.<src.tag.deeduid>.tag.uyeuid12>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename12> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename12>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid12>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname12>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid12>tag.biraileuyesi 
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid12>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad 
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid12 
+try uid.<src.tag.deeduid>.tag.uyename12 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname12 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+on=15
+if (0<uid.<src.tag.deeduid>.tag.uyeuid13>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename13> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename13>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid13>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname13>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid13>.tag.biraileuyesi 
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid12>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad 
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid13 
+try uid.<src.tag.deeduid>.tag.uyename13 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname13 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+on=16
+if (0<uid.<src.tag.deeduid>.tag.uyeuid14>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename14> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename14>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid14>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname14>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid14>.tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid12>.tag.deeduid
+
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad 
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid14 
+try uid.<src.tag.deeduid>.tag.uyename14 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname14 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+on=17
+if (0<uid.<src.tag.deeduid>.tag.uyeuid15>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename15> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename15>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid15>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname15>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid15>.tag.biraileuyesi 
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid15>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad 
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid15 
+try uid.<src.tag.deeduid>.tag.uyename15 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname15 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+on=18
+if (0<uid.<src.tag.deeduid>.tag.uyeuid16>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename16> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename16>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid16>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname16>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid16>.tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid16>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad 
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid16 
+try uid.<src.tag.deeduid>.tag.uyename16 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname16 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+
+on=19
+if (0<uid.<src.tag.deeduid>.tag.uyeuid17>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename17> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename17>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid17>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname17>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid17>.tag.biraileuyesi 
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid17>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad 
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid17 
+try uid.<src.tag.deeduid>.tag.uyename17 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname17 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+
+on=20
+if (0<uid.<src.tag.deeduid>.tag.uyeuid18>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename18> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename18>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid18>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname18>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid18>..tag.biraileuyesi 
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid18>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad 
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid18 
+try uid.<src.tag.deeduid>.tag.uyename18 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname18
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+
+on=21
+if (0<uid.<src.tag.deeduid>.tag.uyeuid19>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename19> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename19>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid19>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname19>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid19>.tag.biraileuyesi
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid19>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad 
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid19 
+try uid.<src.tag.deeduid>.tag.uyename19 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname19 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+
+on=22
+if (0<uid.<src.tag.deeduid>.tag.uyeuid20>)
+Src.sysmessage @0ad,6,1,1 <uid.<src.tag.deeduid>.tag.uyename20> isimli kisiyi aileden attiniz.
+src.tag.uyeatname <uid.<src.tag.deeduid>.tag.uyename20>
+src.tag.uyeatuid <uid.<src.tag.deeduid>.tag.uyeuid20>
+src.tag.uyeateskiname <uid.<src.tag.deeduid>.tag.uyeeskiname20>
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid20>.tag.biraileuyesi 0
+try uid.<uid.<src.tag.deeduid>.tag.uyeuid20>.tag.deeduid
+
+try uid.<src.tag.uyeatuid>.name <uid.<src.tag.uyeateskiname>.name>
+try uid.<src.tag.uyeatuid>.tag.soyad 
+try uid.<src.tag.uyeatuid>.tag.deeduid
+try uid.<src.tag.uyeateskiname>.remove
+
+try uid.<src.tag.deeduid>.tag.uyeuid20 
+try uid.<src.tag.deeduid>.tag.uyename20 Yok!
+try uid.<src.tag.deeduid>.tag.uyeeskiname20 
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>-1
+else
+Src.sysmessage @0ad,6,1,1 Bu slot bos.
+return 1
+endif
+
+on=0
+src.dialogclose d_ailemenu
+src.dialog d_ailemenu
+
+////////////////////////////////////// FUNCTION ///////////////////////
+
+[plevel 1]
+ac
+
+[function ac]
+if (strmatch("<args>",""))
+sms Yazi yazda gonder!
+elseif (strmatch("<args>","<tag.yazi>"))
+sms Flood yapma!
+elseif !(0<src.tag.biraileuyesi>)
+sms Siz bir aile mensubu degilsiniz!
+return 1
+else
+tag.yazi <args>
+serv.allclients ailechatci <args>
+endif
+
+[function ailechatci]
+
+if (strmatch('<src.tag.deeduid>','<tag.deeduid>')
+sysmessage @45,0,1 [<src.name>]: <args>
+endif
+
+
+[function aileonlinecheck1]
+src.taglarinhepsinisil
+serv.allclients tag.yapandeedid <src.tag.deeduid>
+serv.allclients aileonlinecheck2
+
+
+
+[function aileonlinecheck2]
+
+if (0<tag.deeduid> = <src.tag.deeduid>)
+
+for 1 20
+if !(0<uid.<tag.deeduid>.tag.uyeonlinedoldu<eval <local._for>>>)
+try uid.<tag.deeduid>.tag.uyeonlinedoldu<eval <local._for>>=1
+try uid.<tag.deeduid>.tag.onlinename<eval <local._for>>=<name>
+try uid.<tag.deeduid>.tag.uyeonlineuid<eval <local._for>>=<uid>
+return 1
+Endif
+endfor
+
+
+
+
+Endif
+
+
+
+
+
+
+[function aileyegirdim]
+for 1 20
+if !(0<uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>>>)
+try uid.<src.tag.deeduid>.tag.uyeuid<eval <local._for>> <src.uid>
+try uid.<src.tag.deeduid>.tag.uyename<eval <local._for>> <src.name>
+try uid.<src.tag.deeduid>.tag.uyeeskiname<eval <local._for>> <src.tag.eskiismim>
+try uid.<src.tag.deeduid>.tag.kisisayisi <eval <uid.<src.tag.deeduid>.tag.kisisayisi>>+1
+return 1
+endif
+endfor
+
+
+
+
+[function ailekapandi]
+if (0<tag.deeduid>)
+
+
+if !(<db.connected>)
+//db.connect
+endif
+//db.execute "delete from fams where fam_id='<eval <src.tag.aileyesahip>>';"
+
+
+if (0<uid.<tag.deeduid>.tag.uyeuid2>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid2>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname2>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid2>.tag.soyad
+try uid.<uid.<tag.deeduid>.tag.uyeuid2>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid2>.tag.biraileuyesi
+try uid.<uid.<tag.deeduid>.tag.uyeuid2>.tag.deeduid
+endif
+if (0<uid.<tag.deeduid>.tag.uyeuid3>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid3>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname3>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid3>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid3>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid3>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid3>.tag.deeduid 
+endif
+if (0<uid.<tag.deeduid>.tag.uyeuid4>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid4>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname4>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid4>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid4>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid4>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid4>.tag.deeduid 
+endif
+if (0<uid.<tag.deeduid>.tag.uyeuid5>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid5>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname5>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid5>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid5>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid5>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid5>.tag.deeduid 
+endif
+if (0<uid.<tag.deeduid>.tag.uyeuid6>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid6>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname6>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid6>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid6>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid6>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid6>.tag.deeduid 
+endif
+if (0<uid.<tag.deeduid>.tag.uyeuid7>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid7>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname7>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid7>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid7>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid7>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid7>.tag.deeduid 
+endif
+
+if (0<uid.<tag.deeduid>.tag.uyeuid8>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid8>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname8>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid8>.tag.soyad 0
+try uid.<uid.<tag.deeduid>.tag.uyeuid8>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid8>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid8>.tag.deeduid 
+endif
+
+if (0<uid.<tag.deeduid>.tag.uyeuid9>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid9>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname9>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid9>.tag.soyad 0
+try uid.<uid.<tag.deeduid>.tag.uyeuid9>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid9>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid9>.tag.deeduid 
+endif
+
+if (0<uid.<tag.deeduid>.tag.uyeuid10>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid10>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname10>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid10>.tag.soyad 0
+try uid.<uid.<tag.deeduid>.tag.uyeuid10>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid10>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid10>.tag.deeduid 
+endif
+
+if (0<uid.<tag.deeduid>.tag.uyeuid11>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid11>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname11>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid11>.tag.soyad 0
+try uid.<uid.<tag.deeduid>.tag.uyeuid11>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid11>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid11>.tag.deeduid 
+endif
+
+if (0<uid.<tag.deeduid>.tag.uyeuid12>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid12>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname12>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid12>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid12>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid12>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid12>.tag.deeduid 
+endif
+
+if (0<uid.<tag.deeduid>.tag.uyeuid13>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid13>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname13>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid13>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid13>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid13>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid13>.tag.deeduid 
+endif
+
+if (0<uid.<tag.deeduid>.tag.uyeuid14>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid14>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname14>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid14>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid14>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid14>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid14>.tag.deeduid 
+endif
+
+if (0<uid.<tag.deeduid>.tag.uyeuid15>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid15>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname15>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid15>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid15>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid15>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid15>.tag.deeduid 
+endif
+
+
+if (0<uid.<tag.deeduid>.tag.uyeuid16>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid16>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname16>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid16>.tag.soyad   
+try uid.<uid.<tag.deeduid>.tag.uyeuid16>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid16>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid16>.tag.deeduid 
+endif
+
+if (0<uid.<tag.deeduid>.tag.uyeuid17>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid17>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname17>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid17>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid17>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid17>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid17>.tag.deeduid 
+endif
+if (0<uid.<tag.deeduid>.tag.uyeuid18>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid18>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname18>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid18>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid18>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid18>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid18>.tag.deeduid 
+endif
+if (0<uid.<tag.deeduid>.tag.uyeuid19>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid19>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname19>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid19>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid19>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid19>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid19>.tag.deeduid   
+endif
+if (0<uid.<tag.deeduid>.tag.uyeuid20>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid20>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname20>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid20>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid20>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid20>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid20>.tag.deeduid 
+endif
+
+if (0<uid.<tag.deeduid>.tag.uyeuid1>)
+try uid.<uid.<tag.deeduid>.tag.uyeuid1>.name <uid.<uid.<tag.deeduid>.tag.uyeeskiname1>.name>
+try uid.<uid.<tag.deeduid>.tag.uyeuid1>.tag.soyad 
+try uid.<uid.<tag.deeduid>.tag.uyeuid1>.findid.i_eskiisim.remove
+try uid.<uid.<tag.deeduid>.tag.uyeuid1>.tag.biraileuyesi 
+try uid.<uid.<tag.deeduid>.tag.uyeuid1>.tag.deeduid 
+endif
+
+
+try uid.<tag.yedekdeeduid>.remove
+
+
+endif
+
+
+[function taglarinhepsinisil]
+try uid.<tag.deeduid>.tag.onlinename1 Yok!
+try uid.<tag.deeduid>.tag.onlinename2 Yok!
+try uid.<tag.deeduid>.tag.onlinename3 Yok!
+try uid.<tag.deeduid>.tag.onlinename4 Yok!
+try uid.<tag.deeduid>.tag.onlinename5 Yok!
+try uid.<tag.deeduid>.tag.onlinename6 Yok!
+try uid.<tag.deeduid>.tag.onlinename7 Yok!
+try uid.<tag.deeduid>.tag.onlinename8 Yok!
+try uid.<tag.deeduid>.tag.onlinename9 Yok!
+try uid.<tag.deeduid>.tag.onlinename10 Yok!
+try uid.<tag.deeduid>.tag.onlinename11 Yok!
+try uid.<tag.deeduid>.tag.onlinename12 Yok!
+try uid.<tag.deeduid>.tag.onlinename13 Yok!
+try uid.<tag.deeduid>.tag.onlinename14 Yok!
+try uid.<tag.deeduid>.tag.onlinename15 Yok!
+try uid.<tag.deeduid>.tag.onlinename16 Yok!
+try uid.<tag.deeduid>.tag.onlinename17 Yok!
+try uid.<tag.deeduid>.tag.onlinename18 Yok!
+try uid.<tag.deeduid>.tag.onlinename19 Yok!
+try uid.<tag.deeduid>.tag.onlinename20 Yok!
+try uid.<tag.deeduid>.tag.onlinedoldu1 0
+try uid.<tag.deeduid>.tag.onlinedoldu2 0
+try uid.<tag.deeduid>.tag.onlinedoldu3 0
+try uid.<tag.deeduid>.tag.onlinedoldu4 0
+try uid.<tag.deeduid>.tag.onlinedoldu5 0
+try uid.<tag.deeduid>.tag.onlinedoldu6 0
+try uid.<tag.deeduid>.tag.onlinedoldu7 0
+try uid.<tag.deeduid>.tag.onlinedoldu8 0
+try uid.<tag.deeduid>.tag.onlinedoldu9 0
+try uid.<tag.deeduid>.tag.onlinedoldu10 0
+try uid.<tag.deeduid>.tag.onlinedoldu11 0
+try uid.<tag.deeduid>.tag.onlinedoldu12 0
+try uid.<tag.deeduid>.tag.onlinedoldu13 0
+try uid.<tag.deeduid>.tag.onlinedoldu14 0
+try uid.<tag.deeduid>.tag.onlinedoldu15 0
+try uid.<tag.deeduid>.tag.onlinedoldu16 0
+try uid.<tag.deeduid>.tag.onlinedoldu17 0
+try uid.<tag.deeduid>.tag.onlinedoldu18 0
+try uid.<tag.deeduid>.tag.onlinedoldu19 0
+try uid.<tag.deeduid>.tag.onlinedoldu20 0
+
+try uid.<tag.deeduid>.tag.uyeonlineuid1 0
+try uid.<tag.deeduid>.tag.uyeonlineuid2 0
+try uid.<tag.deeduid>.tag.uyeonlineuid3 0
+try uid.<tag.deeduid>.tag.uyeonlineuid4 0
+try uid.<tag.deeduid>.tag.uyeonlineuid5 0
+try uid.<tag.deeduid>.tag.uyeonlineuid6 0
+try uid.<tag.deeduid>.tag.uyeonlineuid7 0
+try uid.<tag.deeduid>.tag.uyeonlineuid8 0
+try uid.<tag.deeduid>.tag.uyeonlineuid9 0
+try uid.<tag.deeduid>.tag.uyeonlineuid10 0
+try uid.<tag.deeduid>.tag.uyeonlineuid11 0
+try uid.<tag.deeduid>.tag.uyeonlineuid12 0
+try uid.<tag.deeduid>.tag.uyeonlineuid13 0
+try uid.<tag.deeduid>.tag.uyeonlineuid14 0
+try uid.<tag.deeduid>.tag.uyeonlineuid15 0
+try uid.<tag.deeduid>.tag.uyeonlineuid16 0
+try uid.<tag.deeduid>.tag.uyeonlineuid17 0
+try uid.<tag.deeduid>.tag.uyeonlineuid18 0
+try uid.<tag.deeduid>.tag.uyeonlineuid19 0
+try uid.<tag.deeduid>.tag.uyeonlineuid20 0
+
+try uid.<tag.deeduid>.tag.uyeonlinedoldu1 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu2 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu3 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu4 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu5 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu6 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu7 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu8 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu9 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu10 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu11 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu12 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu13 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu14 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu15 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu16 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu17 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu18 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu19 0
+try uid.<tag.deeduid>.tag.uyeonlinedoldu20 0

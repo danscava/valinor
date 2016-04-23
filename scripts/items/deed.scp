@@ -1,0 +1,2055 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Deedlar		--
+// -- Son Düzenleme Tarihi : 18.08.2004		--
+// -----------------------------------------------
+VERSION=0.55
+[itemdef i_deed_deriset1]
+id i_deed
+name Leather Set Deed
+type t_script
+weight 3
+
+on=@click
+message @1153 Leather Set Deed [Full]
+return 1
+
+on=@dclick
+src.newitem i_leather_gorget
+src.act.bounce
+src.newitem i_leather_gloves
+src.act.bounce
+src.newitem i_leather_sleeves
+src.act.bounce
+src.newitem i_leather_tunic
+src.act.bounce
+src.newitem i_leather_leggings
+src.act.bounce
+src.ekranitemizle
+src.sysmessage @1153 Deed'i actiniz...
+remove
+
+[itemdef i_deed_deriset2]
+id i_deed
+name Studded Set Deed
+weight 3
+type t_script
+
+on=@click
+message @1153 Studded Set Deed [Full]
+return 1
+
+on=@dclick
+src.newitem i_Studded_gorget
+src.act.bounce
+src.newitem i_Studded_gloves
+src.act.bounce
+src.newitem i_Studded_sleeves
+src.act.bounce
+src.newitem i_Studded_tunic
+src.act.bounce
+src.newitem i_Studded_leggings
+src.act.bounce
+src.ekranitemizle
+src.sysmessage @1153 Deed'i actiniz...
+remove
+
+[itemdef i_deed_plateset]
+id i_deed
+name Platemail Set Deed
+weight 3
+type t_script
+
+on=@click
+message @1153 Platemail Set Deed [Full]
+return 1
+
+on=@dclick
+src.newitem i_platemail_gorget
+src.act.bounce
+src.newitem i_platemail_gloves
+src.act.bounce
+src.newitem i_platemail_arms
+src.act.bounce
+src.newitem i_platemail_chest
+src.act.bounce
+src.newitem i_platemail_helm
+src.act.bounce
+src.newitem i_platemail_leggings
+src.act.bounce
+src.newitem i_shield_heater
+src.act.bounce
+src.ekranitemizle
+src.sysmessage @1153 Deed'i actiniz...
+remove
+
+[ITEMDEF 04200]
+//HOUSE_DEED_TEMPLATE_0
+DEFNAME=i_deed_house_stone_plaster_small
+NAME=deed to a small stone and plaster house
+ID=i_deed
+RESOURCES=i_deed,i_multi_house_stone_plaster_small
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Small Stone and Plaster House
+
+On=@Create
+MORE=i_multi_house_stone_plaster_small
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04202]
+//HOUSE_DEED_TEMPLATE_1
+DEFNAME=i_deed_House_stone_small
+ID=i_deed
+NAME=deed to a small stone house
+RESOURCES=i_deed,i_multi_house_stone_small
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Small Stone House
+
+ON=@Create
+MORE=i_multi_house_stone_small
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04204]
+//HOUSE_DEED_TEMPLATE_2
+DEFNAME=i_deed_House_stone_brick_small
+NAME=deed to a small brick house
+ID=i_deed
+RESOURCES=i_deed,i_multi_house_stone_brick_small
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Small Brick House
+
+ON=@Create
+MORE=i_multi_house_stone_brick_small
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04206]
+//HOUSE_DEED_TEMPLATE_3
+DEFNAME=i_deed_House_stone_wood_small
+NAME=deed to a small wood house
+ID=i_deed
+RESOURCES=i_deed,i_multi_house_stone_wood_small
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Small Wood House
+
+ON=@Create
+MORE=i_multi_house_stone_wood_small
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04208]
+//HOUSE_DEED_TEMPLATE_4
+DEFNAME=i_deed_House_wood_plaster_small
+NAME=deed to a small wood and plaster house
+ID=i_deed
+RESOURCES=i_deed,i_multi_house_wood_plaster_small
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Small Wood and Plaster House
+
+ON=@Create
+MORE=i_multi_house_wood_plaster_small
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04210]
+//HOUSE_DEED_TEMPLATE_5
+DEFNAME=i_deed_House_wood_thatched_small
+NAME=deed to a small wood house thatched roof
+ID=i_deed
+RESOURCES=i_deed,i_multi_house_wood_thatched_small
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Small Wood House Thatched Roof
+
+ON=@Create
+MORE=i_multi_house_wood_thatched_small
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04212]
+//HOUSE_DEED_TEMPLATE_6
+DEFNAME=i_deed_tent_blue
+NAME=deed to a blue tent
+ID=i_deed
+RESOURCES=i_deed,i_multi_tent_blue
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Blue Tent
+
+ON=@Create
+MORE=i_multi_tent_blue
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04214]
+//HOUSE_DEED_TEMPLATE_7
+DEFNAME=i_deed_tent_green
+NAME=deed to a green tent
+ID=i_deed
+RESOURCES=i_deed,i_multi_tent_green
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Green Tent
+
+ON=@Create
+MORE=i_multi_tent_green
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04216]
+//HOUSE_DEED_TEMPLATE_8
+DEFNAME=i_deed_house_3room
+NAME=deed to a three room house
+ID=i_deed
+RESOURCES=i_deed,i_multi_house_3room
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Three Room House
+
+ON=@Create
+MORE=i_multi_house_3room
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04218]
+//HOUSE_DEED_TEMPLATE_9
+DEFNAME=i_deed_house_wood_plaster_2story
+NAME=deed to a two story wood and plaster house
+ID=i_deed
+RESOURCES=i_deed,i_multi_house_wood_plaster_2story
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Two Story Wood and Plaster House
+
+ON=@Create
+MORE=i_multi_house_wood_plaster_2story
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04220]
+//HOUSE_DEED_TEMPLATE_10
+DEFNAME=i_deed_house_stone_plaster_2story
+NAME=deed to a two story stone and plaster house
+ID=i_deed
+RESOURCES=i_deed,i_multi_house_stone_plaster_2story
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Two Story Stone and Plaster House
+
+ON=@Create
+MORE=i_multi_house_stone_plaster_2story
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04222]
+//HOUSE_DEED_TEMPLATE_11
+DEFNAME=i_deed_tower
+NAME=deed to a tower
+ID=i_deed
+RESOURCES=i_deed,i_multi_tower
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Tower
+
+ON=@Create
+MORE=i_multi_tower
+ATTR=attr_newbie
+
+On=@DClick
+if (0<amount><1)
+src.sysmessage @38 Yaptiginiz islem gecersiz.
+remove
+return 1
+endif
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+//src.serv.writefile logs/housing/evkurma.txt account:<src.account> charuid:<src.uid> tower deed'ine cift tiklamis saat: <serv.time> ip <src.account.lastip> yeri <src.p>
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04224]
+// HOUSE_DEED_TEMPLATE_12
+DEFNAME=i_deed_keep
+NAME=deed to a stone keep
+ID=i_deed
+RESOURCES=i_deed,i_multi_keep
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Keep
+
+ON=@Create
+MORE=i_multi_keep
+ATTR=attr_newbie
+
+On=@DClick
+if (0<amount><1)
+src.sysmessage @38 Yaptiginiz islem gecersiz.
+remove
+return 1
+endif
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+//src.serv.writefile logs/housing/evkurma.txt account:<src.account> charuid:<src.uid> keep deed'ine cift tiklamis saat: <serv.time> ip <src.account.lastip> yeri <src.p>
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04226]
+//HOUSE_DEED_TEMPLATE_13
+DEFNAME=i_deed_Castle
+NAME=deed to a castle
+ID=i_deed
+RESOURCES=i_deed,i_multi_castle
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Castle
+
+ON=@Create
+MORE=i_multi_castle
+ATTR=attr_newbie
+
+On=@DClick
+if (0<amount><1)
+src.sysmessage @38 Yaptiginiz islem gecersiz.
+remove
+return 1
+endif
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+//src.serv.writefile logs/housing/evkurma.txt account:<src.account> charuid:<src.uid> castle deed'ine cift tiklamis saat: <serv.time> ip <src.account.lastip> yeri <src.p>
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04228]
+//HOUSE_DEED_LARGE_SMITHY
+DEFNAME=i_deed_shop_blacksmithy_large
+NAME=deed to a large blacksmithy shop
+ID=i_deed
+RESOURCES=i_deed,i_multi_shop_blacksmithy_large
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Large Black Smithy
+
+ON=@Create
+MORE=i_multi_shop_blacksmithy_large
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04229]
+DEFNAME=i_deed_house_patio_marble
+NAME=deed to a large marble patio house
+ID=i_deed
+RESOURCES=i_deed,i_multi_house_patio_marble
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Large Marble Patio House
+
+ON=@Create
+MORE=i_multi_house_patio_marble
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 0422a]
+DEFNAME=i_deed_tower_wizard
+NAME=deed to a small stone tower
+ID=i_deed
+RESOURCES=i_deed,i_multi_tower_wizard
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Wizards Tower
+
+ON=@Create
+MORE=i_multi_tower_wizard
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 0422b]
+DEFNAME=i_deed_cabin_log_2story
+NAME=deed to a two story log cabin
+ID=i_deed
+RESOURCES=i_deed,i_multi_cabin_log_2story
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Two Story Log Cabin
+
+ON=@Create
+MORE=i_multi_cabin_log_2story
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 0422c]
+DEFNAME=i_deed_house_patio_sand
+NAME=deed to a sandstone patio house
+ID=i_deed
+RESOURCES=i_deed,i_multi_house_patio_sand
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Sandstone Patio House
+
+ON=@Create
+MORE=i_multi_house_patio_sand
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+[ITEMDEF 0422d]
+DEFNAME=i_deed_villa_2story
+NAME=deed to a two story villa
+ID=i_deed
+RESOURCES=i_deed,i_multi_villa_2story
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Two Story Villa
+
+ON=@Create
+MORE1=i_multi_villa_2story
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 0422e]
+DEFNAME=i_deed_shop_stone_small
+NAME=deed to a small stone shop
+ID=i_deed
+RESOURCES=i_deed,i_multi_shop_stone_small
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Small Stone Shop
+
+ON=@Create
+MORE=i_multi_shop_stone_small
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 0422f]
+DEFNAME=i_deed_shop_marble_small
+NAME=deed to a small marble shop
+ID=i_deed
+RESOURCES=i_deed,i_multi_shop_marble_small
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Small Marble Shop
+
+ON=@Create
+MORE=i_multi_shop_marble_small
+ATTR=attr_newbie
+
+On=@DClick
+		if (<src.memoryfindtype.memory_guard>)
+			if !(<src.memoryfindtype.memory_guard.link.type> == t_multi) || !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+				//
+			endif
+		endif
+if (<src.memoryfindtype.(memory_guard)>)
+	if !(<src.memoryfindtype.(memory_guard).link.type> == t_ship)
+		src.sysmessage Ikinci bir ev kurabilmek icin diger evinizi yikmalisiniz.
+		return 1
+	endif
+endif
+
+[ITEMDEF 04230]
+DEFNAME=i_deed_guildstone
+NAME=guildstone deed
+ID=i_deed
+VALUE=150000
+RESOURCES=i_deed,i_guildstone
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Guild and Town Stones
+DESCRIPTION=Guild Stone
+
+ON=@Create
+MORE=i_guildstone
+ATTR=attr_newbie
+
+ON=@DClick
+src.sysmessage Guild kurulumu yasaklanmistir.
+remove
+return 1
+IF !(<SRC.ISGM>)
+	IF ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.CO1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.CO2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.CO3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.CO4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.CO5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.CO6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.CO7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.CO8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.F20uid>> == <eval <src.uid>>))
+		RETURN 0
+	ELSE
+		SRC.MESSAGE Guildstonelari sadece sahip oldugunuz evlere yerlestirebilirsiniz!
+		RETURN 1
+	ENDIF
+ELSE
+RETURN 0
+ENDIF
+
+[ITEMDEF 0423A]
+DEFNAME=i_deed_house_wheat_cottage
+NAME=deed to a wheat cottage
+ID=i_deed
+RESOURCES=i_deed,i_multi_house_wheat_cottage
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Wheat Cottage
+
+ON=@Create
+MORE=i_multi_house_wheat_cottage
+ATTR=attr_newbie
+
+ON=@DClick
+src.sysmessage Bu ev artik kullanilmamaktadir, page atiniz.
+return 1
+
+[ITEMDEF 0423B]
+DEFNAME=i_deed_evil_compound
+NAME=deed to a evil compound
+ID=i_deed
+RESOURCES=i_deed,i_multi_evil_compound
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Evil Compound
+
+ON=@Create
+MORE=i_multi_evil_compound
+ATTR=attr_newbie
+
+ON=@DClick
+src.sysmessage Bu ev artik kullanilmamaktadir, page atiniz.
+return 1
+
+[ITEMDEF 04240]
+//i_deed_ship_small_N
+DEFNAME=i_deed_ship_small_N
+NAME=deed to a small ship
+ID=i_deed_ship
+RESOURCES=i_deed,i_multi_ship_small_N
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Ship Plans
+DESCRIPTION=Small Ship
+
+ON=@Create
+MORE=i_multi_ship_small_N
+ATTR=attr_newbie
+
+ON=@DClick
+IF (<SRC.REGION.FLAGS>==010d2) || (<SRC.REGION.FLAGS>==01092) || (<SRC.REGION.FLAGS>==01192) || (<REGION.FLAGS>==010d2) || (<REGION.FLAGS>==01092) || (<REGION.FLAGS>==01192)
+SRC.SYSMESSAGE Baska bir gemideyken veya evdeyken yeni bir gemi olusturamazsiniz.
+RETURN 1
+ELSE
+RETURN 0
+ENDIF
+
+[ITEMDEF 04241]
+DEFNAME=i_deed_ship_dragon_small_N
+ID=i_deed_ship
+NAME=deed to a small dragon ship
+RESOURCES=i_deed,i_multi_ship_dragon_small_N
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Ship Plans
+DESCRIPTION=Small Dragon Ship
+
+ON=@Create
+MORE=i_multi_ship_dragon_small_N
+ATTR=attr_newbie
+
+ON=@DClick
+IF (<SRC.REGION.FLAGS>==010d2) || (<SRC.REGION.FLAGS>==01092) || (<SRC.REGION.FLAGS>==01192) || (<REGION.FLAGS>==010d2) || (<REGION.FLAGS>==01092) || (<REGION.FLAGS>==01192)
+SRC.SYSMESSAGE Baska bir gemideyken veya evdeyken yeni bir gemi olusturamazsiniz.
+RETURN 1
+ELSE
+RETURN 0
+ENDIF
+
+[ITEMDEF 04242]
+DEFNAME=i_deed_ship_medium_N
+ID=i_deed_ship
+NAME=deed to a medium ship
+RESOURCES=i_deed,i_multi_ship_medium_N
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Ship Plans
+DESCRIPTION=Medium Ship
+
+ON=@Create
+MORE=i_multi_ship_medium_N
+ATTR=attr_newbie
+
+ON=@DClick
+IF (<SRC.REGION.FLAGS>==010d2) || (<SRC.REGION.FLAGS>==01092) || (<SRC.REGION.FLAGS>==01192) || (<REGION.FLAGS>==010d2) || (<REGION.FLAGS>==01092) || (<REGION.FLAGS>==01192)
+SRC.SYSMESSAGE Baska bir gemideyken veya evdeyken yeni bir gemi olusturamazsiniz.
+RETURN 1
+ELSE
+RETURN 0
+ENDIF
+
+[ITEMDEF 04243]
+DEFNAME=i_deed_ship_dragon_medium_N
+NAME=deed to a medium dragon ship
+ID=i_deed_ship
+RESOURCES=i_deed,i_multi_ship_dragon_medium_N
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Ship Plans
+DESCRIPTION=Medium Dragon Ship
+
+ON=@Create
+MORE=i_multi_ship_dragon_medium_N
+ATTR=attr_newbie
+
+ON=@DClick
+IF (<SRC.REGION.FLAGS>==010d2) || (<SRC.REGION.FLAGS>==01092) || (<SRC.REGION.FLAGS>==01192) || (<REGION.FLAGS>==010d2) || (<REGION.FLAGS>==01092) || (<REGION.FLAGS>==01192)
+SRC.SYSMESSAGE Baska bir gemideyken veya evdeyken yeni bir gemi olusturamazsiniz.
+RETURN 1
+ELSE
+RETURN 0
+ENDIF
+
+[ITEMDEF 04244]
+DEFNAME=i_deed_ship_long_N
+ID=i_deed_ship
+NAME=deed to a long ship
+RESOURCES=i_deed,i_multi_ship_long_N
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Ship Plans
+DESCRIPTION=Long Ship
+
+ON=@Create
+MORE=i_multi_ship_long_N
+ATTR=attr_newbie
+
+ON=@DClick
+IF (<SRC.REGION.FLAGS>==010d2) || (<SRC.REGION.FLAGS>==01092) || (<SRC.REGION.FLAGS>==01192) || (<REGION.FLAGS>==010d2) || (<REGION.FLAGS>==01092) || (<REGION.FLAGS>==01192)
+SRC.SYSMESSAGE Baska bir gemideyken veya evdeyken yeni bir gemi olusturamazsiniz.
+RETURN 1
+ELSE
+RETURN 0
+ENDIF
+
+[ITEMDEF 04245]
+DEFNAME=i_deed_ship_dragon_long_N
+ID=i_deed_ship
+NAME=deed to a long dragon ship
+RESOURCES=i_deed,i_multi_ship_dragon_long_N
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Ship Plans
+DESCRIPTION=Long Dragon Ship
+
+ON=@Create
+MORE=i_multi_ship_dragon_long_N
+ATTR=attr_newbie
+
+ON=@DClick
+IF (<SRC.REGION.FLAGS>==010d2) || (<SRC.REGION.FLAGS>==01092) || (<SRC.REGION.FLAGS>==01192) || (<REGION.FLAGS>==010d2) || (<REGION.FLAGS>==01092) || (<REGION.FLAGS>==01192)
+	SRC.SYSMESSAGE Baska bir gemideyken veya evdeyken yeni bir gemi olusturamazsiniz.
+	RETURN 1
+ELSE
+	RETURN 0
+ENDIF
+
+// ----------------------------------------
+// BUNLAR SU AN ICIN AKTIF & KULLANILIYOR
+// ----------------------------------------
+
+[ITEMDEF 0500a]
+DEFNAME=I_DEED_FORGE
+NAME=deed to a forge
+ID=i_deed
+RESOURCES=5 i_log, 75 i_ingot_iron
+SKILLMAKE=CARPENTRY 73.6, BLACKSMITHING 75.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Forge
+
+On=@Create
+attr 04
+
+On=@DClick
+if ((<eval <src.uid>> == <eval <src.region.tag.owner>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem i_forge
+	src.act.link <src.region.uid>
+	if (<eval <src.act.link.tag.locknumber>> >= <src.act.link.morey>)
+		src.sysmessage Bu eve daha fazla esya koyamazsiniz.
+		src.act.remove
+	else
+		src.act.p <src.p>
+		src.act.link.tag.locknumber <eval (<src.act.link.tag.locknumber> + 1)>
+		src.act.attr <src.act.attr>|attr_move_never
+		src.act.update
+		remove
+	endif
+else 
+	src.sysmessage Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF 0500b]
+DEFNAME=I_DEED_ANVIL
+NAME=deed to an anvil
+ID=i_deed
+RESOURCES=2 i_log, 20 i_ingot_iron
+SKILLMAKE=CARPENTRY 53.5, BLACKSMITHING 65.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Anvil
+
+On=@Create
+attr 04
+
+On=@DClick
+if ((<eval <src.uid>> == <eval <src.region.tag.owner>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem i_anvil
+	src.act.link <src.region.uid>
+	if (<eval <src.act.link.tag.locknumber>> >= <src.act.link.morey>)
+		src.sysmessage Bu eve daha fazla esya koyamazsiniz.
+		src.act.remove
+	else
+		src.act.p <src.p>
+		src.act.link.tag.locknumber <eval (<src.act.link.tag.locknumber> + 1)>
+		src.act.attr <src.act.attr>|attr_move_never
+		src.act.update
+		remove
+	endif
+else 
+	src.sysmessage Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF 05011]
+DEFNAME=i_deed_dummyn
+NAME=deed to a training dummy
+ID=i_deed,i_training_dummy_n
+
+RESOURCES=55 i_log, 60 i_cloth
+SKILLMAKE=CARPENTRY 68.4, TAILORING 50.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Training Dummy (N)
+
+On=@Create
+attr 04
+
+On=@DClick
+if ((<eval <src.uid>> == <eval <src.region.tag.owner>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem i_training_dummy_n
+	src.act.link <src.region.uid>
+	if (<eval <src.act.link.tag.locknumber>> >= <src.act.link.morey>)
+		src.sysmessage Bu eve daha fazla esya koyamazsiniz.
+		src.act.remove
+	else
+		src.act.p <src.p>
+		src.act.link.tag.locknumber <eval (<src.act.link.tag.locknumber> + 1)>
+		src.act.attr <src.act.attr>|attr_move_never
+		src.act.dispid 01070
+		src.act.update
+		remove
+	endif
+else 
+	src.sysmessage Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF 05014]
+DEFNAME=I_DEED_PICKPOCKN
+NAME=deed to a pickpocket dip
+ID=i_deed
+
+RESOURCES=65 i_log, 60 i_cloth
+SKILLMAKE=CARPENTRY 73.6, TAILORING 50.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Pickpocket Dip (N)
+
+On=@Create
+attr 04
+
+On=@DClick
+if ((<eval <src.uid>> == <eval <src.region.tag.owner>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem i_pickpocket_dip
+	src.act.link <src.region.uid>
+	if (<eval <src.act.link.tag.locknumber>> >= <src.act.link.morey>)
+		src.sysmessage Bu eve daha fazla esya koyamazsiniz.
+		src.act.remove
+	else
+		src.act.p <src.p>
+		src.act.link.tag.locknumber <eval (<src.act.link.tag.locknumber> + 1)>
+		src.act.attr <src.act.attr>|attr_move_never
+		src.act.update
+		remove
+	endif
+else 
+	src.sysmessage Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_wheel_n]
+NAME=deed to a spinning wheel
+ID=i_deed
+
+RESOURCES=75 i_log,25 i_cloth
+SKILLMAKE=CARPENTRY 73.6, TAILORING 65.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Wheel(N)
+
+On=@Create
+attr 04
+
+On=@DClick
+if ((<eval <src.uid>> == <eval <src.region.tag.owner>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem i_spinning_wheel
+	src.act.link <src.region.uid>
+	if (<eval <src.act.link.tag.locknumber>> >= <src.act.link.morey>)
+		src.sysmessage Bu eve daha fazla esya koyamazsiniz.
+		src.act.remove
+	else
+		src.act.p <src.p>
+		src.act.link.tag.locknumber <eval (<src.act.link.tag.locknumber> + 1)>
+		src.act.attr <src.act.attr>|attr_move_never
+		src.act.update
+		remove
+	endif
+else 
+	src.sysmessage Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_loom_n]
+NAME=deed to a upright loom
+ID=i_deed
+RESOURCES=85 i_log,25 i_cloth
+SKILLMAKE=CARPENTRY 84.2, TAILORING 65.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Loom(N)
+
+On=@Create
+attr 04
+
+On=@DClick
+if ((<eval <src.uid>> == <eval <src.region.tag.owner>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem 01061
+	src.act.link <src.region.uid>
+	if (<eval (<src.act.link.tag.locknumber> + 1)> >= <src.act.link.morey>)
+		src.sysmessage Bu eve daha fazla esya koyamazsiniz.
+		src.act.remove
+	else
+		src.act.p <src.p>
+		src.act.attr attr_move_never
+		src.act.update
+		var.m <src.act.uid>
+		var.m2 <src.act.link.uid>
+
+		src.newitem 01062
+		src.act.p <src.p>
+		src.act.move 1
+		src.act.attr attr_move_never
+		src.act.link <var.m2>
+		src.act.update
+		if !(strmatch('<src.act.region.uid>','<src.uid.<var.m>.region.uid>'))
+			src.sysmessage Esyanin bir kismi bu konumda evin disina tasacagi icin buraya yerlestiremezsiniz.
+			try src.uid.<var.m>.remove
+			src.act.remove
+		else
+			try src.act.link.tag.<src.act.uid>part <var.m>
+			try src.act.link.tag.<var.m>part <src.act.uid>
+			src.act.link.tag.locknumber <eval (<src.act.link.tag.locknumber> + 1)>
+			remove
+		endif
+		var.m
+		var.m2
+	endif
+else 
+	src.sysmessage Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_pentagram]
+NAME=deed to a pentagram
+ID=i_deed
+RESOURCES=100 i_log,40 i_ingot_iron
+SKILLMAKE=CARPENTRY 100.0, MAGERY 75.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Pentagram
+
+ON=@DClick
+if ((<eval <src.uid>> == <eval <src.region.tag.owner>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem 0fea
+	src.act.link <src.region.uid>
+	if (<eval <src.act.link.tag.locknumber>> >= <src.act.link.morey>)
+		src.sysmessage Bu eve daha fazla esya koyamazsiniz.
+		src.act.remove
+	else
+		src.act.link.tag.locknumber <eval (<src.act.link.tag.locknumber> + 1)>
+		src.act.p <src.p>
+		src.act.attr attr_move_never
+		src.act.update
+		var.mlink <src.act.link.uid>
+		var.m1 <src.act.uid>
+
+		src.newitem 0fe8
+		src.act.p <src.p>
+		src.act.move 0 -1
+		src.act.attr attr_move_never
+		src.act.link <var.mlink>
+		src.act.update
+		var.m2 <src.act.uid>
+		if !(strmatch('<src.act.region.uid>','<src.uid.<var.m1>.region.uid>'))
+			src.sysmessage Esyanin bir kismi bu konumda evin disina tasacagi icin buraya yerlestiremezsiniz.
+			try src.uid.<var.m1>.remove
+			try src.uid.<var.m2>.remove
+			var.mlink
+			var.m1
+			var.m2
+			return 1
+		endif
+		
+		src.newitem 0fe7
+		src.act.p <src.p>
+		src.act.move -1 -1
+		src.act.attr attr_move_never
+		src.act.link <var.mlink>
+		src.act.update
+		var.m3 <src.act.uid>
+		if !(strmatch('<src.act.region.uid>','<src.uid.<var.m1>.region.uid>'))
+			src.sysmessage Esyanin bir kismi bu konumda evin disina tasacagi icin buraya yerlestiremezsiniz.
+			try src.uid.<var.m1>.remove
+			try src.uid.<var.m2>.remove
+			try src.uid.<var.m3>.remove
+			var.mlink
+			var.m1
+			var.m2
+			var.m3
+			return 1
+		endif
+
+		src.newitem 0feb
+		src.act.p <src.p>
+		src.act.move 1 -1
+		src.act.attr attr_move_never
+		src.act.link <var.mlink>
+		src.act.update
+		var.m4 <src.act.uid>
+		if !(strmatch('<src.act.region.uid>','<src.uid.<var.m1>.region.uid>'))
+			src.sysmessage Esyanin bir kismi bu konumda evin disina tasacagi icin buraya yerlestiremezsiniz.
+			try src.uid.<var.m1>.remove
+			try src.uid.<var.m2>.remove
+			try src.uid.<var.m3>.remove
+			try src.uid.<var.m4>.remove
+			var.mlink
+			var.m1
+			var.m2
+			var.m3
+			var.m4
+			return 1
+		endif
+
+		src.newitem 0fee
+		src.act.p <src.p>
+		src.act.move 1
+		src.act.attr attr_move_never
+		src.act.link <var.mlink>
+		src.act.update
+		var.m5 <src.act.uid>
+		if !(strmatch('<src.act.region.uid>','<src.uid.<var.m1>.region.uid>'))
+			src.sysmessage Esyanin bir kismi bu konumda evin disina tasacagi icin buraya yerlestiremezsiniz.
+			try src.uid.<var.m1>.remove
+			try src.uid.<var.m2>.remove
+			try src.uid.<var.m3>.remove
+			try src.uid.<var.m4>.remove
+			try src.uid.<var.m5>.remove
+			var.mlink
+			var.m1
+			var.m2
+			var.m3
+			var.m4
+			var.m5
+			return 1
+		endif
+
+		src.newitem i_pentagram
+		src.act.p <src.p>
+		src.act.move -1
+		src.act.attr attr_move_never
+		src.act.link <var.mlink>
+		src.act.update
+		var.m6 <src.act.uid>
+		if !(strmatch('<src.act.region.uid>','<src.uid.<var.m1>.region.uid>'))
+			src.sysmessage Esyanin bir kismi bu konumda evin disina tasacagi icin buraya yerlestiremezsiniz.
+			try src.uid.<var.m1>.remove
+			try src.uid.<var.m2>.remove
+			try src.uid.<var.m3>.remove
+			try src.uid.<var.m4>.remove
+			try src.uid.<var.m5>.remove
+			try src.uid.<var.m6>.remove
+			var.mlink
+			var.m1
+			var.m2
+			var.m3
+			var.m4
+			var.m5
+			var.m6
+			return 1
+		endif
+		
+		src.newitem 0fed
+		src.act.p <src.p>
+		src.act.move 1 1
+		src.act.attr attr_move_never
+		src.act.link <var.mlink>
+		src.act.update
+		var.m7 <src.act.uid>
+		if !(strmatch('<src.act.region.uid>','<src.uid.<var.m1>.region.uid>'))
+			src.sysmessage Esyanin bir kismi bu konumda evin disina tasacagi icin buraya yerlestiremezsiniz.
+			try src.uid.<var.m1>.remove
+			try src.uid.<var.m2>.remove
+			try src.uid.<var.m3>.remove
+			try src.uid.<var.m4>.remove
+			try src.uid.<var.m5>.remove
+			try src.uid.<var.m6>.remove
+			try src.uid.<var.m7>.remove
+			var.mlink
+			var.m1
+			var.m2
+			var.m3
+			var.m4
+			var.m5
+			var.m6
+			var.m7
+			return 1
+		endif
+
+		src.newitem 0fec
+		src.act.p <src.p>
+		src.act.move 0 1
+		src.act.attr attr_move_never
+		src.act.link <var.mlink>
+		src.act.update
+		var.m8 <src.act.uid>
+		if !(strmatch('<src.act.region.uid>','<src.uid.<var.m1>.region.uid>'))
+			src.sysmessage Esyanin bir kismi bu konumda evin disina tasacagi icin buraya yerlestiremezsiniz.
+			try src.uid.<var.m1>.remove
+			try src.uid.<var.m2>.remove
+			try src.uid.<var.m3>.remove
+			try src.uid.<var.m4>.remove
+			try src.uid.<var.m5>.remove
+			try src.uid.<var.m6>.remove
+			try src.uid.<var.m7>.remove
+			try src.uid.<var.m8>.remove
+			var.mlink
+			var.m1
+			var.m2
+			var.m3
+			var.m4
+			var.m5
+			var.m6
+			var.m7
+			var.m8
+			return 1
+		endif
+		
+		src.newitem 0fe9
+		src.act.p <src.p>
+		src.act.move -1 1
+		src.act.attr attr_move_never
+		src.act.link <var.mlink>
+		src.act.update
+		var.m9 <src.act.uid>
+		if !(strmatch('<src.act.region.uid>','<src.uid.<var.m1>.region.uid>'))
+			src.sysmessage Esyanin bir kismi bu konumda evin disina tasacagi icin buraya yerlestiremezsiniz.
+			try src.uid.<var.m1>.remove
+			try src.uid.<var.m2>.remove
+			try src.uid.<var.m3>.remove
+			try src.uid.<var.m4>.remove
+			try src.uid.<var.m5>.remove
+			try src.uid.<var.m6>.remove
+			try src.uid.<var.m7>.remove
+			try src.uid.<var.m8>.remove
+			try src.uid.<var.m9>.remove
+			var.mlink
+			var.m1
+			var.m2
+			var.m3
+			var.m4
+			var.m5
+			var.m6
+			var.m7
+			var.m8
+			var.m9
+			return 1
+		endif
+
+		try src.act.link.tag.<var.m1>part1 <var.m2>
+		try src.act.link.tag.<var.m1>part2 <var.m3>
+		try src.act.link.tag.<var.m1>part3 <var.m4>
+		try src.act.link.tag.<var.m1>part4 <var.m5>
+		try src.act.link.tag.<var.m1>part5 <var.m6>
+		try src.act.link.tag.<var.m1>part6 <var.m7>
+		try src.act.link.tag.<var.m1>part7 <var.m8>
+		try src.act.link.tag.<var.m1>part8 <var.m9>
+		var.mlink
+		var.m1
+		var.m2
+		var.m3
+		var.m4
+		var.m5
+		var.m6
+		var.m7
+		var.m8
+		var.m9
+		remove
+	endif
+else 
+	src.sysmessage Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+// ----------------------------------------
+// BUNLAR SU AN ICIN DISABLED
+// ----------------------------------------
+
+[ITEMDEF 05007]
+DEFNAME=i_deed_bboardw
+NAME=deed to a bulletin board (w)
+ID=i_deed
+RESOURCES=90 i_log
+SKILLMAKE=CARPENTRY 90, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Bulletin Board W
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_bulletin_board
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF 05008]
+DEFNAME=i_deed_bboardn
+NAME=deed to a bulletin board (n)
+ID=i_deed
+RESOURCES=90 i_log
+SKILLMAKE=CARPENTRY 90, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Bulletin Board N
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_bulletin_board_2
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF 05009]
+//no additional directional deed needed
+DEFNAME=i_deed_spinwheel
+NAME=deed to a spinning wheel
+ID=i_deed
+RESOURCES=i_deed,i_spinning_wheel
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Spinning Wheel
+
+ON=@DClick
+src.newitem i_deed_wheel_n
+src.act.bounce
+src.sysmessage Eski hatali spinning wheel deed'iniz yenisiyle degistirildi.
+remove
+return 1
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_spinning_wheel
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_wheel_w]
+NAME=deed to a wheel (w)
+ID=i_deed
+RESOURCES=75 i_log,25 i_cloth
+SKILLMAKE=CARPENTRY 73.6, TAILORING 65.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Wheel(W)
+
+ON=@DClick
+src.newitem i_deed_wheel_n
+src.act.bounce
+src.sysmessage Eski hatali spinning wheel deed'iniz yenisiyle degistirildi.
+remove
+return 1
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=01019
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF 05010]
+DEFNAME=I_DEED_DUMMYW
+NAME=deed to a training dummy (w)
+ID=i_deed
+RESOURCES=i_deed,i_training_dummy
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Training Dummy (W)
+
+On=@DClick
+src.newitem i_deed_dummyn
+src.act.bounce
+src.sysmessage Eski hatali dummy deed'iniz yenisiyle degistirildi.
+remove
+return 1
+if !(<src.isgm>)
+	src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+	return 1
+endif
+if ((<eval <src.uid>> == <eval <src.region.tag.owner>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem i_training_dummy
+	src.act.link <src.region.uid>
+	if (<eval <src.act.link.tag.locknumber>> >= <src.act.link.morey>)
+		src.sysmessage Bu eve daha fazla esya koyamazsiniz.
+		src.act.remove
+	else
+		src.act.p <src.p>
+		src.act.link.tag.locknumber <eval (<src.act.link.tag.locknumber> + 1)>
+		src.act.attr <src.act.attr>|attr_move_never
+		src.act.update
+		remove
+	endif
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_forge_large_n]
+NAME=deed to a large forge (n)
+ID=i_deed
+RESOURCES=5 i_log,100 i_ingot_iron
+SKILLMAKE=CARPENTRY 78.9, BLACKSMITHING 80.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Large Forge(N)
+
+On=@DClick
+if !(<src.isgm>)
+	src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+	return 1
+endif
+if ((<eval <src.uid>> == <eval <src.region.tag.owner>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem i_forge_2_part_2_of_3_n
+	src.act.link <src.region.uid>
+	if (<eval <src.act.link.tag.locknumber>> >= <src.act.link.morey>)
+		src.sysmessage Bu eve daha fazla esya koyamazsiniz.
+		src.act.remove
+	else
+		src.act.p <src.p>
+		src.act.link.tag.locknumber <eval (<src.act.link.tag.locknumber> + 1)>
+		src.act.attr <src.act.attr>|attr_move_never
+		var.h-addon1 <src.act.uid>
+		src.act.update
+		
+		src.newitem i_forge_bellows_2_part_1_of_3_n
+		src.act.p <src.p>
+		src.act.move 0 -1
+		src.act.attr <src.act.attr>|attr_move_never
+		src.act.link <var.h-addon1>
+		var.h-addon2 <src.act.uid>
+		src.act.update
+		
+		src.newitem i_forge_2_part_3_of_3_n_2
+		src.act.p <src.p>
+		src.act.move 0 1
+		src.act.attr <src.act.attr>|attr_move_never
+		src.act.link <var.h-addon2>
+		src.act.link.link.link <src.act.uid>
+		src.act.update
+		remove
+		var.h-addon1
+		var.h-addon2
+	endif
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_forge_large_w]
+NAME=deed to a large forge (w)
+ID=i_deed
+RESOURCES=5 i_log,100 i_ingot_iron
+SKILLMAKE=CARPENTRY 78.9, BLACKSMITHING 80.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Large Forge(W)
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_forge_large_w
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF 05012]
+DEFNAME=I_DEED_ARCHBUTTEW
+NAME=deed to a archery butte (w)
+ID=i_deed
+RESOURCES=i_deed,i_archery_butte
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Archery Butte (W)
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_archery_butte
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF 05013]
+DEFNAME=I_DEED_ARCHBUTTEN
+NAME=deed to a archery butte (n)
+ID=i_deed
+RESOURCES=i_deed,i_archery_butte2
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Archery Butte (N)
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_archery_butte2
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF 05015]
+DEFNAME=i_deed_pickpockw
+NAME=deed to a pickpocket dip (w)
+ID=i_deed
+RESOURCES=i_deed,i_pickpocket_dip_w
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=House Deeds
+DESCRIPTION=Pickpocket Dip (W)
+
+ON=@DClick
+src.newitem i_deed_pickpockn
+src.act.bounce
+src.sysmessage Eski hatali pickpocket dip deed'iniz yenisiyle degistirildi.
+remove
+return 1
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_pickpocket_dib_w
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_fount_br]
+NAME=brown fountain deed
+ID=i_deed
+RESOURCES=i_deed,i_multi_fount_brown
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Brown Fountain
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_fount_brown
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_fount_wh]
+NAME=white fountain deed
+ID=i_deed
+RESOURCES=i_deed,i_multi_fount_white
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=White Fountain
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_fount_white
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_water_w]
+NAME=deed to a water trough (w)
+ID=i_deed
+RESOURCES=75 i_log
+SKILLMAKE=CARPENTRY 94.7,t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Water Trough(W)
+
+ON=@DClick
+if ((<eval <src.uid>> == <eval <src.region.tag.owner>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem 0b41
+	src.act.link <src.region.uid>
+	if (<eval <src.act.link.tag.locknumber>> >= <src.act.link.morey>)
+		src.sysmessage @38 Bu eve daha fazla esya koyamazsiniz.
+		src.act.remove
+	else
+		src.act.link.tag.locknumber <eval (<src.act.link.tag.locknumber> + 1)>
+		src.act.p <src.p>
+		src.act.attr attr_move_never
+		src.act.update
+		var.mlink <src.act.link.uid>
+		var.m1 <src.act.uid>
+
+		src.newitem 0b42
+		src.act.p <src.p>
+		src.act.move 0 1
+		src.act.attr attr_move_never
+		src.act.link <var.mlink>
+		src.act.update
+		var.m2 <src.act.uid>
+		if !(strmatch('<src.act.region.uid>','<src.uid.<var.m1>.region.uid>'))
+			src.sysmessage @38 Esyanin bir kismi bu konumda evin disina tasacagi icin buraya yerlestiremezsiniz.
+			try src.uid.<var.m1>.remove
+			try src.uid.<var.m2>.remove
+			var.mlink
+			var.m1
+			var.m2
+			return 1
+		endif
+
+		try src.act.link.tag.<var.m1>part1 <var.m2>
+		var.mlink
+		var.m1
+		var.m2
+		remove
+	endif
+else 
+	src.sysmessage @38 Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_water_n]
+NAME=deed to a water trough (n)
+ID=i_deed
+RESOURCES=75 i_log
+SKILLMAKE=CARPENTRY 94.7,t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Water Trough(n)
+
+ON=@DClick
+if ((<eval <src.uid>> == <eval <src.region.tag.owner>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem 0b43
+	src.act.link <src.region.uid>
+	if (<eval <src.act.link.tag.locknumber>> >= <src.act.link.morey>)
+		src.sysmessage @38 Bu eve daha fazla esya koyamazsiniz.
+		src.act.remove
+	else
+		src.act.link.tag.locknumber <eval (<src.act.link.tag.locknumber> + 1)>
+		src.act.p <src.p>
+		src.act.attr attr_move_never
+		src.act.update
+		var.mlink <src.act.link.uid>
+		var.m1 <src.act.uid>
+
+		src.newitem 0b44
+		src.act.p <src.p>
+		src.act.move 1
+		src.act.attr attr_move_never
+		src.act.link <var.mlink>
+		src.act.update
+		var.m2 <src.act.uid>
+		if !(strmatch('<src.act.region.uid>','<src.uid.<var.m1>.region.uid>'))
+			src.sysmessage @38 Esyanin bir kismi bu konumda evin disina tasacagi icin buraya yerlestiremezsiniz.
+			try src.uid.<var.m1>.remove
+			try src.uid.<var.m2>.remove
+			var.mlink
+			var.m1
+			var.m2
+			return 1
+		endif
+
+		try src.act.link.tag.<var.m1>part1 <var.m2>
+		var.mlink
+		var.m1
+		var.m2
+		remove
+	endif
+else 
+	src.sysmessage @38 Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_loom_w]
+NAME=deed to a loom (w)
+ID=i_deed
+RESOURCES=85 i_log,25 i_cloth
+SKILLMAKE=CARPENTRY 84.2, TAILORING 65.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Loom(W)
+
+ON=@DClick
+src.newitem i_deed_loom_n
+src.act.bounce
+src.sysmessage Eski hatali upright loom deed'iniz yenisiyle degistirildi.
+remove
+return 1
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_loom_w
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_flour_mill_w]
+NAME=deed to a flour mill (w)
+ID=i_deed
+RESOURCES=100 i_log,50 i_ingot_iron
+SKILLMAKE=CARPENTRY 94.7, TINKERING 75.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Flour Mill(W)
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_flour_mill_w
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_flour_mill_n]
+NAME=deed to a flour mill (n)
+ID=i_deed
+RESOURCES=100 i_log,50 i_ingot_iron
+SKILLMAKE=CARPENTRY 84.2, TINKERING 65.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Flour Mill(N)
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_flour_mill_n
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_stone_pentagram]
+NAME=deed to a stone pentagram
+ID=i_deed
+RESOURCES=100 i_log,40 i_ingot_iron
+SKILLMAKE=CARPENTRY 100.0, MAGERY 50.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Stone Pentagram
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_altar
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_oven_w]
+NAME=deed to a oven (w)
+ID=i_deed
+RESOURCES=85 i_log,125 i_ingot_iron
+SKILLMAKE=CARPENTRY 68.4, TINKERING 50.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Stone Pentagram
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_oven_w
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_oven_n]
+NAME=deed to a oven (n)
+ID=i_deed
+RESOURCES=85 i_log,125 i_ingot_iron
+SKILLMAKE=CARPENTRY 68.4, TINKERING 50.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Oven(N)
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_oven_n
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_small_bed_w]
+NAME=deed to a small bed (w)
+ID=i_deed
+RESOURCES=5 i_log,100 i_ingot_iron
+SKILLMAKE=CARPENTRY 78.9, TAILORING 75.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Small Bed(W)
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_bed_small_w
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_small_bed_n]
+NAME=deed to a small bed (n)
+ID=i_deed
+RESOURCES=5 i_log,100 i_ingot_iron
+SKILLMAKE=CARPENTRY 78.9, TAILORING 75.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Small Bed(N)
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+//return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_bed_small_n
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_large_bed_n]
+NAME=deed to a large bed (n)
+ID=i_deed
+RESOURCES=150 i_log,150 i_cloth
+SKILLMAKE=CARPENTRY 94.7, TAILORING 75.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Large Bed(N)
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_bed_large_n
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[ITEMDEF i_deed_large_bed_w]
+NAME=deed to a large bed (w)
+ID=i_deed
+RESOURCES=150 i_log,150 i_cloth
+SKILLMAKE=CARPENTRY 94.7, TAILORING 75.0, t_carpentry
+
+CATEGORY=Provisions - Deeds
+SUBSECTION=Item Deeds
+DESCRIPTION=Large Bed(W)
+
+ON=@DClick
+src.sysmessage Ev ekleri su an icin duzenleme altindadir.
+return 1
+if ((<eval <src.uid>> == <eval <src.region.tag.name>>) || (<eval <src.region.tag.co1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.co8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f1uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f2uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f3uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f4uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f5uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f6uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f7uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f8uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f9uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f10uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f11uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f12uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f13uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f14uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f15uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f16uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f17uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f18uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f19uid>> == <eval <src.uid>>) || (<eval <src.region.tag.f20uid>> == <eval <src.uid>>))
+	src.newitem=i_multi_bed_large_w
+	src.act.p=<src.p>
+	remove
+	return 0
+else 
+	src.message Bu esyayi sadece kendi evinize yerlestirebilirsiniz.
+	return 1
+endif
+
+[EOF]

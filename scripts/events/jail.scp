@@ -1,0 +1,656 @@
+[plevel 1]
+sicilim
+
+[plevel 2]
+hapis
+
+[function hapis]
+
+if (strmatch(<args>,menu))
+dialog d_gonderbakemjaile
+ 
+elseif (strmatch(<args>,kufur))
+newitem i_jailtime_hakaret
+act.equip
+
+elseif (strmatch(<args>,abuse))
+newitem i_jailtime_bugabuse
+act.equip
+
+elseif (strmatch(<args>,flood))
+newitem i_jailtime_flood
+act.equip
+
+elseif (strmatch(<args>,page))
+newitem i_jailtime_hatalipage
+act.equip
+
+elseif (strmatch(<args>,alan))
+newitem i_jailtime_alanihlali
+act.equip
+
+elseif (strmatch(<args>,macro))
+newitem i_jailtime_macro
+act.equip
+
+elseif (strmatch(<args>,ban))
+newitem i_jailtime_ban
+act.equip
+
+
+elseif (strmatch(<args>,sicil))
+if (0<account.plevel> < 5)
+sysmessage Sicile bakmak? <src.name>?
+else
+newitem i_sicilebakbakiim
+act.equip
+endif
+
+elseif (strmatch(<args>,af))
+if (0<account.plevel> < 4)
+sysmessage Affetmek? <src.name>?
+else
+newitem i_affetlortum
+act.equip
+endif
+
+elseif (strmatch(<args>,st))
+if (0<account.plevel> < 2)
+sysmessage Sicil temizlemek? <src.name>?.
+else
+newitem i_sicilitemizlebabz
+act.equip
+endif
+
+else
+dialog d_gonderbakemjaile
+sysmessage @2085 Jail Menusu
+sysmessage @2085 Dikkatli bir bicimde jaile atin !
+
+endif 
+
+[function sicilim] // playerlar icin sicil menusunu acan function
+dialog d_sicilimebakacem
+
+[dialog d_gonderbakemjaile] // staff icin jail menu dialoglari
+155,60 
+page 0
+resizepic 100 140 5120 300 300
+resizepic 110 150 3000 280 280
+htmlgump 170 160 200 20 0 0 0
+htmlgump 175 180 200 20 1 0 0
+htmlgump 140 210 200 20 2 0 0
+htmlgump 140 240 200 20 3 0 0
+htmlgump 140 270 200 20 4 0 0
+htmlgump 140 300 200 20 5 0 0
+htmlgump 140 330 200 20 6 0 0
+htmlgump 140 360 200 20 7 0 0
+htmlgump 140 390 200 20 8 0 0
+
+button 120 214 1209 1210 1 0 1 
+button 120 243 1209 1210 1 0 2 
+button 120 273 1209 1210 1 0 3 
+button 120 303 1209 1210 1 0 4
+button 120 333 1209 1210 1 0 5
+button 120 363 1209 1210 1 0 6 
+button 120 393 1209 1210 1 0 7 
+
+[dialog d_gonderbakemjaile text] 
+<serv.servname> Jail Sistemi
+- Jail Cezalari -
+Flood'dan cezalandir (2)
+Hatali Page'den cezalandir (4)
+Hakaret'ten cezalandir (3)
+Macro'dan cezalandir. (5)
+Alan Ihlali'nden cezalandir. (8)
+Bug Abuse'dan cezalandir. (96)
+Ki$inin banlanmasini talep et.
+
+[dialog d_gonderbakemjaile button] 
+
+onbutton=1
+src.newitem=i_jailtime_flood
+src.act.target
+src.sysmessage 'Flood' sucundan jaillemek istediginiz kisiyi secin.
+return 1
+
+onbutton=2
+src.newitem=i_jailtime_hatalipage
+src.act.target
+src.sysmessage 'Hatali Page' sucundan jaillemek istediginiz kisiyi secin.
+return 1
+
+onbutton=3 
+src.newitem=i_jailtime_hakaret
+src.act.target
+src.sysmessage 'Hakaret' sucundan jaillemek istediginiz kisiyi secin.
+return 1
+
+onbutton=4
+src.newitem=i_jailtime_macro
+src.act.target 
+src.sysmessage 'Macro' sucundan jaillemek istediginiz kisiyi secin.
+return 1
+
+onbutton=5
+src.newitem=i_jailtime_alanihlali
+src.act.target 
+src.sysmessage 'Alan Ihlali' sucundan jaillemek istediginiz kisiyi secin.
+return 1
+
+onbutton=6
+src.newitem=i_jailtime_bugabuse 
+src.act.target 
+src.sysmessage 'Bug Abuse' sucundan jaillemek istediginiz kisiyi secin.
+return 1
+
+onbutton=7
+src.newitem=i_jailtime_ban
+src.act.target 
+src.sysmessage Banlanmasini talep ettiginiz kisiyi seciniz.
+return 1 
+
+[dialog d_sicilimebakacem] // playerlar icin sicil menusu
+250,50
+page 0
+resizepic 100 140 5120 200 260
+resizepic 110 150 3000 180 240 
+htmlgump 125 160 200 20 0 0 0
+htmlgump 130 180 200 20 1 0 0
+htmlgump 125 220 200 20 2 0 0
+htmlgump 125 240 200 20 3 0 0
+htmlgump 125 260 200 20 4 0 0
+htmlgump 125 280 200 20 5 0 0
+htmlgump 125 300 200 20 6 0 0
+htmlgump 125 320 200 20 7 0 0
+htmlgump 125 340 200 20 8 0 0
+
+[dialog d_sicilimebakacem text] 
+<serv.servname> Sicil Menusu
+Suclar & Siciliniz
+Yazi Tekrari: <eval(<src.tag.jailflood>>
+Hatali Page: <eval(<src.tag.jailpage>>
+Bug Abuse: <eval(<src.tag.jailbugabuse>>
+Alan Ihlali: <eval(<src.tag.jailalanihlali>>
+Hakaret: <eval(<src.tag.jailhakaret>>
+Macro: <eval(<src.tag.jailmacro>>
+Speed: <eval(<src.tag.jailspeed>>
+
+[dialog d_sicilimebakacem button]
+
+[itemdef i_jailcik]
+id=i_memory
+type=t_eq_script
+name=jailcik
+
+on=@create
+timer=0
+
+on=@timer
+cont.tag.jaillenmis=0
+cont.events -e_jail
+cont.sysmessage Cezaniz sona erdi.
+cont.go jail9
+remove
+return 1
+
+[itemdef i_allahtaseder]
+name=ta$ ederim cok pis
+id=i_memory
+type=t_eq_script
+weight=0
+layer=layer_special
+
+on=@equip
+if !(<cont.isgm>)
+timer 2
+cont.flags <cont.flags>|04
+cont.sayua 070d,0,0,0 * 1 dakika tas kalacak *
+else
+morex 1
+timer 1
+endif
+
+on=@unequip
+cont.stone 0
+	
+on=@timer
+if !(<morex>)
+morex 1
+cont.flags <cont.flags>&~04
+cont.stone 1
+timer 60
+else
+remove
+endif
+return 1
+
+[itemdef i_sicilebakbakiim]
+id=i_memory
+type=t_eq_script
+name=sicile bak bakiim
+
+on=@equip
+target Kimin siciline bakmak istiyorsunuz?
+timer 20
+
+on=@targon_char
+dialog d_sicilinebakiyom
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068 *** <src.name>, <src.targ.name> isimli ki$inin sicilini kontrol etti.
+remove
+return 1
+
+on=@timer
+attr=attr_decay
+remove 
+
+[itemdef i_affetlortum]
+id=i_memory
+type=t_eq_script
+name=affet beni lortum
+
+on=@equip
+target Kimi affetmek istiyorsunuz?
+timer 20
+
+on=@targon_char
+src.targ.findid.i_jailcik.timer=1
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068 *** <src.name>, <src.targ.name> isimli ki$inin jail cezasini affetti.
+src.targ.sysmessage <src.name> tarafindan jail cezaniz affedildi.
+remove
+return 1
+
+on=@timer
+attr=attr_decay
+remove
+
+[itemdef i_sicilitemizlebabz]
+id=i_memory
+type=t_eq_script
+name=cok pis temizlerim
+
+on=@equip
+target Kimin sicilini temizlemek istiyorsunuz?
+timer 20
+
+on=@targon_char
+src.targ.sysmessage <src.name> tarafindan siciliniz temizlendi.
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068  *** <src.name>, <src.targ.name> isimli ki$inin sicilini temizledi.
+src.targ.tag.jailflood=0
+src.targ.tag.jailpage=0
+src.targ.tag.jailbugabuse=0
+src.targ.tag.jailalanihlali=0
+src.targ.tag.jailhakaret=0
+src.targ.tag.jailmacro=0
+src.targ.tag.jailspeed=0
+remove
+return 1
+
+on=@timer
+attr=attr_decay
+remove
+
+[dialog d_sicilinebakiyom] // staff icin playerlarin siciline bakma menusu 
+250,50
+page 0
+resizepic 100 140 5120 160 240
+resizepic 110 150 3000 140 220 
+htmlgump 125 160 200 20 0 0 0
+htmlgump 125 180 200 20 1 0 0
+htmlgump 125 220 200 20 2 0 0
+htmlgump 125 240 200 20 3 0 0
+htmlgump 125 260 200 20 4 0 0
+htmlgump 125 280 200 20 5 0 0
+htmlgump 125 300 200 20 6 0 0
+htmlgump 125 320 200 20 7 0 0
+htmlgump 125 340 200 20 8 0 0
+
+[dialog d_sicilinebakiyom text] 
+<serv.servname> Sicil Menusu
+Sicil: <src.targ.name>
+Yazi Tekrari: <eval(<src.targ.tag.jailflood>>
+Hatali Page: <eval(<src.targ.tag.jailpage>>
+Bug Abuse: <eval(<src.targ.tag.jailbugabuse>>
+Alan Ihlali: <eval(<src.targ.tag.jailalanihlali>>
+Hakaret: <eval(<src.targ.tag.jailhakaret>>
+Macro: <eval(<src.targ.tag.jailmacro>>
+Speed: <eval(<src.targ.tag.jailspeed>>
+
+[dialog d_sicilinebakiyom button]
+
+[itemdef i_jailtime_hakaret] // jail 1 ok!
+id=i_memory
+type=t_eq_script
+name=jail hakaret
+
+on=@equip
+target 'Kufur' sucundan jaillemek istediginiz kisiyi secin.
+timer 20
+
+on=@targon_char 
+if (0<src.targ.tag.jailhakaret>)
+src.targ.tag.jailhakaret=(<eval <src.targ.tag.jailhakaret>> + 1)
+src.targ.go jail7
+src.targ.tag.jail 1
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=10800*<eval(<src.targ.tag.jailhakaret>>
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068 *** <src.name>, <src.targ.name> isimli ki$iyi 'Hakaret' sucundan jailledi.
+else
+src.targ.tag.jailhakaret=1
+src.targ.go jail7
+src.targ.tag.jail 1
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=10800
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068  *** <src.name>, <src.targ.name> isimli ki$iyi 'Hakaret' sucundan jailledi.
+endif
+remove 
+return 1
+
+on=@timer
+attr=attr_decay
+remove 
+
+[itemdef i_jailtime_hatalipage] // jail 2 ok!
+id=i_memory
+type=t_eq_script
+name=jail page
+
+on=@equip
+target 'Hatali Page' sucundan kimi jailliyeyim abi?
+timer 20
+
+on=@targon_char 
+if (0<src.targ.tag.jailhatalipage>)
+src.targ.tag.jailhatalipage=(<eval <src.targ.tag.jailhatalipage>> + 1)
+src.targ.stone 0
+src.targ.go jail2
+src.targ.tag.jail 2
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=14400*<eval(<src.targ.tag.jailhatalipage>>
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068  *** <src.name>, <src.targ.name> isimli ki$iyi 'Hatali Page' sucundan jailledi.
+else
+src.targ.tag.jailhatalipage=1
+src.targ.stone 0
+src.targ.go jail2
+src.targ.tag.jail 2
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=14400
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068  *** <src.name>, <src.targ.name> isimli ki$iyi 'Hatali Page' sucundan jailledi.
+endif
+remove 
+return 1 
+
+on=@timer
+attr=attr_decay
+remove
+
+[itemdef i_jailtime_alanihlali] // jail 3 ok!
+id=i_memory
+type=t_eq_script
+name=jail alan
+
+on=@equip
+target 'Alan Ihlali' sucundan kimi jailliyeyim abi?
+timer 20
+
+on=@targon_char 
+if (0<src.targ.tag.jailalanihlali>)
+src.targ.tag.jailalanihlali=(<eval <src.targ.tag.jailalanihlali>> + 1)
+src.targ.go jail1
+src.targ.tag.jail 3
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=28800*<eval(<src.targ.tag.jailalanihlali>>
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068  *** <src.name>, <src.targ.name> isimli ki$iyi 'Alan Ihlali' sucundan jailledi.
+else
+src.targ.tag.jailalanihlali=1
+src.targ.go jail1
+src.targ.tag.jail 3
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=28800
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068 *** <src.name>, <src.targ.name> isimli ki$iyi 'Alan Ihlali' sucundan jailledi.
+endif
+remove 
+return 1
+
+on=@timer
+attr=attr_decay
+remove 
+
+[itemdef i_jailtime_bugabuse] // jail 4 ok!
+id=i_memory
+type=t_eq_script
+name=jail abuse
+
+on=@equip
+target 'Bug Abuse' sucundan kimi jailliyeyim abi?
+timer 20
+
+on=@targon_char 
+if (0<src.targ.tag.jailbugabuse>)
+src.targ.tag.jailbugabuse=(<eval <src.targ.tag.jailbugabuse>> + 1)
+src.targ.go jail8
+src.targ.tag.jail 4
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=345600*<eval(<src.targ.tag.jailbugabuse>>
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068 *** <src.name>, <src.targ.name> isimli ki$iyi 'Bug Abuse' sucundan jailledi.
+else
+src.targ.tag.jailbugabuse=1
+src.targ.go jail8
+src.targ.tag.jail 4
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=345600
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068  *** <src.name>, <src.targ.name> isimli ki$iyi 'Bug Abuse' sucundan jailledi.
+endif
+remove 
+return 1 
+
+on=@timer
+attr=attr_decay
+remove
+
+[itemdef i_jailtime_flood] // jail 5 ok!
+id=i_memory
+type=t_eq_script
+name=jail flood
+
+on=@equip
+target 'Flood' sucundan kimi jailliyeyim abi?
+timer 20
+
+on=@targon_char
+if (0<src.targ.tag.jailflood>)
+src.targ.tag.jailflood=(<eval <src.targ.tag.jailflood>> + 1)
+src.targ.go jail3
+src.targ.tag.jail 5
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=7200*<eval(<src.targ.tag.jailflood>>
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068 *** <src.name>, <src.targ.name> isimli ki$iyi 'Flood' sucundan jailledi.
+else
+src.targ.tag.jailflood=1
+src.targ.go jail3
+src.targ.tag.jail 5
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=7200
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068 *** <src.name>, <src.targ.name> isimli ki$iyi 'Flood' sucundan jailledi.
+endif
+remove 
+return 1 
+
+on=@timer
+attr=attr_decay
+remove 
+
+[itemdef i_jailtime_macro] // jail 6 ok!
+id=i_memory
+type=t_eq_script
+name=jail macro
+
+on=@equip
+target 'Unattanted Macro' sucundan kimi jailliyeyim abi?
+timer 20
+
+on=@targon_char 
+if (0<src.targ.tag.jailmacro>)
+src.targ.tag.jailmacro=(<eval <src.targ.tag.jailmacro>> + 1)
+src.targ.go jail4
+src.targ.tag.jail 6
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=18000*<eval(<src.targ.tag.jailmacro>>
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068 *** <src.name>, <src.targ.name> isimli ki$iyi 'Unattanted Macro' sucundan jailledi.
+else
+src.targ.tag.jailmacro=1
+src.targ.go jail4
+src.targ.tag.jail 6
+src.targ.tag.jaillenmis=1
+src.targ.events +e_jail
+src.newitem i_jailcik
+src.act.timer=18000
+src.act.equip
+src.act.cont <src.targ.uid>
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068 *** <src.name>, <src.targ.name> isimli ki$iyi 'Unattanted Macro' sucundan jailledi.
+endif
+remove 
+return 1 
+
+on=@timer
+attr=attr_decay
+remove 
+
+[itemdef i_jailtime_ban] // jail 7 ok!
+id=i_memory
+type=t_eq_script
+name=jail macro
+
+on=@equip
+target Banlanma talebiyle kimi ta$ edeyim abi?
+timer 20
+
+on=@targon_char
+src.sysmessage Ki$inin info'suna banlanma nedenini not etmeyi unutan,........
+src.targ.stone
+src.targ.go jail5
+src.targ.tag.jail 7
+src.targ.sysmessage Blocklanmak uzere <src.name> tarafindan stone edildiniz.
+//serv.allclients findid.i_staff_chat.cont.sysmessage @1068 *** <src.name>, <src.targ.name> isimli ki$iyi banlanma talebiyle stone etti.
+src.targ.title Banlanacak / <src.name>
+remove
+return 1
+
+on=@timer
+attr=attr_decay
+remove
+
+[events e_jail]
+
+on=@click
+
+findid.i_jailcik.morex (<findid.i_jailcik.timer> / 60)
+findid.i_jailcik.morey (<findid.i_jailcik.morex> / 60)
+
+if (<tag.jail> == 1)
+message [<eval(<tag.jailhakaret>>, Hakaret]
+
+elseif (<tag.jail> == 2)
+message @046 [<eval(<tag.jailhatalipage>>, Hatali Page]
+
+elseif (<tag.jail> == 3)
+message [<eval(<tag.jailalanihlali>>, Alan Ihlali]
+
+elseif (<tag.jail> == 4)
+message [<eval(<tag.jailbugabuse>>, Hata Somurme]
+
+elseif (<tag.jail> == 5)
+message [<eval(<tag.jailflood>>, Yazi Tekrari]
+
+elseif (<tag.jail> == 6)
+message [<eval(<tag.jailmacro>>, Istikrarsiz Macro]
+
+elseif (<tag.jail> == 7)
+message [Banlanacak]
+endif
+
+if (<findid.i_jailcik.timer> < 61)
+message @037 [Kalan sure: 1 Dakika]
+
+elseif !(<findid.i_jailcik.morey>)
+message @037 [Kalan sure: <findid.i_jailcik.morex> Dakika]
+
+else
+message @037 [Kalan sure: <findid.i_jailcik.morey> Saat]
+endif
+
+On=@GetHit
+if (<src.isgm>)
+	return 0
+else
+	if !(<src.findid.i_allahtaseder>)
+		src.newitem i_allahtaseder
+		src.act.equip
+	endif
+	return 1
+endif
+
+On=@SpellEffect
+if (<argn> == 59)
+	return 0
+elseif (<src.isgm>)
+	return 0
+else
+	if !(<src.findid.i_allahtaseder>)
+		src.newitem i_allahtaseder
+		src.act.equip
+	endif
+	return 1
+endif
+
+On=@SkillStart
+if !(<isgm>)
+	skill fail
+	return 1
+endif
+
+[eof]

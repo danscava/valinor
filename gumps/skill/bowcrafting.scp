@@ -1,0 +1,339 @@
+[FUNCTION f_skill_bowcraft]
+var.notice bowcraft bilginiz: %<src.bowcraft>
+src.dialogclose d_skill_bowcraft
+DIALOG d_skill_bowcraft
+
+[dialog d_skill_bowcraft]  
+                          
+200,150
+page 0
+
+resizepic 0 0 5120 450 185
+resizepic 10 10 3000 430 165
+button 10 10 4006 4007 0 1 1
+button 10 30 4006 4007 0 4 2
+button 10 50 4006 4007 0 2 3
+button 10 70 4006 4007 0 3 4
+
+resizepic 125 115 3000 315 30 // not
+htmlgump 130 120 410 40 18 0 0 // not 
+
+htmlgump 45 11 80 20 2 0 0
+htmlgump 45 32 80 20 3 0 0
+htmlgump 45 51 80 20 4 0 0
+htmlgump 45 72 80 20 5 0 0
+
+button 260 150 4006 4007 1 0 0 // iptal
+button 125 150 4006 4007 1 0 99 // tekrar yap
+htmlgump 295 150 100 20 15 0 0 // iptal
+htmlgump 160 150 100 20 17 0 0 // tekrar yap
+
+page 1
+
+htmlgump 140 10 150 20 11 0 0
+htmlgump 240 10 150 20 12 0 0
+htmlgump 340 10 150 20 13 0 0
+tilepic 160 35 5041
+tilepic 260 35 3919
+tilepic 360 35 5117
+button 140 30 2714 2715 1 0 17
+button 240 30 2714 2715 1 0 18
+button 340 30 2714 2715 1 0 19
+
+page 2
+
+htmlgump 140 10 150 20 22 0 0
+htmlgump 240 10 150 20 23 0 0
+htmlgump 340 10 150 20 24 0 0
+
+tilepic 160 35 5041
+tilepic 250 35 3919
+tilepic 345 35 5117
+
+button 140 30 2714 2715 1 0 23
+button 240 30 2714 2715 1 0 24
+button 340 30 2714 2715 1 0 25
+
+page 3
+htmlgump 140 10 150 20 6 0 0
+htmlgump 240 10 150 20 7 0 0
+htmlgump 340 10 150 20 14 0 0
+htmlgump 340 60 150 20 8 0 0
+htmlgump 140 60 150 20 9 0 0
+htmlgump 240 60 150 20 10 0 0
+
+tilepic 160 40 3553
+tilepic 260 35 3940
+tilepic 360 35 5041
+tilepic 160 85 3903 
+tilepic 260 85 7163
+tilepic 360 85 7124
+
+button 140 35 2714 2715 1 0 11
+button 240 35 2714 2715 1 0 12
+button 340 35 2714 2715 1 0 26
+
+button 340 85 2714 2715 1 0 14
+button 140 85 2714 2715 1 0 15
+button 240 85 2714 2715 1 0 16
+
+
+page 4 // superior
+
+htmlgump 140 10 150 20 19 0 0
+htmlgump 240 10 150 20 20 0 0
+htmlgump 340 10 150 20 21 0 0
+
+tilepic 160 35 5041
+tilepic 250 35 3919
+tilepic 345 35 5117
+
+button 140 30 2714 2715 1 0 20
+button 240 30 2714 2715 1 0 21
+button 340 30 2714 2715 1 0 22
+
+[dialog d_skill_bowcraft text]
+VALINOR BOWCRAFT MENU
+items 			//1 
+normal 			//2
+superior		//3
+exceptional 		//4
+others			//5
+kindling 		//6
+torch 			//7
+shaft 			//8
+arrow 			//9
+crossbow bolt		//10
+bow 			//11
+crossbow 		//12
+heavy crossbow 		//13
+elven bow		//14
+iptal 			//15
+tamam 			//16
+tekrar yap 		//17
+<var.notice>
+sup. bow
+sup. crossbow
+sup. h. crossbow
+exc. bow
+exc. crossbow
+exc. h. crossbow
+
+
+[dialog d_skill_bowcraft button]
+on 11 // ok
+if (<src.bowcraft> < 0.1)
+var.notice gerekli skill: %0.1
+
+elseif !(<src.restest 1 i_log>)
+var.notice gerekli malzeme: 1 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_kindling
+src.tag.makelast i_kindling
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=12 // ok
+var.notice torch yapimi bir sureligine kapalidir.
+
+dialog d_skill_bowcraft
+
+onbutton=14
+if (<src.bowcraft> < 19.8)
+var.notice gerekli skill: %19.8
+
+elseif !(<src.restest 1 i_log>)
+var.notice gerekli malzeme: 1 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_arrow_shaft
+src.tag.makelast i_arrow_shaft
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=15 // ok
+if (<src.bowcraft> < 1.0)
+var.notice gerekli skill: %1.0
+
+elseif !(<src.restest 1 i_arrow_shaft>) || !(<src.restest i_feather>)
+var.notice gerekli malzeme: 1 shaft, 1 feather
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_arrow
+src.tag.makelast i_arrow
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=16 // ok
+if (<src.bowcraft> < 17.8)
+var.notice gerekli skill: %17.8
+
+elseif !(<src.restest 1 i_arrow_shaft>) || !(<src.restest i_feather>)
+var.notice gerekli malzeme: 1 shaft, 1 feather
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_xbolt
+src.tag.makelast i_xbolt
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=17 // ok
+if (<src.bowcraft> < 17.8)
+var.notice gerekli skill: %17.8
+
+elseif !(<src.restest 7 i_log>)
+var.notice gerekli malzeme: 7 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_bow
+src.tag.makelast i_bow
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=18 // ok
+if (<src.bowcraft> < 37.8)
+var.notice gerekli skill: %37.8
+
+elseif !(<src.restest 7 i_log>)
+var.notice gerekli malzeme: 7 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_crossbow
+src.tag.makelast i_crossbow
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=19 // ok
+if (<src.bowcraft> < 57.8)
+var.notice gerekli skill: %57.8
+
+elseif !(<src.restest 10 i_log>)
+var.notice gerekli malzeme: 10 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_crossbow_heavy
+src.tag.makelast i_crossbow_heavy
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=20 // ok
+if (<src.bowcraft> < 45.0)
+var.notice gerekli skill: %45.0
+
+elseif !(<src.restest 8 i_log>)
+var.notice gerekli malzeme: 1 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_bow_sup
+src.tag.makelast i_bow_sup
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=21 // ok
+if (<src.bowcraft> < 55.0)
+var.notice gerekli skill: %55.0
+
+elseif !(<src.restest 8 i_log>)
+var.notice gerekli malzeme: 8 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_xbow_sup
+src.tag.makelast i_xbow_sup
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=22 // ok
+if (<src.bowcraft> < 65.0)
+var.notice gerekli skill: %65.0
+
+elseif !(<src.restest 8 i_log>)
+var.notice gerekli malzeme: 8 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_hxbow_sup
+src.tag.makelast i_hxbow_sup
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=23 // ok
+if (<src.bowcraft> < 75.5)
+var.notice gerekli skill: %75.5
+
+elseif !(<src.restest 9 i_log>)
+var.notice gerekli malzeme: 9 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_bow_excep
+src.tag.makelast i_bow_excep
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=24
+if (<src.bowcraft> < 85.5)
+var.notice gerekli skill: %85.5
+
+elseif !(<src.restest 10 i_log>)
+var.notice gerekli malzeme: 10 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_xbow_excep
+src.tag.makelast i_xbow_excep
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=25
+if (<src.bowcraft> < 95.5)
+var.notice gerekli skill: %95.5
+
+elseif !(<src.restest 13 i_log>)
+var.notice gerekli malzeme: 13 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_hxbow_excep
+src.tag.makelast i_hxbow_excep
+endif
+
+dialog d_skill_bowcraft
+
+onbutton=26
+if (<src.bowcraft> < 99.5) || (<src.magery> < 98.0)
+var.notice gerekli skill: %95.5 bowcraft, %98.0 magery
+
+elseif !(<src.src.restest 50 i_log>)
+var.notice gerekli malzeme: 50 log
+
+else
+var.notice e$yayi hazirliyorsunuz
+src.makeitem i_bow_elven
+tag.bowcrat i_bow_elven
+endif
+
+dialog d_skill_bowcraft
+
+[EOF]

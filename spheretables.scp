@@ -1,0 +1,1172 @@
+// ----------------------------
+// SPHERETABLES.SCP - GENEL SPHERE AYARLARI
+// SON GUNCELLENME TARIHI: 25 Aralik 2001 - cQ
+// ----------------------------
+VERSION=0.55
+
+[RESOURCES]
+scripts/sphere_defs.scp
+scripts/items/itemb1.scp
+scripts/items/itemb2.scp
+scripts/items/itemb3.scp
+scripts/items/itemb4.scp
+scripts/items/itemb5.scp
+scripts/items/itemb6.scp
+scripts/items/itemb7.scp
+scripts/items/ore.scp
+scripts/items/
+scripts/items/sphere_item_resources.scp
+scripts/sphere_region.scp
+scripts/maps/sphere_map0.scp
+scripts/maps/sphere_map1.scp
+scripts/maps/sphere_map_points0.scp
+scripts/maps/sphere_map_points1.scp
+scripts/items/hazine/
+scripts/items/weapon/
+scripts/chars/char.scp
+scripts/chars/char_anim.scp
+scripts/chars/char_evil.scp
+scripts/chars/char_human.scp
+scripts/chars/char_orc.scp
+scripts/chars/char_ore.scp
+scripts/chars/char_x.scp
+scripts/chars/
+scripts/sphere_skills.scp
+scripts/events/
+scripts/events/bonuslar/
+scripts/gumps/
+scripts/gumps/skill/
+scripts/gumps/skill/bs/
+scripts/speech/
+scripts/staff/
+scripts/sphere_menu.scp
+scripts/sphere_name.scp
+scripts/sphere_skillmenu.scp
+scripts/sphere_spawns.scp
+scripts/sphere_speech.scp
+scripts/sphere_skills.scp
+scripts/sphere_spells.scp
+scripts/sphere_newb.scp
+scripts/sphere_template.scp
+scripts/sphere_template_loot.scp
+scripts/sphere_template_vend.scp
+scripts/sphere_triggers.scp
+scripts/sphere_serv_triggers.scp
+scripts/sphere_admin.scp
+scripts/sphere_dialog.scp
+scripts/sphere_types.scp
+scripts/sphere_book.scp
+scripts/sphere_backward_compatibility.scp
+scripts/sphere_events_human.scp
+scripts/sphere_events_npcs.scp
+
+[OBSCENE]
+
+[NOTOTITLES]
+Trustworthy
+Estimable
+Great
+Glorious
+Glorious
+
+Honest
+Commendable
+Famed
+Illustrious
+Illustrious
+
+Good
+Honorable
+Admirable
+Noble
+Noble
+
+Kind
+Respectable
+Proper
+Eminent
+Eminent
+
+Fair
+Upstanding
+Reputable
+Distinguished
+Distinguished
+
+<none>
+Notable
+Prominent
+Renowned
+Renowned
+
+Rude
+Disreputable
+Notorious
+Imfamous
+Dishonored
+
+Unsavory
+Dishonorable
+Ignoble
+Sinister
+Sinister
+
+Scoundrel
+Malicious
+Vile
+Villainous
+Dark
+
+Despicable
+Dastardly
+Wicked
+Evil
+Evil
+
+Outcast
+Wretched
+Nefarious
+Dread
+Dread
+
+[ADVANCE]
+STR=10000,3500,250
+INT=10000,3500,250
+DEX=10000,3500,250
+
+[STARTS]
+Yew
+The Sturdy Bow
+567,978,0
+Minoc
+The Barnacle Tavern
+2477,407,15
+Britain
+Sweet Dreams Inn
+1496,1629,10
+Moonglow
+The Scholars Inn
+4404,1169,0
+Trinsic
+The Traveller's Inn
+1844,2745,0
+Magincia
+The Great Horns Tavern
+3738,2223,20
+Jhelom
+The Morning Star Inn
+1378,3817,0
+Skara Brae
+The Falconers Inn
+594,2227,0
+Vesper
+The Ironwood Inn
+2771,977,0
+
+[RUNES]
+An
+Bet
+Corp
+Des
+Ex
+Flam
+Grav
+Hur
+In
+Jux
+Kal
+Lor
+Mani
+Nox
+Ort
+Por
+Quas
+Rel
+Sanct
+Tym
+Uus
+Vas
+Wis
+Xen
+Ylem
+Zan
+
+[Skill 0]
+DEFNAME=Skill_Alchemy
+KEY=Alchemy
+TITLE=Alchemist
+EFFECT=0.0,125.0
+delay=1.0
+VALUES=1,2,3
+ADV_RATE=1.0,2.0,3.0
+
+STAT_STR=0
+STAT_DEX=0
+STAT_INT=100
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=60
+
+ON=@Fail
+	src.sysmessage @1100,,1 Iksiriniz heba oldu.
+
+[Skill 1]
+DEFNAME=Skill_Anatomy
+KEY=Anatomy
+TITLE=Scholar
+PROMPT_MSG=Kimi inceleyeceksiniz?
+DELAY=0.1
+ADV_RATE=1.0,2.0,3.0
+
+STAT_STR=0
+STAT_DEX=0
+STAT_INT=100
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=60
+
+ON=@Fail
+	src.sysmessage @1100,,1 Bu yaratik hakkinda pek fikriniz yok.
+	return 1
+
+[Skill 2]
+DEFNAME=Skill_Animal_Lore
+KEY=AnimalLore
+TITLE=Scholar
+PROMPT_MSG=Hangi hayvani inceleyeceksiniz?
+DELAY=0.7
+ADV_RATE=1.0,2.0,3.0
+
+STAT_STR=0
+STAT_DEX=0
+STAT_INT=100
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=60
+
+ON=@Fail
+	src.sysmessage @1100,,1 Bu hayvan hakkinda pek fikriniz yok.
+	return 1
+
+[Skill 3]
+DEFNAME=Skill_Appraise
+KEY=ItemID
+TITLE=Merchant
+PROMPT_MSG=Neyi inceleyecegiz?
+DELAY=0.7
+ADV_RATE=1.0,2.0,3.0
+
+STAT_STR=0
+STAT_DEX=0
+STAT_INT=100
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=60
+
+ON=@Fail
+	src.sysmessage @1100,,1 Bu esya hakkinda bir fikriniz yok.
+	return 1
+
+[Skill 4]
+DEFNAME=Skill_Armslore
+KEY=ArmsLore
+TITLE=Arms%s
+PROMPT_MSG=Neyi inceleyeceksiniz?
+DELAY=0.7
+ADV_RATE=1.0,2.0,3.0
+
+STAT_STR=0
+STAT_DEX=0
+STAT_INT=100
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=60
+
+ON=@Fail
+	src.sysmessage @1100,,1 Bu esya hakkinda bir fikriniz yok.
+	return 1
+
+[Skill 5]
+DEFNAME=Skill_Parrying
+KEY=Parrying
+TITLE=Shieldfighter
+EFFECT=70.0,110.0
+ADV_RATE=1.0,2.0,3.0
+
+STAT_STR=100
+STAT_DEX=100
+STAT_INT=0
+BONUS_STR=50
+BONUS_DEX=50
+BONUS_INT=0
+BONUS_STATS=60
+
+[Skill 6]
+DEFNAME=Skill_Begging
+KEY=Begging
+TITLE=Beggar
+PROMPT_MSG=To whom do you wish to grovel?
+delay=1.0
+ADV_RATE=1.0,2.0,3.0
+
+STAT_STR=0
+STAT_DEX=0
+STAT_INT=100
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=80
+
+[Skill 7]
+DEFNAME=Skill_Blacksmith
+KEY=Blacksmithing
+TITLE=Blacksmith
+VALUES=1,20,100
+delay=1.0
+ADV_RATE=1.0,2.0,3.0
+
+STAT_STR=100
+STAT_DEX=25
+STAT_INT=0
+BONUS_STR=90
+BONUS_DEX=10
+BONUS_INT=0
+BONUS_STATS=60
+
+ON=@Fail
+	src.sysmessage @1100,,1 Malzemeniz eriyip gitti.
+
+[Skill 8]
+DEFNAME=Skill_Bowcraft
+KEY=Bowcraft
+TITLE=Bowyer
+delay=1.0
+VALUES=1,2,3
+ADV_RATE=1.0,2.0,3.0
+
+STAT_STR=0
+STAT_INT=0
+STAT_DEX=100
+BONUS_STR=0
+BONUS_DEX=100
+BONUS_INT=0
+BONUS_STATS=60
+
+ON=@Fail
+	src.sysmessage @1100,,1 Malzemeniz heba oldu.
+
+[Skill 9]
+DEFNAME=Skill_Peacemaking
+KEY=Peacemaking
+TITLE=Bard
+delay=1.0
+ADV_RATE=30.0,30.0,40.0
+
+STAT_STR=0
+STAT_INT=100
+STAT_DEX=50
+BONUS_STR=0
+BONUS_DEX=10
+BONUS_INT=90
+BONUS_STATS=60
+
+ON=@Fail
+	src.sysmessage @1100,,1 Kimseyi sakinlestiremediniz.
+	return 1
+
+[Skill 10]
+DEFNAME=Skill_Camping
+KEY=Camping
+TITLE=Camper
+delay=1.0
+ADV_RATE=30.0,30.0,40.0
+
+STAT_STR=30
+STAT_INT=20
+STAT_DEX=30
+BONUS_STR=33
+BONUS_DEX=33
+BONUS_INT=34
+BONUS_STATS=70
+
+ON=@Fail
+	src.sysmessage @1100,,1 Atesiniz ruzgarla sondu.
+
+[Skill 11]
+DEFNAME=Skill_Carpentry
+KEY=Carpentry
+TITLE=Carpenter
+PROMPT_MSG=
+delay=1.0
+STAT_STR=60
+STAT_INT=40
+STAT_DEX=30
+BONUS_STR=50
+BONUS_DEX=30
+BONUS_INT=20
+BONUS_STATS=70
+ADV_RATE=1.0,1.0,3.0
+VALUES=1,2,3
+
+ON=@Fail
+	src.sysmessage @1100,,1 Malzemeniz heba oldu.
+	
+[Skill 12]
+DEFNAME=Skill_CARTOGRAPHY
+KEY=Cartography
+TITLE=Cartographer
+PROMPT_MSG=
+delay=1.0
+STAT_STR=15
+STAT_INT=70
+STAT_DEX=20
+BONUS_STR=0
+BONUS_DEX=20
+BONUS_INT=80
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+VALUES=1,2,3
+
+ON=@Fail
+	src.sysmessage @1100,,1 Haritaniz gercek disi oldu.
+	src.consume 1 i_map_blank
+
+[Skill 13]
+DEFNAME=Skill_Cooking
+KEY=Cooking
+TITLE=Chef
+PROMPT_MSG=What would you like to cook?
+DELAY=0
+STAT_STR=25
+STAT_INT=45
+STAT_DEX=20
+BONUS_STR=0
+BONUS_DEX=40
+BONUS_INT=60
+BONUS_STATS=50
+ADV_RATE=1.0,2.0,3.0
+VALUES=1,2,3
+
+ON=@Fail
+	src.sysmessage @1100,,1 Yemegi yaktiniz.
+
+[Skill 14]
+DEFNAME=Skill_DetectHidden
+KEY=DetectingHidden
+TITLE=Detective
+PROMPT_MSG=
+DELAY=3.0,2.0
+STAT_STR=15
+STAT_INT=60
+STAT_DEX=20
+BONUS_STR=0
+BONUS_DEX=20
+BONUS_INT=80
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Saklanmis birsey goremiyorsunuz.
+	return 1
+
+[Skill 15]
+DEFNAME=Skill_Enticement
+KEY=Enticement
+TITLE=Bard
+PROMPT_MSG=Whom do you wish to entice?
+DELAY=0.7
+STAT_STR=15
+STAT_INT=70
+STAT_DEX=50
+BONUS_STR=0
+BONUS_DEX=50
+BONUS_INT=50
+BONUS_STATS=70
+ADV_RATE=30.0,30.0,40.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Sizi umursayan olmadi.
+	return 1
+
+[Skill 16]
+DEFNAME=Skill_EvalInt
+KEY=EvaluatingIntel
+TITLE=Scholar
+PROMPT_MSG=Incelemek istediginiz seyi secin.
+DELAY=0.1
+STAT_STR=5
+STAT_INT=60
+STAT_DEX=10
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=50
+ADV_RATE=0.1
+
+ON=@Fail
+	message @1100,,1 Bu sey sizden daha akilli cikti. Hakkinda pek birsey ogrenemediniz.
+	return 1
+
+[Skill 17]
+DEFNAME=Skill_Healing
+KEY=Healing
+TITLE=Healer
+PROMPT_MSG=Who will you use the bandages on?
+DELAY=3.0,1.0
+EFFECT=2.0,20.0
+ADV_RATE=1.0,2.0,3.0
+
+STAT_STR=10
+STAT_INT=90
+STAT_DEX=10
+
+BONUS_STATS=70
+BONUS_STR=0
+BONUS_DEX=30
+BONUS_INT=70
+
+ON=@Fail
+	src.sysmessage @1100,,1 Bandajlariniz ise yaramadi.
+	return 1
+
+[Skill 18]
+DEFNAME=Skill_Fishing
+KEY=Fishing
+TITLE=Fisher%s
+PROMPT_MSG=What water do you want to fish in?
+DELAY=2.0
+STAT_STR=40
+STAT_INT=20
+STAT_DEX=40
+BONUS_STR=10
+BONUS_DEX=90
+BONUS_INT=0
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+VALUES=1,2,3
+
+ON=@Fail
+	src.sysmessage @1100,,1 Herhangi bir balik tutmayi basaramadiniz.
+	return 1
+
+[Skill 19]
+DEFNAME=Skill_Forensics
+KEY=Forensics
+TITLE=Scholar
+PROMPT_MSG=What corpse would you like to examine?
+DELAY=0.7
+STAT_STR=10
+STAT_INT=60
+STAT_DEX=25
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=70
+ADV_RATE=30.0,30.0,40.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Cesetten pek bilgi cikaramadiniz.
+	return 1
+
+[Skill 20]
+DEFNAME=Skill_Herding
+KEY=Herding
+TITLE=Shepherd
+PROMPT_MSG=
+DELAY=0.7
+STAT_STR=50
+STAT_INT=50
+STAT_DEX=50
+BONUS_STR=25
+BONUS_DEX=45
+BONUS_INT=30
+BONUS_STATS=70
+ADV_RATE=30.0,30.0,40.0
+
+on=@select
+sysmessage Bu skill aktif degildir.
+return 1
+
+ON=@Fail
+	src.sysmessage @1100,,1 Yaratik sizi pek umursamiyor.
+
+[Skill 21]
+DEFNAME=Skill_Hiding
+KEY=Hiding
+TITLE=Rogue
+PROMPT_MSG=
+DELAY=3.0
+STAT_STR=0
+STAT_INT=0
+STAT_DEX=100
+BONUS_STR=0
+BONUS_DEX=100
+BONUS_INT=0
+BONUS_STATS=60
+ADV_RATE=1.0,2.0,3.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Burada gizlenemezsiniz.
+	return 1
+
+[Skill 22]
+DEFNAME=Skill_PROVOCATION
+KEY=Provocation
+TITLE=Bard
+PROMPT_MSG=Whom do you wish to incite?
+DELAY=10000.0
+STAT_STR=20
+STAT_INT=60
+STAT_DEX=70
+BONUS_STR=0
+BONUS_DEX=90
+BONUS_INT=10
+BONUS_STATS=70
+ADV_RATE=30.0,30.0,40.0
+
+on=@select
+sysmessage Bu skill aktif degildir.
+return 1
+
+ON=@Fail
+	src.sysmessage @1100,,1 Kimseyi galeyana getiremediniz.
+	return 1
+
+[Skill 23]
+DEFNAME=Skill_Inscription
+KEY=Inscription
+TITLE=Scribe
+PROMPT_MSG=
+DELAY=2.4
+STAT_STR=15
+STAT_INT=100
+STAT_DEX=15
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+VALUES=1,2,3
+
+ON=@Fail
+	src.sysmessage @1100,,1 Malzemeniz heba oldu.
+	src.consume 1 i_scroll_blank
+	if (<src.mana> > 5
+		src.mana (<src.mana> - 5)
+	else
+		src.mana 1
+	endif
+	return 1
+	
+[Skill 24]
+DEFNAME=Skill_LockPick
+KEY=LockPicking
+TITLE=Locksmith
+PROMPT_MSG=What do you want to pick?
+DELAY=1.0
+STAT_STR=20
+STAT_INT=60
+STAT_DEX=90
+BONUS_STR=0
+BONUS_DEX=80
+BONUS_INT=20
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Kilit sizden zeki gibi.
+
+[Skill 25]
+DEFNAME=Skill_Magery
+KEY=Magery
+TITLE=Mage
+PROMPT_MSG=
+STAT_STR=0
+STAT_INT=100
+STAT_DEX=0
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=80
+ADV_RATE=1.0,2.0,3.0
+VALUES=1,2,3
+
+ON=@Fail
+src.f_fizzle
+return 1
+
+On=@Abort
+src.f_fizzle
+return 1
+
+[Skill 26]
+DEFNAME=Skill_MagicResist
+KEY=MagicResistance
+TITLE=Resistor
+PROMPT_MSG=
+EFFECT=0.0,10.0
+STAT_STR=40
+STAT_INT=100
+STAT_DEX=40
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=30
+BONUS_STATS=50
+ADV_RATE=28000.0,29000.0,30000.0
+
+[Skill 27]
+DEFNAME=Skill_Tactics
+KEY=Tactics
+TITLE=Warrior
+STAT_STR=60
+STAT_INT=20
+STAT_DEX=70
+BONUS_STR=50
+BONUS_DEX=50
+BONUS_INT=0
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+
+[Skill 28]
+DEFNAME=Skill_Snooping
+KEY=Snooping
+TITLE=Pickpocket
+PROMPT_MSG=
+DELAY=3.5
+STAT_STR=30
+STAT_INT=50
+STAT_DEX=60
+BONUS_STR=0
+BONUS_DEX=100
+BONUS_INT=0
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Cantaya ulasamadiniz.
+	return 1
+
+[Skill 29]
+DEFNAME=Skill_Musicianship
+KEY=Musicianship
+TITLE=Bard
+PROMPT_MSG=
+DELAY=0.7
+STAT_STR=0
+STAT_INT=20
+STAT_DEX=60
+BONUS_STR=0
+BONUS_DEX=80
+BONUS_INT=20
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+
+ON=@FAIL
+	src.sysmessage @1100,,1 Berbat caldiginiz icin pek umursayan olmadi.
+	return 1
+
+[Skill 30]
+DEFNAME=Skill_POISONING
+KEY=Poisoning
+TITLE=Assassin
+PROMPT_MSG=To what do you wish to apply the poison?
+DELAY=2.0
+STAT_STR=15
+STAT_INT=40
+STAT_DEX=40
+BONUS_STR=0
+BONUS_DEX=20
+BONUS_INT=80
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+VALUES=1,2,3
+
+ON=@Fail
+	src.sysmessage @1100,,1 Zehir heba oldu.
+	
+[Skill 31]
+DEFNAME=Skill_Archery
+KEY=Archery
+TITLE=Archer
+PROMPT_MSG=
+DELAY=0.7,0.1
+STAT_STR=40
+STAT_INT=20
+STAT_DEX=70
+BONUS_STR=0
+BONUS_DEX=95
+BONUS_INT=5
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+
+[Skill 32]
+DEFNAME=Skill_SPIRITSPEAK
+KEY=SpiritSpeak
+TITLE=Medium
+PROMPT_MSG=
+DELAY=0.7
+STAT_STR=20
+STAT_INT=70
+STAT_DEX=30
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Ruhani dunya ile baglanti kuramadiniz.
+	return 1
+
+[Skill 33]
+DEFNAME=Skill_Stealing
+KEY=Stealing
+TITLE=Thief
+PROMPT_MSG=Which item will you attempt to steal?
+DELAY=4.0
+STAT_STR=40
+STAT_INT=50
+STAT_DEX=100
+BONUS_STR=0
+BONUS_DEX=100
+BONUS_INT=0
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Esyayi calamadiniz.
+
+[Skill 34]
+DEFNAME=Skill_Tailoring
+KEY=Tailoring
+TITLE=Tailor
+PROMPT_MSG=
+DELAY=0.7
+STAT_STR=30
+STAT_INT=20
+STAT_DEX=60
+BONUS_STR=5
+BONUS_DEX=75
+BONUS_INT=20
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+VALUES=1,2,3
+
+ON=@Fail
+	src.sysmessage @1100,,1 Kumas falan hep heba oldu.
+
+[Skill 35]
+DEFNAME=Skill_Taming
+KEY=Taming
+TITLE=Animal Tamer
+PROMPT_MSG=Please use taming staff for taming.
+DELAY=9991.0
+STAT_STR=0
+STAT_INT=0
+STAT_DEX=0
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=0
+BONUS_STATS=0
+ADV_RATE=1.0,1.0,1.0
+
+[Skill 36]
+DEFNAME=Skill_tasteid
+KEY=TasteID
+TITLE=Food Taster
+PROMPT_MSG=What would you like to taste?
+DELAY=0.7
+STAT_STR=25
+STAT_INT=50
+STAT_DEX=15
+BONUS_STR=20
+BONUS_DEX=0
+BONUS_INT=80
+BONUS_STATS=50
+ADV_RATE=1.0,2.0,3.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Hmm.. tavuk gibi.
+
+[Skill 37]
+DEFNAME=Skill_Tinkering
+KEY=Tinkering
+TITLE=Tinker
+PROMPT_MSG=
+delay=1.0
+STAT_STR=30
+STAT_INT=100
+STAT_DEX=50
+BONUS_STR=20
+BONUS_DEX=20
+BONUS_INT=60
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+VALUES=1,2,3
+
+ON=@Fail
+	src.sysmessage @1100,,1 Malzemeniz heba oldu.
+
+[Skill 38]
+DEFNAME=Skill_Tracking
+KEY=Tracking
+TITLE=Ranger
+PROMPT_MSG=
+DELAY=4.0
+STAT_STR=25
+STAT_INT=50
+STAT_DEX=50
+BONUS_STR=0
+BONUS_DEX=50
+BONUS_INT=50
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Iz surmeyi basaramadiniz.
+
+[Skill 39]
+DEFNAME=Skill_Vet
+KEY=Veterinary
+TITLE=Veterinarian
+PROMPT_MSG=What animal would you like to heal?
+DELAY=0.7
+STAT_STR=30
+STAT_INT=50
+STAT_DEX=40
+BONUS_STR=20
+BONUS_DEX=20
+BONUS_INT=60
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Bandajlariniz yetersiz geldi.
+
+[Skill 40]
+DEFNAME=Skill_Swordsmanship
+KEY=Swordsmanship
+TITLE=Swords%s
+PROMPT_MSG=
+STAT_STR=100
+STAT_INT=0
+STAT_DEX=100
+BONUS_STR=50
+BONUS_DEX=50
+BONUS_INT=0
+BONUS_STATS=80
+ADV_RATE=1.0,2.0,3.0
+
+[Skill 41]
+DEFNAME=Skill_Macefighting
+KEY=Macefighting
+TITLE=Macefighter
+PROMPT_MSG=
+STAT_STR=100
+STAT_INT=10
+STAT_DEX=100
+BONUS_STR=50
+BONUS_DEX=50
+BONUS_INT=0
+BONUS_STATS=80
+ADV_RATE=1.0,2.0,3.0
+
+[Skill 42]
+DEFNAME=Skill_Fencing
+KEY=Fencing
+TITLE=Fencer
+PROMPT_MSG=
+STAT_STR=100
+STAT_INT=0
+STAT_DEX=100
+BONUS_STR=50
+BONUS_DEX=50
+BONUS_INT=0
+BONUS_STATS=80
+ADV_RATE=1.0,2.0,3.0
+
+[Skill 43]
+DEFNAME=Skill_Wrestling
+KEY=Wrestling
+TITLE=Wrestler
+PROMPT_MSG=
+STAT_STR=100
+STAT_INT=0
+STAT_DEX=100
+BONUS_STR=50
+BONUS_DEX=50
+BONUS_INT=0
+BONUS_STATS=80
+ADV_RATE=1.0,2.0,3.0
+
+[Skill 44]
+DEFNAME=Skill_LUMBERJACK
+KEY=Lumberjacking
+TITLE=Lumberjack
+PROMPT_MSG=
+delay=1.0
+STAT_STR=85
+STAT_INT=20
+STAT_DEX=45
+BONUS_STR=90
+BONUS_DEX=10
+BONUS_INT=0
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+VALUES=1,10,50
+
+ON=@Fail
+	src.sysmessage @1100,,1 Ise yarar odun cikaramadiniz.
+	return 1
+
+[Skill 45]
+DEFNAME=Skill_MINING
+KEY=Mining
+TITLE=Miner
+PROMPT_MSG=
+DELAY=1.0
+STAT_STR=85
+STAT_INT=20
+STAT_DEX=45
+BONUS_STR=70
+BONUS_DEX=30
+BONUS_INT=0
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+VALUES=1,2,3
+
+ON=@Fail
+	src.sysmessage @1100,,1 Ise yarar bir maden bulamadiniz.
+	return 1
+
+[Skill 46]
+DEFNAME=Skill_Meditation
+KEY=Meditation
+TITLE=Stoic
+DELAY=0.1,0.2
+STAT_STR=10
+STAT_INT=100
+STAT_DEX=10
+BONUS_STR=5
+BONUS_DEX=90
+BONUS_INT=5
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+VALUES=1,2,3
+
+ON=@Fail
+	src.sysmessage @1100,,1 Konsantrasyonunuzu kaybettiniz.
+	return 1
+
+[Skill 47]
+DEFNAME=Skill_STEALTH
+KEY=Stealth
+TITLE=Rogue
+PROMPT_MSG=
+delay=1.0
+STAT_STR=20
+STAT_INT=60
+STAT_DEX=90
+BONUS_STR=0
+BONUS_DEX=80
+BONUS_INT=20
+BONUS_STATS=70
+ADV_RATE=1.0,2.0,3.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Kendinizi gizleyemediniz.
+	return 1
+
+[Skill 48]
+DEFNAME=Skill_REMOVE_TRAP
+KEY=RemoveTrap
+TITLE=Disarmer
+PROMPT_MSG=Select the trap to disarm
+DELAY=7.0,3.0,2.0
+STAT_STR=20
+STAT_INT=60
+STAT_DEX=90
+BONUS_STR=0
+BONUS_DEX=80
+BONUS_INT=20
+BONUS_STATS=70
+ADV_RATE=30.0,30.0,40.0
+
+ON=@Fail
+	src.sysmessage @1100,,1 Tuzak etkisiz hale gelmedi.
+
+[Skill 49]
+DEFNAME=Skill_Necromancy
+KEY=Necromancy
+TITLE=Necromancer
+STAT_STR=20
+STAT_INT=100
+STAT_DEX=40
+BONUS_STR=0
+BONUS_DEX=0
+BONUS_INT=100
+BONUS_STATS=70
+ADV_RATE=30.0,30.0,40.0
+VALUES=1,10,80
+
+On=@Fail
+	src.sysmessage @1100,,1 Konsantrasyonunuz bozuldu.
+
+[skillclass 0] // player class
+str 100
+int 100
+dex 100
+statsum 300
+skillsum 800.0
+
+On=@EnvironChange
+if !(<isevent.fix>)
+	events +fix
+endif
+
+On=@Login
+f_player_login
+playerlogin
+src.account.plevel 1
+if (<src.findid.i_alt_not>)
+src.findid.i_alt_not.remove
+
+
+on=@logout
+src.newitem i_alt_not
+src.act.equip
+return 1
+
+[skillclass 1] // staff class
+str 900
+int 900
+dex 900
+statsum 900
+skillsum 150000.0
+
+On=@EnvironChange
+if (0<account.plevel> < 7)
+	events +gmfix
+endif
+
+On=@Login
+f_staff_login
+stafflogin
+
+On=@Logout
+f_staff_logout
+
+[function yatra]
+if (<findid.i_yattara>)
+findid.i_yattara.remove
+yatra
+else
+return 1
+endif
+
+[eof]

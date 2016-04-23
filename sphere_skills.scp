@@ -1,0 +1,2531 @@
+// ----------------------------
+// SKILL.SCP - SKILL MENULERI 
+// SON GUNCELLENME TARIHI: 1 Aralik 2001
+// ----------------------------
+VERSION=0.55
+
+//  General Skill menus for creation of items.
+// Hard coded ref names: (called directly form server)
+// sm_alchemy = dclick on alch tools
+// sm_summon
+// sm_polymorph = polymorph menus
+// sm_cartography = dclick on blank map
+// sm_bowcraft =  knife on wood
+// sm_bolts = dclick on arrows or shafts
+// sm_blacksmith = dclick on tool
+// sm_carpentry = dclick on carp tool
+// sm_tailor_leather = dclick on sewing kit
+// sm_tailor_cloth
+// sm_tinker = dclick on tinker tools.
+// sm_inscription = dclick on blank scroll
+// sm_cook = ??? NOT USED YET
+
+[SKILLMENU sm_inscription]
+Inscription
+ON=i_spellbook Close Menu
+DIALOG d_skill_inscription
+//NEWITEM=i_spellbook_makemem
+//BOUNCE
+//ON=i_runebook <name> (<resmake>)
+//MAKEITEM=i_runebook
+//ON=i_spell_circle_8
+//SKILLMENU=sm_inscrip_8
+//ON=i_spell_circle_7
+//SKILLMENU=sm_inscrip_7
+//ON=i_spell_circle_6
+//SKILLMENU=sm_inscrip_6
+//ON=i_spell_circle_5
+//SKILLMENU=sm_inscrip_5
+//ON=i_spell_circle_4
+//SKILLMENU=sm_inscrip_4
+//ON=i_spell_circle_3
+//SKILLMENU=sm_inscrip_3
+//ON=i_spell_circle_2
+//SKILLMENU=sm_inscrip_2
+//ON=i_spell_circle_1
+//SKILLMENU=sm_inscrip_1
+
+[SKILLMENU sm_inscrip_1]
+Spell Circle 1
+
+ON=i_rune_clumsy
+TESTIF=<cancast s_clumsy>
+MAKEITEM=i_scroll_clumsy
+
+ON=i_rune_create_food
+TESTIF=<cancast s_create_food>
+MAKEITEM=i_scroll_create_food
+
+ON=i_rune_feeblemind
+TESTIF=<cancast s_feeblemind>
+MAKEITEM=i_scroll_feeblemind
+
+ON=i_rune_heal
+TESTIF=<cancast s_heal>
+MAKEITEM=i_scroll_heal
+
+ON=i_rune_magic_arrow
+TESTIF=<cancast s_magic_arrow>
+MAKEITEM=i_scroll_magic_arrow
+
+ON=i_rune_night_sight
+TESTIF=<cancast s_night_sight>
+MAKEITEM=i_scroll_night_sight
+
+ON=i_rune_reactive_armor
+TESTIF=<cancast s_reactive_armor>
+MAKEITEM=i_scroll_reactive_armor
+
+ON=i_rune_weaken
+TESTIF=<cancast s_weaken>
+MAKEITEM=i_scroll_weaken
+
+[SKILLMENU sm_inscrip_2]
+Spell Circle 2
+ON=i_rune_agility
+TESTIF=<cancast s_agility>
+MAKEITEM=i_scroll_agility
+ON=i_rune_cunning
+TESTIF=<cancast s_cunning>
+MAKEITEM=i_scroll_cunning
+ON=i_rune_cure
+TESTIF=<cancast s_cure>
+MAKEITEM=i_scroll_cure
+ON=i_rune_harm
+TESTIF=<cancast s_harm>
+MAKEITEM=i_scroll_harm
+ON=i_rune_magic_trap
+TESTIF=<cancast s_magic_trap>
+MAKEITEM=i_scroll_magic_trap
+ON=i_rune_magic_untrap
+TESTIF=<cancast s_magic_untrap>
+MAKEITEM=i_scroll_magic_untrap
+ON=i_rune_protection
+TESTIF=<cancast s_protection>
+MAKEITEM=i_scroll_protection
+ON=i_rune_strength
+TESTIF=<cancast s_strength>
+MAKEITEM=i_scroll_strength
+
+[SKILLMENU sm_inscrip_3]
+Spell Circle 3
+ON=i_rune_bless
+TESTIF=<cancast s_bless>
+MAKEITEM=i_scroll_bless
+ON=i_rune_fireball
+TESTIF=<cancast s_fireball>
+MAKEITEM=i_scroll_fireball
+ON=i_rune_magic_lock
+TESTIF=<cancast s_magic_lock>
+MAKEITEM=i_scroll_magic_lock
+ON=i_rune_poison
+TESTIF=<cancast s_poison>
+MAKEITEM=i_scroll_poison
+ON=i_rune_telekinesis
+TESTIF=<cancast s_telekinesis>
+MAKEITEM=i_scroll_telekinesis
+ON=i_rune_teleport
+TESTIF=<cancast s_teleport>
+MAKEITEM=i_scroll_teleport
+ON=i_rune_unlock
+TESTIF=<cancast s_unlock>
+MAKEITEM=i_scroll_unlock
+ON=i_rune_wall_of_stone
+TESTIF=<cancast s_wall_of_stone>
+MAKEITEM=i_scroll_wall_of_stone
+
+[SKILLMENU sm_inscrip_4]
+Spell Circle 4
+ON=i_rune_recall
+TESTIF=<cancast s_recall>
+MAKEITEM=i_scroll_recall
+ON=i_rune_archcure
+TESTIF=<cancast s_archcure>
+MAKEITEM=i_scroll_archcure
+ON=i_rune_archprotection
+TESTIF=<cancast s_archprotection>
+MAKEITEM=i_scroll_archprotection
+ON=i_rune_curse
+TESTIF=<cancast s_curse>
+MAKEITEM=i_scroll_curse
+ON=i_rune_fire_field
+TESTIF=<cancast s_fire_field>
+MAKEITEM=i_scroll_fire_field
+ON=i_rune_greater_heal
+TESTIF=<cancast s_greater_heal>
+MAKEITEM=i_scroll_greater_heal
+ON=i_rune_lightning
+TESTIF=<cancast s_lightning>
+MAKEITEM=i_scroll_lightning
+ON=i_rune_mana_drain
+TESTIF=<cancast s_mana_drain>
+MAKEITEM=i_scroll_mana_drain
+
+[SKILLMENU sm_inscrip_5]
+Spell Circle 5
+ON=i_rune_summon_creature
+TESTIF=<cancast s_summon_creature>
+MAKEITEM=i_scroll_summon_creature
+ON=i_rune_blade_spirits
+TESTIF=<cancast s_blade_spirits>
+MAKEITEM=i_scroll_blade_spirits
+ON=i_rune_dispel_field
+TESTIF=<cancast s_dispel_field>
+MAKEITEM=i_scroll_dispel_field
+ON=i_rune_incognito
+TESTIF=<cancast s_incognito>
+MAKEITEM=i_scroll_incognito
+ON=i_rune_magic_reflection
+TESTIF=<cancast s_magic_reflection>
+MAKEITEM=i_scroll_magic_reflection
+ON=i_rune_mind_blast
+TESTIF=<cancast s_mind_blast>
+MAKEITEM=i_scroll_mind_blast
+ON=i_rune_paralyze
+TESTIF=<cancast s_paralyze>
+MAKEITEM=i_scroll_paralyze
+ON=i_rune_poison_field
+TESTIF=<cancast s_poison_field>
+MAKEITEM=i_scroll_poison_field
+
+[SKILLMENU sm_inscrip_6]
+Spell Circle 6
+ON=i_rune_dispel
+TESTIF=<cancast s_dispel>
+MAKEITEM=i_scroll_dispel
+ON=i_rune_energy_bolt
+TESTIF=<cancast s_energy_bolt>
+MAKEITEM=i_scroll_energy_bolt
+ON=i_rune_explosion
+TESTIF=<cancast s_explosion>
+MAKEITEM=i_scroll_explosion
+ON=i_rune_invisibility
+TESTIF=<cancast s_invisibility>
+MAKEITEM=i_scroll_invisibility
+ON=i_rune_mark
+TESTIF=<cancast s_mark>
+MAKEITEM=i_scroll_mark
+ON=i_rune_mass_curse
+TESTIF=<cancast s_mass_curse>
+MAKEITEM=i_scroll_mass_curse
+ON=i_rune_paralyze_field
+TESTIF=<cancast s_paralyzation_field>
+MAKEITEM=i_scroll_paralyze_field
+ON=i_rune_reveal
+TESTIF=<cancast s_reveal>
+MAKEITEM=i_scroll_reveal
+
+[SKILLMENU sm_inscrip_7]
+Spell Circle 7
+ON=i_rune_chain_lightning
+TESTIF=<cancast s_chain_lightning>
+MAKEITEM=i_scroll_chain_lightning
+ON=i_rune_energy_field
+TESTIF=<cancast s_energy_field>
+MAKEITEM=i_scroll_energy_field
+ON=i_rune_flamestrike
+TESTIF=<cancast s_flamestrike>
+MAKEITEM=i_scroll_flamestrike
+ON=i_rune_gate_travel
+TESTIF=<cancast s_gate_travel>
+MAKEITEM=i_scroll_gate_travel
+ON=i_rune_mana_vampire
+TESTIF=<cancast s_mana_vampire>
+MAKEITEM=i_scroll_mana_vampire
+ON=i_rune_mass_dispel
+TESTIF=<cancast s_mass_dispel>
+MAKEITEM=i_scroll_mass_dispel
+ON=i_rune_meteor_swarm
+TESTIF=<cancast s_meteor_swarm>
+MAKEITEM=i_scroll_meteor_swarm
+ON=i_rune_polymorph
+TESTIF=<cancast s_polymorph>
+MAKEITEM=i_scroll_polymorph
+
+[SKILLMENU sm_inscrip_8]
+Spell Circle 8
+ON=i_rune_earthquake
+TESTIF=<cancast s_earthquake>
+MAKEITEM=i_scroll_earthquake
+ON=i_rune_energy_vortex
+TESTIF=<cancast s_energy_vortex>
+MAKEITEM=i_scroll_energy_vortex
+ON=i_rune_resurrection
+TESTIF=<cancast s_resurrection>
+MAKEITEM=i_scroll_resurrection
+ON=i_rune_summon_elem_air
+TESTIF=<cancast s_summon_elem_air>
+MAKEITEM=i_scroll_summon_elem_air
+ON=i_rune_summon_daemon
+TESTIF=<cancast s_summon_daemon>
+MAKEITEM=i_scroll_summon_daemon
+ON=i_rune_summon_elem_earth
+TESTIF=<cancast s_summon_elem_earth>
+MAKEITEM=i_scroll_summon_elem_earth
+ON=i_rune_summon_elem_fire
+TESTIF=<cancast s_summon_elem_fire>
+MAKEITEM=i_scroll_summon_elem_fire
+ON=i_rune_summon_elem_water
+TESTIF=<cancast s_summon_elem_water>
+MAKEITEM=i_scroll_summon_elem_water
+
+[SKILLMENU sm_alchemy]
+What potion do you want to make?
+
+ON=i_potion_Agility <name> (<resmake>)
+MAKEITEM=i_potion_Agility
+ON=i_potion_AgilityGreat <name> (<resmake>)
+MAKEITEM=i_potion_AgilityGreat
+ON=i_potion_CureLess <name> (<resmake>)
+MAKEITEM=i_potion_CureLess
+ON=i_potion_Cure <name> (<resmake>)
+MAKEITEM=i_potion_Cure
+ON=i_potion_CureGreat <name> (<resmake>)
+MAKEITEM=i_potion_CureGreat
+ON=i_potion_ExplosionLess <name> (<resmake>)
+MAKEITEM=i_potion_ExplosionLess
+ON=i_potion_Explosion <name> (<resmake>)
+MAKEITEM=i_potion_Explosion
+ON=i_potion_ExplosionGreat <name> (<resmake>)
+MAKEITEM=i_potion_ExplosionGreat
+ON=i_potion_HealLess <name> (<resmake>)
+MAKEITEM=i_potion_HealLess
+ON=i_potion_Heal <name> (<resmake>)
+MAKEITEM=i_potion_Heal
+ON=i_potion_HealGreat <name> (<resmake>)
+MAKEITEM=i_potion_HealGreat
+ON=i_potion_Nightsight <name> (<resmake>)
+MAKEITEM=i_potion_Nightsight
+ON=i_potion_PoisonLess <name> (<resmake>)
+MAKEITEM=i_potion_PoisonLess
+ON=i_potion_Poison <name> (<resmake>)
+MAKEITEM=i_potion_Poison
+ON=i_potion_PoisonGreat <name> (<resmake>)
+MAKEITEM=i_potion_PoisonGreat
+ON=i_potion_PoisonDeadly <name> (<resmake>)
+MAKEITEM=i_potion_PoisonDeadly
+ON=i_potion_Refresh <name> (<resmake>)
+MAKEITEM=i_potion_Refresh
+ON=i_potion_RefreshTotal <name> (<resmake>)
+MAKEITEM=i_potion_RefreshTotal
+ON=i_potion_Strength <name> (<resmake>)
+MAKEITEM=i_potion_Strength
+ON=i_potion_StrengthGreat <name> (<resmake>)
+MAKEITEM=i_potion_StrengthGreat
+
+[SKILLMENU sm_summon]
+Select a creature to summon
+
+ON=i_pet_horse_brown_lt <name>
+TEST=MAGERY 35.0
+FLAGS=<FLAGS>&~statf_war
+SUMMON=HORSES
+
+ON=i_PET_SCORP <name>
+TEST=MAGERY 75.0
+FLAGS=<FLAGS>&~statf_war
+SUMMON=c_SCORPION_GIANT
+
+ON=i_PET_BEAR <name>
+TEST=MAGERY 60.0
+FLAGS=<FLAGS>&~statf_war
+SUMMON=c_Bear_Brown
+
+ON=i_pet_bear_polar <name>
+TEST=MAGERY 50.0
+FLAGS=<FLAGS>&~statf_war
+SUMMON=c_Bear_Polar
+
+ON=i_PET_CHICKEN <name>
+TEST=MAGERY 35.0
+FLAGS=<FLAGS>&~statf_war
+SUMMON=c_CHICKEN
+
+ON=i_PET_DEER <name>
+TEST=MAGERY 35.0
+FLAGS=<FLAGS>&~statf_war
+SUMMON=c_STAG
+
+ON=i_pet_DOG <name>
+TEST=MAGERY 35.0
+FLAGS=<FLAGS>&~statf_war
+SUMMON=c_DOG
+
+ON=i_PET_CROC <name>
+TEST=MAGERY 35.0
+FLAGS=<FLAGS>&~statf_war
+SUMMON=c_Alligator
+
+[SKILLMENU sm_polymorph]
+ Select creature to polymorph
+
+ON=i_pet_chicken Chicken
+TEST=MAGERY 40.0
+PLYM c_chicken
+
+ON=i_pet_dog Dog
+TEST=MAGERY 45.0
+PLYM c_dog
+
+ON=i_pet_panther Panther
+TEST=MAGERY 50.0
+PLYM c_a_cougar
+
+ON=i_pet_wolf Wolf
+TEST=MAGERY 55.0
+PLYM c_wolf
+
+ON=i_pet_TROLL Troll
+TEST=MAGERY 65.0
+PLYM c_troll
+
+ON=i_pet_snake Giant Snake
+TEST=MAGERY 70.0
+PLYM c_snake_giant
+
+ON=i_PET_DAEMON Daemon
+TEST=MAGERY 85.0
+PLYM c_daemon
+
+ON=i_pet_DRAGON Dragon
+TEST=MAGERY 98.0
+PLYM c_dragon_green
+
+[SKILLMENU sm_cartography]
+What sort of map do you want to draw ?
+
+ON=i_mapadd1 Detail Map
+TEST=CARTOGRAPHY 5.0
+DRAWMAP=200
+
+ON=i_mapadd2 Regional Map
+TEST=CARTOGRAPHY 30.0
+DRAWMAP=400
+
+ON=i_mapadd3 Sea Chart
+TEST=CARTOGRAPHY 45.0
+DRAWMAP=800
+
+ON=i_mapadd4 Full World
+TEST=CARTOGRAPHY 75.0
+DRAWMAP=2048
+
+[SKILLMENU sm_BOWCRAFT]
+// knife on wood
+What do you want to carve the wood into?
+
+ON=i_KINDLING <name> (<resmake>)
+MAKEITEM=i_KINDLING
+
+ON=i_ARROW_SHAFT <name> (<resmake>)
+MAKEITEM=i_ARROW_SHAFT
+
+ON=i_bow <name> (<resmake>)
+MAKEITEM=i_bow
+
+ON=i_CROSSBOW <name> (<resmake>)
+MAKEITEM=i_CROSSBOW
+
+ON=i_crossbow_heavy <name> (<resmake>)
+MAKEITEM=i_crossbow_heavy
+
+ON=i_bow Exceptional Bows
+SKILLMENU=sm_bows_excep
+
+[SKILLMENU sm_bolts]
+// combine shafts with feathers.
+Select arrow type
+
+ON=i_xbolt <name> (<resmake>)
+MAKEITEM=i_xbolt
+
+ON=i_arrow <name> (<resmake>)
+MAKEITEM=i_arrow
+
+[SKILLMENU sm_bows_excep] // Exceptional Bows
+Exceptional Bows
+
+ON=i_BOW_SUP <name> (<resmake>)
+MAKEITEM=i_BOW_SUP
+
+ON=i_XBOW_SUP <name> (<resmake>)
+MAKEITEM=i_XBOW_SUP
+
+ON=i_HXBOW_SUP <name> (<resmake>)
+MAKEITEM=i_HXBOW_SUP
+
+ON=i_BOW_EXCEP <name> (<resmake>)
+MAKEITEM=i_BOW_EXCEP
+
+ON=i_XBOW_EXCEP <name> (<resmake>)
+MAKEITEM=i_XBOW_EXCEP
+
+ON=i_HXBOW_EXCEP <name> (<resmake>)
+MAKEITEM=i_HXBOW_EXCEP
+
+ON=i_bow_elven <name> (<resmake>)
+MAKEITEM=i_bow_elven
+
+// Blacksmithing section
+
+[SKILLMENU sm_blacksmith]
+Blacksmithing
+
+ON=i_ANVIL Repair	// pretty much anyone can attempt to repair.
+TEST=BLACKSMITHING 1.0
+REPAIR
+
+ON=i_shield_round_bronze Shields
+SKILLMENU=sm_shields
+
+ON=i_platemail_chest Armor
+SKILLMENU=sm_armor
+
+ON=i_sword_viking Weapons
+SKILLMENU=sm_weapons
+
+ON=i_decorative_armor Colored Armor
+SKILLMENU=sm_colored_armor
+
+ON=i_decorative_armor Magic Armor
+SKILLMENU=sm_magic_armor
+
+[SKILLMENU sm_shields]
+Shields
+
+ON=i_shield_heater <name> (<resmake>)
+MAKEITEM=i_shield_heater
+
+ON=i_shield_buckler <name> (<resmake>)
+MAKEITEM=i_shield_buckler
+
+//ON=i_shield_round_bronze <name> (<resmake>)
+//MAKEITEM=i_shield_round_bronze
+
+ON=i_shield_round_metal <name> (<resmake>)
+MAKEITEM=i_shield_round_metal
+
+ON=i_shield_kite_metal <name> (<resmake>)
+MAKEITEM=i_shield_kite_metal
+
+[SKILLMENU sm_armor]
+Armor
+
+ON=i_platemail_chest Plate Mail
+SKILLMENU=sm_platemail_armor
+
+ON=i_chainmail_tunic Chain Mail
+SKILLMENU=sm_chainmail_armor
+
+ON=i_ringmail_tunic Ring Mail
+SKILLMENU=sm_ringmail_armor
+
+ON=i_bascinet Helmets
+SKILLMENU=sm_helmets
+
+[SKILLMENU sm_weapons]
+Weapons
+
+ON=i_sword_viking Swords & Blades
+SKILLMENU=sm_swords_blades
+
+ON=i_axe_battle Axes
+SKILLMENU=sm_axes
+
+ON=i_mace Maces & Hammers
+SKILLMENU=sm_maces_hammers
+
+ON=i_pitchfork Spears and Forks
+SKILLMENU=sm_spears_forks
+
+ON=i_halberd Pole Arms
+SKILLMENU=sm_pole_arms
+
+[SKILLMENU sm_platemail_armor]
+Plate Mail
+
+ON=i_platemail_chest <name> (<resmake>)
+MAKEITEM=i_platemail_chest
+
+ON=i_platemail_gorget <name> (<resmake>)
+MAKEITEM=i_platemail_gorget
+
+ON=i_platemail_gloves <name> (<resmake>)
+MAKEITEM=i_platemail_gloves
+
+ON=i_platemail_helm <name> (<resmake>)
+MAKEITEM=i_platemail_helm
+
+ON=i_platemail_leggings <name> (<resmake>)
+MAKEITEM=i_platemail_leggings
+
+ON=i_platemail_arms <name> (<resmake>)
+MAKEITEM=i_platemail_arms
+
+ON=i_armor_female_plate <name> (<resmake>)
+MAKEITEM=i_armor_female_plate
+
+ON=i_armor_female_studded <name> (<resmake>)
+MAKEITEM=i_armor_female_studded
+
+[SKILLMENU sm_chainmail_armor]
+Chain Mail
+
+ON=i_chainmail_tunic <name> (<resmake>)
+MAKEITEM=i_chainmail_tunic
+
+ON=i_chainmail_leggings <name> (<resmake>)
+MAKEITEM=i_chainmail_leggings
+
+ON=i_chainmail_coif <name> (<resmake>)
+MAKEITEM=i_chainmail_coif
+
+[SKILLMENU sm_ringmail_armor]
+Ring Mail
+
+ON=i_ringmail_tunic <name> (<resmake>)
+MAKEITEM=i_ringmail_tunic
+
+ON=i_ringmail_sleeves <name> (<resmake>)
+MAKEITEM=i_ringmail_sleeves
+
+ON=i_ringmail_leggings <name> (<resmake>)
+MAKEITEM=i_ringmail_leggings
+
+ON=i_ringmail_gloves <name> (<resmake>)
+MAKEITEM=i_ringmail_gloves
+
+[SKILLMENU sm_helmets]
+Helmets
+
+ON=i_helm_closed <name> (<resmake>)
+MAKEITEM=i_helm_closed
+
+ON=i_helm_open <name> (<resmake>)
+MAKEITEM=i_helm_open
+
+ON=i_bascinet <name> (<resmake>)
+MAKEITEM=i_bascinet
+
+ON=i_helm_nose <name> (<resmake>)
+MAKEITEM=i_helm_nose
+
+[SKILLMENU sm_swords_blades]
+Swords & Blades
+
+ON=i_sword_broad <name> (<resmake>)
+MAKEITEM=i_sword_broad
+
+ON=i_cutlass <name> (<resmake>)
+MAKEITEM=i_cutlass
+
+ON=i_dagger <name> (<resmake>)
+MAKEITEM=i_dagger
+
+ON=i_katana <name> (<resmake>)
+MAKEITEM=i_katana
+
+ON=i_kryss <name> (<resmake>)
+MAKEITEM=i_kryss
+
+ON=i_sword_long <name> (<resmake>)
+MAKEITEM=i_sword_long
+
+ON=i_scimitar <name> (<resmake>)
+MAKEITEM=i_scimitar
+
+ON=i_sword_viking <name> (<resmake>)
+MAKEITEM=i_sword_viking
+
+[SKILLMENU sm_axes]
+Axes
+
+ON=i_axe_exec <name> (<resmake>)
+MAKEITEM=i_axe_exec
+
+ON=i_axe <name> (<resmake>)
+MAKEITEM=i_axe
+
+ON=i_axe_double <name> (<resmake>)
+MAKEITEM=i_axe_double
+
+ON=i_axe_battle <name> (<resmake>)
+MAKEITEM=i_axe_battle
+
+ON=i_axe_battle_large <name> (<resmake>)
+MAKEITEM=i_axe_battle_large
+
+ON=i_axe_war <name> (<resmake>)
+MAKEITEM=i_axe_war
+
+ON=i_axe_two_hand <name> (<resmake>)
+MAKEITEM=i_axe_two_hand
+
+[SKILLMENU sm_maces_hammers]
+Maces & Hammers
+
+ON=i_hammer_pick <name> (<resmake>)
+MAKEITEM=i_hammer_pick
+
+ON=i_mace <name> (<resmake>)
+MAKEITEM=i_mace
+
+ON=i_maul <name> (<resmake>)
+MAKEITEM=i_maul
+
+ON=i_hammer_smith <name> (<resmake>)
+MAKEITEM=i_hammer_smith
+
+ON=i_hammer_war <name> (<resmake>)
+MAKEITEM=i_hammer_war
+
+ON=i_mace_war <name> (<resmake>)
+MAKEITEM=i_mace_war
+
+[SKILLMENU sm_spears_forks]
+Spears & Forks
+
+ON=i_spear_short <name> (<resmake>)
+MAKEITEM=i_spear_short
+
+ON=i_spear <name> (<resmake>)
+MAKEITEM=i_spear
+
+ON=i_war_fork <name> (<resmake>)
+MAKEITEM=i_war_fork
+
+[SKILLMENU sm_pole_arms]
+Pole Arms
+
+ON=i_bardiche <name> (<resmake>)
+MAKEITEM=i_bardiche
+
+ON=i_halberd <name> (<resmake>)
+MAKEITEM=i_halberd
+
+[SKILLMENU sm_colored_armor]
+Colored Armor & Shields
+
+ON=i_platemail_chest Bronze Plate Armor
+SKILLMENU=sm_bronze_armor
+
+//ON=i_decorative_armor Old Copper Armor
+//SKILLMENU=sm_old_copper_armor
+
+ON=i_decorative_armor Dull Copper Armor
+SKILLMENU=sm_dull_copper_armor
+
+ON=i_decorative_armor Copper Armor
+SKILLMENU=sm_copper_armor
+
+ON=i_decorative_armor Silver Weapon
+SKILLMENU=sm_silver_armor
+
+ON=i_decorative_armor Golden Armor
+SKILLMENU=sm_golden_armor
+
+ON=i_decorative_armor Mytheril Armor
+SKILLMENU=sm_mytheril_armor
+
+ON=i_decorative_armor Verite Armor
+SKILLMENU=sm_verite_armor
+
+ON=i_decorative_armor Valorite Armor
+SKILLMENU=sm_valorite_armor
+
+ON=i_decorative_armor Agapite Armor
+SKILLMENU=sm_agapite_armor
+
+ON=i_decorative_armor Shadow Armor
+SKILLMENU=sm_shadow_armor
+
+[SKILLMENU sm_golden_armor]
+Golden Armor
+
+ON=i_GOLDEN_PLATE_HELM <name> (<resmake>)
+MAKEITEM=i_GOLDEN_PLATE_HELM
+
+ON=i_GOLDEN_PLATEMAIL_GORGET <name> (<resmake>)
+MAKEITEM=i_GOLDEN_PLATEMAIL_GORGET
+
+ON=i_GOLDEN_PLATEMAIL_GAUNTLETS <name> (<resmake>)
+MAKEITEM=i_GOLDEN_PLATEMAIL_GAUNTLETS
+
+ON=i_GOLDEN_PLATEMAIL_ARMS <name> (<resmake>)
+MAKEITEM=i_GOLDEN_PLATEMAIL_ARMS
+
+ON=i_GOLDEN_PLATEMAIL_leggings <name> (<resmake>)
+MAKEITEM=i_GOLDEN_PLATEMAIL_leggings
+
+ON=i_GOLDEN_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_GOLDEN_PLATEMAIL
+
+ON=i_GOLDEN_FEMALE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_GOLDEN_FEMALE_PLATEMAIL
+
+ON=i_GOLDEN_CHAINMAIL_COIF <name> (<resmake>)
+MAKEITEM=i_GOLDEN_CHAINMAIL_COIF
+
+ON=i_GOLDEN_CHAINMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_GOLDEN_CHAINMAIL_LEGGINGS
+
+ON=i_GOLDEN_HEATER_SHIELD <name> (<resmake>)
+MAKEITEM=i_GOLDEN_HEATER_SHIELD
+
+ON=i_GOLDEN_CHAINMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_GOLDEN_CHAINMAIL_TUNIC
+
+ON=i_GOLDEN_RINGMAIL_GLOVES <name> (<resmake>)
+MAKEITEM=i_GOLDEN_RINGMAIL_GLOVES
+
+ON=i_GOLDEN_RINGMAIL_SLEEVES <name> (<resmake>)
+MAKEITEM=i_GOLDEN_RINGMAIL_SLEEVES
+
+ON=i_GOLDEN_RINGMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_GOLDEN_RINGMAIL_LEGGINGS
+
+ON=i_GOLDEN_RINGMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_GOLDEN_RINGMAIL_TUNIC
+
+ON=i_GOLDEN_BUCKLER_SHIELD <name> (<resmake>)
+MAKEITEM=i_GOLDEN_BUCKLER_SHIELD
+
+ON=i_GOLDEN_METAL_SHIELD <name> (<resmake>)
+MAKEITEM=i_GOLDEN_METAL_SHIELD
+
+ON=i_GOLDEN_CLOSED_HELM <name> (<resmake>)
+MAKEITEM=i_GOLDEN_CLOSED_HELM
+
+ON=i_GOLDEN_HELMET <name> (<resmake>)
+MAKEITEM=i_GOLDEN_HELMET
+
+ON=i_GOLDEN_BASCINET <name> (<resmake>)
+MAKEITEM=i_GOLDEN_BASCINET
+
+ON=i_GOLDEN_NOSE_HELM <name> (<resmake>)
+MAKEITEM=i_GOLDEN_NOSE_HELM
+
+[SKILLMENU sm_copper_armor]
+Copper Armor
+
+ON=i_Copper_PLATE_HELM <name> (<resmake>)
+MAKEITEM=i_Copper_PLATE_HELM
+
+ON=i_Copper_PLATEMAIL_GORGET <name> (<resmake>)
+MAKEITEM=i_Copper_PLATEMAIL_GORGET
+
+ON=i_Copper_PLATEMAIL_ARMS <name> (<resmake>)
+MAKEITEM=i_Copper_PLATEMAIL_ARMS
+
+ON=04564 <name> (<resmake>)
+MAKEITEM=04564
+
+ON=i_Copper_PLATEMAIL_leggings <name> (<resmake>)
+MAKEITEM=i_Copper_PLATEMAIL_leggings
+
+ON=i_Copper_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_Copper_PLATEMAIL
+
+ON=i_Copper_HEATER_SHIELD <name> (<resmake>)
+MAKEITEM=i_Copper_HEATER_SHIELD
+
+ON=i_Copper_FEMALE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_Copper_FEMALE_PLATEMAIL
+
+ON=i_Copper_CHAINMAIL_COIF <name> (<resmake>)
+MAKEITEM=i_Copper_CHAINMAIL_COIF
+
+ON=i_Copper_CHAINMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_Copper_CHAINMAIL_LEGGINGS
+
+ON=i_Copper_CHAINMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_Copper_CHAINMAIL_TUNIC
+
+ON=i_Copper_RINGMAIL_GLOVES <name> (<resmake>)
+MAKEITEM=i_Copper_RINGMAIL_GLOVES
+
+ON=i_Copper_RINGMAIL_SLEEVES <name> (<resmake>)
+MAKEITEM=i_Copper_RINGMAIL_SLEEVES
+
+ON=i_Copper_RINGMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_Copper_RINGMAIL_LEGGINGS
+
+ON=i_Copper_RINGMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_Copper_RINGMAIL_TUNIC
+
+ON=i_Copper_BUCKLER_SHIELD <name> (<resmake>)
+MAKEITEM=i_Copper_BUCKLER_SHIELD
+
+ON=i_Copper_METAL_SHIELD <name> (<resmake>)
+MAKEITEM=i_Copper_METAL_SHIELD
+
+ON=i_Copper_CLOSED_HELM <name> (<resmake>)
+MAKEITEM=i_Copper_CLOSED_HELM
+
+ON=i_Copper_HELMET <name> (<resmake>)
+MAKEITEM=i_Copper_HELMET
+
+ON=i_Copper_BASCINET <name> (<resmake>)
+MAKEITEM=i_Copper_BASCINET
+
+ON=i_Copper_NOSE_HELM <name> (<resmake>)
+MAKEITEM=i_Copper_NOSE_HELM
+
+[SKILLMENU sm_silver_armor]
+Silver Weapon
+
+ON=i_silver_sword_viking <name> (<resmake>)
+MAKEITEM=i_silver_sword_viking
+
+ON=i_silver_sword_katana <name> (<resmake>)
+MAKEITEM=i_silver_sword_katana
+
+ON=i_silver_wmace <name> (<resmake>)
+MAKEITEM=i_silver_wmace
+
+ON=i_silver_daxe <name> (<resmake>)
+MAKEITEM=i_silver_daxe
+
+ON=i_silver_wfork <name> (<resmake>)
+MAKEITEM=i_silver_wfork
+
+ON=i_silver_kryss <name> (<resmake>)
+MAKEITEM=i_silver_kryss
+
+ON=i_silver_halb <name> (<resmake>)
+MAKEITEM=i_silver_halb
+
+//ON=i_silver_whammer <name> (<resmake>)
+//MAKEITEM=i_silver_whammer
+
+[SKILLMENU sm_mytheril_armor]
+Mytheril Armor
+
+ON=i_MYTHERIL_PLATE_HELM <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_PLATE_HELM
+
+ON=i_MYTHERIL_PLATEMAIL_GORGET <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_PLATEMAIL_GORGET
+
+ON=i_MYTHERIL_PLATEMAIL_GAUNTLETS <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_PLATEMAIL_GAUNTLETS
+
+ON=i_MYTHERIL_PLATEMAIL_ARMS <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_PLATEMAIL_ARMS
+
+ON=i_MYTHERIL_PLATEMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_PLATEMAIL_LEGGINGS
+
+ON=i_MYTHERIL_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_PLATEMAIL
+
+ON=i_MYTHERIL_HEATER_SHIELD <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_HEATER_SHIELD
+
+ON=i_MYTHERIL_FEMALE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_FEMALE_PLATEMAIL
+
+ON=i_MYTHERIL_CHAINMAIL_COIF <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_CHAINMAIL_COIF
+
+ON=i_MYTHERIL_CHAINMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_CHAINMAIL_LEGGINGS
+
+ON=i_MYTHERIL_CHAINMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_CHAINMAIL_TUNIC
+
+ON=i_MYTHERIL_RINGMAIL_GLOVES <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_RINGMAIL_GLOVES
+
+ON=i_MYTHERIL_RINGMAIL_SLEEVES <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_RINGMAIL_SLEEVES
+
+ON=i_MYTHERIL_RINGMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_RINGMAIL_LEGGINGS
+
+ON=i_MYTHERIL_RINGMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_RINGMAIL_TUNIC
+
+ON=i_MYTHERIL_BUCKLER_SHIELD <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_BUCKLER_SHIELD
+
+ON=i_MYTHERIL_METAL_SHIELD <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_METAL_SHIELD
+
+ON=i_MYTHERIL_CLOSED_HELM <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_CLOSED_HELM
+
+ON=i_MYTHERIL_HELMET <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_HELMET
+
+ON=i_MYTHERIL_BASCINET <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_BASCINET
+
+ON=i_MYTHERIL_NOSE_HELM <name> (<resmake>)
+MAKEITEM=i_MYTHERIL_NOSE_HELM
+
+
+[SKILLMENU sm_shadow_armor]
+Shadow Armor
+
+ON=i_SHADOW_PLATE_HELM <name> (<resmake>)
+MAKEITEM=i_SHADOW_PLATE_HELM
+
+ON=i_SHADOW_PLATEMAIL_GORGET <name> (<resmake>)
+MAKEITEM=i_SHADOW_PLATEMAIL_GORGET
+
+ON=i_SHADOW_PLATEMAIL_GAUNTLETS <name> (<resmake>)
+MAKEITEM=i_SHADOW_PLATEMAIL_GAUNTLETS
+
+ON=i_SHADOW_PLATEMAIL_ARMS <name> (<resmake>)
+MAKEITEM=i_SHADOW_PLATEMAIL_ARMS
+
+ON=i_SHADOW_PLATEMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_SHADOW_PLATEMAIL_LEGGINGS
+
+ON=i_SHADOW_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_SHADOW_PLATEMAIL
+
+ON=i_SHADOW_HEATER_SHIELD <name> (<resmake>)
+MAKEITEM=i_SHADOW_HEATER_SHIELD
+
+ON=i_SHADOW_FEMALE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_SHADOW_FEMALE_PLATEMAIL
+
+ON=i_SHADOW_CHAINMAIL_COIF <name> (<resmake>)
+MAKEITEM=i_SHADOW_CHAINMAIL_COIF
+
+ON=i_SHADOW_CHAINMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_SHADOW_CHAINMAIL_LEGGINGS
+
+ON=i_SHADOW_CHAINMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_SHADOW_CHAINMAIL_TUNIC
+
+ON=i_SHADOW_RINGMAIL_GLOVES <name> (<resmake>)
+MAKEITEM=i_SHADOW_RINGMAIL_GLOVES
+
+ON=i_SHADOW_RINGMAIL_SLEEVES <name> (<resmake>)
+MAKEITEM=i_SHADOW_RINGMAIL_SLEEVES
+
+ON=i_SHADOW_RINGMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_SHADOW_RINGMAIL_LEGGINGS
+
+ON=i_SHADOW_RINGMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_SHADOW_RINGMAIL_TUNIC
+
+ON=i_SHADOW_BUCKLER_SHIELD <name> (<resmake>)
+MAKEITEM=i_SHADOW_BUCKLER_SHIELD
+
+ON=i_SHADOW_METAL_SHIELD <name> (<resmake>)
+MAKEITEM=i_SHADOW_METAL_SHIELD
+
+ON=i_SHADOW_CLOSED_HELM <name> (<resmake>)
+MAKEITEM=i_SHADOW_CLOSED_HELM
+
+ON=i_SHADOW_HELMET <name> (<resmake>)
+MAKEITEM=i_SHADOW_HELMET
+
+ON=i_SHADOW_BASCINET <name> (<resmake>)
+MAKEITEM=i_SHADOW_BASCINET
+
+ON=i_SHADOW_NOSE_HELM <name> (<resmake>)
+MAKEITEM=i_SHADOW_NOSE_HELM
+
+[SKILLMENU sm_verite_armor]
+Verite Armor
+
+ON=i_VERITE_PLATE_HELM <name> (<resmake>)
+MAKEITEM=i_VERITE_PLATE_HELM
+
+ON=i_VERITE_PLATEMAIL_GORGET <name> (<resmake>)
+MAKEITEM=i_VERITE_PLATEMAIL_GORGET
+
+ON=i_VERITE_PLATEMAIL_GAUNTLETS <name> (<resmake>)
+MAKEITEM=i_VERITE_PLATEMAIL_GAUNTLETS
+
+ON=i_VERITE_PLATEMAIL_ARMS <name> (<resmake>)
+MAKEITEM=i_VERITE_PLATEMAIL_ARMS
+
+ON=i_VERITE_PLATEMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_VERITE_PLATEMAIL_LEGGINGS
+
+ON=i_VERITE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_VERITE_PLATEMAIL
+
+ON=i_VERITE_HEATER_SHIELD <name> (<resmake>)
+MAKEITEM=i_VERITE_HEATER_SHIELD
+
+ON=i_VERITE_FEMALE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_VERITE_FEMALE_PLATEMAIL
+
+ON=i_VERITE_CHAINMAIL_COIF <name> (<resmake>)
+MAKEITEM=i_VERITE_CHAINMAIL_COIF
+
+ON=i_VERITE_CHAINMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_VERITE_CHAINMAIL_LEGGINGS
+
+ON=i_VERITE_CHAINMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_VERITE_CHAINMAIL_TUNIC
+
+ON=i_VERITE_RINGMAIL_GLOVES <name> (<resmake>)
+MAKEITEM=i_VERITE_RINGMAIL_GLOVES
+
+ON=i_VERITE_RINGMAIL_SLEEVES <name> (<resmake>)
+MAKEITEM=i_VERITE_RINGMAIL_SLEEVES
+
+ON=i_VERITE_RINGMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_VERITE_RINGMAIL_LEGGINGS
+
+ON=i_VERITE_RINGMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_VERITE_RINGMAIL_TUNIC
+
+ON=i_VERITE_BUCKLER_SHIELD <name> (<resmake>)
+MAKEITEM=i_VERITE_BUCKLER_SHIELD
+
+ON=i_VERITE_METAL_SHIELD <name> (<resmake>)
+MAKEITEM=i_VERITE_METAL_SHIELD
+
+ON=i_VERITE_CLOSED_HELM <name> (<resmake>)
+MAKEITEM=i_VERITE_CLOSED_HELM
+
+ON=i_VERITE_HELMET <name> (<resmake>)
+MAKEITEM=i_VERITE_HELMET
+
+ON=i_VERITE_BASCINET <name> (<resmake>)
+MAKEITEM=i_VERITE_BASCINET
+
+ON=i_VERITE_NOSE_HELM <name> (<resmake>)
+MAKEITEM=i_VERITE_NOSE_HELM
+
+[SKILLMENU sm_agapite_armor]
+Agapite Armor
+
+ON=i_AGAPITE_PLATE_HELM <name> (<resmake>)
+MAKEITEM=i_AGAPITE_PLATE_HELM
+
+ON=i_AGAPITE_PLATEMAIL_GORGET <name> (<resmake>)
+MAKEITEM=i_AGAPITE_PLATEMAIL_GORGET
+
+ON=i_AGAPITE_PLATEMAIL_GAUNTLETS <name> (<resmake>)
+MAKEITEM=i_AGAPITE_PLATEMAIL_GAUNTLETS
+
+ON=i_AGAPITE_PLATEMAIL_ARMS <name> (<resmake>)
+MAKEITEM=i_AGAPITE_PLATEMAIL_ARMS
+
+ON=i_AGAPITE_PLATEMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_AGAPITE_PLATEMAIL_leggings
+
+ON=i_AGAPITE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_AGAPITE_PLATEMAIL
+
+ON=i_AGAPITE_HEATER_SHIELD <name> (<resmake>)
+MAKEITEM=i_AGAPITE_HEATER_SHIELD
+
+ON=i_AGAPITE_FEMALE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_AGAPITE_FEMALE_PLATEMAIL
+
+ON=i_AGAPITE_CHAINMAIL_COIF <name> (<resmake>)
+MAKEITEM=i_AGAPITE_CHAINMAIL_COIF
+
+ON=i_AGAPITE_CHAINMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_AGAPITE_CHAINMAIL_LEGGINGS
+
+ON=i_AGAPITE_CHAINMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_AGAPITE_CHAINMAIL_TUNIC
+
+ON=i_AGAPITE_RINGMAIL_GLOVES <name> (<resmake>)
+MAKEITEM=i_AGAPITE_RINGMAIL_GLOVES
+
+ON=i_AGAPITE_RINGMAIL_SLEEVES <name> (<resmake>)
+MAKEITEM=i_AGAPITE_RINGMAIL_SLEEVES
+
+ON=i_AGAPITE_RINGMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_AGAPITE_RINGMAIL_LEGGINGS
+
+ON=i_AGAPITE_RINGMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_AGAPITE_RINGMAIL_TUNIC
+
+ON=i_AGAPITE_BUCKLER_SHIELD <name> (<resmake>)
+MAKEITEM=i_AGAPITE_BUCKLER_SHIELD
+
+ON=i_AGAPITE_METAL_SHIELD <name> (<resmake>)
+MAKEITEM=i_AGAPITE_METAL_SHIELD
+
+ON=i_AGAPITE_CLOSED_HELM <name> (<resmake>)
+MAKEITEM=i_AGAPITE_CLOSED_HELM
+
+ON=i_AGAPITE_HELMET <name> (<resmake>)
+MAKEITEM=i_AGAPITE_HELMET
+
+ON=i_AGAPITE_BASCINET <name> (<resmake>)
+MAKEITEM=i_AGAPITE_BASCINET
+
+ON=i_AGAPITE_NOSE_HELM <name> (<resmake>)
+MAKEITEM=i_AGAPITE_NOSE_HELM
+
+
+[SKILLMENU sm_valorite_armor]
+Valorite Armor
+
+ON=i_VALORITE_PLATE_HELM <name> (<resmake>)
+MAKEITEM=i_VALORITE_PLATE_HELM
+
+ON=i_VALORITE_PLATEMAIL_GORGET <name> (<resmake>)
+MAKEITEM=i_VALORITE_PLATEMAIL_GORGET
+
+ON=i_VALORITE_PLATEMAIL_GAUNTLETS <name> (<resmake>)
+MAKEITEM=i_VALORITE_PLATEMAIL_GAUNTLETS
+
+ON=i_VALORITE_PLATEMAIL_ARMS <name> (<resmake>)
+MAKEITEM=i_VALORITE_PLATEMAIL_ARMS
+
+ON=i_VALORITE_PLATEMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_VALORITE_PLATEMAIL_LEGGINGS
+
+ON=i_VALORITE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_VALORITE_PLATEMAIL
+
+ON=i_VALORITE_HEATER_SHIELD <name> (<resmake>)
+MAKEITEM=i_VALORITE_HEATER_SHIELD
+
+ON=i_VALORITE_FEMALE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_VALORITE_FEMALE_PLATEMAIL
+
+ON=i_VALORITE_CHAINMAIL_COIF <name> (<resmake>)
+MAKEITEM=i_VALORITE_CHAINMAIL_COIF
+
+ON=i_VALORITE_CHAINMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_VALORITE_CHAINMAIL_LEGGINGS
+
+ON=i_VALORITE_CHAINMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_VALORITE_CHAINMAIL_TUNIC
+
+ON=i_VALORITE_RINGMAIL_GLOVES <name> (<resmake>)
+MAKEITEM=i_VALORITE_RINGMAIL_GLOVES
+
+ON=i_VALORITE_RINGMAIL_SLEEVES <name> (<resmake>)
+MAKEITEM=i_VALORITE_RINGMAIL_SLEEVES
+
+ON=i_VALORITE_RINGMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_VALORITE_RINGMAIL_LEGGINGS
+
+ON=i_VALORITE_RINGMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_VALORITE_RINGMAIL_TUNIC
+
+ON=i_VALORITE_BUCKLER_SHIELD <name> (<resmake>)
+MAKEITEM=i_VALORITE_BUCKLER_SHIELD
+
+ON=i_VALORITE_METAL_SHIELD <name> (<resmake>)
+MAKEITEM=i_VALORITE_METAL_SHIELD
+
+ON=i_VALORITE_CLOSED_HELM <name> (<resmake>)
+MAKEITEM=i_VALORITE_CLOSED_HELM
+
+ON=i_VALORITE_HELMET <name> (<resmake>)
+MAKEITEM=i_VALORITE_HELMET
+
+ON=i_VALORITE_BASCINET <name> (<resmake>)
+MAKEITEM=i_VALORITE_BASCINET
+
+ON=i_VALORITE_NOSE_HELM <name> (<resmake>)
+MAKEITEM=i_VALORITE_NOSE_HELM
+
+[SKILLMENU sm_dull_copper_armor]
+Dull Copper Armor & Shields
+
+ON=i_RINGMAIL_TUNIC Dull Copper Ringmail
+SKILLMENU=sm_dull_copper_1
+
+ON=i_CHAINMAIL_TUNIC Dull Copper Chain Mail
+SKILLMENU=sm_dull_copper_2
+
+ON=i_PLATEMAIL_CHEST t Dull Copper Armor & Shields
+SKILLMENU=sm_dull_copper_3
+
+[SKILLMENU sm_dull_copper_1]
+Dull Copper Ringmail
+
+ON=i_DULL_COPPER_RINGMAIL_GLOVES <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_RINGMAIL_GLOVES
+
+ON=i_DULL_COPPER_RINGMAIL_SLEEVES <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_RINGMAIL_SLEEVES
+
+ON=i_DULL_COPPER_RINGMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_RINGMAIL_LEGGINGS
+
+ON=i_DULL_COPPER_RINGMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_RINGMAIL_TUNIC
+
+[SKILLMENU sm_dull_copper_2]
+Dull Copper Chain Mail
+
+ON=i_DULL_COPPER_CHAINMAIL_COIF <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_CHAINMAIL_COIF
+
+ON=i_DULL_COPPER_CHAINMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_CHAINMAIL_LEGGINGS
+
+ON=i_DULL_COPPER_CHAINMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_CHAINMAIL_TUNIC
+
+[SKILLMENU sm_dull_copper_3]
+Dull Copper Armor & Shields
+
+ON=i_DULL_COPPER_PLATE_HELM <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_PLATE_HELM
+
+ON=i_DULL_COPPER_PLATEMAIL_GORGET <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_PLATEMAIL_GORGET
+
+ON=i_DULL_COPPER_PLATEMAIL_GAUNTLETS <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_PLATEMAIL_GAUNTLETS
+
+ON=i_DULL_COPPER_PLATEMAIL_ARMS <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_PLATEMAIL_ARMS
+
+ON=i_DULL_COPPER_PLATEMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_PLATEMAIL_LEGGINGS
+
+ON=i_DULL_COPPER_FEMALE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_FEMALE_PLATEMAIL
+
+ON=i_DULL_COPPER_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_PLATEMAIL
+
+ON=i_DULL_COPPER_BUCKLER_SHIELD <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_BUCKLER_SHIELD
+
+ON=i_DULL_COPPER_METAL_SHIELD <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_METAL_SHIELD
+
+ON=i_DULL_COPPER_HEATER_SHIELD <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_HEATER_SHIELD
+
+ON=i_DULL_COPPER_CLOSED_HELM <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_CLOSED_HELM
+
+ON=i_DULL_COPPER_HELMET <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_HELMET
+
+ON=i_DULL_COPPER_BASCINET <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_BASCINET
+
+ON=i_DULL_COPPER_NOSE_HELM <name> (<resmake>)
+MAKEITEM=i_DULL_COPPER_NOSE_HELM
+
+[SKILLMENU sm_bronze_armor]
+Bronze Armor & Shields
+
+ON=i_RINGMAIL_TUNIC Bronze Ringmail
+SKILLMENU=sm_bronze_1
+
+ON=i_CHAINMAIL_TUNIC Bronze Chain Mail
+SKILLMENU=sm_bronze_2
+
+ON=i_PLATEMAIL_CHEST Bronze Armor & Shields
+SKILLMENU=sm_bronze_3
+
+[SKILLMENU sm_bronze_1]
+Bronze Ringmail
+
+ON=i_BRONZE_RINGMAIL_GLOVES <name> (<resmake>)
+MAKEITEM=i_BRONZE_RINGMAIL_GLOVES
+
+ON=i_BRONZE_RINGMAIL_SLEEVES <name> (<resmake>)
+MAKEITEM=i_BRONZE_RINGMAIL_SLEEVES
+
+ON=i_BRONZE_RINGMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_BRONZE_RINGMAIL_LEGGINGS
+
+ON=i_BRONZE_RINGMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_BRONZE_RINGMAIL_TUNIC
+
+[SKILLMENU sm_bronze_2]
+Bronze Chain Mail
+
+ON=i_BRONZE_CHAINMAIL_COIF <name> (<resmake>)
+MAKEITEM=i_BRONZE_CHAINMAIL_COIF
+
+ON=i_BRONZE_CHAINMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_BRONZE_CHAINMAIL_LEGGINGS
+
+ON=i_BRONZE_CHAINMAIL_TUNIC <name> (<resmake>)
+MAKEITEM=i_BRONZE_CHAINMAIL_TUNIC
+
+[SKILLMENU sm_bronze_3]
+Bronze Armor & Shields
+
+ON=i_BRONZE_PLATE_HELM <name> (<resmake>)
+MAKEITEM=i_BRONZE_PLATE_HELM
+
+ON=i_BRONZE_PLATEMAIL_GORGET <name> (<resmake>)
+MAKEITEM=i_BRONZE_PLATEMAIL_GORGET
+
+ON=i_BRONZE_PLATEMAIL_GAUNTLETS <name> (<resmake>)
+MAKEITEM=i_BRONZE_PLATEMAIL_GAUNTLETS
+
+ON=i_BRONZE_PLATEMAIL_ARMS <name> (<resmake>)
+MAKEITEM=i_BRONZE_PLATEMAIL_ARMS
+
+ON=i_BRONZE_PLATEMAIL_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_BRONZE_PLATEMAIL_LEGGINGS
+
+ON=i_BRONZE_FEMALE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_BRONZE_FEMALE_PLATEMAIL
+
+ON=i_BRONZE_PLATEMAIL <name> (<resmake>)
+MAKEITEM=i_BRONZE_PLATEMAIL
+
+ON=i_BRONZE_BUCKLER_SHIELD <name> (<resmake>)
+MAKEITEM=i_BRONZE_BUCKLER_SHIELD
+
+ON=i_BRONZE_METAL_SHIELD <name> (<resmake>)
+MAKEITEM=i_BRONZE_METAL_SHIELD
+
+ON=i_BRONZE_HEATER_SHIELD <name> (<resmake>)
+MAKEITEM=i_BRONZE_HEATER_SHIELD
+
+ON=i_BRONZE_CLOSED_HELM <name> (<resmake>)
+MAKEITEM=i_BRONZE_CLOSED_HELM
+
+ON=i_BRONZE_HELMET <name> (<resmake>)
+MAKEITEM=i_BRONZE_HELMET
+
+ON=i_BRONZE_BASCINET <name> (<resmake>)
+MAKEITEM=i_BRONZE_BASCINET
+
+ON=i_BRONZE_NOSE_HELM <name> (<resmake>)
+MAKEITEM=i_BRONZE_NOSE_HELM
+
+[SKILLMENU sm_magic_armor]
+Magic Armor & Shields
+
+ON=i_decorative_armor Defense Plate Armor
+SKILLMENU=sm_magic_defense_armor
+
+ON=i_decorative_armor Guarding Armor
+SKILLMENU=sm_magic_guarding_armor
+
+ON=i_decorative_armor Hardening Armor
+SKILLMENU=sm_magic_hardening_armor
+
+ON=i_decorative_armor Fortification Armor
+SKILLMENU=sm_magic_fortification_armor
+
+ON=i_decorative_armor Invulnerability Armor
+SKILLMENU=sm_magic_invulnerability_armor
+
+[SKILLMENU sm_magic_defense_armor]
+Defense Armor & Shields
+
+ON=i_RINGMAIL_GLOVES_DEFENSE <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_GLOVES_DEFENSE
+
+ON=i_RINGMAIL_SLEEVES_DEFENSE <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_SLEEVES_DEFENSE
+
+ON=i_RINGMAIL_LEGGINGS_DEFENSE <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_LEGGINGS_DEFENSE
+
+ON=i_RINGMAIL_TUNIC_DEFENSE <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_TUNIC_DEFENSE
+
+ON=i_CHAINMAIL_TUNIC_DEFENSE <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_TUNIC_DEFENSE
+
+ON=i_CHAINMAIL_LEGGINGS_DEFENSE <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_LEGGINGS_DEFENSE
+
+ON=i_CHAINMAIL_COIF_DEFENSE <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_COIF_DEFENSE
+
+ON=i_PLATEMAIL_HELM_DEFENSE <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_HELM_DEFENSE
+
+ON=i_PLATEMAIL_GORGET_DEFENSE <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GORGET_DEFENSE
+
+ON=i_PLATEMAIL_GAUNTLETS_DEFENSE <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GAUNTLETS_DEFENSE
+
+ON=i_PLATEMAIL_ARMS_DEFENSE <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_ARMS_DEFENSE
+
+ON=i_PLATEMAIL_leggings_DEFENSE <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_leggings_DEFENSE
+
+ON=i_PLATEMAIL_DEFENSE_FEMALE <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_DEFENSE_FEMALE
+
+ON=i_PLATEMAIL_DEFENSE <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_DEFENSE
+
+ON=i_BUCKLER_SHIELD_DEFENSE <name> (<resmake>)
+MAKEITEM=i_BUCKLER_SHIELD_DEFENSE
+
+ON=i_WOODEN_SHIELD_DEFENSE <name> (<resmake>)
+MAKEITEM=i_WOODEN_SHIELD_DEFENSE
+
+ON=i_BRONZE_SHIELD_DEFENSE <name> (<resmake>)
+MAKEITEM=i_BRONZE_SHIELD_DEFENSE
+
+ON=i_METAL_SHIELD_DEFENSE <name> (<resmake>)
+MAKEITEM=i_METAL_SHIELD_DEFENSE
+
+ON=i_WOODEN_KITE_SHIELD_DEFENSE <name> (<resmake>)
+MAKEITEM=i_WOODEN_KITE_SHIELD_DEFENSE
+
+ON=i_METAL_KITE_SHIELD_DEFENSE <name> (<resmake>)
+MAKEITEM=i_METAL_KITE_SHIELD_DEFENSE
+
+ON=i_HEATER_SHIELD_DEFENSE <name> (<resmake>)
+MAKEITEM=i_HEATER_SHIELD_DEFENSE
+
+[SKILLMENU sm_magic_guarding_armor]
+Guarding Armor & Shields
+
+ON=i_RINGMAIL_GLOVES_GUARDING <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_GLOVES_GUARDING
+
+ON=i_RINGMAIL_SLEEVES_GUARDING <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_SLEEVES_GUARDING
+
+ON=i_RINGMAIL_LEGGINGS_GUARDING <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_LEGGINGS_GUARDING
+
+ON=i_RINGMAIL_TUNIC_GUARDING <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_TUNIC_GUARDING
+
+ON=i_CHAINMAIL_TUNIC_GUARDING <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_TUNIC_GUARDING
+
+ON=i_CHAINMAIL_LEGGINGS_GUARDING <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_LEGGINGS_GUARDING
+
+ON=i_CHAINMAIL_COIF_GUARDING <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_COIF_GUARDING
+
+ON=i_PLATEMAIL_HELM_GUARDING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_HELM_GUARDING
+
+ON=i_PLATEMAIL_GORGET_GUARDING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GORGET_GUARDING
+
+ON=i_PLATEMAIL_GAUNTLETS_GUARDING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GAUNTLETS_GUARDING
+
+ON=i_PLATEMAIL_ARMS_GUARDING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_ARMS_GUARDING
+
+ON=i_PLATEMAIL_leggings_GUARDING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_leggings_GUARDING
+
+ON=i_PLATEMAIL_GUARDING_FEMALE <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GUARDING_FEMALE
+
+ON=i_PLATEMAIL_GUARDING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GUARDING
+
+ON=i_BUCKLER_SHIELD_GUARDING <name> (<resmake>)
+MAKEITEM=i_BUCKLER_SHIELD_GUARDING
+
+ON=i_WOODEN_SHIELD_GUARDING <name> (<resmake>)
+MAKEITEM=i_WOODEN_SHIELD_GUARDING
+
+ON=i_BRONZE_SHIELD_GUARDING <name> (<resmake>)
+MAKEITEM=i_BRONZE_SHIELD_GUARDING
+
+ON=i_METAL_SHIELD_GUARDING <name> (<resmake>)
+MAKEITEM=i_METAL_SHIELD_GUARDING
+
+ON=i_WOODEN_KITE_SHIELD_GUARDING <name> (<resmake>)
+MAKEITEM=i_WOODEN_KITE_SHIELD_GUARDING
+
+ON=i_METAL_KITE_SHIELD_GUARDING <name> (<resmake>)
+MAKEITEM=i_METAL_KITE_SHIELD_GUARDING
+
+ON=i_HEATER_SHIELD_GUARDING <name> (<resmake>)
+MAKEITEM=i_HEATER_SHIELD_GUARDING
+
+[SKILLMENU sm_magic_hardening_armor]
+Hardening Armor & Shields
+
+ON=i_RINGMAIL_GLOVES_HARDENING <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_GLOVES_HARDENING
+
+ON=i_RINGMAIL_SLEEVES_HARDENING <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_SLEEVES_HARDENING
+
+ON=i_RINGMAIL_LEGGINGS_HARDENING <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_LEGGINGS_HARDENING
+
+ON=i_RINGMAIL_TUNIC_HARDENING <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_TUNIC_HARDENING
+
+ON=i_CHAINMAIL_TUNIC_HARDENING <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_TUNIC_HARDENING
+
+ON=i_CHAINMAIL_LEGGINGS_HARDENING <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_LEGGINGS_HARDENING
+
+ON=i_CHAINMAIL_COIF_HARDENING <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_COIF_HARDENING
+
+ON=i_PLATEMAIL_HELM_HARDENING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_HELM_HARDENING
+
+ON=i_PLATEMAIL_GORGET_HARDENING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GORGET_HARDENING
+
+ON=i_PLATEMAIL_GAUNTLETS_HARDENING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GAUNTLETS_HARDENING
+
+ON=i_PLATEMAIL_ARMS_HARDENING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_ARMS_HARDENING
+
+ON=i_PLATEMAIL_leggings_HARDENING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_leggings_HARDENING
+
+ON=i_PLATEMAIL_HARDENING_FEMALE <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_HARDENING_FEMALE
+
+ON=i_PLATEMAIL_HARDENING <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_HARDENING
+
+ON=i_BUCKLER_SHIELD_HARDENING <name> (<resmake>)
+MAKEITEM=i_BUCKLER_SHIELD_HARDENING
+
+ON=i_WOODEN_SHIELD_HARDENING <name> (<resmake>)
+MAKEITEM=i_WOODEN_SHIELD_HARDENING
+
+ON=i_BRONZE_SHIELD_HARDENING <name> (<resmake>)
+MAKEITEM=i_BRONZE_SHIELD_HARDENING
+
+ON=i_METAL_SHIELD_HARDENING <name> (<resmake>)
+MAKEITEM=i_METAL_SHIELD_HARDENING
+
+ON=i_WOODEN_KITE_SHIELD_HARDENING <name> (<resmake>)
+MAKEITEM=i_WOODEN_KITE_SHIELD_HARDENING
+
+ON=i_METAL_KITE_SHIELD_HARDENING <name> (<resmake>)
+MAKEITEM=i_METAL_KITE_SHIELD_HARDENING
+
+ON=i_HEATER_SHIELD_HARDENING <name> (<resmake>)
+MAKEITEM=i_HEATER_SHIELD_HARDENING
+
+[SKILLMENU sm_magic_fortification_armor]
+Fortification Armor & Shields
+
+ON=i_RINGMAIL_GLOVES_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_GLOVES_FORTIFICATION
+
+ON=i_RINGMAIL_SLEEVES_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_SLEEVES_FORTIFICATION
+
+ON=i_RINGMAIL_LEGGINGS_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_LEGGINGS_FORTIFICATION
+
+ON=i_RINGMAIL_TUNIC_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_TUNIC_FORTIFICATION
+
+ON=i_CHAINMAIL_TUNIC_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_TUNIC_FORTIFICATION
+
+ON=i_CHAINMAIL_LEGGINGS_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_LEGGINGS_FORTIFICATION
+
+ON=i_CHAINMAIL_COIF_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_COIF_FORTIFICATION
+
+ON=i_PLATEMAIL_HELM_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_HELM_FORTIFICATION
+
+ON=i_PLATEMAIL_GORGET_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GORGET_FORTIFICATION
+
+ON=i_PLATEMAIL_GAUNTLETS_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GAUNTLETS_FORTIFICATION
+
+ON=i_PLATEMAIL_ARMS_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_ARMS_FORTIFICATION
+
+ON=i_PLATEMAIL_leggings_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_leggings_FORTIFICATION
+
+ON=i_PLATEMAIL_FORTIFICATION_FEMALE <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_FORTIFICATION_FEMALE
+
+ON=i_PLATEMAIL_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_FORTIFICATION
+
+ON=i_BUCKLER_SHIELD_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_BUCKLER_SHIELD_FORTIFICATION
+
+ON=i_WOODEN_SHIELD_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_WOODEN_SHIELD_FORTIFICATION
+
+ON=i_BRONZE_SHIELD_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_BRONZE_SHIELD_FORTIFICATION
+
+ON=i_METAL_SHIELD_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_METAL_SHIELD_FORTIFICATION
+
+ON=i_WOODEN_KITE_SHIELD_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_WOODEN_KITE_SHIELD_FORTIFICATION
+
+ON=i_METAL_KITE_SHIELD_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_METAL_KITE_SHIELD_FORTIFICATION
+
+ON=i_HEATER_SHIELD_FORTIFICATION <name> (<resmake>)
+MAKEITEM=i_HEATER_SHIELD_FORTIFICATION
+
+[SKILLMENU sm_magic_invulnerability_armor]
+Invulnerability Armor & Shields
+
+ON=i_RINGMAIL_GLOVES_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_GLOVES_INVULNERABILITY
+
+ON=i_RINGMAIL_SLEEVES_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_SLEEVES_INVULNERABILITY
+
+ON=i_RINGMAIL_LEGGINGS_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_LEGGINGS_INVULNERABILITY
+
+ON=i_RINGMAIL_TUNIC_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_RINGMAIL_TUNIC_INVULNERABILITY
+
+ON=i_CHAINMAIL_TUNIC_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_TUNIC_INVULNERABILITY
+
+ON=i_CHAINMAIL_LEGGINGS_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_LEGGINGS_INVULNERABILITY
+
+ON=i_CHAINMAIL_COIF_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_CHAINMAIL_COIF_INVULNERABILITY
+
+ON=i_PLATEMAIL_HELM_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_HELM_INVULNERABILITY
+
+ON=i_PLATEMAIL_GORGET_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GORGET_INVULNERABILITY
+
+ON=i_PLATEMAIL_GAUNTLETS_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_GAUNTLETS_INVULNERABILITY
+
+ON=i_PLATEMAIL_ARMS_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_ARMS_INVULNERABILITY
+
+ON=i_PLATEMAIL_leggings_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_leggings_INVULNERABILITY
+
+ON=i_PLATEMAIL_INVULNERABILITY_FEMALE <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_INVULNERABILITY_FEMALE
+
+ON=i_PLATEMAIL_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_PLATEMAIL_INVULNERABILITY
+
+ON=i_BUCKLER_SHIELD_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_BUCKLER_SHIELD_INVULNERABILITY
+
+ON=i_WOODEN_SHIELD_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_WOODEN_SHIELD_INVULNERABILITY
+
+ON=i_BRONZE_SHIELD_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_BRONZE_SHIELD_INVULNERABILITY
+
+ON=i_METAL_SHIELD_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_METAL_SHIELD_INVULNERABILITY
+
+ON=i_WOODEN_KITE_SHIELD_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_WOODEN_KITE_SHIELD_INVULNERABILITY
+
+ON=i_METAL_KITE_SHIELD_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_METAL_KITE_SHIELD_INVULNERABILITY
+
+ON=i_HEATER_SHIELD_INVULNERABILITY <name> (<resmake>)
+MAKEITEM=i_HEATER_SHIELD_INVULNERABILITY
+
+// End of Blacksmithing section
+
+///////////////////////////////////////////
+// Beginning of Carpentry section
+
+[SKILLMENU sm_carpentry]
+Carpentry
+
+//ON=i_board <NAME> (<RESMAKE>)
+//MAKEITEM=i_board
+
+ON=i_chair_wood Chairs
+SKILLMENU=sm_wood_chairs
+
+ON=i_table_wood_rough_small Tables
+SKILLMENU=sm_wood_tables
+
+ON=i_chest_wooden_brass Containers
+SKILLMENU=sm_wood_containers_shields
+
+ON=i_staff_gnarled Staff and Poles
+SKILLMENU=sm_wood_weapons_tools
+
+ON=i_music_stand_tall Other Items
+SKILLMENU=sm_wood_misc
+
+ON=i_forge Blacksmith Add-Ons
+SKILLMENU=sm_black_adds
+
+ON=i_spinning_wheel Tailor Add-Ons
+SKILLMENU=sm_tailor_adds
+
+ON=0103a Cooking Add-Ons
+SKILLMENU=sm_cook_adds
+
+ON=i_drum Musical Items
+SKILLMENU=sm_musical_items 
+
+ON=i_training_dummy House Additions
+SKILLMENU=sm_house_adds
+
+[SKILLMENU sm_wood_chairs]
+Chairs
+
+ON=i_chair_throne <NAME> (<RESMAKE>)
+MAKEITEM=i_chair_throne
+
+ON=i_chair_wood_rough_dark <NAME> (<RESMAKE>)
+MAKEITEM=i_chair_wood_rough_dark
+
+ON=i_chair_wood_fancy_cushion <NAME> (<RESMAKE>)
+MAKEITEM=i_chair_wood_fancy_cushion
+
+ON=i_chair_wood_cushion <NAME> (<RESMAKE>)
+MAKEITEM=i_chair_wood_cushion
+
+ON=i_chair_wood <NAME> (<RESMAKE>)
+MAKEITEM=i_chair_wood
+
+ON=i_chair_wood_bamboo <NAME> (<RESMAKE>)
+MAKEITEM=i_chair_wood_bamboo
+
+ON=i_chair_stool_BAR <NAME> (<RESMAKE>)
+MAKEITEM=i_chair_stool_BAR
+
+ON=i_chair_stool <NAME> (<RESMAKE>)
+MAKEITEM=i_chair_stool
+
+ON=i_bench_wood_dark <NAME> (<RESMAKE>)
+MAKEITEM=i_bench_wood_dark
+
+[SKILLMENU sm_wood_containers_shields]
+Containers
+ 
+ON=i_BOX_WOOD <NAME> (<RESMAKE>)
+MAKEITEM=i_BOX_WOOD
+
+ON=i_CHEST_WOODEN_BRASS <NAME> (<RESMAKE>)
+MAKEITEM=i_CHEST_WOODEN_BRASS
+
+ON=i_CRATE_SMALL <NAME> (<RESMAKE>)
+MAKEITEM=i_CRATE_SMALL
+
+ON=i_CRATE_MD <NAME> (<RESMAKE>)
+MAKEITEM=i_CRATE_MD
+
+ON=i_CRATE_LG <NAME> (<RESMAKE>)
+MAKEITEM=i_CRATE_LG
+
+ON=i_barrel_open <NAME> (<RESMAKE>)
+MAKEITEM=i_barrel_open
+
+ON=i_barrel_lid <NAME> (<RESMAKE>)
+MAKEITEM=i_barrel_lid
+
+ON=i_BOOKCASE <NAME> (<RESMAKE>)
+MAKEITEM=i_BOOKCASE
+
+ON=i_ARMOIR_LT <NAME> (<RESMAKE>)
+MAKEITEM=i_ARMOIR_LT
+
+ON=i_ARMOIR_DK <NAME> (<RESMAKE>)
+MAKEITEM=i_ARMOIR_DK
+
+[SKILLMENU sm_wood_tables]
+Tables
+
+ON=i_table_writing <NAME> (<RESMAKE>)
+MAKEITEM=i_table_writing
+
+ON=i_TABLE_NIGHTSTAND <NAME> (<RESMAKE>)
+MAKEITEM=i_TABLE_NIGHTSTAND
+
+ON=i_TABLE_WOOD_ROUGH_SMALL <NAME> (<RESMAKE>)
+MAKEITEM=i_TABLE_WOOD_ROUGH_SMALL
+
+ON=i_table_wood_rough_board <NAME> (<RESMAKE>)
+MAKEITEM=i_table_wood_rough_board
+
+[SKILLMENU sm_wood_weapons_tools]
+Staff and Poles
+
+ON=i_FISHING_POLE <NAME> (<RESMAKE>)
+MAKEITEM=i_FISHING_POLE
+
+ON=i_staff_gnarled <NAME> (<RESMAKE>)
+MAKEITEM=i_staff_gnarled
+
+ON=i_staff_quarter <NAME> (<RESMAKE>)
+MAKEITEM=i_staff_quarter
+
+ON=i_CROOK_THIN <NAME> (<RESMAKE>)
+MAKEITEM=i_CROOK_THIN
+
+[SKILLMENU sm_wood_misc]
+Other Items
+
+ON=i_barrel_staves <NAME> (<RESMAKE>)
+MAKEITEM=i_barrel_staves
+
+ON=i_DARTBOARD <NAME> (<RESMAKE>)
+MAKEITEM=i_DARTBOARD
+
+ON=i_deed_water_w Water Trough(W) (<RESMAKE>)
+MAKEITEM=i_deed_water_w
+
+ON=i_deed_water_n Water Trough(N) (<RESMAKE>)
+MAKEITEM=i_deed_water_n
+
+ON=i_keg_small <NAME> (<RESMAKE>)
+MAKEITEM=i_keg_small
+
+ON=i_easel <NAME> (<RESMAKE>)
+MAKEITEM=i_easel
+
+ON=i_music_stand_book <NAME> (<RESMAKE>)
+MAKEITEM=i_music_stand_book
+
+ON=i_MUSIC_STAND_TALL <NAME> (<RESMAKE>)
+MAKEITEM=i_MUSIC_STAND_TALL
+
+ON=i_shield_wood <NAME> (<RESMAKE>)
+MAKEITEM=i_shield_wood
+
+[SKILLMENU sm_black_adds]
+Blacksmith Add-Ons
+
+ON=i_deed_forge Small Forge (<RESMAKE>)
+MAKEITEM=i_deed_forge
+
+ON=i_deed_anvil Anvil(W) (<RESMAKE>)
+MAKEITEM=i_deed_anvil
+
+//ON=i_deed_anvil_n Anvil(N) (<RESMAKE>)
+//MAKEITEM=i_deed_anvil_n
+
+ON=i_deed_forge_large_n Large Forge(N) (<RESMAKE>)
+MAKEITEM=i_deed_forge_large_n
+
+ON=i_deed_forge_large_w Large Forge(W) (<RESMAKE>)
+MAKEITEM=i_deed_forge_large_w
+
+[SKILLMENU sm_tailor_adds]
+Tailor Add-Ons
+
+ON=i_dress_form <NAME> (<RESMAKE>)
+MAKEITEM=i_dress_form
+
+ON=i_deed_loom_w Loom(W) (<RESMAKE>)
+MAKEITEM=i_deed_loom_w
+
+ON=i_deed_loom_n Loom(N) (<RESMAKE>)
+MAKEITEM=i_deed_loom_n
+
+ON=i_deed_wheel_w Wheel(W) (<RESMAKE>)
+MAKEITEM=i_deed_wheel_w
+
+ON=i_deed_wheel_n Wheel(N) (<RESMAKE>)
+MAKEITEM=i_deed_wheel_n
+
+[SKILLMENU sm_cook_adds]
+Cooking Add-Ons
+
+ON=i_deed_flour_mill_w Flour Mill(W) (<RESMAKE>)
+MAKEITEM=i_deed_flour_mill_w 
+
+ON=i_deed_flour_mill_n Flour Mill(N) (<RESMAKE>)               
+MAKEITEM=i_deed_flour_mill_n
+
+ON=i_deed_oven_w Oven(W) (<RESMAKE>)               
+MAKEITEM=i_deed_oven_w
+
+ON=i_deed_oven_n Oven(N) (<RESMAKE>)               
+MAKEITEM=i_deed_oven_n
+
+[SKILLMENU sm_musical_items]
+Musical Items
+
+ON=i_drum <NAME> (<RESMAKE>)
+MAKEITEM=i_drum
+
+ON=i_tambourine <NAME> (<RESMAKE>)
+MAKEITEM=i_tambourine
+
+ON=i_tambourine_tas <NAME> (<RESMAKE>)
+MAKEITEM=i_tambourine_tas
+
+ON=i_harp_large <NAME> (<RESMAKE>)
+MAKEITEM=i_harp_large
+
+ON=i_lyre <NAME> (<RESMAKE>)
+MAKEITEM=i_lyre
+
+ON=i_lute <NAME> (<RESMAKE>)
+MAKEITEM=i_lute
+
+[SKILLMENU sm_house_adds]
+House Additions
+
+ON=I_DEED_DUMMYW Training Dummy(W) (<RESMAKE>)
+MAKEITEM=I_DEED_DUMMYW 
+
+ON=I_DEED_DUMMYN Training Dummy(N) (<RESMAKE>)
+MAKEITEM=I_DEED_DUMMYN 
+
+ON=I_DEED_PICKPOCKN Pickpocket Dip(N) (<RESMAKE>)
+MAKEITEM=I_DEED_PICKPOCKN 
+
+ON=I_DEED_PICKPOCKW Pickpocket Dip(W) (<RESMAKE>)
+MAKEITEM=I_DEED_PICKPOCKW
+
+ON=I_DEED_STONE_PENTAGRAM Stone Pentagram (<RESMAKE>)
+MAKEITEM=I_DEED_STONE_PENTAGRAM
+
+ON=I_DEED_PENTAGRAM Pentagram(Red) (<RESMAKE>)
+MAKEITEM=I_DEED_PENTAGRAM
+
+ON=I_DEED_SMALL_BED_W Small Bed(W) (<RESMAKE>)
+MAKEITEM=I_DEED_SMALL_BED_W
+
+ON=I_DEED_SMALL_BED_N Small Bed(N) (<RESMAKE>)
+MAKEITEM=I_DEED_SMALL_BED_N
+
+ON=I_DEED_LARGE_BED_W Large Bed(W) (<RESMAKE>)
+MAKEITEM=I_DEED_LARGE_BED_W
+
+ON=I_DEED_LARGE_BED_N Large Bed(N) (<RESMAKE>)
+MAKEITEM=I_DEED_LARGE_BED_N
+
+// End of Carpentry section
+///////////////////////////////////////////
+// Beginning of Tailoring section
+
+[SKILLMENU sm_tailor_leather]
+Leather
+
+ON=i_BOOTS_CALF Footwear
+SKILLMENU=sm_leather_footwear
+
+ON=i_LEATHER_TUNIC Leather Armour
+SKILLMENU=sm_leather_armor
+
+ON=i_STUDDED_TUNIC Studded Armour
+SKILLMENU=sm_leather_studded_armor
+
+ON=i_ARMOR_FEMALE_BUSTIER Female Armour
+SKILLMENU=sm_leather_female_armor
+
+ON=i_BACKPACK Misc
+SKILLMENU=sm_leather_misc
+
+ON=i_mask_blue Masks
+SKILLMENU=sm_leather_masks
+
+[SKILLMENU sm_tailor_cloth]
+Cloth
+
+ON=i_shirt_fancy Shirts
+SKILLMENU=sm_cloth_shirts
+
+ON=i_pants_long Pants
+SKILLMENU=sm_cloth_legwear
+
+ON=i_hat_floppy Headwear
+SKILLMENU=sm_cloth_headwear
+
+ON=i_apron_half Misc.
+SKILLMENU=sm_cloth_misc
+
+[SKILLMENU sm_leather_footwear]
+Footwear
+
+ON=i_SANDALS <name> (<resmake>)
+MAKEITEM=i_SANDALS
+
+ON=i_SHOES_PLAIN <name> (<resmake>)
+MAKEITEM=i_SHOES_PLAIN
+
+ON=i_BOOTS_CALF <name> (<resmake>)
+MAKEITEM=i_BOOTS_CALF
+
+ON=i_BOOTS_THIGH <name> (<resmake>)
+MAKEITEM=i_BOOTS_THIGH
+
+[SKILLMENU sm_leather_armor]
+Leather Armour
+
+ON=i_LEATHER_CAP <name> (<resmake>)
+MAKEITEM=i_LEATHER_CAP
+
+ON=i_LEATHER_GORGET <name> (<resmake>)
+MAKEITEM=i_LEATHER_GORGET
+
+ON=i_LEATHER_GLOVES <name> (<resmake>)
+MAKEITEM=i_LEATHER_GLOVES
+
+ON=i_LEATHER_SLEEVES <name> (<resmake>)
+MAKEITEM=i_LEATHER_SLEEVES
+
+ON=i_LEATHER_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_LEATHER_LEGGINGS
+
+ON=i_LEATHER_TUNIC <name> (<resmake>)
+MAKEITEM=i_LEATHER_TUNIC
+
+[SKILLMENU sm_leather_studded_armor]
+Studded Armour
+
+ON=i_STUDDED_GORGET <name> (<resmake>)
+MAKEITEM=i_STUDDED_GORGET
+
+ON=i_STUDDED_GLOVES <name> (<resmake>)
+MAKEITEM=i_STUDDED_GLOVES
+
+ON=i_STUDDED_SLEEVES <name> (<resmake>)
+MAKEITEM=i_STUDDED_SLEEVES
+
+ON=i_STUDDED_LEGGINGS <name> (<resmake>)
+MAKEITEM=i_STUDDED_LEGGINGS
+
+ON=i_STUDDED_TUNIC <name> (<resmake>)
+MAKEITEM=i_STUDDED_TUNIC
+
+[SKILLMENU sm_leather_female_armor]
+Female Armour
+
+ON=i_armor_female_shorts <name> (<resmake>)
+MAKEITEM=i_armor_female_shorts
+
+ON=i_armor_female_bustier <name> (<resmake>)
+MAKEITEM=i_armor_female_bustier
+
+ON=i_armor_female_bustier_studded <name> (<resmake>)
+MAKEITEM=i_armor_female_bustier_studded
+
+ON=i_armor_female_studded <name> (<resmake>)
+MAKEITEM=i_armor_female_studded
+
+ON=i_armor_female_skirt <name> (<resmake>)
+MAKEITEM=i_armor_female_skirt
+
+ON=i_armor_female_LEATHER <name> (<resmake>)
+MAKEITEM=i_armor_female_LEATHER
+
+[SKILLMENU sm_leather_misc]
+Packs
+
+ON=i_backpack <name> (<resmake>)
+MAKEITEM=i_backpack
+
+ON=i_bag <name> (<resmake>)
+MAKEITEM=i_bag
+
+ON=i_pouch <name> (<resmake>)
+MAKEITEM=i_pouch
+
+[SKILLMENU sm_leather_masks]
+Masks
+
+ON=i_mask_bear <name> (<resmake>)
+MAKEITEM=i_mask_bear
+
+ON=i_mask_deer <name> (<resmake>)
+MAKEITEM=i_mask_deer
+
+ON=i_mask_orc <name> (<resmake>)
+MAKEITEM=i_mask_orc
+
+ON=i_mask_blue <name> (<resmake>)
+MAKEITEM=i_mask_blue
+
+ON=i_mask_tribal_red <name> (<resmake>)
+MAKEITEM=i_mask_tribal_red
+
+[SKILLMENU sm_cloth_shirts]
+Shirts
+
+ON=i_shirt_plain <name> (<resmake>)
+MAKEITEM=i_shirt_plain
+
+ON=i_shirt_fancy <name> (<resmake>)
+MAKEITEM=i_shirt_fancy
+
+ON=i_doublet <name> (<resmake>)
+MAKEITEM=i_doublet
+
+ON=i_dress_plain <name> (<resmake>)
+MAKEITEM=i_dress_plain
+
+ON=i_dress_full <name> (<resmake>)
+MAKEITEM=i_dress_full
+
+ON=i_robe <name> (<resmake>)
+MAKEITEM=i_robe
+
+ON=i_cape <name> (<resmake>)
+MAKEITEM=i_cape
+
+ON=i_capes <name> (<resmake>)
+MAKEITEM=i_capes
+
+ON=i_jester_suit <name> (<resmake>)
+MAKEITEM=i_jester_suit
+
+ON=i_tunic <name> (<resmake>)
+MAKEITEM=i_tunic
+
+ON=i_surcoat <name> (<resmake>)
+MAKEITEM=i_surcoat
+
+[SKILLMENU sm_cloth_legwear]
+Legwear
+
+ON=i_pants_short <name> (<resmake>)
+MAKEITEM=i_pants_short
+
+ON=i_pants_long <name> (<resmake>)
+MAKEITEM=i_pants_long
+
+ON=i_skirt_long <name> (<resmake>)
+MAKEITEM=i_skirt_long
+
+ON=i_kilt <name> (<resmake>)
+MAKEITEM=i_kilt
+
+[SKILLMENU sm_cloth_headwear]
+Headwear
+
+ON=i_bandana <name> (<resmake>)
+MAKEITEM=i_bandana
+
+ON=i_SKULL_CAP <name> (<resmake>)
+MAKEITEM=i_SKULL_CAP
+
+ON=i_hat_floppy <name> (<resmake>)
+MAKEITEM=i_hat_floppy
+
+ON=i_hat_wide_brim <name> (<resmake>)
+MAKEITEM=i_hat_wide_brim
+
+ON=i_hat_feather <name> (<resmake>)
+MAKEITEM=i_hat_feather
+
+ON=i_hat_tricorne <name> (<resmake>)
+MAKEITEM=i_hat_tricorne
+
+ON=i_hat_straw_tall <name> (<resmake>)
+MAKEITEM=i_hat_straw_tall
+
+ON=i_hat_straw <name> (<resmake>)
+MAKEITEM=i_hat_straw
+
+ON=i_bonnet <name> (<resmake>)
+MAKEITEM=i_bonnet
+
+ON=i_hat_jester <name> (<resmake>)
+MAKEITEM=i_hat_jester
+
+ON=i_hat_wizards <name> (<resmake>)
+MAKEITEM=i_hat_wizards
+
+[SKILLMENU sm_cloth_misc]
+Misc.
+
+ON=i_tc_r <name> (<resmake>)
+MAKEITEM=i_tc_r
+
+ON=i_hat_wizards <name> (<resmake>)
+MAKEITEM=i_hat_wizards
+
+ON=i_SASH <name> (<resmake>)
+MAKEITEM=i_SASH
+
+ON=i_apron_half <name> (<resmake>)
+MAKEITEM=i_apron_half
+
+ON=i_apron_full <name> (<resmake>)
+MAKEITEM=i_apron_full
+
+ON=i_oil_cloth <name> (<resmake>) 
+MAKEITEM=i_oil_cloth 
+
+//////////////////////////////////////////////
+// Begin Tinkering Menu
+[SKILLMENU sm_TINKER]
+Tinkering
+
+ON=i_bracelet_gold Jewelry
+SKILLMENU=2
+
+ON=i_candleabra Miscellaneous
+SKILLMENU=6
+
+ON=0104c Multi-Component Items
+SKILLMENU=40
+
+ON=i_barrel_hoops Parts
+SKILLMENU=41
+
+ON=01028 Tools
+SKILLMENU=3
+
+ON=i_cleaver_meat Utensils
+SKILLMENU=4
+
+ON=i_plane_smoothing Wooden Items
+SKILLMENU=5
+
+[SKILLMENU 2]
+Jewelry
+
+ON=i_bracelet_gold <NAME> (<RESMAKE>)
+MAKEITEM=i_bracelet_gold
+
+ON=i_earrings_gold <NAME> (<RESMAKE>)
+MAKEITEM=i_earrings_gold
+
+ON=i_necklace_gold_beads <NAME> (<RESMAKE>)
+MAKEITEM=i_necklace_gold_beads
+
+ON=01f05 <NAME> (<RESMAKE>)
+MAKEITEM=01f05
+
+ON=i_necklace_gold <NAME> (<RESMAKE>)
+MAKEITEM=i_necklace_gold
+
+[SKILLMENU 3]
+Tools
+
+ON=i_saw_dovetail <NAME> (<RESMAKE>)
+MAKEITEM=i_saw_dovetail
+
+ON=i_knife_draw <NAME> (<RESMAKE>)
+MAKEITEM=i_knife_draw
+
+ON=i_froe <NAME> (<RESMAKE>)             
+MAKEITEM=i_froe
+
+ON=i_hammer <NAME> (<RESMAKE>)
+MAKEITEM=i_hammer  
+
+ON=i_hatchet <NAME> (<RESMAKE>)
+MAKEITEM=i_hatchet
+
+ON=i_inshave <NAME> (<RESMAKE>)
+MAKEITEM=i_inshave
+
+ON=i_lockpick <NAME> (<RESMAKE>)          
+MAKEITEM=i_lockpick
+
+ON=i_mortar_pestle <NAME> (<RESMAKE>)
+MAKEITEM=i_mortar_pestle
+
+ON=i_pickaxe <NAME> (<RESMAKE>)
+MAKEITEM=i_pickaxe
+
+ON=i_saw <NAME> (<RESMAKE>)
+MAKEITEM=i_saw
+
+ON=i_scissors <NAME> (<RESMAKE>)
+MAKEITEM=i_scissors
+
+ON=i_scorp <NAME> (<RESMAKE>)
+MAKEITEM=i_scorp 
+
+ON=i_sewing_kit <NAME> (<RESMAKE>)
+MAKEITEM=i_sewing_kit
+
+ON=i_shovel <NAME> (<RESMAKE>)
+MAKEITEM=i_shovel
+
+ON=i_hammer_sledge <NAME> (<RESMAKE>)
+MAKEITEM=i_hammer_sledge
+
+ON=i_hammer_smith <NAME> (<RESMAKE>)
+MAKEITEM=i_hammer_smith 
+
+ON=i_tongs <NAME> (<RESMAKE>)
+MAKEITEM=i_tongs
+
+ON=i_tinker_tools <NAME> (<RESMAKE>)
+MAKEITEM=i_tinker_tools
+
+[SKILLMENU 40]
+Multi-Component Items
+
+ON=i_axel_and_gears <NAME> (<RESMAKE>)
+MAKEITEM=i_axel_and_gears
+
+ON=i_clock <NAME> (<RESMAKE>)
+MAKEITEM=i_clock
+
+ON=i_clock_parts <NAME> (<RESMAKE>)
+MAKEITEM=i_clock_parts
+
+ON=i_keg_potion <NAME> (<RESMAKE>)
+MAKEITEM=i_keg_potion
+
+ON=i_sextant <NAME> (<RESMAKE>)
+MAKEITEM=i_sextant
+
+ON=i_sextant_parts <NAME> (<RESMAKE>)
+MAKEITEM=i_sextant_parts
+
+ON=i_pickaxe <NAME> (<RESMAKE>)
+MAKEITEM=i_pickaxe
+
+[SKILLMENU 4]
+Utensils
+
+ON=i_knife_butcher <NAME> (<RESMAKE>)
+MAKEITEM=i_knife_butcher
+
+ON=i_cleaver_meat <NAME> (<RESMAKE>)
+MAKEITEM=i_cleaver_meat
+
+ON=i_fork <NAME> (<RESMAKE>)
+MAKEITEM=i_fork
+
+ON=i_goblet <NAME> (<RESMAKE>)
+MAKEITEM=i_goblet
+
+ON=i_knife <NAME> (<RESMAKE>)
+MAKEITEM=i_knife
+
+ON=i_plate <NAME> (<RESMAKE>)
+MAKEITEM=i_plate
+
+ON=i_knife_skinning <NAME> (<RESMAKE>)
+MAKEITEM=i_knife_skinning
+
+ON=i_spoon <NAME> (<RESMAKE>)
+MAKEITEM=i_spoon
+
+[SKILLMENU 5]
+Wooden Items
+
+ON=i_axel <NAME> (<RESMAKE>)
+MAKEITEM=i_axel
+
+ON=i_clock_frame <NAME> (<RESMAKE>)
+MAKEITEM=i_clock_frame
+
+ON=i_plane_jointing <NAME> (<RESMAKE>)
+MAKEITEM=i_plane_jointing
+
+ON=i_plane_moulding <NAME> (<RESMAKE>)
+MAKEITEM=i_plane_moulding
+
+ON=i_plane_smoothing <NAME> (<RESMAKE>)
+MAKEITEM=i_plane_smoothing
+
+[SKILLMENU 6]
+Miscellaneous
+
+ON=i_keg_potion <NAME> (<RESMAKE>)
+MAKEITEM=i_keg_potion
+
+ON=i_candleabra <NAME> (<RESMAKE>)
+MAKEITEM=i_candleabra
+
+ON=i_globe <NAME> (<RESMAKE>)
+MAKEITEM=i_globe
+
+ON=i_heating_stand_lit <NAME> (<RESMAKE>)
+MAKEITEM=i_heating_stand_lit
+
+ON=i_key_iron <NAME> (<RESMAKE>)
+MAKEITEM=i_key_iron
+
+ON=i_key_ring <NAME> (<RESMAKE>)
+MAKEITEM=i_key_ring
+
+ON=i_lantern <NAME> (<RESMAKE>)
+MAKEITEM=i_lantern
+
+ON=i_scales <NAME> (<RESMAKE>)
+MAKEITEM=i_scales
+
+ON=i_spyglass <NAME> (<RESMAKE>)
+MAKEITEM=i_spyglass
+
+[SKILLMENU 41]
+Parts
+
+ON=i_barrel_hoops <NAME> (<RESMAKE>)
+MAKEITEM=i_barrel_hoops
+
+ON=i_barrel_tap <NAME> (<RESMAKE>)
+MAKEITEM=i_barrel_tap
+
+ON=i_gears <NAME> (<RESMAKE>)
+MAKEITEM=i_gears
+
+ON=i_hinge <NAME> (<RESMAKE>)
+MAKEITEM=i_hinge
+
+ON=i_springs <NAME> (<RESMAKE>)
+MAKEITEM=i_springs
+
+// End of Tinkering section
+
+// Cooking section
+
+[SKILLMENU sm_cook]
+// NOT USED YET
+ON=i_bread_loaf Baked Goods
+SKILLMENU=sm_cook_1
+
+[SKILLMENU sm_cook_1]
+Baked Goods
+
+ON=i_bread_loaf <name> (<resmake>)
+MAKEITEM=i_bread_loaf
+
+ON=i_muffins <name> (<resmake>)
+MAKEITEM=i_muffins
+
+ON=i_bread_french <name> (<resmake>)
+MAKEITEM=i_bread_french
+
+ON=i_pan_cookies <name> (<resmake>)
+MAKEITEM=i_pan_cookies
+
+ON=i_pan_cookies <name> (<resmake>)
+MAKEITEM=i_pan_cookies
+
+ON=i_pie_baked <name> (<resmake>)
+MAKEITEM=i_pie_baked
+
+ON=i_pizza <name> (<resmake>)
+MAKEITEM=i_pizza
+
+ON=i_cake <name> (<resmake>)
+MAKEITEM=i_cake
+
+[EOF]
+
+
+
+
+
+

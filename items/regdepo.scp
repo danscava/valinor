@@ -1,0 +1,462 @@
+// ----------------------------
+// reagentcristal.scp - Reagent Cristal
+// SON GUNCELLENME: 7 Ekim 2003 - bestturk
+// ----------------------------
+
+[ITEMDEF i_reag_cris]
+ID=i_crystal_green_big
+type=t_eq_script
+name Reg deposu
+Value=5000
+weight 20
+
+on=@create
+tag.1 10
+tag.2 10
+tag.3 10
+tag.4 10
+tag.5 10
+tag.6 10
+tag.7 10
+tag.8 10
+color 00543
+attr=04
+
+
+On=@dclick
+if (<color> == 00542)
+	tag.1 <tag.bm>
+	tag.2 <tag.sa>
+	tag.3 <tag.n>
+	tag.4 <tag.ss>
+	tag.5 <tag.gi>
+	tag.6 <tag.ga>
+	tag.7 <tag.mr>
+	tag.8 <tag.bp>
+	tag.bm 
+	tag.sa 
+	tag.n 
+	tag.ss 
+	tag.gi 
+	tag.ga 
+	tag.mr 
+	tag.bp 
+	color 00543
+endif
+if (0<cont.uid>) && (<cont> == <src.findlayer(layer_bankbox).uid>)
+sdialog d_reagentinfo
+
+else
+	
+src.sysmessage @1100,,1 Bunu kullanabilmeniz icin bankaniza koymalisiniz.
+endif
+return 1
+
+on=@targon_char
+return 1
+on=@targon_ground
+return 1
+
+on=@targon_item
+if !(strmatch('<baseid>','i_reag_cris'))
+	src.sysmessage @38 Sistem hatasi.
+	return 1
+endif
+if (strmatch('<src.targ.baseid>','i_reag_mandrake_root'))
+	tag.7 <eval <tag.7>>+<eval <src.targ.amount>>
+	src.sysmessage <eval <src.targ.amount>> mandrake root'u cristal'e eklediniz.
+	src.targ.remove
+elseif (strmatch('<src.targ.baseid>','i_reag_black_pearl'))
+	tag.8 <eval <tag.8>>+<eval <src.targ.amount>>
+	src.sysmessage <eval <src.targ.amount>> black pear'i cristal'e eklediniz.
+	src.targ.remove
+elseif (strmatch('<src.targ.baseid>','i_reag_garlic'))
+	tag.6 <eval <tag.6>>+<eval <src.targ.amount>>
+	src.sysmessage <eval <src.targ.amount>> garlic'i cristal'e eklediniz.
+	src.targ.remove
+elseif (strmatch('<src.targ.baseid>','i_reag_ginseng'))
+	tag.5 <eval <tag.5>>+<eval <src.targ.amount>>
+	src.sysmessage <eval <src.targ.amount>> ginseng'i cristal'e eklediniz.
+	src.targ.remove
+elseif (strmatch('<src.targ.baseid>','i_reag_blood_moss'))
+	tag.1 <eval <tag.1>>+<eval <src.targ.amount>>
+	src.sysmessage <eval <src.targ.amount>> blood moss'u cristal'e eklediniz.
+	src.targ.remove
+elseif (strmatch('<src.targ.baseid>','i_reag_nightshade'))
+	tag.3 <eval <tag.3>>+<eval <src.targ.amount>>
+	src.sysmessage <eval <src.targ.amount>> nightshade'i cristal'e eklediniz.
+	src.targ.remove
+elseif (strmatch('<src.targ.baseid>','i_reag_sulfur_ash'))
+	tag.2 <eval <tag.2>>+<eval <src.targ.amount>>
+	src.sysmessage <eval <src.targ.amount>> sulfurous ash'i cristal'e eklediniz.
+	src.targ.remove
+elseif (strmatch('<src.targ.baseid>','i_reag_spider_silk'))
+	tag.4 <eval <tag.4>>+<eval <src.targ.amount>>
+	src.sysmessage <eval <src.targ.amount>> spider's silk'i cristal'e eklediniz.
+	src.targ.remove
+else
+	src.sysmessage Bunu cristal'e ekleyemezsiniz.
+endif
+return 1
+
+[dialog d_reagentinfo]
+100,0
+resizepic 5 70 9300 350 300
+resizepic 15 80 9300 331 280
+
+text 120 85 <eval 995> 16
+tilepic 195 112 <eval 0f7b> // blood moss
+gumppic 210 128 2443
+text 220 130 5 0
+text 232 110 5 1
+tilepic 10 112 <eval 0f8c> // sulfurous ash 
+gumppic 22 128 2443 
+text 33 130 5 2 
+text 48 110 5 3 
+tilepic 10 164 <eval 0f88> // nightshade 
+gumppic 22 184 2443 
+text 33 186 5 4 
+text 45 162 5 5 
+tilepic 13 216 <eval 0f8d> // spider silk 
+gumppic 22 233 2443 
+text 33 235 5 6 
+text 45 214 5 7 
+tilepic 10 268 <eval 0f85> // ginseng 
+gumppic 22 285 2443 
+text 33 287 5 8 
+text 45 266 5 9 
+tilepic 200 273 <eval 0f84> // garlic 
+gumppic 210 285 2443 
+text 220 287 5 10 
+text 232 266 5 11 
+tilepic 200 216 <eval 0f86> // mandrake root
+gumppic 210 233 2443 
+text 220 235 5 12 
+text 232 214 5 13
+tilepic 198 168 <eval 0f7a> // black pearl 
+gumppic 210 184 2443 
+text 220 186 5 14 
+text 232 162 5 15
+
+text 240 330 100 17
+button 205 330 4005 4006 1 0 1
+button 332 335 2103 2104 1 0 12
+
+button 90 130 4005 4006 1 0 2
+button 90 182 4005 4006 1 0 3
+button 90 234 4005 4006 1 0 4
+button 90 286 4005 4006 1 0 5
+button 277 130 4005 4006 1 0 6
+button 277 182 4005 4006 1 0 7
+button 277 234 4005 4006 1 0 8
+button 277 286 4005 4006 1 0 9
+
+button 25 330 4005 4006 1 0 11
+dtext 60 330 100 Hepsinden cikar
+
+
+[dialog d_reagentinfo TEXT]
+<eval <tag.1>>
+Blood Moss
+<eval <tag.2>>
+Sulfurous Ash
+<eval <tag.3>>
+Nightshade
+<eval <tag.4>>
+Spider's Silk
+<eval <tag.5>>
+Ginseng
+<eval <tag.6>>
+Garlic
+<eval <tag.7>>
+Mandrake Root
+<eval <tag.8>>
+Black Pearls
+Reagent Crystal
+Reagent ekle
+Hepsinden cikar
+
+[dialog d_reagentinfo BUTTON]
+on=1
+target Lutfen cristal'e eklemek istediginiz reagent'i secin.
+on=2
+more 2
+tag.reagn=sulfur_ash
+sdialog d_regcikar
+on=3
+more 3
+tag.reagn=nightshade
+dialogclose d_regcikar
+sdialog d_regcikar
+on=4
+more 4
+tag.reagn=spider_silk
+sdialog d_regcikar
+on=5
+more 5
+tag.reagn=ginseng
+sdialog d_regcikar
+on=6
+more 1
+tag.reagn=blood_moss
+sdialog d_regcikar
+on=7
+more 8
+tag.reagn=black_pearl
+sdialog d_regcikar
+on=8
+more 7
+tag.reagn=mandrake_root
+sdialog d_regcikar
+on=9
+more 6
+tag.reagn=garlic
+sdialog d_regcikar
+On=0
+dialogclose d_regcikar
+more 00
+tag.reagn=
+tag.cikan=
+
+on=11
+sdialog d_regcikar1
+
+on=12
+if !(<src.findtype.t_reagent>)
+	src.sysmessage @38,1,1 Cantanizda hic reagent bulunmuyor.
+	return 1
+endif
+tag.7 <eval <tag.7>>+<src.rescount i_reag_mandrake_root>
+tag.8 <eval <tag.8>>+<src.rescount i_reag_black_pearl>
+tag.6 <eval <tag.6>>+<src.rescount i_reag_garlic>
+tag.5 <eval <tag.5>>+<src.rescount i_reag_ginseng>
+tag.1 <eval <tag.1>>+<src.rescount i_reag_blood_moss>
+tag.3 <eval <tag.3>>+<src.rescount i_reag_nightshade>
+tag.2 <eval <tag.2>>+<src.rescount i_reag_sulfur_ash>
+tag.4 <eval <tag.4>>+<src.rescount i_reag_spider_silk>
+src.sysmessage @68,1,1 Cantanizdaki butun reagentlari crystal'e eklediniz.
+src.f_allreagsdelete
+
+[function f_allreagsdelete]
+src.findtype.t_reagent.remove
+if (<src.findtype.t_reagent>)
+	f_allreagsdelete
+endif
+
+[function f_reagdusur]
+if (<more> == 2)
+	tag.2=(<eval <tag.2>>-<eval <tag.cikan>>)
+	src.sysmessage <eval <tag.cikan>> tane sulfurous ash cikardiniz.
+elseif (<more> == 3)
+	tag.3=(<eval <tag.3>>-<eval <tag.cikan>>)
+	src.sysmessage <eval <tag.cikan>> tane nightshade cikardiniz.
+elseif (<more> == 4)
+	tag.4=(<eval <tag.4>>-<eval <tag.cikan>>)
+	src.sysmessage <eval <tag.cikan>> tane spider's silk cikardiniz.
+elseif (<more> == 5)
+	tag.5=(<eval <tag.5>>-<eval <tag.cikan>>)
+	src.sysmessage <eval <tag.cikan>> tane ginseng cikardiniz.
+elseif (<more> == 1)
+	tag.1=(<eval <tag.1>>-<eval <tag.cikan>>)
+	src.sysmessage <eval <tag.cikan>> tane blood moss cikardiniz.
+elseif (<more> == 8)
+	tag.8=(<eval <tag.8>>-<eval <tag.cikan>>)
+	src.sysmessage <eval <tag.cikan>> tane black pearl cikardiniz.
+elseif (<more> == 7)
+	tag.7=(<eval <tag.7>>-<eval <tag.cikan>>)
+	src.sysmessage <eval <tag.cikan>> tane mandrake root cikardiniz.
+elseif (<more> == 6)
+	tag.6=(<eval <tag.6>>-<eval <tag.cikan>>)
+	src.sysmessage <eval <tag.cikan>> tane garlic cikardiniz.
+endif
+
+[function f_reagdusurall]
+tag.2=(<eval <tag.2>>-<eval <tag.cikan>>)
+tag.3=(<eval <tag.3>>-<eval <tag.cikan>>)
+tag.4=(<eval <tag.4>>-<eval <tag.cikan>>)
+tag.5=(<eval <tag.5>>-<eval <tag.cikan>>)
+tag.1=(<eval <tag.1>>-<eval <tag.cikan>>)
+tag.8=(<eval <tag.8>>-<eval <tag.cikan>>)
+tag.7=(<eval <tag.7>>-<eval <tag.cikan>>)
+tag.6=(<eval <tag.6>>-<eval <tag.cikan>>)
+src.newitem i_reag_sulfur_ash
+src.act.amount <eval <tag.cikan>>
+src.act.cont=<src.findlayer(21).uid>
+src.newitem i_reag_nightshade
+src.act.amount <eval <tag.cikan>>
+src.act.cont=<src.findlayer(21).uid>
+src.newitem i_reag_spider_silk
+src.act.amount <eval <tag.cikan>>
+src.act.cont=<src.findlayer(21).uid>
+src.newitem i_reag_ginseng
+src.act.amount <eval <tag.cikan>>
+src.act.cont=<src.findlayer(21).uid>
+src.newitem i_reag_blood_moss
+src.act.amount <eval <tag.cikan>>
+src.act.cont=<src.findlayer(21).uid>
+src.newitem i_reag_black_pearl
+src.act.amount <eval <tag.cikan>>
+src.act.cont=<src.findlayer(21).uid>
+src.newitem i_reag_mandrake_root
+src.act.amount <eval <tag.cikan>>
+src.act.cont=<src.findlayer(21).uid>
+src.newitem i_reag_garlic
+src.act.amount <eval <tag.cikan>>
+src.act.cont=<src.findlayer(21).uid>
+
+		
+[dialog d_regcikar]
+250,250
+nomove
+
+resizepic 10 35 9300 200 90
+resizepic 15 60 9300 190 35
+button 175 97 4005 4006 1 0 1
+textentry 25 66 600 20 1152 1 0
+text 15 40 1152 1
+
+[dialog d_regcikar text]
+<eval <tag.<eval <more>>>>
+Cikarilacak reagent sayisi
+
+[dialog d_regcikar button]
+On=1
+if !(<isnum <argtxt[1]>>)
+	src.sysmessage @38,1,1 Hatali karakter kullanimi.
+	return 1
+endif
+if !(strmatch('<baseid>','i_reag_cris'))
+	src.sysmessage @38 Sistem hatasi.
+	return 1
+endif
+if (<more> == 0)
+	src.sysmessage @38 Sistem hatasi.
+	return 1
+endif
+if !(<eval <argtxt[1]>> > <tag.<eval <more>>>)
+	if !(<eval <argtxt[1]>> <= 0) && (<eval <argtxt[1]>> <= <eval 65000>)
+		tag.cikan=<argtxt[1]>
+		f_reagdusur
+		src.newitem i_reag_<tag.reagn>
+		src.act.amount <argtxt[1]>
+		src.act.cont=<src.findlayer(21).uid>
+	elseif (<eval <argtxt[1]>> > <eval 65000>)
+		src.sysmessage Bu kadar reagent'i bir defada cikaramazsiniz.
+	else
+		src.sysmessage Reagent cikarilmadi.
+	endif
+else
+	src.sysmessage Crystal'de bu kadar reagent bulunmuyor.
+endif
+more 00
+tag.reagn=
+tag.cikan=
+On=0
+more 00
+tag.reagn=
+tag.cikan=
+
+[dialog d_regcikar1]
+250,250
+nomove
+
+resizepic 10 35 9300 200 90
+resizepic 15 60 9300 190 35
+button 175 97 4005 4006 1 0 1
+textentry 25 66 600 20 1152 1 0
+text 15 40 1152 1
+
+[dialog d_regcikar1 text]
+<eval <tag.<eval <more>>>>
+Cikarilacak reagent sayisi
+
+[dialog d_regcikar1 button]
+On=1
+if !(<isnum <argtxt[1]>>)
+	src.sysmessage @38,1,1 Hatali karakter kullanimi.
+	return 1
+endif
+if !(strmatch('<baseid>','i_reag_cris'))
+	src.sysmessage @38 Sistem hatasi.
+	return 1
+endif
+if (<eval <argtxt[1]>> > <eval 65000>)
+	src.sysmessage @38,1,1 Bu kadar reagent'i bir defada cikaramazsiniz.
+	return 1
+endif
+if !((<eval <argtxt[1]>> > <tag.1>) || (<eval <argtxt[1]>> > <tag.2>) || (<eval <argtxt[1]>> > <tag.3>) || (<eval <argtxt[1]>> > <tag.4>) || (<eval <argtxt[1]>> > <tag.5>) || (<eval <argtxt[1]>> > <tag.6>) || (<eval <argtxt[1]>> > <tag.7>) || (<eval <argtxt[1]>> > <tag.8>))
+	if !(<eval <argtxt[1]>> <= 0) && (<eval <argtxt[1]>> <= <eval 65000>)
+		tag.cikan=<argtxt[1]>
+		f_reagdusurall
+	else
+		src.sysmessage @38,1,1 Reagent cikarilmadi.
+	endif
+else
+	src.sysmessage @38,1,1 Crystal'de bu kadar reagent bulunmuyor.
+endif
+more 00
+
+On=0
+more 00
+tag.reagn=
+
+[dialog d_reagentinfop]
+290,130
+resizepic 5 70 5054 350 280
+resizepic 15 80 5054 331 260
+
+text 120 85 <eval 995> 16
+tilepic 195 112 <eval 0f7b> // blood moss
+gumppic 210 128 2443
+text 220 130 <eval 5> 0
+text 232 110 <eval 5> 1
+tilepic 10 112 <eval 0f8c> // sulfurous ash 
+gumppic 22 128 2443 
+text 33 130 <eval 5> 2 
+text 48 110 <eval 5> 3 
+tilepic 10 164 <eval 0f88> // nightshade 
+gumppic 22 184 2443 
+text 33 186 <eval 5> 4 
+text 45 162 <eval 5> 5 
+tilepic 13 216 <eval 0f8d> // spider silk 
+gumppic 22 233 2443 
+text 33 235 <eval 5> 6 
+text 45 214 <eval 5> 7 
+tilepic 10 268 <eval 0f85> // ginseng 
+gumppic 22 285 2443 
+text 33 287 <eval 5> 8 
+text 45 266 <eval 5> 9 
+tilepic 200 273 <eval 0f84> // garlic 
+gumppic 210 285 2443 
+text 220 287 <eval 5> 10 
+text 232 266 <eval 5> 11 
+tilepic 200 216 <eval 0f86> // mandrake root
+gumppic 210 233 2443 
+text 220 235 <eval 5> 12 
+text 232 214 <eval 5> 13
+tilepic 198 168 <eval 0f7a> // black pearl 
+gumppic 210 184 2443 
+text 220 186 <eval 5> 14 
+text 232 162 <eval 5> 15
+
+[dialog d_reagentinfop TEXT]
+<eval <tag.1>>
+Blood Moss
+<eval <tag.2>>
+Sulfurous Ash
+<eval <tag.3>>
+Nightshade
+<eval <tag.4>>
+Spider's Silk
+<eval <tag.5>>
+Ginseng
+<eval <tag.6>>
+Garlic
+<eval <tag.7>>
+Mandrake Root
+<eval <tag.8>>
+Black Pearls
+Reagent Crystal
+Reagent ekle
+
+[dialog d_reagentinfop BUTTON]

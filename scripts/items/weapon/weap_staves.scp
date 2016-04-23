@@ -1,0 +1,355 @@
+[itemdef 0df0]
+defname i_staff_black
+type T_WEAPON_MACE_STAFF
+flip 1
+dam 8,33
+skill Macefighting
+reqstr 35
+twohands Y
+weight 8.7
+category Provisions - Weapons
+subsection Staves
+description Black Staff
+dupelist 0df1
+skillmake CARPENTRY 50.0, t_carpentry
+resources 8 i_log
+//RESOURCES2=1 i_log
+
+On=@Create
+hitpoints 25
+
+On=@Damage
+src.dropstam
+
+on=@equip
+src.events +e_dismount
+
+on=@unequip
+src.events -e_dismount
+src.events -e_parcala
+
+[itemdef 0df1] // black staff
+dupeitem 0df0
+
+[itemdef 013f8]
+defname i_staff_gnarled
+weight 9.2
+type T_WEAPON_MACE_STAFF
+flip 1
+dam 10,30
+skill Mace Fighting
+twohands Y
+category Provisions - Weapons
+subsection Staves
+description Gnarled Staff
+dupelist 013f9
+skillmake CARPENTRY 78.9, t_carpentry
+resources 7 i_log
+
+On=@Create
+hitpoints 25
+
+On=@Damage
+src.dropstam
+
+on=@equip
+src.events +e_dismount
+
+on=@unequip
+src.events -e_dismount
+
+[itemdef 013f9] // gnarled staff
+dupeitem 013f8
+
+[itemdef 0e89]
+defname i_staff_quarter
+type T_WEAPON_MACE_STAFF
+flip 1
+resources 6 i_log
+skillmake CARPENTRY 73.6, t_carpentry
+dam 8,28
+SPEED=48
+skill MaceFighting
+reqstr 30
+twohands N
+weight 5.5
+category Provisions - Weapons
+subsection Staves
+description Quarter Staff
+dupelist 0e8a
+
+On=@Create
+hitpoints 25
+
+On=@Damage
+src.dropstam
+
+on=@equip
+src.events +e_dismount
+
+on=@unequip
+src.events -e_dismount
+
+[itemdef 0e8a] // quarter staff
+dupeitem 0e89
+
+[itemdef 013f4]
+defname i_shepherds_crook
+weight 10
+type T_WEAPON_MACE_CROOK
+flip 1
+dam 3,12
+twohands Y
+category Provisions - Weapons
+subsection Staves
+description Sheperd's Crook
+dupelist 013f5
+resources 7 i_log
+skillmake CARPENTRY 78.9, t_carpentry
+
+On=@Create
+hitpoints 25
+
+On=@Damage
+src.dropstam
+
+on=@equip
+src.events +e_dismount
+
+on=@unequip
+src.events -e_dismount
+
+[itemdef 013f5] // shepherd's crook
+dupeitem 013f4
+
+[itemdef i_tc_bs3]
+name magical black staff
+id 0df0
+type T_WEAPON_MACE_STAFF
+dam 8,33
+skill Macefighting
+reqstr 30
+twohands Y
+weight 8.7
+
+On=@Create
+morey 20.0
+attr attr_magic
+hitpoints 25
+color 02bc
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [ruin]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@DClick
+equip
+return 1
+
+On=@Equip
+if (<src.macefighting> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 20.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+src.events +e_dismount
+color 02bc
+
+on=@unequip
+src.events -e_dismount
+
+[itemdef i_tc_bs6]
+name magical black staff
+id 0df0
+type T_WEAPON_MACE_STAFF
+dam 8,33
+skill Macefighting
+reqstr 30
+twohands Y
+weight 8.7
+
+On=@Create
+morey 40.0
+attr attr_magic
+hitpoints 25
+color 0373
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [might]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@DClick
+equip
+return 1
+
+On=@Equip
+if (<src.macefighting> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 40.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+src.events +e_dismount
+color 0373
+
+on=@unequip
+src.events -e_dismount
+
+[itemdef i_tc_bs9]
+name magical black staff
+id 0df0
+type T_WEAPON_MACE_STAFF
+dam 8,33
+skill Macefighting
+reqstr 30
+twohands Y
+weight 8.7
+
+On=@Create
+morey 60.0
+attr attr_magic
+hitpoints 25
+color 070d
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [force]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@DClick
+equip
+return 1
+
+On=@Equip
+if (<src.macefighting> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 60.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+src.events +e_dismount
+color 070d
+
+on=@unequip
+src.events -e_dismount
+
+[itemdef i_tc_bs12]
+name magical black staff
+id 0df0
+type T_WEAPON_MACE_STAFF
+dam 8,33
+skill Macefighting
+reqstr 30
+twohands Y
+weight 8.7
+
+On=@Create
+morey 80.0
+attr attr_magic
+hitpoints 25
+color 075f
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [power]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@DClick
+Equip
+return 1
+
+On=@Equip
+if (<src.macefighting> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 80.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+src.events +e_dismount
+color 075f
+
+on=@unequip
+src.events -e_dismount
+
+[itemdef i_tc_bs15]
+name magical black staff
+id 0df0
+type T_WEAPON_MACE_STAFF
+dam 8,33
+skill Macefighting
+reqstr 30
+twohands Y
+weight 8.7
+
+On=@Create
+morey 100.0
+attr attr_magic
+hitpoints 25
+color 0454
+
+On=@Click
+message a <name>
+if (<attr>&(attr_identified))  
+	message [vanquishing]
+endif 
+return 1
+
+On=@Damage
+src.dropstam
+
+On=@DClick
+equip
+return 1
+
+On=@Equip
+if (<src.macefighting> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+
+if (<src.tactics> < 100.0)
+	src.sysmessage Bu silahi kullanacak beceriye sahip degilsiniz.
+	unequip
+endif
+src.events +e_dismount
+color 0454
+
+on=@unequip
+src.events -e_dismount
+
+[EOF]

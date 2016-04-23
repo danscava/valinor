@@ -1,0 +1,229 @@
+// ----------------------------
+// HELP.SCP - GM PAGE MENUSU 
+// SON GUNCELLENME TARIHI: 5 Ocak 2002 -cQ
+// ----------------------------
+version 0.55
+
+[function HelpPage]
+var.br <br
+var.center <center
+var.centerb </center
+var.a <a href=
+var.ab </a
+var.b <b
+var.bb </b
+var.font1 <basefont color=#20aa20
+var.font2 <basefont color=#aa0000
+DIALOGCLOSE d_helpmenu
+dialog d_helpmenu
+
+
+[dialog d_helpmenu]
+50,50
+nomove
+
+resizepic 50 10 5120 495 240
+resizepic 60 20 3000 475 220
+
+//htmlgump 78 45 200 20 0 0 0
+htmlgump 117 82 200 20 1 0 0
+htmlgump 117 102 200 20 2 0 0
+htmlgump 117 122 200 20 5 0 0
+//htmlgump 117 142 200 20 3 0 0
+//htmlgump 117 162 200 20 7 0 0
+
+htmlgump 90 202 250 20 9 0 0
+//htmlgump 120 162 200 20 10 0 0
+
+button 84 80 4006 4007 1 0 1
+button 84 100 4006 4007 1 0 2
+button 84 120 4006 4007 1 0 5
+//button 84 140 4006 4007 1 0 3
+//button 84 160 4006 4007 1 0 4
+
+resizepic 265 31 2620 260 199
+htmlgump 275 38 250 185 8 0 1
+
+[dialog d_helpmenu text]
+VALINOR YARDIM
+GM Cagrisi (page)
+Takilma (stuck)
+Valinor Web Sitesi
+Valinor UO
+Oneri, sikayet, bug
+Kapat
+Forumlar
+Onemli bir sorunu, yetkili yardimi olmadan cozemiyorsaniz page atma hakkina sahipsiniz;<var.br>><var.br>>- Eger sorununuz yetkili yardimi olmadan halledilebilecekse,<var.br>>- Ultima Online bilgisi eksikliginden kaynaklaniyorsa,<var.br>>- Karakterinizin ismi hakkinda, stat/skill kitlendi artmiyor seklinde ise,<var.br>>- "save alin" diyeyse,<var.br>>- Box sirasinda party quit ile oldurulduyseniz (in-game),<var.br>>- Uzak bir yerde olduyseniz,<var.br>>- Sifrenizi oyundan deðistirmeye calisiyorsaniz,<var.br>><var.br>>Veya sorunuzun mantiksiz oldugunun farkindaysaniz, lutfen page ATMAYINIZ.<var.br>>Bu gibi durumlarda yetkililer yardim etmeyecektir. Page atarken sorunu mumkun oldugunca detayli belirtip, sorunu aciklamadan page atmayiniz. Hakaret sayilabilecek bir kelime, anlamsiz off, ufff, pff.. vb. gibi tanima hic bir katkisi olmayan kelimeler kullanmayiniz.<var.br>><var.center>>Valinor Staff<var.br>>
+<var.a>"www.valinor.gen.tr">Web<var.ab>> | <var.a>"www.valinor.gen.tr/forum">Forum<var.ab>> | <var.a>"www.valinor.gen.tr">Kurallar<var.b>>
+
+[dialog d_helpmenu button]
+On=1
+if (<findid.i_jailcik>)
+	sysmessage @1100,,1 Jaildeyken yetkili cagrisi yapamazsiniz.
+//elseif (0<account.plevel> > 1)
+//	sysmessage Dabi dabi dabi.
+else
+	var.pg_font <basefont color=#203040
+	var.pg_font1 <basefont color=#aaaaaa
+	var.pg_font2 <basefont color=#90aa40
+	dialog d_gmpage
+endif
+
+On=2
+if ((<findid.i_jailcik>) || (<src.flags>&statf_stone))
+	sysmessage @1100,,1 Su anda stuck sistemini kullanamazsiniz.
+elseif (<findid.i_stuck.timer> < 0)
+	findid.i_stuck.remove
+	dialog d_helpstuck
+elseif (<findid.i_stuck>)
+	sysmessage @1100,,1 Stuck sistemini sadece 15 dakikada bir kullanabilirsiniz.
+else
+	dialog d_helpstuck
+endif
+
+On=3
+sysmessage @07a1,,1 Lutfen bekleyin...
+weblink www.valinor.gen.tr
+
+On=4
+sysmessage @07a1,,1 Lutfen bekleyin...
+weblink www.valinor.gen.tr/forum
+
+On=5
+sysmessage @1100,,1 Sistem su an devre disidir.
+
+[dialog d_gmpage]
+-180,240
+nomove
+
+resizepic 190 175 5120 643 100
+
+htmlgump 211 200 290 20 0 0 0
+resizepic 208 221 3000 610 26
+textentry 211 225 555 25 0 0 1
+button 785 223 4030 4031 1 0 1
+
+[dialog d_gmpage TEXT]
+<var.pg_font1>>Lutfen sorununuzu aciklayici bir sekilde belirtiniz.
+<tag.pg_reason>
+
+[dialog d_gmpage BUTTON]
+On=0
+sysmessage Page iptal edildi.
+
+On=1
+if (strmatch('<argtxt[0]>',''))
+	sysmessage Sorununuzu belirtmediniz.
+	dialog d_gmpage
+elseif ((strlen(<argtxt[0]>)) > 110)
+	sysmessage Lutfen page'iniz 110 karakteri gecmemesine ozen gosteriniz.
+	tag.pg_reason <argtxt[0]>
+	dialog d_gmpage
+	tag.pg_reason
+else
+	pg_call <argtxt[0]>
+endif
+
+[dialog d_helpstuck]
+50,50
+nomove
+
+resizepic 60 20 3000 225 220
+resizepic 70 30 3000 205 200
+text 105 50 0250 0
+button 85 83 1209 1210 1 0 1
+text 105 80 800 1
+button 85 103 1209 1210 1 0 2
+text 105 100 800 2
+button 85 123 1209 1210 1 0 3
+text 105 120 800 3
+button 85 143 1209 1210 1 0 4
+text 105 140 800 4
+button 85 163 1209 1210 1 0 5
+text 105 160 800 5
+button 135 194 3 4 1 0 0
+text 155 190 800 6
+
+[dialog d_helpstuck text]
+Nereye gideceksiniz?
+Britain
+Moonglow
+Minoc
+Jhelom
+Buc's Den
+Kapat
+
+[dialog d_helpstuck button]
+on=0
+src.dialog d_helpmenu
+return 1
+
+On=1
+sysmessage Bir dakika icinde Britain'e gideceksiniz.
+newitem i_stuck
+act.morep 1495,1629,10
+act.equip
+
+On=2
+sysmessage Bir dakika icinde Moonglow'a gideceksiniz.
+newitem i_stuck
+act.morep 4442,1172
+act.equip
+
+On=3
+sysmessage Bir dakika icinde Minoc'a gideceksiniz.
+newitem i_stuck
+act.morep 2466,544
+act.equip
+
+On=4
+sysmessage Bir dakika icinde Jhelom'a gideceksiniz.
+newitem i_stuck
+act.morep 1383,3815
+act.equip
+
+On=5
+sysmessage Bir dakika icinde Buccaneer's Den'e gideceksiniz.
+newitem i_stuck
+act.morep 2706,2163
+act.equip
+
+on=6
+src.dialog d_helpmenu
+return 1
+
+[itemdef i_stuck]
+name stuck options
+id 0186a
+type t_eq_script
+weight 0
+layer layer_special
+
+On=@Create
+attr attr_invis|attr_newbie
+more1 60
+
+On=@Equip
+src.sayu * stucked *
+timer 1
+	
+On=@Timer
+if (<cont>)
+	if (<more2>)
+		cont.sysmessage Stuck hakkiniz acilmistir.
+		remove
+	elseif (<more1>)
+		cont.sysmessage <eval <more1>>
+		cont.flags <cont.flags>|04
+		more1 (<more1> - 1)
+		timer 1
+	else
+		cont.go <morep>
+		cont.flags <cont.flags>&~04
+		more2 1
+		timer 900
+	endif
+endif
+return 1
+
+[EOF]

@@ -1,0 +1,155 @@
+//****************************************************************************
+//SPHERE by : Menasoft ©1997-2000
+//www.sphereserver.com
+// All SPHERE script files and formats are copyright Menasoft & Pareners.
+// This file may be freely edited for personal use, but may not be distributed
+// in whole or in pare, in any format wiyout express written permission from
+// Menasoft & Pareners.  All donations and contributions
+// become the property of Menasoft & Pareners.
+//****************************************************************************
+// FILE LAST UPDATED: Friday, April 28, 2000
+//
+// COPYRIGHT NOTICE: All files and content are copyright 1997-1999 Menasoft & Pareners. All
+// donations and contributions become the property of Menasoft.
+
+// Purpose: Britannia Actor Script
+// Notes:  This is used for general information pertaining to all Britannian Actor's
+// Current Keyword List:
+//	job, ac*tor, what*do*do, ac-tore, stage, perform, Noble, Lord British,
+//	are, theatre, theater, costume, clothe, sissy, wuss, priss,  real job
+
+// Türçeleþtiren sL. Lütfen Türkçe karakter kullanmamaya çalýþýn.
+[SPEECH jobActor]
+ON=Hi*
+ON=Greet*
+ON=Hello*
+ON=Hail*
+On=Selam*
+	IF ( <SRC.KARMA> >= 0 )
+		SAY=AAa,Merhaba <SRC.NAME>!  imza ister misin?
+	ELIF ( <SRC.KARMA> >= -1000 )
+		SAY=Selamlar arkadas! imza ister misin?
+	ELSE
+		SAY=Ne olur bana bir sey yapma. Sana zarar veremem.
+	ENDIF
+
+ON=*job*
+ON=*work*
+ON=*what*do*do*
+ON=*profession*
+ON=*occupation*
+ON=*ac*tor*
+ON=*ac-tore*
+	DORAND 4
+		SAY Ben bir Artistim.!
+		SAY Lord British gibi bu diger soylulari icin en iyi iyi oyunlari sergiledim.
+		SAY Sahnede 'iblis'in gecesi' ismindeki oyun sergileniyor.
+		SAY <SRC.SEX Lord'um/Leydim> Ben sadece basit bir oyuncuyum. Basit bir tiyatro oyuncusu.
+	ENDDO
+ON=*stage*
+ON=*perform*
+	DORAND 3
+		SAY Hayat bir sahnedir; Her bireyin kendi kaderlerini sergiledigi. Ben sadece en iyisi olmak istiyorum.
+		SAY Nefes almam da oyunum, burada gezinmem de. Hayat sahnedir dostum hayat bir sahne. Sen de bir hademesin. 
+		SAY Benim istedigim sahne burada dostum. Tam burada. Sen de sahnenin icindesin. 
+	ENDDO
+ON=*Noble*
+ON=*Lord British*
+ON=* are*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			SAY Bu diyarlardaki soylular bize hep destek oluyor. Galiba sahnelenen basit oyunlar zevk veriyor bu insanlara. 
+			SAY Lord British tiyatronun en .
+			SAY The ares prospers in Britannia, thanks to the generosity of Lord British and the great nobles of this land.
+		ENDDO
+	ELSE
+		DORAND 3
+			SAY Bu sehirin soylulugu onun en kudretli destekleyicisidir denilir.
+			SAY Lord British de tiyatroyu sever. Bizim gibilere hep destek verir. 
+			SAY Meteliksiz kalmaktan bizi Lord British varken korkmuyorum. O ve diger soylular bize destek veriyor. 
+		ENDDO
+ON=*theatre*
+ON=*theater*
+	DORAND 2
+		SAY Sahne beni ayakta tutan tek neden.!
+		SAY Ah! Hayat tiyatroda irdelenir, tiyatro ile zenginlesir.
+	ENDDO
+ON=*costume*
+	DORAND 2
+		SAY Ne giyersin ? Benimkini asla cikarmam. 
+		SAY Elbise insan yapar ? insan elbise yapar ? 
+	ENDDO
+ON=*clothe*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 2
+			SAY Terziden elbise alabilirsiniz. <SRC.SEX milord/milady>.
+			SAY A tailor can supply thee with clothes.
+		ENDDO
+	ELIF ( <COMPLEXITY.MEDIUM> )
+		DORAND 2
+			SAY A good tailor can sell thee clothes.<SRC.SEX Lord'um/Leydim>
+			SAY Elbiseye gereksiniminiz varsa terziye gidin. 
+		ENDDO
+	ELSE
+		DORAND 2
+			SAY Bir terzi size elbise satabilir.
+			SAY Bir terzi bulun, O size elbesi bulur. 
+		ENDDO
+	ENDIF
+ON=*sissy*
+ON=*wuss*
+ON=*priss*
+ON=*real job*
+	IF ( <COMPLEXITY.HIGH> || <COMPLEXITY.MEDIUM> )
+		DORAND 3
+			SAY I shall brook no discourtesy from the likes of a bottom-dweller like thyself![Leave]
+			SAY art you mocking me? Well thy ignorant words fall on deaf ears.
+			SAY You are not of the intelligence to understand what it is that we suffer so diligently to accomplish, <SRC.SEX milord/milady>. Compassion is not a virtue of thine!
+	ELSE
+		DORAND 3
+			SAY I shall brook no discourtesy from the likes of a bottom-dweller like thyself![Leave]
+			SAY art you mocking me?
+			SAY You are not of the intelligence to understand what it is that we suffer so diligently to accomplish, <SRC.SEX milord/milady>. Compassion is not a virtue of thine!
+		ENDDO
+	ENDIF
+
+ON=Job
+ON=What do you do
+	SAY=You must ask? I am an Actor!    *applause*    Thank you!
+
+ON=Bye
+ON=Goodbye
+ON=Farewell
+	SAY=Elveda.
+	BYE
+	return 1
+
+ON=ACTOR
+ON=ACTORE
+	SAY=You hast need of a thespian?
+
+ON=ART
+	SAY=Sanat benimce terkedilemeyecek bir melankonidir. 
+
+ON=CLOTHE
+ON=COSTUME
+	SAY='Tis merely the raiment of the thespian.
+ON=NOBLE
+	SAY=Yes, I am quite noble -- that is no act, friend! My thanks to thee.  ON=PERFORM
+	SAY=If you wouldst see me perform then come to the theater this eve.
+ON=PRISS
+	SAY=I do not PRISS. I move with grace and style.
+ON=REAL
+	SAY=Who among us can say what is real.
+ON=SISSY
+	SAY=Excuse me but I will not banter words with a fool.
+ON=STAGE
+	SAY=Ah!  My playground! You shouldst attend the theatre!
+ON=THEATER
+ON=THEATRE
+	SAY=Pick a theater, any theater!  I will perform for thee!
+ON=WUSS
+	SAY= Excuse me but I will not banter words with a fool.
+	//RANDOM= Hear ye! Hear ye! You are invited to view the spectacle  of life and death at the grand theater.
+
+[EOF]

@@ -1,0 +1,45 @@
+[itemdef i_nofield]
+name=Relic of Evil
+id=i_crystal_red
+type=t_script
+
+ON=@create
+attr=attr_move_never|attr_invis
+timer=1
+
+ON=@timer
+foritems 3
+if (<attr>&attr_magic)
+if <type==t_magic>
+timer
+endif
+endif
+endfor
+timer=1
+attr=attr_move_never|attr_invis
+return 1
+
+ON=@dclick
+return 1
+
+on=@click
+message @1153 a field remover
+return 1
+
+[itemdef i_firekontrol]
+id i_gold
+type t_normal
+name fire field kontrol
+
+on=@create
+attr attr_invis
+timer 0
+
+on=@timer
+foritems 0
+if (<type> == t_spell) && ((<region.isevent.r_house_private>) || (<region.isevent.r_house_public>))
+remove
+endif
+endfor
+remove
+return 1

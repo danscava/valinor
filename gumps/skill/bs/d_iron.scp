@@ -1,0 +1,1177 @@
+// ----------------------------
+// Lyn Blacksmitg Dialogs
+// Admin Lyn
+// ----------------------------
+VERSION=0.55r
+
+
+[function d_ironmenu]
+src.tag.makelast <src.tag.makelast>
+var.noticebs yaninizdaki 'iron ingot' adedi: <src.rescount i_ingot_iron>, blacksmithing bilginiz: %<src.blacksmithing>
+dialog d_iron
+
+[dialog d_iron]
+0,40
+
+page 0
+resizepic 50 10 5120 595 310 // dis lacivert bg
+resizepic 60 20 3000 575 290
+resizepic 200 55 3000 420 170 // item cercevesi yenii
+resizepic 200 230 3000 421 40 // noticess yeni
+
+htmlgump 200 30 210 20 0 0 0 // baslik seysi
+htmlgump 205 231 410 40 1 0 0 // notices tekst
+htmlgump 233 278 100 20 2 0 0 // tekrar yap
+htmlgump 558 278 25 20 9 0 0 // cikis
+
+button 200 275 4030 4031 1 0 98 <eval <tag.tinkering>> // tekrar yap buttonu
+button 589 275 4018 4019 1 0 0 // cikis butonu
+button 350 275 4030 4031 1 0 99 // tamir
+
+htmlgump 385 278 100 20 63 0 0 // tekrar yap
+htmlgump 80 278 100 20 62 0 0 // Ingot name
+
+button 70 75 4006 4007 0 1 1 // Platemail
+button 70 95 4006 4007 0 2 1 // Chainmail
+button 70 115 4006 4007 0 3 1 // Ringmail
+button 70 135 4006 4007 0 4 1 // Helms
+button 70 155 4006 4007 0 5 1 // Shields
+button 70 175 4006 4007 0 6 1 // Weapons
+button 70 195 4006 4007 0 7 1 // Weapons II
+button 70 215 4006 4007 0 8 1 // Weapons II
+button 70 235 4006 4007 0 9 1 // Weapons II
+
+htmlgump 103 77 100 20 3 0 0 // Platemail
+htmlgump 103 97 100 20 4 0 0 // Chainmail
+htmlgump 103 117 100 20 5 0 0 // Ringmail
+htmlgump 103 137 100 20 6 0 0 // Helms
+htmlgump 103 157 100 20 7 0 0 // Shields
+htmlgump 103 177 100 20 33 0 0 // Weapons
+htmlgump 103 197 100 20 34 0 0 // Weapons II
+htmlgump 103 217 100 20 35 0 0 // Weapons II
+htmlgump 103 237 100 20 36 0 0 // Weapons II
+
+page 1 ////////////////////////////////////////////////////////
+tilepic 215 70 5142 // platemail
+button 210 100 2714 2715 1 0 10
+htmlgump 230 100 80 20 10 0 0
+
+tilepic 325 70 7173 // female armor
+button 310 100 2714 2715 1 0 11
+htmlgump 330 100 80 20 11 0 0
+
+tilepic 425 70 5146 // leggings
+button 410 100 2714 2715 1 0 12
+htmlgump 430 100 80 20 12 0 0
+
+tilepic 230 145 5145 // helm
+button 210 170 2714 2715 1 0 13
+htmlgump 230 170 80 20 13 0 0
+
+tilepic 325 150 5143 // arms
+button 310 170 2714 2715 1 0 14
+htmlgump 330 170 80 20 14 0 0
+
+tilepic 425 150 5144 // gloves
+button 410 170 2714 2715 1 0 15
+htmlgump 430 170 80 20 15 0 0
+
+tilepic 535 150 5139 // gorget
+button 510 170 2714 2715 1 0 16
+htmlgump 530 170 100 20 16 0 0
+
+page 2 ////////////////////////////////////////////////////////
+tilepic 230 67 5060 // chainmail
+button 210 100 2714 2715 1 0 17
+htmlgump 230 100 80 20 17 0 0
+
+tilepic 330 67 5059 // leggings
+button 310 100 2714 2715 1 0 18
+htmlgump 330 100 80 20 18 0 0
+
+tilepic 430 75 5056 // coif
+button 410 100 2714 2715 1 0 19
+htmlgump 430 100 80 20 19 0 0
+
+page 3 ////////////////////////////////////////////////////////
+tilepic 215 70 5101 // ringmail
+button 210 100 2714 2715 1 0 20
+htmlgump 230 100 80 20 20 0 0
+
+tilepic 320 75 5105 // leggings
+button 310 100 2714 2715 1 0 21
+htmlgump 330 100 80 20 21 0 0
+
+tilepic 225 145 5103 // sleeves
+button 210 170 2714 2715 1 0 22
+htmlgump 230 170 80 20 22 0 0
+
+tilepic 330 150 5106 // gloves
+button 310 170 2714 2715 1 0 23
+htmlgump 330 170 80 20 23 0 0
+
+page 4 //////////////////////////////////////////////////////// 
+tilepic 225 80 5128 // close
+button 210 100 2714 2715 1 0 24
+htmlgump 230 100 80 20 24 0 0
+
+tilepic 315 80 5130 // helmet
+button 310 100 2714 2715 1 0 25
+htmlgump 330 100 80 20 25 0 0
+
+tilepic 225 145 5132 // bascinet
+button 210 170 2714 2715 1 0 26
+htmlgump 230 170 80 20 26 0 0
+
+tilepic 315 145 5134 // nose
+button 310 170 2714 2715 1 0 27
+htmlgump 330 170 80 20 27 0 0
+
+page 5 ////////////////////////////////////////////////////////
+tilepic 220 80 7027 // buckler
+button 210 100 2714 2715 1 0 28
+htmlgump 230 100 80 20 28 0 0
+
+tilepic 320 80 7035 // metal
+button 310 100 2714 2715 1 0 29
+htmlgump 330 100 80 20 29 0 0
+
+tilepic 420 72 7031 // heater
+button 410 100 2714 2715 1 0 30
+htmlgump 430 100 80 20 30 0 0
+
+tilepic 230 145 7026 // helm
+button 210 170 2714 2715 1 0 31
+htmlgump 230 170 80 20 31 0 0
+
+tilepic 325 145 7029 // arms
+button 310 170 2714 2715 1 0 32
+htmlgump 330 170 80 20 32 0 0
+
+page 6 ////////////////////////////////////////////////////////SWORDS
+tilepic 215 70 5050 //
+button 210 100 2714 2715 1 0 33
+htmlgump 230 100 80 20 37 0 0
+
+tilepic 325 70 3936 //
+button 310 100 2714 2715 1 0 34
+htmlgump 330 100 80 20 38 0 0
+
+tilepic 425 70 3935 //
+button 410 100 2714 2715 1 0 35
+htmlgump 430 100 80 20 39 0 0
+
+tilepic 525 70 5118 // 
+button 510 100 2714 2715 1 0 36
+htmlgump 530 100 80 20 40 0 0
+
+tilepic 230 145 5045 // 
+button 210 170 2714 2715 1 0 37
+htmlgump 230 170 80 20 41 0 0
+
+tilepic 325 150 5184 //
+button 310 170 2714 2715 1 0 38
+htmlgump 330 170 80 20 42 0 0
+
+tilepic 425 150 5182 //
+button 410 170 2714 2715 1 0 39
+htmlgump 430 170 80 20 43 0 0
+
+tilepic 535 150 3918 // 
+button 510 170 2714 2715 1 0 40
+htmlgump 530 170 100 20 44 0 0
+
+page 7 ////////////////////////////////////////////////////////AXES
+tilepic 215 70 3910 //
+button 210 100 2714 2715 1 0 41
+htmlgump 230 100 80 20 45 0 0
+
+tilepic 325 70 3912 // 
+button 310 100 2714 2715 1 0 42
+htmlgump 330 100 80 20 46 0 0
+
+tilepic 425 70 3914 // 
+button 410 100 2714 2715 1 0 43
+htmlgump 430 100 80 20 47 0 0
+
+tilepic 525 70 3916 // 
+button 510 100 2714 2715 1 0 44
+htmlgump 530 100 80 20 48 0 0
+
+tilepic 230 145 5114 //
+button 210 170 2714 2715 1 0 45
+htmlgump 230 170 80 20 49 0 0
+
+tilepic 325 150 5186 //
+button 310 170 2714 2715 1 0 46
+htmlgump 330 170 80 20 50 0 0
+
+
+page 8 ////////////////////////////////////////////////////////
+tilepic 215 70 3933 //
+button 210 100 2714 2715 1 0 47
+htmlgump 230 100 80 20 51 0 0
+
+tilepic 325 70 5176 // 
+button 310 100 2714 2715 1 0 48
+htmlgump 330 100 80 20 52 0 0
+
+tilepic 425 70 5126 // 
+button 410 100 2714 2715 1 0 49
+htmlgump 430 100 80 20 53 0 0
+
+tilepic 525 70 5178 // 
+button 510 100 2714 2715 1 0 50
+htmlgump 530 100 80 20 54 0 0
+
+tilepic 230 145 5091 //
+button 210 170 2714 2715 1 0 51
+htmlgump 230 170 80 20 55 0 0
+
+tilepic 325 150 5039 //
+button 310 170 2714 2715 1 0 52
+htmlgump 330 170 80 20 56 0 0
+
+
+page 9 ////////////////////////////////////////////////////////
+tilepic 225 80 3922 //
+button 210 100 2714 2715 1 0 53
+htmlgump 230 100 80 20 57 0 0
+
+tilepic 325 70 5120 // 
+button 310 100 2714 2715 1 0 54
+htmlgump 330 100 80 20 58 0 0
+
+tilepic 425 70  5124 // 
+button 410 100 2714 2715 1 0 55
+htmlgump 430 100 80 20 59 0 0
+
+tilepic 525 70  5122 // 
+button 510 100 2714 2715 1 0 56
+htmlgump 530 100 80 20 60 0 0
+
+tilepic 230 145 3939 //
+button 210 170 2714 2715 1 0 57
+htmlgump 230 170 80 20 61 0 0
+
+	
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+
+[dialog d_iron text]
+<serv.servname> BLACKSMITH MENU 	//1
+<var.noticebs>
+Tekrar Yap
+Platemail
+Chainmail
+Ringmail
+Helms
+Shields
+Weapons
+Cikis
+platemail		// 10
+female ar.
+leggings
+helm
+arms
+gloves
+gorget
+chainmail
+leggings
+coif
+ringmail		// 20
+leggings
+sleeves
+gloves
+close
+helmet
+bascinet
+nose
+buckler
+metal
+heater			// 30
+bronze sh.
+kite sh.
+Swords
+Axes
+Maces
+Fencing
+viking sw.
+longsword
+broadsword
+katana
+scimitar			// 40
+cutlass
+halberd
+bardiche
+exe. axe
+battle axe
+axe
+double axe
+L. double
+two handed axe
+mace		// 50
+war hammer
+war mace
+maul			// 53
+s. hammer
+war axe
+dagger
+kryss
+war fork
+short spear
+spear
+Iron
+Tamir Et
+cutlass
+halberd
+bardcihe
+
+
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////	////////////////////////////////////////////////////////
+
+[dialog d_iron button]
+On=0
+sysmessage @1153 Menu kapatildi..
+
+On=1
+var.noticebs blacksmith ile son yaptiginiz esyayi hatirlayamiyorsunuz.
+dialog d_iron
+
+On=10
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 75.0)
+	var.noticebs platemail yapimi icin %75.0 blacksmithing bilmeniz gerekli.
+elseif !(<src.restest 25 i_ingot_iron>)
+	var.noticebs platemail yapimi icin 25 adet 'iron  ingot' gerekli.
+else
+	var.noticebs platemail yapmaya basladiniz.
+	makeitem i_platemail_chest
+	src.tag.makelast=i_platemail_chest
+endif
+dialog d_iron
+
+On=11
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 70.0)
+	var.noticebs female platemail yapimi icin %70.0 blacksmithing bilmeniz gerekli.
+elseif !(<restest 1 i_ingot_iron>)
+	var.noticebs female platemail yapimi icin 22 adet 'iron ingot' gerekli.
+else
+	var.noticebs female platemail yapmaya basladiniz.
+	makeitem i_armor_female_plate
+	src.tag.makelast=i_armor_female_plate
+endif
+dialog d_iron
+
+On=12
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 66.8)
+	var.noticebs platemail leggings yapimi icin %66,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 20 i_ingot_iron>)
+	var.noticebs platemail leggings yapimi icin 20 adet 'iron ingot' gerekli.
+else
+	var.noticebs platemail leggings yapmaya basladiniz.
+	makeitem i_platemail_leggings
+	src.tag.makelast=i_platemail_leggings
+endif
+dialog d_iron
+
+On=13
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 57.6)
+	var.noticebs plate helm yapimi icin %57,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 15 i_ingot_iron>)
+	var.noticebs plate helm yapimi icin 15 adet 'iron ingot' gerekli.
+else
+	var.noticebs plate helm yapmaya basladiniz.
+	makeitem i_platemail_helm
+	src.tag.makelast=i_platemail_helm
+endif
+dialog d_iron
+
+On=14
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 63.5)
+	var.noticebs platemail arms yapimi icin %63,5 blacksmithing bilmeniz gerekli.
+elseif !(<restest 18 i_ingot_iron>)
+	var.noticebs platemail arms yapimi icin 18 adet 'iron ingot' gerekli.
+else
+	var.noticebs platemail arms yapmaya basladiniz.
+	makeitem i_platemail_arms
+	src.tag.makelast=i_platemail_arms
+endif
+dialog d_iron
+
+On=15
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 53.7)
+	var.noticebs platemail gloves yapimi icin %53,7 blacksmithing bilmeniz gerekli.
+elseif !(<restest 12 i_ingot_iron>)
+	var.noticebs platemail gloves yapimi icin 12 adet 'iron ingot' gerekli.
+else
+	var.noticebs platemail gloves yapmaya basladiniz.
+	makeitem i_platemail_gloves
+	src.tag.makelast=i_platemail_gloves
+endif
+dialog d_iron
+
+
+On=16
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 50.4)
+	var.noticebs platemail gorget yapimi icin %50,4 blacksmithing bilmeniz gerekli.
+elseif !(<restest 10 i_ingot_iron>)
+	var.noticebs platemail gorget yapimi icin 10 adet 'iron ingot' gerekli.
+else
+	var.noticebs platemail gorget yapmaya basladiniz.
+	makeitem i_platemail_gorget
+	src.tag.makelast=i_platemail_gorget
+endif
+dialog d_iron
+
+
+On=17
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 43.8)
+	var.noticebs chainmail tunic yapimi icin %43,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 20 i_ingot_iron>)
+	var.noticebs chainmail tunic yapimi icin 20 adet 'iron ingot' gerekli.
+else
+	var.noticebs chainmail tunic yapmaya basladiniz.
+	makeitem i_chainmail_tunic
+	src.tag.makelast=i_chainmail_tunic
+endif
+dialog d_iron
+
+On=18
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 33.1)
+	var.noticebs chainmail leggings yapimi icin %33,1 blacksmithing bilmeniz gerekli.
+elseif !(<restest 18 i_ingot_iron>)
+	var.noticebs chainmail leggings yapimi icin 18 adet 'iron ingot' gerekli.
+else
+	var.noticebs chainmail leggings yapmaya basladiniz.
+	makeitem i_chainmail_leggings
+	src.tag.makelast=i_chainmail_leggings
+endif
+dialog d_iron
+On=19
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 27.6)
+	var.noticebs chainmail coif yapimi icin %27,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 10 i_ingot_iron>)
+	var.noticebs chainmail coif yapimi icin 10 adet 'iron ingot' gerekli.
+else
+	var.noticebs chainmail coif yapmaya basladiniz.
+	makeitem i_chainmail_coif
+	src.tag.makelast=i_chainmail_coif
+endif
+dialog d_iron
+
+On=20
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 33.1)
+	var.noticebs ringmail tunic yapimi icin %33,1 blacksmithing bilmeniz gerekli.
+elseif !(<restest 18 i_ingot_iron>)
+	var.noticebs ringmail tunic yapimi icin 18 adet 'iron ingot' gerekli.
+else
+	var.noticebs ringmail tunic yapmaya basladiniz.
+	makeitem i_ringmail_tunic
+	src.tag.makelast=i_ringmail_tunic
+endif
+dialog d_iron
+
+On=21
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 27.6)
+	var.noticebs ringmail leggings yapimi icin %27,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 16 i_ingot_iron>)
+	var.noticebs ringmail leggings yapimi icin 16 adet 'iron ingot' gerekli.
+else
+	var.noticebs ringmail leggings yapmaya basladiniz.
+	makeitem i_ringmail_leggings
+	src.tag.makelast=i_ringmail_leggings
+endif
+dialog d_iron
+
+On=22
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 24.3)
+	var.noticebs ringmail sleeves yapimi icin %24,3 blacksmithing bilmeniz gerekli.
+elseif !(<restest 14 i_ingot_iron>)
+	var.noticebs ringmail sleeves yapimi icin 14 adet 'iron ingot' gerekli.
+else
+	var.noticebs ringmail sleeves yapmaya basladiniz.
+	makeitem i_ringmail_sleeves
+	src.tag.makelast=i_ringmail_sleeves
+endif
+dialog d_iron
+
+On=23
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 17.8)
+	var.noticebs ringmail gloves yapimi icin %17,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 10 i_ingot_iron>)
+	var.noticebs ringmail gloves yapimi icin 10 adet 'iron ingot' gerekli.
+else
+	var.noticebs ringmail gloves yapmaya basladiniz.
+	makeitem i_ringmail_gloves
+	src.tag.makelast=i_ringmail_gloves
+endif
+dialog d_iron
+
+On=24
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 58.6)
+	var.noticebs closed helm yapimi icin %58,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 15 i_ingot_iron>)
+	var.noticebs closed helm yapimi icin 15 adet 'iron ingot' gerekli.
+else
+	var.noticebs closed helm yapmaya basladiniz.
+	makeitem i_helm_closed
+	src.tag.makelast=i_helm_closed
+endif
+dialog d_iron
+
+
+On=25
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 58.6)
+	var.noticebs helmet yapimi icin %58,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 15 i_ingot_iron>)
+	var.noticebs helmet yapimi icin 15 adet 'iron ingot' gerekli.
+else
+	var.noticebs helmet yapmaya basladiniz.
+	makeitem i_helm_open
+	src.tag.makelast=i_helm_open
+endif
+dialog d_iron
+
+On=26
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 22.2)
+	var.noticebs bascinet yapimi icin %22,2 blacksmithing bilmeniz gerekli.
+elseif !(<restest 15 i_ingot_iron>)
+	var.noticebs bascinet yapimi icin 15 adet 'iron ingot' gerekli.
+else
+	var.noticebs bascinet yapmaya basladiniz.
+	makeitem i_bascinet
+	src.tag.makelast=i_bascinet
+endif
+dialog d_iron
+
+On=27
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 58.6)
+	var.noticebs nose helm yapimi icin %58,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 15 i_ingot_iron>)
+	var.noticebs nose helm yapimi icin 15 adet 'iron ingot' gerekli.
+else
+	var.noticebs nose helm yapmaya basladiniz.
+	makeitem i_helm_nose
+	src.tag.makelast=i_helm_nose
+endif
+dialog d_iron
+
+On=28
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 8.0)
+	var.noticebs buckler shield yapimi icin %8,0 blacksmithing bilmeniz gerekli.
+elseif !(<restest 10 i_ingot_iron>)
+	var.noticebs buckler shield yapimi icin 10 adet 'iron ingot' gerekli.
+else
+	var.noticebs buckler shield yapmaya basladiniz.
+	makeitem i_shield_buckler
+	src.tag.makelast=i_shield_buckler
+endif
+dialog d_iron
+
+On=29
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 18.0)
+	var.noticebs metal shield yapimi icin %18,0 blacksmithing bilmeniz gerekli.
+elseif !(<restest 14 i_ingot_iron>)
+	var.noticebs metal shield yapimi icin 10 adet 'iron ingot' gerekli.
+else
+	var.noticebs metal shield yapmaya basladiniz.
+	makeitem i_shield_metal
+	src.tag.makelast=i_shield_metal
+endif
+dialog d_iron
+
+On=30
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 40.6)
+	var.noticebs heater shield yapimi icin %40,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 18 i_ingot_iron>)
+	var.noticebs heater shield yapimi icin 18 adet 'iron ingot' gerekli.
+else
+	var.noticebs heater shield yapmaya basladiniz.
+	makeitem i_shield_heater
+	src.tag.makelast=i_shield_heater
+endif
+dialog d_iron
+
+ON=31
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 31.6)
+	var.noticebs bronze shield yapimi icin %31,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 14 i_ingot_iron>)
+	var.noticebs bronze shield yapimi icin 14 adet 'iron ingot' gerekli.
+else
+	var.noticebs bronze shield yapmaya basladiniz.
+	makeitem i_shield_round_bronze
+	src.tag.makelast=i_shield_round_bronze
+endif
+dialog d_iron
+
+ON=32
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 31.6)
+	var.noticebs kite shield yapimi icin %31,6 blacksmithing bilmeniz gerekli.
+elseif !(<restest 14 i_ingot_iron>)
+	var.noticebs kite shield yapimi icin 14 adet 'iron ingot' gerekli.
+else
+	var.noticebs kite shield yapmaya basladiniz.
+	makeitem i_shield_kite_metal
+	src.tag.makelast=i_shield_kite_metal
+endif
+dialog d_iron
+
+
+ON=33
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 50.2)
+	var.noticebs viking sword yapimi icin %50,2 blacksmithing bilmeniz gerekli.
+elseif !(<restest 14 i_ingot_iron>)
+	var.noticebs viking sword yapimi icin 14 adet 'iron ingot' gerekli.
+else
+	var.noticebs viking sword yapmaya basladiniz.
+	makeitem i_sword_viking
+	src.tag.makelast=i_sword_viking
+endif
+dialog d_iron
+
+ON=34
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 53.8)
+	var.noticebs longsword yapimi icin %53,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 12 i_ingot_iron>)
+	var.noticebs longsword yapimi icin 12 adet 'iron ingot' gerekli.
+else
+	var.noticebs longsword yapmaya basladiniz.
+	makeitem i_sword_long
+	src.tag.makelast=i_sword_long
+endif
+dialog d_iron
+
+ON=35
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 60.8)
+	var.noticebs broadsword yapimi icin %60,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 10 i_ingot_iron>)
+	var.noticebs broadsword yapimi icin 10 adet 'iron ingot' gerekli.
+else
+	var.noticebs broadsword yapmaya basladiniz.
+	makeitem i_sword_broad
+	src.tag.makelast=i_sword_broad
+endif
+dialog d_iron
+
+ON=36
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 69.1)
+	var.noticebs katana yapimi icin %69,1 blacksmithing bilmeniz gerekli.
+elseif !(<restest 8 i_ingot_iron>)
+	var.noticebs katana yapimi icin 8 adet 'iron ingot' gerekli.
+else
+	var.noticebs katana yapmaya basladiniz.
+	makeitem i_katana
+	src.tag.makelast=i_katana
+endif
+dialog d_iron
+
+ON=37
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 57.1)
+	var.noticebs scimitar yapimi icin %57,1 blacksmithing bilmeniz gerekli.
+elseif !(<restest 15 i_ingot_iron>)
+	var.noticebs scimitar yapimi icin 15 adet 'iron ingot' gerekli.
+else
+	var.noticebs scimitar yapmaya basladiniz.
+	makeitem i_scimitar
+	src.tag.makelast=i_scimitar
+endif
+dialog d_iron
+
+ON=38
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 50.2)
+	var.noticebs cutlass yapimi icin %50,2 blacksmithing bilmeniz gerekli.
+elseif !(<restest 8 i_ingot_iron>)
+	var.noticebs cutlass yapimi icin 8 adet 'iron ingot' gerekli.
+else
+	var.noticebs cutlass yapmaya basladiniz.
+	makeitem i_cutlass
+	src.tag.makelast=i_cutlass
+endif
+dialog d_iron
+
+ON=39
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 64.2)
+	var.noticebs halberd yapimi icin %64,2 blacksmithing bilmeniz gerekli.
+elseif !(<restest 20 i_ingot_iron>)
+	var.noticebs halberd yapimi icin 20 adet 'iron ingot' gerekli.
+else
+	var.noticebs halberd yapmaya basladiniz.
+	makeitem i_halberd
+	src.tag.makelast=i_halberd
+endif
+dialog d_iron
+
+ON=40
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 57.2)
+	var.noticebs bardiche yapimi icin %57,2 blacksmithing bilmeniz gerekli.
+elseif !(<restest 18 i_ingot_iron>)
+	var.noticebs bardiche yapimi icin 18 adet 'iron ingot' gerekli.
+else
+	var.noticebs bardiche yapmaya basladiniz.
+	makeitem i_bardiche
+	src.tag.makelast=i_bardiche
+endif
+dialog d_iron
+
+
+ON=41
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 59.7)
+	var.noticebs executioner's axe yapimi icin %59,7 blacksmithing bilmeniz gerekli.
+elseif !(<restest 16 i_ingot_iron>)
+	var.noticebs executioner's axe yapimi icin 16 adet 'iron ingot' gerekli.
+else
+	var.noticebs executioner's axe yapmaya basladiniz.
+	makeitem i_axe_exec
+	src.tag.makelast=i_axe_exec
+endif
+dialog d_iron
+
+ON=42
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 56.1)
+	var.noticebs battle axe yapimi icin %56,1 blacksmithing bilmeniz gerekli.
+elseif !(<restest 14 i_ingot_iron>)
+	var.noticebs battle axe yapimi icin 14 adet 'iron ingot' gerekli.
+else
+	var.noticebs battle axe yapmaya basladiniz.
+	makeitem i_axe_battle
+	src.tag.makelast=i_axe_battle
+endif
+dialog d_iron
+
+ON=43
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 59.7)
+	var.noticebs axe yapimi icin %59,7 blacksmithing bilmeniz gerekli.
+elseif !(<restest 14 i_ingot_iron>)
+	var.noticebs axe yapimi icin 14 adet 'iron ingot' gerekli.
+else
+	var.noticebs axe yapmaya basladiniz.
+	makeitem i_axe
+	src.tag.makelast=i_axe
+endif
+dialog d_iron
+
+ON=44
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 55.0)
+	var.noticebs double axe yapimi icin %55,0 blacksmithing bilmeniz gerekli.
+elseif !(<restest 12 i_ingot_iron>)
+	var.noticebs double axe yapimi icin 12 adet 'iron ingot' gerekli.
+else
+	var.noticebs double axe yapmaya basladiniz.
+	makeitem i_axe_double
+	src.tag.makelast=i_axe_double
+endif
+dialog d_iron
+
+ON=45
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 53.8)
+	var.noticebs large battle axe yapimi icin %53,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 14 i_ingot_iron>)
+	var.noticebs large battle axe yapimi icin 12 adet 'iron ingot' gerekli.
+else
+	var.noticebs large battle axe yapmaya basladiniz.
+	makeitem i_axe_battle_large
+	src.tag.makelast=i_axe_battle_large
+endif
+dialog d_iron
+
+ON=46
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 58.5)
+	var.noticebs two handed axe yapimi icin %58,5 blacksmithing bilmeniz gerekli.
+elseif !(<restest 16 i_ingot_iron>)
+	var.noticebs two handed axe yapimi icin 16 adet 'iron ingot' gerekli.
+else
+	var.noticebs two handed axe yapmaya basladiniz.
+	makeitem i_axe_two_hand
+	src.tag.makelast=i_axe_two_hand
+endif
+dialog d_iron
+
+ON=47
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 40.8)
+	var.noticebs mace yapimi icin %40,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 6 i_ingot_iron>)
+	var.noticebs mace yapimi icin 6 adet 'iron ingot' gerekli.
+else
+	var.noticebs mace yapmaya basladiniz.
+	makeitem i_mace
+	src.tag.makelast=i_mace
+endif
+dialog d_iron
+
+ON=48
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 59.7)
+	var.noticebs war hammer yapimi icin %59,7 blacksmithing bilmeniz gerekli.
+elseif !(<restest 16 i_ingot_iron>)
+	var.noticebs war hammer yapimi icin 16 adet 'iron ingot' gerekli.
+else
+	var.noticebs war hammer yapmaya basladiniz.
+	makeitem i_hammer_war
+	src.tag.makelast=i_hammer_war
+endif
+dialog d_iron
+
+ON=49
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 53.8)
+	var.noticebs war mace yapimi icin %53,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 14 i_ingot_iron>)
+	var.noticebs war mace yapimi icin 14 adet 'iron ingot' gerekli.
+else
+	var.noticebs war mace yapmaya basladiniz.
+	makeitem i_mace_war
+	src.tag.makelast=i_mace_war
+endif
+dialog d_iron
+
+ON=50
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 45.5)
+	var.noticebs maul yapimi icin %45,5 blacksmithing bilmeniz gerekli.
+elseif !(<restest 10 i_ingot_iron>)
+	var.noticebs maul yapimi icin 10 adet 'iron ingot' gerekli.
+else
+	var.noticebs maul yapmaya basladiniz.
+	makeitem i_maul
+	src.tag.makelast=i_maul
+endif
+dialog d_iron
+
+
+ON=51
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 10.0)
+	var.noticebs smith's hammer yapimi icin %10,0 blacksmithing bilmeniz gerekli.
+elseif !(<restest 6 i_ingot_iron>)
+	var.noticebs smith's hammer yapimi icin 6 adet 'iron ingot' gerekli.
+else
+	var.noticebs smith's hammer yapmaya basladiniz.
+	makeitem i_hammer_smith
+	src.tag.makelast=i_hammer_smith
+endif
+dialog d_iron
+
+
+ON=52
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 66.4)
+	var.noticebs war axe yapimi icin %66,4 blacksmithing bilmeniz gerekli.
+elseif !(<restest 16 i_ingot_iron>)
+	var.noticebs war axe yapimi icin 16 adet 'iron ingot' gerekli.
+else
+	var.noticebs war axe yapmaya basladiniz.
+	makeitem i_axe_war
+	src.tag.makelast=i_axe_war
+endif
+dialog d_iron
+
+ON=53
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 26.7)
+	var.noticebs dagger yapimi icin %26,7 blacksmithing bilmeniz gerekli.
+elseif !(<restest 3 i_ingot_iron>)
+	var.noticebs dagger yapimi icin 3 adet 'iron ingot' gerekli.
+else
+	var.noticebs dagger yapmaya basladiniz.
+	makeitem i_dagger
+	src.tag.makelast=i_dagger
+endif
+dialog d_iron
+
+ON=54
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 62.0)
+	var.noticebs kryss yapimi icin %62,0 blacksmithing bilmeniz gerekli.
+elseif !(<restest 8 i_ingot_iron>)
+	var.noticebs kryss yapimi icin 8 adet 'iron ingot' gerekli.
+else
+	var.noticebs kryss yapmaya basladiniz.
+	makeitem i_kryss
+	src.tag.makelast=i_kryss
+endif
+dialog d_iron
+
+ON=55
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 63.2)
+	var.noticebs war fork  yapimi icin %63,2 blacksmithing bilmeniz gerekli.
+elseif !(<restest 16 i_ingot_iron>)
+	var.noticebs war fork  yapimi icin 16 adet 'iron ingot' gerekli.
+else
+	var.noticebs war fork yapmaya basladiniz.
+	makeitem i_war_fork
+	src.tag.makelast=i_war_fork
+endif
+dialog d_iron
+
+ON=56
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 70.2)
+	var.noticebs short spear  yapimi icin %70,2 blacksmithing bilmeniz gerekli.
+elseif !(<restest 6 i_ingot_iron>)
+	var.noticebs short spear yapimi icin 6 adet 'iron ingot' gerekli.
+else
+	var.noticebs short spear yapmaya basladiniz.
+	makeitem i_spear_short
+	src.tag.makelast=i_spear_short
+endif
+dialog d_iron
+
+ON=57
+if !(<restest i_hammer_smith>)
+	sysmessage Yaninizda smith's hammer yok.
+	return 1
+endif
+
+if (<blacksmithing> < 73.8)
+	var.noticebs spear  yapimi icin %73,8 blacksmithing bilmeniz gerekli.
+elseif !(<restest 12 i_ingot_iron>)
+	var.noticebs spear yapimi icin 12 adet 'iron ingot' gerekli.
+else
+	var.noticebs spear yapmaya basladiniz.
+	makeitem i_spear
+	src.tag.makelast=i_spear
+endif
+dialog d_iron
+
+
+
+
+
+ON=98
+	src.makeitem=<src.tag.makelast>
+	var.noticebs tekrar yapmaya basladiniz.
+	dialog d_iron	
+
+ON=99
+sysmessage @1153 Tamir etmek istediginiz parcayi secin.
+repair
+
+[EOF]

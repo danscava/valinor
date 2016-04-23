@@ -1,0 +1,261 @@
+[plevel 1]
+medi
+
+[events e_medi]
+ON=@skillstart
+if ((<action> == id(skill_meditation)) || (<action> == meditation))
+   if !(<meditation> < 100.0)
+      if (<eval <mana>+2> > <int>)
+         mana=<int>
+         tag.bonusaktif
+         return 1
+      elseif (<mana> < <int>)
+         if !(0<tag.bonusaktif>)
+src.sysmessage @55,,1 Meditasyon Bonusu
+src.sysmessage @55,,1 Aktif...
+            tag.bonusaktif 1
+         endif
+         mana +=2
+      endif
+   endif
+endif
+
+[function medi]
+if ( <src.magery><=98.1 ) || ( <src.meditation><=98.1 ) || ( <src.evaluatingintel><=98.1) || ( <src.anatomy><=98.1)
+src.sysmessage @1100,,1 Meditasyon bonusunu kullanabilecek kadar kudretli degilsiniz. (Magery 98.0, Meditation 98.0, Eval. Int. 98.0, Anatomy 98.0)
+      events -e_medi
+return 1
+endif
+
+if (<src.fencing>>=0.1) || (<src.swordsmanship>>=0.1) || (<src.archery>>=0.1) || (<src.macefighting>>=0.1) || (<src.tactics>>=0.1) || (<src.wrestling>>=0.1)
+src.sysmessage @1100,,1 Bu bonusu kullanabilmek icin combat skilleriniz olmamali.
+      events -e_medi
+return 1
+endif
+
+   if (<isevent.e_medi>)
+      events -e_medi
+src.sysmessage @1100,,1 Meditasyon Bonusu: Kapali
+   elseif !(<isevent.e_medi>)
+      events +e_medi
+src.sysmessage @049,,1 Meditasyon Bonusu: Aktif
+   endif
+
+[EVENts e_diemaster]
+
+[FUNCTION diemaster]
+if (<isevent.e_diemaster>)
+if ((<src.magery> > 98.0) && (<src.meditation> > 98.0) && (<src.anatomy> > 98.0) && (<src.evaluatingintel> > 98.0))
+var.font = <src.font>
+src.font = 8
+src.say @0790,8 <strtoupper <args>>
+src.font = <var.font>
+return 1
+endif
+else
+say @0790 <args>
+endif
+
+[function spell_say]
+if !(<isevent.e_diemaster>)
+say @0790 <args>
+return 1
+endif
+
+if ((<src.magery> > 98.0) && (<src.meditation> > 98.0) && (<src.anatomy> > 98.0) && (<src.evaluatingintel> > 98.0))
+src.diemaster <args>
+return 1
+else
+say @0790 <args>
+endif
+
+[plevel 1]
+ibranice
+
+[function ibranice]
+if ((<src.tactics> > 0.1) || (<src.wrestling> > 0.1) || (<src.swordsmanship> > 0.1) || (<src.fencing> > 0.1) || (<src.macefighting> > 0.1) || (<src.archery> > 0.1))
+src.sysmessage @033 Combat skilline sahip iken bu sistemden yararlanamazsiniz...
+return 1
+elseif !(<isevent.e_diemaster>) && ((<src.magery> > 98.0) && (<src.meditation> > 98.0) && (<src.anatomy> > 98.0) && (<src.evaluatingintel> > 98.0))
+sysmessage @055 Ibranice: acik
+events +e_diemaster
+elseif (<isevent.e_diemaster>) && ((<src.magery> > 98.0) && (<src.meditation> > 98.0) && (<src.anatomy> > 98.0) && (<src.evaluatingintel> > 98.0))
+sysmessage @033 Ibranice: kapali
+events -e_diemaster
+else
+sysmessage @033 Bu tur buyu sozlerini bilmiyorsunuz...
+endif
+
+[eof]
+// spirit speak
+[FUNCTION f_spirit]
+if (<src.findid.i_spiritdelay>)
+src.sysmessage @38,1,1 Biraz beklemelisiniz.
+return 1
+
+elseif (<src.findid.i_rune_poison>)
+src.sysmessage @38,1,1 Zehiri tedavi etmelisiniz.
+return 1
+
+elseif (<src.findid.i_mem_healing>)
+src.sysmessage @38,1,1 Bandaj etkisinin bitmesini beklemelisiniz.
+return 1
+
+elseif (<src.findid.i_morpher>)
+src.sysmessage @38,1,1 Su anda kullanamazsiniz.
+return 1
+
+elseif (<src.findid.i_bleeding>)
+src.sysmessage @38,1,1 Yarayi tedavi etmelisiniz.
+return 1
+
+elseif (<src.flags>&statf_freeze) || (<src.flags>&statf_stone)
+src.sysmessage @38,1,1 Su an kullanamazsiniz.
+return 1
+else
+src.newitem i_spiritspeak
+src.act.equip
+return 1
+endif
+
+[itemdef i_spiritspeak]
+name spirit speak
+id i_gold
+type t_eq_script
+weight 0
+layer layer_special
+
+on=@create 
+attr attr_invis|attr_decay
+
+on=@equip
+src.act.timer 6
+src.newitem i_spiritdelay
+src.act.equip
+src.spell_say Anh Mi Sah Ko
+src.sound 586
+src.anim 17
+src.events +e_spritspeaking
+if (<src.spiritspeak> < 50.0)
+	src.sd 3
+elseif (<src.spiritspeak> >=50.0) && (<src.spiritspeak> <75.1)
+	src.sd 5/2
+elseif (<src.spiritspeak> >=75.1) && (<src.spiritspeak> <90.1)
+	src.sd 2
+elseif (<src.spiritspeak> >=90.1) && (<src.spiritspeak> <98.1)
+	src.sd 3/2
+elseif (<src.spiritspeak> >=98.1)
+	src.sd 1
+endif
+
+on=@unequip
+src.events -e_spritspeaking
+
+on=@timer
+if (<cont.hits> >= <cont.str>)
+cont.sysmessage @38,1,1 Ruhsal tedaviye ihtiyac duymuyorsunuz.
+cont.spiritgain
+remove
+return 1
+
+elseif (<cont.findid.i_rune_poison>)
+cont.sysmessage @38,1,1 Zehirli iken baglanti kuramiyorsunuz.
+remove
+return 1
+
+elseif (<cont.findid.i_bleeding>)
+cont.sysmessage @38,1,1 Yarali iken baglanti kuramiyorsunuz.
+remove
+return 1
+
+elseif (<cont.hits> < <cont.str>)
+cont.hits <eval <cont.hits> + <eval <cont.spiritspeak>/33>>
+cont.sayua 048,6,6,0 * ruhsal gucu ile kendini tedavi eder *
+cont.effect 3,0375a,2,10,10
+cont.ssfix
+cont.spiritgain
+remove
+else
+cont.sysmessage @38,1,1 Ruhani dunya ile baglanti kurmayi basaramadiniz.
+endif
+cont.events -e_spritspeaking
+remove
+return 1
+
+[events e_spritspeaking]
+on=@gethit
+if (rand(3) == 1)
+sayua 020,6,6,0 * konsantrasyonu bozulur * 
+findid.i_spiritspeak.remove
+endif
+
+On=@Death
+findid.i_spiritspeak.remove
+
+On=@Logout
+findid.i_spiritspeak.remove
+
+On=@Damage
+if (rand(3) == 1)
+sysmessage @38,1,1 Konsantrasyonunuz bozuldu.
+findid.i_spiritspeak.remove
+endif
+
+On=@HitTry
+if (rand(3) == 1)
+sysmessage @38,1,1 Konsantrasyonunuz bozuldu.
+findid.i_spiritspeak.remove
+endif
+
+On=@Hit
+if (rand(3) == 1)
+sysmessage @38,1,1 Konsantrasyonunuz bozuldu.
+findid.i_spiritspeak.remove
+endif
+
+[itemdef i_spiritdelay]
+name spirit delay
+id i_gold
+type t_eq_script
+weight 0
+layer layer_special
+
+on=@create 
+attr attr_invis|attr_decay
+
+on=@equip
+timer 6
+
+on=@timer
+remove
+return 1
+
+[function spiritgain]
+if ((<skilllock[32]> == 0) && (<skilltotal> < 800.0))
+if (<spiritspeak> < 30.0)
+if (rand(2) == 1)
+spiritspeak (<spiritspeak> + 1)
+endif
+
+elseif (<spiritspeak> < 50.0)
+if (rand(2) == 1)
+spiritspeak (<spiritspeak> + 1)
+endif
+
+elseif (<spiritspeak> < 75.0)
+if (rand(2) == 1)
+spiritspeak (<spiritspeak> + 1)
+endif
+
+elseif (<spiritspeak> > 75.0) && (<spiritspeak> < 100.0)
+if (rand(2) == 1)
+spiritspeak (<spiritspeak> + 1)
+endif
+endif
+endif
+
+[function ssfix] 
+if (<hits> > <str>)
+hits=<str>
+endif
+

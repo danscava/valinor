@@ -1,0 +1,330 @@
+// ----------------------------
+// ORC.SCP - ORC MODELLERI 
+// SON GUNCELLENME TARIHI: 1 Aralik 2001
+// ----------------------------
+VERSION=0.55
+
+[CHARDEF c_m_orc_frightened]
+DEFNAME=c_m_orc_frightened
+NAME=a frightened orc
+//NAME=#NAMES_ORC, A Frightened Orc
+CAN=MT_RUN|MT_WALK
+ID=c_ORC
+DAM=2,16
+ARMOR=15
+RESOURCES=8 i_ribs_raw
+//SHELTER=r_caves,r_dungeon,r_orc_camp
+DESIRES=i_gold,spk_orc,t_corpse
+TSPEECH=spk_orc
+TEVENTS=e_orc,e_orc_ai
+
+ON=@GETHIT
+DORAND 10
+	SAYU Rooghrn!
+	SAYU Uch den dfogrobhen!
+	SAYU Dorgeun?
+	SAYU Dash Sufvk!
+	SAYU Ufrugug
+	SAYU ROORGL!
+	SAYU RRAGH!
+	SAYU OGHRG!
+	SAYU Rogdurg ugdrud
+	SAYU Rudgrug?
+ENDDO
+
+ON=@Create
+NPC=BRAIN_ANIMAL
+COLOR=colors_green
+STR={150 170}
+DEX={56 75}
+INT={96 140}
+
+FAME=100
+KARMA=-999
+
+ITEM=i_gold,{1 150}
+ITEM=i_fruit_apple,{2 4}
+ITEM=i_bottle_green
+
+CATEGORY=Monsters
+SUBSECTION=Orcs
+DESCRIPTION=Frightened Orc 
+
+[CHARDEF c_m_orc_scout]
+DEFNAME=c_m_orc_scout
+NAME=an orc scout
+ID=c_ORC
+CAN=MT_WALK|MT_EQUIP
+RESOURCES=8 i_ribs_raw
+FOODTYPE=15 t_meat_raw
+DAM=2,8
+ARMOR=8
+//SHELTER=r_caves,r_dungeon,r_orc_camp
+DESIRES=i_gold,spk_orc,t_corpse
+TSPEECH=spk_orc
+TEVENTS=e_orc,e_orc_ai
+
+CATEGORY=Monsters
+SUBSECTION=Orcs
+DESCRIPTION=Orc Scout
+
+ON=@Create
+NPC=brain_monster
+COLOR=COLORS_GREEN	
+STR={175 200}
+DEX={190 275}
+INT={116 140}
+
+ARCHERY=100.0
+PARRYING={45.0 55.0}
+MAGICRESISTANCE={45.0 60.0}
+TACTICS={45.0 60.0}
+WRESTLING={45.0 55.0}
+
+FAME={2000 3000}
+KARMA={-1999 -4999}
+
+ITEM=i_bandage {8 20}
+//ITEM=i_Bow_Orcish
+ITEM=rich_undead_backpack
+ITEM=i_arrow,{10 30}
+ITEM={ random_gold_pile 1 0 2 }
+
+[CHARDEF c_m_orc_chopper]
+DEFNAME=c_m_orc_chopper
+NAME=orcish chieftain, orc cheftain
+ID=c_ORC_LORD
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP|MT_FLY
+RESOURCES=8 i_ribs_raw
+FOODTYPE=15 t_meat_raw
+DAM=2,8
+ARMOR=8
+//SHELTER=r_caves,r_dungeon,r_orc_camp
+DESIRES=i_gold,spk_orc,t_corpse
+TSPEECH=spk_orc
+TEVENTS=e_orc,e_orc_ai
+
+CATEGORY=Monsters
+SUBSECTION=Orcs
+DESCRIPTION=Orcish Brute
+
+ON=@Create
+NPC=brain_monster
+COLOR=COLORS_YELLOW
+STR={150 200}
+DEX=500
+INT={16 40}
+
+PARRYING={70.0 100.0}
+MAGICRESISTANCE=100.0
+TACTICS=100.0
+SWORDSMANSHIP=70.0
+LUMBERJACKING=100.0
+
+FAME={100 2000}
+KARMA={-1999 -3999}
+
+ITEM=04185
+ITEM=i_fruit_apple,{2 4}
+ITEM=i_log,{1 5}
+ITEM=i_ringmail_tunic
+ITEM=i_helm_orc
+ITEM=i_gold,{50 150}
+ITEM=i_bandage,{5 7}
+
+[CHARDEF c_m_orc_brute]
+DEFNAME=c_m_orc_chopper
+NAME=orcish brute
+ID=c_ORC_LORD
+CAN=MT_WALK|MT_RUN|MT_USEHANDS|MT_EQUIP|MT_FLY
+RESOURCES=8 i_ribs_raw
+FOODTYPE=15 t_meat_raw
+DESIRES=i_gold,spk_orc,t_corpse
+TSPEECH=spk_orc
+TEVENTS=e_orc,e_orc_ai
+DAM=15,20
+ARMOR=8
+//SHELTER=r_caves,r_dungeon,r_orc_camp
+
+CATEGORY=Monsters
+SUBSECTION=Orcs
+DESCRIPTION=Orcish Brute
+
+ON=@Create
+NPC=brain_monster
+COLOR=0455
+STR={200 320}
+DEX=700
+INT={16 40}
+
+PARRYING={70.0 100.0}
+MAGICRESISTANCE=100.0
+TACTICS=100.0
+SWORDSMANSHIP=70.0
+LUMBERJACKING=100.0
+
+FAME={100 2000}
+KARMA={-1999 -3999}
+
+ITEM=04185
+ITEM=i_fruit_apple,{2 4}
+ITEM=i_log,{1 5}
+ITEM=i_ringmail_tunic
+ITEM=i_helm_orc
+ITEM=i_gold,{50 150}
+ITEM=i_bandage,{5 7}
+
+[CHARDEF c_m_orc_bomber]
+DEFNAME=c_m_orc_bomber
+NAME=orc bomber
+ID=c_ORC
+CAN=MT_WALK|MT_EQUIP|MT_FIRE_IMMUNE|MT_RUN
+RESOURCES=8 i_ribs_raw
+FOODTYPE=15 t_meat_raw
+DAM=12,18
+ARMOR=8
+//SHELTER=r_caves,r_dungeon,r_orc_camp
+DESIRES=i_gold,spk_orc,t_corpse
+TSPEECH=spk_orc
+TEVENTS=e_orc,e_orc_ai
+
+CATEGORY=Monsters
+SUBSECTION=Orcs
+DESCRIPTION=Orc Bomber
+
+ON=@Create
+NPC=brain_monster
+COLOR=COLORS_Red
+STR={70 110}
+DEX={400 500}
+INT={16 40}
+
+ARCHERY=100.0
+MAGICRESISTANCE=100.0
+TACTICS=100.0
+
+FAME={300 1000}
+KARMA={-1999 -3999}
+
+ITEM=i_bottle_purple
+ITEM=i_gold,{15 60}
+ITEM=i_fruit_apple,{2 4}
+ITEMNEWBIE=i_bow_exp
+
+//On=@HitTry
+//if (<src.distance> < 1)
+//	flee
+//endif
+
+ON=@GETHIT
+DORAND 10
+	sayu Rooghrn!
+	sayu Uch den dfogrobhen!
+	sayu Dorgeun?
+	sayu Dash Sufvk!
+	sayu Ufrugug
+	sayu ROORGL!
+	sayu RRAGH!
+	sayu OGHRG!
+	sayu Rogdurg ugdrud
+	sayu Rudgrug?
+ENDDO
+dorand 2
+	anim 4
+	anim 5
+enddo
+leave 3
+
+ON=@Hit
+dorand 2
+	anim 4
+	anim 5
+enddo
+SRC.Effect=3,I_FX_Explode,1,22,1
+if ((RAND(5)==1))
+DORAND 3
+	sayu Hoho!
+	sayu Ogrghfd!
+	sayu Hohoho!
+ENDDO
+endif
+
+//QUEST ITEMLERI
+
+[ITEMDEF i_eorc_helm]
+DEFNAME=i_eorc_helm
+NAME=an evil orc helm
+ID=i_helm_orc
+REQSTR=70
+WEIGHT=3
+
+CATEGORY=Provisions - Armor
+SUBSECTION=Mask
+DESCRIPTION=Evil Orc Helm
+
+ON=@Create
+	HITPOINTS={100 200}
+	COLOR=COLORS_yellow
+
+ON=@EQUIP
+	SRC.STR = (<SRC.STR>+(10))
+	SRC.KARMA = (<SRC.KARMA>-(100))
+	SRC.SYSMESSAGE You have lost a bit of karma.
+
+	if (<SRC.DEX> < <SRC.INT>)
+	SRC.INT=(<SRC.INT>-(10))
+	ELSE
+	SRC.DEX=(<SRC.DEX>-(10))
+	endif
+
+ON=@UNEQUIP
+	SRC.STR = (<SRC.STR>-(10))
+	if (<SRC.DEX> < <SRC.INT>)
+	SRC.DEX=(<SRC.DEX>+(10))	
+	ELSE
+	SRC.INT=(<SRC.INT>+(10))	
+	endif
+
+[ITEMDEF i_Bow_Orcish]
+DEFNAME=i_Bow_Orcish
+NAME=orcish bow
+ID=i_bow
+DAM=15,25
+REQSTR=70
+TWOHANDS=Y
+WEIGHT=3
+SPEED=35
+
+CATEGORY=Provisions - Weapons
+SUBSECTION=Bows - Exceptional
+DESCRIPTION=Orcish Bow
+
+ON=@Create
+	HITPOINTS={10 30}
+	COLOR=COLORS_GREEN
+
+ON=@EQUIP
+	SRC.KARMA = (<SRC.KARMA>-(1000))
+	SRC.SYSMESSAGE You have lost a bit of karma.
+
+//ORC BOMBER ICIN
+[ITEMDEF i_bow_exp]
+NAME=skin
+ID=i_bow
+DAM=13,17
+REQSTR=50
+VALUE=1
+TDATA1=0
+TDATA3=0
+TDATA4=01c1c
+TWOHANDS=N
+
+CATEGORY=Provisions - Weapons
+SUBSECTION=Bows - Exceptional
+DESCRIPTION=EXBOW
+
+ON=@Create
+	HITPOINTS={100 200}
+	COLOR=237
+
+[EOF]

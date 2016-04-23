@@ -1,0 +1,106 @@
+[events esyacikarmabe]
+on=@itemcreate
+if (<src.account.plevel> > 1)
+try uid.<argo.uid>.tag.tarihisoylebab <serv.rtime>
+try uid.<argo.uid>.tag.cikarankim <eval <src.uid>>
+serv.WRITEFILE scripts/logs/<src.account.name>.txt  'Item:<act.name>','Cikaran Isim:<serv.uid.<act.tag0.cikarankim>.name>','Cikaran Acc:<serv.uid.<act.tag0.cikarankim>.account.name>'
+endif
+
+on=@charcreate
+if (<src.account.plevel> > 1)
+try uid.<argo.uid>.tag.tarihisoylebab <serv.rtime>
+try uid.<argo.uid>.tag.cikarankim <eval <src.uid>>
+serv.WRITEFILE scripts/logs/<src.account.name>.txt  'Char:<act.name>','Cikaran Isim:<serv.uid.<act.tag0.cikarankim>.name>','Cikaran Acc:<serv.uid.<act.tag0.cikarankim>.account.name>'
+endif
+
+on=@charclick
+if !(<act.tag0.cikarankim>==0)
+act.message @0799,1,1 [Staff Tarafindan Yapildi]
+act.message @0785 Cikaran Isim & Acc : [<serv.uid.<act.tag0.cikarankim>.name>] - [<serv.uid.<act.tag0.cikarankim>.account.name>]
+act.message @0785,1,1 Tarih : [<act.tag0.tarihisoylebab>] | Char Ismi : [<act.name>]
+return 1
+endif
+if (<src.account.plevel> < 1)
+sysmessage @0787,1,1 Anti Edit Sistem:
+sysmessage @0785,1,1 Eger Illegal Oldugunu Dusunuyorsaniz, Lutfen Bunu Yetkiliye Acele olarak Bildiriniz !
+return 1
+endif
+
+On=@itemclick
+if !(<act.tag0.cikarankim>==0)
+act.message @0799,1,1 [Staff Tarafindan Yapildi]
+act.message @0785 Cikaran Isim & Acc : [<serv.uid.<act.tag0.cikarankim>.name>] - [<serv.uid.<act.tag0.cikarankim>.account>]
+act.message @0785,1,1 Tarih : [<act.tag0.tarihisoylebab>] | Esya Ismi : [<act.name>]
+return 1
+endif
+if (<src.account.plevel> < 1)
+sysmessage @0787,1,1 Anti Edit Sistem:
+sysmessage @0785,1,1 Eger Illegal Oldugunu Dusunuyorsaniz, Lutfen Bunu Yetkiliye Acele olarak Bildiriniz !
+return 1
+endif
+
+on=@itemdropon_char
+if (<src.account.plevel> > 1)
+src.sysmessage @0785,1,1 Gorevliler Kimseye Esya veremez !
+return 1
+
+on=@chardclick
+src.sysmessage @0785,1,1 Gorevliler Yaratiklarin cantalarini acamaz ve ata binemez !
+return 1
+
+[FUNCTION WRITEFILE]
+IF !(<FILE.INUSE>)
+FILE.MODE.CREATE=1
+FILE.MODE.APPEND=1
+FILE.MODE.WRITEFLAG=1
+IF (<FILE.OPEN <STRARG <ARGS>>>)
+FILE.WRITELINE <STREAT <ARGS>>
+FILE.CLOSE
+ENDIF
+ENDIF
+
+[eof]
+
+
+
+[events e_staff_spawnbit]
+On=@ItemDClick
+if ((<act.type> == t_spawn_char))
+try uid.<argo.uid>.tag.tiklayankim <eval <src.uid>>
+src.sysmessage @30 Stafflar Bunu Yapamaz!!
+src.sysmessage @0785 <account>.txt dosyasina kaydedildi.
+serv.WRITEFILE scripts/logs/<src.account.name>.txt <serv.uid.<act.tag0.cikarankim>.name> isimli kisi <serv.rtime> zamaninda <region.name> ' da <act.dispid> Spawniyla oynadi
+src.s <act.dispid> Spawniyla oynuyorum, loglara kaydedildim.
+src.tag.s x
+return 1
+return 1
+endif
+
+
+if (<act.baseid> == i_staff_taming)
+src.sysmessage @080a Taming staff kullanmak yasak!
+return 1
+endif
+
+
+On=@itemPickUp_Ground
+if (<act.type> == t_corpse)
+try uid.<argo.uid>.tag.tiklayankim <eval <src.uid>>
+src.sysmessage @30 Stafflar Bunu Yapamaz!!
+src.sysmessage @0785 <account>.txt dosyasina kaydedildi.
+serv.WRITEFILE scripts/logs/<src.account.name>.txt <serv.uid.<act.tag0.cikarankim>.name> isimli kisi <serv.rtime> zamaninda <region.name> ' da Ceset tasiyor.
+src.s Ceset Tasiyorum, Loglara Kaydedildim.
+src.tag.s x
+return 1
+endif
+
+
+if ((<src.targ.type> == t_spawn_char))
+try uid.<argo.uid>.tag.tiklayankim <eval <src.uid>>
+src.sysmessage @30 Stafflar bunu yapamaz!!
+src.sysmessage @0785 <account>.txt dosyasina kaydedildi.
+serv.WRITEFILE scripts/logs/<src.account.name>.txt <serv.uid.<act.tag0.cikarankim>.name> isimli kisi <serv.rtime> zamaninda <region.name> ' da <targ.dispid> Spawnýný Tasimaya Kalkisti.
+src.s Spawnlari Kurcaliyorum, Loglara Kaydedildim.
+src.tag.s x
+return 1
+endif

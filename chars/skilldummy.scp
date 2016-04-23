@@ -1,0 +1,181 @@
+[chardef c_dummy_skill] ///Skill Dummy
+id=c_man
+name #NAMES_HUMANMALE
+can mt_equip
+dam=0,1
+armor=0
+
+ON=@NPCRestock
+ITEMNEWBIE=i_robe
+color=0455
+armor=0
+name= @1153 Dummy Robe
+HITPOINTS=999
+ITEMNEWBIE=i_hair_long
+COLOR=0455
+
+
+on=@create
+str=1
+dex=1
+int=1
+HITS={9997 9999}
+color=01
+allskills=00
+KARMA=-2000
+FAME=0
+NPC=brain_monster
+
+
+ITEMNEWBIE=i_robe
+attr=010
+color=0455
+name @1153 Dummy Robe
+HITPOINTS=999
+ITEMNEWBIE=i_hair_long
+COLOR=0455
+
+
+on=@click
+message @080a [Skill Dummy]
+message @1153 <name>
+return 1
+
+on=@gethit
+HITS 9999
+str 1
+dex 1
+if (<flags> &statf_poisoned)
+findid.i_rune_poison.remove
+sound snd_spell_cure
+else
+HITS 9999
+STR 1
+DEX 1
+
+on=@attack
+return 1
+
+[chardef c_dummy_heal] /// Healing dummy
+id=c_man
+name=Healer Man
+can=mt_equip
+
+on=@Click
+message @080a [Healing Dummy]
+message @1153 <name>
+return 1
+
+ON=@Create
+COLOR=01
+STR=9999
+DEX=0
+INT=0
+FAME=0
+KARMA=0
+
+ITEMNEWBIE=i_robe
+attr=010
+color=0455
+name @1153 Dummy Robe
+HITPOINTS=999
+ITEMNEWBIE=i_hair_long
+COLOR=0455
+
+on=@gethit
+hits 1
+return 1 
+
+ON=@EnvironChange
+src.hits 1
+
+[itemdef i_heal_dummy_hits] //Heal Dummylerin Hpleri Ýcin
+name=Heal Dummy Hitser
+weight 999
+id=i_crystal_green
+type=t_script
+
+
+ON=@create
+attr=attr_move_never|attr_invis
+timer=60
+color=07a0
+
+on=@click
+message @080a Heal Dummylerin hpsini ayarlar ellemeyin / AcriD
+return 1
+
+ON=@dclick
+timer 1
+return 1
+
+
+ON=@timer
+forchars 99
+if ((<baseid> == c_dummy_heal) && (<hits> > 1))
+hits 1
+endif
+endfor
+attr=attr_move_never|attr_invis
+timer 60
+return 1
+
+
+[itemdef i_skill_gate]
+id i_moongate_blue
+type t_telepad
+name Skill dummy gate
+
+
+on=@click
+message @07a1,,1 Skill Dummy's
+return 1
+
+on=@dclick
+src.sysmessage @55,,1 Gatenin uzerinden gecin.
+return 1
+
+on=@step
+if (<src.findlayer.25>)
+src.sysmessage @1100,,1 Binekle giremezsiniz
+return 1
+else 
+src.go 1448,1553,70
+return 1
+
+[function gaintacticskilll]
+if ((<skilllock[24]> == 0) && (<skilltotal> < 800.0))
+if (<src.tactics> > 29.9) && (<src.tactics> < 40.0)
+if (rand(2) == 1)
+src.tactics=<src.tactics>+4
+endif
+elseif (<src.tactics> > 39.9) && (<src.tactics> < 50.0)
+if (rand(2) == 1)
+src.tactics=<src.tactics>+3
+endif
+elseif (<src.tactics> > 49.9) && (<src.tactics> < 60.0)
+if (rand(4) == 1)
+src.tactics=<src.tactics>+2
+endif
+elseif (<src.tactics> > 59.9) && (<src.tactics> < 70.0)
+if (rand(5) == 1)
+src.tactics=<src.tactics>+1
+endif
+elseif (<src.tactics> > 69.9) && (<src.tactics> < 80.0)
+if (rand(6) == 1)
+src.tactics=<src.tactics>+1
+endif
+elseif (<src.tactics> > 79.9) && (<src.tactics> < 90.0)
+if (rand(8) == 1)
+src.tactics=<src.tactics>+1
+endif
+elseif (<src.tactics> > 89.9) && (<src.tactics> < 100.0)
+if (rand(10) == 1)
+src.tactics=<src.tactics>+1
+endif
+elseif (<src.tag0.override.skillcap_24> > 100.0) && (<src.tactics> < <src.tag0.override.skillcap_24>)
+if (rand(11)==1)
+src.tactics=<src.tactics>+1
+endif
+endif
+endif

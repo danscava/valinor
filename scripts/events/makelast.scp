@@ -1,0 +1,138 @@
+[plevel 1]
+makelast
+tekrarla
+tekraryap
+
+[function tekrarla]
+src.tekraryap
+//src.sysmessage @0481 .tekraryap yaziniz
+//dialogclose d_makelast
+//dialog d_makelast
+
+[function tekraryap]
+if (strmatch('<tag.makelast>','')
+src.sysmessage @38,1,1 En son yaptiginiz craft itemi hatirlamiyorsunuz.
+return 1
+endif
+
+if <canmake <tag.makelast>> 
+makeitem <tag.makelast> 
+return 1
+else 
+src.sysmessage @38,1,1 Yeterli malzemeye sahip degilsiniz!
+return 1
+endif
+
+[function makelast]
+src.tekraryap
+//src.sysmessage @0481 .tekraryap yaziniz
+//dialogclose d_makelast
+//dialog d_makelast
+
+[DIALOG d_makelast]
+10,10
+page 0
+resizepic 0 0 5120 130 40 
+
+button 15 13 2224 2224 1 0 1
+htmlgump 45 10 100 20 0 0 0
+
+[DIALOG d_makelast text]
+<var.pg_font1>>Tekrar Yap
+
+[DIALOG d_makelast button]
+
+on 1
+//message yapacak yapacak
+if (strmatch('<tag.makelast>','')
+//src.sysmessage @38,1,1 En son yaptiginiz craft itemi hatirlamiyorsunuz.
+dialogclose d_makelastnomake
+dialog d_makelastnomake
+return 1
+endif
+
+if <canmake <tag.makelast>> 
+makeitem <tag.makelast> 
+dialogclose d_makelast
+dialog d_makelast
+return 1
+else 
+//src.sysmessage @38,1,1 Yeterli malzemeye sahip degilsiniz!
+dialogclose d_makelastmaking
+dialog d_makelastmaking
+return 1
+endif 
+
+// eþyayý hazýrlýyorsunuz.
+
+[DIALOG d_makelastmaking]
+10,10
+page 0
+resizepic 20 30 5120 225 40 
+resizepic 0 0 5120 130 40
+
+button 15 13 2224 2224 1 0 1
+htmlgump 45 10 100 20 0 0 0
+htmlgump 35 40 500 20 1 0 0
+
+[DIALOG d_makelastmaking text]
+<var.pg_font1>>Tekrar Yap
+<var.fontkirmizi>>Yeterli malzemeye sahip degilsiniz.
+
+[DIALOG d_makelastmaking button]
+on 1
+if (strmatch('<tag.makelast>','')
+//src.sysmessage @38,1,1 En son yaptiginiz craft itemi hatirlamiyorsunuz.
+dialogclose d_makelastnomake
+dialog d_makelastnomake
+return 1
+endif
+
+if <canmake <tag.makelast>> 
+makeitem <tag.makelast> 
+dialogclose d_makelast
+dialog d_makelast
+return 1
+else 
+//src.sysmessage @38,1,1 Yeterli malzemeye sahip degilsiniz!
+dialogclose d_makelastmaking
+dialog d_makelastmaking
+return 1
+endif 
+
+// hatýrlamýyorsunuz
+
+[DIALOG d_makelastnomake]
+10,10
+page 0
+resizepic 20 30 5120 275 40 
+resizepic 0 0 5120 130 40
+
+button 15 13 2224 2224 1 0 1
+htmlgump 45 10 100 20 0 0 0
+htmlgump 35 40 500 20 1 0 0
+
+[DIALOG d_makelastnomake text]
+<var.pg_font1>>Tekrar Yap
+<var.fontkirmizi>>En son yaptiginiz esyayi hatirlamiyorsunuz.
+
+[DIALOG d_makelastnomake button]
+on 1
+if (strmatch('<tag.makelast>','')
+//src.sysmessage @38,1,1 En son yaptiginiz craft itemi hatirlamiyorsunuz.
+dialogclose d_makelastnomake
+dialog d_makelastnomake
+return 1
+endif
+
+if <canmake <tag.makelast>> 
+makeitem <tag.makelast> 
+dialogclose d_makelast
+dialog d_makelast
+return 1
+else 
+//src.sysmessage @38,1,1 Yeterli malzemeye sahip degilsiniz!
+dialogclose d_makelastmaking
+dialog d_makelastmaking
+return 1
+endif 

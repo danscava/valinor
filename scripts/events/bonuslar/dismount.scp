@@ -1,0 +1,67 @@
+[events e_dismount]
+On=@Hit
+if (<src.flags>&statf_stone) || (<src.region.safe>)
+	return 0
+elseif (((<findlayer(2).type> == t_weapon_sword) && (<swordsmanship> >= 98.0)) || ((<findlayer(2).type> == T_WEAPON_MACE_STAFF) && (<macefighting> >= 98.0)) || ((<findlayer(2).type> == t_weapon_fence) && (<fencing> >= 98.0)))
+if (rand(80) <= <eval (<anatomy> / 40)>)
+		src.damage {25 35}
+		src.skill fail
+		var.act <src.act.uid>
+		src.newitem i_yattara
+		src.act.timer 3
+		src.act.equip
+		src.act <var.act>
+		return 1
+endif
+endif
+endif       
+
+[events e_yattara]
+On=@GetHit
+findid.i_yattara.remove
+
+On=@Death
+findid.i_yattara.remove
+
+[itemdef i_yattara]
+name=atdusur
+id=i_gold
+type=t_eq_script
+weight=0
+layer=layer_special
+
+On=@create
+attr attr_decay
+
+On=@Equip
+if (<src.findlayer(layer_horse).id> > 0)
+SRC.dclick
+src.sayua 0481,6,6,0  * binekten duser *
+remove
+RETURN 1
+ENDIF
+
+
+On=@Timer
+remove
+
+[events e_stam]
+
+On=@Hit
+
+if ((strmatch('<src.region.events>','r_delucia')) || (strmatch('<src.region.events>','r_events_pazar')))
+return 1
+endif
+if (<findlayer(2).type> == t_weapon_mace_staff) && (<macefighting> >= 98.0)
+	if (rand(125) <= <eval (<anatomy> / 50)>)
+		src.damage {5 20}
+		src.dropstam
+		src.dropstam
+		src.dropstam
+		src.dropstam
+		src.sayua 0481,0,0,0 * stam shoot *
+		return 1
+	endif
+endif
+
+[eof]

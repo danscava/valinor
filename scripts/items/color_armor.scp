@@ -1,0 +1,6264 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Renkli Setler	--
+// -- Son Düzenleme Tarihi : 18.08.2004		--
+// -----------------------------------------------
+VERSION=0.55
+
+[ITEMDEF 04554]
+DEFNAME=i_GOLDEN_PLATEMAIL_ARMS
+NAME=golden platemail arms
+ID=i_platemail_arms
+ARMOR=55
+REQSTR=40
+WEIGHT=5
+RESOURCES=18 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 64.5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Platemail Arms
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04555]
+DEFNAME=i_GOLDEN_PLATEMAIL_leggings
+NAME=golden platemail legs
+ID=i_platemail_leggings
+WEIGHT=15
+ARMOR=55
+REQSTR=60
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 67.8
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04556]
+DEFNAME=i_GOLDEN_PLATE_HELM
+NAME=golden plate helm
+ID=i_platemail_helm
+ARMOR=55
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04557]
+DEFNAME=i_GOLDEN_PLATEMAIL_GORGET
+NAME=golden platemail gorget
+ID=i_platemail_gorget
+ARMOR=55
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 51.4
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04558]
+DEFNAME=i_GOLDEN_PLATEMAIL_GAUNTLETS
+NAME=golden platemail gauntlets
+ID=i_platemail_gloves
+ARMOR=55
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 54.7
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04559]
+DEFNAME=i_GOLDEN_PLATEMAIL
+NAME=golden platemail
+ID=i_platemail_chest
+ARMOR=55
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Platemail
+RESOURCES=26 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 76.0
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0455a]
+DEFNAME=i_GOLDEN_RINGMAIL_LEGGINGS
+NAME=golden ringmail leggings
+ID=i_ringmail_leggings
+ARMOR=38
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 28.6
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0455b]
+DEFNAME=i_GOLDEN_RINGMAIL_SLEEVES
+NAME=golden ringmail sleeves
+ID=i_ringmail_sleeves
+ARMOR=38
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 25.3
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0455c]
+DEFNAME=i_GOLDEN_RINGMAIL_GLOVES
+NAME=golden ringmail gloves
+ID=i_ringmail_gloves
+ARMOR=38
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 18.8
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0455d]
+DEFNAME=i_GOLDEN_RINGMAIL_TUNIC
+NAME=golden ringmail tunic
+ID=i_ringmail_tunic
+ARMOR=38
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 32.1
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0455e]
+DEFNAME=i_GOLDEN_BUCKLER_SHIELD
+NAME=golden buckler
+ID=i_shield_buckler
+ARMOR=7
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 6.0
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS={41 51}
+
+[ITEMDEF 0455f]
+DEFNAME=i_GOLDEN_METAL_SHIELD
+NAME=golden metal shield
+ID=i_shield_round_metal
+ARMOR=11
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 16.0
+
+ON=@Create
+HITPOINTS={51 65}
+COLOR=color_o_gold
+
+[ITEMDEF 04560]
+DEFNAME=i_COPPER_PLATEMAIL_ARMS
+NAME=copper platemail arms
+ID=i_platemail_arms
+ARMOR=45
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Platemail Arms
+RESOURCES=18 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 63.5
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04561]
+DEFNAME=i_COPPER_PLATEMAIL_leggings
+NAME=copper platemail legs
+ID=i_platemail_leggings
+ARMOR=45
+REQSTR=60
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 66.8
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04562]
+DEFNAME=i_COPPER_PLATE_HELM
+NAME=copper plate helm
+ID=i_platemail_helm
+ARMOR=45
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04563]
+DEFNAME=i_COPPER_PLATEMAIL_GORGET
+NAME=copper platemail gorget
+ID=i_platemail_gorget
+ARMOR=45
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 50.4
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS={51 65}
+
+[ITEMDEF 04564]
+DEFNAME=i_copper_platemail_gauntlets
+NAME=copper platemail gauntlets
+ID=i_platemail_gloves
+ARMOR=45
+REQSTR=30
+WEIGHT=2
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 53.7
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS={51 65}
+
+[ITEMDEF 04565]
+DEFNAME=i_COPPER_PLATEMAIL
+NAME=copper platemail
+ID=i_platemail_chest
+ARMOR=45
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Platemail
+RESOURCES=25 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 75.0
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS={51 65}
+
+[ITEMDEF 04570]
+
+[ITEMDEF 04572]
+DEFNAME=i_GOLDEN_FEMALE_PLATEMAIL
+NAME=golden platemail
+ID=i_armor_female_plate
+ARMOR=55
+REQSTR=15
+WEIGHT=4
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 71.0
+
+ON=@Create
+HITPOINTS=51
+COLOR=color_o_gold
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04573]
+DEFNAME=i_GOLDEN_CHAINMAIL_COIF
+NAME=golden chainmail coif
+ID=i_chainmail_coif
+ARMOR=40
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 28.6
+
+ON=@Create
+HITPOINTS=36
+COLOR=color_o_gold
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04574]
+DEFNAME=i_GOLDEN_CHAINMAIL_LEGGINGS
+NAME=golden chainmail leggings
+ID=i_chainmail_leggings
+ARMOR=40
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 32.1
+
+ON=@Create
+HITPOINTS=46
+COLOR=color_o_gold
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04575]
+DEFNAME=i_GOLDEN_CHAINMAIL_TUNIC
+NAME=golden chainmail tunic
+ID=i_chainmail_tunic
+ARMOR=40
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Chainmail Tunic
+RESOURCES=20 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 44.8
+
+ON=@Create
+HITPOINTS=46
+COLOR=color_o_gold
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04576]
+DEFNAME=i_GOLDEN_HEATER_SHIELD
+NAME=golden heater shield
+ID=I_SHIELD_HEATER
+ARMOR=24
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 41.6
+
+ON=@Create
+HITPOINTS=31
+COLOR=color_o_gold
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04577]
+DEFNAME=i_COPPER_FEMALE_PLATEMAIL
+NAME=copper platemail
+ID=i_armor_female_plate
+ARMOR=45
+REQSTR=15
+WEIGHT=4
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 70.0
+
+ON=@Create
+HITPOINTS=51
+COLOR=color_o_copper
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04578]
+DEFNAME=i_COPPER_CHAINMAIL_COIF
+NAME=copper chainmail coif
+ID=i_chainmail_coif
+ARMOR=39
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 27.6
+
+ON=@Create
+HITPOINTS=36
+COLOR=color_o_copper
+
+[ITEMDEF 04579]
+DEFNAME=i_COPPER_CHAINMAIL_LEGGINGS
+NAME=copper chainmail leggings
+ID=i_chainmail_leggings
+ARMOR=39
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 31.1
+
+ON=@Create
+HITPOINTS=46
+COLOR=color_o_copper
+
+[ITEMDEF 0457a]
+DEFNAME=i_COPPER_RINGMAIL_LEGGINGS
+NAME=copper ringmail leggings
+ID=i_ringmail_leggings
+ARMOR=39
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 27.6
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS=41
+
+[ITEMDEF 0457b]
+DEFNAME=i_COPPER_RINGMAIL_SLEEVES
+NAME=copper ringmail sleeves
+ID=i_ringmail_sleeves
+ARMOR=36
+REQSTR=20
+
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 24.3
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS=41
+
+[ITEMDEF 0457c]
+DEFNAME=i_COPPER_RINGMAIL_GLOVES
+NAME=copper ringmail gloves
+ID=i_ringmail_gloves
+ARMOR=36
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 17.8
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS=41
+
+[ITEMDEF 0457d]
+DEFNAME=i_COPPER_RINGMAIL_TUNIC
+NAME=copper ringmail tunic
+ID=i_ringmail_tunic
+ARMOR=36
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 31.1
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS=41
+
+[ITEMDEF 0457e]
+DEFNAME=i_COPPER_BUCKLER_SHIELD
+NAME=copper buckler
+ID=i_shield_buckler
+ARMOR=7
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 5.0
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS=41
+
+[ITEMDEF 0457f]
+DEFNAME=i_COPPER_METAL_SHIELD
+NAME=copper metal shield
+ID=i_shield_round_metal
+ARMOR=11
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 15.0
+
+ON=@Create
+HITPOINTS=51
+COLOR=color_o_copper
+
+[ITEMDEF 04580]
+DEFNAME=i_COPPER_CHAINMAIL_TUNIC
+NAME=copper chainmail tunic
+ID=i_chainmail_tunic
+ARMOR=39
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Chainmail Tunic
+RESOURCES=20 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 43.8
+
+ON=@Create
+HITPOINTS=46
+COLOR=color_o_copper
+
+[ITEMDEF 04581]
+DEFNAME=i_COPPER_HEATER_SHIELD
+NAME=copper heater shield
+ID=I_SHIELD_HEATER
+ARMOR=22
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 40.6
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS=31
+
+[ITEMDEF 04587]
+DEFNAME=i_GOLDEN_CLOSED_HELM
+NAME=golden closed helm
+ID=i_helm_closed
+ARMOR=50
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS=101
+
+[ITEMDEF 04588]
+DEFNAME=i_GOLDEN_HELMET
+NAME=golden helmet
+ID=i_helm_open
+ARMOR=50
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS=51
+
+[ITEMDEF 04589]
+DEFNAME=i_GOLDEN_BASCINET
+NAME=golden bascinet
+ID=i_bascinet
+ARMOR=50
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 20.2
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS=101
+
+[ITEMDEF 0458a]
+DEFNAME=i_GOLDEN_NOSE_HELM
+NAME=golden nose helm
+ID=i_helm_nose
+ARMOR=50
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Golden
+DESCRIPTION=Nose Helm
+RESOURCES=15 i_ingot_gold
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_gold
+HITPOINTS=101
+
+[ITEMDEF 0458b]
+DEFNAME=i_COPPER_CLOSED_HELM
+NAME=copper closed helm
+ID=i_helm_closed
+ARMOR=40
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS=101
+
+[ITEMDEF 0458c]
+DEFNAME=i_COPPER_HELMET
+NAME=copper helmet
+ID=i_helm_open
+ARMOR=40
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS=51
+
+[ITEMDEF 0458d]
+DEFNAME=i_COPPER_BASCINET
+NAME=copper bascinet
+ID=i_bascinet
+ARMOR=40
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 19.2
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS=101
+
+[ITEMDEF 0458e]
+DEFNAME=i_COPPER_NOSE_HELM
+NAME=copper nose helm
+ID=i_helm_nose
+ARMOR=40
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Copper
+DESCRIPTION=Nose Helm
+RESOURCES=15 i_ingot_copper
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_copper
+HITPOINTS=101
+
+[ITEMDEF 045c0]
+DEFNAME=i_DULL_COPPER_PLATEMAIL
+NAME=dull copper platemail
+ID=i_platemail_chest
+ARMOR=40
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Platemail
+RESOURCES=25 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 75.0
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=51
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045c1]
+DEFNAME=i_DULL_COPPER_PLATEMAIL_ARMS
+NAME=dull copper platemail arms
+ID=i_platemail_arms
+ARMOR=40
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Platemail Arms
+RESOURCES=18 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 63.5
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=51
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045c2]
+DEFNAME=i_DULL_COPPER_PLATEMAIL_leggings
+NAME=dull copper platemail legs
+ID=i_platemail_leggings
+ARMOR=40
+REQSTR=60
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 66.8
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=51
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045c3]
+DEFNAME=i_DULL_COPPER_PLATE_HELM
+NAME=dull copper plate helm
+ID=i_platemail_helm
+ARMOR=40
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=46
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045c4]
+DEFNAME=i_DULL_COPPER_PLATEMAIL_GORGET
+NAME=dull copper platemail gorget
+ID=i_platemail_gorget
+ARMOR=40
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 50.4
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=51
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045c5]
+DEFNAME=i_DULL_COPPER_PLATEMAIL_GAUNTLETS
+NAME=dull copper platemail gauntlets
+ID=i_platemail_gloves
+ARMOR=40
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 53.7
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=51
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045c6]
+DEFNAME=i_DULL_COPPER_FEMALE_PLATEMAIL
+NAME=dull copper platemail
+ID=i_armor_female_plate
+ARMOR=40
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 70.0
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=51
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045c7]
+DEFNAME=i_DULL_COPPER_CHAINMAIL_COIF
+NAME=dull copper chainmail coif
+ID=i_chainmail_coif
+ARMOR=38
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 27.6
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=36
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045c8]
+DEFNAME=i_DULL_COPPER_CHAINMAIL_LEGGINGS
+NAME=dull copper chainmail leggings
+ID=i_chainmail_leggings
+ARMOR=38
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 31.1
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=46
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045c9]
+DEFNAME=i_DULL_COPPER_CHAINMAIL_TUNIC
+NAME=dull copper chainmail tunic
+ID=i_chainmail_tunic
+ARMOR=38
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Chainmail Tunic
+RESOURCES=20 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 43.8
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=46
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045ca]
+DEFNAME=i_DULL_COPPER_RINGMAIL_LEGGINGS
+NAME=dull copper ringmail leggings
+ID=i_ringmail_leggings
+ARMOR=35
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 27.6
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=46
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045cb]
+DEFNAME=i_DULL_COPPER_RINGMAIL_SLEEVES
+NAME=dull copper ringmail sleeves
+ID=i_ringmail_sleeves
+
+ARMOR=35
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 24.3
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=41
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045cc]
+DEFNAME=i_DULL_COPPER_RINGMAIL_GLOVES
+NAME=dull copper ringmail gloves
+ID=i_ringmail_gloves
+
+ARMOR=35
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 17.8
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=41
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045cd]
+DEFNAME=i_DULL_COPPER_RINGMAIL_TUNIC
+NAME=dull copper ringmail tunic
+ID=i_ringmail_tunic
+
+ARMOR=35
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 31.1
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=41
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045ce]
+DEFNAME=i_DULL_COPPER_BUCKLER_shield
+NAME=dull copper buckler
+ID=i_shield_buckler
+ARMOR=2
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 5.0
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=41
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045cf]
+DEFNAME=i_DULL_COPPER_HEATER_SHIELD
+NAME=dull copper heater shield
+ID=I_SHIELD_HEATER
+ARMOR=21
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 40.6
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=31
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045d0]
+DEFNAME=i_DULL_COPPER_METAL_SHIELD
+NAME=dull copper metal shield
+ID=i_shield_round_metal
+ARMOR=7
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 15.0
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=51
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 045d1]
+DEFNAME=i_DULL_COPPER_CLOSED_HELM
+NAME=dull copper closed helm
+ID=i_helm_closed
+
+ARMOR=35
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=30
+
+[ITEMDEF 045d2]
+DEFNAME=i_DULL_COPPER_HELMET
+NAME=dull copper helmet
+ID=i_helm_open
+
+ARMOR=35
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=51
+
+[ITEMDEF 045d3]
+DEFNAME=i_DULL_COPPER_BASCINET
+NAME=dull copper bascinet
+ID=i_bascinet
+
+ARMOR=35
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 19.2
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=30
+
+[ITEMDEF 045d4]
+DEFNAME=i_DULL_COPPER_NOSE_HELM
+NAME=dull copper nose helm
+ID=i_helm_nose
+
+ARMOR=35
+REQSTR=0
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Dull Copper
+DESCRIPTION=Nose Helm
+RESOURCES=15 i_ingot_dull_copper
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_dullcopper
+HITPOINTS=30
+
+[ITEMDEF 0472a]
+DEFNAME=i_MYTHERIL_PLATEMAIL
+NAME=mytheril platemail
+ID=i_platemail_chest
+
+ARMOR=72
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Platemail
+RESOURCES=25 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 82
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS=51
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0472b]
+DEFNAME=i_MYTHERIL_PLATEMAIL_ARMS
+NAME=mytheril platemail arms
+ID=i_platemail_arms
+
+ARMOR=72
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Platemail Arms
+RESOURCES=18 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 70.5
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS=51
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0472c]
+DEFNAME=i_MYTHERIL_PLATEMAIL_leggings
+NAME=mytheril platemail legs
+ID=i_platemail_leggings
+
+ARMOR=72
+REQSTR=60
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 73.8
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS=51
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0472d]
+DEFNAME=i_MYTHERIL_PLATE_HELM
+NAME=mytheril plate helm
+ID=i_platemail_helm
+
+ARMOR=72
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 65.6
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS=46
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0472e]
+DEFNAME=i_MYTHERIL_PLATEMAIL_GORGET
+NAME=mytheril platemail gorget
+ID=i_platemail_gorget
+
+ARMOR=72
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 57.4
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS=51
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0472f]
+DEFNAME=i_MYTHERIL_PLATEMAIL_GAUNTLETS
+NAME=mytheril platemail gauntlets
+ID=i_platemail_gloves
+
+ARMOR=72
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 60.7
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS=51
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04730]
+DEFNAME=i_MYTHERIL_FEMALE_PLATEMAIL
+NAME=mytheril platemail
+ID=i_armor_female_plate
+
+ARMOR=72
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 77.0
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS=51
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04731]
+DEFNAME=i_MYTHERIL_CHAINMAIL_COIF
+NAME=mytheril chainmail coif
+ID=i_chainmail_coif
+
+ARMOR=46
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 34.6
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS=36
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04732]
+DEFNAME=i_MYTHERIL_CHAINMAIL_LEGGINGS
+NAME=mytheril chainmail leggings
+ID=i_chainmail_leggings
+
+ARMOR=46
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 38.1
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04733]
+DEFNAME=i_MYTHERIL_CHAINMAIL_TUNIC
+NAME=mytheril chainmail tunic
+ID=i_chainmail_tunic
+
+ARMOR=46
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Chainmail Tunic
+RESOURCES=20 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 50.8
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04734]
+DEFNAME=i_MYTHERIL_RINGMAIL_LEGGINGS
+NAME=mytheril ringmail leggings
+ID=i_ringmail_leggings
+
+ARMOR=43
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 34.6
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04735]
+DEFNAME=i_MYTHERIL_RINGMAIL_SLEEVES
+NAME=mytheril ringmail sleeves
+ID=i_ringmail_sleeves
+
+ARMOR=43
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 31.3
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04736]
+DEFNAME=i_MYTHERIL_RINGMAIL_GLOVES
+NAME=mytheril ringmail gloves
+ID=i_ringmail_gloves
+
+ARMOR=43
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 24.8
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04737]
+DEFNAME=i_MYTHERIL_RINGMAIL_TUNIC
+NAME=mytheril ringmail tunic
+ID=i_ringmail_tunic
+
+ARMOR=43
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 38.1
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04738]
+DEFNAME=i_MYTHERIL_BUCKLER_SHIELD
+NAME=mytheril buckler
+ID=i_shield_buckler
+ARMOR=9
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 12.0
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={41 51}
+
+[ITEMDEF 04739]
+DEFNAME=i_MYTHERIL_HEATER_SHIELD
+NAME=mytheril heater shield
+ID=I_SHIELD_HEATER
+ARMOR=27
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 47.6
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={31 37}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0473a]
+DEFNAME=i_MYTHERIL_METAL_SHIELD
+NAME=mytheril metal shield
+ID=i_shield_round_metal
+ARMOR=13
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 22.0
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={51 65}
+
+[ITEMDEF 0473b]
+DEFNAME=i_MYTHERIL_CLOSED_HELM
+NAME=mytheril closed helm
+ID=i_helm_closed
+
+ARMOR=70
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 63.6
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={101 115}
+
+[ITEMDEF 0473c]
+DEFNAME=i_MYTHERIL_HELMET
+NAME=mytheril helmet
+ID=i_helm_open
+
+ARMOR=70
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 63.6
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={51 65}
+
+[ITEMDEF 0473d]
+DEFNAME=i_MYTHERIL_BASCINET
+NAME=mytheril bascinet
+ID=i_bascinet
+
+ARMOR=70
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 26.2
+
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={101 115}
+
+[ITEMDEF 0473e]
+DEFNAME=i_MYTHERIL_NOSE_HELM
+NAME=mytheril nose helm
+ID=i_helm_nose
+
+ARMOR=70
+REQSTR=0
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Mytheril
+DESCRIPTION=Nose Helm
+
+RESOURCES=15 i_ingot_mytheril
+SKILLMAKE=BLACKSMITHING 63.6
+ON=@Create
+COLOR=color_o_mytheril
+HITPOINTS={101 115}
+
+//Rusty Armor
+
+[ITEMDEF i_rusty_PLATEMAIL]
+DEFNAME=i_rusty_PLATEMAIL
+NAME=rusty platemail
+ID=i_platemail_chest
+
+ARMOR=58
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Rosty
+DESCRIPTION=Platemail
+RESOURCES=25 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 80.0
+
+ON=@Create
+	COLOR=color_o_rusty
+	HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_PLATEMAIL_ARMS]
+DEFNAME=i_rusty_PLATEMAIL_ARMS
+NAME=rusty platemail arms
+ID=i_platemail_arms
+
+ARMOR=58
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Rusty
+DESCRIPTION=Platemail Arms
+RESOURCES=18 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 64.5
+
+ON=@Create
+	COLOR=color_o_rusty
+	HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_PLATEMAIL_leggings]
+DEFNAME=i_rusty_PLATEMAIL_leggings
+NAME=rusty platemail legs
+ID=i_platemail_leggings
+
+ARMOR=58
+REQSTR=60
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Rusty
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 67.8
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_PLATE_HELM]
+DEFNAME=i_rusty_PLATE_HELM
+NAME=rusty plate helm
+ID=i_platemail_helm
+
+ARMOR=58
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_PLATEMAIL_GORGET]
+DEFNAME=i_rusty_PLATEMAIL_GORGET
+NAME=rusty platemail gorget
+ID=i_platemail_gorget
+
+ARMOR=58
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 51.4
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_PLATEMAIL_GAUNTLETS]
+DEFNAME=i_rusty_PLATEMAIL_GAUNTLETS
+NAME=rusty platemail gauntlets
+ID=i_platemail_gloves
+
+ARMOR=58
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 54.7
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_FEMALE_PLATEMAIL]
+DEFNAME=i_rusty_FEMALE_PLATEMAIL
+NAME=rusty platemail
+ID=i_armor_female_plate
+
+ARMOR=58
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 71.0
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={51 65}
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_rusty_CHAINMAIL_COIF]
+DEFNAME=i_rusty_CHAINMAIL_COIF
+NAME=rusty chainmail coif
+ID=i_chainmail_coif
+
+ARMOR=41
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 28.6
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={36 44}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_CHAINMAIL_LEGGINGS]
+DEFNAME=i_rusty_CHAINMAIL_LEGGINGS
+NAME=rusty chainmail leggings
+ID=i_chainmail_leggings
+
+ARMOR=41
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 32.1
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_CHAINMAIL_TUNIC]
+DEFNAME=i_rusty_CHAINMAIL_TUNIC
+NAME=rusty chainmail tunic
+ID=i_chainmail_tunic
+
+ARMOR=41
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Chainmail Tunic
+RESOURCES=20 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 44.8
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_RINGMAIL_LEGGINGS]
+DEFNAME=i_rusty_RINGMAIL_LEGGINGS
+NAME=rusty ringmail leggings
+ID=i_ringmail_leggings
+
+ARMOR=39
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 28.6
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_RINGMAIL_SLEEVES]
+DEFNAME=i_rusty_RINGMAIL_SLEEVES
+NAME=rusty ringmail sleeves
+ID=i_ringmail_sleeves
+
+ARMOR=39
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 25.3
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_RINGMAIL_GLOVES]
+DEFNAME=i_rusty_RINGMAIL_GLOVES
+NAME=rusty ringmail gloves
+ID=i_ringmail_gloves
+
+ARMOR=39
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 18.8
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_RINGMAIL_TUNIC]
+DEFNAME=i_rusty_RINGMAIL_TUNIC
+NAME=rusty ringmail tunic
+ID=i_ringmail_tunic
+
+ARMOR=39
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 32.1
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_BUCKLER_SHIELD]
+DEFNAME=i_rusty_BUCKLER_SHIELD
+NAME=rusty buckler
+ID=i_shield_buckler
+ARMOR=9
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 6.0
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={41 51}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_HEATER_SHIELD]
+DEFNAME=i_rusty_HEATER_SHIELD
+NAME=rusty heater shield
+ID=I_SHIELD_HEATER
+ARMOR=25
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 41.6
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={31 37}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_METAL_SHIELD]
+DEFNAME=i_rusty_METAL_SHIELD
+NAME=rusty metal shield
+ID=i_shield_round_metal
+ARMOR=13
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 16.0
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={51 65}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_CLOSED_HELM]
+DEFNAME=i_rusty_CLOSED_HELM
+NAME=rusty closed helm
+ID=i_helm_closed
+
+ARMOR=55
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={101 115}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_HELMET]
+DEFNAME=i_rusty_HELMET
+NAME=rusty helmet
+ID=i_helm_open
+
+ARMOR=55
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={51 65}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_BASCINET]
+DEFNAME=i_rusty_BASCINET
+NAME=rusty bascinet
+ID=i_bascinet
+
+ARMOR=55
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 20.2
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={101 115}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF i_rusty_NOSE_HELM]
+DEFNAME=i_rusty_NOSE_HELM
+NAME=rusty bascinet
+ID=i_helm_nose
+
+ARMOR=55
+REQSTR=0
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=rusty
+DESCRIPTION=Bascinet
+
+RESOURCES=15 i_ingot_rusty
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_rusty
+HITPOINTS={101 115}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+//Shadow Armor
+
+[FUNCTION f_shadow_curse]
+RETURN 0
+
+//	if ( <cont.kills> >5 )
+//		effect=3,i_fx_curse,6,15,1
+//		sfx snd_SPELL_CURSE
+//		src.spelleffect s_poison, 500, 0, 1
+//		TIMER=20	// check again later
+//	endif
+
+[ITEMDEF 04755]
+DEFNAME=i_SHADOW_PLATEMAIL
+NAME=shadow platemail
+ID=i_platemail_chest
+
+ARMOR=58
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Platemail
+RESOURCES=25 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 76.0
+
+ON=@Create
+	COLOR=color_o_shadow
+	HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04756]
+DEFNAME=i_SHADOW_PLATEMAIL_ARMS
+NAME=shadow platemail arms
+ID=i_platemail_arms
+
+ARMOR=58
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Platemail Arms
+RESOURCES=18 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 64.5
+
+ON=@Create
+	COLOR=color_o_shadow
+	HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04757]
+DEFNAME=i_SHADOW_PLATEMAIL_leggings
+NAME=shadow platemail legs
+ID=i_platemail_leggings
+
+ARMOR=58
+REQSTR=60
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 67.8
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04758]
+DEFNAME=i_SHADOW_PLATE_HELM
+NAME=shadow plate helm
+ID=i_platemail_helm
+
+ARMOR=58
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04759]
+DEFNAME=i_SHADOW_PLATEMAIL_GORGET
+NAME=shadow platemail gorget
+ID=i_platemail_gorget
+
+ARMOR=58
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 51.4
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 0475a]
+DEFNAME=i_SHADOW_PLATEMAIL_GAUNTLETS
+NAME=shadow platemail gauntlets
+ID=i_platemail_gloves
+
+ARMOR=58
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 54.7
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 0475b]
+DEFNAME=i_SHADOW_FEMALE_PLATEMAIL
+NAME=shadow platemail
+ID=i_armor_female_plate
+
+ARMOR=58
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 71.0
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={51 65}
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0475c]
+DEFNAME=i_SHADOW_CHAINMAIL_COIF
+NAME=shadow chainmail coif
+ID=i_chainmail_coif
+
+ARMOR=41
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 28.6
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={36 44}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 0475d]
+DEFNAME=i_SHADOW_CHAINMAIL_LEGGINGS
+NAME=shadow chainmail leggings
+ID=i_chainmail_leggings
+
+ARMOR=41
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 32.1
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 0475e]
+DEFNAME=i_SHADOW_CHAINMAIL_TUNIC
+NAME=shadow chainmail tunic
+ID=i_chainmail_tunic
+
+ARMOR=41
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Chainmail Tunic
+RESOURCES=20 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 44.8
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 0475f]
+DEFNAME=i_SHADOW_RINGMAIL_LEGGINGS
+NAME=shadow ringmail leggings
+ID=i_ringmail_leggings
+
+ARMOR=39
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 28.6
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04760]
+DEFNAME=i_SHADOW_RINGMAIL_SLEEVES
+NAME=shadow ringmail sleeves
+ID=i_ringmail_sleeves
+
+ARMOR=39
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 25.3
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04761]
+DEFNAME=i_SHADOW_RINGMAIL_GLOVES
+NAME=shadow ringmail gloves
+ID=i_ringmail_gloves
+
+ARMOR=39
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 18.8
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04762]
+DEFNAME=i_SHADOW_RINGMAIL_TUNIC
+NAME=shadow ringmail tunic
+ID=i_ringmail_tunic
+
+ARMOR=39
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 32.1
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04763]
+DEFNAME=i_SHADOW_BUCKLER_SHIELD
+NAME=shadow buckler
+ID=i_shield_buckler
+ARMOR=9
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 6.0
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={41 51}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04764]
+DEFNAME=i_SHADOW_HEATER_SHIELD
+NAME=shadow heater shield
+ID=I_SHIELD_HEATER
+ARMOR=25
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 41.6
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={31 37}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04765]
+DEFNAME=i_SHADOW_METAL_SHIELD
+NAME=shadow metal shield
+ID=i_shield_round_metal
+ARMOR=13
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 16.0
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={51 65}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04766]
+DEFNAME=i_SHADOW_CLOSED_HELM
+NAME=shadow closed helm
+ID=i_helm_closed
+
+ARMOR=55
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={101 115}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04767]
+DEFNAME=i_SHADOW_HELMET
+NAME=shadow helmet
+ID=i_helm_open
+
+ARMOR=55
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={51 65}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04768]
+DEFNAME=i_SHADOW_BASCINET
+NAME=shadow bascinet
+ID=i_bascinet
+
+ARMOR=55
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 20.2
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={101 115}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04769]
+DEFNAME=i_SHADOW_NOSE_HELM
+NAME=shadow bascinet
+ID=i_helm_nose
+
+ARMOR=55
+REQSTR=0
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Shadow
+DESCRIPTION=Bascinet
+
+RESOURCES=15 i_ingot_shadow
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_shadow
+HITPOINTS={101 115}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+//Verite Armor
+
+[ITEMDEF 0476a]
+DEFNAME=i_VERITE_PLATEMAIL
+NAME=verite platemail
+ID=i_platemail_chest
+
+ARMOR=70
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Platemail
+RESOURCES=25 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 79.0
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0476b]
+DEFNAME=i_VERITE_PLATEMAIL_ARMS
+NAME=verite platemail arms
+ID=i_platemail_arms
+
+ARMOR=70
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Platemail Arms
+RESOURCES=18 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 67.5
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0476c]
+DEFNAME=i_VERITE_PLATEMAIL_leggings
+NAME=verite platemail legs
+ID=i_platemail_leggings
+
+ARMOR=70
+REQSTR=60
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 70.8
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0476d]
+DEFNAME=i_VERITE_PLATE_HELM
+NAME=verite plate helm
+ID=i_platemail_helm
+
+ARMOR=70
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0476e]
+DEFNAME=i_VERITE_PLATEMAIL_GORGET
+NAME=verite platemail gorget
+ID=i_platemail_gorget
+
+ARMOR=70
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 54.4
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0476f]
+DEFNAME=i_VERITE_PLATEMAIL_GAUNTLETS
+NAME=verite platemail gauntlets
+ID=i_platemail_gloves
+
+ARMOR=70
+REQSTR=45
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 57.7
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04770]
+DEFNAME=i_VERITE_FEMALE_PLATEMAIL
+NAME=verite platemail
+ID=i_armor_female_plate
+
+ARMOR=70
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 74.0
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04771]
+DEFNAME=i_VERITE_CHAINMAIL_COIF
+NAME=verite chainmail coif
+ID=i_chainmail_coif
+
+ARMOR=44
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 31.6
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={36 44}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04772]
+DEFNAME=i_VERITE_CHAINMAIL_LEGGINGS
+NAME=verite chainmail leggings
+ID=i_chainmail_leggings
+
+ARMOR=44
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 35.1
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04773]
+DEFNAME=i_VERITE_CHAINMAIL_TUNIC
+NAME=verite chainmail tunic
+ID=i_chainmail_tunic
+
+ARMOR=44
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Chainmail Tunic
+RESOURCES=20 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 47.8
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04774]
+DEFNAME=i_VERITE_RINGMAIL_LEGGINGS
+NAME=verite ringmail leggings
+ID=i_ringmail_leggings
+
+ARMOR=42
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 31.6
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04775]
+DEFNAME=i_VERITE_RINGMAIL_SLEEVES
+NAME=verite ringmail sleeves
+ID=i_ringmail_sleeves
+
+ARMOR=42
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 28.3
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04776]
+DEFNAME=i_VERITE_RINGMAIL_GLOVES
+NAME=verite ringmail gloves
+ID=i_ringmail_gloves
+
+ARMOR=42
+REQSTR=20
+
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 21.8
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04777]
+DEFNAME=i_VERITE_RINGMAIL_TUNIC
+NAME=verite ringmail tunic
+ID=i_ringmail_tunic
+
+ARMOR=42
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 35.1
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04778]
+DEFNAME=i_VERITE_BUCKLER_SHIELD
+NAME=verite buckler
+ID=i_shield_buckler
+ARMOR=9
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 9.0
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={41 51}
+
+[ITEMDEF 04779]
+DEFNAME=i_VERITE_HEATER_SHIELD
+NAME=verite heater shield
+ID=I_SHIELD_HEATER
+ARMOR=26
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 44.6
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={31 37}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0477a]
+DEFNAME=i_VERITE_METAL_SHIELD
+NAME=verite metal shield
+ID=i_shield_round_metal
+ARMOR=13
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 19.0
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={51 65}
+
+[ITEMDEF 0477b]
+DEFNAME=i_VERITE_CLOSED_HELM
+NAME=verite closed helm
+ID=i_helm_closed
+
+ARMOR=68
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={101 115}
+
+[ITEMDEF 0477c]
+DEFNAME=i_VERITE_HELMET
+NAME=verite helmet
+ID=i_helm_open
+
+ARMOR=68
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={51 65}
+
+[ITEMDEF 0477d]
+DEFNAME=i_VERITE_BASCINET
+NAME=verite bascinet
+ID=i_bascinet
+
+ARMOR=68
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 23.2
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={101 115}
+
+[ITEMDEF 0477e]
+DEFNAME=i_VERITE_NOSE_HELM
+NAME=verite nose helm
+ID=i_helm_nose
+
+ARMOR=68
+REQSTR=0
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Verite
+DESCRIPTION=Nose Helm
+
+RESOURCES=15 i_ingot_verite
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_verite
+HITPOINTS={101 115}
+
+//Agapite Armor
+// Can only be worn by good karma people.
+
+[FUNCTION f_agapite_drop]
+RETURN 0
+//BOZUK DUZELTICEM YAKINDA -INF
+//SIMDILIK CALISMASIN DAHA IYI
+
+//	if ( 0 > <cont.karma> )
+//		emote glows red.
+//		effect=3,i_fx_curse,6,15,1
+//		sfx snd_SPELL_CURSE
+//		drop
+//	endif
+//	TIMER=60	// check again later
+
+[ITEMDEF 04780]
+DEFNAME=i_AGAPITE_PLATEMAIL
+NAME=agapite platemail
+ID=i_platemail_chest
+
+ARMOR=62
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Platemail
+RESOURCES=25 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 76.0
+
+ON=@Create
+	COLOR=color_o_agapite
+	HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04781]
+DEFNAME=i_AGAPITE_PLATEMAIL_ARMS
+NAME=agapite platemail arms
+ID=i_platemail_arms
+
+ARMOR=62
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Platemail Arms
+RESOURCES=18 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 66.5
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04782]
+DEFNAME=i_AGAPITE_PLATEMAIL_leggings
+NAME=agapite platemail legs
+ID=i_platemail_leggings
+
+ARMOR=62
+REQSTR=60
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 69.8
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04783]
+DEFNAME=i_AGAPITE_PLATE_HELM
+NAME=agapite plate helm
+ID=i_platemail_helm
+
+ARMOR=62
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 61.6
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04784]
+DEFNAME=i_AGAPITE_PLATEMAIL_GORGET
+NAME=agapite platemail gorget
+ID=i_platemail_gorget
+
+ARMOR=62
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 53.4
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04785]
+DEFNAME=i_AGAPITE_PLATEMAIL_GAUNTLETS
+NAME=agapite platemail gauntlets
+ID=i_platemail_gloves
+
+ARMOR=62
+REQSTR=45
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 56.7
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04786]
+DEFNAME=i_AGAPITE_FEMALE_PLATEMAIL
+NAME=agapite platemail
+ID=i_armor_female_plate
+
+ARMOR=62
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 73.0
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04787]
+DEFNAME=i_AGAPITE_CHAINMAIL_COIF
+NAME=agapite chainmail coif
+ID=i_chainmail_coif
+
+ARMOR=41
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 30.6
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={36 44}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04788]
+DEFNAME=i_AGAPITE_CHAINMAIL_LEGGINGS
+NAME=agapite chainmail leggings
+ID=i_chainmail_leggings
+
+ARMOR=41
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 34.1
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04789]
+DEFNAME=i_AGAPITE_CHAINMAIL_TUNIC
+NAME=agapite chainmail tunic
+ID=i_chainmail_tunic
+
+ARMOR=41
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Chainmail Tunic
+RESOURCES=20 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 46.8
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 0478a]
+DEFNAME=i_AGAPITE_RINGMAIL_LEGGINGS
+NAME=agapite ringmail leggings
+ID=i_ringmail_leggings
+
+ARMOR=39
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 30.6
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 0478b]
+DEFNAME=i_AGAPITE_RINGMAIL_SLEEVES
+NAME=agapite ringmail sleeves
+ID=i_ringmail_sleeves
+
+ARMOR=39
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 27.3
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 0478c]
+DEFNAME=i_AGAPITE_RINGMAIL_GLOVES
+NAME=agapite ringmail gloves
+ID=i_ringmail_gloves
+
+ARMOR=39
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 20.8
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 0478d]
+DEFNAME=i_AGAPITE_RINGMAIL_TUNIC
+NAME=agapite ringmail tunic
+ID=i_ringmail_tunic
+
+ARMOR=39
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 34.1
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 0478e]
+DEFNAME=i_AGAPITE_BUCKLER_SHIELD
+NAME=agapite buckler
+ID=i_shield_buckler
+ARMOR=9
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 8.0
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={41 51}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 0478f]
+DEFNAME=i_AGAPITE_HEATER_SHIELD
+NAME=agapite heater shield
+ID=I_SHIELD_HEATER
+ARMOR=25
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 43.6
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={31 37}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+TIMER=1
+
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04790]
+DEFNAME=i_AGAPITE_METAL_SHIELD
+NAME=agapite metal shield
+ID=i_shield_round_metal
+ARMOR=13
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 18
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={51 65}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04791]
+DEFNAME=i_AGAPITE_CLOSED_HELM
+NAME=agapite closed helm
+ID=i_helm_closed
+
+ARMOR=60
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 61.6
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={101 115}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04792]
+DEFNAME=i_AGAPITE_HELMET
+NAME=agapite helmet
+ID=i_helm_open
+
+ARMOR=60
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 61.6
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={51 65}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04793]
+DEFNAME=i_AGAPITE_BASCINET
+NAME=agapite bascinet
+ID=i_bascinet
+
+ARMOR=60
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 22.2
+
+ON=@Create
+COLOR=color_o_agapite
+HITPOINTS={101 115}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+[ITEMDEF 04794]
+DEFNAME=i_AGAPITE_NOSE_HELM
+NAME=agapite nose helm
+ID=i_helm_nose
+
+ARMOR=60
+REQSTR=0
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Agapite
+DESCRIPTION=Nose Helm
+
+RESOURCES=15 i_ingot_agapite
+SKILLMAKE=BLACKSMITHING 61.6
+
+ON=@Create
+	COLOR=color_o_agapite
+	HITPOINTS={101 115}
+
+ON=@Equip
+	TIMER=1
+ON=@Timer
+	if <cont>
+		f_agapite_drop
+		return 1
+	endif
+
+//Valorite Armor
+
+[ITEMDEF 04795]
+DEFNAME=i_VALORITE_PLATEMAIL
+NAME=valorite platemail
+ID=i_platemail_chest
+
+ARMOR=75
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Platemail
+RESOURCES=25 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 79.0
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04796]
+DEFNAME=i_VALORITE_PLATEMAIL_ARMS
+NAME=valorite platemail arms
+ID=i_platemail_arms
+
+ARMOR=75
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Platemail Arms
+RESOURCES=18 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 67.5
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04797]
+DEFNAME=i_VALORITE_PLATEMAIL_leggings
+NAME=valorite platemail legs
+ID=i_platemail_leggings
+
+ARMOR=75
+REQSTR=60
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 70.8
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04798]
+DEFNAME=i_VALORITE_PLATE_HELM
+NAME=valorite plate helm
+ID=i_platemail_helm
+
+ARMOR=75
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04799]
+DEFNAME=i_VALORITE_PLATEMAIL_GORGET
+NAME=valorite platemail gorget
+ID=i_platemail_gorget
+
+ARMOR=75
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 54.4
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0479a]
+DEFNAME=i_VALORITE_PLATEMAIL_GAUNTLETS
+NAME=valorite platemail gauntlets
+ID=i_platemail_gloves
+
+ARMOR=75
+REQSTR=45
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 57.7
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0479b]
+DEFNAME=i_VALORITE_FEMALE_PLATEMAIL
+NAME=valorite platemail
+ID=i_armor_female_plate
+
+ARMOR=75
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 74.0
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={51 65}
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0479c]
+DEFNAME=i_VALORITE_CHAINMAIL_COIF
+NAME=valorite chainmail coif
+ID=i_chainmail_coif
+
+ARMOR=50
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 31.6
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={36 44}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0479d]
+DEFNAME=i_VALORITE_CHAINMAIL_LEGGINGS
+NAME=valorite chainmail leggings
+ID=i_chainmail_leggings
+
+ARMOR=50
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 35.1
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0479e]
+DEFNAME=i_VALORITE_CHAINMAIL_TUNIC
+NAME=valorite chainmail tunic
+ID=i_chainmail_tunic
+
+ARMOR=50
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Chainmail Tunic
+RESOURCES=25 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 47.8
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 0479f]
+DEFNAME=i_valorite_ringmail_leggings
+NAME=valorite ringmail leggings
+ID=i_ringmail_leggings
+
+ARMOR=45
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 31.6
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 047a0]
+DEFNAME=i_VALORITE_RINGMAIL_SLEEVES
+NAME=valorite ringmail sleeves
+ID=i_ringmail_sleeves
+
+ARMOR=45
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 28.3
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 047a1]
+DEFNAME=i_VALORITE_RINGMAIL_GLOVES
+NAME=valorite ringmail gloves
+ID=i_ringmail_gloves
+
+ARMOR=45
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 21.8
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 047a2]
+DEFNAME=i_VALORITE_RINGMAIL_TUNIC
+NAME=valorite ringmail tunic
+ID=i_ringmail_tunic
+
+ARMOR=45
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 35.1
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 047a3]
+//DEFNAME=i_VALORITE_BUCKLER
+DEFNAME=i_VALORITE_BUCKLER_SHIELD
+NAME=valorite buckler
+ID=i_shield_buckler
+ARMOR=9
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 9.0
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={41 51}
+
+[ITEMDEF 047a4]
+DEFNAME=i_VALORITE_HEATER_SHIELD
+NAME=valorite heater shield
+ID=I_SHIELD_HEATER
+ARMOR=28
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 44.6
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={31 37}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 047a5]
+DEFNAME=i_valorite_metal_shield
+NAME=valorite metal shield
+ID=i_shield_round_metal
+ARMOR=13
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 19.0
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={51 65}
+
+[ITEMDEF 047a6]
+DEFNAME=i_VALORITE_CLOSED_HELM
+NAME=valorite closed helm
+ID=i_helm_closed
+
+ARMOR=72
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={101 115}
+
+[ITEMDEF 047a7]
+DEFNAME=i_VALORITE_HELMET
+NAME=valorite helmet
+ID=i_helm_open
+
+ARMOR=72
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={51 65}
+
+[ITEMDEF 047a8]
+DEFNAME=i_VALORITE_BASCINET
+NAME=valorite bascinet
+ID=i_bascinet
+
+ARMOR=72
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 23.2
+
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={101 115}
+
+[ITEMDEF 047a9]
+DEFNAME=i_VALORITE_NOSE_HELM
+NAME=valorite nose helm
+ID=i_helm_nose
+
+ARMOR=72
+REQSTR=0
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Valorite
+DESCRIPTION=Nose Helm
+
+RESOURCES=15 i_ingot_valorite
+SKILLMAKE=BLACKSMITHING 62.6
+ON=@Create
+COLOR=color_o_valorite
+HITPOINTS={101 115}
+
+[ITEMDEF 04801]
+DEFNAME=i_BRONZE_PLATEMAIL
+NAME=bronze platemail
+ID=i_platemail_chest
+
+ARMOR=50
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Platemail
+RESOURCES=25 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 75.0
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04802]
+DEFNAME=i_BRONZE_PLATEMAIL_ARMS
+NAME=bronze platemail arms
+ID=i_platemail_arms
+
+ARMOR=50
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Platemail Arms
+RESOURCES=18 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 63.5
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04803]
+DEFNAME=i_BRONZE_PLATEMAIL_leggings
+NAME=bronze platemail legs
+ID=i_platemail_leggings
+
+ARMOR=50
+REQSTR=60
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 66.8
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04804]
+DEFNAME=i_BRONZE_PLATE_HELM
+NAME=bronze plate helm
+ID=i_platemail_helm
+
+ARMOR=50
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04805]
+DEFNAME=i_BRONZE_PLATEMAIL_GORGET
+NAME=bronze platemail gorget
+ID=i_platemail_gorget
+
+ARMOR=50
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 50.4
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04806]
+DEFNAME=i_BRONZE_PLATEMAIL_GAUNTLETS
+NAME=bronze platemail gauntlets
+ID=i_platemail_gloves
+
+ARMOR=50
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 53.7
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04807]
+DEFNAME=i_BRONZE_FEMALE_PLATEMAIL
+NAME=bronze platemail
+ID=i_armor_female_plate
+
+ARMOR=50
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 70.0
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={51 65}
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04808]
+DEFNAME=i_BRONZE_CHAINMAIL_COIF
+NAME=bronze chainmail coif
+ID=i_chainmail_coif
+
+ARMOR=39
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 27.6
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={36 44}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04809]
+DEFNAME=i_BRONZE_CHAINMAIL_LEGGINGS
+NAME=bronze chainmail leggings
+ID=i_chainmail_leggings
+
+ARMOR=39
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 31.1
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04810]
+DEFNAME=i_BRONZE_CHAINMAIL_TUNIC
+NAME=bronze chainmail tunic
+ID=i_chainmail_tunic
+
+ARMOR=39
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Chainmail Tunic
+RESOURCES=20 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 43.8
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04811]
+DEFNAME=i_BRONZE_RINGMAIL_LEGGINGS
+NAME=bronze ringmail leggings
+ID=i_ringmail_leggings
+
+ARMOR=37
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 27.6
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04812]
+DEFNAME=i_BRONZE_RINGMAIL_SLEEVES
+NAME=bronze ringmail sleeves
+ID=i_ringmail_sleeves
+
+ARMOR=37
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 24.3
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04813]
+DEFNAME=i_BRONZE_RINGMAIL_GLOVES
+NAME=bronze ringmail gloves
+ID=i_ringmail_gloves
+
+ARMOR=37
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 17.8
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04814]
+DEFNAME=i_BRONZE_RINGMAIL_TUNIC
+NAME=bronze ringmail tunic
+ID=i_ringmail_tunic
+
+ARMOR=37
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 31.1
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04815]
+DEFNAME=i_BRONZE_BUCKLER_shield
+NAME=bronze buckler
+ID=i_shield_buckler
+ARMOR=6
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 5.0
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={41 51}
+
+[ITEMDEF 04816]
+DEFNAME=i_BRONZE_HEATER_SHIELD
+NAME=bronze heater shield
+ID=I_SHIELD_HEATER
+ARMOR=23
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 40.6
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={31 37}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF 04817]
+DEFNAME=i_BRONZE_METAL_SHIELD
+NAME=bronze metal shield
+ID=i_shield_round_metal
+ARMOR=10
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 15.0
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={51 65}
+
+[ITEMDEF 04818]
+DEFNAME=i_BRONZE_CLOSED_HELM
+NAME=bronze closed helm
+ID=i_helm_closed
+
+ARMOR=48
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={30 45}
+
+[ITEMDEF 04819]
+DEFNAME=i_BRONZE_HELMET
+NAME=bronze helmet
+ID=i_helm_open
+
+ARMOR=48
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={51 65}
+
+[ITEMDEF 04820]
+DEFNAME=i_BRONZE_BASCINET
+NAME=bronze bascinet
+ID=i_bascinet
+
+ARMOR=48
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 19.2
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={30 35}
+
+[ITEMDEF 04821]
+DEFNAME=i_BRONZE_NOSE_HELM
+NAME=bronze nose helm
+ID=i_helm_nose
+
+ARMOR=48
+REQSTR=0
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bronze
+DESCRIPTION=Nose Helm
+RESOURCES=15 i_ingot_bronze
+SKILLMAKE=BLACKSMITHING 58.6
+
+ON=@Create
+COLOR=color_o_bronze
+HITPOINTS={30 45}
+
+// blackrock
+
+[ITEMDEF i_blackrock_platemail]
+DEFNAME=i_blackrock_platemail
+NAME=blackrock platemail
+ID=i_platemail_chest
+
+ARMOR=75
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Platemail
+RESOURCES=25 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 79.0
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_platemail_arms]
+DEFNAME=i_blackrock_platemail_arms
+NAME=blackrock platemail arms
+ID=i_platemail_arms
+
+ARMOR=75
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Platemail Arms
+RESOURCES=18 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 67.5
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_platemail_leggings]
+DEFNAME=i_blackrock_platemail_leggings
+NAME=blackrock platemail legs
+ID=i_platemail_leggings
+
+ARMOR=75
+REQSTR=60
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 70.8
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_plate_helm]
+DEFNAME=i_blackrock_plate_helm
+NAME=blackrock plate helm
+ID=i_platemail_helm
+
+ARMOR=75
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_platemail_gorget]
+DEFNAME=i_blackrock_platemail_gorget
+NAME=blackrock platemail gorget
+ID=i_platemail_gorget
+
+ARMOR=75
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 54.4
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_platemail_gauntlets]
+DEFNAME=i_blackrock_platemail_gauntlets
+NAME=blackrock platemail gauntlets
+ID=i_platemail_gloves
+
+ARMOR=75
+REQSTR=45
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 57.7
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_female_platemail]
+DEFNAME=i_blackrock_female_platemail
+NAME=blackrock platemail
+ID=i_armor_female_plate
+
+ARMOR=75
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 74.0
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_chainmail_coif]
+DEFNAME=i_blackrock_chainmail_coif
+NAME=blackrock chainmail coif
+ID=i_chainmail_coif
+
+ARMOR=50
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 31.6
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={36 44}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_chainmail_leggings]
+DEFNAME=i_blackrock_chainmail_leggings
+NAME=blackrock chainmail leggings
+ID=i_chainmail_leggings
+
+ARMOR=50
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 35.1
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_chainmail_tunic]
+DEFNAME=i_blackrock_chainmail_tunic
+NAME=blackrock chainmail tunic
+ID=i_chainmail_tunic
+
+ARMOR=50
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Chainmail Tunic
+RESOURCES=25 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 47.8
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_ringmail_leggings]
+DEFNAME=i_blackrock_ringmail_leggings
+NAME=blackrock ringmail leggings
+ID=i_ringmail_leggings
+
+ARMOR=45
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 31.6
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_ringmail_sleeves]
+DEFNAME=i_blackrock_ringmail_sleeves
+NAME=blackrock ringmail sleeves
+ID=i_ringmail_sleeves
+
+ARMOR=45
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 28.3
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_ringmail_gloves]
+DEFNAME=i_blackrock_ringmail_gloves
+NAME=blackrock ringmail gloves
+ID=i_ringmail_gloves
+
+ARMOR=45
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 21.8
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_ringmail_tunic]
+DEFNAME=i_blackrock_ringmail_tunic
+NAME=blackrock ringmail tunic
+ID=i_ringmail_tunic
+
+ARMOR=45
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 35.1
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_buckler_shield]
+DEFNAME=i_blackrock_buckler_shield
+NAME=blackrock buckler
+ID=i_shield_buckler
+ARMOR=9
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 9.0
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={41 51}
+
+[ITEMDEF i_blackrock_heater_shield]
+DEFNAME=i_blackrock_heater_shield
+NAME=blackrock heater shield
+ID=I_SHIELD_HEATER
+ARMOR=28
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 44.6
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={31 37}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_blackrock_metal_shield]
+DEFNAME=i_blackrock__metal_shield
+NAME=blackrock metal shield
+ID=i_shield_round_metal
+ARMOR=13
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 19.0
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={51 65}
+
+[ITEMDEF i_blackrock_closed_helm]
+DEFNAME=i_blackrock_closed_helm
+NAME=blackrock closed helm
+ID=i_helm_closed
+
+ARMOR=72
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={101 115}
+
+[ITEMDEF i_blackrock_helmet]
+DEFNAME=i_blackrock_helmet
+NAME=blackrock helmet
+ID=i_helm_open
+
+ARMOR=72
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={51 65}
+
+[ITEMDEF i_blackrock_bascinet]
+DEFNAME=i_blackrock_bascinet
+NAME=blackrock bascinet
+ID=i_bascinet
+
+ARMOR=72
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 23.2
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={101 115}
+
+[ITEMDEF i_blackrock_nose_helm]
+DEFNAME=i_blackrock_nose_helm
+NAME=blackrock nose helm
+ID=i_helm_nose
+
+ARMOR=72
+REQSTR=0
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=blackrock
+DESCRIPTION=Nose Helm
+
+RESOURCES=15 i_ingot_blackrock
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_blackrock
+HITPOINTS={101 115}
+
+// BLOODROCK
+
+[ITEMDEF i_bloodrock_platemail]
+DEFNAME=i_bloodrock_platemail
+NAME=bloodrock platemail
+ID=i_platemail_chest
+
+ARMOR=75
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Platemail
+RESOURCES=25 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 79.0
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_platemail_arms]
+DEFNAME=i_bloodrock_platemail_arms
+NAME=bloodrock platemail arms
+ID=i_platemail_arms
+
+ARMOR=75
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Platemail Arms
+RESOURCES=18 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 67.5
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_platemail_leggings]
+DEFNAME=i_bloodrock_platemail_leggings
+NAME=bloodrock platemail legs
+ID=i_platemail_leggings
+
+ARMOR=75
+REQSTR=60
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 70.8
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_plate_helm]
+DEFNAME=i_bloodrock_plate_helm
+NAME=bloodrock plate helm
+ID=i_platemail_helm
+
+ARMOR=75
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_platemail_gorget]
+DEFNAME=i_bloodrock_platemail_gorget
+NAME=bloodrock platemail gorget
+ID=i_platemail_gorget
+
+ARMOR=75
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 54.4
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_platemail_gauntlets]
+DEFNAME=i_bloodrock_platemail_gauntlets
+NAME=bloodrock platemail gauntlets
+ID=i_platemail_gloves
+
+ARMOR=75
+REQSTR=45
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 57.7
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_female_platemail]
+DEFNAME=i_bloodrock_female_platemail
+NAME=bloodrock platemail
+ID=i_armor_female_plate
+
+ARMOR=75
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 74.0
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={51 65}
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_chainmail_coif]
+DEFNAME=i_bloodrock_chainmail_coif
+NAME=bloodrock chainmail coif
+ID=i_chainmail_coif
+
+ARMOR=50
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 31.6
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={36 44}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_chainmail_leggings]
+DEFNAME=i_bloodrock_chainmail_leggings
+NAME=bloodrock chainmail leggings
+ID=i_chainmail_leggings
+
+ARMOR=50
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 35.1
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_chainmail_tunic]
+DEFNAME=i_bloodrock_chainmail_tunic
+NAME=bloodrock chainmail tunic
+ID=i_chainmail_tunic
+
+ARMOR=50
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Chainmail Tunic
+RESOURCES=25 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 47.8
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_ringmail_leggings]
+DEFNAME=i_bloodrock_ringmail_leggings
+NAME=bloodrock ringmail leggings
+ID=i_ringmail_leggings
+
+ARMOR=45
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 31.6
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_ringmail_sleeves]
+DEFNAME=i_bloodrock_ringmail_sleeves
+NAME=bloodrock ringmail sleeves
+ID=i_ringmail_sleeves
+
+ARMOR=45
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 28.3
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_ringmail_gloves]
+DEFNAME=i_bloodrock_ringmail_gloves
+NAME=bloodrock ringmail gloves
+ID=i_ringmail_gloves
+
+ARMOR=45
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 21.8
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_ringmail_tunic]
+DEFNAME=i_bloodrock_ringmail_tunic
+NAME=bloodrock ringmail tunic
+ID=i_ringmail_tunic
+
+ARMOR=45
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 35.1
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_buckler_shield]
+DEFNAME=i_bloodrock_buckler_shield
+NAME=bloodrock buckler
+ID=i_shield_buckler
+ARMOR=9
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 9.0
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={41 51}
+
+[ITEMDEF i_bloodrock_heater_shield]
+DEFNAME=i_bloodrock_heater_shield
+NAME=bloodrock heater shield
+ID=I_SHIELD_HEATER
+ARMOR=28
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 44.6
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={31 37}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_bloodrock_metal_shield]
+DEFNAME=i_bloodrock__metal_shield
+NAME=bloodrock metal shield
+ID=i_shield_round_metal
+ARMOR=13
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 19.0
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={51 65}
+
+[ITEMDEF i_bloodrock_closed_helm]
+DEFNAME=i_bloodrock_closed_helm
+NAME=bloodrock closed helm
+ID=i_helm_closed
+
+ARMOR=72
+REQSTR=20
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Closed Helm
+RESOURCES=15 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={101 115}
+
+[ITEMDEF i_bloodrock_helmet]
+DEFNAME=i_bloodrock_helmet
+NAME=bloodrock helmet
+ID=i_helm_open
+
+ARMOR=72
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Helmet
+RESOURCES=15 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={51 65}
+
+[ITEMDEF i_bloodrock_bascinet]
+DEFNAME=i_bloodrock_bascinet
+NAME=bloodrock bascinet
+ID=i_bascinet
+
+ARMOR=72
+REQSTR=10
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Bascinet
+RESOURCES=15 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 23.2
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={101 115}
+
+[ITEMDEF i_bloodrock_nose_helm]
+DEFNAME=i_bloodrock_nose_helm
+NAME=bloodrock nose helm
+ID=i_helm_nose
+
+ARMOR=72
+REQSTR=0
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=Bloodrock
+DESCRIPTION=Nose Helm
+
+RESOURCES=15 i_ingot_bloodrock
+SKILLMAKE=BLACKSMITHING 62.6
+
+ON=@Create
+COLOR=color_o_bloodrock
+HITPOINTS={101 115}
+[ITEMDEF i_silver_PLATEMAIL_ARMS]
+DEFNAME=i_silver_PLATEMAIL_ARMS
+NAME=silver platemail arms
+ID=i_platemail_arms
+ARMOR=57
+REQSTR=40
+WEIGHT=5
+RESOURCES=18 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 64.5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Platemail Arms
+
+ON=@Create
+COLOR=color_o_silver
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_PLATEMAIL_leggings]
+DEFNAME=i_silver_PLATEMAIL_leggings
+NAME=silver platemail legs
+ID=i_platemail_leggings
+WEIGHT=15
+ARMOR=57
+REQSTR=60
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Platemail Legs
+RESOURCES=20 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 67.8
+
+ON=@Create
+COLOR=color_o_silver
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_PLATE_HELM]
+DEFNAME=i_silver_PLATE_HELM
+NAME=silver plate helm
+ID=i_platemail_helm
+ARMOR=57
+REQSTR=40
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Plate Helm
+RESOURCES=15 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 59.6
+
+ON=@Create
+COLOR=color_o_silver
+HITPOINTS={46 58}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_PLATEMAIL_GORGET]
+DEFNAME=i_silver_PLATEMAIL_GORGET
+NAME=silver platemail gorget
+ID=i_platemail_gorget
+ARMOR=57
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Platemail Gorget
+RESOURCES=10 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 51.4
+
+ON=@Create
+COLOR=color_o_silver
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_PLATEMAIL_GAUNTLETS]
+DEFNAME=i_silver_PLATEMAIL_GAUNTLETS
+NAME=silver platemail gauntlets
+ID=i_platemail_gloves
+ARMOR=57
+REQSTR=30
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Platemail Gauntlets
+RESOURCES=12 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 54.7
+
+ON=@Create
+COLOR=color_o_silver
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_PLATEMAI]
+DEFNAME=i_silver_PLATEMAIL
+NAME=silver platemail
+ID=i_platemail_chest
+ARMOR=57
+REQSTR=60
+WEIGHT=10
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Platemail
+RESOURCES=26 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 76.0
+
+ON=@Create
+COLOR=color_o_silver
+HITPOINTS={51 65}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_RINGMAIL_LEGGINGS]
+DEFNAME=i_silver_RINGMAIL_LEGGINGS
+NAME=silver ringmail leggings
+ID=i_ringmail_leggings
+ARMOR=40
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Ringmail Leggings
+RESOURCES=16 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 28.6
+
+ON=@Create
+COLOR=color_o_silver
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_RINGMAIL_SLEEVES]
+DEFNAME=i_silver_RINGMAIL_SLEEVES
+NAME=silver ringmail sleeves
+ID=i_ringmail_sleeves
+ARMOR=40
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Ringmail Sleeves
+RESOURCES=14 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 25.3
+
+ON=@Create
+COLOR=color_o_silver
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_RINGMAIL_GLOVES]
+DEFNAME=i_silver_RINGMAIL_GLOVES
+NAME=silver ringmail gloves
+ID=i_ringmail_gloves
+ARMOR=40
+REQSTR=20
+WEIGHT=2
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Ringmail Gloves
+RESOURCES=10 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 18.8
+
+ON=@Create
+COLOR=color_o_silver
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_RINGMAIL_TUNIC]
+DEFNAME=i_silver_RINGMAIL_TUNIC
+NAME=silver ringmail tunic
+ID=i_ringmail_tunic
+ARMOR=40
+REQSTR=20
+WEIGHT=15
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Ringmail Tunic
+RESOURCES=18 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 32.1
+
+ON=@Create
+COLOR=color_o_silver
+HITPOINTS={41 51}
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_BUCKLER_SHIELD]
+DEFNAME=i_silver_BUCKLER_SHIELD
+NAME=silver buckler
+ID=i_shield_buckler
+ARMOR=10
+REQSTR=15
+WEIGHT=5
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Buckler
+RESOURCES=10 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 6.0
+
+ON=@Create
+COLOR=color_o_silver
+HITPOINTS={41 51}
+
+[ITEMDEF i_silver_METAL_SHIELD]
+DEFNAME=i_silver_METAL_SHIELD
+NAME=silver metal shield
+ID=i_shield_round_metal
+ARMOR=13
+REQSTR=15
+WEIGHT=6
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Metal Shield
+RESOURCES=14 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 16.0
+
+ON=@Create
+HITPOINTS={51 65}
+COLOR=color_o_silver
+
+[ITEMDEF i_silver_FEMALE_PLATEMAIL]
+DEFNAME=i_silver_FEMALE_PLATEMAIL
+NAME=silver platemail
+ID=i_armor_female_plate
+ARMOR=57
+REQSTR=15
+WEIGHT=4
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Female Platemail
+RESOURCES=22 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 71.0
+
+ON=@Create
+HITPOINTS=51
+COLOR=color_o_silver
+
+ON=@EQUIP
+type t_armor
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_CHAINMAIL_COIF]
+DEFNAME=i_silver_CHAINMAIL_COIF
+NAME=silver chainmail coif
+ID=i_chainmail_coif
+ARMOR=42
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Chainmail Coif
+RESOURCES=10 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 28.6
+
+ON=@Create
+HITPOINTS=36
+COLOR=color_o_silver
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_CHAINMAIL_LEGGINGS]
+DEFNAME=i_silver_CHAINMAIL_LEGGINGS
+NAME=silver chainmail leggings
+ID=i_chainmail_leggings
+ARMOR=42
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Chainmail Leggings
+RESOURCES=18 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 32.1
+
+ON=@Create
+HITPOINTS=46
+COLOR=color_o_silver
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_CHAINMAIL_TUNIC]
+DEFNAME=i_silver_CHAINMAIL_TUNIC
+NAME=silver chainmail tunic
+ID=i_chainmail_tunic
+ARMOR=42
+REQSTR=20
+WEIGHT=7
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Chainmail Tunic
+RESOURCES=20 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 44.8
+
+ON=@Create
+HITPOINTS=46
+COLOR=color_o_silver
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[ITEMDEF i_silver_HEATER_SHIELD]
+DEFNAME=i_silver_HEATER_SHIELD
+NAME=silver heater shield
+ID=I_SHIELD_HEATER
+ARMOR=26
+REQSTR=30
+WEIGHT=8
+
+CATEGORY=Provisions - Armor - Colored
+SUBSECTION=silver
+DESCRIPTION=Heater Shield
+RESOURCES=18 i_ingot_silver
+SKILLMAKE=BLACKSMITHING 41.6
+
+ON=@Create
+HITPOINTS=31
+COLOR=color_o_silver
+
+ON=@EQUIP
+SRC.FINDID.i_rune_protection.REMOVE
+SRC.FINDID.i_rune_reactive_armor.REMOVE
+
+[EOF]

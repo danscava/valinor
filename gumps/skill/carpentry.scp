@@ -1,0 +1,1343 @@
+[function f_skill_carpentry]
+src.tag.makelast <src.tag.makelast>
+var.notice yaninizdaki 'log' adedi: <src.rescount i_log>, carpentry bilginiz: %<src.carpentry>
+src.dialogclose d_skill_carpentry
+dialog d_skill_carpentry
+
+[dialog d_skill_carpentry]            
+10,10
+page 0
+
+resizepic 0 0 5120 590 400
+resizepic 10 10 3000 570 30 // serv ismi
+htmlgump 235 15 410 30 76 0 0 // serv ismi 
+
+resizepic 10 363 3000 575 30 // not
+htmlgump 15 368 560 20 75 0 0 // not
+
+resizepic 5 45 5120 580 315
+resizepic 10 50 3000 570 305
+resizepic 15 55 3000 560 295
+
+htmlgump 50 55 80 20 4 0 0
+htmlgump 50 75 80 20 5 0 0
+htmlgump 50 95 80 20 6 0 0
+htmlgump 50 115 130 20 7 0 0
+htmlgump 50 135 80 20 8 0 0
+htmlgump 50 155 80 20 9 0 0 
+htmlgump 50 175 80 20 10 0 0 
+htmlgump 50 195 80 20 11 0 0 
+htmlgump 50 215 80 20 3 0 0 // tekrar
+
+button 15 55 4006 4007 0 1 1
+button 15 75 4006 4007 0 2 2 
+button 15 95  4006 4007 0 3 3 
+button 15 115 4006 4007 0 4 4
+button 15 135 4006 4007 0 5 5 
+button 15 155 4006 4007 0 6 6 
+button 15 175 4006 4007 0 7 7 
+button 15 195 4006 4007 0 9 9 
+button 15 215 4006 4007 1 0 99 // tekrar
+
+page 1
+htmlgump 205 55 80 20 77 0 0
+htmlgump 330 55 80 20 78 0 0
+htmlgump 460 55 80 20 79 0 0
+
+htmlgump 205 135 80 20 79 0 0
+htmlgump 330 135 80 20 79 0 0
+htmlgump 460 135 80 20 79 0 0
+
+htmlgump 205 230 80 20 80 0 0
+htmlgump 330 230 80 20 80 0 0
+htmlgump 460 230 80 20 81 0 0
+
+tilepic 180 75 2866
+tilepic 340 80 2862
+tilepic 430 65 2895
+tilepic 200 155 2898
+tilepic 330 160 2902
+tilepic 460 155 2906
+tilepic 190 255 2602
+tilepic 320 255 2910
+tilepic 470 245 2860
+
+button 190 60 2103 2104 1 0 11
+button 315 60 2103 2104 1 0 12
+button 445 60 2103 2104 1 0 13
+button 190 140 2103 2104 1 0 14
+button 315 140 2103 2104 1 0 15
+button 445 140 2103 2104 1 0 16
+button 190 235 2103 2104 1 0 17
+button 315 235 2103 2104 1 0 18
+button 445 235 2103 2104 1 0 19
+
+page 2 // containers
+htmlgump 205 55 80 20 21 0 0
+htmlgump 335 55 80 20 22 0 0
+htmlgump 205 135 80 20 23 0 0
+htmlgump 335 135 80 20 24 0 0
+htmlgump 455 135 80 20 25 0 0
+htmlgump 455 55 80 20 86 0 0 //kulucka
+
+tilepic 200 75 3650
+tilepic 340 80 3709
+tilepic 200 155 3710
+tilepic 320 160 3646
+tilepic 460 160 3644
+tilepic 460 80 01ad5 //kulucka tilepici yok !
+
+button 190 60 2103 2104 1 0 21
+button 320 60 2103 2104 1 0 22
+button 190 140 2103 2104 1 0 23
+button 320 140 2103 2104 1 0 24
+button 440 140 2103 2104 1 0 25
+button 440 60 2103 2104 1 0 184 // kulucka
+
+page 3 // tables menu
+htmlgump 205 55 80 20 26 0 0
+htmlgump 335 55 80 20 27 0 0
+htmlgump 455 55 80 20 28 0 0
+htmlgump 205 135 100 20 29 0 0
+htmlgump 335 135 80 20 30 0 0
+htmlgump 455 135 100 20 31 0 0
+htmlgump 205 235 80 20 32 0 0
+
+tilepic 200 75 2874
+tilepic 350 70 7590
+tilepic 330 90 7589
+tilepic 472 60 7592
+tilepic 450 85 7591
+tilepic 220 155 6641
+tilepic 330 160 6644
+tilepic 460 155 6649
+tilepic 210 255 2889
+
+button 190 60 2103 2104 1 0 31
+button 320 60 2103 2104 1 0 32
+button 440 60 2103 2104 1 0 33
+button 190 140 2103 2104 1 0 34
+button 320 140 2103 2104 1 0 35
+button 440 140 2103 2104 1 0 36
+button 190 240 2103 2104 1 0 37
+
+page 4 // weapons & tools menu
+htmlgump 205 55 80 20 33 0 0
+htmlgump 330 55 80 20 34 0 0
+htmlgump 460 55 100 20 35 0 0
+htmlgump 205 135 100 20 36 0 0
+htmlgump 330 135 80 20 37 0 0
+htmlgump 460 135 80 20 38 0 0
+htmlgump 205 230 80 20 39 0 0
+
+tilepic 200 75 5043
+tilepic 360 75 5113
+tilepic 480 75 3722
+tilepic 240 155 3714
+tilepic 350 155 3568
+tilepic 460 155 3520
+tilepic 220 255 7034
+
+button 190 60 2103 2104 1 0 41
+button 315 60 2103 2104 1 0 42
+button 445 60 2103 2104 1 0 43
+button 190 140 2103 2104 1 0 44
+button 315 140 2103 2104 1 0 45
+button 445 140 2103 2104 1 0 46
+button 190 235 2103 2104 1 0 47
+
+page 5 // furniture menu
+htmlgump 205 55 80 20 40 0 0
+htmlgump 335 55 80 20 41 0 0
+htmlgump 460 55 80 20 44 0 0
+htmlgump 205 155 80 20 42 0 0
+htmlgump 335 155 80 20 43 0 0
+htmlgump 460 155 80 20 74 0 0
+htmlgump 205 255 80 20 45 0 0
+htmlgump 335 255 80 20 46 0 0
+htmlgump 460 255 120 20 47 0 0
+
+tilepic 205 75 6414
+tilepic 340 80 6416
+tilepic 465 70 2717
+tilepic 205 175 2636
+tilepic 340 175 2638
+tilepic 465 170 2712
+tilepic 205 275 3765
+tilepic 340 275 3766
+tilepic 480 275 2608
+
+button 190 60 2103 2104 1 0 51
+button 320 60 2103 2104 1 0 52
+button 445 60 2103 2104 1 0 53
+button 190 160 2103 2104 1 0 54
+button 320 160 2103 2104 1 0 55
+button 445 160 2103 2104 1 0 5344
+button 190 260 2103 2104 1 0 57
+button 320 260 2103 2104 1 0 58
+button 445 260 2103 2104 1 0 56
+
+page 6 // addon 1
+htmlgump 205 55 80 20 48 0 0
+htmlgump 335 55 80 20 49 0 0
+htmlgump 465 55 80 20 50 0 0
+htmlgump 205 135 80 20 51 0 0
+htmlgump 335 135 80 20 52 0 0
+htmlgump 465 135 80 20 53 0 0
+htmlgump 205 215 80 20 54 0 0
+htmlgump 335 215 80 20 55 0 0
+htmlgump 465 215 80 20 56 0 0
+
+tilepic 250 80 4011
+tilepic 365 80 7726
+tilepic 515 80 5363
+tilepic 260 160 2597
+tilepic 385 160 7129
+tilepic 510 155 3703
+tilepic 270 245 7608
+tilepic 390 245 3782
+tilepic 520 220 3941
+
+button 205 75 2103 2104 1 0 61
+button 335 75 2103 2104 1 0 62
+button 465 75 2103 2104 1 0 63
+button 205 155 2103 2104 1 0 64
+button 335 155 2103 2104 1 0 65
+button 465 155 2103 2104 1 0 66
+button 205 235 2103 2104 1 0 67
+button 335 235 2103 2104 1 0 68
+button 465 235 2103 2104 1 0 69
+
+page 7 // addon 2
+htmlgump 205 55 80 20 57 0 0
+htmlgump 335 55 80 20 58 0 0
+htmlgump 465 55 80 20 59 0 0
+htmlgump 205 135 80 20 67 0 0
+htmlgump 227 155 80 20 64 0 0
+htmlgump 227 185 80 20 65 0 0
+htmlgump 335 135 80 20 61 0 0
+htmlgump 455 135 80 20 73 0 0 // spinning whell
+htmlgump 485 155 80 20 64 0 0
+htmlgump 485 185 80 20 65 0 0
+
+htmlgump 200 225 80 20 72 0 0 // loom
+htmlgump 227 245 80 20 64 0 0
+htmlgump 227 275 80 20 65 0 0
+
+htmlgump 335 225 80 20 66 0 0
+htmlgump 357 245 80 20 64 0 0
+htmlgump 357 275 80 20 65 0 0
+//htmlgump 445 225 80 20 67 0 0
+//htmlgump 486 245 80 20 64 0 0
+//htmlgump 486 275 80 20 65 0 0
+
+tilepic 255 75 4017
+tilepic 375 75 4015
+tilepic 510 70 3895
+tilepic 255 140 7872
+tilepic 385 160 4074
+tilepic 500 150 4117 // spinning whell
+
+tilepic 235 260 4195
+tilepic 260 230 4196
+tilepic 375 230 4208
+
+
+button 205 75 2103 2104 1 0 71
+button 335 75 2103 2104 1 0 72
+button 465 75 2103 2104 1 0 73
+button 205 155 2103 2104 1 0 791
+button 205 185 2103 2104 1 0 792
+button 335 155 2103 2104 1 0 75
+button 465 155 2103 2104 1 0 861
+button 465 185 2103 2104 1 0 862
+button 205 245 2103 2104 1 0 851	
+button 205 275 2103 2104 1 0 852
+button 335 245 2103 2104 1 0 781
+button 335 275 2103 2104 1 0 782
+//button 465 245 2103 2104 1 0 791
+//button 465 275 2103 2104 1 0 792
+
+page 8 // addon 3
+htmlgump 205 55 80 20 68 0 0
+htmlgump 227 75 80 20 64 0 0
+htmlgump 227 105 80 20 65 0 0
+htmlgump 335 55 80 20 69 0 0
+htmlgump 357 75 80 20 64 0 0
+htmlgump 357 105 80 20 65 0 0
+htmlgump 465 55 80 20 70 0 0
+htmlgump 487 75 80 20 64 0 0
+htmlgump 487 105 80 20 65 0 0
+
+htmlgump 205 165 80 20 71 0 0
+htmlgump 227 185 80 20 64 0 0
+htmlgump 227 215 80 20 65 0 0
+htmlgump 335 165 80 20 72 0 0
+htmlgump 357 185 80 20 64 0 0
+htmlgump 357 215 80 20 65 0 0
+htmlgump 455 165 80 20 73 0 0
+htmlgump 487 185 80 20 64 0 0
+htmlgump 487 215 80 20 65 0 0
+
+tilepic 255 75 2662
+tilepic 385 75 2690
+tilepic 520 70 7775
+tilepic 250 180 6433
+tilepic 270 213 6435
+tilepic 355 205 4195
+tilepic 375 175 4196
+tilepic 510 190 4117
+
+button 205 75 2103 2104 1 0 811
+button 205 105 2103 2104 1 0 812
+button 335 75 2103 2104 1 0 821
+button 335 105 2103 2104 1 0 822
+button 465 75 2103 2104 1 0 831
+button 465 105 2103 2104 1 0 832
+button 205 185 2103 2104 1 0 841
+button 205 215 2103 2104 1 0 842
+button 335 185 2103 2104 1 0 851
+button 335 215 2103 2104 1 0 852
+button 465 185 2103 2104 1 0 861
+button 465 215 2103 2104 1 0 862
+
+page 9
+htmlgump 205 55 80 20 82 0 0
+htmlgump 330 55 80 20 83 0 0
+htmlgump 460 55 120 20 84 0 0
+htmlgump 205 125 80 20 85 0 0
+
+tilepic 210 80 4011
+tilepic 335 80 4011
+tilepic 455 80 4011
+tilepic 210 150 4011
+
+button 205 75 2103 2104 1 0 101
+button 335 75 2103 2104 1 0 102
+button 455 75 2103 2104 1 0 103
+button 205 145 2103 2104 1 0 104
+
+
+[DIALOG d_skill_carpentry text]
+bo$				//0
+iptal				//1
+tamam 				//2
+tekrar yap 			//3
+chairs				//4 menu item 1
+containers			//5 
+table				//6
+weap. & tools			//7
+furniture			//8
+addons				//9
+add on 2			//10
+dyes				//11
+throne				//12 menu 1 chairs
+wooden chair			//13
+chair				//14
+chair				//15
+chair				//16
+chair				//17
+stool				//18
+stool				//19
+wooden bench			//20 
+wooden chest			//21 menu 2 containers
+wooden box			//22
+small crate			//23
+crate				//24
+large crate			//25
+table				//26 menu 3 tables
+table				//27
+table				//28
+worker's bench			//29
+vise				//30
+cooper's bench			//31
+writing table			//32
+club				//33 menu 4 weapons & tools
+gnarled staff			//34
+quarter staff			//35
+shepherd's crook		//36
+black staff			//37
+fishing pole			//38
+wooden shield			//39
+bar door			//40 menu 5 furniture
+bar				//41
+armoire				//42	
+armoire				//43
+wooden shelf			//44
+music stand			//45
+music stand			//46
+chest of drawers		//47
+dying tub			//48 addon 1
+dartboard			//49
+ship model			//50
+lantern				//51
+boards				//52
+barrel open			//53
+barrel lid			//54
+dress form			//55
+easel				//56
+forge				//57 addon 2
+anvil				//58
+saddle				//59
+large forge 			//60
+pentagram			//61
+stone pentagram			//62
+watertrough			//63
+n				//64
+w				//65
+dummy				//66
+pickpocket			//67
+small bed			//68 addon 3
+large bed			//69
+bulletin board			//70
+flour mill			//71
+loom				//72
+spinning wheel			//73
+bookcase			//74
+<var.notice>			//75
+VALINOR CARPENTRY MENU		//75
+throne				//76
+wooden chair			//77
+chair				//78
+stool				//79
+wooden bench			//80	
+rare dye
+leather dye
+rare leather dye
+black dye
+kulucka
+
+[dialog d_skill_carpentry button]
+onbutton 11
+if (<src.carpentry> < 52.6) 
+var.notice gerekli skill: %52.6 carpentry
+
+elseif !(<src.restest 17 i_log>)
+var.notice gerekli malzeme: 17 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_chair_throne
+src.tag.makelast i_chair_throne
+endif
+
+dialog d_skill_carpentry
+
+onbutton 12
+if (<src.carpentry> < 25.0) 
+var.notice gerekli skill: %25.0 carpentry
+
+elseif !(<src.restest 17 i_log>)
+var.notice gerekli malzeme: 17 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_chair_wood_rough_dark
+src.tag.makelast i_chair_wood_rough_dark
+endif
+
+dialog d_skill_carpentry
+
+onbutton 13
+if (<src.carpentry> < 42.1) 
+var.notice gerekli skill: %42.1 carpentry
+
+elseif !(<src.restest 17 i_log>)
+var.notice gerekli malzeme: 17 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_chair_wood_fancy_cushion
+src.tag.makelast i_chair_wood_fancy_cushion
+endif
+
+dialog d_skill_carpentry
+
+onbutton 14
+if (<src.carpentry> < 42.1) 
+var.notice gerekli skill: %42.1 carpentry
+
+elseif !(<src.restest 17 i_log>)
+var.notice gerekli malzeme: 17 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_chair_wood_cushion
+src.tag.makelast i_chair_wood_cushion
+endif
+
+dialog d_skill_carpentry
+
+onbutton 15
+if (<src.carpentry> < 42.1) 
+var.notice gerekli skill: %42.1 carpentry
+
+elseif !(<src.restest 17 i_log>)
+var.notice gerekli malzeme: 17 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_chair_wood
+src.tag.makelast i_chair_wood
+endif
+
+dialog d_skill_carpentry
+
+onbutton 16
+if (<src.carpentry> < 21.0) 
+var.notice gerekli skill: %21.0 carpentry
+
+elseif !(<src.restest 13 i_log>)
+var.notice gerekli malzeme: 13 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_chair_wood_bamboo
+src.tag.makelast i_chair_wood_bamboo
+endif
+
+dialog d_skill_carpentry
+
+onbutton 17
+if (<src.carpentry> < 11.0) 
+var.notice gerekli skill: %11.0 carpentry
+
+elseif !(<src.restest 9 i_log>)
+var.notice gerekli malzeme: 9 log
+
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem i_chair_stool_bar
+src.tag.makelast i_chair_stool_bar
+endif
+
+dialog d_skill_carpentry
+
+onbutton=18
+if (<src.carpentry> < 11.0) 
+var.notice gerekli skill: %11.0 carpentry
+elseif !(<src.restest 9 i_log>)
+var.notice gerekli malzeme: 9 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_chair_stool
+src.tag.makelast=i_chair_stool
+endif
+dialog d_skill_carpentry
+
+onbutton=19
+if (<src.carpentry> < 52.6) 
+var.notice gerekli skill: %52.6 carpentry
+elseif !(<src.restest 17 i_log>)
+var.notice gerekli malzeme: 17 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_bench_wood_dark
+src.tag.makelast=i_bench_wood_dark
+endif
+dialog d_skill_carpentry
+
+// menu 2
+onbutton=21
+if (<src.carpentry> < 73.6) 
+var.notice gerekli skill: %73.6 carpentry
+elseif !(<src.restest 20 i_log>)
+var.notice gerekli malzeme: 20 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_CHEST_WOODEN_BRASS
+src.tag.makelast=i_CHEST_WOODEN_BRASS
+endif
+dialog d_skill_carpentry
+
+onbutton=22
+if (<src.carpentry> < 21.0) 
+var.notice gerekli skill: %21.0 carpentry
+elseif !(<src.restest 10 i_log>)
+var.notice gerekli malzeme: 10 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_box_wood
+src.tag.makelast=i_box_wood
+endif
+dialog d_skill_carpentry
+
+onbutton=23
+if (<src.carpentry> < 10.0) 
+var.notice gerekli skill: %10.0 carpentry
+elseif !(<src.restest 8 i_log>)
+var.notice gerekli malzeme: 8 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_crate_small
+src.tag.makelast=i_crate_small
+endif
+dialog d_skill_carpentry
+
+onbutton=24
+if (<src.carpentry> < 31.5) 
+var.notice gerekli skill: %31.5 carpentry
+elseif !(<src.restest 15 i_log>)
+var.notice gerekli malzeme: 15 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_crate_md
+src.tag.makelast=i_crate_md
+endif
+dialog d_skill_carpentry
+
+onbutton=25
+if (<src.carpentry> < 47.3) 
+var.notice gerekli skill: %47.3 carpentry
+elseif !(<src.restest 18 i_log>)
+var.notice gerekli malzeme: 18 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_crate_lg
+src.tag.makelast=i_crate_lg
+endif
+dialog d_skill_carpentry
+
+// menu 3
+onbutton=31
+if (<src.carpentry><src.carpentry> < 42.1) 
+var.notice gerekli skill: %42.1 carpentry
+elseif !(<src.restest 17 i_log>)
+var.notice gerekli malzeme: 17 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_TABLE_NIGHTSTAND
+src.tag.makelast=i_TABLE_NIGHTSTAND
+endif
+dialog d_skill_carpentry
+
+onbutton=32
+if (<src.carpentry> < 63.1) 
+var.notice gerekli skill: %63.1 carpentry
+elseif !(<src.restest 23 i_log>)
+var.notice gerekli malzeme: 23 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_TABLE_wood_rough_small
+src.tag.makelast=i_TABLE_wood_rough_small
+endif
+dialog d_skill_carpentry
+
+onbutton=33
+if (<src.carpentry> < 40.0) 
+var.notice gerekli skill: %40.0 carpentry
+elseif !(<src.restest 27 i_log>)
+var.notice gerekli malzeme: 27 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_TABLE_wood_rough_board
+src.tag.makelast=i_TABLE_wood_rough_board
+endif
+dialog d_skill_carpentry
+
+onbutton=34
+if (<src.carpentry> < 80.0) 
+var.notice gerekli skill: %80.0 carpentry
+elseif !(<src.restest 30 i_log>)
+var.notice gerekli malzeme: 30 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_bench_woodworker_end
+src.tag.makelast=i_bench_woodworker_end
+endif
+dialog d_skill_carpentry
+
+onbutton=35
+if (<src.carpentry> < 80.0) 
+var.notice gerekli skill: %80.0 carpentry
+elseif !(<src.restest 30 i_log>)
+var.notice gerekli malzeme: 30 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_vise
+src.tag.makelast=i_vise
+endif
+dialog d_skill_carpentry
+
+onbutton=36
+if (<src.carpentry> < 80.0) 
+var.notice gerekli skill: %80.0 carpentry
+elseif !(<src.restest 30 i_log>)
+var.notice gerekli malzeme: 30 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_bench_cooper
+src.tag.makelast=i_bench_cooper
+endif
+dialog d_skill_carpentry
+
+onbutton=37
+if (<src.carpentry> < 63.1) 
+var.notice gerekli skill: %63.1 carpentry
+elseif !(<src.restest 17 i_log>)
+var.notice gerekli malzeme: 17 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_table_writing
+src.tag.makelast=i_table_writing
+endif
+dialog d_skill_carpentry
+
+// menu 4
+onbutton=41
+if (<src.carpentry> < 30.0) 
+var.notice gerekli skill: %30.0 carpentry
+elseif !(<src.restest 4 i_log>)
+var.notice gerekli malzeme: 4 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_club
+src.tag.makelast=i_club
+endif
+dialog d_skill_carpentry
+
+onbutton=42
+if (<src.carpentry> < 78.9) 
+var.notice gerekli skill: %78.9 carpentry
+elseif !(<src.restest 7 i_log>)
+var.notice gerekli malzeme: 7 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_staff_gnarled
+src.tag.makelast=i_staff_gnarled
+endif
+dialog d_skill_carpentry
+
+onbutton=43
+if (<src.carpentry> < 73.6) 
+var.notice gerekli skill: %73.6 carpentry
+elseif !(<src.restest 6 i_log>)
+var.notice gerekli malzeme: 6 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_staff_quarter
+src.tag.makelast=i_staff_quarter
+endif
+dialog d_skill_carpentry
+
+onbutton=44
+if (<src.carpentry> < 78.9) 
+var.notice gerekli skill: %78.9 carpentry
+elseif !(<src.restest 7 i_log>)
+var.notice gerekli malzeme: 7 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_shepherds_crook
+src.tag.makelast=i_shepherds_crook
+endif
+dialog d_skill_carpentry
+
+onbutton=45
+if (<src.carpentry> < 50.0) 
+var.notice gerekli skill: %50.0 carpentry
+elseif !(<src.restest 8 i_log>)
+var.notice gerekli malzeme: 8 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_staff_black
+src.tag.makelast=i_staff_black
+endif
+dialog d_skill_carpentry
+
+onbutton=46
+if (<src.carpentry> < 68.4) ||(<SRC.TAILORING> < 40.0)
+var.notice gerekli skill: %78.9 carpentry, %40.0 tailoring
+elseif !(<src.restest 7 i_log>) || !(<src.restest 5 i_cloth>)
+var.notice gerekli malzeme: 7 log, 5 kumas
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_fishing_pole
+src.tag.makelast=i_fishing_pole
+endif
+dialog d_skill_carpentry
+
+onbutton=47
+if (<src.carpentry> < 52.6) 
+var.notice gerekli skill: %52.6 carpentry
+elseif !(<src.restest 9 i_log>)
+var.notice gerekli malzeme: 9 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_shield_wood
+src.tag.makelast=i_shield_wood
+endif
+dialog d_skill_carpentry
+
+// menu 5
+onbutton=51
+if (<src.carpentry> < 80.0) 
+var.notice gerekli skill: %80.0 carpentry
+elseif !(<src.restest 30 i_log>)
+var.notice gerekli malzeme: 30 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_bar_door_ne
+src.tag.makelast=i_bar_door_ne
+endif
+dialog d_skill_carpentry
+
+onbutton=52
+if (<src.carpentry> < 80.0) 
+var.notice gerekli skill: %80.0 carpentry
+elseif !(<src.restest 30 i_log>)
+var.notice gerekli malzeme: 30 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_bar_piece
+src.tag.makelast=i_bar_piece
+endif
+dialog d_skill_carpentry
+
+onbutton=53
+if (<src.carpentry> < 31.5) 
+var.notice gerekli skill: %31.5 carpentry
+elseif !(<src.restest 25 i_log>)
+var.notice gerekli malzeme: 25 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_bookcase
+src.tag.makelast=i_bookcase
+endif
+dialog d_skill_carpentry
+
+onbutton=54
+if (<src.carpentry> < 84.2) 
+var.notice gerekli skill: %84.2 carpentry
+elseif !(<src.restest 35 i_log>)
+var.notice gerekli malzeme: 35 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_ARMOIR_DK
+src.tag.makelast=i_ARMOIR_DK
+endif
+dialog d_skill_carpentry
+
+onbutton=55
+if (<src.carpentry> < 84.2) 
+var.notice gerekli skill: %84.2 carpentry
+elseif !(<src.restest 35 i_log>)
+var.notice gerekli malzeme: 35 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_ARMOIR_lt
+src.tag.makelast=i_ARMOIR_lt
+endif
+dialog d_skill_carpentry
+
+onbutton=56
+if (<src.carpentry> < 85.0) 
+var.notice gerekli skill: %85.0 carpentry
+elseif !(<src.restest 25 i_log>)
+var.notice gerekli malzeme: 25 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_bureau_2
+src.tag.makelast=i_bureau_2
+endif
+dialog d_skill_carpentry
+
+onbutton=57
+if (<src.carpentry> < 78.9) 
+var.notice gerekli skill: %78.9 carpentry
+elseif !(<src.restest 15 i_log>)
+var.notice gerekli malzeme: 15 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_MUSIC_STAND
+src.tag.makelast=i_MUSIC_STAND
+endif
+dialog d_skill_carpentry
+
+onbutton=58
+if (<src.carpentry> < 81.5) 
+var.notice gerekli skill: %81.5 carpentry
+elseif !(<src.restest 20 i_log>)
+var.notice gerekli malzeme: 20 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_MUSIC_STAND_tall
+src.tag.makelast=i_MUSIC_STAND_tall
+endif
+dialog d_skill_carpentry
+
+// menu 6	
+onbutton=61
+if (<src.carpentry> < 50.0) 
+var.notice gerekli skill: %50.0 carpentry
+elseif !(<src.restest 5 i_log>)
+var.notice gerekli malzeme: 5 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_DYE_TUB
+src.tag.makelast=i_DYE_TUB
+endif
+dialog d_skill_carpentry
+
+onbutton=62
+if (<src.carpentry> < 15.7) 
+var.notice gerekli skill: %15.7 carpentry
+elseif !(<src.restest 5 i_log>)
+var.notice gerekli malzeme: 5 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_Dartboard
+src.tag.makelast=i_Dartboard
+endif
+dialog d_skill_carpentry
+
+onbutton=63
+
+if (<src.carpentry> < 95.0) 
+var.notice gerekli skill: %95.0 carpentry
+elseif !(<src.restest 2 i_log>)
+var.notice gerekli malzeme: 2 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_model_ship
+src.tag.makelast=i_model_ship
+endif
+dialog d_skill_carpentry
+
+onbutton=64
+src.sysmessage Lantern Yapimi Yasaklanmi$tir.
+
+onbutton=65
+return 1
+
+onbutton=66
+if (<src.carpentry> < 55.0) 
+var.notice gerekli skill: %55.0 carpentry
+elseif !(<src.restest 10 i_log>)
+var.notice gerekli malzeme: 10 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_barrel_open
+src.tag.makelast=i_barrel_open
+endif
+dialog d_skill_carpentry
+
+onbutton=67
+if (<src.carpentry> < 11.0) 
+var.notice gerekli skill: %11.0 carpentry
+elseif !(<src.restest 4 i_log>)
+var.notice gerekli malzeme: 4 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_barrel_lid
+src.tag.makelast=i_barrel_lid
+endif
+dialog d_skill_carpentry
+
+onbutton=68
+if (<src.carpentry> < 63.1)  ||  (<src.tailoring> < 65.0)
+var.notice gerekli skill: %15.7 carpentry, %65.0 tailoring
+elseif !(<src.restest 5 i_log>) || !(<src.restest 10 i_cloth>)
+var.notice gerekli malzeme: 5 log, 10 kuma$
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_dress_form
+src.tag.makelast=i_dress_form
+endif
+dialog d_skill_carpentry
+
+onbutton=69
+if (<src.carpentry> < 86.8) 
+var.notice gerekli skill: %86.8 carpentry
+elseif !(<src.restest 20 i_log>)
+var.notice gerekli malzeme: 20 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_easel
+src.tag.makelast=i_easel
+endif
+dialog d_skill_carpentry
+
+// menu 7
+onbutton=71
+if (<src.carpentry> < 73.6) || (<src.blacksmithing> < 75.0)
+var.notice gerekli skill: %73.6 carpentry, %75.0 blacksmithy
+elseif !(<src.restest 5 i_log>)|| !(<src.restest 75 i_ingot_iron>)
+var.notice gerekli malzeme: 5 log, 75 iron ingot
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_forge
+src.tag.makelast=i_deed_forge
+endif
+dialog d_skill_carpentry
+
+onbutton=72
+if (<src.carpentry> < 53.5) || (<src.blacksmithing> < 65.0)
+var.notice gerekli skill: %53.5 carpentry, %65.0 blacksmithy
+elseif !(<src.restest 2 i_log>)|| !(<src.restest 20 i_ingot_iron>)
+var.notice gerekli malzeme: 2 log, 20 iron ingot
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_anvil
+src.tag.makelast=i_deed_anvil
+endif
+dialog d_skill_carpentry
+
+onbutton=73
+if (<src.carpentry> < 80.0) 
+var.notice gerekli skill: %80.0 carpentry
+elseif !(<src.restest 15 i_log>)
+var.notice gerekli malzeme: 15 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_saddle
+src.tag.makelast=i_saddle
+endif
+dialog d_skill_carpentry
+
+onbutton=74
+if (<src.carpentry> < 78.9) || (<src.blacksmithing> < 80.0)
+var.notice gerekli skill: %78.9 carpentry, %80.0 blacksmithy
+elseif !(<src.restest 5 i_log>)|| !(<src.restest 100 i_ingot_iron>)
+var.notice gerekli malzeme: 5 log, 100 iron ingot
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_forge_large_n
+src.tag.makelast=i_deed_forge_large_n
+endif
+dialog d_skill_carpentry
+
+onbutton=742
+if (<src.carpentry> < 78.9) || (<src.blacksmithing> < 80.0)
+var.notice gerekli skill: %78.9 carpentry, %80.0 blacksmithy
+elseif !(<src.restest 5 i_log>)|| !(<src.restest 100 i_ingot_iron>)
+var.notice gerekli malzeme: 5 log, 100 iron ingot
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_forge_large_w
+src.tag.makelast=i_deed_forge_large_w
+endif
+dialog d_skill_carpentry
+
+onbutton=75
+if (<src.carpentry> < 100.0) || (<src.magery> < 75.0)
+var.notice gerekli skill: %100.0 carpentry, %75.0 magery
+elseif !(<src.restest 100 i_log>)|| !(<src.restest 40 i_ingot_iron>)
+var.notice gerekli malzeme: 100 log, 40 iron ingot
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_pentagram
+src.tag.makelast=i_deed_pentagram
+endif
+dialog d_skill_carpentry
+
+onbutton=76
+if (<src.carpentry> < 100.0) || (<src.magery> < 90.0)
+var.notice gerekli skill: %100.0 carpentry, %90.0 magery
+elseif !(<src.restest 100 i_log>)|| !(<src.restest 40 i_ingot_iron>)
+var.notice gerekli malzeme: 100 log, 40 iron ingot
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_stone_pentagram
+src.tag.makelast=i_deed_stone_pentagram
+endif
+dialog d_skill_carpentry
+
+onbutton=771
+if (<src.carpentry> < 94.7) 
+var.notice gerekli skill: %94.7 carpentry
+elseif !(<src.restest 75 i_log>)
+var.notice gerekli malzeme: 75 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_water_n
+src.tag.makelast=i_deed_water_n
+endif
+dialog d_skill_carpentry
+
+
+onbutton=772
+if (<src.carpentry> < 94.7) 
+var.notice gerekli skill: %94.7 carpentry
+elseif !(<src.restest 75 i_log>)
+var.notice gerekli malzeme: 75 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_water_w
+src.tag.makelast=i_deed_water_w
+endif
+dialog d_skill_carpentry
+
+
+onbutton=781
+if (<src.carpentry> < 68.4)  ||  (<src.tailoring> < 50.0)
+var.notice gerekli skill: %68.4 carpentry, %50.0 tailoring
+elseif !(<src.restest 55 i_log>) || !(<src.restest 60 i_cloth>)
+var.notice gerekli malzeme: 55 log, 60 kuma$
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=I_DEED_DUMMYN
+src.tag.makelast=I_DEED_DUMMYN
+endif
+dialog d_skill_carpentry
+
+onbutton=782
+if (<src.carpentry> < 68.4)  ||  (<src.tailoring> < 50.0)
+var.notice gerekli skill: %68.4 carpentry, %50.0 tailoring
+elseif !(<src.restest 55 i_log>) || !(<src.restest 60 i_cloth>)
+var.notice gerekli malzeme: 55 log, 60 kuma$
+else
+var.notice e$yayi hazirliyorsunuz.
+src.src.makeitem=I_DEED_DUMMYw
+src.tag.makelast=I_DEED_DUMMYw
+endif
+dialog d_skill_carpentry
+
+onbutton=791
+if (<src.carpentry> < 73.6)  ||  (<src.tailoring> < 50.0)
+var.notice gerekli skill: %73.6 carpentry, %50.0 tailoring
+elseif !(<src.restest 65 i_log>) || !(<src.restest 60 i_cloth>)
+var.notice gerekli malzeme: 65 log, 60 kuma$
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=I_DEED_pickpockn
+src.tag.makelast=I_DEED_pickpockN
+endif
+dialog d_skill_carpentry
+
+onbutton=792
+if (<src.carpentry> < 73.6)  ||  (<src.tailoring> < 50.0)
+var.notice gerekli skill: %73.6 carpentry, %50.0 tailoring
+elseif !(<src.restest 65 i_log>) || !(<src.restest 60 i_cloth>)
+var.notice gerekli malzeme: 65 log, 60 kuma$
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=I_DEED_pickpockw
+src.tag.makelast=I_DEED_pickpockw
+endif
+dialog d_skill_carpentry
+
+onbutton=811
+if (<src.carpentry> < 78.9)  || (<src.blacksmithing> < 80.0)
+var.notice gerekli skill: %78.9 carpentry, %80.0 blacksmithy
+elseif !(<src.restest 5 i_log>) || !(<src.restest 100 i_ingot_iron>)
+var.notice gerekli malzeme: 5 log, 100 iron ingot
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_small_bed_n
+src.tag.makelast=i_deed_small_bed_n
+endif
+dialog d_skill_carpentry
+
+onbutton=812
+if (<src.carpentry> < 78.9)  || (<src.blacksmithing> < 80.0)
+var.notice gerekli skill: %78.9 carpentry, %80.0 blacksmithy
+elseif !(<src.restest 5 i_log>) || !(<src.restest 100 i_ingot_iron>)
+var.notice gerekli malzeme: 5 log, 100 iron ingot
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_small_bed_w
+src.tag.makelast=i_deed_small_bed_w
+endif
+dialog d_skill_carpentry
+
+onbutton=821
+if (<src.carpentry> < 94.7)  || (<src.tailoring> < 75.0)
+var.notice gerekli skill: %94.7 carpentry, %75.0 tailoring
+elseif !(<src.restest 150 i_log>) || !(<src.restest 150 i_cloth>)
+var.notice gerekli malzeme: 150 log, 150 kuma$
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_large_bed_n
+src.tag.makelast=i_deed_large_bed_n
+endif
+dialog d_skill_carpentry
+
+onbutton=822
+if (<src.carpentry> < 94.7)  || (<src.tailoring> < 75.0)
+var.notice gerekli skill: %94.7 carpentry, %75.0 tailoring
+elseif !(<src.restest 150 i_log>) || !(<src.restest 150 i_cloth>)
+var.notice gerekli malzeme: 150 log, 150 kuma$
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_large_bed_w
+src.tag.makelast=i_deed_large_bed_w
+endif
+dialog d_skill_carpentry
+
+onbutton=831
+if (<src.carpentry> < 94.7) 
+var.notice gerekli skill: %94.7 carpentry
+elseif !(<src.restest 90 i_log>) 
+var.notice gerekli malzeme: 90 log,
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_boardn
+src.tag.makelast=i_deed_boardn
+endif
+dialog d_skill_carpentry
+
+onbutton=832
+if (<src.carpentry> < 94.7) 
+var.notice gerekli skill: %94.7 carpentry
+elseif !(<src.restest 90 i_log>) 
+var.notice gerekli malzeme: 90 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_boardw
+src.tag.makelast=i_deed_boardw
+endif
+dialog d_skill_carpentry
+
+onbutton=841
+if (<src.carpentry> < 94.7) || (<src.tinkering> < 75.0) 
+var.notice gerekli skill: %94.7 carpentry, %75.0 tinkering
+elseif !(<src.restest 100 i_log>) || !(<src.restest 50 i_ingot_iron>)
+var.notice gerekli malzeme: 100 log, 50 iron ingot
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_flour_mill_n
+src.tag.makelast=i_deed_flour_mill_n
+endif
+dialog d_skill_carpentry
+
+onbutton=842
+if (<src.carpentry> < 94.7) || (<src.tinkering> < 75.0) 
+var.notice gerekli skill: %94.7 carpentry, %75.0 tinkering
+elseif !(<src.restest 100 i_log>) || !(<src.restest 50 i_ingot_iron>)
+var.notice gerekli malzeme: 100 log, 50 iron ingot
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_flour_mill_w
+src.tag.makelast=i_deed_flour_mill_w
+endif
+dialog d_skill_carpentry
+
+onbutton=851
+if (<src.carpentry> < 84.2) || (<src.tailoring> < 65.0) 
+var.notice gerekli skill: %84.2 carpentry, %65.0 tailoring
+elseif !(<src.restest 85 i_log>) || !(<src.restest 25 i_cloth>)
+var.notice gerekli malzeme: 85 log, 25 kuma$
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_loom_n
+src.tag.makelast=i_deed_loom_n
+endif
+dialog d_skill_carpentry
+
+onbutton=852
+if (<src.carpentry> < 84.2) || (<src.tailoring> < 65.0) 
+var.notice gerekli skill: %84.2 carpentry, %65.0 tailoring
+elseif !(<src.restest 85 i_log>) || !(<src.restest 25 i_cloth>)
+var.notice gerekli malzeme: 85 log, 25 kuma$
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_loom_w
+src.tag.makelast=i_deed_loom_w
+endif
+dialog d_skill_carpentry
+
+onbutton=861
+if (<src.carpentry> < 73.6) || (<src.tailoring> < 65.0) 
+var.notice gerekli skill: %73.6 carpentry, %65.0 tailoring
+elseif !(<src.restest 75 i_log>) || !(<src.restest 25 i_cloth>)
+var.notice gerekli malzeme: 75 log, 25 kuma$
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_wheel_n
+src.tag.makelast=i_deed_wheel_n
+endif
+dialog d_skill_carpentry
+
+onbutton=862
+if (<src.carpentry> < 73.6) || (<src.tailoring> < 65.0) 
+var.notice gerekli skill: %73.6 carpentry, %65.0 tailoring
+elseif !(<src.restest 75 i_log>) || !(<src.restest 25 i_cloth>)
+var.notice gerekli malzeme: 75 log, 25 kuma$
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_deed_wheel_w
+src.tag.makelast=i_deed_wheel_w
+endif
+dialog d_skill_carpentry
+
+onbutton=5344
+if (<src.carpentry> < 36.5) 
+var.notice gerekli skill: %36.5 carpentry
+elseif !(<src.restest 28 i_log>) 
+var.notice gerekli malzeme: 28 log
+else
+var.notice e$yayi hazirliyorsunuz.
+src.makeitem=i_BOOKCASE_full
+src.tag.makelast=i_BOOKCASE_full
+endif
+dialog d_skill_carpentry
+
+on 101
+if (<src.carpentry> < 90.0) || (<src.tailoring> < 90.0) 
+var.notice gerekli skill: %90.0 carpentry, &90.0 tailoring
+elseif !(<src.restest 25 i_log>) || !(<src.restest 20 i_hides_cut_lizardman>) || !(<src.restest 5 i_beholders_blood>)
+var.notice g. malzeme: 25 log, 20 lizardman hide, 5 beholder blood
+else
+var.notice rare dye hazirliyorsunuz.
+src.makeitem=i_rare_dye
+//src.tag.makelast=i_rare_dye
+endif
+dialog d_skill_carpentry
+
+on 102
+if (<src.carpentry> < 85.0) || (<src.tailoring> < 80.0) 
+var.notice gerekli skill: %85.0 carpentry, &80.0 tailoring
+elseif !(<src.restest 25 i_log>) || !(<src.restest 25 i_hides_cut_lizardman>)
+var.notice g. malzeme: 25 log, 25 lizardman hide
+else
+var.notice leather dye hazirliyorsunuz.
+src.makeitem=i_leather_dye
+//src.tag.makelast=i_leather_dye
+endif
+dialog d_skill_carpentry
+
+on 103
+if (<src.carpentry> < 90.0) || (<src.tailoring> < 90.0) 
+var.notice gerekli skill: %90.0 carpentry, %90.0 tailoring
+elseif !(<src.restest 50 i_log>) || !(<src.restest 25 i_hides_cut_lizardman>) || !(<src.restest 10 i_beholders_blood>)
+var.notice g. malzeme: 50 log, 25 lizardman hide, 10 beholders blood
+else
+var.notice rare leather dye hazirliyorsunuz.
+src.makeitem=i_rare_leather_dye
+//src.tag.makelast=i_rare_leather_dye
+endif
+dialog d_skill_carpentry
+
+on 104
+if (<src.carpentry> < 85.0) || (<src.tailoring> < 80.0) 
+var.notice gerekli skill: %85.0 carpentry, %80.0 tailoring
+elseif !(<src.restest 25 i_log>) || !(<src.restest 15 i_thralls_color>)
+var.notice g. malzeme: 25 log, 15 thralls color
+else
+var.notice black dye hazirliyorsunuz.
+src.makeitem=i_black_dye_tub
+//src.tag.makelast=i_black_dye_tub
+endif
+dialog d_skill_carpentry
+
+on 184
+if (<src.carpentry> < 99.0)
+var.notice gerekli skill: %99.0 carpentry
+elseif !(<src.restest 75 i_log>) || !(<src.restest 50 i_kindling>)
+var.notice g. malzeme: 75 log, 50 kindling
+else
+var.notice kulucka hazirliyorsunuz.
+src.makeitem=i_kulucka
+endif
+dialog d_skill_carpentry
+
+on 99
+src.makeitem <src.tag.makelast>
+
+on 9
+return 1
+
+on 0
+return 1
+
+[EOF]

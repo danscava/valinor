@@ -1,0 +1,365 @@
+// ----------------------------
+// KUMBARA.SCP - KUMBARA 
+// SON GUNCELLENME TARIHI: 03 $ubat 14:20 - Lorien
+// ----------------------------
+VERSION=0.55 R4
+
+
+[ITEMDEF i_kumbara]
+DEFNAME=i_kumbara
+name=Kumbara
+ID=i_box_brass
+WEIGHT=1
+VALUE=5000
+TYPE=t_script
+
+on=@create
+tag.gp 0
+color 0809
+attr=04
+
+On=@timer
+tag.kumbara
+
+on=@dclick
+if (<src.distance <uid>> > 3)
+	src.sysmessage @38,1,1 You can't reach that.
+	return 1
+elseif (<more1> == 0)
+	more1 <src.uid>
+	src.tag.kumbara
+	src.sysmessage @69,1,1 Kumbara artik size ait.
+elseif (<more1> != <src.uid>)
+	src.sysmessage @38,1,1 Bu kumbaranin sahibi degilsiniz.
+	return 
+elseif  (<src.tag.kumbara>)
+	src.sysmessage @38,1,1 Zaten Bir  Kumbaraniz var..
+	return 1
+else
+	more2 1
+	target @69,1,1 Kumbara menusunu acmak icin kumbarayi, para yatirmak icin parayi veya checki seciniz.
+return 1
+endif
+
+if (0<cont.uid>) && (<cont> == <src.findlayer(layer_bankbox).uid>)
+sdialog d_reagentinfo
+
+else
+	
+src.sysmessage @0481 Bunu kullanabilmek icin bankaniza koymalisiniz.
+endif
+return 1
+
+on=@targon_item
+if (<more2> == 1)
+	if (<src.targ.topobj.uid> != <src.uid>)
+		src.sysmessage @38,1,1 Sadece ustunuzdeki esyalari kullanabilirsiniz.
+		return 1
+	endif
+	if (<src.targ.baseid> == i_gold)
+		tag0.gp += <src.targ.amount>
+		src.targ.remove
+		more2 1
+		target @050,1,1 <src.targ.amount> GP hesabiniza aktarildi.
+	elseif (<src.targ.baseid> == i_check_brnx)
+		tag0.gp += <src.targ.more1>
+		src.targ.remove
+		more2 1
+		target @050,1,1 <src.targ.more1> GP degerindeki cek hesaba aktarildi.
+	elseif (<src.targ.uid> == <uid>)
+		var.kumbara <uid>
+		sdialog d_bank_kumbara
+	endif
+endif
+return 1
+
+on=@targon_char
+if (<more2> == 2)
+	if (<src.targ.uid> == <src.uid>)
+		return 1
+	endif
+	src.targ.sdialog d_bank_kumbara_havale
+endif
+return 1
+
+[dialog d_bank_kumbara]
+300,90
+page 1
+resizepic 50 50 5054 250 130
+resizepic 60 60 3000 230 110
+
+dtext 110 90 150 Nakit para cek
+button 75 90 4006 4005 1 0 1
+dtext 110 110 150 Check yaz
+button 75 110 4006 4005 1 0 2
+dtext 110 130 150 Havale yap
+button 75 130 4006 4005 1 0 3
+dtext 100 70 52 Bakiye: <eval <tag.gp>> gp
+
+[dialog d_bank_kumbara button]
+on=1
+sdialog d_bank_kumbara_para_cek
+
+on=2
+if (<src.bankbalance> >= 2000000)
+  src.dialog d_bankhata
+return 1
+else  
+src.dialog d_check
+end if 
+return 1
+sdialog d_bank_kumbara_check
+
+on=3
+more2 2
+target @69,1,1 Havale yapacaginiz kisiyi secin.
+
+[dialog d_bank_kumbara_havale]
+100, 20
+PAGE 0
+resizepic 2 2 5054 190 90
+resizepic 25 25 2620 110 35
+dtextentry 32 32 90 20 990 1 0
+button 140 30 4005 4006 1 0 1
+
+[dialog d_bank_kumbara_havale button]
+on=1
+if (<src.distance <uid>> > 3)
+	src.sysmessage @38,1,1 You can't reach that.
+	return 1
+elseif !(<isnum <argtxt[1]>>)
+	src.sysmessage @38,1,1 Lutfen sayi yazin.
+	return 1
+elseif (<eval <argtxt[1]>> < 5000)
+	src.sysmessage @38,1,1 En az 5k cikarabilirsiniz..
+	return 1
+elseif (<eval <argtxt[1]>> > 250000)
+	src.sysmessage @38,1,1 En fazla 250k cikarabilirsiniz..
+	return 1
+elseif (<argtxt[1]> > <eval <uid.<var.kumbara>.tag.gp>>)
+	src.sysmessage @38,1,1 Kumbaranizda <argtxt[1]> gp bulunmuyor.
+else
+	src.sysmessage @69,1,1 <argtxt[1]> gp <name> isimli kisiye aktarildi.
+	sysmessage @69,1,1 <src.name> isimli kisi size <argtxt[1]> gp aktardi. Para bankanizda...
+	try uid.<var.kumbara>.tag.gp <eval <uid.<var.kumbara>.tag.gp> - <argtxt[1]>>
+	f_give_money <argtxt[1]>
+endif
+endif
+endif
+endif
+endif
+
+[dialog d_bank_kumbara_para_cek]
+330,130
+PAGE 0
+resizepic 2 2 5054 190 90
+resizepic 25 25 2620 110 35
+dtextentry 32 32 90 20 990 1 0
+dtext 50 5 52 Miktar ?
+button 140 30 4005 4006 1 0 1
+
+[dialog d_bank_kumbara_para_cek button]
+on=1
+if (<src.distance <uid>> > 3)
+	src.sysmessage @38,1,1 You can't reach that.
+elseif !(<isnum <argtxt[1]>>)
+	src.sysmessage @38,1,1 Lutfen sayi yazin.
+	return 1
+elseif (<eval <argtxt[1]>> < 5000)
+	src.sysmessage @38,1,1 En az 5k cikarabilirsiniz..
+	return 1
+elseif (<eval <argtxt[1]>> > 250000)
+	src.sysmessage @38,1,1 En fazla 250k cikarabilirsiniz..
+	return 1
+elseif (<argtxt[1]> > <eval <tag0.gp>>)
+	src.sysmessage @38,1,1 Kumbaranizda <argtxt[1]> gp bulunmuyor.
+else
+	src.sysmessage @69,1,1 <argtxt[1]> gp bankaniza aktarildi.
+	tag.gp -= <argtxt[1]>
+	src.f_give_money <argtxt[1]>
+endif
+endif
+endif
+endif
+endif
+
+[dialog d_bank_kumbara_check]
+50,50
+
+resizepic 60 20 5170 350 220
+
+htmlgump 100 50 300 20 0 0 0
+htmlgump 100 65 250 20 1 0 0
+
+button 120 95 2714 2715 1 0 1
+button 120 115 2714 2715 1 0 2
+button 120 135 2714 2715 1 0 3
+button 120 155 2714 2715 1 0 4
+button 120 175 2714 2715 1 0 5
+
+htmlgump 142 96 100 20 2 0 0
+htmlgump 142 116 100 20 3 0 0
+htmlgump 142 136 100 20 4 0 0
+htmlgump 142 156 100 20 5 0 0
+htmlgump 142 176 100 20 6 0 0
+
+tilepic 250 125 3826
+tilepic 240 120 3823
+tilepic 250 120 3819
+tilepic 255 135 3825
+tilepic 225 125 3820
+tilepic 235 135 3823
+tilepic 245 135 3820
+
+htmlgump 298 130 100 20 7 0 0
+
+tilepic 320 122 <eval 014ef>
+
+[dialog d_bank_kumbara_check text]
+Kumbaranizda <eval <tag.gp>> altin var.
+Cekinizin degeri ne olacakti <src.sex bayim/bayan>?
+50.000 gp
+100.000 gp
+250.000 gp
+500.000 gp
+1.000.000 gp
+-->
+
+[dialog d_bank_kumbara_check button]
+On=1
+if (<eval <tag.gp>> >= 50000)
+	tag.gp -= 50000
+	newitem i_check_brnx
+	new.more1 50000
+	new.more2 <src.uid>
+	new.cont <src.findlayer(21).uid>
+else
+	src.sysmessage @38,1,1 Kumbaranizda 50k altininiz bulunmuyor.
+endif
+
+On=2
+if (<eval <tag.gp>> >= 100000)
+	tag.gp -= 100000
+	serv.newitem i_check_brnx
+	new.more1 100000
+	new.more2 <src.uid>
+	new.cont <src.findlayer(21).uid>
+else
+	src.sysmessage @38,1,1 Kumbaranizda 100k altininiz bulunmuyor.
+endif
+
+On=3
+if (<eval <tag.gp>> >= 250000)
+	tag.gp -= 250000
+	newitem i_check_brnx
+	new.more1 250000
+	new.more2 <src.uid>
+	new.cont <src.findlayer(21).uid>
+else
+	src.sysmessage @38,1,1 Kumbaranizda 250k altininiz bulunmuyor.
+endif
+
+On=4
+if (<eval <tag.gp>> >= 500000)
+	tag.gp -= 500000
+	newitem i_check_brnx
+	new.more1 500000
+	new.more2 <src.uid>
+	new.cont <src.findlayer(21).uid>
+else
+	src.sysmessage @38,1,1 Kumbaranizda 500k altininiz bulunmuyor.
+endif
+
+On=5
+if (<eval <tag.gp>> >= 1000000)
+	tag.gp -= 1000000
+	newitem i_check_brnx
+	new.more1 1000000
+	new.more2 <src.uid>
+	new.cont <src.findlayer(21).uid>
+else
+	src.sysmessage @38,1,1 Kumbaranizda 1m altininiz bulunmuyor.
+endif
+
+[function f_give_money]
+var.gp <argn1>
+if (<eval <var0.gp>> >= 65000)
+	serv.newitem i_gold
+	new.amount 65000
+	new.cont <findlayer(layer_bankbox).uid>
+	var.gp -= 65000
+	f_give_money <eval <var0.gp>>
+elseif (<eval <var0.gp>> != 0)
+	serv.newitem i_gold
+	new.amount <eval <var0.gp>>
+	new.cont <findlayer(layer_bankbox).uid>
+	var.gp 0
+endif
+
+
+[itemdef i_check_brnx]
+id i_deed
+type t_script
+weight 0.1
+name check
+
+On=@Create
+color 096d
+attr 04
+
+On=@Click
+message cek karsiligi: <eval <more1>>
+message [<src.uid.<more2>.name>]
+return 1
+
+On=@DClick
+target Islem yapacaginiz bankeri seciniz.
+return 1
+
+On=@TargOn_Char
+if (<src.targ.npc> == 5)
+	src.check_deposit <more1>
+	src.sfx 50
+	src.sysmessage <eval <more1>> altin bankaniza aktarildi.
+	remove
+endif
+return 1
+
+On=@TargOn_Item
+return 1
+
+[function check_deposit]
+var.check <eval (<argn> - 50000)>
+newitem i_gold
+act.amount 50000
+act.cont <findlayer(29).uid>
+if (<eval <var.check>> >= 50000)
+	check_deposit <eval <var.check>>
+elseif (<eval <var.check>> > 0)
+	newitem i_gold
+	act.amount <eval <var.check>>
+	act.cont <findlayer(29).uid>
+	var.check
+else
+	var.check
+endif
+
+
+[ITEMDEF i_bank_kumbara]
+DEFNAME=i_bank_kumbara
+name=Kumbara
+ID=i_box_brass
+WEIGHT=1
+VALUE=4348
+TYPE=t_script
+
+on=@create
+tag.gp 0
+color 0809
+attr=04
+
+on=@dclick
+remove
+return 1
+
+[EOF]

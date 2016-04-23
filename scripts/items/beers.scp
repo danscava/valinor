@@ -1,0 +1,91 @@
+// -----------------------------------------------
+// -- Script Tanitimi	   : Ýçkiler		--
+// -- Son Düzenleme Tarihi : 18.08.2004		--
+// -----------------------------------------------
+VERSION=0.55
+
+[ITEMDEF i_ale_amber]
+NAME=amber ale
+ID=i_bottle_ale
+TYPE=T_BOOZE
+VALUE={8 12}
+WEIGHT=1
+CATEGORY=Ales
+SUBSECTION=Ales
+DESCRIPTION=Amber Ale
+ON=@Create
+COLOR=COLOR_RED2
+
+[ITEMDEF i_ale_honey]
+NAME=honey ale
+ID=i_bottle_ale
+TYPE=T_BOOZE
+VALUE={8 12}
+WEIGHT=1
+CATEGORY=Ales
+SUBSECTION=Ales
+DESCRIPTION=Honey Ale
+ON=@Create
+COLOR=COLOR_O_GOLD
+
+[ITEMDEF i_ale_brown]
+NAME=brown ale
+ID=i_bottle_ale
+TYPE=T_BOOZE
+VALUE={8 12}
+WEIGHT=1
+CATEGORY=Ales
+SUBSECTION=Ales
+DESCRIPTION=Brown Ale
+ON=@Create
+COLOR=COLORS_BROWN
+
+[ITEMDEF i_ale_spiced]
+NAME=spiced ale
+ID=i_bottle_ale
+TYPE=T_BOOZE
+VALUE={8 12}
+WEIGHT=1
+CATEGORY=Ales
+SUBSECTION=Ales
+DESCRIPTION=Spiced Ale
+ON=@Create
+	COLOR=02c
+
+[ITEMDEF i_ale_smoked]
+NAME=smoked porter
+ID=i_bottle_ale
+TYPE=T_BOOZE
+VALUE={8 12}
+WEIGHT=1
+CATEGORY=Ales
+SUBSECTION=Ales
+DESCRIPTION=Smoked Porter
+ON=@Create
+COLOR=COLOR_GRAY_DK
+
+[ITEMDEF i_ale_stout]
+NAME=stout
+ID=i_bottle_ale
+TYPE=T_BOOZE
+VALUE={8 12}
+WEIGHT=1
+CATEGORY=Ales
+SUBSECTION=Ales
+DESCRIPTION=Stout Ale
+ON=@Create
+COLOR=0455
+
+[ITEMDEF i_ale_oktoberfest]
+NAME=oktoberfest ale
+ID=i_bottle_ale
+TYPE=T_BOOZE
+VALUE={10 15}
+WEIGHT=1
+CATEGORY=Ales
+SUBSECTION=Ales
+DESCRIPTION=Oktoberfest Ale
+ON=@Create
+COLOR=COLORS_ORANGE
+
+[EOF]
